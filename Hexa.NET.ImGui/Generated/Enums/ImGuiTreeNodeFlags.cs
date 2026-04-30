@@ -105,7 +105,7 @@ namespace Hexa.NET.ImGui
 		LabelSpanAllColumns = unchecked(32768),
 
 		/// <summary>
-		/// Nav: left arrow moves back to parent. This is processed in TreePop() when there's an unfullfilled Left nav request remaining.<br/>
+		/// Nav: left arrow moves back to parent. This is processed in TreePop() when there's an unfulfilled Left nav request remaining.<br/>
 		/// </summary>
 		NavLeftJumpsToParent = unchecked(131072),
 

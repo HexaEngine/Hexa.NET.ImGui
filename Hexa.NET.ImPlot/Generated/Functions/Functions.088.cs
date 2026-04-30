@@ -22,114 +22,6 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in byte xs, byte* ys, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (byte*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(string labelId, in byte xs, byte* ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (byte*)pxs, ys, count, (double)(0), flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(byte* labelId, byte* xs, in byte ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (byte* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (byte*)pys, count, reference, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(byte* labelId, byte* xs, in byte ys, int count, double reference, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (byte*)pys, count, reference, flags, offset, (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(byte* labelId, byte* xs, in byte ys, int count, double reference, ImPlotStemsFlags flags)
-		{
-			fixed (byte* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (byte*)pys, count, reference, flags, (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(byte* labelId, byte* xs, in byte ys, int count, double reference)
-		{
-			fixed (byte* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (byte*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static void PlotStems(byte* labelId, byte* xs, in byte ys, int count)
 		{
 			fixed (byte* pys = &ys)
@@ -5029,6 +4921,111 @@ namespace Hexa.NET.ImPlot
 				fixed (short* pys = &ys)
 				{
 					PlotStemsNative(pStr0, (short*)pxs, (short*)pys, count, reference, flags, (int)(0), (int)(sizeof(short)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(string labelId, in short xs, in short ys, int count, double reference)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotStemsNative(pStr0, (short*)pxs, (short*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(short)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(string labelId, in short xs, in short ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotStemsNative(pStr0, (short*)pxs, (short*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(short)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(string labelId, in short xs, in short ys, int count, ImPlotStemsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotStemsNative(pStr0, (short*)pxs, (short*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(short)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);

@@ -309,14 +309,14 @@ namespace Hexa.NET.ImGui
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void PlatformSetwindowpos([NativeName(NativeNameType.Param, "vp")] [NativeName(NativeNameType.Type, "ImGuiViewport *")] ImGuiViewport* vp, [NativeName(NativeNameType.Param, "pos")] [NativeName(NativeNameType.Type, "ImVec2")] Vector2 pos);
+	public unsafe delegate void PlatformSetwindowpos([NativeName(NativeNameType.Param, "vp")] [NativeName(NativeNameType.Type, "ImGuiViewport *")] ImGuiViewport* vp, [NativeName(NativeNameType.Param, "pos")] [NativeName(NativeNameType.Type, "ImVec2_c")] Vector2 pos);
 
 	#else
 	/// <summary>
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void PlatformSetwindowpos([NativeName(NativeNameType.Param, "vp")] [NativeName(NativeNameType.Type, "ImGuiViewport *")] nint vp, [NativeName(NativeNameType.Param, "pos")] [NativeName(NativeNameType.Type, "ImVec2")] Vector2 pos);
+	public unsafe delegate void PlatformSetwindowpos([NativeName(NativeNameType.Param, "vp")] [NativeName(NativeNameType.Type, "ImGuiViewport *")] nint vp, [NativeName(NativeNameType.Param, "pos")] [NativeName(NativeNameType.Type, "ImVec2_c")] Vector2 pos);
 
 	#endif
 
@@ -341,14 +341,14 @@ namespace Hexa.NET.ImGui
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void PlatformSetwindowsize([NativeName(NativeNameType.Param, "vp")] [NativeName(NativeNameType.Type, "ImGuiViewport *")] ImGuiViewport* vp, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2")] Vector2 size);
+	public unsafe delegate void PlatformSetwindowsize([NativeName(NativeNameType.Param, "vp")] [NativeName(NativeNameType.Type, "ImGuiViewport *")] ImGuiViewport* vp, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2_c")] Vector2 size);
 
 	#else
 	/// <summary>
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void PlatformSetwindowsize([NativeName(NativeNameType.Param, "vp")] [NativeName(NativeNameType.Type, "ImGuiViewport *")] nint vp, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2")] Vector2 size);
+	public unsafe delegate void PlatformSetwindowsize([NativeName(NativeNameType.Param, "vp")] [NativeName(NativeNameType.Type, "ImGuiViewport *")] nint vp, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2_c")] Vector2 size);
 
 	#endif
 
@@ -613,14 +613,14 @@ namespace Hexa.NET.ImGui
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void RendererSetwindowsize([NativeName(NativeNameType.Param, "vp")] [NativeName(NativeNameType.Type, "ImGuiViewport *")] ImGuiViewport* vp, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2")] Vector2 size);
+	public unsafe delegate void RendererSetwindowsize([NativeName(NativeNameType.Param, "vp")] [NativeName(NativeNameType.Type, "ImGuiViewport *")] ImGuiViewport* vp, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2_c")] Vector2 size);
 
 	#else
 	/// <summary>
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void RendererSetwindowsize([NativeName(NativeNameType.Param, "vp")] [NativeName(NativeNameType.Type, "ImGuiViewport *")] nint vp, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2")] Vector2 size);
+	public unsafe delegate void RendererSetwindowsize([NativeName(NativeNameType.Param, "vp")] [NativeName(NativeNameType.Type, "ImGuiViewport *")] nint vp, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "ImVec2_c")] Vector2 size);
 
 	#endif
 
@@ -653,54 +653,6 @@ namespace Hexa.NET.ImGui
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void RendererSwapbuffers([NativeName(NativeNameType.Param, "vp")] [NativeName(NativeNameType.Type, "ImGuiViewport *")] nint vp, [NativeName(NativeNameType.Param, "render_arg")] [NativeName(NativeNameType.Type, "void *")] nint renderArg);
-
-	#endif
-
-	#if NET5_0_OR_GREATER
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate uint AdapterIndexToStorageId([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImGuiSelectionBasicStorage *")] ImGuiSelectionBasicStorage* self, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "int")] int idx);
-
-	#else
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate uint AdapterIndexToStorageId([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImGuiSelectionBasicStorage *")] nint self, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "int")] int idx);
-
-	#endif
-
-	#if NET5_0_OR_GREATER
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void AdapterSetItemSelected([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImGuiSelectionExternalStorage *")] ImGuiSelectionExternalStorage* self, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "int")] int idx, [NativeName(NativeNameType.Param, "selected")] [NativeName(NativeNameType.Type, "bool")] byte selected);
-
-	#else
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void AdapterSetItemSelected([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImGuiSelectionExternalStorage *")] nint self, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "int")] int idx, [NativeName(NativeNameType.Param, "selected")] [NativeName(NativeNameType.Type, "bool")] byte selected);
-
-	#endif
-
-	#if NET5_0_OR_GREATER
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void Callback([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "ImGuiContext *")] ImGuiContext* ctx, [NativeName(NativeNameType.Param, "hook")] [NativeName(NativeNameType.Type, "ImGuiContextHook *")] ImGuiContextHook* hook);
-
-	#else
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void Callback([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "ImGuiContext *")] nint ctx, [NativeName(NativeNameType.Param, "hook")] [NativeName(NativeNameType.Type, "ImGuiContextHook *")] nint hook);
 
 	#endif
 
@@ -821,14 +773,46 @@ namespace Hexa.NET.ImGui
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate int ImGuiInputTextCallback([NativeName(NativeNameType.Param, "data")] [NativeName(NativeNameType.Type, "ImGuiInputTextCallbackData *")] ImGuiInputTextCallbackData* data);
+	public unsafe delegate void Callback([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "ImGuiContext *")] ImGuiContext* ctx, [NativeName(NativeNameType.Param, "hook")] [NativeName(NativeNameType.Type, "ImGuiContextHook *")] ImGuiContextHook* hook);
 
 	#else
 	/// <summary>
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate int ImGuiInputTextCallback([NativeName(NativeNameType.Param, "data")] [NativeName(NativeNameType.Type, "ImGuiInputTextCallbackData *")] nint data);
+	public unsafe delegate void Callback([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "ImGuiContext *")] nint ctx, [NativeName(NativeNameType.Param, "hook")] [NativeName(NativeNameType.Type, "ImGuiContextHook *")] nint hook);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate uint AdapterIndexToStorageId([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImGuiSelectionBasicStorage *")] ImGuiSelectionBasicStorage* self, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "int")] int idx);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate uint AdapterIndexToStorageId([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImGuiSelectionBasicStorage *")] nint self, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "int")] int idx);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void AdapterSetItemSelected([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImGuiSelectionExternalStorage *")] ImGuiSelectionExternalStorage* self, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "int")] int idx, [NativeName(NativeNameType.Param, "selected")] [NativeName(NativeNameType.Type, "bool")] byte selected);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void AdapterSetItemSelected([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImGuiSelectionExternalStorage *")] nint self, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "int")] int idx, [NativeName(NativeNameType.Param, "selected")] [NativeName(NativeNameType.Type, "bool")] byte selected);
 
 	#endif
 
@@ -845,6 +829,70 @@ namespace Hexa.NET.ImGui
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImGuiSizeCallback([NativeName(NativeNameType.Param, "data")] [NativeName(NativeNameType.Type, "ImGuiSizeCallbackData *")] nint data);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImGuiContextHookCallback([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "ImGuiContext *")] ImGuiContext* ctx, [NativeName(NativeNameType.Param, "hook")] [NativeName(NativeNameType.Type, "ImGuiContextHook *")] ImGuiContextHook* hook);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImGuiContextHookCallback([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "ImGuiContext *")] nint ctx, [NativeName(NativeNameType.Param, "hook")] [NativeName(NativeNameType.Type, "ImGuiContextHook *")] nint hook);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImGuiErrorCallback([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "ImGuiContext *")] ImGuiContext* ctx, [NativeName(NativeNameType.Param, "user_data")] [NativeName(NativeNameType.Type, "void *")] void* userData, [NativeName(NativeNameType.Param, "msg")] [NativeName(NativeNameType.Type, "char const *")] byte* msg);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImGuiErrorCallback([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "ImGuiContext *")] nint ctx, [NativeName(NativeNameType.Param, "user_data")] [NativeName(NativeNameType.Type, "void *")] nint userData, [NativeName(NativeNameType.Param, "msg")] [NativeName(NativeNameType.Type, "char const *")] nint msg);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImDrawCallback([NativeName(NativeNameType.Param, "parent_list")] [NativeName(NativeNameType.Type, "ImDrawList const *")] ImDrawList* parentList, [NativeName(NativeNameType.Param, "cmd")] [NativeName(NativeNameType.Type, "ImDrawCmd const *")] ImDrawCmd* cmd);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImDrawCallback([NativeName(NativeNameType.Param, "parent_list")] [NativeName(NativeNameType.Type, "ImDrawList const *")] nint parentList, [NativeName(NativeNameType.Param, "cmd")] [NativeName(NativeNameType.Type, "ImDrawCmd const *")] nint cmd);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate int ImGuiInputTextCallback([NativeName(NativeNameType.Param, "data")] [NativeName(NativeNameType.Type, "ImGuiInputTextCallbackData *")] ImGuiInputTextCallbackData* data);
+
+	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate int ImGuiInputTextCallback([NativeName(NativeNameType.Param, "data")] [NativeName(NativeNameType.Type, "ImGuiInputTextCallbackData *")] nint data);
 
 	#endif
 
@@ -877,54 +925,6 @@ namespace Hexa.NET.ImGui
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImGuiMemFreeFunc([NativeName(NativeNameType.Param, "ptr")] [NativeName(NativeNameType.Type, "void *")] nint ptr, [NativeName(NativeNameType.Param, "user_data")] [NativeName(NativeNameType.Type, "void *")] nint userData);
-
-	#endif
-
-	#if NET5_0_OR_GREATER
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImDrawCallback([NativeName(NativeNameType.Param, "parent_list")] [NativeName(NativeNameType.Type, "ImDrawList const *")] ImDrawList* parentList, [NativeName(NativeNameType.Param, "cmd")] [NativeName(NativeNameType.Type, "ImDrawCmd const *")] ImDrawCmd* cmd);
-
-	#else
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImDrawCallback([NativeName(NativeNameType.Param, "parent_list")] [NativeName(NativeNameType.Type, "ImDrawList const *")] nint parentList, [NativeName(NativeNameType.Param, "cmd")] [NativeName(NativeNameType.Type, "ImDrawCmd const *")] nint cmd);
-
-	#endif
-
-	#if NET5_0_OR_GREATER
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImGuiErrorCallback([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "ImGuiContext *")] ImGuiContext* ctx, [NativeName(NativeNameType.Param, "user_data")] [NativeName(NativeNameType.Type, "void *")] void* userData, [NativeName(NativeNameType.Param, "msg")] [NativeName(NativeNameType.Type, "char const *")] byte* msg);
-
-	#else
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImGuiErrorCallback([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "ImGuiContext *")] nint ctx, [NativeName(NativeNameType.Param, "user_data")] [NativeName(NativeNameType.Type, "void *")] nint userData, [NativeName(NativeNameType.Param, "msg")] [NativeName(NativeNameType.Type, "char const *")] nint msg);
-
-	#endif
-
-	#if NET5_0_OR_GREATER
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImGuiContextHookCallback([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "ImGuiContext *")] ImGuiContext* ctx, [NativeName(NativeNameType.Param, "hook")] [NativeName(NativeNameType.Type, "ImGuiContextHook *")] ImGuiContextHook* hook);
-
-	#else
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImGuiContextHookCallback([NativeName(NativeNameType.Param, "ctx")] [NativeName(NativeNameType.Type, "ImGuiContext *")] nint ctx, [NativeName(NativeNameType.Param, "hook")] [NativeName(NativeNameType.Type, "ImGuiContextHook *")] nint hook);
 
 	#endif
 

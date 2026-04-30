@@ -21,7 +21,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ListBox(string label, int* currentItem, in byte* items, int itemsCount)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -40,9 +40,9 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte** pitems = &items)
+			fixed (byte* pformat = format)
 			{
-				byte ret = ListBoxNative(pStr0, currentItem, (byte**)pitems, itemsCount, (int)(-1));
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -54,13 +54,469 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ListBox(byte* label, ref int currentItem, in byte* items, int itemsCount, int heightInItems)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, ReadOnlySpan<byte> format)
 		{
-			fixed (int* pcurrentItem = &currentItem)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				fixed (byte** pitems = &items)
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = ListBoxNative(label, (int*)pcurrentItem, (byte**)pitems, itemsCount, heightInItems);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, in byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, pStepFast, pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)(default), pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -69,13 +525,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ListBox(byte* label, ref int currentItem, in byte* items, int itemsCount)
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format)
 		{
-			fixed (int* pcurrentItem = &currentItem)
+			fixed (byte* plabel = &label)
 			{
-				fixed (byte** pitems = &items)
+				fixed (byte* pformat = &format)
 				{
-					byte ret = ListBoxNative(label, (int*)pcurrentItem, (byte**)pitems, itemsCount, (int)(-1));
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -84,93 +540,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ListBox(byte* label, ref int currentItem, string[] items, int itemsCount, int heightInItems)
-		{
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte** pStrArray0 = null;
-				int pStrArray0Size = Utils.GetByteCountArray(items);
-				if (items != null)
-				{
-					if (pStrArray0Size > Utils.MaxStackallocSize)
-					{
-						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-					}
-					else
-					{
-						byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-						pStrArray0 = (byte**)pStrArray0Stack;
-					}
-				}
-				for (int i = 0; i < items.Length; i++)
-				{
-					pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(items[i]);
-				}
-				byte ret = ListBoxNative(label, (int*)pcurrentItem, pStrArray0, itemsCount, heightInItems);
-				for (int i = 0; i < items.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(byte* label, ref int currentItem, string[] items, int itemsCount)
-		{
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte** pStrArray0 = null;
-				int pStrArray0Size = Utils.GetByteCountArray(items);
-				if (items != null)
-				{
-					if (pStrArray0Size > Utils.MaxStackallocSize)
-					{
-						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-					}
-					else
-					{
-						byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-						pStrArray0 = (byte**)pStrArray0Stack;
-					}
-				}
-				for (int i = 0; i < items.Length; i++)
-				{
-					pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(items[i]);
-				}
-				byte ret = ListBoxNative(label, (int*)pcurrentItem, pStrArray0, itemsCount, (int)(-1));
-				for (int i = 0; i < items.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(in byte label, ref int currentItem, in byte* items, int itemsCount, int heightInItems)
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (int* pcurrentItem = &currentItem)
+				fixed (byte* pformat = &format)
 				{
-					fixed (byte** pitems = &items)
-					{
-						byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, (byte**)pitems, itemsCount, heightInItems);
-						return ret != 0;
-					}
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
 				}
 			}
 		}
@@ -178,17 +555,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ListBox(in byte label, ref int currentItem, in byte* items, int itemsCount)
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (int* pcurrentItem = &currentItem)
+				fixed (byte* pformat = &format)
 				{
-					fixed (byte** pitems = &items)
-					{
-						byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, (byte**)pitems, itemsCount, (int)(-1));
-						return ret != 0;
-					}
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
 				}
 			}
 		}
@@ -196,17 +570,44 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ListBox(ReadOnlySpan<byte> label, ref int currentItem, in byte* items, int itemsCount, int heightInItems)
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (int* pcurrentItem = &currentItem)
+				fixed (byte* pformat = format)
 				{
-					fixed (byte** pitems = &items)
-					{
-						byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, (byte**)pitems, itemsCount, heightInItems);
-						return ret != 0;
-					}
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
 				}
 			}
 		}
@@ -214,17 +615,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ListBox(ReadOnlySpan<byte> label, ref int currentItem, in byte* items, int itemsCount)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (int* pcurrentItem = &currentItem)
+				fixed (byte* pformat = format)
 				{
-					fixed (byte** pitems = &items)
-					{
-						byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, (byte**)pitems, itemsCount, (int)(-1));
-						return ret != 0;
-					}
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
 				}
 			}
 		}
@@ -232,7 +630,67 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ListBox(string label, ref int currentItem, string[] items, int itemsCount, int heightInItems)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -251,47 +709,39 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pcurrentItem = &currentItem)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
 			{
-				byte** pStrArray0 = null;
-				int pStrArray0Size = Utils.GetByteCountArray(items);
-				if (items != null)
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					if (pStrArray0Size > Utils.MaxStackallocSize)
-					{
-						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-					}
-					else
-					{
-						byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-						pStrArray0 = (byte**)pStrArray0Stack;
-					}
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
-				for (int i = 0; i < items.Length; i++)
+				else
 				{
-					pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(items[i]);
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
 				}
-				byte ret = ListBoxNative(pStr0, (int*)pcurrentItem, pStrArray0, itemsCount, heightInItems);
-				for (int i = 0; i < items.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
 			}
+			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, pStepFast, pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ListBox(string label, ref int currentItem, string[] items, int itemsCount)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -310,47 +760,39 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pcurrentItem = &currentItem)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
 			{
-				byte** pStrArray0 = null;
-				int pStrArray0Size = Utils.GetByteCountArray(items);
-				if (items != null)
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					if (pStrArray0Size > Utils.MaxStackallocSize)
-					{
-						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-					}
-					else
-					{
-						byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-						pStrArray0 = (byte**)pStrArray0Stack;
-					}
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
-				for (int i = 0; i < items.Length; i++)
+				else
 				{
-					pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(items[i]);
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
 				}
-				byte ret = ListBoxNative(pStr0, (int*)pcurrentItem, pStrArray0, itemsCount, (int)(-1));
-				for (int i = 0; i < items.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
 			}
+			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, pStepFast, pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ListBox(string label, ref int currentItem, in byte* items, int itemsCount, int heightInItems)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -369,304 +811,336 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pcurrentItem = &currentItem)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
 			{
-				fixed (byte** pitems = &items)
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					byte ret = ListBoxNative(pStr0, (int*)pcurrentItem, (byte**)pitems, itemsCount, heightInItems);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, (void*)(default), pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
-					return ret != 0;
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
 				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ListBox(string label, ref int currentItem, in byte* items, int itemsCount)
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (byte* plabel = &label)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				fixed (byte** pitems = &items)
-				{
-					byte ret = ListBoxNative(pStr0, (int*)pcurrentItem, (byte**)pitems, itemsCount, (int)(-1));
+					pStrSize0 = Utils.GetByteCountUTF8(format);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
-					return ret != 0;
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ListBoxNative(byte* label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int heightInItems)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, delegate*<void*, int, byte*>, void*, int, int, byte>)funcTable[241])(label, currentItem, getter, userData, itemsCount, heightInItems);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, int, byte>)funcTable[241])((nint)label, (nint)currentItem, (nint)getter, (nint)userData, itemsCount, heightInItems);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(byte* label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int heightInItems)
-		{
-			byte ret = ListBoxNative(label, currentItem, getter, userData, itemsCount, heightInItems);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(byte* label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
-		{
-			byte ret = ListBoxNative(label, currentItem, getter, userData, itemsCount, (int)(-1));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(in byte label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int heightInItems)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ListBoxNative((byte*)plabel, currentItem, getter, userData, itemsCount, heightInItems);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(in byte label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ListBoxNative((byte*)plabel, currentItem, getter, userData, itemsCount, (int)(-1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(ReadOnlySpan<byte> label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int heightInItems)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = ListBoxNative((byte*)plabel, currentItem, getter, userData, itemsCount, heightInItems);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(ReadOnlySpan<byte> label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = ListBoxNative((byte*)plabel, currentItem, getter, userData, itemsCount, (int)(-1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(string label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int heightInItems)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ListBoxNative(pStr0, currentItem, getter, userData, itemsCount, heightInItems);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(string label, int* currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ListBoxNative(pStr0, currentItem, getter, userData, itemsCount, (int)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(byte* label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int heightInItems)
-		{
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte ret = ListBoxNative(label, (int*)pcurrentItem, getter, userData, itemsCount, heightInItems);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(byte* label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
-		{
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte ret = ListBoxNative(label, (int*)pcurrentItem, getter, userData, itemsCount, (int)(-1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(in byte label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int heightInItems)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pcurrentItem = &currentItem)
-				{
-					byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, getter, userData, itemsCount, heightInItems);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(in byte label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pcurrentItem = &currentItem)
-				{
-					byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, getter, userData, itemsCount, (int)(-1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(ReadOnlySpan<byte> label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int heightInItems)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pcurrentItem = &currentItem)
-				{
-					byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, getter, userData, itemsCount, heightInItems);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(ReadOnlySpan<byte> label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pcurrentItem = &currentItem)
-				{
-					byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, getter, userData, itemsCount, (int)(-1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(string label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount, int heightInItems)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte ret = ListBoxNative(pStr0, (int*)pcurrentItem, getter, userData, itemsCount, heightInItems);
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -678,271 +1152,28 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ListBox(string label, ref int currentItem, delegate*<void*, int, byte*> getter, void* userData, int itemsCount)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte ret = ListBoxNative(pStr0, (int*)pcurrentItem, getter, userData, itemsCount, (int)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(byte* label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int heightInItems)
-		{
-			byte ret = ListBoxNative(label, currentItem, getter, (void*)userData, itemsCount, heightInItems);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(byte* label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
-		{
-			byte ret = ListBoxNative(label, currentItem, getter, (void*)userData, itemsCount, (int)(-1));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(in byte label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int heightInItems)
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = ListBoxNative((byte*)plabel, currentItem, getter, (void*)userData, itemsCount, heightInItems);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(in byte label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ListBoxNative((byte*)plabel, currentItem, getter, (void*)userData, itemsCount, (int)(-1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(ReadOnlySpan<byte> label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int heightInItems)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = ListBoxNative((byte*)plabel, currentItem, getter, (void*)userData, itemsCount, heightInItems);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(ReadOnlySpan<byte> label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = ListBoxNative((byte*)plabel, currentItem, getter, (void*)userData, itemsCount, (int)(-1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(string label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int heightInItems)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ListBoxNative(pStr0, currentItem, getter, (void*)userData, itemsCount, heightInItems);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(string label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ListBoxNative(pStr0, currentItem, getter, (void*)userData, itemsCount, (int)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(byte* label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int heightInItems)
-		{
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte ret = ListBoxNative(label, (int*)pcurrentItem, getter, (void*)userData, itemsCount, heightInItems);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(byte* label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
-		{
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte ret = ListBoxNative(label, (int*)pcurrentItem, getter, (void*)userData, itemsCount, (int)(-1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(in byte label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int heightInItems)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pcurrentItem = &currentItem)
-				{
-					byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, getter, (void*)userData, itemsCount, heightInItems);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(in byte label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pcurrentItem = &currentItem)
-				{
-					byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, getter, (void*)userData, itemsCount, (int)(-1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(ReadOnlySpan<byte> label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int heightInItems)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pcurrentItem = &currentItem)
-				{
-					byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, getter, (void*)userData, itemsCount, heightInItems);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(ReadOnlySpan<byte> label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pcurrentItem = &currentItem)
-				{
-					byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, getter, (void*)userData, itemsCount, (int)(-1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ListBox(string label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int heightInItems)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte ret = ListBoxNative(pStr0, (int*)pcurrentItem, getter, (void*)userData, itemsCount, heightInItems);
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -954,28 +1185,28 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ListBox(string label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, string format)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (byte* plabel = &label)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte ret = ListBoxNative(pStr0, (int*)pcurrentItem, getter, (void*)userData, itemsCount, (int)(-1));
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -987,1430 +1218,361 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotLinesNative(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, float*, int, int, byte*, float, float, Vector2, int, void>)funcTable[242])(label, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, int, nint, float, float, Vector2, int, void>)funcTable[242])((nint)label, (nint)values, valuesCount, valuesOffset, (nint)overlayText, scaleMin, scaleMax, graphSize, stride);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, byte* overlayText)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, float scaleMin)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, float scaleMin)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, byte* overlayText, float scaleMin)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, float scaleMin, float scaleMax)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, Vector2 graphSize)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, Vector2 graphSize)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, byte* overlayText, Vector2 graphSize)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, float scaleMin, Vector2 graphSize)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, byte* overlayText, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, float scaleMin, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, float scaleMin, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, byte* overlayText, float scaleMin, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, float scaleMin, float scaleMax, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, Vector2 graphSize, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, Vector2 graphSize, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, float scaleMin, Vector2 graphSize, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			PlotLinesNative(label, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, stride);
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, string format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, byte* overlayText)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, byte* overlayText, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, byte* overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, byte* overlayText, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, byte* overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, stride);
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, byte* overlayText)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, byte* overlayText)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format)
 		{
 			fixed (byte* plabel = label)
 			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, float scaleMin)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format)
 		{
 			fixed (byte* plabel = label)
 			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, float scaleMin)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, string format)
 		{
 			fixed (byte* plabel = label)
 			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, byte* overlayText, float scaleMin)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, string format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, Vector2 graphSize)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, Vector2 graphSize)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, byte* overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, byte* overlayText, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, byte* overlayText, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, byte* overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2429,17 +1591,21 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = &format)
 			{
-				Utils.Free(pStr0);
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2458,17 +1624,21 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = &format)
 			{
-				Utils.Free(pStr0);
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2487,17 +1657,21 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = &format)
 			{
-				Utils.Free(pStr0);
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2516,17 +1690,21 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = &format)
 			{
-				Utils.Free(pStr0);
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, byte* overlayText)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2545,17 +1723,21 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = &format)
 			{
-				Utils.Free(pStr0);
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, in byte format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2574,17 +1756,21 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = &format)
 			{
-				Utils.Free(pStr0);
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2603,17 +1789,21 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = format)
 			{
-				Utils.Free(pStr0);
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, byte* overlayText)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2632,17 +1822,21 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = format)
 			{
-				Utils.Free(pStr0);
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, float scaleMin)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2661,17 +1855,21 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = format)
 			{
-				Utils.Free(pStr0);
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, float scaleMin)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2690,17 +1888,21 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = format)
 			{
-				Utils.Free(pStr0);
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, byte* overlayText, float scaleMin)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2719,17 +1921,21 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = format)
 			{
-				Utils.Free(pStr0);
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2748,23 +1954,123 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = format)
 			{
-				Utils.Free(pStr0);
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, float scaleMin, float scaleMax)
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (label != null)
+			if (format != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				pStrSize0 = Utils.GetByteCountUTF8(format);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2774,26 +2080,27 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, pStepFast, pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax)
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (label != null)
+			if (format != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				pStrSize0 = Utils.GetByteCountUTF8(format);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2803,26 +2110,27 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize)
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (label != null)
+			if (format != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				pStrSize0 = Utils.GetByteCountUTF8(format);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2832,26 +2140,27 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize)
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (label != null)
+			if (format != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				pStrSize0 = Utils.GetByteCountUTF8(format);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2861,1442 +2170,28 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, (void*)(default), pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, byte* overlayText, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, float scaleMin, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, byte* overlayText, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, byte* overlayText, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, float scaleMin, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, float scaleMin, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, byte* overlayText, float scaleMin, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, float scaleMin, float scaleMax, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, float scaleMin, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(string label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, byte* overlayText)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, byte* overlayText)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, float scaleMin)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, float scaleMin)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, byte* overlayText, float scaleMin)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, float scaleMin, float scaleMax)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, byte* overlayText, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, float scaleMin, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, byte* overlayText, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, byte* overlayText, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, float scaleMin, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, float scaleMin, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, byte* overlayText, float scaleMin, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(byte* label, in float values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (float* pvalues = &values)
+				fixed (byte* pformat = &format)
 				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, stride);
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
 				}
 			}
 		}
@@ -4304,13 +2199,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (float* pvalues = &values)
+				fixed (byte* pformat = &format)
 				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
 				}
 			}
 		}
@@ -4318,13 +2214,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax)
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (float* pvalues = &values)
+				fixed (byte* pformat = &format)
 				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
 				}
 			}
 		}
@@ -4332,13 +2229,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin)
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (float* pvalues = &values)
+				fixed (byte* pformat = &format)
 				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
 				}
 			}
 		}
@@ -4346,615 +2244,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, byte* overlayText)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, byte* overlayText)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, byte* overlayText, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, byte* overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, byte* overlayText, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, byte* overlayText, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, byte* overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(in byte label, in float values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (float* pvalues = &values)
+				fixed (byte* pformat = format)
 				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, stride);
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
 				}
 			}
 		}
@@ -4962,13 +2259,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (float* pvalues = &values)
+				fixed (byte* pformat = format)
 				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
 				}
 			}
 		}
@@ -4976,13 +2274,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (float* pvalues = &values)
+				fixed (byte* pformat = format)
 				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
 				}
 			}
 		}
@@ -4990,13 +2289,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, in float values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin)
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (float* pvalues = &values)
+				fixed (byte* pformat = format)
 				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
 				}
 			}
 		}
@@ -5004,13 +2304,218 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, in float values, int valuesCount, int valuesOffset, byte* overlayText)
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
 		{
-			fixed (byte* plabel = label)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				fixed (float* pvalues = &values)
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, pStepFast, pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, pStepFast, pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, (void*)(default), pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
 				}
 			}
 		}
@@ -5018,15 +2523,2524 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLines(ReadOnlySpan<byte> label, in float values, int valuesCount, int valuesOffset)
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (float* pvalues = &values)
+				fixed (byte* pformat = &format)
 				{
-					PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
 				}
 			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, in byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)pStepFast, pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, in byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)pStepFast, pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)pStepFast, pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)pStepFast, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, string format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, in byte format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)pStepFast, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, string format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, in byte format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, in byte format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, nint pStepFast, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, nint pStepFast, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)pStepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, nint pStepFast, in byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, nint pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)pStepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, nint pStepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, nint pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)pStepFast, pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, nint pStepFast, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
 		}
 	}
 }

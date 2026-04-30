@@ -22,180 +22,6 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBars(ReadOnlySpan<byte> labelId, in long xs, long* ys, int count, double barSize, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotBarsNative((byte*)plabelId, (long*)pxs, ys, count, barSize, (ImPlotBarsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotBars(string labelId, in long xs, long* ys, int count, double barSize, ImPlotBarsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotBarsNative(pStr0, (long*)pxs, ys, count, barSize, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotBars(string labelId, in long xs, long* ys, int count, double barSize, ImPlotBarsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotBarsNative(pStr0, (long*)pxs, ys, count, barSize, flags, offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotBars(string labelId, in long xs, long* ys, int count, double barSize, ImPlotBarsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotBarsNative(pStr0, (long*)pxs, ys, count, barSize, flags, (int)(0), (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotBars(string labelId, in long xs, long* ys, int count, double barSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotBarsNative(pStr0, (long*)pxs, ys, count, barSize, (ImPlotBarsFlags)(0), (int)(0), (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotBars(string labelId, in long xs, long* ys, int count, double barSize, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotBarsNative(pStr0, (long*)pxs, ys, count, barSize, (ImPlotBarsFlags)(0), offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static void PlotBars(string labelId, in long xs, long* ys, int count, double barSize, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -2870,10 +2696,10 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotBarsGNative(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, double barSize, ImPlotBarsFlags flags)
+		internal static void PlotBarsGNative(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, double barSize, ImPlotBarsFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, delegate*<void*, int, ImPlotPoint*, void*>, void*, int, double, ImPlotBarsFlags, void>)funcTable[168])(labelId, getter, data, count, barSize, flags);
+			((delegate* unmanaged[Cdecl]<byte*, delegate*<void*, int, ImPlotPointC*, void*>, void*, int, double, ImPlotBarsFlags, void>)funcTable[168])(labelId, getter, data, count, barSize, flags);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, double, ImPlotBarsFlags, void>)funcTable[168])((nint)labelId, (nint)getter, (nint)data, count, barSize, flags);
 			#endif
@@ -2882,7 +2708,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, double barSize, ImPlotBarsFlags flags)
+		public static void PlotBarsG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, double barSize, ImPlotBarsFlags flags)
 		{
 			PlotBarsGNative(labelId, getter, data, count, barSize, flags);
 		}
@@ -2890,7 +2716,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, double barSize)
+		public static void PlotBarsG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, double barSize)
 		{
 			PlotBarsGNative(labelId, getter, data, count, barSize, (ImPlotBarsFlags)(0));
 		}
@@ -2898,7 +2724,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, double barSize, ImPlotBarsFlags flags)
+		public static void PlotBarsG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, double barSize, ImPlotBarsFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2909,7 +2735,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, double barSize)
+		public static void PlotBarsG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, double barSize)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2920,7 +2746,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, double barSize, ImPlotBarsFlags flags)
+		public static void PlotBarsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, double barSize, ImPlotBarsFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2931,7 +2757,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, double barSize)
+		public static void PlotBarsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, double barSize)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2942,7 +2768,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, double barSize, ImPlotBarsFlags flags)
+		public static void PlotBarsG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, double barSize, ImPlotBarsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2971,7 +2797,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, double barSize)
+		public static void PlotBarsG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, double barSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3002,7 +2828,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotBarsG(byte* labelId, ImPlotPointGetter getter, void* data, int count, double barSize, ImPlotBarsFlags flags)
 		{
-			PlotBarsGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, flags);
+			PlotBarsGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, flags);
 		}
 
 		/// <summary>
@@ -3010,7 +2836,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotBarsG(byte* labelId, ImPlotPointGetter getter, void* data, int count, double barSize)
 		{
-			PlotBarsGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, (ImPlotBarsFlags)(0));
+			PlotBarsGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, (ImPlotBarsFlags)(0));
 		}
 
 		/// <summary>
@@ -3020,7 +2846,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, flags);
+				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, flags);
 			}
 		}
 
@@ -3031,7 +2857,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, (ImPlotBarsFlags)(0));
+				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, (ImPlotBarsFlags)(0));
 			}
 		}
 
@@ -3042,7 +2868,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, flags);
+				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, flags);
 			}
 		}
 
@@ -3053,7 +2879,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, (ImPlotBarsFlags)(0));
+				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, (ImPlotBarsFlags)(0));
 			}
 		}
 
@@ -3079,7 +2905,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotBarsGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, flags);
+			PlotBarsGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3108,7 +2934,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotBarsGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, (ImPlotBarsFlags)(0));
+			PlotBarsGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, barSize, (ImPlotBarsFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3118,7 +2944,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, double barSize, ImPlotBarsFlags flags)
+		public static void PlotBarsG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, double barSize, ImPlotBarsFlags flags)
 		{
 			PlotBarsGNative(labelId, getter, (void*)data, count, barSize, flags);
 		}
@@ -3126,7 +2952,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, double barSize)
+		public static void PlotBarsG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, double barSize)
 		{
 			PlotBarsGNative(labelId, getter, (void*)data, count, barSize, (ImPlotBarsFlags)(0));
 		}
@@ -3134,7 +2960,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, double barSize, ImPlotBarsFlags flags)
+		public static void PlotBarsG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, double barSize, ImPlotBarsFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3145,7 +2971,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, double barSize)
+		public static void PlotBarsG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, double barSize)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3156,7 +2982,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, double barSize, ImPlotBarsFlags flags)
+		public static void PlotBarsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, double barSize, ImPlotBarsFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -3167,7 +2993,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, double barSize)
+		public static void PlotBarsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, double barSize)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -3178,7 +3004,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, double barSize, ImPlotBarsFlags flags)
+		public static void PlotBarsG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, double barSize, ImPlotBarsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3207,7 +3033,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarsG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, double barSize)
+		public static void PlotBarsG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, double barSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3238,7 +3064,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotBarsG(byte* labelId, ImPlotPointGetter getter, nint data, int count, double barSize, ImPlotBarsFlags flags)
 		{
-			PlotBarsGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, flags);
+			PlotBarsGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, flags);
 		}
 
 		/// <summary>
@@ -3246,7 +3072,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotBarsG(byte* labelId, ImPlotPointGetter getter, nint data, int count, double barSize)
 		{
-			PlotBarsGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, (ImPlotBarsFlags)(0));
+			PlotBarsGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, (ImPlotBarsFlags)(0));
 		}
 
 		/// <summary>
@@ -3256,7 +3082,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, flags);
+				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, flags);
 			}
 		}
 
@@ -3267,7 +3093,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, (ImPlotBarsFlags)(0));
+				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, (ImPlotBarsFlags)(0));
 			}
 		}
 
@@ -3278,7 +3104,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, flags);
+				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, flags);
 			}
 		}
 
@@ -3289,7 +3115,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, (ImPlotBarsFlags)(0));
+				PlotBarsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, (ImPlotBarsFlags)(0));
 			}
 		}
 
@@ -3315,7 +3141,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotBarsGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, flags);
+			PlotBarsGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3344,7 +3170,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotBarsGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, (ImPlotBarsFlags)(0));
+			PlotBarsGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, barSize, (ImPlotBarsFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -5017,6 +4843,182 @@ namespace Hexa.NET.ImPlot
 			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(string[] labelIds, sbyte* values, int itemCount, int groupCount, double groupSize, ImPlotBarGroupsFlags flags)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotBarGroupsNative(pStrArray0, values, itemCount, groupCount, groupSize, (double)(0), flags);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(string[] labelIds, sbyte* values, int itemCount, int groupCount, ImPlotBarGroupsFlags flags)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotBarGroupsNative(pStrArray0, values, itemCount, groupCount, (double)(0.67), (double)(0), flags);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(byte** labelIds, in sbyte values, int itemCount, int groupCount, double groupSize, double shift, ImPlotBarGroupsFlags flags)
+		{
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotBarGroupsNative(labelIds, (sbyte*)pvalues, itemCount, groupCount, groupSize, shift, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(byte** labelIds, in sbyte values, int itemCount, int groupCount, double groupSize, double shift)
+		{
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotBarGroupsNative(labelIds, (sbyte*)pvalues, itemCount, groupCount, groupSize, shift, (ImPlotBarGroupsFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(byte** labelIds, in sbyte values, int itemCount, int groupCount, double groupSize)
+		{
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotBarGroupsNative(labelIds, (sbyte*)pvalues, itemCount, groupCount, groupSize, (double)(0), (ImPlotBarGroupsFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(byte** labelIds, in sbyte values, int itemCount, int groupCount)
+		{
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotBarGroupsNative(labelIds, (sbyte*)pvalues, itemCount, groupCount, (double)(0.67), (double)(0), (ImPlotBarGroupsFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(byte** labelIds, in sbyte values, int itemCount, int groupCount, double groupSize, ImPlotBarGroupsFlags flags)
+		{
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotBarGroupsNative(labelIds, (sbyte*)pvalues, itemCount, groupCount, groupSize, (double)(0), flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(byte** labelIds, in sbyte values, int itemCount, int groupCount, ImPlotBarGroupsFlags flags)
+		{
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotBarGroupsNative(labelIds, (sbyte*)pvalues, itemCount, groupCount, (double)(0.67), (double)(0), flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(in byte* labelIds, in sbyte values, int itemCount, int groupCount, double groupSize, double shift, ImPlotBarGroupsFlags flags)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotBarGroupsNative((byte**)plabelIds, (sbyte*)pvalues, itemCount, groupCount, groupSize, shift, flags);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(in byte* labelIds, in sbyte values, int itemCount, int groupCount, double groupSize, double shift)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotBarGroupsNative((byte**)plabelIds, (sbyte*)pvalues, itemCount, groupCount, groupSize, shift, (ImPlotBarGroupsFlags)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(in byte* labelIds, in sbyte values, int itemCount, int groupCount, double groupSize)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotBarGroupsNative((byte**)plabelIds, (sbyte*)pvalues, itemCount, groupCount, groupSize, (double)(0), (ImPlotBarGroupsFlags)(0));
+				}
 			}
 		}
 	}

@@ -22,64 +22,6 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in float values, int count, double x, double y, double radius, string labelFmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(pStrArray0, (float*)pvalues, count, x, y, radius, pStr0, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static void PlotPieChart(string[] labelIds, in float values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
@@ -5024,6 +4966,66 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
 		{
 			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, (double)(90), flags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
+		{
+			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", (double)(90), flags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
+		{
+			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", angle0, flags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, labelFmt, angle0, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChart((byte**)plabelIds, values, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
+			}
 		}
 	}
 }

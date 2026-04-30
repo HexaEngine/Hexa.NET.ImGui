@@ -2340,12 +2340,12 @@ namespace Hexa.NET.ImGui
 		/// get current window position in screen space (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetWindowPosNative(Vector2* pOut)
+		internal static Vector2 GetWindowPosNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[45])(pOut);
+			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[45])();
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[45])((nint)pOut);
+			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[45])();
 			#endif
 		}
 
@@ -2354,40 +2354,20 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static Vector2 GetWindowPos()
 		{
-			Vector2 ret;
-			GetWindowPosNative(&ret);
+			Vector2 ret = GetWindowPosNative();
 			return ret;
-		}
-
-		/// <summary>
-		/// get current window position in screen space (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
-		/// </summary>
-		public static void GetWindowPos(Vector2* pOut)
-		{
-			GetWindowPosNative(pOut);
-		}
-
-		/// <summary>
-		/// get current window position in screen space (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
-		/// </summary>
-		public static void GetWindowPos(ref Vector2 pOut)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetWindowPosNative((Vector2*)ppOut);
-			}
 		}
 
 		/// <summary>
 		/// get current window size (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetWindowSizeNative(Vector2* pOut)
+		internal static Vector2 GetWindowSizeNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[46])(pOut);
+			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[46])();
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[46])((nint)pOut);
+			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[46])();
 			#endif
 		}
 
@@ -2396,28 +2376,8 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static Vector2 GetWindowSize()
 		{
-			Vector2 ret;
-			GetWindowSizeNative(&ret);
+			Vector2 ret = GetWindowSizeNative();
 			return ret;
-		}
-
-		/// <summary>
-		/// get current window size (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
-		/// </summary>
-		public static void GetWindowSize(Vector2* pOut)
-		{
-			GetWindowSizeNative(pOut);
-		}
-
-		/// <summary>
-		/// get current window size (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
-		/// </summary>
-		public static void GetWindowSize(ref Vector2 pOut)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetWindowSizeNative((Vector2*)ppOut);
-			}
 		}
 
 		/// <summary>
@@ -4082,12 +4042,12 @@ namespace Hexa.NET.ImGui
 		/// get UV coordinate for a white pixel, useful to draw custom shapes via the ImDrawList API<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetFontTexUvWhitePixelNative(Vector2* pOut)
+		internal static Vector2 GetFontTexUvWhitePixelNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[98])(pOut);
+			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[98])();
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[98])((nint)pOut);
+			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[98])();
 			#endif
 		}
 
@@ -4096,28 +4056,8 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static Vector2 GetFontTexUvWhitePixel()
 		{
-			Vector2 ret;
-			GetFontTexUvWhitePixelNative(&ret);
+			Vector2 ret = GetFontTexUvWhitePixelNative();
 			return ret;
-		}
-
-		/// <summary>
-		/// get UV coordinate for a white pixel, useful to draw custom shapes via the ImDrawList API<br/>
-		/// </summary>
-		public static void GetFontTexUvWhitePixel(Vector2* pOut)
-		{
-			GetFontTexUvWhitePixelNative(pOut);
-		}
-
-		/// <summary>
-		/// get UV coordinate for a white pixel, useful to draw custom shapes via the ImDrawList API<br/>
-		/// </summary>
-		public static void GetFontTexUvWhitePixel(ref Vector2 pOut)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetFontTexUvWhitePixelNative((Vector2*)ppOut);
-			}
 		}
 
 		/// <summary>
@@ -4230,12 +4170,12 @@ namespace Hexa.NET.ImGui
 		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND (prefer using this rather than GetCursorPos(), also more useful to work with ImDrawList API).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetCursorScreenPosNative(Vector2* pOut)
+		internal static Vector2 GetCursorScreenPosNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[103])(pOut);
+			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[103])();
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[103])((nint)pOut);
+			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[103])();
 			#endif
 		}
 
@@ -4244,28 +4184,8 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static Vector2 GetCursorScreenPos()
 		{
-			Vector2 ret;
-			GetCursorScreenPosNative(&ret);
+			Vector2 ret = GetCursorScreenPosNative();
 			return ret;
-		}
-
-		/// <summary>
-		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND (prefer using this rather than GetCursorPos(), also more useful to work with ImDrawList API).<br/>
-		/// </summary>
-		public static void GetCursorScreenPos(Vector2* pOut)
-		{
-			GetCursorScreenPosNative(pOut);
-		}
-
-		/// <summary>
-		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND (prefer using this rather than GetCursorPos(), also more useful to work with ImDrawList API).<br/>
-		/// </summary>
-		public static void GetCursorScreenPos(ref Vector2 pOut)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetCursorScreenPosNative((Vector2*)ppOut);
-			}
 		}
 
 		/// <summary>
@@ -4293,12 +4213,12 @@ namespace Hexa.NET.ImGui
 		/// available space from current position. THIS IS YOUR BEST FRIEND.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetContentRegionAvailNative(Vector2* pOut)
+		internal static Vector2 GetContentRegionAvailNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[105])(pOut);
+			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[105])();
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[105])((nint)pOut);
+			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[105])();
 			#endif
 		}
 
@@ -4307,40 +4227,20 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static Vector2 GetContentRegionAvail()
 		{
-			Vector2 ret;
-			GetContentRegionAvailNative(&ret);
+			Vector2 ret = GetContentRegionAvailNative();
 			return ret;
-		}
-
-		/// <summary>
-		/// available space from current position. THIS IS YOUR BEST FRIEND.<br/>
-		/// </summary>
-		public static void GetContentRegionAvail(Vector2* pOut)
-		{
-			GetContentRegionAvailNative(pOut);
-		}
-
-		/// <summary>
-		/// available space from current position. THIS IS YOUR BEST FRIEND.<br/>
-		/// </summary>
-		public static void GetContentRegionAvail(ref Vector2 pOut)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetContentRegionAvailNative((Vector2*)ppOut);
-			}
 		}
 
 		/// <summary>
 		/// [window-local] cursor position in window-local coordinates. This is not your best friend.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetCursorPosNative(Vector2* pOut)
+		internal static Vector2 GetCursorPosNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[106])(pOut);
+			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[106])();
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[106])((nint)pOut);
+			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[106])();
 			#endif
 		}
 
@@ -4349,28 +4249,8 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static Vector2 GetCursorPos()
 		{
-			Vector2 ret;
-			GetCursorPosNative(&ret);
+			Vector2 ret = GetCursorPosNative();
 			return ret;
-		}
-
-		/// <summary>
-		/// [window-local] cursor position in window-local coordinates. This is not your best friend.<br/>
-		/// </summary>
-		public static void GetCursorPos(Vector2* pOut)
-		{
-			GetCursorPosNative(pOut);
-		}
-
-		/// <summary>
-		/// [window-local] cursor position in window-local coordinates. This is not your best friend.<br/>
-		/// </summary>
-		public static void GetCursorPos(ref Vector2 pOut)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetCursorPosNative((Vector2*)ppOut);
-			}
 		}
 
 		/// <summary>
@@ -4484,12 +4364,12 @@ namespace Hexa.NET.ImGui
 		/// [window-local] initial cursor position, in window-local coordinates. Call GetCursorScreenPos() after Begin() to get the absolute coordinates version.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetCursorStartPosNative(Vector2* pOut)
+		internal static Vector2 GetCursorStartPosNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[112])(pOut);
+			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[112])();
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[112])((nint)pOut);
+			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[112])();
 			#endif
 		}
 
@@ -4498,28 +4378,8 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public static Vector2 GetCursorStartPos()
 		{
-			Vector2 ret;
-			GetCursorStartPosNative(&ret);
+			Vector2 ret = GetCursorStartPosNative();
 			return ret;
-		}
-
-		/// <summary>
-		/// [window-local] initial cursor position, in window-local coordinates. Call GetCursorScreenPos() after Begin() to get the absolute coordinates version.<br/>
-		/// </summary>
-		public static void GetCursorStartPos(Vector2* pOut)
-		{
-			GetCursorStartPosNative(pOut);
-		}
-
-		/// <summary>
-		/// [window-local] initial cursor position, in window-local coordinates. Call GetCursorScreenPos() after Begin() to get the absolute coordinates version.<br/>
-		/// </summary>
-		public static void GetCursorStartPos(ref Vector2 pOut)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetCursorStartPosNative((Vector2*)ppOut);
-			}
 		}
 
 		/// <summary>
@@ -5015,6 +4875,159 @@ namespace Hexa.NET.ImGui
 			fixed (byte* pstrIdEnd = strIdEnd)
 			{
 				PushIDNative(strIdBegin, (byte*)pstrIdEnd);
+			}
+		}
+
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
+		public static void PushID(byte* strIdBegin, string strIdEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strIdEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strIdEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PushIDNative(strIdBegin, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
+		public static void PushID(in byte strIdBegin, in byte strIdEnd)
+		{
+			fixed (byte* pstrIdBegin = &strIdBegin)
+			{
+				fixed (byte* pstrIdEnd = &strIdEnd)
+				{
+					PushIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
+				}
+			}
+		}
+
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
+		public static void PushID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
+		{
+			fixed (byte* pstrIdBegin = strIdBegin)
+			{
+				fixed (byte* pstrIdEnd = strIdEnd)
+				{
+					PushIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
+				}
+			}
+		}
+
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
+		public static void PushID(string strIdBegin, string strIdEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strIdBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strIdBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strIdBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (strIdEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(strIdEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(strIdEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PushIDNative(pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
+		public static void PushID(in byte strIdBegin, ReadOnlySpan<byte> strIdEnd)
+		{
+			fixed (byte* pstrIdBegin = &strIdBegin)
+			{
+				fixed (byte* pstrIdEnd = strIdEnd)
+				{
+					PushIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
+				}
+			}
+		}
+
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
+		public static void PushID(in byte strIdBegin, string strIdEnd)
+		{
+			fixed (byte* pstrIdBegin = &strIdBegin)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (strIdEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(strIdEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PushIDNative((byte*)pstrIdBegin, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 	}

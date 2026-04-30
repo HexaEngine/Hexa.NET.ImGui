@@ -36,7 +36,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImSpanImGuiTableCellData(ImGuiTableCellDataPtr data = default, ImGuiTableCellDataPtr dataEnd = default)
+		public unsafe ImSpanImGuiTableCellData(ImGuiTableCellData* data = default, ImGuiTableCellData* dataEnd = default)
 		{
 			Data = data;
 			DataEnd = dataEnd;

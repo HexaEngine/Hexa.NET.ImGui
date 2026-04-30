@@ -21,159 +21,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
-		public static void PushID(byte* strIdBegin, string strIdEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strIdEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strIdEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PushIDNative(strIdBegin, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(in byte strIdBegin, in byte strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = &strIdBegin)
-			{
-				fixed (byte* pstrIdEnd = &strIdEnd)
-				{
-					PushIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = strIdBegin)
-			{
-				fixed (byte* pstrIdEnd = strIdEnd)
-				{
-					PushIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(string strIdBegin, string strIdEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strIdBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strIdBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strIdBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (strIdEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(strIdEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(strIdEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PushIDNative(pStr0, pStr1);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(in byte strIdBegin, ReadOnlySpan<byte> strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = &strIdBegin)
-			{
-				fixed (byte* pstrIdEnd = strIdEnd)
-				{
-					PushIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(in byte strIdBegin, string strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = &strIdBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (strIdEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(strIdEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PushIDNative((byte*)pstrIdBegin, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strIdBegin, in byte strIdEnd)
 		{
 			fixed (byte* pstrIdBegin = strIdBegin)
@@ -5021,6 +4868,156 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, uv1, bgCol, tintCol);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);

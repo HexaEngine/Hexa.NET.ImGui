@@ -21,1554 +21,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetWidthNative(ImRect* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect*, float>)funcTable[820])(self);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[820])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetWidth(ImRectPtr self)
-		{
-			float ret = GetWidthNative((ImRect*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetWidth(ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				float ret = GetWidthNative((ImRect*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetHeightNative(ImRect* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect*, float>)funcTable[821])(self);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[821])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetHeight(ImRectPtr self)
-		{
-			float ret = GetHeightNative((ImRect*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetHeight(ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				float ret = GetHeightNative((ImRect*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetAreaNative(ImRect* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect*, float>)funcTable[822])(self);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[822])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetArea(ImRectPtr self)
-		{
-			float ret = GetAreaNative((ImRect*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetArea(ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				float ret = GetAreaNative((ImRect*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Top-left<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetTLNative(Vector2* pOut, ImRect* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, ImRect*, void>)funcTable[823])(pOut, self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[823])((nint)pOut, (nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// Top-left<br/>
-		/// </summary>
-		public static Vector2 GetTL(ImRectPtr self)
-		{
-			Vector2 ret;
-			GetTLNative(&ret, (ImRect*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// Top-left<br/>
-		/// </summary>
-		public static void GetTL(Vector2* pOut, ImRectPtr self)
-		{
-			GetTLNative(pOut, (ImRect*)self);
-		}
-
-		/// <summary>
-		/// Top-left<br/>
-		/// </summary>
-		public static void GetTL(ref Vector2 pOut, ImRectPtr self)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetTLNative((Vector2*)ppOut, (ImRect*)self);
-			}
-		}
-
-		/// <summary>
-		/// Top-left<br/>
-		/// </summary>
-		public static Vector2 GetTL(ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				Vector2 ret;
-				GetTLNative(&ret, (ImRect*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Top-left<br/>
-		/// </summary>
-		public static void GetTL(Vector2* pOut, ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				GetTLNative(pOut, (ImRect*)pself);
-			}
-		}
-
-		/// <summary>
-		/// Top-left<br/>
-		/// </summary>
-		public static void GetTL(ref Vector2 pOut, ref ImRect self)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImRect* pself = &self)
-				{
-					GetTLNative((Vector2*)ppOut, (ImRect*)pself);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Top-right<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetTRNative(Vector2* pOut, ImRect* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, ImRect*, void>)funcTable[824])(pOut, self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[824])((nint)pOut, (nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// Top-right<br/>
-		/// </summary>
-		public static Vector2 GetTR(ImRectPtr self)
-		{
-			Vector2 ret;
-			GetTRNative(&ret, (ImRect*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// Top-right<br/>
-		/// </summary>
-		public static void GetTR(Vector2* pOut, ImRectPtr self)
-		{
-			GetTRNative(pOut, (ImRect*)self);
-		}
-
-		/// <summary>
-		/// Top-right<br/>
-		/// </summary>
-		public static void GetTR(ref Vector2 pOut, ImRectPtr self)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetTRNative((Vector2*)ppOut, (ImRect*)self);
-			}
-		}
-
-		/// <summary>
-		/// Top-right<br/>
-		/// </summary>
-		public static Vector2 GetTR(ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				Vector2 ret;
-				GetTRNative(&ret, (ImRect*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Top-right<br/>
-		/// </summary>
-		public static void GetTR(Vector2* pOut, ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				GetTRNative(pOut, (ImRect*)pself);
-			}
-		}
-
-		/// <summary>
-		/// Top-right<br/>
-		/// </summary>
-		public static void GetTR(ref Vector2 pOut, ref ImRect self)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImRect* pself = &self)
-				{
-					GetTRNative((Vector2*)ppOut, (ImRect*)pself);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Bottom-left<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetBLNative(Vector2* pOut, ImRect* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, ImRect*, void>)funcTable[825])(pOut, self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[825])((nint)pOut, (nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// Bottom-left<br/>
-		/// </summary>
-		public static Vector2 GetBL(ImRectPtr self)
-		{
-			Vector2 ret;
-			GetBLNative(&ret, (ImRect*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// Bottom-left<br/>
-		/// </summary>
-		public static void GetBL(Vector2* pOut, ImRectPtr self)
-		{
-			GetBLNative(pOut, (ImRect*)self);
-		}
-
-		/// <summary>
-		/// Bottom-left<br/>
-		/// </summary>
-		public static void GetBL(ref Vector2 pOut, ImRectPtr self)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetBLNative((Vector2*)ppOut, (ImRect*)self);
-			}
-		}
-
-		/// <summary>
-		/// Bottom-left<br/>
-		/// </summary>
-		public static Vector2 GetBL(ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				Vector2 ret;
-				GetBLNative(&ret, (ImRect*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Bottom-left<br/>
-		/// </summary>
-		public static void GetBL(Vector2* pOut, ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				GetBLNative(pOut, (ImRect*)pself);
-			}
-		}
-
-		/// <summary>
-		/// Bottom-left<br/>
-		/// </summary>
-		public static void GetBL(ref Vector2 pOut, ref ImRect self)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImRect* pself = &self)
-				{
-					GetBLNative((Vector2*)ppOut, (ImRect*)pself);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Bottom-right<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetBRNative(Vector2* pOut, ImRect* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, ImRect*, void>)funcTable[826])(pOut, self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[826])((nint)pOut, (nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// Bottom-right<br/>
-		/// </summary>
-		public static Vector2 GetBR(ImRectPtr self)
-		{
-			Vector2 ret;
-			GetBRNative(&ret, (ImRect*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// Bottom-right<br/>
-		/// </summary>
-		public static void GetBR(Vector2* pOut, ImRectPtr self)
-		{
-			GetBRNative(pOut, (ImRect*)self);
-		}
-
-		/// <summary>
-		/// Bottom-right<br/>
-		/// </summary>
-		public static void GetBR(ref Vector2 pOut, ImRectPtr self)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetBRNative((Vector2*)ppOut, (ImRect*)self);
-			}
-		}
-
-		/// <summary>
-		/// Bottom-right<br/>
-		/// </summary>
-		public static Vector2 GetBR(ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				Vector2 ret;
-				GetBRNative(&ret, (ImRect*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Bottom-right<br/>
-		/// </summary>
-		public static void GetBR(Vector2* pOut, ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				GetBRNative(pOut, (ImRect*)pself);
-			}
-		}
-
-		/// <summary>
-		/// Bottom-right<br/>
-		/// </summary>
-		public static void GetBR(ref Vector2 pOut, ref ImRect self)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImRect* pself = &self)
-				{
-					GetBRNative((Vector2*)ppOut, (ImRect*)pself);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ContainsNative(ImRect* self, Vector2 p)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect*, Vector2, byte>)funcTable[827])(self, p);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, byte>)funcTable[827])((nint)self, p);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Contains(ImRectPtr self, Vector2 p)
-		{
-			byte ret = ContainsNative((ImRect*)self, p);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Contains(ref ImRect self, Vector2 p)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				byte ret = ContainsNative((ImRect*)pself, p);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ContainsNative(ImRect* self, ImRect r)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect*, ImRect, byte>)funcTable[828])(self, r);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImRect, byte>)funcTable[828])((nint)self, r);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Contains(ImRectPtr self, ImRect r)
-		{
-			byte ret = ContainsNative((ImRect*)self, r);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Contains(ref ImRect self, ImRect r)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				byte ret = ContainsNative((ImRect*)pself, r);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ContainsWithPadNative(ImRect* self, Vector2 p, Vector2 pad)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect*, Vector2, Vector2, byte>)funcTable[829])(self, p, pad);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, byte>)funcTable[829])((nint)self, p, pad);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ContainsWithPad(ImRectPtr self, Vector2 p, Vector2 pad)
-		{
-			byte ret = ContainsWithPadNative((ImRect*)self, p, pad);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ContainsWithPad(ref ImRect self, Vector2 p, Vector2 pad)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				byte ret = ContainsWithPadNative((ImRect*)pself, p, pad);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte OverlapsNative(ImRect* self, ImRect r)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect*, ImRect, byte>)funcTable[830])(self, r);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImRect, byte>)funcTable[830])((nint)self, r);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Overlaps(ImRectPtr self, ImRect r)
-		{
-			byte ret = OverlapsNative((ImRect*)self, r);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Overlaps(ref ImRect self, ImRect r)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				byte ret = OverlapsNative((ImRect*)pself, r);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddNative(ImRect* self, Vector2 p)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect*, Vector2, void>)funcTable[831])(self, p);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)funcTable[831])((nint)self, p);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Add(ImRectPtr self, Vector2 p)
-		{
-			AddNative((ImRect*)self, p);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Add(ref ImRect self, Vector2 p)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				AddNative((ImRect*)pself, p);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddNative(ImRect* self, ImRect r)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect*, ImRect, void>)funcTable[832])(self, r);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImRect, void>)funcTable[832])((nint)self, r);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Add(ImRectPtr self, ImRect r)
-		{
-			AddNative((ImRect*)self, r);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Add(ref ImRect self, ImRect r)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				AddNative((ImRect*)pself, r);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ExpandNative(ImRect* self, float amount)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect*, float, void>)funcTable[833])(self, amount);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, float, void>)funcTable[833])((nint)self, amount);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Expand(ImRectPtr self, float amount)
-		{
-			ExpandNative((ImRect*)self, amount);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Expand(ref ImRect self, float amount)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				ExpandNative((ImRect*)pself, amount);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ExpandNative(ImRect* self, Vector2 amount)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect*, Vector2, void>)funcTable[834])(self, amount);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)funcTable[834])((nint)self, amount);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Expand(ImRectPtr self, Vector2 amount)
-		{
-			ExpandNative((ImRect*)self, amount);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Expand(ref ImRect self, Vector2 amount)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				ExpandNative((ImRect*)pself, amount);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TranslateNative(ImRect* self, Vector2 d)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect*, Vector2, void>)funcTable[835])(self, d);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)funcTable[835])((nint)self, d);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Translate(ImRectPtr self, Vector2 d)
-		{
-			TranslateNative((ImRect*)self, d);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Translate(ref ImRect self, Vector2 d)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				TranslateNative((ImRect*)pself, d);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TranslateXNative(ImRect* self, float dx)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect*, float, void>)funcTable[836])(self, dx);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, float, void>)funcTable[836])((nint)self, dx);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TranslateX(ImRectPtr self, float dx)
-		{
-			TranslateXNative((ImRect*)self, dx);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TranslateX(ref ImRect self, float dx)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				TranslateXNative((ImRect*)pself, dx);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TranslateYNative(ImRect* self, float dy)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect*, float, void>)funcTable[837])(self, dy);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, float, void>)funcTable[837])((nint)self, dy);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TranslateY(ImRectPtr self, float dy)
-		{
-			TranslateYNative((ImRect*)self, dy);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TranslateY(ref ImRect self, float dy)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				TranslateYNative((ImRect*)pself, dy);
-			}
-		}
-
-		/// <summary>
-		/// Simple version, may lead to an inverted rectangle, which is fine for ContainsOverlaps test but not for display.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClipWithNative(ImRect* self, ImRect r)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect*, ImRect, void>)funcTable[838])(self, r);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImRect, void>)funcTable[838])((nint)self, r);
-			#endif
-		}
-
-		/// <summary>
-		/// Simple version, may lead to an inverted rectangle, which is fine for ContainsOverlaps test but not for display.<br/>
-		/// </summary>
-		public static void ClipWith(ImRectPtr self, ImRect r)
-		{
-			ClipWithNative((ImRect*)self, r);
-		}
-
-		/// <summary>
-		/// Simple version, may lead to an inverted rectangle, which is fine for ContainsOverlaps test but not for display.<br/>
-		/// </summary>
-		public static void ClipWith(ref ImRect self, ImRect r)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				ClipWithNative((ImRect*)pself, r);
-			}
-		}
-
-		/// <summary>
-		/// Full version, ensure both points are fully clipped.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClipWithFullNative(ImRect* self, ImRect r)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect*, ImRect, void>)funcTable[839])(self, r);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImRect, void>)funcTable[839])((nint)self, r);
-			#endif
-		}
-
-		/// <summary>
-		/// Full version, ensure both points are fully clipped.<br/>
-		/// </summary>
-		public static void ClipWithFull(ImRectPtr self, ImRect r)
-		{
-			ClipWithFullNative((ImRect*)self, r);
-		}
-
-		/// <summary>
-		/// Full version, ensure both points are fully clipped.<br/>
-		/// </summary>
-		public static void ClipWithFull(ref ImRect self, ImRect r)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				ClipWithFullNative((ImRect*)pself, r);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void FloorNative(ImRect* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect*, void>)funcTable[840])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[840])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Floor(ImRectPtr self)
-		{
-			FloorNative((ImRect*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Floor(ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				FloorNative((ImRect*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsInvertedNative(ImRect* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect*, byte>)funcTable[841])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[841])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsInverted(ImRectPtr self)
-		{
-			byte ret = IsInvertedNative((ImRect*)self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsInverted(ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				byte ret = IsInvertedNative((ImRect*)pself);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ToVec4Native(Vector4* pOut, ImRect* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4*, ImRect*, void>)funcTable[842])(pOut, self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[842])((nint)pOut, (nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector4 ToVec4(ImRectPtr self)
-		{
-			Vector4 ret;
-			ToVec4Native(&ret, (ImRect*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ToVec4(Vector4* pOut, ImRectPtr self)
-		{
-			ToVec4Native(pOut, (ImRect*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ToVec4(ref Vector4 pOut, ImRectPtr self)
-		{
-			fixed (Vector4* ppOut = &pOut)
-			{
-				ToVec4Native((Vector4*)ppOut, (ImRect*)self);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector4 ToVec4(ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				Vector4 ret;
-				ToVec4Native(&ret, (ImRect*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ToVec4(Vector4* pOut, ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				ToVec4Native(pOut, (ImRect*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ToVec4(ref Vector4 pOut, ref ImRect self)
-		{
-			fixed (Vector4* ppOut = &pOut)
-			{
-				fixed (ImRect* pself = &self)
-				{
-					ToVec4Native((Vector4*)ppOut, (ImRect*)pself);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector4* AsVec4Native(ImRect* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect*, Vector4*>)funcTable[843])(self);
-			#else
-			return (Vector4*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[843])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector4* AsVec4(ImRectPtr self)
-		{
-			Vector4* ret = AsVec4Native((ImRect*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector4* AsVec4(ref ImRect self)
-		{
-			fixed (ImRect* pself = &self)
-			{
-				Vector4* ret = AsVec4Native((ImRect*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static nuint ImBitArrayGetStorageSizeInBytesNative(int bitcount)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, nuint>)funcTable[844])(bitcount);
-			#else
-			return (nuint)((delegate* unmanaged[Cdecl]<int, nuint>)funcTable[844])(bitcount);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static nuint ImBitArrayGetStorageSizeInBytes(int bitcount)
-		{
-			nuint ret = ImBitArrayGetStorageSizeInBytesNative(bitcount);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImBitArrayClearAllBitsNative(uint* arr, int bitcount)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint*, int, void>)funcTable[845])(arr, bitcount);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[845])((nint)arr, bitcount);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImBitArrayClearAllBits(uint* arr, int bitcount)
-		{
-			ImBitArrayClearAllBitsNative(arr, bitcount);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImBitArrayClearAllBits(ref uint arr, int bitcount)
-		{
-			fixed (uint* parr = &arr)
-			{
-				ImBitArrayClearAllBitsNative((uint*)parr, bitcount);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImBitArrayTestBitNative(uint* arr, int n)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, byte>)funcTable[846])(arr, n);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)funcTable[846])((nint)arr, n);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImBitArrayTestBit(uint* arr, int n)
-		{
-			byte ret = ImBitArrayTestBitNative(arr, n);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImBitArrayTestBit(in uint arr, int n)
-		{
-			fixed (uint* parr = &arr)
-			{
-				byte ret = ImBitArrayTestBitNative((uint*)parr, n);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImBitArrayClearBitNative(uint* arr, int n)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint*, int, void>)funcTable[847])(arr, n);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[847])((nint)arr, n);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImBitArrayClearBit(uint* arr, int n)
-		{
-			ImBitArrayClearBitNative(arr, n);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImBitArrayClearBit(ref uint arr, int n)
-		{
-			fixed (uint* parr = &arr)
-			{
-				ImBitArrayClearBitNative((uint*)parr, n);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImBitArraySetBitNative(uint* arr, int n)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint*, int, void>)funcTable[848])(arr, n);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[848])((nint)arr, n);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImBitArraySetBit(uint* arr, int n)
-		{
-			ImBitArraySetBitNative(arr, n);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImBitArraySetBit(ref uint arr, int n)
-		{
-			fixed (uint* parr = &arr)
-			{
-				ImBitArraySetBitNative((uint*)parr, n);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImBitArraySetBitRangeNative(uint* arr, int n, int n2)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint*, int, int, void>)funcTable[849])(arr, n, n2);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[849])((nint)arr, n, n2);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImBitArraySetBitRange(uint* arr, int n, int n2)
-		{
-			ImBitArraySetBitRangeNative(arr, n, n2);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImBitArraySetBitRange(ref uint arr, int n, int n2)
-		{
-			fixed (uint* parr = &arr)
-			{
-				ImBitArraySetBitRangeNative((uint*)parr, n, n2);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void CreateNative(ImBitVector* self, int sz)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImBitVector*, int, void>)funcTable[850])(self, sz);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[850])((nint)self, sz);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Create(ImBitVectorPtr self, int sz)
-		{
-			CreateNative((ImBitVector*)self, sz);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Create(ref ImBitVector self, int sz)
-		{
-			fixed (ImBitVector* pself = &self)
-			{
-				CreateNative((ImBitVector*)pself, sz);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearNative(ImBitVector* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImBitVector*, void>)funcTable[851])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[851])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clear(ImBitVectorPtr self)
-		{
-			ClearNative((ImBitVector*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clear(ref ImBitVector self)
-		{
-			fixed (ImBitVector* pself = &self)
-			{
-				ClearNative((ImBitVector*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte TestBitNative(ImBitVector* self, int n)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImBitVector*, int, byte>)funcTable[852])(self, n);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)funcTable[852])((nint)self, n);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TestBit(ImBitVectorPtr self, int n)
-		{
-			byte ret = TestBitNative((ImBitVector*)self, n);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TestBit(ref ImBitVector self, int n)
-		{
-			fixed (ImBitVector* pself = &self)
-			{
-				byte ret = TestBitNative((ImBitVector*)pself, n);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetBitNative(ImBitVector* self, int n)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImBitVector*, int, void>)funcTable[853])(self, n);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[853])((nint)self, n);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetBit(ImBitVectorPtr self, int n)
-		{
-			SetBitNative((ImBitVector*)self, n);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetBit(ref ImBitVector self, int n)
-		{
-			fixed (ImBitVector* pself = &self)
-			{
-				SetBitNative((ImBitVector*)pself, n);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearBitNative(ImBitVector* self, int n)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImBitVector*, int, void>)funcTable[854])(self, n);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[854])((nint)self, n);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearBit(ImBitVectorPtr self, int n)
-		{
-			ClearBitNative((ImBitVector*)self, n);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearBit(ref ImBitVector self, int n)
-		{
-			fixed (ImBitVector* pself = &self)
-			{
-				ClearBitNative((ImBitVector*)pself, n);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void clearNative(ImGuiTextIndex* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextIndex*, void>)funcTable[855])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[855])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void clear(ImGuiTextIndexPtr self)
-		{
-			clearNative((ImGuiTextIndex*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void clear(ref ImGuiTextIndex self)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				clearNative((ImGuiTextIndex*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int sizeNative(ImGuiTextIndex* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTextIndex*, int>)funcTable[856])(self);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[856])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int size(ImGuiTextIndexPtr self)
-		{
-			int ret = sizeNative((ImGuiTextIndex*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int size(ref ImGuiTextIndex self)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				int ret = sizeNative((ImGuiTextIndex*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* get_line_beginNative(ImGuiTextIndex* self, byte* baseValue, int n)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTextIndex*, byte*, int, byte*>)funcTable[857])(self, baseValue, n);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, int, nint>)funcTable[857])((nint)self, (nint)baseValue, n);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_begin(ImGuiTextIndexPtr self, byte* baseValue, int n)
-		{
-			byte* ret = get_line_beginNative((ImGuiTextIndex*)self, baseValue, n);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_beginS(ImGuiTextIndexPtr self, byte* baseValue, int n)
-		{
-			string ret = Utils.DecodeStringUTF8(get_line_beginNative((ImGuiTextIndex*)self, baseValue, n));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_begin(ref ImGuiTextIndex self, byte* baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				byte* ret = get_line_beginNative((ImGuiTextIndex*)pself, baseValue, n);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_beginS(ref ImGuiTextIndex self, byte* baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				string ret = Utils.DecodeStringUTF8(get_line_beginNative((ImGuiTextIndex*)pself, baseValue, n));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_begin(ImGuiTextIndexPtr self, in byte baseValue, int n)
-		{
-			fixed (byte* pbaseValue = &baseValue)
-			{
-				byte* ret = get_line_beginNative((ImGuiTextIndex*)self, (byte*)pbaseValue, n);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_beginS(ImGuiTextIndexPtr self, in byte baseValue, int n)
-		{
-			fixed (byte* pbaseValue = &baseValue)
-			{
-				string ret = Utils.DecodeStringUTF8(get_line_beginNative((ImGuiTextIndex*)self, (byte*)pbaseValue, n));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_begin(ImGuiTextIndexPtr self, ReadOnlySpan<byte> baseValue, int n)
-		{
-			fixed (byte* pbaseValue = baseValue)
-			{
-				byte* ret = get_line_beginNative((ImGuiTextIndex*)self, (byte*)pbaseValue, n);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_beginS(ImGuiTextIndexPtr self, ReadOnlySpan<byte> baseValue, int n)
-		{
-			fixed (byte* pbaseValue = baseValue)
-			{
-				string ret = Utils.DecodeStringUTF8(get_line_beginNative((ImGuiTextIndex*)self, (byte*)pbaseValue, n));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_begin(ImGuiTextIndexPtr self, string baseValue, int n)
+		public static void RenderText(Vector2 pos, string text, ReadOnlySpan<byte> textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (baseValue != null)
+			if (text != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(baseValue);
+				pStrSize0 = Utils.GetByteCountUTF8(text);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1578,598 +37,12 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte* ret = get_line_beginNative((ImGuiTextIndex*)self, pStr0, n);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* ptextEnd = textEnd)
 			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_beginS(ImGuiTextIndexPtr self, string baseValue, int n)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (baseValue != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(baseValue);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			string ret = Utils.DecodeStringUTF8(get_line_beginNative((ImGuiTextIndex*)self, pStr0, n));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_begin(ref ImGuiTextIndex self, in byte baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				fixed (byte* pbaseValue = &baseValue)
-				{
-					byte* ret = get_line_beginNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_beginS(ref ImGuiTextIndex self, in byte baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				fixed (byte* pbaseValue = &baseValue)
-				{
-					string ret = Utils.DecodeStringUTF8(get_line_beginNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_begin(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				fixed (byte* pbaseValue = baseValue)
-				{
-					byte* ret = get_line_beginNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_beginS(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				fixed (byte* pbaseValue = baseValue)
-				{
-					string ret = Utils.DecodeStringUTF8(get_line_beginNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_begin(ref ImGuiTextIndex self, string baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (baseValue != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(baseValue);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* ret = get_line_beginNative((ImGuiTextIndex*)pself, pStr0, n);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_beginS(ref ImGuiTextIndex self, string baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (baseValue != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(baseValue);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				string ret = Utils.DecodeStringUTF8(get_line_beginNative((ImGuiTextIndex*)pself, pStr0, n));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* get_line_endNative(ImGuiTextIndex* self, byte* baseValue, int n)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTextIndex*, byte*, int, byte*>)funcTable[858])(self, baseValue, n);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, int, nint>)funcTable[858])((nint)self, (nint)baseValue, n);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_end(ImGuiTextIndexPtr self, byte* baseValue, int n)
-		{
-			byte* ret = get_line_endNative((ImGuiTextIndex*)self, baseValue, n);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_endS(ImGuiTextIndexPtr self, byte* baseValue, int n)
-		{
-			string ret = Utils.DecodeStringUTF8(get_line_endNative((ImGuiTextIndex*)self, baseValue, n));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_end(ref ImGuiTextIndex self, byte* baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				byte* ret = get_line_endNative((ImGuiTextIndex*)pself, baseValue, n);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_endS(ref ImGuiTextIndex self, byte* baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				string ret = Utils.DecodeStringUTF8(get_line_endNative((ImGuiTextIndex*)pself, baseValue, n));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_end(ImGuiTextIndexPtr self, in byte baseValue, int n)
-		{
-			fixed (byte* pbaseValue = &baseValue)
-			{
-				byte* ret = get_line_endNative((ImGuiTextIndex*)self, (byte*)pbaseValue, n);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_endS(ImGuiTextIndexPtr self, in byte baseValue, int n)
-		{
-			fixed (byte* pbaseValue = &baseValue)
-			{
-				string ret = Utils.DecodeStringUTF8(get_line_endNative((ImGuiTextIndex*)self, (byte*)pbaseValue, n));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_end(ImGuiTextIndexPtr self, ReadOnlySpan<byte> baseValue, int n)
-		{
-			fixed (byte* pbaseValue = baseValue)
-			{
-				byte* ret = get_line_endNative((ImGuiTextIndex*)self, (byte*)pbaseValue, n);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_endS(ImGuiTextIndexPtr self, ReadOnlySpan<byte> baseValue, int n)
-		{
-			fixed (byte* pbaseValue = baseValue)
-			{
-				string ret = Utils.DecodeStringUTF8(get_line_endNative((ImGuiTextIndex*)self, (byte*)pbaseValue, n));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_end(ImGuiTextIndexPtr self, string baseValue, int n)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (baseValue != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(baseValue);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* ret = get_line_endNative((ImGuiTextIndex*)self, pStr0, n);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_endS(ImGuiTextIndexPtr self, string baseValue, int n)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (baseValue != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(baseValue);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			string ret = Utils.DecodeStringUTF8(get_line_endNative((ImGuiTextIndex*)self, pStr0, n));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_end(ref ImGuiTextIndex self, in byte baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				fixed (byte* pbaseValue = &baseValue)
-				{
-					byte* ret = get_line_endNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_endS(ref ImGuiTextIndex self, in byte baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				fixed (byte* pbaseValue = &baseValue)
-				{
-					string ret = Utils.DecodeStringUTF8(get_line_endNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_end(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				fixed (byte* pbaseValue = baseValue)
-				{
-					byte* ret = get_line_endNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_endS(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				fixed (byte* pbaseValue = baseValue)
-				{
-					string ret = Utils.DecodeStringUTF8(get_line_endNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* get_line_end(ref ImGuiTextIndex self, string baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (baseValue != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(baseValue);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* ret = get_line_endNative((ImGuiTextIndex*)pself, pStr0, n);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string get_line_endS(ref ImGuiTextIndex self, string baseValue, int n)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (baseValue != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(baseValue);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				string ret = Utils.DecodeStringUTF8(get_line_endNative((ImGuiTextIndex*)pself, pStr0, n));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void appendNative(ImGuiTextIndex* self, byte* baseValue, int oldSize, int newSize)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextIndex*, byte*, int, int, void>)funcTable[859])(self, baseValue, oldSize, newSize);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, int, void>)funcTable[859])((nint)self, (nint)baseValue, oldSize, newSize);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextIndexPtr self, byte* baseValue, int oldSize, int newSize)
-		{
-			appendNative((ImGuiTextIndex*)self, baseValue, oldSize, newSize);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextIndex self, byte* baseValue, int oldSize, int newSize)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				appendNative((ImGuiTextIndex*)pself, baseValue, oldSize, newSize);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextIndexPtr self, in byte baseValue, int oldSize, int newSize)
-		{
-			fixed (byte* pbaseValue = &baseValue)
-			{
-				appendNative((ImGuiTextIndex*)self, (byte*)pbaseValue, oldSize, newSize);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextIndexPtr self, ReadOnlySpan<byte> baseValue, int oldSize, int newSize)
-		{
-			fixed (byte* pbaseValue = baseValue)
-			{
-				appendNative((ImGuiTextIndex*)self, (byte*)pbaseValue, oldSize, newSize);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextIndexPtr self, string baseValue, int oldSize, int newSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (baseValue != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(baseValue);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			appendNative((ImGuiTextIndex*)self, pStr0, oldSize, newSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextIndex self, in byte baseValue, int oldSize, int newSize)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				fixed (byte* pbaseValue = &baseValue)
-				{
-					appendNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, oldSize, newSize);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int oldSize, int newSize)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				fixed (byte* pbaseValue = baseValue)
-				{
-					appendNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, oldSize, newSize);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextIndex self, string baseValue, int oldSize, int newSize)
-		{
-			fixed (ImGuiTextIndex* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (baseValue != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(baseValue);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				appendNative((ImGuiTextIndex*)pself, pStr0, oldSize, newSize);
+				RenderTextNative(pos, pStr0, (byte*)ptextEnd, (byte)(1));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2181,59 +54,355 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiStoragePair* ImLowerBoundNative(ImGuiStoragePair* inBegin, ImGuiStoragePair* inEnd, uint key)
+		internal static void RenderTextWrappedNative(Vector2 pos, byte* text, byte* textEnd, float wrapWidth)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStoragePair*, ImGuiStoragePair*, uint, ImGuiStoragePair*>)funcTable[860])(inBegin, inEnd, key);
+			((delegate* unmanaged[Cdecl]<Vector2, byte*, byte*, float, void>)funcTable[1367])(pos, text, textEnd, wrapWidth);
 			#else
-			return (ImGuiStoragePair*)((delegate* unmanaged[Cdecl]<nint, nint, uint, nint>)funcTable[860])((nint)inBegin, (nint)inEnd, key);
+			((delegate* unmanaged[Cdecl]<Vector2, nint, nint, float, void>)funcTable[1367])(pos, (nint)text, (nint)textEnd, wrapWidth);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiStoragePairPtr ImLowerBound(ImGuiStoragePairPtr inBegin, ImGuiStoragePairPtr inEnd, uint key)
+		public static void RenderTextWrapped(Vector2 pos, byte* text, byte* textEnd, float wrapWidth)
 		{
-			ImGuiStoragePairPtr ret = ImLowerBoundNative((ImGuiStoragePair*)inBegin, (ImGuiStoragePair*)inEnd, key);
-			return ret;
+			RenderTextWrappedNative(pos, text, textEnd, wrapWidth);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiStoragePairPtr ImLowerBound(ref ImGuiStoragePair inBegin, ImGuiStoragePairPtr inEnd, uint key)
+		public static void RenderTextWrapped(Vector2 pos, in byte text, byte* textEnd, float wrapWidth)
 		{
-			fixed (ImGuiStoragePair* pinBegin = &inBegin)
+			fixed (byte* ptext = &text)
 			{
-				ImGuiStoragePairPtr ret = ImLowerBoundNative((ImGuiStoragePair*)pinBegin, (ImGuiStoragePair*)inEnd, key);
-				return ret;
+				RenderTextWrappedNative(pos, (byte*)ptext, textEnd, wrapWidth);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiStoragePairPtr ImLowerBound(ImGuiStoragePairPtr inBegin, ref ImGuiStoragePair inEnd, uint key)
+		public static void RenderTextWrapped(Vector2 pos, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
 		{
-			fixed (ImGuiStoragePair* pinEnd = &inEnd)
+			fixed (byte* ptext = text)
 			{
-				ImGuiStoragePairPtr ret = ImLowerBoundNative((ImGuiStoragePair*)inBegin, (ImGuiStoragePair*)pinEnd, key);
-				return ret;
+				RenderTextWrappedNative(pos, (byte*)ptext, textEnd, wrapWidth);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiStoragePairPtr ImLowerBound(ref ImGuiStoragePair inBegin, ref ImGuiStoragePair inEnd, uint key)
+		public static void RenderTextWrapped(Vector2 pos, string text, byte* textEnd, float wrapWidth)
 		{
-			fixed (ImGuiStoragePair* pinBegin = &inBegin)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
 			{
-				fixed (ImGuiStoragePair* pinEnd = &inEnd)
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					ImGuiStoragePairPtr ret = ImLowerBoundNative((ImGuiStoragePair*)pinBegin, (ImGuiStoragePair*)pinEnd, key);
-					return ret;
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			RenderTextWrappedNative(pos, pStr0, textEnd, wrapWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextWrapped(Vector2 pos, byte* text, in byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				RenderTextWrappedNative(pos, text, (byte*)ptextEnd, wrapWidth);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextWrapped(Vector2 pos, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				RenderTextWrappedNative(pos, text, (byte*)ptextEnd, wrapWidth);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextWrapped(Vector2 pos, byte* text, string textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			RenderTextWrappedNative(pos, text, pStr0, wrapWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextWrapped(Vector2 pos, in byte text, in byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					RenderTextWrappedNative(pos, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextWrapped(Vector2 pos, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					RenderTextWrappedNative(pos, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextWrapped(Vector2 pos, string text, string textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			RenderTextWrappedNative(pos, pStr0, pStr1, wrapWidth);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextWrapped(Vector2 pos, in byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					RenderTextWrappedNative(pos, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextWrapped(Vector2 pos, in byte text, string textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				RenderTextWrappedNative(pos, (byte*)ptext, pStr0, wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextWrapped(Vector2 pos, ReadOnlySpan<byte> text, in byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					RenderTextWrappedNative(pos, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextWrapped(Vector2 pos, ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				RenderTextWrappedNative(pos, (byte*)ptext, pStr0, wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextWrapped(Vector2 pos, string text, in byte textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				RenderTextWrappedNative(pos, pStr0, (byte*)ptextEnd, wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextWrapped(Vector2 pos, string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				RenderTextWrappedNative(pos, pStr0, (byte*)ptextEnd, wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
 				}
 			}
 		}
@@ -2242,1981 +411,465 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImDrawListSharedData* ImDrawListSharedDataNative()
+		internal static void RenderTextClippedNative(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawListSharedData*>)funcTable[861])();
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte*, byte*, Vector2*, Vector2, ImRect*, void>)funcTable[1368])(posMin, posMax, text, textEnd, textSizeIfKnown, align, clipRect);
 			#else
-			return (ImDrawListSharedData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[861])();
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, nint, nint, nint, Vector2, nint, void>)funcTable[1368])(posMin, posMax, (nint)text, (nint)textEnd, (nint)textSizeIfKnown, align, (nint)clipRect);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImDrawListSharedDataPtr ImDrawListSharedData()
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
 		{
-			ImDrawListSharedDataPtr ret = ImDrawListSharedDataNative();
-			return ret;
+			RenderTextClippedNative(posMin, posMax, text, textEnd, textSizeIfKnown, align, clipRect);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImDrawListSharedData* self)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawListSharedData*, void>)funcTable[862])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[862])((nint)self);
-			#endif
+			RenderTextClippedNative(posMin, posMax, text, textEnd, textSizeIfKnown, align, (ImRect*)(default));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Destroy(ImDrawListSharedDataPtr self)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown)
 		{
-			DestroyNative((ImDrawListSharedData*)self);
+			RenderTextClippedNative(posMin, posMax, text, textEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Destroy(ref ImDrawListSharedData self)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
 		{
-			fixed (ImDrawListSharedData* pself = &self)
+			RenderTextClippedNative(posMin, posMax, text, textEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptext = &text)
 			{
-				DestroyNative((ImDrawListSharedData*)pself);
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, align, clipRect);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetCircleTessellationMaxErrorNative(ImDrawListSharedData* self, float maxError)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawListSharedData*, float, void>)funcTable[863])(self, maxError);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, float, void>)funcTable[863])((nint)self, maxError);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetCircleTessellationMaxError(ImDrawListSharedDataPtr self, float maxError)
-		{
-			SetCircleTessellationMaxErrorNative((ImDrawListSharedData*)self, maxError);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetCircleTessellationMaxError(ref ImDrawListSharedData self, float maxError)
-		{
-			fixed (ImDrawListSharedData* pself = &self)
+			fixed (byte* ptext = &text)
 			{
-				SetCircleTessellationMaxErrorNative((ImDrawListSharedData*)pself, maxError);
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, align, (ImRect*)(default));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImDrawDataBuilder* ImDrawDataBuilderNative()
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, byte* textEnd, Vector2* textSizeIfKnown)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawDataBuilder*>)funcTable[864])();
-			#else
-			return (ImDrawDataBuilder*)((delegate* unmanaged[Cdecl]<nint>)funcTable[864])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImDrawDataBuilderPtr ImDrawDataBuilder()
-		{
-			ImDrawDataBuilderPtr ret = ImDrawDataBuilderNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImDrawDataBuilder* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawDataBuilder*, void>)funcTable[865])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[865])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImDrawDataBuilderPtr self)
-		{
-			DestroyNative((ImDrawDataBuilder*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImDrawDataBuilder self)
-		{
-			fixed (ImDrawDataBuilder* pself = &self)
+			fixed (byte* ptext = &text)
 			{
-				DestroyNative((ImDrawDataBuilder*)pself);
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void* GetVarPtrNative(ImGuiStyleVarInfo* self, void* parent)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, byte* textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStyleVarInfo*, void*, void*>)funcTable[866])(self, parent);
-			#else
-			return (void*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[866])((nint)self, (nint)parent);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void* GetVarPtr(ImGuiStyleVarInfoPtr self, void* parent)
-		{
-			void* ret = GetVarPtrNative((ImGuiStyleVarInfo*)self, parent);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void* GetVarPtr(ref ImGuiStyleVarInfo self, void* parent)
-		{
-			fixed (ImGuiStyleVarInfo* pself = &self)
+			fixed (byte* ptext = &text)
 			{
-				void* ret = GetVarPtrNative((ImGuiStyleVarInfo*)pself, parent);
-				return ret;
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void* GetVarPtr(ImGuiStyleVarInfoPtr self, nint parent)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
 		{
-			void* ret = GetVarPtrNative((ImGuiStyleVarInfo*)self, (void*)parent);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void* GetVarPtr(ref ImGuiStyleVarInfo self, nint parent)
-		{
-			fixed (ImGuiStyleVarInfo* pself = &self)
+			fixed (byte* ptext = text)
 			{
-				void* ret = GetVarPtrNative((ImGuiStyleVarInfo*)pself, (void*)parent);
-				return ret;
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, align, clipRect);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiStyleMod* ImGuiStyleModNative(ImGuiStyleVar idx, int v)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStyleVar, int, ImGuiStyleMod*>)funcTable[867])(idx, v);
-			#else
-			return (ImGuiStyleMod*)((delegate* unmanaged[Cdecl]<ImGuiStyleVar, int, nint>)funcTable[867])(idx, v);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiStyleModPtr ImGuiStyleMod(ImGuiStyleVar idx, int v)
-		{
-			ImGuiStyleModPtr ret = ImGuiStyleModNative(idx, v);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiStyleMod* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStyleMod*, void>)funcTable[868])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[868])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiStyleModPtr self)
-		{
-			DestroyNative((ImGuiStyleMod*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiStyleMod self)
-		{
-			fixed (ImGuiStyleMod* pself = &self)
+			fixed (byte* ptext = text)
 			{
-				DestroyNative((ImGuiStyleMod*)pself);
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, align, (ImRect*)(default));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiStyleMod* ImGuiStyleModNative(ImGuiStyleVar idx, float v)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, byte* textEnd, Vector2* textSizeIfKnown)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, ImGuiStyleMod*>)funcTable[869])(idx, v);
-			#else
-			return (ImGuiStyleMod*)((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, nint>)funcTable[869])(idx, v);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiStyleModPtr ImGuiStyleMod(ImGuiStyleVar idx, float v)
-		{
-			ImGuiStyleModPtr ret = ImGuiStyleModNative(idx, v);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiStyleMod* ImGuiStyleModNative(ImGuiStyleVar idx, Vector2 v)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStyleVar, Vector2, ImGuiStyleMod*>)funcTable[870])(idx, v);
-			#else
-			return (ImGuiStyleMod*)((delegate* unmanaged[Cdecl]<ImGuiStyleVar, Vector2, nint>)funcTable[870])(idx, v);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiStyleModPtr ImGuiStyleMod(ImGuiStyleVar idx, Vector2 v)
-		{
-			ImGuiStyleModPtr ret = ImGuiStyleModNative(idx, v);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiComboPreviewData* ImGuiComboPreviewDataNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiComboPreviewData*>)funcTable[871])();
-			#else
-			return (ImGuiComboPreviewData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[871])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiComboPreviewDataPtr ImGuiComboPreviewData()
-		{
-			ImGuiComboPreviewDataPtr ret = ImGuiComboPreviewDataNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiComboPreviewData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiComboPreviewData*, void>)funcTable[872])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[872])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiComboPreviewDataPtr self)
-		{
-			DestroyNative((ImGuiComboPreviewData*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiComboPreviewData self)
-		{
-			fixed (ImGuiComboPreviewData* pself = &self)
+			fixed (byte* ptext = text)
 			{
-				DestroyNative((ImGuiComboPreviewData*)pself);
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiMenuColumns* ImGuiMenuColumnsNative()
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, byte* textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*>)funcTable[873])();
-			#else
-			return (ImGuiMenuColumns*)((delegate* unmanaged[Cdecl]<nint>)funcTable[873])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiMenuColumnsPtr ImGuiMenuColumns()
-		{
-			ImGuiMenuColumnsPtr ret = ImGuiMenuColumnsNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiMenuColumns* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*, void>)funcTable[874])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[874])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiMenuColumnsPtr self)
-		{
-			DestroyNative((ImGuiMenuColumns*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiMenuColumns self)
-		{
-			fixed (ImGuiMenuColumns* pself = &self)
+			fixed (byte* ptext = text)
 			{
-				DestroyNative((ImGuiMenuColumns*)pself);
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void UpdateNative(ImGuiMenuColumns* self, float spacing, byte windowReappearing)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*, float, byte, void>)funcTable[875])(self, spacing, windowReappearing);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, float, byte, void>)funcTable[875])((nint)self, spacing, windowReappearing);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Update(ImGuiMenuColumnsPtr self, float spacing, bool windowReappearing)
-		{
-			UpdateNative((ImGuiMenuColumns*)self, spacing, windowReappearing ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Update(ref ImGuiMenuColumns self, float spacing, bool windowReappearing)
-		{
-			fixed (ImGuiMenuColumns* pself = &self)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
 			{
-				UpdateNative((ImGuiMenuColumns*)pself, spacing, windowReappearing ? (byte)1 : (byte)0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float DeclColumnsNative(ImGuiMenuColumns* self, float wIcon, float wLabel, float wShortcut, float wMark)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*, float, float, float, float, float>)funcTable[876])(self, wIcon, wLabel, wShortcut, wMark);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float, float, float, float, float>)funcTable[876])((nint)self, wIcon, wLabel, wShortcut, wMark);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float DeclColumns(ImGuiMenuColumnsPtr self, float wIcon, float wLabel, float wShortcut, float wMark)
-		{
-			float ret = DeclColumnsNative((ImGuiMenuColumns*)self, wIcon, wLabel, wShortcut, wMark);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float DeclColumns(ref ImGuiMenuColumns self, float wIcon, float wLabel, float wShortcut, float wMark)
-		{
-			fixed (ImGuiMenuColumns* pself = &self)
-			{
-				float ret = DeclColumnsNative((ImGuiMenuColumns*)pself, wIcon, wLabel, wShortcut, wMark);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void CalcNextTotalWidthNative(ImGuiMenuColumns* self, byte updateOffsets)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*, byte, void>)funcTable[877])(self, updateOffsets);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, byte, void>)funcTable[877])((nint)self, updateOffsets);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcNextTotalWidth(ImGuiMenuColumnsPtr self, bool updateOffsets)
-		{
-			CalcNextTotalWidthNative((ImGuiMenuColumns*)self, updateOffsets ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcNextTotalWidth(ref ImGuiMenuColumns self, bool updateOffsets)
-		{
-			fixed (ImGuiMenuColumns* pself = &self)
-			{
-				CalcNextTotalWidthNative((ImGuiMenuColumns*)pself, updateOffsets ? (byte)1 : (byte)0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiInputTextDeactivatedState* ImGuiInputTextDeactivatedStateNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextDeactivatedState*>)funcTable[878])();
-			#else
-			return (ImGuiInputTextDeactivatedState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[878])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiInputTextDeactivatedStatePtr ImGuiInputTextDeactivatedState()
-		{
-			ImGuiInputTextDeactivatedStatePtr ret = ImGuiInputTextDeactivatedStateNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiInputTextDeactivatedState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextDeactivatedState*, void>)funcTable[879])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[879])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiInputTextDeactivatedStatePtr self)
-		{
-			DestroyNative((ImGuiInputTextDeactivatedState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiInputTextDeactivatedState self)
-		{
-			fixed (ImGuiInputTextDeactivatedState* pself = &self)
-			{
-				DestroyNative((ImGuiInputTextDeactivatedState*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearFreeMemoryNative(ImGuiInputTextDeactivatedState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextDeactivatedState*, void>)funcTable[880])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[880])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearFreeMemory(ImGuiInputTextDeactivatedStatePtr self)
-		{
-			ClearFreeMemoryNative((ImGuiInputTextDeactivatedState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearFreeMemory(ref ImGuiInputTextDeactivatedState self)
-		{
-			fixed (ImGuiInputTextDeactivatedState* pself = &self)
-			{
-				ClearFreeMemoryNative((ImGuiInputTextDeactivatedState*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiInputTextState* ImGuiInputTextStateNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*>)funcTable[881])();
-			#else
-			return (ImGuiInputTextState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[881])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiInputTextStatePtr ImGuiInputTextState()
-		{
-			ImGuiInputTextStatePtr ret = ImGuiInputTextStateNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiInputTextState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[882])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[882])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiInputTextStatePtr self)
-		{
-			DestroyNative((ImGuiInputTextState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiInputTextState self)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				DestroyNative((ImGuiInputTextState*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearTextNative(ImGuiInputTextState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[883])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[883])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearText(ImGuiInputTextStatePtr self)
-		{
-			ClearTextNative((ImGuiInputTextState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearText(ref ImGuiInputTextState self)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				ClearTextNative((ImGuiInputTextState*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearFreeMemoryNative(ImGuiInputTextState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[884])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[884])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearFreeMemory(ImGuiInputTextStatePtr self)
-		{
-			ClearFreeMemoryNative((ImGuiInputTextState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearFreeMemory(ref ImGuiInputTextState self)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				ClearFreeMemoryNative((ImGuiInputTextState*)pself);
-			}
-		}
-
-		/// <summary>
-		/// Cannot be inline because we call in code in stb_textedit.h implementation<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void OnKeyPressedNative(ImGuiInputTextState* self, int key)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, int, void>)funcTable[885])(self, key);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[885])((nint)self, key);
-			#endif
-		}
-
-		/// <summary>
-		/// Cannot be inline because we call in code in stb_textedit.h implementation<br/>
-		/// </summary>
-		public static void OnKeyPressed(ImGuiInputTextStatePtr self, int key)
-		{
-			OnKeyPressedNative((ImGuiInputTextState*)self, key);
-		}
-
-		/// <summary>
-		/// Cannot be inline because we call in code in stb_textedit.h implementation<br/>
-		/// </summary>
-		public static void OnKeyPressed(ref ImGuiInputTextState self, int key)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				OnKeyPressedNative((ImGuiInputTextState*)pself, key);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void OnCharPressedNative(ImGuiInputTextState* self, uint c)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, uint, void>)funcTable[886])(self, c);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[886])((nint)self, c);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void OnCharPressed(ImGuiInputTextStatePtr self, uint c)
-		{
-			OnCharPressedNative((ImGuiInputTextState*)self, c);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void OnCharPressed(ref ImGuiInputTextState self, uint c)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				OnCharPressedNative((ImGuiInputTextState*)pself, c);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetPreferredOffsetXNative(ImGuiInputTextState* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, float>)funcTable[887])(self);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[887])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetPreferredOffsetX(ImGuiInputTextStatePtr self)
-		{
-			float ret = GetPreferredOffsetXNative((ImGuiInputTextState*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetPreferredOffsetX(ref ImGuiInputTextState self)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				float ret = GetPreferredOffsetXNative((ImGuiInputTextState*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void CursorAnimResetNative(ImGuiInputTextState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[888])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[888])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CursorAnimReset(ImGuiInputTextStatePtr self)
-		{
-			CursorAnimResetNative((ImGuiInputTextState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CursorAnimReset(ref ImGuiInputTextState self)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				CursorAnimResetNative((ImGuiInputTextState*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void CursorClampNative(ImGuiInputTextState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[889])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[889])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CursorClamp(ImGuiInputTextStatePtr self)
-		{
-			CursorClampNative((ImGuiInputTextState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CursorClamp(ref ImGuiInputTextState self)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				CursorClampNative((ImGuiInputTextState*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte HasSelectionNative(ImGuiInputTextState* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, byte>)funcTable[890])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[890])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool HasSelection(ImGuiInputTextStatePtr self)
-		{
-			byte ret = HasSelectionNative((ImGuiInputTextState*)self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool HasSelection(ref ImGuiInputTextState self)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				byte ret = HasSelectionNative((ImGuiInputTextState*)pself);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearSelectionNative(ImGuiInputTextState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[891])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[891])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearSelection(ImGuiInputTextStatePtr self)
-		{
-			ClearSelectionNative((ImGuiInputTextState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearSelection(ref ImGuiInputTextState self)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				ClearSelectionNative((ImGuiInputTextState*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int GetCursorPosNative(ImGuiInputTextState* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, int>)funcTable[892])(self);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[892])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int GetCursorPos(ImGuiInputTextStatePtr self)
-		{
-			int ret = GetCursorPosNative((ImGuiInputTextState*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int GetCursorPos(ref ImGuiInputTextState self)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				int ret = GetCursorPosNative((ImGuiInputTextState*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int GetSelectionStartNative(ImGuiInputTextState* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, int>)funcTable[893])(self);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[893])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int GetSelectionStart(ImGuiInputTextStatePtr self)
-		{
-			int ret = GetSelectionStartNative((ImGuiInputTextState*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int GetSelectionStart(ref ImGuiInputTextState self)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				int ret = GetSelectionStartNative((ImGuiInputTextState*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int GetSelectionEndNative(ImGuiInputTextState* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, int>)funcTable[894])(self);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[894])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int GetSelectionEnd(ImGuiInputTextStatePtr self)
-		{
-			int ret = GetSelectionEndNative((ImGuiInputTextState*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int GetSelectionEnd(ref ImGuiInputTextState self)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				int ret = GetSelectionEndNative((ImGuiInputTextState*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SelectAllNative(ImGuiInputTextState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[895])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[895])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SelectAll(ImGuiInputTextStatePtr self)
-		{
-			SelectAllNative((ImGuiInputTextState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SelectAll(ref ImGuiInputTextState self)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				SelectAllNative((ImGuiInputTextState*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ReloadUserBufAndSelectAllNative(ImGuiInputTextState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[896])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[896])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ReloadUserBufAndSelectAll(ImGuiInputTextStatePtr self)
-		{
-			ReloadUserBufAndSelectAllNative((ImGuiInputTextState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ReloadUserBufAndSelectAll(ref ImGuiInputTextState self)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				ReloadUserBufAndSelectAllNative((ImGuiInputTextState*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ReloadUserBufAndKeepSelectionNative(ImGuiInputTextState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[897])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[897])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ReloadUserBufAndKeepSelection(ImGuiInputTextStatePtr self)
-		{
-			ReloadUserBufAndKeepSelectionNative((ImGuiInputTextState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ReloadUserBufAndKeepSelection(ref ImGuiInputTextState self)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				ReloadUserBufAndKeepSelectionNative((ImGuiInputTextState*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ReloadUserBufAndMoveToEndNative(ImGuiInputTextState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[898])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[898])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ReloadUserBufAndMoveToEnd(ImGuiInputTextStatePtr self)
-		{
-			ReloadUserBufAndMoveToEndNative((ImGuiInputTextState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ReloadUserBufAndMoveToEnd(ref ImGuiInputTextState self)
-		{
-			fixed (ImGuiInputTextState* pself = &self)
-			{
-				ReloadUserBufAndMoveToEndNative((ImGuiInputTextState*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiNextWindowData* ImGuiNextWindowDataNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiNextWindowData*>)funcTable[899])();
-			#else
-			return (ImGuiNextWindowData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[899])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiNextWindowDataPtr ImGuiNextWindowData()
-		{
-			ImGuiNextWindowDataPtr ret = ImGuiNextWindowDataNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiNextWindowData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiNextWindowData*, void>)funcTable[900])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[900])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiNextWindowDataPtr self)
-		{
-			DestroyNative((ImGuiNextWindowData*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiNextWindowData self)
-		{
-			fixed (ImGuiNextWindowData* pself = &self)
-			{
-				DestroyNative((ImGuiNextWindowData*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearFlagsNative(ImGuiNextWindowData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiNextWindowData*, void>)funcTable[901])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[901])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearFlags(ImGuiNextWindowDataPtr self)
-		{
-			ClearFlagsNative((ImGuiNextWindowData*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearFlags(ref ImGuiNextWindowData self)
-		{
-			fixed (ImGuiNextWindowData* pself = &self)
-			{
-				ClearFlagsNative((ImGuiNextWindowData*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiNextItemData* ImGuiNextItemDataNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiNextItemData*>)funcTable[902])();
-			#else
-			return (ImGuiNextItemData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[902])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiNextItemDataPtr ImGuiNextItemData()
-		{
-			ImGuiNextItemDataPtr ret = ImGuiNextItemDataNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiNextItemData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiNextItemData*, void>)funcTable[903])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[903])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiNextItemDataPtr self)
-		{
-			DestroyNative((ImGuiNextItemData*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiNextItemData self)
-		{
-			fixed (ImGuiNextItemData* pself = &self)
-			{
-				DestroyNative((ImGuiNextItemData*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearFlagsNative(ImGuiNextItemData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiNextItemData*, void>)funcTable[904])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[904])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// Also cleared manually by ItemAdd()!<br/>
-		/// </summary>
-		public static void ClearFlags(ImGuiNextItemDataPtr self)
-		{
-			ClearFlagsNative((ImGuiNextItemData*)self);
-		}
-
-		/// <summary>
-		/// Also cleared manually by ItemAdd()!<br/>
-		/// </summary>
-		public static void ClearFlags(ref ImGuiNextItemData self)
-		{
-			fixed (ImGuiNextItemData* pself = &self)
-			{
-				ClearFlagsNative((ImGuiNextItemData*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiLastItemData* ImGuiLastItemDataNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiLastItemData*>)funcTable[905])();
-			#else
-			return (ImGuiLastItemData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[905])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiLastItemDataPtr ImGuiLastItemData()
-		{
-			ImGuiLastItemDataPtr ret = ImGuiLastItemDataNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiLastItemData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiLastItemData*, void>)funcTable[906])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[906])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiLastItemDataPtr self)
-		{
-			DestroyNative((ImGuiLastItemData*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiLastItemData self)
-		{
-			fixed (ImGuiLastItemData* pself = &self)
-			{
-				DestroyNative((ImGuiLastItemData*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiErrorRecoveryState* ImGuiErrorRecoveryStateNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiErrorRecoveryState*>)funcTable[907])();
-			#else
-			return (ImGuiErrorRecoveryState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[907])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiErrorRecoveryStatePtr ImGuiErrorRecoveryState()
-		{
-			ImGuiErrorRecoveryStatePtr ret = ImGuiErrorRecoveryStateNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiErrorRecoveryState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiErrorRecoveryState*, void>)funcTable[908])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[908])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiErrorRecoveryStatePtr self)
-		{
-			DestroyNative((ImGuiErrorRecoveryState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiErrorRecoveryState self)
-		{
-			fixed (ImGuiErrorRecoveryState* pself = &self)
-			{
-				DestroyNative((ImGuiErrorRecoveryState*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiPtrOrIndex* ImGuiPtrOrIndexNative(void* ptr)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, ImGuiPtrOrIndex*>)funcTable[909])(ptr);
-			#else
-			return (ImGuiPtrOrIndex*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[909])((nint)ptr);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiPtrOrIndexPtr ImGuiPtrOrIndex(void* ptr)
-		{
-			ImGuiPtrOrIndexPtr ret = ImGuiPtrOrIndexNative(ptr);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiPtrOrIndexPtr ImGuiPtrOrIndex(nint ptr)
-		{
-			ImGuiPtrOrIndexPtr ret = ImGuiPtrOrIndexNative((void*)ptr);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiPtrOrIndex* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiPtrOrIndex*, void>)funcTable[910])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[910])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiPtrOrIndexPtr self)
-		{
-			DestroyNative((ImGuiPtrOrIndex*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiPtrOrIndex self)
-		{
-			fixed (ImGuiPtrOrIndex* pself = &self)
-			{
-				DestroyNative((ImGuiPtrOrIndex*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiPtrOrIndex* ImGuiPtrOrIndexNative(int index)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiPtrOrIndex*>)funcTable[911])(index);
-			#else
-			return (ImGuiPtrOrIndex*)((delegate* unmanaged[Cdecl]<int, nint>)funcTable[911])(index);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiPtrOrIndexPtr ImGuiPtrOrIndex(int index)
-		{
-			ImGuiPtrOrIndexPtr ret = ImGuiPtrOrIndexNative(index);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiPopupData* ImGuiPopupDataNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiPopupData*>)funcTable[912])();
-			#else
-			return (ImGuiPopupData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[912])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiPopupDataPtr ImGuiPopupData()
-		{
-			ImGuiPopupDataPtr ret = ImGuiPopupDataNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiPopupData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiPopupData*, void>)funcTable[913])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[913])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiPopupDataPtr self)
-		{
-			DestroyNative((ImGuiPopupData*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiPopupData self)
-		{
-			fixed (ImGuiPopupData* pself = &self)
-			{
-				DestroyNative((ImGuiPopupData*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiInputEvent* ImGuiInputEventNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputEvent*>)funcTable[914])();
-			#else
-			return (ImGuiInputEvent*)((delegate* unmanaged[Cdecl]<nint>)funcTable[914])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiInputEventPtr ImGuiInputEvent()
-		{
-			ImGuiInputEventPtr ret = ImGuiInputEventNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiInputEvent* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputEvent*, void>)funcTable[915])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[915])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiInputEventPtr self)
-		{
-			DestroyNative((ImGuiInputEvent*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiInputEvent self)
-		{
-			fixed (ImGuiInputEvent* pself = &self)
-			{
-				DestroyNative((ImGuiInputEvent*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiKeyRoutingData* ImGuiKeyRoutingDataNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingData*>)funcTable[916])();
-			#else
-			return (ImGuiKeyRoutingData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[916])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiKeyRoutingDataPtr ImGuiKeyRoutingData()
-		{
-			ImGuiKeyRoutingDataPtr ret = ImGuiKeyRoutingDataNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiKeyRoutingData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingData*, void>)funcTable[917])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[917])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiKeyRoutingDataPtr self)
-		{
-			DestroyNative((ImGuiKeyRoutingData*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiKeyRoutingData self)
-		{
-			fixed (ImGuiKeyRoutingData* pself = &self)
-			{
-				DestroyNative((ImGuiKeyRoutingData*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiKeyRoutingTable* ImGuiKeyRoutingTableNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingTable*>)funcTable[918])();
-			#else
-			return (ImGuiKeyRoutingTable*)((delegate* unmanaged[Cdecl]<nint>)funcTable[918])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiKeyRoutingTablePtr ImGuiKeyRoutingTable()
-		{
-			ImGuiKeyRoutingTablePtr ret = ImGuiKeyRoutingTableNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiKeyRoutingTable* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingTable*, void>)funcTable[919])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[919])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiKeyRoutingTablePtr self)
-		{
-			DestroyNative((ImGuiKeyRoutingTable*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiKeyRoutingTable self)
-		{
-			fixed (ImGuiKeyRoutingTable* pself = &self)
-			{
-				DestroyNative((ImGuiKeyRoutingTable*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearNative(ImGuiKeyRoutingTable* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingTable*, void>)funcTable[920])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[920])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clear(ImGuiKeyRoutingTablePtr self)
-		{
-			ClearNative((ImGuiKeyRoutingTable*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clear(ref ImGuiKeyRoutingTable self)
-		{
-			fixed (ImGuiKeyRoutingTable* pself = &self)
-			{
-				ClearNative((ImGuiKeyRoutingTable*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiKeyOwnerData* ImGuiKeyOwnerDataNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKeyOwnerData*>)funcTable[921])();
-			#else
-			return (ImGuiKeyOwnerData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[921])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiKeyOwnerDataPtr ImGuiKeyOwnerData()
-		{
-			ImGuiKeyOwnerDataPtr ret = ImGuiKeyOwnerDataNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiKeyOwnerData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiKeyOwnerData*, void>)funcTable[922])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[922])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiKeyOwnerDataPtr self)
-		{
-			DestroyNative((ImGuiKeyOwnerData*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiKeyOwnerData self)
-		{
-			fixed (ImGuiKeyOwnerData* pself = &self)
-			{
-				DestroyNative((ImGuiKeyOwnerData*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiListClipperRange FromIndicesNative(int min, int max)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int, ImGuiListClipperRange>)funcTable[923])(min, max);
-			#else
-			return (ImGuiListClipperRange)((delegate* unmanaged[Cdecl]<int, int, ImGuiListClipperRange>)funcTable[923])(min, max);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiListClipperRange FromIndices(int min, int max)
-		{
-			ImGuiListClipperRange ret = FromIndicesNative(min, max);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiListClipperRange FromPositionsNative(float y1, float y2, int offMin, int offMax)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float, float, int, int, ImGuiListClipperRange>)funcTable[924])(y1, y2, offMin, offMax);
-			#else
-			return (ImGuiListClipperRange)((delegate* unmanaged[Cdecl]<float, float, int, int, ImGuiListClipperRange>)funcTable[924])(y1, y2, offMin, offMax);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiListClipperRange FromPositions(float y1, float y2, int offMin, int offMax)
-		{
-			ImGuiListClipperRange ret = FromPositionsNative(y1, y2, offMin, offMax);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiListClipperData* ImGuiListClipperDataNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiListClipperData*>)funcTable[925])();
-			#else
-			return (ImGuiListClipperData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[925])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiListClipperDataPtr ImGuiListClipperData()
-		{
-			ImGuiListClipperDataPtr ret = ImGuiListClipperDataNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiListClipperData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiListClipperData*, void>)funcTable[926])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[926])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiListClipperDataPtr self)
-		{
-			DestroyNative((ImGuiListClipperData*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiListClipperData self)
-		{
-			fixed (ImGuiListClipperData* pself = &self)
-			{
-				DestroyNative((ImGuiListClipperData*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ResetNative(ImGuiListClipperData* self, ImGuiListClipper* clipper)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiListClipperData*, ImGuiListClipper*, void>)funcTable[927])(self, clipper);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[927])((nint)self, (nint)clipper);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Reset(ImGuiListClipperDataPtr self, ImGuiListClipperPtr clipper)
-		{
-			ResetNative((ImGuiListClipperData*)self, (ImGuiListClipper*)clipper);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Reset(ref ImGuiListClipperData self, ImGuiListClipperPtr clipper)
-		{
-			fixed (ImGuiListClipperData* pself = &self)
-			{
-				ResetNative((ImGuiListClipperData*)pself, (ImGuiListClipper*)clipper);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Reset(ImGuiListClipperDataPtr self, ref ImGuiListClipper clipper)
-		{
-			fixed (ImGuiListClipper* pclipper = &clipper)
-			{
-				ResetNative((ImGuiListClipperData*)self, (ImGuiListClipper*)pclipper);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Reset(ref ImGuiListClipperData self, ref ImGuiListClipper clipper)
-		{
-			fixed (ImGuiListClipperData* pself = &self)
-			{
-				fixed (ImGuiListClipper* pclipper = &clipper)
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					ResetNative((ImGuiListClipperData*)pself, (ImGuiListClipper*)pclipper);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			RenderTextClippedNative(posMin, posMax, pStr0, textEnd, textSizeIfKnown, align, clipRect);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			RenderTextClippedNative(posMin, posMax, pStr0, textEnd, textSizeIfKnown, align, (ImRect*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, Vector2* textSizeIfKnown)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			RenderTextClippedNative(posMin, posMax, pStr0, textEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			RenderTextClippedNative(posMin, posMax, pStr0, textEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, in byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, in byte textEnd, Vector2* textSizeIfKnown, Vector2 align)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)(default));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, in byte textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, in byte textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, Vector2 align)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)(default));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			RenderTextClippedNative(posMin, posMax, text, pStr0, textSizeIfKnown, align, clipRect);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, Vector2* textSizeIfKnown, Vector2 align)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			RenderTextClippedNative(posMin, posMax, text, pStr0, textSizeIfKnown, align, (ImRect*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, Vector2* textSizeIfKnown)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			RenderTextClippedNative(posMin, posMax, text, pStr0, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			RenderTextClippedNative(posMin, posMax, text, pStr0, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, in byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
 				}
 			}
 		}
@@ -4224,798 +877,4154 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiNavItemData* ImGuiNavItemDataNative()
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, in byte textEnd, Vector2* textSizeIfKnown, Vector2 align)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiNavItemData*>)funcTable[928])();
-			#else
-			return (ImGuiNavItemData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[928])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiNavItemDataPtr ImGuiNavItemData()
-		{
-			ImGuiNavItemDataPtr ret = ImGuiNavItemDataNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiNavItemData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiNavItemData*, void>)funcTable[929])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[929])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiNavItemDataPtr self)
-		{
-			DestroyNative((ImGuiNavItemData*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiNavItemData self)
-		{
-			fixed (ImGuiNavItemData* pself = &self)
+			fixed (byte* ptext = &text)
 			{
-				DestroyNative((ImGuiNavItemData*)pself);
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)(default));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearNative(ImGuiNavItemData* self)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, in byte textEnd, Vector2* textSizeIfKnown)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiNavItemData*, void>)funcTable[930])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[930])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clear(ImGuiNavItemDataPtr self)
-		{
-			ClearNative((ImGuiNavItemData*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clear(ref ImGuiNavItemData self)
-		{
-			fixed (ImGuiNavItemData* pself = &self)
+			fixed (byte* ptext = &text)
 			{
-				ClearNative((ImGuiNavItemData*)pself);
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTypingSelectState* ImGuiTypingSelectStateNative()
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, in byte textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectState*>)funcTable[931])();
-			#else
-			return (ImGuiTypingSelectState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[931])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTypingSelectStatePtr ImGuiTypingSelectState()
-		{
-			ImGuiTypingSelectStatePtr ret = ImGuiTypingSelectStateNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiTypingSelectState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTypingSelectState*, void>)funcTable[932])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[932])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiTypingSelectStatePtr self)
-		{
-			DestroyNative((ImGuiTypingSelectState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiTypingSelectState self)
-		{
-			fixed (ImGuiTypingSelectState* pself = &self)
+			fixed (byte* ptext = &text)
 			{
-				DestroyNative((ImGuiTypingSelectState*)pself);
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearNative(ImGuiTypingSelectState* self)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTypingSelectState*, void>)funcTable[933])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[933])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// We preserve remaining data for easier debugging<br/>
-		/// </summary>
-		public static void Clear(ImGuiTypingSelectStatePtr self)
-		{
-			ClearNative((ImGuiTypingSelectState*)self);
-		}
-
-		/// <summary>
-		/// We preserve remaining data for easier debugging<br/>
-		/// </summary>
-		public static void Clear(ref ImGuiTypingSelectState self)
-		{
-			fixed (ImGuiTypingSelectState* pself = &self)
+			fixed (byte* ptext = text)
 			{
-				ClearNative((ImGuiTypingSelectState*)pself);
+				fixed (byte* ptextEnd = textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiOldColumnData* ImGuiOldColumnDataNative()
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, Vector2 align)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumnData*>)funcTable[934])();
-			#else
-			return (ImGuiOldColumnData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[934])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiOldColumnDataPtr ImGuiOldColumnData()
-		{
-			ImGuiOldColumnDataPtr ret = ImGuiOldColumnDataNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiOldColumnData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiOldColumnData*, void>)funcTable[935])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[935])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiOldColumnDataPtr self)
-		{
-			DestroyNative((ImGuiOldColumnData*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiOldColumnData self)
-		{
-			fixed (ImGuiOldColumnData* pself = &self)
+			fixed (byte* ptext = text)
 			{
-				DestroyNative((ImGuiOldColumnData*)pself);
+				fixed (byte* ptextEnd = textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)(default));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiOldColumns* ImGuiOldColumnsNative()
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumns*>)funcTable[936])();
-			#else
-			return (ImGuiOldColumns*)((delegate* unmanaged[Cdecl]<nint>)funcTable[936])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiOldColumnsPtr ImGuiOldColumns()
-		{
-			ImGuiOldColumnsPtr ret = ImGuiOldColumnsNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiOldColumns* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, void>)funcTable[937])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[937])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiOldColumnsPtr self)
-		{
-			DestroyNative((ImGuiOldColumns*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiOldColumns self)
-		{
-			fixed (ImGuiOldColumns* pself = &self)
+			fixed (byte* ptext = text)
 			{
-				DestroyNative((ImGuiOldColumns*)pself);
+				fixed (byte* ptextEnd = textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiBoxSelectState* ImGuiBoxSelectStateNative()
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiBoxSelectState*>)funcTable[938])();
-			#else
-			return (ImGuiBoxSelectState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[938])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiBoxSelectStatePtr ImGuiBoxSelectState()
-		{
-			ImGuiBoxSelectStatePtr ret = ImGuiBoxSelectStateNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiBoxSelectState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiBoxSelectState*, void>)funcTable[939])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[939])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiBoxSelectStatePtr self)
-		{
-			DestroyNative((ImGuiBoxSelectState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiBoxSelectState self)
-		{
-			fixed (ImGuiBoxSelectState* pself = &self)
+			fixed (byte* ptext = text)
 			{
-				DestroyNative((ImGuiBoxSelectState*)pself);
+				fixed (byte* ptextEnd = textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiMultiSelectTempData* ImGuiMultiSelectTempDataNative()
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*>)funcTable[940])();
-			#else
-			return (ImGuiMultiSelectTempData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[940])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiMultiSelectTempDataPtr ImGuiMultiSelectTempData()
-		{
-			ImGuiMultiSelectTempDataPtr ret = ImGuiMultiSelectTempDataNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiMultiSelectTempData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, void>)funcTable[941])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[941])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiMultiSelectTempDataPtr self)
-		{
-			DestroyNative((ImGuiMultiSelectTempData*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiMultiSelectTempData self)
-		{
-			fixed (ImGuiMultiSelectTempData* pself = &self)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
 			{
-				DestroyNative((ImGuiMultiSelectTempData*)pself);
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			RenderTextClippedNative(posMin, posMax, pStr0, pStr1, textSizeIfKnown, align, clipRect);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearNative(ImGuiMultiSelectTempData* self)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, Vector2* textSizeIfKnown, Vector2 align)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, void>)funcTable[942])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[942])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// Zero-clear except IO as we preserve IO.Requests[] buffer allocation.<br/>
-		/// </summary>
-		public static void Clear(ImGuiMultiSelectTempDataPtr self)
-		{
-			ClearNative((ImGuiMultiSelectTempData*)self);
-		}
-
-		/// <summary>
-		/// Zero-clear except IO as we preserve IO.Requests[] buffer allocation.<br/>
-		/// </summary>
-		public static void Clear(ref ImGuiMultiSelectTempData self)
-		{
-			fixed (ImGuiMultiSelectTempData* pself = &self)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
 			{
-				ClearNative((ImGuiMultiSelectTempData*)pself);
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			RenderTextClippedNative(posMin, posMax, pStr0, pStr1, textSizeIfKnown, align, (ImRect*)(default));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearIONative(ImGuiMultiSelectTempData* self)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, Vector2* textSizeIfKnown)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, void>)funcTable[943])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[943])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearIO(ImGuiMultiSelectTempDataPtr self)
-		{
-			ClearIONative((ImGuiMultiSelectTempData*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearIO(ref ImGuiMultiSelectTempData self)
-		{
-			fixed (ImGuiMultiSelectTempData* pself = &self)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
 			{
-				ClearIONative((ImGuiMultiSelectTempData*)pself);
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			RenderTextClippedNative(posMin, posMax, pStr0, pStr1, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiMultiSelectState* ImGuiMultiSelectStateNative()
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMultiSelectState*>)funcTable[944])();
-			#else
-			return (ImGuiMultiSelectState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[944])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiMultiSelectStatePtr ImGuiMultiSelectState()
-		{
-			ImGuiMultiSelectStatePtr ret = ImGuiMultiSelectStateNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiMultiSelectState* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectState*, void>)funcTable[945])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[945])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiMultiSelectStatePtr self)
-		{
-			DestroyNative((ImGuiMultiSelectState*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiMultiSelectState self)
-		{
-			fixed (ImGuiMultiSelectState* pself = &self)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
 			{
-				DestroyNative((ImGuiMultiSelectState*)pself);
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			RenderTextClippedNative(posMin, posMax, pStr0, pStr1, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiDockNode* ImGuiDockNodeNative(uint id)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiDockNode*>)funcTable[946])(id);
-			#else
-			return (ImGuiDockNode*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[946])(id);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiDockNodePtr ImGuiDockNode(uint id)
-		{
-			ImGuiDockNodePtr ret = ImGuiDockNodeNative(id);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiDockNode* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiDockNode*, void>)funcTable[947])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[947])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiDockNodePtr self)
-		{
-			DestroyNative((ImGuiDockNode*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiDockNode self)
-		{
-			fixed (ImGuiDockNode* pself = &self)
+			fixed (byte* ptext = &text)
 			{
-				DestroyNative((ImGuiDockNode*)pself);
+				fixed (byte* ptextEnd = textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsRootNodeNative(ImGuiDockNode* self)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, Vector2 align)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[948])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[948])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsRootNode(ImGuiDockNodePtr self)
-		{
-			byte ret = IsRootNodeNative((ImGuiDockNode*)self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsRootNode(ref ImGuiDockNode self)
-		{
-			fixed (ImGuiDockNode* pself = &self)
+			fixed (byte* ptext = &text)
 			{
-				byte ret = IsRootNodeNative((ImGuiDockNode*)pself);
-				return ret != 0;
+				fixed (byte* ptextEnd = textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)(default));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsDockSpaceNative(ImGuiDockNode* self)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[949])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[949])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsDockSpace(ImGuiDockNodePtr self)
-		{
-			byte ret = IsDockSpaceNative((ImGuiDockNode*)self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsDockSpace(ref ImGuiDockNode self)
-		{
-			fixed (ImGuiDockNode* pself = &self)
+			fixed (byte* ptext = &text)
 			{
-				byte ret = IsDockSpaceNative((ImGuiDockNode*)pself);
-				return ret != 0;
+				fixed (byte* ptextEnd = textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsFloatingNodeNative(ImGuiDockNode* self)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[950])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[950])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsFloatingNode(ImGuiDockNodePtr self)
-		{
-			byte ret = IsFloatingNodeNative((ImGuiDockNode*)self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsFloatingNode(ref ImGuiDockNode self)
-		{
-			fixed (ImGuiDockNode* pself = &self)
+			fixed (byte* ptext = &text)
 			{
-				byte ret = IsFloatingNodeNative((ImGuiDockNode*)pself);
-				return ret != 0;
+				fixed (byte* ptextEnd = textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsCentralNodeNative(ImGuiDockNode* self)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[951])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[951])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsCentralNode(ImGuiDockNodePtr self)
-		{
-			byte ret = IsCentralNodeNative((ImGuiDockNode*)self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsCentralNode(ref ImGuiDockNode self)
-		{
-			fixed (ImGuiDockNode* pself = &self)
+			fixed (byte* ptext = &text)
 			{
-				byte ret = IsCentralNodeNative((ImGuiDockNode*)pself);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Hidden tab bar can be shown back by clicking the small triangle<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsHiddenTabBarNative(ImGuiDockNode* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[952])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[952])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// Hidden tab bar can be shown back by clicking the small triangle<br/>
-		/// </summary>
-		public static bool IsHiddenTabBar(ImGuiDockNodePtr self)
-		{
-			byte ret = IsHiddenTabBarNative((ImGuiDockNode*)self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// Hidden tab bar can be shown back by clicking the small triangle<br/>
-		/// </summary>
-		public static bool IsHiddenTabBar(ref ImGuiDockNode self)
-		{
-			fixed (ImGuiDockNode* pself = &self)
-			{
-				byte ret = IsHiddenTabBarNative((ImGuiDockNode*)pself);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Never show a tab bar<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsNoTabBarNative(ImGuiDockNode* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[953])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[953])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// Never show a tab bar<br/>
-		/// </summary>
-		public static bool IsNoTabBar(ImGuiDockNodePtr self)
-		{
-			byte ret = IsNoTabBarNative((ImGuiDockNode*)self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// Never show a tab bar<br/>
-		/// </summary>
-		public static bool IsNoTabBar(ref ImGuiDockNode self)
-		{
-			fixed (ImGuiDockNode* pself = &self)
-			{
-				byte ret = IsNoTabBarNative((ImGuiDockNode*)pself);
-				return ret != 0;
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, textSizeIfKnown, align, clipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsSplitNodeNative(ImGuiDockNode* self)
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, string textEnd, Vector2* textSizeIfKnown, Vector2 align)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[954])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[954])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsSplitNode(ImGuiDockNodePtr self)
-		{
-			byte ret = IsSplitNodeNative((ImGuiDockNode*)self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsSplitNode(ref ImGuiDockNode self)
-		{
-			fixed (ImGuiDockNode* pself = &self)
+			fixed (byte* ptext = &text)
 			{
-				byte ret = IsSplitNodeNative((ImGuiDockNode*)pself);
-				return ret != 0;
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, textSizeIfKnown, align, (ImRect*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, string textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, string textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, in byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, in byte textEnd, Vector2* textSizeIfKnown, Vector2 align)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)(default));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, in byte textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, in byte textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, textSizeIfKnown, align, clipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, string textEnd, Vector2* textSizeIfKnown, Vector2 align)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, textSizeIfKnown, align, (ImRect*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, string textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, string textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, in byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, in byte textEnd, Vector2* textSizeIfKnown, Vector2 align)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, in byte textEnd, Vector2* textSizeIfKnown)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, in byte textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, Vector2 align)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, text, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, text, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, text, textEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, text, textEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, byte* textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, byte* textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, byte* textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, byte* textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, byte* textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, byte* textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, byte* textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, byte* textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, in Vector2 textSizeIfKnown)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, textEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, textEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, in byte textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, in byte textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, in byte textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, in byte textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, text, pStr0, (Vector2*)ptextSizeIfKnown, align, clipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, text, pStr0, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, in Vector2 textSizeIfKnown)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, text, pStr0, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, text, pStr0, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, in byte textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, in byte textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, in byte textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, in byte textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, pStr1, (Vector2*)ptextSizeIfKnown, align, clipRect);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, pStr1, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, in Vector2 textSizeIfKnown)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, pStr1, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, pStr1, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, string textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown, align, clipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, string textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, string textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, string textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, in byte textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, in byte textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, in byte textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, in byte textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, string textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown, align, clipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, string textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, string textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, string textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, in byte textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, in byte textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, in byte textEnd, in Vector2 textSizeIfKnown)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, in byte textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, Vector2 align, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, Vector2 align)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)(default));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)(default));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, ImRect* clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), clipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (ImRect* pclipRect = &clipRect)
+			{
+				RenderTextClippedNative(posMin, posMax, text, textEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (ImRect* pclipRect = &clipRect)
+			{
+				RenderTextClippedNative(posMin, posMax, text, textEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, byte* textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, byte* textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ImRect* pclipRect = &clipRect)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, textEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ImRect* pclipRect = &clipRect)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, textEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, in byte textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, in byte textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ImRect* pclipRect = &clipRect)
+			{
+				RenderTextClippedNative(posMin, posMax, text, pStr0, textSizeIfKnown, align, (ImRect*)pclipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ImRect* pclipRect = &clipRect)
+			{
+				RenderTextClippedNative(posMin, posMax, text, pStr0, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, in byte textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, in byte textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (ImRect* pclipRect = &clipRect)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, pStr1, textSizeIfKnown, align, (ImRect*)pclipRect);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (ImRect* pclipRect = &clipRect)
+			{
+				RenderTextClippedNative(posMin, posMax, pStr0, pStr1, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, textSizeIfKnown, align, (ImRect*)pclipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, string textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, in byte textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, in byte textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, textSizeIfKnown, align, (ImRect*)pclipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, string textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, in byte textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, in byte textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, textSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, text, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, text, textEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, byte* textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, byte* textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, byte* textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, byte* textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, textEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, in byte textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, in byte textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, text, pStr0, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, text, pStr0, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, in byte textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						fixed (ImRect* pclipRect = &clipRect)
+						{
+							RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, in byte textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						fixed (ImRect* pclipRect = &clipRect)
+						{
+							RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						fixed (ImRect* pclipRect = &clipRect)
+						{
+							RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						fixed (ImRect* pclipRect = &clipRect)
+						{
+							RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, pStr1, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr1);
+					}
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				fixed (ImRect* pclipRect = &clipRect)
+				{
+					RenderTextClippedNative(posMin, posMax, pStr0, pStr1, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr1);
+					}
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						fixed (ImRect* pclipRect = &clipRect)
+						{
+							RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						fixed (ImRect* pclipRect = &clipRect)
+						{
+							RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, string textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, in byte text, string textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, in byte textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						fixed (ImRect* pclipRect = &clipRect)
+						{
+							RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, in byte textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						fixed (ImRect* pclipRect = &clipRect)
+						{
+							RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, string textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ReadOnlySpan<byte> text, string textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, in byte textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, in byte textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, Vector2 align, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown, in ImRect clipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					fixed (ImRect* pclipRect = &clipRect)
+					{
+						RenderTextClippedNative(posMin, posMax, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, (Vector2)(new Vector2(0,0)), (ImRect*)pclipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
 			}
 		}
 	}

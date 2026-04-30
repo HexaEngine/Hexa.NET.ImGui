@@ -22,104 +22,6 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, flags, offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, double reference)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, ImPlotStemsFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, double reference, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset)
 		{
 			fixed (byte* plabelId = labelId)
@@ -5029,6 +4931,93 @@ namespace Hexa.NET.ImPlot
 				pStr0[pStrOffset0] = 0;
 			}
 			PlotInfLinesNative(pStr0, values, count, flags, offset, (int)(sizeof(byte)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotInfLines(string labelId, byte* values, int count, ImPlotInfLinesFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotInfLinesNative(pStr0, values, count, flags, (int)(0), (int)(sizeof(byte)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotInfLines(string labelId, byte* values, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(byte)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotInfLines(string labelId, byte* values, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(byte)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);

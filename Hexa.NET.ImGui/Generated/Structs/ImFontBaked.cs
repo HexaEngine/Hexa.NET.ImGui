@@ -82,7 +82,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFont* ContainerFont;
+		public unsafe ImFont* OwnerFont;
 
 		/// <summary>
 		/// To be documented.
@@ -93,7 +93,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImFontBaked(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float size = default, float rasterizerDensity = default, ImVector<ushort> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, int fallbackGlyphIndex = default, float ascent = default, float descent = default, uint metricsTotalSurface = default, uint wantDestroy = default, uint loadNoFallback = default, uint loadNoRenderOnLayout = default, int lastUsedFrame = default, uint bakedId = default, ImFontPtr containerFont = default, void* fontLoaderDatas = default)
+		public unsafe ImFontBaked(ImVector<float> indexAdvanceX = default, float fallbackAdvanceX = default, float size = default, float rasterizerDensity = default, ImVector<ushort> indexLookup = default, ImVector<ImFontGlyph> glyphs = default, int fallbackGlyphIndex = default, float ascent = default, float descent = default, uint metricsTotalSurface = default, uint wantDestroy = default, uint loadNoFallback = default, uint loadNoRenderOnLayout = default, int lastUsedFrame = default, uint bakedId = default, ImFontPtr ownerFont = default, void* fontLoaderDatas = default)
 		{
 			IndexAdvanceX = indexAdvanceX;
 			FallbackAdvanceX = fallbackAdvanceX;
@@ -110,7 +110,7 @@ namespace Hexa.NET.ImGui
 			LoadNoRenderOnLayout = loadNoRenderOnLayout;
 			LastUsedFrame = lastUsedFrame;
 			BakedId = bakedId;
-			ContainerFont = containerFont;
+			OwnerFont = ownerFont;
 			FontLoaderDatas = fontLoaderDatas;
 		}
 
@@ -299,7 +299,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImFontPtr ContainerFont => ref Unsafe.AsRef<ImFontPtr>(&Handle->ContainerFont);
+		public ref ImFontPtr OwnerFont => ref Unsafe.AsRef<ImFontPtr>(&Handle->OwnerFont);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

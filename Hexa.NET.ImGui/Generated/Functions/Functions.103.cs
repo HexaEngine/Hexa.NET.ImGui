@@ -21,15 +21,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, in byte textEnd, bool hideTextAfterDoubleHash)
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin)
 		{
-			fixed (byte* ptext = text)
+			fixed (byte* plabel = label)
 			{
-				fixed (byte* ptextEnd = &textEnd)
+				fixed (byte* poverlayText = &overlayText)
 				{
-					Vector2 ret;
-					CalcTextSizeNative(&ret, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-					return ret;
+					PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -37,13 +35,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, ReadOnlySpan<byte> text, in byte textEnd)
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin, float scaleMax)
 		{
-			fixed (byte* ptext = text)
+			fixed (byte* plabel = label)
 			{
-				fixed (byte* ptextEnd = &textEnd)
+				fixed (byte* poverlayText = &overlayText)
 				{
-					CalcTextSizeNative(pOut, (byte*)ptext, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
+					PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -51,15 +49,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, in byte textEnd, float wrapWidth)
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, Vector2 graphSize)
 		{
-			fixed (byte* ptext = text)
+			fixed (byte* plabel = label)
 			{
-				fixed (byte* ptextEnd = &textEnd)
+				fixed (byte* poverlayText = &overlayText)
 				{
-					Vector2 ret;
-					CalcTextSizeNative(&ret, (byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
-					return ret;
+					PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
 				}
 			}
 		}
@@ -67,15 +63,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, in byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, Vector2 graphSize)
 		{
-			fixed (byte* ptext = text)
+			fixed (byte* plabel = label)
 			{
-				fixed (byte* ptextEnd = &textEnd)
+				fixed (byte* poverlayText = &overlayText)
 				{
-					Vector2 ret;
-					CalcTextSizeNative(&ret, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-					return ret;
+					PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 				}
 			}
 		}
@@ -83,15 +77,57 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, string textEnd)
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, Vector2 graphSize)
 		{
-			fixed (byte* ptext = text)
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (textEnd != null)
+				if (overlayText != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -101,78 +137,10 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				Vector2 ret;
-				CalcTextSizeNative(&ret, (byte*)ptext, pStr0, (byte)(0), (float)(-1.0f));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, string textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret;
-				CalcTextSizeNative(&ret, (byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, ReadOnlySpan<byte> text, string textEnd)
-		{
-			fixed (byte* ptext = text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeNative(pOut, (byte*)ptext, pStr0, (byte)(0), (float)(-1.0f));
+				PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -183,15 +151,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
 		{
-			fixed (byte* ptext = text)
+			fixed (byte* plabel = label)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (textEnd != null)
+				if (overlayText != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -201,31 +169,29 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				Vector2 ret;
-				CalcTextSizeNative(&ret, (byte*)ptext, pStr0, (byte)(0), wrapWidth);
+				PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
 		{
-			fixed (byte* ptext = text)
+			fixed (byte* plabel = label)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (textEnd != null)
+				if (overlayText != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -235,29 +201,315 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				Vector2 ret;
-				CalcTextSizeNative(&ret, (byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+				PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 CalcTextSize(string text, in byte textEnd)
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHistogramNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -267,31 +519,29 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* ptextEnd = &textEnd)
+			fixed (byte* poverlayText = &overlayText)
 			{
-				Vector2 ret;
-				CalcTextSizeNative(&ret, pStr0, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 CalcTextSize(string text, in byte textEnd, bool hideTextAfterDoubleHash)
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -301,31 +551,29 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* ptextEnd = &textEnd)
+			fixed (byte* poverlayText = &overlayText)
 			{
-				Vector2 ret;
-				CalcTextSizeNative(&ret, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, string text, in byte textEnd)
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -335,12 +583,12 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* ptextEnd = &textEnd)
+			fixed (byte* poverlayText = &overlayText)
 			{
-				CalcTextSizeNative(pOut, pStr0, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -351,13 +599,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 CalcTextSize(string text, in byte textEnd, float wrapWidth)
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -367,31 +615,29 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* ptextEnd = &textEnd)
+			fixed (byte* poverlayText = &overlayText)
 			{
-				Vector2 ret;
-				CalcTextSizeNative(&ret, pStr0, (byte*)ptextEnd, (byte)(0), wrapWidth);
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 CalcTextSize(string text, in byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -401,31 +647,29 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* ptextEnd = &textEnd)
+			fixed (byte* poverlayText = &overlayText)
 			{
-				Vector2 ret;
-				CalcTextSizeNative(&ret, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 CalcTextSize(string text, ReadOnlySpan<byte> textEnd)
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -435,31 +679,29 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* ptextEnd = textEnd)
+			fixed (byte* poverlayText = &overlayText)
 			{
-				Vector2 ret;
-				CalcTextSizeNative(&ret, pStr0, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 CalcTextSize(string text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin, float scaleMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -469,31 +711,29 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* ptextEnd = textEnd)
+			fixed (byte* poverlayText = &overlayText)
 			{
-				Vector2 ret;
-				CalcTextSizeNative(&ret, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, string text, ReadOnlySpan<byte> textEnd)
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -503,12 +743,12 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* ptextEnd = textEnd)
+			fixed (byte* poverlayText = &overlayText)
 			{
-				CalcTextSizeNative(pOut, pStr0, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -519,13 +759,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 CalcTextSize(string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -535,31 +775,29 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* ptextEnd = textEnd)
+			fixed (byte* poverlayText = &overlayText)
 			{
-				Vector2 ret;
-				CalcTextSizeNative(&ret, pStr0, (byte*)ptextEnd, (byte)(0), wrapWidth);
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 CalcTextSize(string text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -569,203 +807,12 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* ptextEnd = textEnd)
+			fixed (byte* poverlayText = &overlayText)
 			{
-				Vector2 ret;
-				CalcTextSizeNative(&ret, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, in byte text, in byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, in byte text, in byte textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, in byte text, in byte textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, in byte text, in byte textEnd, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = text)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = text)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = text)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = text)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				CalcTextSizeNative((Vector2*)ppOut, pStr0, pStr1, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -776,912 +823,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, string textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				CalcTextSizeNative((Vector2*)ppOut, pStr0, pStr1, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, string textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				CalcTextSizeNative((Vector2*)ppOut, pStr0, pStr1, (byte)(0), (float)(-1.0f));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, string textEnd, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				CalcTextSizeNative((Vector2*)ppOut, pStr0, pStr1, (byte)(0), wrapWidth);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, in byte text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, in byte text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, in byte text, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, in byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, in byte text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = &text)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, in byte text, string textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = &text)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, in byte text, string textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = &text)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, pStr0, (byte)(0), (float)(-1.0f));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, in byte text, string textEnd, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = &text)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, pStr0, (byte)(0), wrapWidth);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, ReadOnlySpan<byte> text, in byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, ReadOnlySpan<byte> text, in byte textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, ReadOnlySpan<byte> text, in byte textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, ReadOnlySpan<byte> text, in byte textEnd, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, ReadOnlySpan<byte> text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = text)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, ReadOnlySpan<byte> text, string textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = text)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, ReadOnlySpan<byte> text, string textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = text)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, pStr0, (byte)(0), (float)(-1.0f));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptext = text)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					CalcTextSizeNative((Vector2*)ppOut, (byte*)ptext, pStr0, (byte)(0), wrapWidth);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, in byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeNative((Vector2*)ppOut, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, in byte textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeNative((Vector2*)ppOut, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, in byte textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeNative((Vector2*)ppOut, pStr0, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, in byte textEnd, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeNative((Vector2*)ppOut, pStr0, (byte*)ptextEnd, (byte)(0), wrapWidth);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeNative((Vector2*)ppOut, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeNative((Vector2*)ppOut, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeNative((Vector2*)ppOut, pStr0, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(ref Vector2 pOut, string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeNative((Vector2*)ppOut, pStr0, (byte*)ptextEnd, (byte)(0), wrapWidth);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, ReadOnlySpan<byte> text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				CalcTextSizeNative(pOut, (byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, ReadOnlySpan<byte> text, byte* textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = text)
-			{
-				CalcTextSizeNative(pOut, (byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				CalcTextSizeNative(pOut, (byte*)ptext, textEnd, (byte)(0), wrapWidth);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, ReadOnlySpan<byte> text, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				CalcTextSizeNative(pOut, (byte*)ptext, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, string text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1691,10 +839,501 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeNative(pOut, pStr0, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+			fixed (byte* poverlayText = &overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = &overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotHistogram(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotHistogramNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ValueNative(byte* prefix, byte b)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, byte, void>)funcTable[246])(prefix, b);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, byte, void>)funcTable[246])((nint)prefix, b);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(byte* prefix, bool b)
+		{
+			ValueNative(prefix, b ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(in byte prefix, bool b)
+		{
+			fixed (byte* pprefix = &prefix)
+			{
+				ValueNative((byte*)pprefix, b ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(ReadOnlySpan<byte> prefix, bool b)
+		{
+			fixed (byte* pprefix = prefix)
+			{
+				ValueNative((byte*)pprefix, b ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(string prefix, bool b)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (prefix != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(prefix);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(prefix, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ValueNative(pStr0, b ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1704,13 +1343,56 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, string text, byte* textEnd, bool hideTextAfterDoubleHash)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ValueNative(byte* prefix, int v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, int, void>)funcTable[247])(prefix, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[247])((nint)prefix, v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(byte* prefix, int v)
+		{
+			ValueNative(prefix, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(in byte prefix, int v)
+		{
+			fixed (byte* pprefix = &prefix)
+			{
+				ValueNative((byte*)pprefix, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(ReadOnlySpan<byte> prefix, int v)
+		{
+			fixed (byte* pprefix = prefix)
+			{
+				ValueNative((byte*)pprefix, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(string prefix, int v)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (prefix != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(prefix);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1720,10 +1402,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(prefix, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeNative(pOut, pStr0, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+			ValueNative(pStr0, v);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1733,13 +1415,56 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, string text, byte* textEnd, float wrapWidth)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ValueNative(byte* prefix, uint v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, uint, void>)funcTable[248])(prefix, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[248])((nint)prefix, v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(byte* prefix, uint v)
+		{
+			ValueNative(prefix, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(in byte prefix, uint v)
+		{
+			fixed (byte* pprefix = &prefix)
+			{
+				ValueNative((byte*)pprefix, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(ReadOnlySpan<byte> prefix, uint v)
+		{
+			fixed (byte* pprefix = prefix)
+			{
+				ValueNative((byte*)pprefix, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(string prefix, uint v)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (prefix != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(prefix);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1749,10 +1474,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(prefix, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeNative(pOut, pStr0, textEnd, (byte)(0), wrapWidth);
+			ValueNative(pStr0, v);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1762,13 +1487,86 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, string text, bool hideTextAfterDoubleHash, float wrapWidth)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ValueNative(byte* prefix, float v, byte* floatFormat)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, float, byte*, void>)funcTable[249])(prefix, v, floatFormat);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, float, nint, void>)funcTable[249])((nint)prefix, v, (nint)floatFormat);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(byte* prefix, float v, byte* floatFormat)
+		{
+			ValueNative(prefix, v, floatFormat);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(byte* prefix, float v)
+		{
+			ValueNative(prefix, v, (byte*)(default));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(in byte prefix, float v, byte* floatFormat)
+		{
+			fixed (byte* pprefix = &prefix)
+			{
+				ValueNative((byte*)pprefix, v, floatFormat);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(in byte prefix, float v)
+		{
+			fixed (byte* pprefix = &prefix)
+			{
+				ValueNative((byte*)pprefix, v, (byte*)(default));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(ReadOnlySpan<byte> prefix, float v, byte* floatFormat)
+		{
+			fixed (byte* pprefix = prefix)
+			{
+				ValueNative((byte*)pprefix, v, floatFormat);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(ReadOnlySpan<byte> prefix, float v)
+		{
+			fixed (byte* pprefix = prefix)
+			{
+				ValueNative((byte*)pprefix, v, (byte*)(default));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(string prefix, float v, byte* floatFormat)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (prefix != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(prefix);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1778,10 +1576,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(prefix, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeNative(pOut, pStr0, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+			ValueNative(pStr0, v, floatFormat);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1791,46 +1589,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, byte* text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				CalcTextSizeNative(pOut, text, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, byte* text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				CalcTextSizeNative(pOut, text, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				CalcTextSizeNative(pOut, text, (byte*)ptextEnd, (byte)(0), wrapWidth);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, byte* text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		public static void Value(string prefix, float v)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (textEnd != null)
+			if (prefix != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				pStrSize0 = Utils.GetByteCountUTF8(prefix);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1840,10 +1605,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(prefix, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeNative(pOut, text, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+			ValueNative(pStr0, v, (byte*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1853,13 +1618,35 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, byte* text, string textEnd, bool hideTextAfterDoubleHash)
+		public static void Value(byte* prefix, float v, in byte floatFormat)
+		{
+			fixed (byte* pfloatFormat = &floatFormat)
+			{
+				ValueNative(prefix, v, (byte*)pfloatFormat);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(byte* prefix, float v, ReadOnlySpan<byte> floatFormat)
+		{
+			fixed (byte* pfloatFormat = floatFormat)
+			{
+				ValueNative(prefix, v, (byte*)pfloatFormat);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(byte* prefix, float v, string floatFormat)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (textEnd != null)
+			if (floatFormat != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				pStrSize0 = Utils.GetByteCountUTF8(floatFormat);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1869,10 +1656,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(floatFormat, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeNative(pOut, text, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+			ValueNative(prefix, v, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1882,13 +1669,41 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, byte* text, string textEnd, float wrapWidth)
+		public static void Value(in byte prefix, float v, in byte floatFormat)
+		{
+			fixed (byte* pprefix = &prefix)
+			{
+				fixed (byte* pfloatFormat = &floatFormat)
+				{
+					ValueNative((byte*)pprefix, v, (byte*)pfloatFormat);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(ReadOnlySpan<byte> prefix, float v, ReadOnlySpan<byte> floatFormat)
+		{
+			fixed (byte* pprefix = prefix)
+			{
+				fixed (byte* pfloatFormat = floatFormat)
+				{
+					ValueNative((byte*)pprefix, v, (byte*)pfloatFormat);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(string prefix, float v, string floatFormat)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (textEnd != null)
+			if (prefix != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				pStrSize0 = Utils.GetByteCountUTF8(prefix);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1898,85 +1713,14 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			CalcTextSizeNative(pOut, text, pStr0, (byte)(0), wrapWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeNative(pOut, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeNative(pOut, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeNative(pOut, (byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, string text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(prefix, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (textEnd != null)
+			if (floatFormat != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				pStrSize1 = Utils.GetByteCountUTF8(floatFormat);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -1986,10 +1730,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(floatFormat, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			CalcTextSizeNative(pOut, pStr0, pStr1, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+			ValueNative(pStr0, v, pStr1);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -2003,13 +1747,105 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, string text, string textEnd, bool hideTextAfterDoubleHash)
+		public static void Value(in byte prefix, float v, ReadOnlySpan<byte> floatFormat)
+		{
+			fixed (byte* pprefix = &prefix)
+			{
+				fixed (byte* pfloatFormat = floatFormat)
+				{
+					ValueNative((byte*)pprefix, v, (byte*)pfloatFormat);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(in byte prefix, float v, string floatFormat)
+		{
+			fixed (byte* pprefix = &prefix)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (floatFormat != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(floatFormat);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(floatFormat, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ValueNative((byte*)pprefix, v, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(ReadOnlySpan<byte> prefix, float v, in byte floatFormat)
+		{
+			fixed (byte* pprefix = prefix)
+			{
+				fixed (byte* pfloatFormat = &floatFormat)
+				{
+					ValueNative((byte*)pprefix, v, (byte*)pfloatFormat);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(ReadOnlySpan<byte> prefix, float v, string floatFormat)
+		{
+			fixed (byte* pprefix = prefix)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (floatFormat != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(floatFormat);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(floatFormat, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ValueNative((byte*)pprefix, v, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(string prefix, float v, in byte floatFormat)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (prefix != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(prefix);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2019,14 +1855,967 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(prefix, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pfloatFormat = &floatFormat)
+			{
+				ValueNative(pStr0, v, (byte*)pfloatFormat);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Value(string prefix, float v, ReadOnlySpan<byte> floatFormat)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (prefix != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(prefix);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(prefix, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pfloatFormat = floatFormat)
+			{
+				ValueNative(pStr0, v, (byte*)pfloatFormat);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// append to menu-bar of current window (requires ImGuiWindowFlags_MenuBar flag set on parent window).<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte BeginMenuBarNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[250])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[250])();
+			#endif
+		}
+
+		/// <summary>
+		/// append to menu-bar of current window (requires ImGuiWindowFlags_MenuBar flag set on parent window).<br/>
+		/// </summary>
+		public static bool BeginMenuBar()
+		{
+			byte ret = BeginMenuBarNative();
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// only call EndMenuBar() if BeginMenuBar() returns true!<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void EndMenuBarNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[251])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[251])();
+			#endif
+		}
+
+		/// <summary>
+		/// only call EndMenuBar() if BeginMenuBar() returns true!<br/>
+		/// </summary>
+		public static void EndMenuBar()
+		{
+			EndMenuBarNative();
+		}
+
+		/// <summary>
+		/// create and append to a full screen menu-bar.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte BeginMainMenuBarNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[252])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[252])();
+			#endif
+		}
+
+		/// <summary>
+		/// create and append to a full screen menu-bar.<br/>
+		/// </summary>
+		public static bool BeginMainMenuBar()
+		{
+			byte ret = BeginMainMenuBarNative();
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// only call EndMainMenuBar() if BeginMainMenuBar() returns true!<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void EndMainMenuBarNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[253])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[253])();
+			#endif
+		}
+
+		/// <summary>
+		/// only call EndMainMenuBar() if BeginMainMenuBar() returns true!<br/>
+		/// </summary>
+		public static void EndMainMenuBar()
+		{
+			EndMainMenuBarNative();
+		}
+
+		/// <summary>
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte BeginMenuNative(byte* label, byte enabled)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, byte, byte>)funcTable[254])(label, enabled);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)funcTable[254])((nint)label, enabled);
+			#endif
+		}
+
+		/// <summary>
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// </summary>
+		public static bool BeginMenu(byte* label, bool enabled)
+		{
+			byte ret = BeginMenuNative(label, enabled ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// </summary>
+		public static bool BeginMenu(byte* label)
+		{
+			byte ret = BeginMenuNative(label, (byte)(1));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// </summary>
+		public static bool BeginMenu(in byte label, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = BeginMenuNative((byte*)plabel, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// </summary>
+		public static bool BeginMenu(in byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = BeginMenuNative((byte*)plabel, (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// </summary>
+		public static bool BeginMenu(ReadOnlySpan<byte> label, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = BeginMenuNative((byte*)plabel, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// </summary>
+		public static bool BeginMenu(ReadOnlySpan<byte> label)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = BeginMenuNative((byte*)plabel, (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// </summary>
+		public static bool BeginMenu(string label, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginMenuNative(pStr0, enabled ? (byte)1 : (byte)0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// create a sub-menu entry. only call EndMenu() if this returns true!<br/>
+		/// </summary>
+		public static bool BeginMenu(string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginMenuNative(pStr0, (byte)(1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// only call EndMenu() if BeginMenu() returns true!<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void EndMenuNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[255])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[255])();
+			#endif
+		}
+
+		/// <summary>
+		/// only call EndMenu() if BeginMenu() returns true!<br/>
+		/// </summary>
+		public static void EndMenu()
+		{
+			EndMenuNative();
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte MenuItemNative(byte* label, byte* shortcut, byte selected, byte enabled)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte, byte, byte>)funcTable[256])(label, shortcut, selected, enabled);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte, byte, byte>)funcTable[256])((nint)label, (nint)shortcut, selected, enabled);
+			#endif
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, byte* shortcut, bool selected, bool enabled)
+		{
+			byte ret = MenuItemNative(label, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, byte* shortcut, bool selected)
+		{
+			byte ret = MenuItemNative(label, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, byte* shortcut)
+		{
+			byte ret = MenuItemNative(label, shortcut, (byte)(0), (byte)(1));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label)
+		{
+			byte ret = MenuItemNative(label, (byte*)(default), (byte)(0), (byte)(1));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, bool selected)
+		{
+			byte ret = MenuItemNative(label, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, bool selected, bool enabled)
+		{
+			byte ret = MenuItemNative(label, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, byte* shortcut, bool selected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, byte* shortcut, bool selected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, byte* shortcut)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, shortcut, (byte)(0), (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, (byte*)(default), (byte)(0), (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, bool selected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, bool selected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, bool selected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, bool selected)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, shortcut, (byte)(0), (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, (byte*)(default), (byte)(0), (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, bool selected)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, bool selected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(string label, byte* shortcut, bool selected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemNative(pStr0, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(string label, byte* shortcut, bool selected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemNative(pStr0, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(string label, byte* shortcut)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemNative(pStr0, shortcut, (byte)(0), (byte)(1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemNative(pStr0, (byte*)(default), (byte)(0), (byte)(1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(string label, bool selected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemNative(pStr0, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(string label, bool selected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemNative(pStr0, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, in byte shortcut, bool selected, bool enabled)
+		{
+			fixed (byte* pshortcut = &shortcut)
+			{
+				byte ret = MenuItemNative(label, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, in byte shortcut, bool selected)
+		{
+			fixed (byte* pshortcut = &shortcut)
+			{
+				byte ret = MenuItemNative(label, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, in byte shortcut)
+		{
+			fixed (byte* pshortcut = &shortcut)
+			{
+				byte ret = MenuItemNative(label, (byte*)pshortcut, (byte)(0), (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
+		{
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(label, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, bool selected)
+		{
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(label, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut)
+		{
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(label, (byte*)pshortcut, (byte)(0), (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, string shortcut, bool selected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (shortcut != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemNative(label, pStr0, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, string shortcut, bool selected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (shortcut != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemNative(label, pStr0, selected ? (byte)1 : (byte)0, (byte)(1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, string shortcut)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (shortcut != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemNative(label, pStr0, (byte)(0), (byte)(1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, in byte shortcut, bool selected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, in byte shortcut, bool selected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, in byte shortcut)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (byte)(0), (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, bool selected)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (byte)(0), (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(string label, string shortcut, bool selected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (textEnd != null)
+			if (shortcut != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -2036,10 +2825,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			CalcTextSizeNative(pOut, pStr0, pStr1, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+			byte ret = MenuItemNative(pStr0, pStr1, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -2048,18 +2837,19 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, string text, string textEnd, float wrapWidth)
+		public static bool MenuItem(string label, string shortcut, bool selected)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2069,14 +2859,14 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (textEnd != null)
+			if (shortcut != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -2086,10 +2876,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			CalcTextSizeNative(pOut, pStr0, pStr1, (byte)(0), wrapWidth);
+			byte ret = MenuItemNative(pStr0, pStr1, selected ? (byte)1 : (byte)0, (byte)(1));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -2098,294 +2888,19 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, in byte text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeNative(pOut, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, in byte text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeNative(pOut, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, in byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					CalcTextSizeNative(pOut, (byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, in byte text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeNative(pOut, (byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, in byte text, string textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = &text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeNative(pOut, (byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, in byte text, string textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeNative(pOut, (byte*)ptext, pStr0, (byte)(0), wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, ReadOnlySpan<byte> text, in byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeNative(pOut, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, ReadOnlySpan<byte> text, in byte textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeNative(pOut, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, ReadOnlySpan<byte> text, in byte textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					CalcTextSizeNative(pOut, (byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, ReadOnlySpan<byte> text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeNative(pOut, (byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, ReadOnlySpan<byte> text, string textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeNative(pOut, (byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				CalcTextSizeNative(pOut, (byte*)ptext, pStr0, (byte)(0), wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, string text, in byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		public static bool MenuItem(string label, string shortcut)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2395,1913 +2910,336 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* ptextEnd = &textEnd)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (shortcut != null)
 			{
-				CalcTextSizeNative(pOut, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, string text, in byte textEnd, bool hideTextAfterDoubleHash)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
 			}
-			fixed (byte* ptextEnd = &textEnd)
+			byte ret = MenuItemNative(pStr0, pStr1, (byte)(0), (byte)(1));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
-				CalcTextSizeNative(pOut, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				Utils.Free(pStr1);
 			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, string text, in byte textEnd, float wrapWidth)
+		public static bool MenuItem(in byte label, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
+			fixed (byte* plabel = &label)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pshortcut = shortcut)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				CalcTextSizeNative(pOut, pStr0, (byte*)ptextEnd, (byte)(0), wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
 				}
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, string text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		public static bool MenuItem(in byte label, ReadOnlySpan<byte> shortcut, bool selected)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
+			fixed (byte* plabel = &label)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pshortcut = shortcut)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = textEnd)
-			{
-				CalcTextSizeNative(pOut, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
+					return ret != 0;
 				}
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, string text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
+		public static bool MenuItem(in byte label, ReadOnlySpan<byte> shortcut)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
+			fixed (byte* plabel = &label)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pshortcut = shortcut)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = textEnd)
-			{
-				CalcTextSizeNative(pOut, pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (byte)(0), (byte)(1));
+					return ret != 0;
 				}
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
-		public static void CalcTextSize(Vector2* pOut, string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		public static bool MenuItem(in byte label, string shortcut, bool selected, bool enabled)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
+			fixed (byte* plabel = &label)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = textEnd)
-			{
-				CalcTextSizeNative(pOut, pStr0, (byte*)ptextEnd, (byte)(0), wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ColorConvertU32ToFloat4Native(Vector4* pOut, uint input)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4*, uint, void>)funcTable[366])(pOut, input);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[366])((nint)pOut, input);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector4 ColorConvertU32ToFloat4(uint input)
-		{
-			Vector4 ret;
-			ColorConvertU32ToFloat4Native(&ret, input);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertU32ToFloat4(Vector4* pOut, uint input)
-		{
-			ColorConvertU32ToFloat4Native(pOut, input);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertU32ToFloat4(ref Vector4 pOut, uint input)
-		{
-			fixed (Vector4* ppOut = &pOut)
-			{
-				ColorConvertU32ToFloat4Native((Vector4*)ppOut, input);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint ColorConvertFloat4ToU32Native(Vector4 input)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[367])(input);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[367])(input);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint ColorConvertFloat4ToU32(Vector4 input)
-		{
-			uint ret = ColorConvertFloat4ToU32Native(input);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ColorConvertRGBtoHSVNative(float r, float g, float b, float* outH, float* outS, float* outV)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, float, float*, float*, float*, void>)funcTable[368])(r, g, b, outH, outS, outV);
-			#else
-			((delegate* unmanaged[Cdecl]<float, float, float, nint, nint, nint, void>)funcTable[368])(r, g, b, (nint)outH, (nint)outS, (nint)outV);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, float* outH, float* outS, float* outV)
-		{
-			ColorConvertRGBtoHSVNative(r, g, b, outH, outS, outV);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, ref float outH, float* outS, float* outV)
-		{
-			fixed (float* poutH = &outH)
-			{
-				ColorConvertRGBtoHSVNative(r, g, b, (float*)poutH, outS, outV);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, float* outH, ref float outS, float* outV)
-		{
-			fixed (float* poutS = &outS)
-			{
-				ColorConvertRGBtoHSVNative(r, g, b, outH, (float*)poutS, outV);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, ref float outH, ref float outS, float* outV)
-		{
-			fixed (float* poutH = &outH)
-			{
-				fixed (float* poutS = &outS)
-				{
-					ColorConvertRGBtoHSVNative(r, g, b, (float*)poutH, (float*)poutS, outV);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, float* outH, float* outS, ref float outV)
-		{
-			fixed (float* poutV = &outV)
-			{
-				ColorConvertRGBtoHSVNative(r, g, b, outH, outS, (float*)poutV);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, ref float outH, float* outS, ref float outV)
-		{
-			fixed (float* poutH = &outH)
-			{
-				fixed (float* poutV = &outV)
-				{
-					ColorConvertRGBtoHSVNative(r, g, b, (float*)poutH, outS, (float*)poutV);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, float* outH, ref float outS, ref float outV)
-		{
-			fixed (float* poutS = &outS)
-			{
-				fixed (float* poutV = &outV)
-				{
-					ColorConvertRGBtoHSVNative(r, g, b, outH, (float*)poutS, (float*)poutV);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, ref float outH, ref float outS, ref float outV)
-		{
-			fixed (float* poutH = &outH)
-			{
-				fixed (float* poutS = &outS)
-				{
-					fixed (float* poutV = &outV)
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						ColorConvertRGBtoHSVNative(r, g, b, (float*)poutH, (float*)poutS, (float*)poutV);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ColorConvertHSVtoRGBNative(float h, float s, float v, float* outR, float* outG, float* outB)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, float, float*, float*, float*, void>)funcTable[369])(h, s, v, outR, outG, outB);
-			#else
-			((delegate* unmanaged[Cdecl]<float, float, float, nint, nint, nint, void>)funcTable[369])(h, s, v, (nint)outR, (nint)outG, (nint)outB);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, float* outR, float* outG, float* outB)
-		{
-			ColorConvertHSVtoRGBNative(h, s, v, outR, outG, outB);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, ref float outR, float* outG, float* outB)
-		{
-			fixed (float* poutR = &outR)
-			{
-				ColorConvertHSVtoRGBNative(h, s, v, (float*)poutR, outG, outB);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, float* outR, ref float outG, float* outB)
-		{
-			fixed (float* poutG = &outG)
-			{
-				ColorConvertHSVtoRGBNative(h, s, v, outR, (float*)poutG, outB);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, ref float outR, ref float outG, float* outB)
-		{
-			fixed (float* poutR = &outR)
-			{
-				fixed (float* poutG = &outG)
-				{
-					ColorConvertHSVtoRGBNative(h, s, v, (float*)poutR, (float*)poutG, outB);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, float* outR, float* outG, ref float outB)
-		{
-			fixed (float* poutB = &outB)
-			{
-				ColorConvertHSVtoRGBNative(h, s, v, outR, outG, (float*)poutB);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, ref float outR, float* outG, ref float outB)
-		{
-			fixed (float* poutR = &outR)
-			{
-				fixed (float* poutB = &outB)
-				{
-					ColorConvertHSVtoRGBNative(h, s, v, (float*)poutR, outG, (float*)poutB);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, float* outR, ref float outG, ref float outB)
-		{
-			fixed (float* poutG = &outG)
-			{
-				fixed (float* poutB = &outB)
-				{
-					ColorConvertHSVtoRGBNative(h, s, v, outR, (float*)poutG, (float*)poutB);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, ref float outR, ref float outG, ref float outB)
-		{
-			fixed (float* poutR = &outR)
-			{
-				fixed (float* poutG = &outG)
-				{
-					fixed (float* poutB = &outB)
+					else
 					{
-						ColorConvertHSVtoRGBNative(h, s, v, (float*)poutR, (float*)poutG, (float*)poutB);
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
 					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
 				}
-			}
-		}
-
-		/// <summary>
-		/// is key being held.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsKeyDownNative(ImGuiKey key)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[370])(key);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[370])(key);
-			#endif
-		}
-
-		/// <summary>
-		/// is key being held.<br/>
-		/// </summary>
-		public static bool IsKeyDown(ImGuiKey key)
-		{
-			byte ret = IsKeyDownNative(key);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was key pressed (went from !Down to Down)? if repeat=true, uses io.KeyRepeatDelay  KeyRepeatRate<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsKeyPressedNative(ImGuiKey key, byte repeat)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte, byte>)funcTable[371])(key, repeat);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte, byte>)funcTable[371])(key, repeat);
-			#endif
-		}
-
-		/// <summary>
-		/// was key pressed (went from !Down to Down)? if repeat=true, uses io.KeyRepeatDelay  KeyRepeatRate<br/>
-		/// </summary>
-		public static bool IsKeyPressed(ImGuiKey key, bool repeat)
-		{
-			byte ret = IsKeyPressedNative(key, repeat ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was key pressed (went from !Down to Down)? if repeat=true, uses io.KeyRepeatDelay  KeyRepeatRate<br/>
-		/// </summary>
-		public static bool IsKeyPressed(ImGuiKey key)
-		{
-			byte ret = IsKeyPressedNative(key, (byte)(1));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was key released (went from Down to !Down)?<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsKeyReleasedNative(ImGuiKey key)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[372])(key);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[372])(key);
-			#endif
-		}
-
-		/// <summary>
-		/// was key released (went from Down to !Down)?<br/>
-		/// </summary>
-		public static bool IsKeyReleased(ImGuiKey key)
-		{
-			byte ret = IsKeyReleasedNative(key);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was key chord (mods + key) pressed, e.g. you can pass 'ImGuiMod_Ctrl | ImGuiKey_S' as a key-chord. This doesn't do any routing or focus check, please consider using Shortcut() function instead.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsKeyChordPressedNative(int keyChord)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, byte>)funcTable[373])(keyChord);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)funcTable[373])(keyChord);
-			#endif
-		}
-
-		/// <summary>
-		/// was key chord (mods + key) pressed, e.g. you can pass 'ImGuiMod_Ctrl | ImGuiKey_S' as a key-chord. This doesn't do any routing or focus check, please consider using Shortcut() function instead.<br/>
-		/// </summary>
-		public static bool IsKeyChordPressed(int keyChord)
-		{
-			byte ret = IsKeyChordPressedNative(keyChord);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// uses provided repeat ratedelay. return a count, most often 0 or 1 but might be &gt;1 if RepeatRate is small enough that DeltaTime &gt; RepeatRate<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int GetKeyPressedAmountNative(ImGuiKey key, float repeatDelay, float rate)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, float, float, int>)funcTable[374])(key, repeatDelay, rate);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImGuiKey, float, float, int>)funcTable[374])(key, repeatDelay, rate);
-			#endif
-		}
-
-		/// <summary>
-		/// uses provided repeat ratedelay. return a count, most often 0 or 1 but might be &gt;1 if RepeatRate is small enough that DeltaTime &gt; RepeatRate<br/>
-		/// </summary>
-		public static int GetKeyPressedAmount(ImGuiKey key, float repeatDelay, float rate)
-		{
-			int ret = GetKeyPressedAmountNative(key, repeatDelay, rate);
-			return ret;
-		}
-
-		/// <summary>
-		/// [DEBUG] returns English name of the key. Those names are provided for debugging purpose and are not meant to be saved persistently nor compared.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* GetKeyNameNative(ImGuiKey key)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte*>)funcTable[375])(key);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<ImGuiKey, nint>)funcTable[375])(key);
-			#endif
-		}
-
-		/// <summary>
-		/// [DEBUG] returns English name of the key. Those names are provided for debugging purpose and are not meant to be saved persistently nor compared.<br/>
-		/// </summary>
-		public static byte* GetKeyName(ImGuiKey key)
-		{
-			byte* ret = GetKeyNameNative(key);
-			return ret;
-		}
-
-		/// <summary>
-		/// [DEBUG] returns English name of the key. Those names are provided for debugging purpose and are not meant to be saved persistently nor compared.<br/>
-		/// </summary>
-		public static string GetKeyNameS(ImGuiKey key)
-		{
-			string ret = Utils.DecodeStringUTF8(GetKeyNameNative(key));
-			return ret;
-		}
-
-		/// <summary>
-		/// Override io.WantCaptureKeyboard flag next frame (said flag is left for your application to handle, typically when true it instructs your app to ignore inputs). e.g. force capture keyboard when your widget is being hovered. This is equivalent to setting "io.WantCaptureKeyboard = want_capture_keyboard"; after the next NewFrame() call.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetNextFrameWantCaptureKeyboardNative(byte wantCaptureKeyboard)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[376])(wantCaptureKeyboard);
-			#else
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[376])(wantCaptureKeyboard);
-			#endif
-		}
-
-		/// <summary>
-		/// Override io.WantCaptureKeyboard flag next frame (said flag is left for your application to handle, typically when true it instructs your app to ignore inputs). e.g. force capture keyboard when your widget is being hovered. This is equivalent to setting "io.WantCaptureKeyboard = want_capture_keyboard"; after the next NewFrame() call.<br/>
-		/// </summary>
-		public static void SetNextFrameWantCaptureKeyboard(bool wantCaptureKeyboard)
-		{
-			SetNextFrameWantCaptureKeyboardNative(wantCaptureKeyboard ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ShortcutNative(int keyChord, ImGuiInputFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, byte>)funcTable[377])(keyChord, flags);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, byte>)funcTable[377])(keyChord, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Shortcut(int keyChord, ImGuiInputFlags flags)
-		{
-			byte ret = ShortcutNative(keyChord, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Shortcut(int keyChord)
-		{
-			byte ret = ShortcutNative(keyChord, (ImGuiInputFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetNextItemShortcutNative(int keyChord, ImGuiInputFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, void>)funcTable[378])(keyChord, flags);
-			#else
-			((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, void>)funcTable[378])(keyChord, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetNextItemShortcut(int keyChord, ImGuiInputFlags flags)
-		{
-			SetNextItemShortcutNative(keyChord, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetNextItemShortcut(int keyChord)
-		{
-			SetNextItemShortcutNative(keyChord, (ImGuiInputFlags)(0));
-		}
-
-		/// <summary>
-		/// Set key owner to last item ID if it is hovered or active. Equivalent to 'if (IsItemHovered() || IsItemActive())  SetKeyOwner(key, GetItemID());'.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetItemKeyOwnerNative(ImGuiKey key)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiKey, void>)funcTable[379])(key);
-			#else
-			((delegate* unmanaged[Cdecl]<ImGuiKey, void>)funcTable[379])(key);
-			#endif
-		}
-
-		/// <summary>
-		/// Set key owner to last item ID if it is hovered or active. Equivalent to 'if (IsItemHovered() || IsItemActive())  SetKeyOwner(key, GetItemID());'.<br/>
-		/// </summary>
-		public static void SetItemKeyOwner(ImGuiKey key)
-		{
-			SetItemKeyOwnerNative(key);
-		}
-
-		/// <summary>
-		/// is mouse button held?<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseDownNative(ImGuiMouseButton button)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[380])(button);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[380])(button);
-			#endif
-		}
-
-		/// <summary>
-		/// is mouse button held?<br/>
-		/// </summary>
-		public static bool IsMouseDown(ImGuiMouseButton button)
-		{
-			byte ret = IsMouseDownNative(button);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseClickedNative(ImGuiMouseButton button, byte repeat)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte, byte>)funcTable[381])(button, repeat);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte, byte>)funcTable[381])(button, repeat);
-			#endif
-		}
-
-		/// <summary>
-		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
-		/// </summary>
-		public static bool IsMouseClicked(ImGuiMouseButton button, bool repeat)
-		{
-			byte ret = IsMouseClickedNative(button, repeat ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
-		/// </summary>
-		public static bool IsMouseClicked(ImGuiMouseButton button)
-		{
-			byte ret = IsMouseClickedNative(button, (byte)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// did mouse button released? (went from Down to !Down)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseReleasedNative(ImGuiMouseButton button)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[382])(button);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[382])(button);
-			#endif
-		}
-
-		/// <summary>
-		/// did mouse button released? (went from Down to !Down)<br/>
-		/// </summary>
-		public static bool IsMouseReleased(ImGuiMouseButton button)
-		{
-			byte ret = IsMouseReleasedNative(button);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// did mouse button double-clicked? Same as GetMouseClickedCount() == 2. (note that a double-click will also report IsMouseClicked() == true)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseDoubleClickedNative(ImGuiMouseButton button)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[383])(button);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[383])(button);
-			#endif
-		}
-
-		/// <summary>
-		/// did mouse button double-clicked? Same as GetMouseClickedCount() == 2. (note that a double-click will also report IsMouseClicked() == true)<br/>
-		/// </summary>
-		public static bool IsMouseDoubleClicked(ImGuiMouseButton button)
-		{
-			byte ret = IsMouseDoubleClickedNative(button);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// delayed mouse release (use very sparingly!). Generally used with 'delay &gt;= io.MouseDoubleClickTime' + combined with a 'io.MouseClickedLastCount==1' test. This is a very rarely used UI idiom, but some apps use this: e.g. MS Explorer single click on an icon to rename.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseReleasedWithDelayNative(ImGuiMouseButton button, float delay)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[384])(button, delay);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[384])(button, delay);
-			#endif
-		}
-
-		/// <summary>
-		/// delayed mouse release (use very sparingly!). Generally used with 'delay &gt;= io.MouseDoubleClickTime' + combined with a 'io.MouseClickedLastCount==1' test. This is a very rarely used UI idiom, but some apps use this: e.g. MS Explorer single click on an icon to rename.<br/>
-		/// </summary>
-		public static bool IsMouseReleasedWithDelay(ImGuiMouseButton button, float delay)
-		{
-			byte ret = IsMouseReleasedWithDelayNative(button, delay);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// return the number of successive mouse-clicks at the time where a click happen (otherwise 0).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int GetMouseClickedCountNative(ImGuiMouseButton button)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int>)funcTable[385])(button);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int>)funcTable[385])(button);
-			#endif
-		}
-
-		/// <summary>
-		/// return the number of successive mouse-clicks at the time where a click happen (otherwise 0).<br/>
-		/// </summary>
-		public static int GetMouseClickedCount(ImGuiMouseButton button)
-		{
-			int ret = GetMouseClickedCountNative(button);
-			return ret;
-		}
-
-		/// <summary>
-		/// is mouse hovering given bounding rect (in screen space). clipped by current clipping settings, but disregarding of other consideration of focuswindow orderingpopup-block.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseHoveringRectNative(Vector2 rMin, Vector2 rMax, byte clip)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, byte>)funcTable[386])(rMin, rMax, clip);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, byte>)funcTable[386])(rMin, rMax, clip);
-			#endif
-		}
-
-		/// <summary>
-		/// is mouse hovering given bounding rect (in screen space). clipped by current clipping settings, but disregarding of other consideration of focuswindow orderingpopup-block.<br/>
-		/// </summary>
-		public static bool IsMouseHoveringRect(Vector2 rMin, Vector2 rMax, bool clip)
-		{
-			byte ret = IsMouseHoveringRectNative(rMin, rMax, clip ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is mouse hovering given bounding rect (in screen space). clipped by current clipping settings, but disregarding of other consideration of focuswindow orderingpopup-block.<br/>
-		/// </summary>
-		public static bool IsMouseHoveringRect(Vector2 rMin, Vector2 rMax)
-		{
-			byte ret = IsMouseHoveringRectNative(rMin, rMax, (byte)(1));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMousePosValidNative(Vector2* mousePos)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2*, byte>)funcTable[387])(mousePos);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[387])((nint)mousePos);
-			#endif
-		}
-
-		/// <summary>
-		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
-		/// </summary>
-		public static bool IsMousePosValid(Vector2* mousePos)
-		{
-			byte ret = IsMousePosValidNative(mousePos);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
-		/// </summary>
-		public static bool IsMousePosValid()
-		{
-			byte ret = IsMousePosValidNative((Vector2*)(default));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
-		/// </summary>
-		public static bool IsMousePosValid(in Vector2 mousePos)
-		{
-			fixed (Vector2* pmousePos = &mousePos)
-			{
-				byte ret = IsMousePosValidNative((Vector2*)pmousePos);
+				byte ret = MenuItemNative((byte*)plabel, pStr0, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// [WILL OBSOLETE] is any mouse button held? This was designed for backends, but prefer having backend maintain a mask of held mouse buttons, because upcoming input queue system will make this invalid.<br/>
+		/// return true when activated.<br/>
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsAnyMouseDownNative()
+		public static bool MenuItem(in byte label, string shortcut, bool selected)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[388])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[388])();
-			#endif
-		}
-
-		/// <summary>
-		/// [WILL OBSOLETE] is any mouse button held? This was designed for backends, but prefer having backend maintain a mask of held mouse buttons, because upcoming input queue system will make this invalid.<br/>
-		/// </summary>
-		public static bool IsAnyMouseDown()
-		{
-			byte ret = IsAnyMouseDownNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// shortcut to ImGui::GetIO().MousePos provided by user, to be consistent with other calls<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetMousePosNative(Vector2* pOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[389])(pOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[389])((nint)pOut);
-			#endif
-		}
-
-		/// <summary>
-		/// shortcut to ImGui::GetIO().MousePos provided by user, to be consistent with other calls<br/>
-		/// </summary>
-		public static Vector2 GetMousePos()
-		{
-			Vector2 ret;
-			GetMousePosNative(&ret);
-			return ret;
-		}
-
-		/// <summary>
-		/// shortcut to ImGui::GetIO().MousePos provided by user, to be consistent with other calls<br/>
-		/// </summary>
-		public static void GetMousePos(Vector2* pOut)
-		{
-			GetMousePosNative(pOut);
-		}
-
-		/// <summary>
-		/// shortcut to ImGui::GetIO().MousePos provided by user, to be consistent with other calls<br/>
-		/// </summary>
-		public static void GetMousePos(ref Vector2 pOut)
-		{
-			fixed (Vector2* ppOut = &pOut)
+			fixed (byte* plabel = &label)
 			{
-				GetMousePosNative((Vector2*)ppOut);
-			}
-		}
-
-		/// <summary>
-		/// retrieve mouse position at the time of opening popup we have BeginPopup() into (helper to avoid user backing that value themselves)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetMousePosOnOpeningCurrentPopupNative(Vector2* pOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[390])(pOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[390])((nint)pOut);
-			#endif
-		}
-
-		/// <summary>
-		/// retrieve mouse position at the time of opening popup we have BeginPopup() into (helper to avoid user backing that value themselves)<br/>
-		/// </summary>
-		public static Vector2 GetMousePosOnOpeningCurrentPopup()
-		{
-			Vector2 ret;
-			GetMousePosOnOpeningCurrentPopupNative(&ret);
-			return ret;
-		}
-
-		/// <summary>
-		/// retrieve mouse position at the time of opening popup we have BeginPopup() into (helper to avoid user backing that value themselves)<br/>
-		/// </summary>
-		public static void GetMousePosOnOpeningCurrentPopup(Vector2* pOut)
-		{
-			GetMousePosOnOpeningCurrentPopupNative(pOut);
-		}
-
-		/// <summary>
-		/// retrieve mouse position at the time of opening popup we have BeginPopup() into (helper to avoid user backing that value themselves)<br/>
-		/// </summary>
-		public static void GetMousePosOnOpeningCurrentPopup(ref Vector2 pOut)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetMousePosOnOpeningCurrentPopupNative((Vector2*)ppOut);
-			}
-		}
-
-		/// <summary>
-		/// is mouse dragging? (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseDraggingNative(ImGuiMouseButton button, float lockThreshold)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[391])(button, lockThreshold);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[391])(button, lockThreshold);
-			#endif
-		}
-
-		/// <summary>
-		/// is mouse dragging? (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static bool IsMouseDragging(ImGuiMouseButton button, float lockThreshold)
-		{
-			byte ret = IsMouseDraggingNative(button, lockThreshold);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is mouse dragging? (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static bool IsMouseDragging(ImGuiMouseButton button)
-		{
-			byte ret = IsMouseDraggingNative(button, (float)(-1.0f));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetMouseDragDeltaNative(Vector2* pOut, ImGuiMouseButton button, float lockThreshold)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, ImGuiMouseButton, float, void>)funcTable[392])(pOut, button, lockThreshold);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImGuiMouseButton, float, void>)funcTable[392])((nint)pOut, button, lockThreshold);
-			#endif
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static Vector2 GetMouseDragDelta()
-		{
-			Vector2 ret;
-			GetMouseDragDeltaNative(&ret, (ImGuiMouseButton)(0), (float)(-1.0f));
-			return ret;
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static Vector2 GetMouseDragDelta(ImGuiMouseButton button)
-		{
-			Vector2 ret;
-			GetMouseDragDeltaNative(&ret, button, (float)(-1.0f));
-			return ret;
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static void GetMouseDragDelta(Vector2* pOut)
-		{
-			GetMouseDragDeltaNative(pOut, (ImGuiMouseButton)(0), (float)(-1.0f));
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static Vector2 GetMouseDragDelta(float lockThreshold)
-		{
-			Vector2 ret;
-			GetMouseDragDeltaNative(&ret, (ImGuiMouseButton)(0), lockThreshold);
-			return ret;
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static Vector2 GetMouseDragDelta(ImGuiMouseButton button, float lockThreshold)
-		{
-			Vector2 ret;
-			GetMouseDragDeltaNative(&ret, button, lockThreshold);
-			return ret;
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static void GetMouseDragDelta(Vector2* pOut, ImGuiMouseButton button, float lockThreshold)
-		{
-			GetMouseDragDeltaNative(pOut, button, lockThreshold);
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static void GetMouseDragDelta(Vector2* pOut, ImGuiMouseButton button)
-		{
-			GetMouseDragDeltaNative(pOut, button, (float)(-1.0f));
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static void GetMouseDragDelta(Vector2* pOut, float lockThreshold)
-		{
-			GetMouseDragDeltaNative(pOut, (ImGuiMouseButton)(0), lockThreshold);
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static void GetMouseDragDelta(ref Vector2 pOut, ImGuiMouseButton button, float lockThreshold)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetMouseDragDeltaNative((Vector2*)ppOut, button, lockThreshold);
-			}
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static void GetMouseDragDelta(ref Vector2 pOut, ImGuiMouseButton button)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetMouseDragDeltaNative((Vector2*)ppOut, button, (float)(-1.0f));
-			}
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static void GetMouseDragDelta(ref Vector2 pOut)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetMouseDragDeltaNative((Vector2*)ppOut, (ImGuiMouseButton)(0), (float)(-1.0f));
-			}
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static void GetMouseDragDelta(ref Vector2 pOut, float lockThreshold)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetMouseDragDeltaNative((Vector2*)ppOut, (ImGuiMouseButton)(0), lockThreshold);
-			}
-		}
-
-		/// <summary>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ResetMouseDragDeltaNative(ImGuiMouseButton button)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMouseButton, void>)funcTable[393])(button);
-			#else
-			((delegate* unmanaged[Cdecl]<ImGuiMouseButton, void>)funcTable[393])(button);
-			#endif
-		}
-
-		/// <summary>
-		/// </summary>
-		public static void ResetMouseDragDelta(ImGuiMouseButton button)
-		{
-			ResetMouseDragDeltaNative(button);
-		}
-
-		/// <summary>
-		/// </summary>
-		public static void ResetMouseDragDelta()
-		{
-			ResetMouseDragDeltaNative((ImGuiMouseButton)(0));
-		}
-
-		/// <summary>
-		/// get desired mouse cursor shape. Important: reset in ImGui::NewFrame(), this is updated during the frame. valid before Render(). If you use software rendering by setting io.MouseDrawCursor ImGui will render those for you<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiMouseCursor GetMouseCursorNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseCursor>)funcTable[394])();
-			#else
-			return (ImGuiMouseCursor)((delegate* unmanaged[Cdecl]<ImGuiMouseCursor>)funcTable[394])();
-			#endif
-		}
-
-		/// <summary>
-		/// get desired mouse cursor shape. Important: reset in ImGui::NewFrame(), this is updated during the frame. valid before Render(). If you use software rendering by setting io.MouseDrawCursor ImGui will render those for you<br/>
-		/// </summary>
-		public static ImGuiMouseCursor GetMouseCursor()
-		{
-			ImGuiMouseCursor ret = GetMouseCursorNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// set desired mouse cursor shape<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetMouseCursorNative(ImGuiMouseCursor cursorType)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMouseCursor, void>)funcTable[395])(cursorType);
-			#else
-			((delegate* unmanaged[Cdecl]<ImGuiMouseCursor, void>)funcTable[395])(cursorType);
-			#endif
-		}
-
-		/// <summary>
-		/// set desired mouse cursor shape<br/>
-		/// </summary>
-		public static void SetMouseCursor(ImGuiMouseCursor cursorType)
-		{
-			SetMouseCursorNative(cursorType);
-		}
-
-		/// <summary>
-		/// Override io.WantCaptureMouse flag next frame (said flag is left for your application to handle, typical when true it instructs your app to ignore inputs). This is equivalent to setting "io.WantCaptureMouse = want_capture_mouse;" after the next NewFrame() call.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetNextFrameWantCaptureMouseNative(byte wantCaptureMouse)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[396])(wantCaptureMouse);
-			#else
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[396])(wantCaptureMouse);
-			#endif
-		}
-
-		/// <summary>
-		/// Override io.WantCaptureMouse flag next frame (said flag is left for your application to handle, typical when true it instructs your app to ignore inputs). This is equivalent to setting "io.WantCaptureMouse = want_capture_mouse;" after the next NewFrame() call.<br/>
-		/// </summary>
-		public static void SetNextFrameWantCaptureMouse(bool wantCaptureMouse)
-		{
-			SetNextFrameWantCaptureMouseNative(wantCaptureMouse ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* GetClipboardTextNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*>)funcTable[397])();
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint>)funcTable[397])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* GetClipboardText()
-		{
-			byte* ret = GetClipboardTextNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string GetClipboardTextS()
-		{
-			string ret = Utils.DecodeStringUTF8(GetClipboardTextNative());
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetClipboardTextNative(byte* text)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[398])(text);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[398])((nint)text);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetClipboardText(byte* text)
-		{
-			SetClipboardTextNative(text);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetClipboardText(in byte text)
-		{
-			fixed (byte* ptext = &text)
-			{
-				SetClipboardTextNative((byte*)ptext);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetClipboardText(ReadOnlySpan<byte> text)
-		{
-			fixed (byte* ptext = text)
-			{
-				SetClipboardTextNative((byte*)ptext);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetClipboardText(string text)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = MenuItemNative((byte*)plabel, pStr0, selected ? (byte)1 : (byte)0, (byte)(1));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					Utils.Free(pStr0);
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			SetClipboardTextNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LoadIniSettingsFromDiskNative(byte* iniFilename)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[399])(iniFilename);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[399])((nint)iniFilename);
-			#endif
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
-		/// </summary>
-		public static void LoadIniSettingsFromDisk(byte* iniFilename)
-		{
-			LoadIniSettingsFromDiskNative(iniFilename);
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
-		/// </summary>
-		public static void LoadIniSettingsFromDisk(in byte iniFilename)
-		{
-			fixed (byte* piniFilename = &iniFilename)
-			{
-				LoadIniSettingsFromDiskNative((byte*)piniFilename);
-			}
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
-		/// </summary>
-		public static void LoadIniSettingsFromDisk(ReadOnlySpan<byte> iniFilename)
-		{
-			fixed (byte* piniFilename = iniFilename)
-			{
-				LoadIniSettingsFromDiskNative((byte*)piniFilename);
-			}
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
-		/// </summary>
-		public static void LoadIniSettingsFromDisk(string iniFilename)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (iniFilename != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(iniFilename);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(iniFilename, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			LoadIniSettingsFromDiskNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LoadIniSettingsFromMemoryNative(byte* iniData, nuint iniSize)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[400])(iniData, iniSize);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[400])((nint)iniData, iniSize);
-			#endif
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
-		/// </summary>
-		public static void LoadIniSettingsFromMemory(byte* iniData, nuint iniSize)
-		{
-			LoadIniSettingsFromMemoryNative(iniData, iniSize);
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
-		/// </summary>
-		public static void LoadIniSettingsFromMemory(byte* iniData)
-		{
-			LoadIniSettingsFromMemoryNative(iniData, (nuint)(0));
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
-		/// </summary>
-		public static void LoadIniSettingsFromMemory(in byte iniData, nuint iniSize)
-		{
-			fixed (byte* piniData = &iniData)
-			{
-				LoadIniSettingsFromMemoryNative((byte*)piniData, iniSize);
-			}
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
-		/// </summary>
-		public static void LoadIniSettingsFromMemory(in byte iniData)
-		{
-			fixed (byte* piniData = &iniData)
-			{
-				LoadIniSettingsFromMemoryNative((byte*)piniData, (nuint)(0));
-			}
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
-		/// </summary>
-		public static void LoadIniSettingsFromMemory(ReadOnlySpan<byte> iniData, nuint iniSize)
-		{
-			fixed (byte* piniData = iniData)
-			{
-				LoadIniSettingsFromMemoryNative((byte*)piniData, iniSize);
-			}
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
-		/// </summary>
-		public static void LoadIniSettingsFromMemory(ReadOnlySpan<byte> iniData)
-		{
-			fixed (byte* piniData = iniData)
-			{
-				LoadIniSettingsFromMemoryNative((byte*)piniData, (nuint)(0));
-			}
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
-		/// </summary>
-		public static void LoadIniSettingsFromMemory(string iniData, nuint iniSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (iniData != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(iniData);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(iniData, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			LoadIniSettingsFromMemoryNative(pStr0, iniSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
-		/// </summary>
-		public static void LoadIniSettingsFromMemory(string iniData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (iniData != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(iniData);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(iniData, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			LoadIniSettingsFromMemoryNative(pStr0, (nuint)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SaveIniSettingsToDiskNative(byte* iniFilename)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[401])(iniFilename);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[401])((nint)iniFilename);
-			#endif
-		}
-
-		/// <summary>
-		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
-		/// </summary>
-		public static void SaveIniSettingsToDisk(byte* iniFilename)
-		{
-			SaveIniSettingsToDiskNative(iniFilename);
-		}
-
-		/// <summary>
-		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
-		/// </summary>
-		public static void SaveIniSettingsToDisk(in byte iniFilename)
-		{
-			fixed (byte* piniFilename = &iniFilename)
-			{
-				SaveIniSettingsToDiskNative((byte*)piniFilename);
-			}
-		}
-
-		/// <summary>
-		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
-		/// </summary>
-		public static void SaveIniSettingsToDisk(ReadOnlySpan<byte> iniFilename)
-		{
-			fixed (byte* piniFilename = iniFilename)
-			{
-				SaveIniSettingsToDiskNative((byte*)piniFilename);
-			}
-		}
-
-		/// <summary>
-		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
-		/// </summary>
-		public static void SaveIniSettingsToDisk(string iniFilename)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (iniFilename != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(iniFilename);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(iniFilename, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			SaveIniSettingsToDiskNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* SaveIniSettingsToMemoryNative(nuint* outIniSize)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<nuint*, byte*>)funcTable[402])(outIniSize);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[402])((nint)outIniSize);
-			#endif
-		}
-
-		/// <summary>
-		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
-		/// </summary>
-		public static byte* SaveIniSettingsToMemory(nuint* outIniSize)
-		{
-			byte* ret = SaveIniSettingsToMemoryNative(outIniSize);
-			return ret;
-		}
-
-		/// <summary>
-		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
-		/// </summary>
-		public static byte* SaveIniSettingsToMemory()
-		{
-			byte* ret = SaveIniSettingsToMemoryNative((nuint*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
-		/// </summary>
-		public static string SaveIniSettingsToMemoryS()
-		{
-			string ret = Utils.DecodeStringUTF8(SaveIniSettingsToMemoryNative((nuint*)(default)));
-			return ret;
-		}
-
-		/// <summary>
-		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
-		/// </summary>
-		public static string SaveIniSettingsToMemoryS(nuint* outIniSize)
-		{
-			string ret = Utils.DecodeStringUTF8(SaveIniSettingsToMemoryNative(outIniSize));
-			return ret;
-		}
-
-		/// <summary>
-		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
-		/// </summary>
-		public static byte* SaveIniSettingsToMemory(ref nuint outIniSize)
-		{
-			fixed (nuint* poutIniSize = &outIniSize)
-			{
-				byte* ret = SaveIniSettingsToMemoryNative((nuint*)poutIniSize);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
-		/// </summary>
-		public static string SaveIniSettingsToMemoryS(ref nuint outIniSize)
-		{
-			fixed (nuint* poutIniSize = &outIniSize)
-			{
-				string ret = Utils.DecodeStringUTF8(SaveIniSettingsToMemoryNative((nuint*)poutIniSize));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DebugTextEncodingNative(byte* text)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[403])(text);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[403])((nint)text);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DebugTextEncoding(byte* text)
-		{
-			DebugTextEncodingNative(text);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DebugTextEncoding(in byte text)
-		{
-			fixed (byte* ptext = &text)
-			{
-				DebugTextEncodingNative((byte*)ptext);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DebugTextEncoding(ReadOnlySpan<byte> text)
-		{
-			fixed (byte* ptext = text)
-			{
-				DebugTextEncodingNative((byte*)ptext);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DebugTextEncoding(string text)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			DebugTextEncodingNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DebugFlashStyleColorNative(ImGuiCol idx)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiCol, void>)funcTable[404])(idx);
-			#else
-			((delegate* unmanaged[Cdecl]<ImGuiCol, void>)funcTable[404])(idx);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DebugFlashStyleColor(ImGuiCol idx)
-		{
-			DebugFlashStyleColorNative(idx);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DebugStartItemPickerNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[405])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[405])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DebugStartItemPicker()
-		{
-			DebugStartItemPickerNative();
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte DebugCheckVersionAndDataLayoutNative(byte* versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, nuint, nuint, nuint, nuint, nuint, nuint, byte>)funcTable[406])(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nuint, nuint, nuint, nuint, nuint, nuint, byte>)funcTable[406])((nint)versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-			#endif
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
-		{
-			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
-		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(in byte versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
-		{
-			fixed (byte* pversionStr = &versionStr)
-			{
-				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
 				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// return true when activated.<br/>
 		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
+		public static bool MenuItem(in byte label, string shortcut)
 		{
-			fixed (byte* pversionStr = versionStr)
+			fixed (byte* plabel = &label)
 			{
-				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = MenuItemNative((byte*)plabel, pStr0, (byte)(0), (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// return true when activated.<br/>
 		/// </summary>
-		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
+		public static bool MenuItem(ReadOnlySpan<byte> label, in byte shortcut, bool selected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, in byte shortcut, bool selected)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, in byte shortcut)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (byte)(0), (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, bool selected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = MenuItemNative((byte*)plabel, pStr0, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, bool selected)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = MenuItemNative((byte*)plabel, pStr0, selected ? (byte)1 : (byte)0, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = MenuItemNative((byte*)plabel, pStr0, (byte)(0), (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(string label, in byte shortcut, bool selected, bool enabled)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (versionStr != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4311,10 +3249,287 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			fixed (byte* pshortcut = &shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(string label, in byte shortcut, bool selected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = &shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(string label, in byte shortcut)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = &shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, (byte)(0), (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool selected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, (byte)(0), (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte MenuItemNative(byte* label, byte* shortcut, bool* pSelected, byte enabled)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, bool*, byte, byte>)funcTable[257])(label, shortcut, pSelected, enabled);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, byte, byte>)funcTable[257])((nint)label, (nint)shortcut, (nint)pSelected, enabled);
+			#endif
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, byte* shortcut, bool* pSelected, bool enabled)
+		{
+			byte ret = MenuItemNative(label, shortcut, pSelected, enabled ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, byte* shortcut, bool* pSelected)
+		{
+			byte ret = MenuItemNative(label, shortcut, pSelected, (byte)(1));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, byte* shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, shortcut, pSelected, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, byte* shortcut, bool* pSelected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, shortcut, pSelected, (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, shortcut, pSelected, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, bool* pSelected)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = MenuItemNative((byte*)plabel, shortcut, pSelected, (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, byte* shortcut, bool* pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemNative(pStr0, shortcut, pSelected, enabled ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4323,58 +3538,15 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!<br/>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DebugLogNative(byte* fmt)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[407])(fmt);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[407])((nint)fmt);
-			#endif
-		}
-
-		/// <summary>
-		/// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!<br/>
-		/// </summary>
-		public static void DebugLog(byte* fmt)
-		{
-			DebugLogNative(fmt);
-		}
-
-		/// <summary>
-		/// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!<br/>
-		/// </summary>
-		public static void DebugLog(in byte fmt)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				DebugLogNative((byte*)pfmt);
-			}
-		}
-
-		/// <summary>
-		/// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!<br/>
-		/// </summary>
-		public static void DebugLog(ReadOnlySpan<byte> fmt)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				DebugLogNative((byte*)pfmt);
-			}
-		}
-
-		/// <summary>
-		/// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!<br/>
-		/// </summary>
-		public static void DebugLog(string fmt)
+		public static bool MenuItem(string label, byte* shortcut, bool* pSelected)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (fmt != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4384,69 +3556,75 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			DebugLogNative(pStr0);
+			byte ret = MenuItemNative(pStr0, shortcut, pSelected, (byte)(1));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DebugLogVNative(byte* fmt, nuint args)
+		public static bool MenuItem(byte* label, in byte shortcut, bool* pSelected, bool enabled)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[408])(fmt, args);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[408])((nint)fmt, args);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DebugLogV(byte* fmt, nuint args)
-		{
-			DebugLogVNative(fmt, args);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DebugLogV(in byte fmt, nuint args)
-		{
-			fixed (byte* pfmt = &fmt)
+			fixed (byte* pshortcut = &shortcut)
 			{
-				DebugLogVNative((byte*)pfmt, args);
+				byte ret = MenuItemNative(label, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		public static void DebugLogV(ReadOnlySpan<byte> fmt, nuint args)
+		public static bool MenuItem(byte* label, in byte shortcut, bool* pSelected)
 		{
-			fixed (byte* pfmt = fmt)
+			fixed (byte* pshortcut = &shortcut)
 			{
-				DebugLogVNative((byte*)pfmt, args);
+				byte ret = MenuItemNative(label, (byte*)pshortcut, pSelected, (byte)(1));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		public static void DebugLogV(string fmt, nuint args)
+		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(label, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, bool* pSelected)
+		{
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(label, (byte*)pshortcut, pSelected, (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, string shortcut, bool* pSelected, bool enabled)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (fmt != null)
+			if (shortcut != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4456,577 +3634,1390 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			DebugLogVNative(pStr0, args);
+			byte ret = MenuItemNative(label, pStr0, pSelected, enabled ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetAllocatorFunctionsNative(delegate*<nuint, void*, void*> allocFunc, delegate*<void*, void*, void> freeFunc, void* userData)
+		public static bool MenuItem(byte* label, string shortcut, bool* pSelected)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void>)funcTable[409])(allocFunc, freeFunc, userData);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[409])((nint)allocFunc, (nint)freeFunc, (nint)userData);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, delegate*<void*, void*, void> freeFunc, void* userData)
-		{
-			SetAllocatorFunctionsNative(allocFunc, freeFunc, userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, delegate*<void*, void*, void> freeFunc)
-		{
-			SetAllocatorFunctionsNative(allocFunc, freeFunc, (void*)(default));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, delegate*<void*, void*, void> freeFunc, void* userData)
-		{
-			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), freeFunc, userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, delegate*<void*, void*, void> freeFunc)
-		{
-			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), freeFunc, (void*)(default));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, ImGuiMemFreeFunc freeFunc, void* userData)
-		{
-			SetAllocatorFunctionsNative(allocFunc, (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, ImGuiMemFreeFunc freeFunc)
-		{
-			SetAllocatorFunctionsNative(allocFunc, (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), (void*)(default));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, ImGuiMemFreeFunc freeFunc, void* userData)
-		{
-			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, ImGuiMemFreeFunc freeFunc)
-		{
-			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), (void*)(default));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, delegate*<void*, void*, void> freeFunc, nint userData)
-		{
-			SetAllocatorFunctionsNative(allocFunc, freeFunc, (void*)userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, delegate*<void*, void*, void> freeFunc, nint userData)
-		{
-			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), freeFunc, (void*)userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, ImGuiMemFreeFunc freeFunc, nint userData)
-		{
-			SetAllocatorFunctionsNative(allocFunc, (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), (void*)userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, ImGuiMemFreeFunc freeFunc, nint userData)
-		{
-			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), (void*)userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetAllocatorFunctionsNative(delegate*<nuint, void*, void*>* pAllocFunc, delegate*<void*, void*, void>* pFreeFunc, void** pUserData)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<delegate*<nuint, void*, void*>*, delegate*<void*, void*, void>*, void**, void>)funcTable[410])(pAllocFunc, pFreeFunc, pUserData);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[410])((nint)pAllocFunc, (nint)pFreeFunc, (nint)pUserData);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetAllocatorFunctions(delegate*<nuint, void*, void*>* pAllocFunc, delegate*<void*, void*, void>* pFreeFunc, void** pUserData)
-		{
-			GetAllocatorFunctionsNative(pAllocFunc, pFreeFunc, pUserData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetAllocatorFunctions(delegate*<nuint, void*, void*>* pAllocFunc, delegate*<void*, void*, void>* pFreeFunc, ref nint pUserData)
-		{
-			fixed (nint* ppUserData = &pUserData)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (shortcut != null)
 			{
-				GetAllocatorFunctionsNative(pAllocFunc, pFreeFunc, (void**)ppUserData);
+				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemNative(label, pStr0, pSelected, (byte)(1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, in byte shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void* MemAllocNative(nuint size)
+		public static bool MenuItem(in byte label, in byte shortcut, bool* pSelected)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<nuint, void*>)funcTable[411])(size);
-			#else
-			return (void*)((delegate* unmanaged[Cdecl]<nuint, nint>)funcTable[411])(size);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void* MemAlloc(nuint size)
-		{
-			void* ret = MemAllocNative(size);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void MemFreeNative(void* ptr)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[412])(ptr);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[412])((nint)ptr);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MemFree(void* ptr)
-		{
-			MemFreeNative(ptr);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MemFree(nint ptr)
-		{
-			MemFreeNative((void*)ptr);
-		}
-
-		/// <summary>
-		/// call in main loop. will call CreateWindowResizeWindowetc. platform functions for each secondary viewport, and DestroyWindow for each inactive viewport.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void UpdatePlatformWindowsNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[413])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[413])();
-			#endif
-		}
-
-		/// <summary>
-		/// call in main loop. will call CreateWindowResizeWindowetc. platform functions for each secondary viewport, and DestroyWindow for each inactive viewport.<br/>
-		/// </summary>
-		public static void UpdatePlatformWindows()
-		{
-			UpdatePlatformWindowsNative();
-		}
-
-		/// <summary>
-		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void RenderPlatformWindowsDefaultNative(void* platformRenderArg, void* rendererRenderArg)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void*, void*, void>)funcTable[414])(platformRenderArg, rendererRenderArg);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[414])((nint)platformRenderArg, (nint)rendererRenderArg);
-			#endif
-		}
-
-		/// <summary>
-		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
-		/// </summary>
-		public static void RenderPlatformWindowsDefault(void* platformRenderArg, void* rendererRenderArg)
-		{
-			RenderPlatformWindowsDefaultNative(platformRenderArg, rendererRenderArg);
-		}
-
-		/// <summary>
-		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
-		/// </summary>
-		public static void RenderPlatformWindowsDefault(void* platformRenderArg)
-		{
-			RenderPlatformWindowsDefaultNative(platformRenderArg, (void*)(default));
-		}
-
-		/// <summary>
-		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
-		/// </summary>
-		public static void RenderPlatformWindowsDefault()
-		{
-			RenderPlatformWindowsDefaultNative((void*)(default), (void*)(default));
-		}
-
-		/// <summary>
-		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
-		/// </summary>
-		public static void RenderPlatformWindowsDefault(nint platformRenderArg, void* rendererRenderArg)
-		{
-			RenderPlatformWindowsDefaultNative((void*)platformRenderArg, rendererRenderArg);
-		}
-
-		/// <summary>
-		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
-		/// </summary>
-		public static void RenderPlatformWindowsDefault(nint platformRenderArg)
-		{
-			RenderPlatformWindowsDefaultNative((void*)platformRenderArg, (void*)(default));
-		}
-
-		/// <summary>
-		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
-		/// </summary>
-		public static void RenderPlatformWindowsDefault(void* platformRenderArg, nint rendererRenderArg)
-		{
-			RenderPlatformWindowsDefaultNative(platformRenderArg, (void*)rendererRenderArg);
-		}
-
-		/// <summary>
-		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
-		/// </summary>
-		public static void RenderPlatformWindowsDefault(nint platformRenderArg, nint rendererRenderArg)
-		{
-			RenderPlatformWindowsDefaultNative((void*)platformRenderArg, (void*)rendererRenderArg);
-		}
-
-		/// <summary>
-		/// call DestroyWindow platform functions for all viewports. call from backend Shutdown() if you need to close platform windows before imgui shutdown. otherwise will be called by DestroyContext().<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyPlatformWindowsNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[415])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[415])();
-			#endif
-		}
-
-		/// <summary>
-		/// call DestroyWindow platform functions for all viewports. call from backend Shutdown() if you need to close platform windows before imgui shutdown. otherwise will be called by DestroyContext().<br/>
-		/// </summary>
-		public static void DestroyPlatformWindows()
-		{
-			DestroyPlatformWindowsNative();
-		}
-
-		/// <summary>
-		/// this is a helper for backends.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiViewport* FindViewportByIDNative(uint id)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiViewport*>)funcTable[416])(id);
-			#else
-			return (ImGuiViewport*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[416])(id);
-			#endif
-		}
-
-		/// <summary>
-		/// this is a helper for backends.<br/>
-		/// </summary>
-		public static ImGuiViewportPtr FindViewportByID(uint id)
-		{
-			ImGuiViewportPtr ret = FindViewportByIDNative(id);
-			return ret;
-		}
-
-		/// <summary>
-		/// this is a helper for backends. the type platform_handle is decided by the backend (e.g. HWND, MyWindow*, GLFWwindow* etc.)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiViewport* FindViewportByPlatformHandleNative(void* platformHandle)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, ImGuiViewport*>)funcTable[417])(platformHandle);
-			#else
-			return (ImGuiViewport*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[417])((nint)platformHandle);
-			#endif
-		}
-
-		/// <summary>
-		/// this is a helper for backends. the type platform_handle is decided by the backend (e.g. HWND, MyWindow*, GLFWwindow* etc.)<br/>
-		/// </summary>
-		public static ImGuiViewportPtr FindViewportByPlatformHandle(void* platformHandle)
-		{
-			ImGuiViewportPtr ret = FindViewportByPlatformHandleNative(platformHandle);
-			return ret;
-		}
-
-		/// <summary>
-		/// this is a helper for backends. the type platform_handle is decided by the backend (e.g. HWND, MyWindow*, GLFWwindow* etc.)<br/>
-		/// </summary>
-		public static ImGuiViewportPtr FindViewportByPlatformHandle(nint platformHandle)
-		{
-			ImGuiViewportPtr ret = FindViewportByPlatformHandleNative((void*)platformHandle);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTableSortSpecs* ImGuiTableSortSpecsNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTableSortSpecs*>)funcTable[418])();
-			#else
-			return (ImGuiTableSortSpecs*)((delegate* unmanaged[Cdecl]<nint>)funcTable[418])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTableSortSpecsPtr ImGuiTableSortSpecs()
-		{
-			ImGuiTableSortSpecsPtr ret = ImGuiTableSortSpecsNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiTableSortSpecs* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTableSortSpecs*, void>)funcTable[419])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[419])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiTableSortSpecsPtr self)
-		{
-			DestroyNative((ImGuiTableSortSpecs*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiTableSortSpecs self)
-		{
-			fixed (ImGuiTableSortSpecs* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				DestroyNative((ImGuiTableSortSpecs*)pself);
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, (byte)(1));
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTableColumnSortSpecs* ImGuiTableColumnSortSpecsNative()
+		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTableColumnSortSpecs*>)funcTable[420])();
-			#else
-			return (ImGuiTableColumnSortSpecs*)((delegate* unmanaged[Cdecl]<nint>)funcTable[420])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTableColumnSortSpecsPtr ImGuiTableColumnSortSpecs()
-		{
-			ImGuiTableColumnSortSpecsPtr ret = ImGuiTableColumnSortSpecsNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiTableColumnSortSpecs* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTableColumnSortSpecs*, void>)funcTable[421])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[421])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiTableColumnSortSpecsPtr self)
-		{
-			DestroyNative((ImGuiTableColumnSortSpecs*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiTableColumnSortSpecs self)
-		{
-			fixed (ImGuiTableColumnSortSpecs* pself = &self)
+			fixed (byte* plabel = label)
 			{
-				DestroyNative((ImGuiTableColumnSortSpecs*)pself);
+				fixed (byte* pshortcut = shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiStyle* ImGuiStyleNative()
+		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, bool* pSelected)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStyle*>)funcTable[422])();
-			#else
-			return (ImGuiStyle*)((delegate* unmanaged[Cdecl]<nint>)funcTable[422])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiStylePtr ImGuiStyle()
-		{
-			ImGuiStylePtr ret = ImGuiStyleNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiStyle* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStyle*, void>)funcTable[423])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[423])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiStylePtr self)
-		{
-			DestroyNative((ImGuiStyle*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiStyle self)
-		{
-			fixed (ImGuiStyle* pself = &self)
+			fixed (byte* plabel = label)
 			{
-				DestroyNative((ImGuiStyle*)pself);
+				fixed (byte* pshortcut = shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, (byte)(1));
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
-		/// Scale all spacingpaddingthickness values. Do not scale fonts.<br/>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ScaleAllSizesNative(ImGuiStyle* self, float scaleFactor)
+		public static bool MenuItem(string label, string shortcut, bool* pSelected, bool enabled)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStyle*, float, void>)funcTable[424])(self, scaleFactor);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, float, void>)funcTable[424])((nint)self, scaleFactor);
-			#endif
-		}
-
-		/// <summary>
-		/// Scale all spacingpaddingthickness values. Do not scale fonts.<br/>
-		/// </summary>
-		public static void ScaleAllSizes(ImGuiStylePtr self, float scaleFactor)
-		{
-			ScaleAllSizesNative((ImGuiStyle*)self, scaleFactor);
-		}
-
-		/// <summary>
-		/// Scale all spacingpaddingthickness values. Do not scale fonts.<br/>
-		/// </summary>
-		public static void ScaleAllSizes(ref ImGuiStyle self, float scaleFactor)
-		{
-			fixed (ImGuiStyle* pself = &self)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				ScaleAllSizesNative((ImGuiStyle*)pself, scaleFactor);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (shortcut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = MenuItemNative(pStr0, pStr1, pSelected, enabled ? (byte)1 : (byte)0);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, string shortcut, bool* pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (shortcut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = MenuItemNative(pStr0, pStr1, pSelected, (byte)(1));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
-		/// Queue a new key downup event. Key should be "translated" (as in, generally ImGuiKey_A matches the key end-user would use to emit an 'A' character)<br/>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, ReadOnlySpan<byte> shortcut, bool* pSelected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, string shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = MenuItemNative((byte*)plabel, pStr0, pSelected, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, string shortcut, bool* pSelected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = MenuItemNative((byte*)plabel, pStr0, pSelected, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, in byte shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, in byte shortcut, bool* pSelected)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = MenuItemNative((byte*)plabel, pStr0, pSelected, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, bool* pSelected)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = MenuItemNative((byte*)plabel, pStr0, pSelected, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, in byte shortcut, bool* pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = &shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, in byte shortcut, bool* pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = &shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, pSelected, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool* pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, pSelected, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, byte* shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(label, shortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, byte* shortcut, ref bool pSelected)
+		{
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(label, shortcut, (bool*)ppSelected, (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, byte* shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, shortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, byte* shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, shortcut, (bool*)ppSelected, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, shortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, shortcut, (bool*)ppSelected, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, byte* shortcut, ref bool pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(pStr0, shortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, byte* shortcut, ref bool pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(pStr0, shortcut, (bool*)ppSelected, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, in byte shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* pshortcut = &shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(label, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, in byte shortcut, ref bool pSelected)
+		{
+			fixed (byte* pshortcut = &shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(label, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* pshortcut = shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(label, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
+		{
+			fixed (byte* pshortcut = shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(label, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, string shortcut, ref bool pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (shortcut != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(label, pStr0, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, string shortcut, ref bool pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (shortcut != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(label, pStr0, (bool*)ppSelected, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, in byte shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, in byte shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, string shortcut, ref bool pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (shortcut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(pStr0, pStr1, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, string shortcut, ref bool pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (shortcut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(pStr0, pStr1, (bool*)ppSelected, (byte)(1));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, string shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, pStr0, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, string shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, pStr0, (bool*)ppSelected, (byte)(1));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, in byte shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, in byte shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, pStr0, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, pStr0, (bool*)ppSelected, (byte)(1));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, in byte shortcut, ref bool pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = &shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(pStr0, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, in byte shortcut, ref bool pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = &shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(pStr0, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(pStr0, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(pStr0, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// beginappend a tooltip window.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddKeyEventNative(ImGuiIO* self, ImGuiKey key, byte down)
+		internal static byte BeginTooltipNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIO*, ImGuiKey, byte, void>)funcTable[425])(self, key, down);
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[258])();
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImGuiKey, byte, void>)funcTable[425])((nint)self, key, down);
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[258])();
 			#endif
+		}
+
+		/// <summary>
+		/// beginappend a tooltip window.<br/>
+		/// </summary>
+		public static bool BeginTooltip()
+		{
+			byte ret = BeginTooltipNative();
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// only call EndTooltip() if BeginTooltip()BeginItemTooltip() returns true!<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void EndTooltipNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[259])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[259])();
+			#endif
+		}
+
+		/// <summary>
+		/// only call EndTooltip() if BeginTooltip()BeginItemTooltip() returns true!<br/>
+		/// </summary>
+		public static void EndTooltip()
+		{
+			EndTooltipNative();
 		}
 	}
 }

@@ -60,7 +60,7 @@ namespace Hexa.NET.ImGui
 		AlsoScoreVisibleSet = unchecked(32),
 
 		/// <summary>
-		/// Force scrolling to minmax (used by HomeEnd)  FIXME-NAV: Aim to remove or reword, probably unnecessary<br/>
+		/// Force scrolling to minmax (used by HomeEnd)  FIXME-NAV: Aim to remove or reword as ImGuiScrollFlags<br/>
 		/// </summary>
 		ScrollToEdgeY = unchecked(64),
 

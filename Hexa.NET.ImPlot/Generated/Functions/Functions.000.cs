@@ -22,21 +22,21 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlotPoint* ImPlotPointNative()
+		internal static ImPlotPointC* ImPlotPointNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotPoint*>)funcTable[0])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotPointC*>)funcTable[0])();
 			#else
-			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<nint>)funcTable[0])();
+			return (ImPlotPointC*)((delegate* unmanaged[Cdecl]<nint>)funcTable[0])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPointPtr ImPlotPoint()
+		public static ImPlotPointC* ImPlotPoint()
 		{
-			ImPlotPointPtr ret = ImPlotPointNative();
+			ImPlotPointC* ret = ImPlotPointNative();
 			return ret;
 		}
 
@@ -44,10 +44,10 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImPlotPoint* self)
+		internal static void DestroyNative(ImPlotPointC* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, void>)funcTable[1])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotPointC*, void>)funcTable[1])(self);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1])((nint)self);
 			#endif
@@ -56,19 +56,19 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Destroy(ImPlotPointPtr self)
+		public static void Destroy(ImPlotPointC* self)
 		{
-			DestroyNative((ImPlotPoint*)self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Destroy(ref ImPlotPoint self)
+		public static void Destroy(ref ImPlotPointC self)
 		{
-			fixed (ImPlotPoint* pself = &self)
+			fixed (ImPlotPointC* pself = &self)
 			{
-				DestroyNative((ImPlotPoint*)pself);
+				DestroyNative((ImPlotPointC*)pself);
 			}
 		}
 
@@ -76,21 +76,21 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlotPoint* ImPlotPointNative(double x, double y)
+		internal static ImPlotPointC* ImPlotPointNative(double x, double y)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotPoint*>)funcTable[2])(x, y);
+			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotPointC*>)funcTable[2])(x, y);
 			#else
-			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<double, double, nint>)funcTable[2])(x, y);
+			return (ImPlotPointC*)((delegate* unmanaged[Cdecl]<double, double, nint>)funcTable[2])(x, y);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPointPtr ImPlotPoint(double x, double y)
+		public static ImPlotPointC* ImPlotPoint(double x, double y)
 		{
-			ImPlotPointPtr ret = ImPlotPointNative(x, y);
+			ImPlotPointC* ret = ImPlotPointNative(x, y);
 			return ret;
 		}
 
@@ -98,21 +98,21 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlotPoint* ImPlotPointNative(Vector2 p)
+		internal static ImPlotPointC* ImPlotPointNative(Vector2 p)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2, ImPlotPoint*>)funcTable[3])(p);
+			return ((delegate* unmanaged[Cdecl]<Vector2, ImPlotPointC*>)funcTable[3])(p);
 			#else
-			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<Vector2, nint>)funcTable[3])(p);
+			return (ImPlotPointC*)((delegate* unmanaged[Cdecl]<Vector2, nint>)funcTable[3])(p);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPointPtr ImPlotPoint(Vector2 p)
+		public static ImPlotPointC* ImPlotPoint(Vector2 p)
 		{
-			ImPlotPointPtr ret = ImPlotPointNative(p);
+			ImPlotPointC* ret = ImPlotPointNative(p);
 			return ret;
 		}
 
@@ -120,21 +120,21 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlotRange* ImPlotRangeNative()
+		internal static ImPlotRangeC* ImPlotRangeNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRange*>)funcTable[4])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotRangeC*>)funcTable[4])();
 			#else
-			return (ImPlotRange*)((delegate* unmanaged[Cdecl]<nint>)funcTable[4])();
+			return (ImPlotRangeC*)((delegate* unmanaged[Cdecl]<nint>)funcTable[4])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotRangePtr ImPlotRange()
+		public static ImPlotRangeCPtr ImPlotRange()
 		{
-			ImPlotRangePtr ret = ImPlotRangeNative();
+			ImPlotRangeCPtr ret = ImPlotRangeNative();
 			return ret;
 		}
 
@@ -142,10 +142,10 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImPlotRange* self)
+		internal static void DestroyNative(ImPlotRangeC* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotRange*, void>)funcTable[5])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotRangeC*, void>)funcTable[5])(self);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[5])((nint)self);
 			#endif
@@ -154,19 +154,19 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Destroy(ImPlotRangePtr self)
+		public static void Destroy(ImPlotRangeCPtr self)
 		{
-			DestroyNative((ImPlotRange*)self);
+			DestroyNative((ImPlotRangeC*)self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Destroy(ref ImPlotRange self)
+		public static void Destroy(ref ImPlotRangeC self)
 		{
-			fixed (ImPlotRange* pself = &self)
+			fixed (ImPlotRangeC* pself = &self)
 			{
-				DestroyNative((ImPlotRange*)pself);
+				DestroyNative((ImPlotRangeC*)pself);
 			}
 		}
 
@@ -174,21 +174,21 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlotRange* ImPlotRangeNative(double min, double max)
+		internal static ImPlotRangeC* ImPlotRangeNative(double min, double max)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotRange*>)funcTable[6])(min, max);
+			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotRangeC*>)funcTable[6])(min, max);
 			#else
-			return (ImPlotRange*)((delegate* unmanaged[Cdecl]<double, double, nint>)funcTable[6])(min, max);
+			return (ImPlotRangeC*)((delegate* unmanaged[Cdecl]<double, double, nint>)funcTable[6])(min, max);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotRangePtr ImPlotRange(double min, double max)
+		public static ImPlotRangeCPtr ImPlotRange(double min, double max)
 		{
-			ImPlotRangePtr ret = ImPlotRangeNative(min, max);
+			ImPlotRangeCPtr ret = ImPlotRangeNative(min, max);
 			return ret;
 		}
 
@@ -196,10 +196,10 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ContainsNative(ImPlotRange* self, double value)
+		internal static byte ContainsNative(ImPlotRangeC* self, double value)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double, byte>)funcTable[7])(self, value);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRangeC*, double, byte>)funcTable[7])(self, value);
 			#else
 			return (byte)((delegate* unmanaged[Cdecl]<nint, double, byte>)funcTable[7])((nint)self, value);
 			#endif
@@ -208,20 +208,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Contains(ImPlotRangePtr self, double value)
+		public static bool Contains(ImPlotRangeCPtr self, double value)
 		{
-			byte ret = ContainsNative((ImPlotRange*)self, value);
+			byte ret = ContainsNative((ImPlotRangeC*)self, value);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Contains(ref ImPlotRange self, double value)
+		public static bool Contains(ref ImPlotRangeC self, double value)
 		{
-			fixed (ImPlotRange* pself = &self)
+			fixed (ImPlotRangeC* pself = &self)
 			{
-				byte ret = ContainsNative((ImPlotRange*)pself, value);
+				byte ret = ContainsNative((ImPlotRangeC*)pself, value);
 				return ret != 0;
 			}
 		}
@@ -230,10 +230,10 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double SizeNative(ImPlotRange* self)
+		internal static double SizeNative(ImPlotRangeC* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double>)funcTable[8])(self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRangeC*, double>)funcTable[8])(self);
 			#else
 			return (double)((delegate* unmanaged[Cdecl]<nint, double>)funcTable[8])((nint)self);
 			#endif
@@ -242,20 +242,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double Size(ImPlotRangePtr self)
+		public static double Size(ImPlotRangeCPtr self)
 		{
-			double ret = SizeNative((ImPlotRange*)self);
+			double ret = SizeNative((ImPlotRangeC*)self);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double Size(ref ImPlotRange self)
+		public static double Size(ref ImPlotRangeC self)
 		{
-			fixed (ImPlotRange* pself = &self)
+			fixed (ImPlotRangeC* pself = &self)
 			{
-				double ret = SizeNative((ImPlotRange*)pself);
+				double ret = SizeNative((ImPlotRangeC*)pself);
 				return ret;
 			}
 		}
@@ -264,10 +264,10 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double ClampNative(ImPlotRange* self, double value)
+		internal static double ClampNative(ImPlotRangeC* self, double value)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double, double>)funcTable[9])(self, value);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRangeC*, double, double>)funcTable[9])(self, value);
 			#else
 			return (double)((delegate* unmanaged[Cdecl]<nint, double, double>)funcTable[9])((nint)self, value);
 			#endif
@@ -276,20 +276,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double Clamp(ImPlotRangePtr self, double value)
+		public static double Clamp(ImPlotRangeCPtr self, double value)
 		{
-			double ret = ClampNative((ImPlotRange*)self, value);
+			double ret = ClampNative((ImPlotRangeC*)self, value);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double Clamp(ref ImPlotRange self, double value)
+		public static double Clamp(ref ImPlotRangeC self, double value)
 		{
-			fixed (ImPlotRange* pself = &self)
+			fixed (ImPlotRangeC* pself = &self)
 			{
-				double ret = ClampNative((ImPlotRange*)pself, value);
+				double ret = ClampNative((ImPlotRangeC*)pself, value);
 				return ret;
 			}
 		}
@@ -298,21 +298,21 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlotRect* ImPlotRectNative()
+		internal static ImPlotRectC* ImPlotRectNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRect*>)funcTable[10])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotRectC*>)funcTable[10])();
 			#else
-			return (ImPlotRect*)((delegate* unmanaged[Cdecl]<nint>)funcTable[10])();
+			return (ImPlotRectC*)((delegate* unmanaged[Cdecl]<nint>)funcTable[10])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotRectPtr ImPlotRect()
+		public static ImPlotRectC* ImPlotRect()
 		{
-			ImPlotRectPtr ret = ImPlotRectNative();
+			ImPlotRectC* ret = ImPlotRectNative();
 			return ret;
 		}
 
@@ -320,10 +320,10 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImPlotRect* self)
+		internal static void DestroyNative(ImPlotRectC* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotRect*, void>)funcTable[11])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotRectC*, void>)funcTable[11])(self);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[11])((nint)self);
 			#endif
@@ -332,19 +332,19 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Destroy(ImPlotRectPtr self)
+		public static void Destroy(ImPlotRectC* self)
 		{
-			DestroyNative((ImPlotRect*)self);
+			DestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Destroy(ref ImPlotRect self)
+		public static void Destroy(ref ImPlotRectC self)
 		{
-			fixed (ImPlotRect* pself = &self)
+			fixed (ImPlotRectC* pself = &self)
 			{
-				DestroyNative((ImPlotRect*)pself);
+				DestroyNative((ImPlotRectC*)pself);
 			}
 		}
 
@@ -352,21 +352,21 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlotRect* ImPlotRectNative(double xMin, double xMax, double yMin, double yMax)
+		internal static ImPlotRectC* ImPlotRectNative(double xMin, double xMax, double yMin, double yMax)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotRect*>)funcTable[12])(xMin, xMax, yMin, yMax);
+			return ((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotRectC*>)funcTable[12])(xMin, xMax, yMin, yMax);
 			#else
-			return (ImPlotRect*)((delegate* unmanaged[Cdecl]<double, double, double, double, nint>)funcTable[12])(xMin, xMax, yMin, yMax);
+			return (ImPlotRectC*)((delegate* unmanaged[Cdecl]<double, double, double, double, nint>)funcTable[12])(xMin, xMax, yMin, yMax);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotRectPtr ImPlotRect(double xMin, double xMax, double yMin, double yMax)
+		public static ImPlotRectC* ImPlotRect(double xMin, double xMax, double yMin, double yMax)
 		{
-			ImPlotRectPtr ret = ImPlotRectNative(xMin, xMax, yMin, yMax);
+			ImPlotRectC* ret = ImPlotRectNative(xMin, xMax, yMin, yMax);
 			return ret;
 		}
 
@@ -374,32 +374,32 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ContainsNative(ImPlotRect* self, ImPlotPoint p)
+		internal static byte ContainsNative(ImPlotRectC* self, ImPlotPointC p)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, ImPlotPoint, byte>)funcTable[13])(self, p);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRectC*, ImPlotPointC, byte>)funcTable[13])(self, p);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImPlotPoint, byte>)funcTable[13])((nint)self, p);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImPlotPointC, byte>)funcTable[13])((nint)self, p);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Contains(ImPlotRectPtr self, ImPlotPoint p)
+		public static bool Contains(ImPlotRectC* self, ImPlotPointC p)
 		{
-			byte ret = ContainsNative((ImPlotRect*)self, p);
+			byte ret = ContainsNative(self, p);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Contains(ref ImPlotRect self, ImPlotPoint p)
+		public static bool Contains(ref ImPlotRectC self, ImPlotPointC p)
 		{
-			fixed (ImPlotRect* pself = &self)
+			fixed (ImPlotRectC* pself = &self)
 			{
-				byte ret = ContainsNative((ImPlotRect*)pself, p);
+				byte ret = ContainsNative((ImPlotRectC*)pself, p);
 				return ret != 0;
 			}
 		}
@@ -408,10 +408,10 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ContainsNative(ImPlotRect* self, double x, double y)
+		internal static byte ContainsNative(ImPlotRectC* self, double x, double y)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, double, double, byte>)funcTable[14])(self, x, y);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRectC*, double, double, byte>)funcTable[14])(self, x, y);
 			#else
 			return (byte)((delegate* unmanaged[Cdecl]<nint, double, double, byte>)funcTable[14])((nint)self, x, y);
 			#endif
@@ -420,20 +420,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Contains(ImPlotRectPtr self, double x, double y)
+		public static bool Contains(ImPlotRectC* self, double x, double y)
 		{
-			byte ret = ContainsNative((ImPlotRect*)self, x, y);
+			byte ret = ContainsNative(self, x, y);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Contains(ref ImPlotRect self, double x, double y)
+		public static bool Contains(ref ImPlotRectC self, double x, double y)
 		{
-			fixed (ImPlotRect* pself = &self)
+			fixed (ImPlotRectC* pself = &self)
 			{
-				byte ret = ContainsNative((ImPlotRect*)pself, x, y);
+				byte ret = ContainsNative((ImPlotRectC*)pself, x, y);
 				return ret != 0;
 			}
 		}
@@ -442,79 +442,33 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SizeNative(ImPlotPoint* pOut, ImPlotRect* self)
+		internal static ImPlotPointC SizeNative(ImPlotRectC* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)funcTable[15])(pOut, self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRectC*, ImPlotPointC>)funcTable[15])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[15])((nint)pOut, (nint)self);
+			return (ImPlotPointC)((delegate* unmanaged[Cdecl]<nint, ImPlotPointC>)funcTable[15])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPoint Size(ImPlotRectPtr self)
+		public static ImPlotPointC Size(ImPlotRectC* self)
 		{
-			ImPlotPoint ret;
-			SizeNative(&ret, (ImPlotRect*)self);
+			ImPlotPointC ret = SizeNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Size(ImPlotPointPtr pOut, ImPlotRectPtr self)
+		public static ImPlotPointC Size(ref ImPlotRectC self)
 		{
-			SizeNative((ImPlotPoint*)pOut, (ImPlotRect*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Size(ref ImPlotPoint pOut, ImPlotRectPtr self)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
+			fixed (ImPlotRectC* pself = &self)
 			{
-				SizeNative((ImPlotPoint*)ppOut, (ImPlotRect*)self);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImPlotPoint Size(ref ImPlotRect self)
-		{
-			fixed (ImPlotRect* pself = &self)
-			{
-				ImPlotPoint ret;
-				SizeNative(&ret, (ImPlotRect*)pself);
+				ImPlotPointC ret = SizeNative((ImPlotRectC*)pself);
 				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Size(ImPlotPointPtr pOut, ref ImPlotRect self)
-		{
-			fixed (ImPlotRect* pself = &self)
-			{
-				SizeNative((ImPlotPoint*)pOut, (ImPlotRect*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Size(ref ImPlotPoint pOut, ref ImPlotRect self)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
-			{
-				fixed (ImPlotRect* pself = &self)
-				{
-					SizeNative((ImPlotPoint*)ppOut, (ImPlotRect*)pself);
-				}
 			}
 		}
 
@@ -522,79 +476,33 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClampNative(ImPlotPoint* pOut, ImPlotRect* self, ImPlotPoint p)
+		internal static ImPlotPointC ClampNative(ImPlotRectC* self, ImPlotPointC p)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, ImPlotPoint, void>)funcTable[16])(pOut, self, p);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRectC*, ImPlotPointC, ImPlotPointC>)funcTable[16])(self, p);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ImPlotPoint, void>)funcTable[16])((nint)pOut, (nint)self, p);
+			return (ImPlotPointC)((delegate* unmanaged[Cdecl]<nint, ImPlotPointC, ImPlotPointC>)funcTable[16])((nint)self, p);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPoint Clamp(ImPlotRectPtr self, ImPlotPoint p)
+		public static ImPlotPointC Clamp(ImPlotRectC* self, ImPlotPointC p)
 		{
-			ImPlotPoint ret;
-			ClampNative(&ret, (ImPlotRect*)self, p);
+			ImPlotPointC ret = ClampNative(self, p);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Clamp(ImPlotPointPtr pOut, ImPlotRectPtr self, ImPlotPoint p)
+		public static ImPlotPointC Clamp(ref ImPlotRectC self, ImPlotPointC p)
 		{
-			ClampNative((ImPlotPoint*)pOut, (ImPlotRect*)self, p);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clamp(ref ImPlotPoint pOut, ImPlotRectPtr self, ImPlotPoint p)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
+			fixed (ImPlotRectC* pself = &self)
 			{
-				ClampNative((ImPlotPoint*)ppOut, (ImPlotRect*)self, p);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImPlotPoint Clamp(ref ImPlotRect self, ImPlotPoint p)
-		{
-			fixed (ImPlotRect* pself = &self)
-			{
-				ImPlotPoint ret;
-				ClampNative(&ret, (ImPlotRect*)pself, p);
+				ImPlotPointC ret = ClampNative((ImPlotRectC*)pself, p);
 				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clamp(ImPlotPointPtr pOut, ref ImPlotRect self, ImPlotPoint p)
-		{
-			fixed (ImPlotRect* pself = &self)
-			{
-				ClampNative((ImPlotPoint*)pOut, (ImPlotRect*)pself, p);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clamp(ref ImPlotPoint pOut, ref ImPlotRect self, ImPlotPoint p)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
-			{
-				fixed (ImPlotRect* pself = &self)
-				{
-					ClampNative((ImPlotPoint*)ppOut, (ImPlotRect*)pself, p);
-				}
 			}
 		}
 
@@ -602,79 +510,33 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClampNative(ImPlotPoint* pOut, ImPlotRect* self, double x, double y)
+		internal static ImPlotPointC ClampNative(ImPlotRectC* self, double x, double y)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, double, double, void>)funcTable[17])(pOut, self, x, y);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRectC*, double, double, ImPlotPointC>)funcTable[17])(self, x, y);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, double, double, void>)funcTable[17])((nint)pOut, (nint)self, x, y);
+			return (ImPlotPointC)((delegate* unmanaged[Cdecl]<nint, double, double, ImPlotPointC>)funcTable[17])((nint)self, x, y);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPoint Clamp(ImPlotRectPtr self, double x, double y)
+		public static ImPlotPointC Clamp(ImPlotRectC* self, double x, double y)
 		{
-			ImPlotPoint ret;
-			ClampNative(&ret, (ImPlotRect*)self, x, y);
+			ImPlotPointC ret = ClampNative(self, x, y);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Clamp(ImPlotPointPtr pOut, ImPlotRectPtr self, double x, double y)
+		public static ImPlotPointC Clamp(ref ImPlotRectC self, double x, double y)
 		{
-			ClampNative((ImPlotPoint*)pOut, (ImPlotRect*)self, x, y);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clamp(ref ImPlotPoint pOut, ImPlotRectPtr self, double x, double y)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
+			fixed (ImPlotRectC* pself = &self)
 			{
-				ClampNative((ImPlotPoint*)ppOut, (ImPlotRect*)self, x, y);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImPlotPoint Clamp(ref ImPlotRect self, double x, double y)
-		{
-			fixed (ImPlotRect* pself = &self)
-			{
-				ImPlotPoint ret;
-				ClampNative(&ret, (ImPlotRect*)pself, x, y);
+				ImPlotPointC ret = ClampNative((ImPlotRectC*)pself, x, y);
 				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clamp(ImPlotPointPtr pOut, ref ImPlotRect self, double x, double y)
-		{
-			fixed (ImPlotRect* pself = &self)
-			{
-				ClampNative((ImPlotPoint*)pOut, (ImPlotRect*)pself, x, y);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clamp(ref ImPlotPoint pOut, ref ImPlotRect self, double x, double y)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
-			{
-				fixed (ImPlotRect* pself = &self)
-				{
-					ClampNative((ImPlotPoint*)ppOut, (ImPlotRect*)pself, x, y);
-				}
 			}
 		}
 
@@ -682,79 +544,33 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void MinNative(ImPlotPoint* pOut, ImPlotRect* self)
+		internal static ImPlotPointC MinNative(ImPlotRectC* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)funcTable[18])(pOut, self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRectC*, ImPlotPointC>)funcTable[18])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[18])((nint)pOut, (nint)self);
+			return (ImPlotPointC)((delegate* unmanaged[Cdecl]<nint, ImPlotPointC>)funcTable[18])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPoint Min(ImPlotRectPtr self)
+		public static ImPlotPointC Min(ImPlotRectC* self)
 		{
-			ImPlotPoint ret;
-			MinNative(&ret, (ImPlotRect*)self);
+			ImPlotPointC ret = MinNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Min(ImPlotPointPtr pOut, ImPlotRectPtr self)
+		public static ImPlotPointC Min(ref ImPlotRectC self)
 		{
-			MinNative((ImPlotPoint*)pOut, (ImPlotRect*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Min(ref ImPlotPoint pOut, ImPlotRectPtr self)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
+			fixed (ImPlotRectC* pself = &self)
 			{
-				MinNative((ImPlotPoint*)ppOut, (ImPlotRect*)self);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImPlotPoint Min(ref ImPlotRect self)
-		{
-			fixed (ImPlotRect* pself = &self)
-			{
-				ImPlotPoint ret;
-				MinNative(&ret, (ImPlotRect*)pself);
+				ImPlotPointC ret = MinNative((ImPlotRectC*)pself);
 				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Min(ImPlotPointPtr pOut, ref ImPlotRect self)
-		{
-			fixed (ImPlotRect* pself = &self)
-			{
-				MinNative((ImPlotPoint*)pOut, (ImPlotRect*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Min(ref ImPlotPoint pOut, ref ImPlotRect self)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
-			{
-				fixed (ImPlotRect* pself = &self)
-				{
-					MinNative((ImPlotPoint*)ppOut, (ImPlotRect*)pself);
-				}
 			}
 		}
 
@@ -762,79 +578,33 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void MaxNative(ImPlotPoint* pOut, ImPlotRect* self)
+		internal static ImPlotPointC MaxNative(ImPlotRectC* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)funcTable[19])(pOut, self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRectC*, ImPlotPointC>)funcTable[19])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[19])((nint)pOut, (nint)self);
+			return (ImPlotPointC)((delegate* unmanaged[Cdecl]<nint, ImPlotPointC>)funcTable[19])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPoint Max(ImPlotRectPtr self)
+		public static ImPlotPointC Max(ImPlotRectC* self)
 		{
-			ImPlotPoint ret;
-			MaxNative(&ret, (ImPlotRect*)self);
+			ImPlotPointC ret = MaxNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Max(ImPlotPointPtr pOut, ImPlotRectPtr self)
+		public static ImPlotPointC Max(ref ImPlotRectC self)
 		{
-			MaxNative((ImPlotPoint*)pOut, (ImPlotRect*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Max(ref ImPlotPoint pOut, ImPlotRectPtr self)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
+			fixed (ImPlotRectC* pself = &self)
 			{
-				MaxNative((ImPlotPoint*)ppOut, (ImPlotRect*)self);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImPlotPoint Max(ref ImPlotRect self)
-		{
-			fixed (ImPlotRect* pself = &self)
-			{
-				ImPlotPoint ret;
-				MaxNative(&ret, (ImPlotRect*)pself);
+				ImPlotPointC ret = MaxNative((ImPlotRectC*)pself);
 				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Max(ImPlotPointPtr pOut, ref ImPlotRect self)
-		{
-			fixed (ImPlotRect* pself = &self)
-			{
-				MaxNative((ImPlotPoint*)pOut, (ImPlotRect*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Max(ref ImPlotPoint pOut, ref ImPlotRect self)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
-			{
-				fixed (ImPlotRect* pself = &self)
-				{
-					MaxNative((ImPlotPoint*)ppOut, (ImPlotRect*)pself);
-				}
 			}
 		}
 
@@ -5021,6 +4791,244 @@ namespace Hexa.NET.ImPlot
 			fixed (byte* plabelId = &labelId)
 			{
 				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(in byte labelId, float* values, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(string labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLineNative(pStr0, values, count, xscale, xstart, flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 	}

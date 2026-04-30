@@ -1017,7 +1017,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushIDNative(byte* strId)
@@ -1030,7 +1030,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(byte* strId)
 		{
@@ -1038,7 +1038,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(in byte strId)
 		{
@@ -1049,7 +1049,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strId)
 		{
@@ -1060,7 +1060,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(string strId)
 		{
@@ -1089,7 +1089,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushIDNative(byte* strIdBegin, byte* strIdEnd)
@@ -1102,7 +1102,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(byte* strIdBegin, byte* strIdEnd)
 		{
@@ -1110,7 +1110,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(in byte strIdBegin, byte* strIdEnd)
 		{
@@ -1121,7 +1121,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
 		{
@@ -1132,7 +1132,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(string strIdBegin, byte* strIdEnd)
 		{
@@ -1161,7 +1161,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(byte* strIdBegin, in byte strIdEnd)
 		{
@@ -1172,7 +1172,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1183,7 +1183,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(byte* strIdBegin, string strIdEnd)
 		{
@@ -1212,7 +1212,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(in byte strIdBegin, in byte strIdEnd)
 		{
@@ -1226,7 +1226,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1240,7 +1240,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(string strIdBegin, string strIdEnd)
 		{
@@ -1290,7 +1290,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(in byte strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1304,7 +1304,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(in byte strIdBegin, string strIdEnd)
 		{
@@ -1336,7 +1336,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strIdBegin, in byte strIdEnd)
 		{
@@ -1350,7 +1350,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(ReadOnlySpan<byte> strIdBegin, string strIdEnd)
 		{
@@ -1382,7 +1382,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(string strIdBegin, in byte strIdEnd)
 		{
@@ -1414,7 +1414,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		public static void PushID(string strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1446,7 +1446,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushIDNative(void* ptrId)
@@ -1459,7 +1459,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push pointer into the ID stack (will hash pointer).<br/>
 		/// </summary>
 		public static void PushID(void* ptrId)
 		{
@@ -1467,7 +1467,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push pointer into the ID stack (will hash pointer).<br/>
 		/// </summary>
 		public static void PushID(nint ptrId)
 		{
@@ -1475,7 +1475,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push string into the ID stack (will hash string).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushIDNative(int intId)
@@ -1488,7 +1488,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// push integer into the ID stack (will hash integer).<br/>
 		/// </summary>
 		public static void PushID(int intId)
 		{
@@ -1496,7 +1496,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// pop from the ID stack.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PopIDNative()
@@ -1509,7 +1509,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// pop from the ID stack.<br/>
 		/// </summary>
 		public static void PopID()
 		{
@@ -1517,7 +1517,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetIDNative(byte* strId)
@@ -1530,7 +1530,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(byte* strId)
 		{
@@ -1539,7 +1539,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(in byte strId)
 		{
@@ -1551,7 +1551,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strId)
 		{
@@ -1563,7 +1563,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(string strId)
 		{
@@ -1593,7 +1593,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetIDNative(byte* strIdBegin, byte* strIdEnd)
@@ -1606,7 +1606,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, byte* strIdEnd)
 		{
@@ -1615,7 +1615,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(in byte strIdBegin, byte* strIdEnd)
 		{
@@ -1627,7 +1627,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
 		{
@@ -1639,7 +1639,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(string strIdBegin, byte* strIdEnd)
 		{
@@ -1669,7 +1669,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, in byte strIdEnd)
 		{
@@ -1681,7 +1681,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1693,7 +1693,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(byte* strIdBegin, string strIdEnd)
 		{
@@ -1723,7 +1723,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(in byte strIdBegin, in byte strIdEnd)
 		{
@@ -1738,7 +1738,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1753,7 +1753,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(string strIdBegin, string strIdEnd)
 		{
@@ -1804,7 +1804,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(in byte strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1819,7 +1819,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(in byte strIdBegin, string strIdEnd)
 		{
@@ -1852,7 +1852,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, in byte strIdEnd)
 		{
@@ -1867,7 +1867,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(ReadOnlySpan<byte> strIdBegin, string strIdEnd)
 		{
@@ -1900,7 +1900,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(string strIdBegin, in byte strIdEnd)
 		{
@@ -1933,7 +1933,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(string strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
@@ -1966,7 +1966,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint GetIDNative(void* ptrId)
@@ -1979,7 +1979,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(void* ptrId)
 		{
@@ -1988,7 +1988,7 @@ namespace Hexa.NET.ImGuizmo
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
 		public static uint GetID(nint ptrId)
 		{

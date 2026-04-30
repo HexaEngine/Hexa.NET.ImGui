@@ -7816,6 +7816,30 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe Vector2 GetClipRectMax()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				Vector2 ret = ImGui.GetClipRectMaxNative(@this);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe Vector2 GetClipRectMin()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				Vector2 ret = ImGui.GetClipRectMinNative(@this);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public unsafe void PathArcTo(Vector2 center, float radius, float aMin, float aMax, int numSegments)
 		{
 			fixed (ImDrawList* @this = &this)
@@ -14927,6 +14951,24 @@ namespace Hexa.NET.ImGui
 		public unsafe void Destroy()
 		{
 			ImGui.DestroyNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe Vector2 GetClipRectMax()
+		{
+			Vector2 ret = ImGui.GetClipRectMaxNative(Handle);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe Vector2 GetClipRectMin()
+		{
+			Vector2 ret = ImGui.GetClipRectMinNative(Handle);
+			return ret;
 		}
 
 		/// <summary>

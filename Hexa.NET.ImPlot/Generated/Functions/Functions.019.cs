@@ -22,235 +22,6 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, double xscale, double xstart, ImPlotStairsFlags flags, int offset)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, double xscale, double xstart, ImPlotStairsFlags flags)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, double xscale, double xstart)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, xscale, xstart, (ImPlotStairsFlags)(0), (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, double xscale)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotStairsFlags)(0), (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotStairsFlags)(0), (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, double xscale, ImPlotStairsFlags flags)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, ImPlotStairsFlags flags)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, double xscale, double xstart, int offset)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, xscale, xstart, (ImPlotStairsFlags)(0), offset, (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, double xscale, int offset)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotStairsFlags)(0), offset, (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, int offset)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotStairsFlags)(0), offset, (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, double xscale, ImPlotStairsFlags flags, int offset)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, ImPlotStairsFlags flags, int offset)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, xscale, xstart, (ImPlotStairsFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, double xscale, int offset, int stride)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotStairsFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, int offset, int stride)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotStairsFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, double xscale, ImPlotStairsFlags flags, int offset, int stride)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, xscale, (double)(0), flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(byte* labelId, in byte values, int count, ImPlotStairsFlags flags, int offset, int stride)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotStairsNative(labelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(in byte labelId, in byte values, int count, double xscale, double xstart, ImPlotStairsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotStairsNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(in byte labelId, in byte values, int count, double xscale, double xstart, ImPlotStairsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotStairsNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(in byte labelId, in byte values, int count, double xscale, double xstart, ImPlotStairsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotStairsNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static void PlotStairs(in byte labelId, in byte values, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -5020,6 +4791,230 @@ namespace Hexa.NET.ImPlot
 				fixed (ushort* pvalues = &values)
 				{
 					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in ushort values, int count, double xscale, double xstart, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, (ImPlotStairsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in ushort values, int count, double xscale, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotStairsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in ushort values, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotStairsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in ushort values, int count, double xscale, ImPlotStairsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in ushort values, int count, ImPlotStairsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in ushort values, int count, double xscale, double xstart, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, (ImPlotStairsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in ushort values, int count, double xscale, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotStairsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in ushort values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotStairsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in ushort values, int count, double xscale, ImPlotStairsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in ushort values, int count, ImPlotStairsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(ReadOnlySpan<byte> labelId, in ushort values, int count, double xscale, double xstart, ImPlotStairsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(ReadOnlySpan<byte> labelId, in ushort values, int count, double xscale, double xstart, ImPlotStairsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(ReadOnlySpan<byte> labelId, in ushort values, int count, double xscale, double xstart, ImPlotStairsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(ReadOnlySpan<byte> labelId, in ushort values, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, (ImPlotStairsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(ReadOnlySpan<byte> labelId, in ushort values, int count, double xscale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotStairsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(ReadOnlySpan<byte> labelId, in ushort values, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStairsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotStairsFlags)(0), (int)(0), (int)(sizeof(ushort)));
 				}
 			}
 		}

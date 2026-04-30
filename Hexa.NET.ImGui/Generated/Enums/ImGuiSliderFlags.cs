@@ -35,7 +35,7 @@ namespace Hexa.NET.ImGui
 		NoRoundToFormat = unchecked(64),
 
 		/// <summary>
-		/// Disable CTRL+Click or Enter key allowing to input text directly into the widget.<br/>
+		/// Disable Ctrl+Click or Enter key allowing to input text directly into the widget.<br/>
 		/// </summary>
 		NoInput = unchecked(128),
 
@@ -45,7 +45,7 @@ namespace Hexa.NET.ImGui
 		WrapAround = unchecked(256),
 
 		/// <summary>
-		/// Clamp value to minmax bounds when input manually with CTRL+Click. By default CTRL+Click allows going out of bounds.<br/>
+		/// Clamp value to minmax bounds when input manually with Ctrl+Click. By default Ctrl+Click allows going out of bounds.<br/>
 		/// </summary>
 		ClampOnInput = unchecked(512),
 

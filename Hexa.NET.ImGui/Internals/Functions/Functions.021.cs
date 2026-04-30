@@ -21,26 +21,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginViewportSideBar(byte* name, ref ImGuiViewport viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, in byte text, in byte textEnd, Vector2* textSizeIfKnown)
 		{
-			fixed (ImGuiViewport* pviewport = &viewport)
+			fixed (byte* ptext = &text)
 			{
-				byte ret = BeginViewportSideBarNative(name, (ImGuiViewport*)pviewport, dir, size, windowFlags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginViewportSideBar(in byte name, ref ImGuiViewport viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
-		{
-			fixed (byte* pname = &name)
-			{
-				fixed (ImGuiViewport* pviewport = &viewport)
+				fixed (byte* ptextEnd = &textEnd)
 				{
-					byte ret = BeginViewportSideBarNative((byte*)pname, (ImGuiViewport*)pviewport, dir, size, windowFlags);
-					return ret != 0;
+					RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown);
 				}
 			}
 		}
@@ -48,14 +35,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginViewportSideBar(ReadOnlySpan<byte> name, ref ImGuiViewport viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown)
 		{
-			fixed (byte* pname = name)
+			fixed (byte* ptext = text)
 			{
-				fixed (ImGuiViewport* pviewport = &viewport)
+				fixed (byte* ptextEnd = textEnd)
 				{
-					byte ret = BeginViewportSideBarNative((byte*)pname, (ImGuiViewport*)pviewport, dir, size, windowFlags);
-					return ret != 0;
+					RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown);
 				}
 			}
 		}
@@ -63,13 +49,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginViewportSideBar(string name, ref ImGuiViewport viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, string textEnd, Vector2* textSizeIfKnown)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (text != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(text);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -79,354 +65,14 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImGuiViewport* pviewport = &viewport)
-			{
-				byte ret = BeginViewportSideBarNative(pStr0, (ImGuiViewport*)pviewport, dir, size, windowFlags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte BeginMenuExNative(byte* label, byte* icon, byte enabled)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte, byte>)funcTable[1149])(label, icon, enabled);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte, byte>)funcTable[1149])((nint)label, (nint)icon, enabled);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(byte* label, byte* icon, bool enabled)
-		{
-			byte ret = BeginMenuExNative(label, icon, enabled ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(byte* label, byte* icon)
-		{
-			byte ret = BeginMenuExNative(label, icon, (byte)(1));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(in byte label, byte* icon, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = BeginMenuExNative((byte*)plabel, icon, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(in byte label, byte* icon)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = BeginMenuExNative((byte*)plabel, icon, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(ReadOnlySpan<byte> label, byte* icon, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = BeginMenuExNative((byte*)plabel, icon, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(ReadOnlySpan<byte> label, byte* icon)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = BeginMenuExNative((byte*)plabel, icon, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(string label, byte* icon, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginMenuExNative(pStr0, icon, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(string label, byte* icon)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginMenuExNative(pStr0, icon, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(byte* label, in byte icon, bool enabled)
-		{
-			fixed (byte* picon = &icon)
-			{
-				byte ret = BeginMenuExNative(label, (byte*)picon, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(byte* label, in byte icon)
-		{
-			fixed (byte* picon = &icon)
-			{
-				byte ret = BeginMenuExNative(label, (byte*)picon, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(byte* label, ReadOnlySpan<byte> icon, bool enabled)
-		{
-			fixed (byte* picon = icon)
-			{
-				byte ret = BeginMenuExNative(label, (byte*)picon, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(byte* label, ReadOnlySpan<byte> icon)
-		{
-			fixed (byte* picon = icon)
-			{
-				byte ret = BeginMenuExNative(label, (byte*)picon, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(byte* label, string icon, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginMenuExNative(label, pStr0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(byte* label, string icon)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginMenuExNative(label, pStr0, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(in byte label, in byte icon, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = BeginMenuExNative((byte*)plabel, (byte*)picon, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(in byte label, in byte icon)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = BeginMenuExNative((byte*)plabel, (byte*)picon, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> icon, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = BeginMenuExNative((byte*)plabel, (byte*)picon, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> icon)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = BeginMenuExNative((byte*)plabel, (byte*)picon, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(string label, string icon, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (icon != null)
+			if (textEnd != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(icon);
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -436,10 +82,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = BeginMenuExNative(pStr0, pStr1, enabled ? (byte)1 : (byte)0);
+			RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, pStr0, pStr1, textSizeIfKnown);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -448,19 +94,110 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
-			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginMenuEx(string label, string icon)
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, in byte text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, in byte text, string textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, pStr0, textSizeIfKnown);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, in byte textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, string textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, pStr0, textSizeIfKnown);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, in byte textEnd, Vector2* textSizeIfKnown)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (label != null)
+			if (text != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				pStrSize0 = Utils.GetByteCountUTF8(text);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -470,4168 +207,150 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (icon != null)
+			fixed (byte* ptextEnd = &textEnd)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(icon);
+				RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, pStr0, (byte*)ptextEnd, textSizeIfKnown);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, pStr0, (byte*)ptextEnd, textSizeIfKnown);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, in byte text, in byte textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptext = text)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, string textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, pStr0, pStr1, textSizeIfKnown);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					Utils.Free(pStr1);
 				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = BeginMenuExNative(pStr0, pStr1, (byte)(1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(in byte label, ReadOnlySpan<byte> icon, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = BeginMenuExNative((byte*)plabel, (byte*)picon, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(in byte label, ReadOnlySpan<byte> icon)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = BeginMenuExNative((byte*)plabel, (byte*)picon, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(in byte label, string icon, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = BeginMenuExNative((byte*)plabel, pStr0, enabled ? (byte)1 : (byte)0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginMenuEx(in byte label, string icon)
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, in byte text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown)
 		{
-			fixed (byte* plabel = &label)
+			fixed (ImDrawList* pdrawList = &drawList)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
+				fixed (byte* ptext = &text)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
+					fixed (byte* ptextEnd = textEnd)
 					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = BeginMenuExNative((byte*)plabel, pStr0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(ReadOnlySpan<byte> label, in byte icon, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = BeginMenuExNative((byte*)plabel, (byte*)picon, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(ReadOnlySpan<byte> label, in byte icon)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = BeginMenuExNative((byte*)plabel, (byte*)picon, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(ReadOnlySpan<byte> label, string icon, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = BeginMenuExNative((byte*)plabel, pStr0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(ReadOnlySpan<byte> label, string icon)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = BeginMenuExNative((byte*)plabel, pStr0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(string label, in byte icon, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = &icon)
-			{
-				byte ret = BeginMenuExNative(pStr0, (byte*)picon, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(string label, in byte icon)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = &icon)
-			{
-				byte ret = BeginMenuExNative(pStr0, (byte*)picon, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(string label, ReadOnlySpan<byte> icon, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = icon)
-			{
-				byte ret = BeginMenuExNative(pStr0, (byte*)picon, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginMenuEx(string label, ReadOnlySpan<byte> icon)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = icon)
-			{
-				byte ret = BeginMenuExNative(pStr0, (byte*)picon, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte MenuItemExNative(byte* label, byte* icon, byte* shortcut, byte selected, byte enabled)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, byte, byte, byte>)funcTable[1150])(label, icon, shortcut, selected, enabled);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, byte, byte, byte>)funcTable[1150])((nint)label, (nint)icon, (nint)shortcut, selected, enabled);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, byte* icon, byte* shortcut, bool selected, bool enabled)
-		{
-			byte ret = MenuItemExNative(label, icon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, byte* icon, byte* shortcut, bool selected)
-		{
-			byte ret = MenuItemExNative(label, icon, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, byte* icon, byte* shortcut)
-		{
-			byte ret = MenuItemExNative(label, icon, shortcut, (byte)(0), (byte)(1));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, byte* icon)
-		{
-			byte ret = MenuItemExNative(label, icon, (byte*)(default), (byte)(0), (byte)(1));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, byte* icon, bool selected)
-		{
-			byte ret = MenuItemExNative(label, icon, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, byte* icon, bool selected, bool enabled)
-		{
-			byte ret = MenuItemExNative(label, icon, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, byte* icon, byte* shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = MenuItemExNative((byte*)plabel, icon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, byte* icon, byte* shortcut, bool selected)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = MenuItemExNative((byte*)plabel, icon, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, byte* icon, byte* shortcut)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = MenuItemExNative((byte*)plabel, icon, shortcut, (byte)(0), (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, byte* icon)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)(default), (byte)(0), (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, byte* icon, bool selected)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, byte* icon, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, byte* icon, byte* shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = MenuItemExNative((byte*)plabel, icon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, byte* icon, byte* shortcut, bool selected)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = MenuItemExNative((byte*)plabel, icon, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, byte* icon, byte* shortcut)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = MenuItemExNative((byte*)plabel, icon, shortcut, (byte)(0), (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, byte* icon)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)(default), (byte)(0), (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, byte* icon, bool selected)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, byte* icon, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, byte* icon, byte* shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, icon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, byte* icon, byte* shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, icon, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, byte* icon, byte* shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, icon, shortcut, (byte)(0), (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, byte* icon)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, icon, (byte*)(default), (byte)(0), (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, byte* icon, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, icon, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, byte* icon, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, icon, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, in byte icon, byte* shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* picon = &icon)
-			{
-				byte ret = MenuItemExNative(label, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, in byte icon, byte* shortcut, bool selected)
-		{
-			fixed (byte* picon = &icon)
-			{
-				byte ret = MenuItemExNative(label, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, in byte icon, byte* shortcut)
-		{
-			fixed (byte* picon = &icon)
-			{
-				byte ret = MenuItemExNative(label, (byte*)picon, shortcut, (byte)(0), (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, in byte icon)
-		{
-			fixed (byte* picon = &icon)
-			{
-				byte ret = MenuItemExNative(label, (byte*)picon, (byte*)(default), (byte)(0), (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, in byte icon, bool selected)
-		{
-			fixed (byte* picon = &icon)
-			{
-				byte ret = MenuItemExNative(label, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, in byte icon, bool selected, bool enabled)
-		{
-			fixed (byte* picon = &icon)
-			{
-				byte ret = MenuItemExNative(label, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, ReadOnlySpan<byte> icon, byte* shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* picon = icon)
-			{
-				byte ret = MenuItemExNative(label, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, ReadOnlySpan<byte> icon, byte* shortcut, bool selected)
-		{
-			fixed (byte* picon = icon)
-			{
-				byte ret = MenuItemExNative(label, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, ReadOnlySpan<byte> icon, byte* shortcut)
-		{
-			fixed (byte* picon = icon)
-			{
-				byte ret = MenuItemExNative(label, (byte*)picon, shortcut, (byte)(0), (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, ReadOnlySpan<byte> icon)
-		{
-			fixed (byte* picon = icon)
-			{
-				byte ret = MenuItemExNative(label, (byte*)picon, (byte*)(default), (byte)(0), (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, ReadOnlySpan<byte> icon, bool selected)
-		{
-			fixed (byte* picon = icon)
-			{
-				byte ret = MenuItemExNative(label, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, ReadOnlySpan<byte> icon, bool selected, bool enabled)
-		{
-			fixed (byte* picon = icon)
-			{
-				byte ret = MenuItemExNative(label, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, string icon, byte* shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(label, pStr0, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, string icon, byte* shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(label, pStr0, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, string icon, byte* shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(label, pStr0, shortcut, (byte)(0), (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, string icon)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(label, pStr0, (byte*)(default), (byte)(0), (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, string icon, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(label, pStr0, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, string icon, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(label, pStr0, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, in byte icon, byte* shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, in byte icon, byte* shortcut, bool selected)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, in byte icon, byte* shortcut)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, in byte icon)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)(default), (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, in byte icon, bool selected)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, in byte icon, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> icon, byte* shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> icon, byte* shortcut, bool selected)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> icon, byte* shortcut)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> icon)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)(default), (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> icon, bool selected)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> icon, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, string icon, byte* shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (icon != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, pStr1, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, string icon, byte* shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (icon != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, pStr1, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, string icon, byte* shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (icon != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, pStr1, shortcut, (byte)(0), (byte)(1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, string icon)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (icon != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, pStr1, (byte*)(default), (byte)(0), (byte)(1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, string icon, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (icon != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, pStr1, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, string icon, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (icon != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, pStr1, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, ReadOnlySpan<byte> icon, byte* shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, ReadOnlySpan<byte> icon, byte* shortcut, bool selected)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, ReadOnlySpan<byte> icon, byte* shortcut)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, ReadOnlySpan<byte> icon)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)(default), (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, ReadOnlySpan<byte> icon, bool selected)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, ReadOnlySpan<byte> icon, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, string icon, byte* shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, pStr0, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, string icon, byte* shortcut, bool selected)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, pStr0, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, string icon, byte* shortcut)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, pStr0, shortcut, (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, string icon)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, pStr0, (byte*)(default), (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, string icon, bool selected)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, pStr0, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, string icon, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, pStr0, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, in byte icon, byte* shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, in byte icon, byte* shortcut, bool selected)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, in byte icon, byte* shortcut)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, in byte icon)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)(default), (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, in byte icon, bool selected)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, in byte icon, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, string icon, byte* shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, pStr0, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, string icon, byte* shortcut, bool selected)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, pStr0, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, string icon, byte* shortcut)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, pStr0, shortcut, (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, string icon)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, pStr0, (byte*)(default), (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, string icon, bool selected)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, pStr0, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, string icon, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (icon != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(icon);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, pStr0, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, in byte icon, byte* shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = &icon)
-			{
-				byte ret = MenuItemExNative(pStr0, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, in byte icon, byte* shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = &icon)
-			{
-				byte ret = MenuItemExNative(pStr0, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, in byte icon, byte* shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = &icon)
-			{
-				byte ret = MenuItemExNative(pStr0, (byte*)picon, shortcut, (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, in byte icon)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = &icon)
-			{
-				byte ret = MenuItemExNative(pStr0, (byte*)picon, (byte*)(default), (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, in byte icon, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = &icon)
-			{
-				byte ret = MenuItemExNative(pStr0, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, in byte icon, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = &icon)
-			{
-				byte ret = MenuItemExNative(pStr0, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, ReadOnlySpan<byte> icon, byte* shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = icon)
-			{
-				byte ret = MenuItemExNative(pStr0, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, ReadOnlySpan<byte> icon, byte* shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = icon)
-			{
-				byte ret = MenuItemExNative(pStr0, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, ReadOnlySpan<byte> icon, byte* shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = icon)
-			{
-				byte ret = MenuItemExNative(pStr0, (byte*)picon, shortcut, (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, ReadOnlySpan<byte> icon)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = icon)
-			{
-				byte ret = MenuItemExNative(pStr0, (byte*)picon, (byte*)(default), (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, ReadOnlySpan<byte> icon, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = icon)
-			{
-				byte ret = MenuItemExNative(pStr0, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, ReadOnlySpan<byte> icon, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* picon = icon)
-			{
-				byte ret = MenuItemExNative(pStr0, (byte*)picon, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, byte* icon, in byte shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* pshortcut = &shortcut)
-			{
-				byte ret = MenuItemExNative(label, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, byte* icon, in byte shortcut, bool selected)
-		{
-			fixed (byte* pshortcut = &shortcut)
-			{
-				byte ret = MenuItemExNative(label, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, byte* icon, in byte shortcut)
-		{
-			fixed (byte* pshortcut = &shortcut)
-			{
-				byte ret = MenuItemExNative(label, icon, (byte*)pshortcut, (byte)(0), (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, byte* icon, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* pshortcut = shortcut)
-			{
-				byte ret = MenuItemExNative(label, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, byte* icon, ReadOnlySpan<byte> shortcut, bool selected)
-		{
-			fixed (byte* pshortcut = shortcut)
-			{
-				byte ret = MenuItemExNative(label, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, byte* icon, ReadOnlySpan<byte> shortcut)
-		{
-			fixed (byte* pshortcut = shortcut)
-			{
-				byte ret = MenuItemExNative(label, icon, (byte*)pshortcut, (byte)(0), (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, byte* icon, string shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (shortcut != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(label, icon, pStr0, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, byte* icon, string shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (shortcut != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(label, icon, pStr0, selected ? (byte)1 : (byte)0, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, byte* icon, string shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (shortcut != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(label, icon, pStr0, (byte)(0), (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, byte* icon, in byte shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, byte* icon, in byte shortcut, bool selected)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, byte* icon, in byte shortcut)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, byte* icon, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pshortcut = shortcut)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, byte* icon, ReadOnlySpan<byte> shortcut, bool selected)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pshortcut = shortcut)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, byte* icon, ReadOnlySpan<byte> shortcut)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pshortcut = shortcut)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, byte* icon, string shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (shortcut != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, icon, pStr1, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, byte* icon, string shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (shortcut != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, icon, pStr1, selected ? (byte)1 : (byte)0, (byte)(1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, byte* icon, string shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (shortcut != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, icon, pStr1, (byte)(0), (byte)(1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, byte* icon, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pshortcut = shortcut)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, byte* icon, ReadOnlySpan<byte> shortcut, bool selected)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pshortcut = shortcut)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, byte* icon, ReadOnlySpan<byte> shortcut)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pshortcut = shortcut)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, byte* icon, string shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (shortcut != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, icon, pStr0, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, byte* icon, string shortcut, bool selected)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (shortcut != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, icon, pStr0, selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, byte* icon, string shortcut)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (shortcut != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, icon, pStr0, (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, byte* icon, in byte shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, byte* icon, in byte shortcut, bool selected)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, byte* icon, in byte shortcut)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, byte* icon, string shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (shortcut != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, icon, pStr0, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, byte* icon, string shortcut, bool selected)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (shortcut != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, icon, pStr0, selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, byte* icon, string shortcut)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (shortcut != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative((byte*)plabel, icon, pStr0, (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, byte* icon, in byte shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pshortcut = &shortcut)
-			{
-				byte ret = MenuItemExNative(pStr0, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, byte* icon, in byte shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pshortcut = &shortcut)
-			{
-				byte ret = MenuItemExNative(pStr0, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, byte* icon, in byte shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pshortcut = &shortcut)
-			{
-				byte ret = MenuItemExNative(pStr0, icon, (byte*)pshortcut, (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, byte* icon, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pshortcut = shortcut)
-			{
-				byte ret = MenuItemExNative(pStr0, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, byte* icon, ReadOnlySpan<byte> shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pshortcut = shortcut)
-			{
-				byte ret = MenuItemExNative(pStr0, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, byte* icon, ReadOnlySpan<byte> shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pshortcut = shortcut)
-			{
-				byte ret = MenuItemExNative(pStr0, icon, (byte*)pshortcut, (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, in byte icon, in byte shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* picon = &icon)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, in byte icon, in byte shortcut, bool selected)
-		{
-			fixed (byte* picon = &icon)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, in byte icon, in byte shortcut)
-		{
-			fixed (byte* picon = &icon)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, ReadOnlySpan<byte> icon, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* picon = icon)
-			{
-				fixed (byte* pshortcut = shortcut)
-				{
-					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, ReadOnlySpan<byte> icon, ReadOnlySpan<byte> shortcut, bool selected)
-		{
-			fixed (byte* picon = icon)
-			{
-				fixed (byte* pshortcut = shortcut)
-				{
-					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, ReadOnlySpan<byte> icon, ReadOnlySpan<byte> shortcut)
-		{
-			fixed (byte* picon = icon)
-			{
-				fixed (byte* pshortcut = shortcut)
-				{
-					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, string icon, string shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (shortcut != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemExNative(label, pStr0, pStr1, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, string icon, string shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (shortcut != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemExNative(label, pStr0, pStr1, selected ? (byte)1 : (byte)0, (byte)(1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, string icon, string shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (shortcut != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemExNative(label, pStr0, pStr1, (byte)(0), (byte)(1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, in byte icon, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* picon = &icon)
-			{
-				fixed (byte* pshortcut = shortcut)
-				{
-					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, in byte icon, ReadOnlySpan<byte> shortcut, bool selected)
-		{
-			fixed (byte* picon = &icon)
-			{
-				fixed (byte* pshortcut = shortcut)
-				{
-					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, in byte icon, ReadOnlySpan<byte> shortcut)
-		{
-			fixed (byte* picon = &icon)
-			{
-				fixed (byte* pshortcut = shortcut)
-				{
-					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, in byte icon, string shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* picon = &icon)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (shortcut != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative(label, (byte*)picon, pStr0, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, in byte icon, string shortcut, bool selected)
-		{
-			fixed (byte* picon = &icon)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (shortcut != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative(label, (byte*)picon, pStr0, selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, in byte icon, string shortcut)
-		{
-			fixed (byte* picon = &icon)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (shortcut != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative(label, (byte*)picon, pStr0, (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, ReadOnlySpan<byte> icon, in byte shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* picon = icon)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, ReadOnlySpan<byte> icon, in byte shortcut, bool selected)
-		{
-			fixed (byte* picon = icon)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, ReadOnlySpan<byte> icon, in byte shortcut)
-		{
-			fixed (byte* picon = icon)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, (byte)(0), (byte)(1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, ReadOnlySpan<byte> icon, string shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* picon = icon)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (shortcut != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative(label, (byte*)picon, pStr0, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, ReadOnlySpan<byte> icon, string shortcut, bool selected)
-		{
-			fixed (byte* picon = icon)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (shortcut != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative(label, (byte*)picon, pStr0, selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, ReadOnlySpan<byte> icon, string shortcut)
-		{
-			fixed (byte* picon = icon)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (shortcut != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = MenuItemExNative(label, (byte*)picon, pStr0, (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, string icon, in byte shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pshortcut = &shortcut)
-			{
-				byte ret = MenuItemExNative(label, pStr0, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, string icon, in byte shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pshortcut = &shortcut)
-			{
-				byte ret = MenuItemExNative(label, pStr0, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, string icon, in byte shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pshortcut = &shortcut)
-			{
-				byte ret = MenuItemExNative(label, pStr0, (byte*)pshortcut, (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, string icon, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pshortcut = shortcut)
-			{
-				byte ret = MenuItemExNative(label, pStr0, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, string icon, ReadOnlySpan<byte> shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pshortcut = shortcut)
-			{
-				byte ret = MenuItemExNative(label, pStr0, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(byte* label, string icon, ReadOnlySpan<byte> shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pshortcut = shortcut)
-			{
-				byte ret = MenuItemExNative(label, pStr0, (byte*)pshortcut, (byte)(0), (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, in byte icon, in byte shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					fixed (byte* pshortcut = &shortcut)
-					{
-						byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-						return ret != 0;
+						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown);
 					}
 				}
 			}
@@ -4640,377 +359,17 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool MenuItemEx(in byte label, in byte icon, in byte shortcut, bool selected)
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, in byte text, string textEnd, Vector2* textSizeIfKnown)
 		{
-			fixed (byte* plabel = &label)
+			fixed (ImDrawList* pdrawList = &drawList)
 			{
-				fixed (byte* picon = &icon)
-				{
-					fixed (byte* pshortcut = &shortcut)
-					{
-						byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, in byte icon, in byte shortcut)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					fixed (byte* pshortcut = &shortcut)
-					{
-						byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)pshortcut, (byte)(0), (byte)(1));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> icon, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = icon)
-				{
-					fixed (byte* pshortcut = shortcut)
-					{
-						byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> icon, ReadOnlySpan<byte> shortcut, bool selected)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = icon)
-				{
-					fixed (byte* pshortcut = shortcut)
-					{
-						byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> icon, ReadOnlySpan<byte> shortcut)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* picon = icon)
-				{
-					fixed (byte* pshortcut = shortcut)
-					{
-						byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)pshortcut, (byte)(0), (byte)(1));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, string icon, string shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (icon != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte* pStr2 = null;
-			int pStrSize2 = 0;
-			if (shortcut != null)
-			{
-				pStrSize2 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize2 >= Utils.MaxStackallocSize)
-				{
-					pStr2 = Utils.Alloc<byte>(pStrSize2 + 1);
-				}
-				else
-				{
-					byte* pStrStack2 = stackalloc byte[pStrSize2 + 1];
-					pStr2 = pStrStack2;
-				}
-				int pStrOffset2 = Utils.EncodeStringUTF8(shortcut, pStr2, pStrSize2);
-				pStr2[pStrOffset2] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, pStr1, pStr2, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize2 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr2);
-			}
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, string icon, string shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (icon != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte* pStr2 = null;
-			int pStrSize2 = 0;
-			if (shortcut != null)
-			{
-				pStrSize2 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize2 >= Utils.MaxStackallocSize)
-				{
-					pStr2 = Utils.Alloc<byte>(pStrSize2 + 1);
-				}
-				else
-				{
-					byte* pStrStack2 = stackalloc byte[pStrSize2 + 1];
-					pStr2 = pStrStack2;
-				}
-				int pStrOffset2 = Utils.EncodeStringUTF8(shortcut, pStr2, pStrSize2);
-				pStr2[pStrOffset2] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, pStr1, pStr2, selected ? (byte)1 : (byte)0, (byte)(1));
-			if (pStrSize2 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr2);
-			}
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(string label, string icon, string shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (icon != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte* pStr2 = null;
-			int pStrSize2 = 0;
-			if (shortcut != null)
-			{
-				pStrSize2 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize2 >= Utils.MaxStackallocSize)
-				{
-					pStr2 = Utils.Alloc<byte>(pStrSize2 + 1);
-				}
-				else
-				{
-					byte* pStrStack2 = stackalloc byte[pStrSize2 + 1];
-					pStr2 = pStrStack2;
-				}
-				int pStrOffset2 = Utils.EncodeStringUTF8(shortcut, pStr2, pStrSize2);
-				pStr2[pStrOffset2] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, pStr1, pStr2, (byte)(0), (byte)(1));
-			if (pStrSize2 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr2);
-			}
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, in byte icon, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					fixed (byte* pshortcut = shortcut)
-					{
-						byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, in byte icon, ReadOnlySpan<byte> shortcut, bool selected)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					fixed (byte* pshortcut = shortcut)
-					{
-						byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, in byte icon, ReadOnlySpan<byte> shortcut)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					fixed (byte* pshortcut = shortcut)
-					{
-						byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)pshortcut, (byte)(0), (byte)(1));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool MenuItemEx(in byte label, in byte icon, string shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
+				fixed (byte* ptext = &text)
 				{
 					byte* pStr0 = null;
 					int pStrSize0 = 0;
-					if (shortcut != null)
+					if (textEnd != null)
 					{
-						pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
 						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
 							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -5020,16 +379,4643 @@ namespace Hexa.NET.ImGui
 							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 							pStr0 = pStrStack0;
 						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, pStr0, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+					RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, pStr0, textSizeIfKnown);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, in byte textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptext = text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, string textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptext = text)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, pStr0, textSizeIfKnown);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, in byte textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, pStr0, (byte*)ptextEnd, textSizeIfKnown);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, ReadOnlySpan<byte> textEnd, Vector2* textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = textEnd)
+				{
+					RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, pStr0, (byte*)ptextEnd, textSizeIfKnown);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, byte* text, byte* textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, text, textEnd, (Vector2*)ptextSizeIfKnown);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, byte* text, byte* textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, text, textEnd, (Vector2*)ptextSizeIfKnown);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, in byte text, byte* textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, byte* textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, byte* textEnd, in Vector2 textSizeIfKnown)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, pStr0, textEnd, (Vector2*)ptextSizeIfKnown);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, in byte text, byte* textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, byte* textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptext = text)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, byte* textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, pStr0, textEnd, (Vector2*)ptextSizeIfKnown);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, byte* text, in byte textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, byte* text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, byte* text, string textEnd, in Vector2 textSizeIfKnown)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, text, pStr0, (Vector2*)ptextSizeIfKnown);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, byte* text, in byte textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, byte* text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, byte* text, string textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, text, pStr0, (Vector2*)ptextSizeIfKnown);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, in byte text, in byte textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, string textEnd, in Vector2 textSizeIfKnown)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			{
+				RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, pStr0, pStr1, (Vector2*)ptextSizeIfKnown);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, in byte text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, in byte text, string textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, in byte textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, string textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, in byte textEnd, in Vector2 textSizeIfKnown)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextEllipsisNative((ImDrawList*)drawList, posMin, posMax, ellipsisMaxX, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, in byte text, in byte textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+						{
+							RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptext = text)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+						{
+							RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, string textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				{
+					RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, pStr0, pStr1, (Vector2*)ptextSizeIfKnown);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr1);
+					}
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, in byte text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+						{
+							RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, in byte text, string textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptext = &text)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, in byte textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptext = text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+						{
+							RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, ReadOnlySpan<byte> text, string textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptext = text)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, (byte*)ptext, pStr0, (Vector2*)ptextSizeIfKnown);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, in byte textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float ellipsisMaxX, string text, ReadOnlySpan<byte> textEnd, in Vector2 textSizeIfKnown)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					{
+						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, ellipsisMaxX, pStr0, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RenderFrameNative(Vector2 pMin, Vector2 pMax, uint fillCol, byte borders, float rounding)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, uint, byte, float, void>)funcTable[1371])(pMin, pMax, fillCol, borders, rounding);
+			#else
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, uint, byte, float, void>)funcTable[1371])(pMin, pMax, fillCol, borders, rounding);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderFrame(Vector2 pMin, Vector2 pMax, uint fillCol, bool borders, float rounding)
+		{
+			RenderFrameNative(pMin, pMax, fillCol, borders ? (byte)1 : (byte)0, rounding);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderFrame(Vector2 pMin, Vector2 pMax, uint fillCol, bool borders)
+		{
+			RenderFrameNative(pMin, pMax, fillCol, borders ? (byte)1 : (byte)0, (float)(0.0f));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderFrame(Vector2 pMin, Vector2 pMax, uint fillCol)
+		{
+			RenderFrameNative(pMin, pMax, fillCol, (byte)(1), (float)(0.0f));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderFrame(Vector2 pMin, Vector2 pMax, uint fillCol, float rounding)
+		{
+			RenderFrameNative(pMin, pMax, fillCol, (byte)(1), rounding);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RenderFrameBorderNative(Vector2 pMin, Vector2 pMax, float rounding)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, float, void>)funcTable[1372])(pMin, pMax, rounding);
+			#else
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, float, void>)funcTable[1372])(pMin, pMax, rounding);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderFrameBorder(Vector2 pMin, Vector2 pMax, float rounding)
+		{
+			RenderFrameBorderNative(pMin, pMax, rounding);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderFrameBorder(Vector2 pMin, Vector2 pMax)
+		{
+			RenderFrameBorderNative(pMin, pMax, (float)(0.0f));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RenderColorRectWithAlphaCheckerboardNative(ImDrawList* drawList, Vector2 pMin, Vector2 pMax, uint fillCol, float gridStep, Vector2 gridOff, float rounding, ImDrawFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, Vector2, float, ImDrawFlags, void>)funcTable[1373])(drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, Vector2, float, ImDrawFlags, void>)funcTable[1373])((nint)drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderColorRectWithAlphaCheckerboard(ImDrawListPtr drawList, Vector2 pMin, Vector2 pMax, uint fillCol, float gridStep, Vector2 gridOff, float rounding, ImDrawFlags flags)
+		{
+			RenderColorRectWithAlphaCheckerboardNative((ImDrawList*)drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderColorRectWithAlphaCheckerboard(ImDrawListPtr drawList, Vector2 pMin, Vector2 pMax, uint fillCol, float gridStep, Vector2 gridOff, float rounding)
+		{
+			RenderColorRectWithAlphaCheckerboardNative((ImDrawList*)drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, (ImDrawFlags)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderColorRectWithAlphaCheckerboard(ImDrawListPtr drawList, Vector2 pMin, Vector2 pMax, uint fillCol, float gridStep, Vector2 gridOff)
+		{
+			RenderColorRectWithAlphaCheckerboardNative((ImDrawList*)drawList, pMin, pMax, fillCol, gridStep, gridOff, (float)(0.0f), (ImDrawFlags)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderColorRectWithAlphaCheckerboard(ImDrawListPtr drawList, Vector2 pMin, Vector2 pMax, uint fillCol, float gridStep, Vector2 gridOff, ImDrawFlags flags)
+		{
+			RenderColorRectWithAlphaCheckerboardNative((ImDrawList*)drawList, pMin, pMax, fillCol, gridStep, gridOff, (float)(0.0f), flags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderColorRectWithAlphaCheckerboard(ref ImDrawList drawList, Vector2 pMin, Vector2 pMax, uint fillCol, float gridStep, Vector2 gridOff, float rounding, ImDrawFlags flags)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderColorRectWithAlphaCheckerboardNative((ImDrawList*)pdrawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderColorRectWithAlphaCheckerboard(ref ImDrawList drawList, Vector2 pMin, Vector2 pMax, uint fillCol, float gridStep, Vector2 gridOff, float rounding)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderColorRectWithAlphaCheckerboardNative((ImDrawList*)pdrawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, (ImDrawFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderColorRectWithAlphaCheckerboard(ref ImDrawList drawList, Vector2 pMin, Vector2 pMax, uint fillCol, float gridStep, Vector2 gridOff)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderColorRectWithAlphaCheckerboardNative((ImDrawList*)pdrawList, pMin, pMax, fillCol, gridStep, gridOff, (float)(0.0f), (ImDrawFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderColorRectWithAlphaCheckerboard(ref ImDrawList drawList, Vector2 pMin, Vector2 pMax, uint fillCol, float gridStep, Vector2 gridOff, ImDrawFlags flags)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderColorRectWithAlphaCheckerboardNative((ImDrawList*)pdrawList, pMin, pMax, fillCol, gridStep, gridOff, (float)(0.0f), flags);
+			}
+		}
+
+		/// <summary>
+		/// Navigation highlight<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RenderNavCursorNative(ImRect bb, uint id, ImGuiNavRenderCursorFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiNavRenderCursorFlags, void>)funcTable[1374])(bb, id, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiNavRenderCursorFlags, void>)funcTable[1374])(bb, id, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// Navigation highlight<br/>
+		/// </summary>
+		public static void RenderNavCursor(ImRect bb, uint id, ImGuiNavRenderCursorFlags flags)
+		{
+			RenderNavCursorNative(bb, id, flags);
+		}
+
+		/// <summary>
+		/// Navigation highlight<br/>
+		/// </summary>
+		public static void RenderNavCursor(ImRect bb, uint id)
+		{
+			RenderNavCursorNative(bb, id, (ImGuiNavRenderCursorFlags)(ImGuiNavRenderCursorFlags.None));
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte* FindRenderedTextEndNative(byte* text, byte* textEnd)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[1375])(text, textEnd);
+			#else
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[1375])((nint)text, (nint)textEnd);
+			#endif
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(byte* text, byte* textEnd)
+		{
+			byte* ret = FindRenderedTextEndNative(text, textEnd);
+			return ret;
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(byte* text)
+		{
+			byte* ret = FindRenderedTextEndNative(text, (byte*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(byte* text)
+		{
+			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(text, (byte*)(default)));
+			return ret;
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(byte* text, byte* textEnd)
+		{
+			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(text, textEnd));
+			return ret;
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(in byte text, byte* textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* ret = FindRenderedTextEndNative((byte*)ptext, textEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(in byte text)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* ret = FindRenderedTextEndNative((byte*)ptext, (byte*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(in byte text)
+		{
+			fixed (byte* ptext = &text)
+			{
+				string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative((byte*)ptext, (byte*)(default)));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(in byte text, byte* textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative((byte*)ptext, textEnd));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(ReadOnlySpan<byte> text, byte* textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* ret = FindRenderedTextEndNative((byte*)ptext, textEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(ReadOnlySpan<byte> text)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* ret = FindRenderedTextEndNative((byte*)ptext, (byte*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(ReadOnlySpan<byte> text)
+		{
+			fixed (byte* ptext = text)
+			{
+				string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative((byte*)ptext, (byte*)(default)));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(ReadOnlySpan<byte> text, byte* textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative((byte*)ptext, textEnd));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(string text, byte* textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = FindRenderedTextEndNative(pStr0, textEnd);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(string text)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = FindRenderedTextEndNative(pStr0, (byte*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(string text)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(pStr0, (byte*)(default)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(string text, byte* textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(pStr0, textEnd));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(byte* text, in byte textEnd)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				byte* ret = FindRenderedTextEndNative(text, (byte*)ptextEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(byte* text, in byte textEnd)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(text, (byte*)ptextEnd));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(byte* text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				byte* ret = FindRenderedTextEndNative(text, (byte*)ptextEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(byte* text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(text, (byte*)ptextEnd));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(byte* text, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = FindRenderedTextEndNative(text, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(byte* text, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(text, pStr0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(in byte text, in byte textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					byte* ret = FindRenderedTextEndNative((byte*)ptext, (byte*)ptextEnd);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(in byte text, in byte textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative((byte*)ptext, (byte*)ptextEnd));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					byte* ret = FindRenderedTextEndNative((byte*)ptext, (byte*)ptextEnd);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative((byte*)ptext, (byte*)ptextEnd));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(string text, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte* ret = FindRenderedTextEndNative(pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(string text, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(pStr0, pStr1));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(in byte text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					byte* ret = FindRenderedTextEndNative((byte*)ptext, (byte*)ptextEnd);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(in byte text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative((byte*)ptext, (byte*)ptextEnd));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(in byte text, string textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = FindRenderedTextEndNative((byte*)ptext, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(in byte text, string textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative((byte*)ptext, pStr0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(ReadOnlySpan<byte> text, in byte textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					byte* ret = FindRenderedTextEndNative((byte*)ptext, (byte*)ptextEnd);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(ReadOnlySpan<byte> text, in byte textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative((byte*)ptext, (byte*)ptextEnd));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(ReadOnlySpan<byte> text, string textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = FindRenderedTextEndNative((byte*)ptext, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(ReadOnlySpan<byte> text, string textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative((byte*)ptext, pStr0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(string text, in byte textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				byte* ret = FindRenderedTextEndNative(pStr0, (byte*)ptextEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(string text, in byte textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(pStr0, (byte*)ptextEnd));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static byte* FindRenderedTextEnd(string text, ReadOnlySpan<byte> textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				byte* ret = FindRenderedTextEndNative(pStr0, (byte*)ptextEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Find the optional ## from which we stop displaying text.<br/>
+		/// </summary>
+		public static string FindRenderedTextEndS(string text, ReadOnlySpan<byte> textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(pStr0, (byte*)ptextEnd));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RenderMouseCursorNative(Vector2 pos, float scale, ImGuiMouseCursor mouseCursor, uint colFill, uint colBorder, uint colShadow)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<Vector2, float, ImGuiMouseCursor, uint, uint, uint, void>)funcTable[1376])(pos, scale, mouseCursor, colFill, colBorder, colShadow);
+			#else
+			((delegate* unmanaged[Cdecl]<Vector2, float, ImGuiMouseCursor, uint, uint, uint, void>)funcTable[1376])(pos, scale, mouseCursor, colFill, colBorder, colShadow);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderMouseCursor(Vector2 pos, float scale, ImGuiMouseCursor mouseCursor, uint colFill, uint colBorder, uint colShadow)
+		{
+			RenderMouseCursorNative(pos, scale, mouseCursor, colFill, colBorder, colShadow);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RenderArrowNative(ImDrawList* drawList, Vector2 pos, uint col, ImGuiDir dir, float scale)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, ImGuiDir, float, void>)funcTable[1377])(drawList, pos, col, dir, scale);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, ImGuiDir, float, void>)funcTable[1377])((nint)drawList, pos, col, dir, scale);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderArrow(ImDrawListPtr drawList, Vector2 pos, uint col, ImGuiDir dir, float scale)
+		{
+			RenderArrowNative((ImDrawList*)drawList, pos, col, dir, scale);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderArrow(ImDrawListPtr drawList, Vector2 pos, uint col, ImGuiDir dir)
+		{
+			RenderArrowNative((ImDrawList*)drawList, pos, col, dir, (float)(1.0f));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderArrow(ref ImDrawList drawList, Vector2 pos, uint col, ImGuiDir dir, float scale)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderArrowNative((ImDrawList*)pdrawList, pos, col, dir, scale);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderArrow(ref ImDrawList drawList, Vector2 pos, uint col, ImGuiDir dir)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderArrowNative((ImDrawList*)pdrawList, pos, col, dir, (float)(1.0f));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RenderBulletNative(ImDrawList* drawList, Vector2 pos, uint col)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, void>)funcTable[1378])(drawList, pos, col);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, void>)funcTable[1378])((nint)drawList, pos, col);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderBullet(ImDrawListPtr drawList, Vector2 pos, uint col)
+		{
+			RenderBulletNative((ImDrawList*)drawList, pos, col);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderBullet(ref ImDrawList drawList, Vector2 pos, uint col)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderBulletNative((ImDrawList*)pdrawList, pos, col);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RenderCheckMarkNative(ImDrawList* drawList, Vector2 pos, uint col, float sz)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, float, void>)funcTable[1379])(drawList, pos, col, sz);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, float, void>)funcTable[1379])((nint)drawList, pos, col, sz);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderCheckMark(ImDrawListPtr drawList, Vector2 pos, uint col, float sz)
+		{
+			RenderCheckMarkNative((ImDrawList*)drawList, pos, col, sz);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderCheckMark(ref ImDrawList drawList, Vector2 pos, uint col, float sz)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderCheckMarkNative((ImDrawList*)pdrawList, pos, col, sz);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RenderArrowPointingAtNative(ImDrawList* drawList, Vector2 pos, Vector2 halfSz, ImGuiDir direction, uint col)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, ImGuiDir, uint, void>)funcTable[1380])(drawList, pos, halfSz, direction, col);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, ImGuiDir, uint, void>)funcTable[1380])((nint)drawList, pos, halfSz, direction, col);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderArrowPointingAt(ImDrawListPtr drawList, Vector2 pos, Vector2 halfSz, ImGuiDir direction, uint col)
+		{
+			RenderArrowPointingAtNative((ImDrawList*)drawList, pos, halfSz, direction, col);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderArrowPointingAt(ref ImDrawList drawList, Vector2 pos, Vector2 halfSz, ImGuiDir direction, uint col)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderArrowPointingAtNative((ImDrawList*)pdrawList, pos, halfSz, direction, col);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RenderArrowDockMenuNative(ImDrawList* drawList, Vector2 pMin, float sz, uint col)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, void>)funcTable[1381])(drawList, pMin, sz, col);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, uint, void>)funcTable[1381])((nint)drawList, pMin, sz, col);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderArrowDockMenu(ImDrawListPtr drawList, Vector2 pMin, float sz, uint col)
+		{
+			RenderArrowDockMenuNative((ImDrawList*)drawList, pMin, sz, col);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderArrowDockMenu(ref ImDrawList drawList, Vector2 pMin, float sz, uint col)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderArrowDockMenuNative((ImDrawList*)pdrawList, pMin, sz, col);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RenderRectFilledRangeHNative(ImDrawList* drawList, ImRect rect, uint col, float xStartNorm, float xEndNorm, float rounding)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, uint, float, float, float, void>)funcTable[1382])(drawList, rect, col, xStartNorm, xEndNorm, rounding);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImRect, uint, float, float, float, void>)funcTable[1382])((nint)drawList, rect, col, xStartNorm, xEndNorm, rounding);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderRectFilledRangeH(ImDrawListPtr drawList, ImRect rect, uint col, float xStartNorm, float xEndNorm, float rounding)
+		{
+			RenderRectFilledRangeHNative((ImDrawList*)drawList, rect, col, xStartNorm, xEndNorm, rounding);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderRectFilledRangeH(ref ImDrawList drawList, ImRect rect, uint col, float xStartNorm, float xEndNorm, float rounding)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderRectFilledRangeHNative((ImDrawList*)pdrawList, rect, col, xStartNorm, xEndNorm, rounding);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RenderRectFilledWithHoleNative(ImDrawList* drawList, ImRect outer, ImRect inner, uint col, float rounding)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, ImRect, uint, float, void>)funcTable[1383])(drawList, outer, inner, col, rounding);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImRect, ImRect, uint, float, void>)funcTable[1383])((nint)drawList, outer, inner, col, rounding);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderRectFilledWithHole(ImDrawListPtr drawList, ImRect outer, ImRect inner, uint col, float rounding)
+		{
+			RenderRectFilledWithHoleNative((ImDrawList*)drawList, outer, inner, col, rounding);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void RenderRectFilledWithHole(ref ImDrawList drawList, ImRect outer, ImRect inner, uint col, float rounding)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				RenderRectFilledWithHoleNative((ImDrawList*)pdrawList, outer, inner, col, rounding);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImDrawFlags CalcRoundingFlagsForRectInRectNative(ImRect rIn, ImRect rOuter, float threshold)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImRect, ImRect, float, ImDrawFlags>)funcTable[1384])(rIn, rOuter, threshold);
+			#else
+			return (ImDrawFlags)((delegate* unmanaged[Cdecl]<ImRect, ImRect, float, ImDrawFlags>)funcTable[1384])(rIn, rOuter, threshold);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImDrawFlags CalcRoundingFlagsForRectInRect(ImRect rIn, ImRect rOuter, float threshold)
+		{
+			ImDrawFlags ret = CalcRoundingFlagsForRectInRectNative(rIn, rOuter, threshold);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TextExNative(byte* text, byte* textEnd, ImGuiTextFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, byte*, ImGuiTextFlags, void>)funcTable[1385])(text, textEnd, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, ImGuiTextFlags, void>)funcTable[1385])((nint)text, (nint)textEnd, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(byte* text, byte* textEnd, ImGuiTextFlags flags)
+		{
+			TextExNative(text, textEnd, flags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(byte* text, byte* textEnd)
+		{
+			TextExNative(text, textEnd, (ImGuiTextFlags)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(byte* text)
+		{
+			TextExNative(text, (byte*)(default), (ImGuiTextFlags)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(byte* text, ImGuiTextFlags flags)
+		{
+			TextExNative(text, (byte*)(default), flags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(in byte text, byte* textEnd, ImGuiTextFlags flags)
+		{
+			fixed (byte* ptext = &text)
+			{
+				TextExNative((byte*)ptext, textEnd, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(in byte text, byte* textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				TextExNative((byte*)ptext, textEnd, (ImGuiTextFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(in byte text)
+		{
+			fixed (byte* ptext = &text)
+			{
+				TextExNative((byte*)ptext, (byte*)(default), (ImGuiTextFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(in byte text, ImGuiTextFlags flags)
+		{
+			fixed (byte* ptext = &text)
+			{
+				TextExNative((byte*)ptext, (byte*)(default), flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(ReadOnlySpan<byte> text, byte* textEnd, ImGuiTextFlags flags)
+		{
+			fixed (byte* ptext = text)
+			{
+				TextExNative((byte*)ptext, textEnd, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(ReadOnlySpan<byte> text, byte* textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				TextExNative((byte*)ptext, textEnd, (ImGuiTextFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(ReadOnlySpan<byte> text)
+		{
+			fixed (byte* ptext = text)
+			{
+				TextExNative((byte*)ptext, (byte*)(default), (ImGuiTextFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(ReadOnlySpan<byte> text, ImGuiTextFlags flags)
+		{
+			fixed (byte* ptext = text)
+			{
+				TextExNative((byte*)ptext, (byte*)(default), flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(string text, byte* textEnd, ImGuiTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			TextExNative(pStr0, textEnd, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(string text, byte* textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			TextExNative(pStr0, textEnd, (ImGuiTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(string text)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			TextExNative(pStr0, (byte*)(default), (ImGuiTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(string text, ImGuiTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			TextExNative(pStr0, (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(byte* text, in byte textEnd, ImGuiTextFlags flags)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				TextExNative(text, (byte*)ptextEnd, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(byte* text, in byte textEnd)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				TextExNative(text, (byte*)ptextEnd, (ImGuiTextFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(byte* text, ReadOnlySpan<byte> textEnd, ImGuiTextFlags flags)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				TextExNative(text, (byte*)ptextEnd, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(byte* text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				TextExNative(text, (byte*)ptextEnd, (ImGuiTextFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(byte* text, string textEnd, ImGuiTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			TextExNative(text, pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(byte* text, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			TextExNative(text, pStr0, (ImGuiTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(in byte text, in byte textEnd, ImGuiTextFlags flags)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					TextExNative((byte*)ptext, (byte*)ptextEnd, flags);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(in byte text, in byte textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					TextExNative((byte*)ptext, (byte*)ptextEnd, (ImGuiTextFlags)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, ImGuiTextFlags flags)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					TextExNative((byte*)ptext, (byte*)ptextEnd, flags);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					TextExNative((byte*)ptext, (byte*)ptextEnd, (ImGuiTextFlags)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(string text, string textEnd, ImGuiTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			TextExNative(pStr0, pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(string text, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			TextExNative(pStr0, pStr1, (ImGuiTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(in byte text, ReadOnlySpan<byte> textEnd, ImGuiTextFlags flags)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					TextExNative((byte*)ptext, (byte*)ptextEnd, flags);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(in byte text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					TextExNative((byte*)ptext, (byte*)ptextEnd, (ImGuiTextFlags)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(in byte text, string textEnd, ImGuiTextFlags flags)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				TextExNative((byte*)ptext, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(in byte text, string textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				TextExNative((byte*)ptext, pStr0, (ImGuiTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(ReadOnlySpan<byte> text, in byte textEnd, ImGuiTextFlags flags)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					TextExNative((byte*)ptext, (byte*)ptextEnd, flags);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(ReadOnlySpan<byte> text, in byte textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					TextExNative((byte*)ptext, (byte*)ptextEnd, (ImGuiTextFlags)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(ReadOnlySpan<byte> text, string textEnd, ImGuiTextFlags flags)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				TextExNative((byte*)ptext, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(ReadOnlySpan<byte> text, string textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				TextExNative((byte*)ptext, pStr0, (ImGuiTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(string text, in byte textEnd, ImGuiTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				TextExNative(pStr0, (byte*)ptextEnd, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(string text, in byte textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				TextExNative(pStr0, (byte*)ptextEnd, (ImGuiTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(string text, ReadOnlySpan<byte> textEnd, ImGuiTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				TextExNative(pStr0, (byte*)ptextEnd, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextEx(string text, ReadOnlySpan<byte> textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				TextExNative(pStr0, (byte*)ptextEnd, (ImGuiTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TextAlignedVNative(float alignX, float sizeX, byte* fmt, nuint args)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<float, float, byte*, nuint, void>)funcTable[1386])(alignX, sizeX, fmt, args);
+			#else
+			((delegate* unmanaged[Cdecl]<float, float, nint, nuint, void>)funcTable[1386])(alignX, sizeX, (nint)fmt, args);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextAlignedV(float alignX, float sizeX, byte* fmt, nuint args)
+		{
+			TextAlignedVNative(alignX, sizeX, fmt, args);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextAlignedV(float alignX, float sizeX, in byte fmt, nuint args)
+		{
+			fixed (byte* pfmt = &fmt)
+			{
+				TextAlignedVNative(alignX, sizeX, (byte*)pfmt, args);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextAlignedV(float alignX, float sizeX, ReadOnlySpan<byte> fmt, nuint args)
+		{
+			fixed (byte* pfmt = fmt)
+			{
+				TextAlignedVNative(alignX, sizeX, (byte*)pfmt, args);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TextAlignedV(float alignX, float sizeX, string fmt, nuint args)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			TextAlignedVNative(alignX, sizeX, pStr0, args);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ButtonExNative(byte* label, Vector2 sizeArg, ImGuiButtonFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiButtonFlags, byte>)funcTable[1387])(label, sizeArg, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiButtonFlags, byte>)funcTable[1387])((nint)label, sizeArg, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(byte* label, Vector2 sizeArg, ImGuiButtonFlags flags)
+		{
+			byte ret = ButtonExNative(label, sizeArg, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(byte* label, Vector2 sizeArg)
+		{
+			byte ret = ButtonExNative(label, sizeArg, (ImGuiButtonFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(byte* label)
+		{
+			byte ret = ButtonExNative(label, (Vector2)(new Vector2(0,0)), (ImGuiButtonFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(byte* label, ImGuiButtonFlags flags)
+		{
+			byte ret = ButtonExNative(label, (Vector2)(new Vector2(0,0)), flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(in byte label, Vector2 sizeArg, ImGuiButtonFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = ButtonExNative((byte*)plabel, sizeArg, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(in byte label, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = ButtonExNative((byte*)plabel, sizeArg, (ImGuiButtonFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(in byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = ButtonExNative((byte*)plabel, (Vector2)(new Vector2(0,0)), (ImGuiButtonFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(in byte label, ImGuiButtonFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = ButtonExNative((byte*)plabel, (Vector2)(new Vector2(0,0)), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(ReadOnlySpan<byte> label, Vector2 sizeArg, ImGuiButtonFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = ButtonExNative((byte*)plabel, sizeArg, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(ReadOnlySpan<byte> label, Vector2 sizeArg)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = ButtonExNative((byte*)plabel, sizeArg, (ImGuiButtonFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(ReadOnlySpan<byte> label)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = ButtonExNative((byte*)plabel, (Vector2)(new Vector2(0,0)), (ImGuiButtonFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(ReadOnlySpan<byte> label, ImGuiButtonFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = ButtonExNative((byte*)plabel, (Vector2)(new Vector2(0,0)), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(string label, Vector2 sizeArg, ImGuiButtonFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ButtonExNative(pStr0, sizeArg, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(string label, Vector2 sizeArg)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ButtonExNative(pStr0, sizeArg, (ImGuiButtonFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ButtonExNative(pStr0, (Vector2)(new Vector2(0,0)), (ImGuiButtonFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonEx(string label, ImGuiButtonFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ButtonExNative(pStr0, (Vector2)(new Vector2(0,0)), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ArrowButtonExNative(byte* strId, ImGuiDir dir, Vector2 sizeArg, ImGuiButtonFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDir, Vector2, ImGuiButtonFlags, byte>)funcTable[1388])(strId, dir, sizeArg, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDir, Vector2, ImGuiButtonFlags, byte>)funcTable[1388])((nint)strId, dir, sizeArg, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ArrowButtonEx(byte* strId, ImGuiDir dir, Vector2 sizeArg, ImGuiButtonFlags flags)
+		{
+			byte ret = ArrowButtonExNative(strId, dir, sizeArg, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ArrowButtonEx(byte* strId, ImGuiDir dir, Vector2 sizeArg)
+		{
+			byte ret = ArrowButtonExNative(strId, dir, sizeArg, (ImGuiButtonFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ArrowButtonEx(in byte strId, ImGuiDir dir, Vector2 sizeArg, ImGuiButtonFlags flags)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = ArrowButtonExNative((byte*)pstrId, dir, sizeArg, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ArrowButtonEx(in byte strId, ImGuiDir dir, Vector2 sizeArg)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = ArrowButtonExNative((byte*)pstrId, dir, sizeArg, (ImGuiButtonFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ArrowButtonEx(ReadOnlySpan<byte> strId, ImGuiDir dir, Vector2 sizeArg, ImGuiButtonFlags flags)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = ArrowButtonExNative((byte*)pstrId, dir, sizeArg, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ArrowButtonEx(ReadOnlySpan<byte> strId, ImGuiDir dir, Vector2 sizeArg)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = ArrowButtonExNative((byte*)pstrId, dir, sizeArg, (ImGuiButtonFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ArrowButtonEx(string strId, ImGuiDir dir, Vector2 sizeArg, ImGuiButtonFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ArrowButtonExNative(pStr0, dir, sizeArg, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ArrowButtonEx(string strId, ImGuiDir dir, Vector2 sizeArg)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ArrowButtonExNative(pStr0, dir, sizeArg, (ImGuiButtonFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ImageButtonExNative(uint id, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol, ImGuiButtonFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, ImTextureRef, Vector2, Vector2, Vector2, Vector4, Vector4, ImGuiButtonFlags, byte>)funcTable[1389])(id, texRef, imageSize, uv0, uv1, bgCol, tintCol, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<uint, ImTextureRef, Vector2, Vector2, Vector2, Vector4, Vector4, ImGuiButtonFlags, byte>)funcTable[1389])(id, texRef, imageSize, uv0, uv1, bgCol, tintCol, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButtonEx(uint id, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol, ImGuiButtonFlags flags)
+		{
+			byte ret = ImageButtonExNative(id, texRef, imageSize, uv0, uv1, bgCol, tintCol, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButtonEx(uint id, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		{
+			byte ret = ImageButtonExNative(id, texRef, imageSize, uv0, uv1, bgCol, tintCol, (ImGuiButtonFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SeparatorExNative(ImGuiSeparatorFlags flags, float thickness)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiSeparatorFlags, float, void>)funcTable[1390])(flags, thickness);
+			#else
+			((delegate* unmanaged[Cdecl]<ImGuiSeparatorFlags, float, void>)funcTable[1390])(flags, thickness);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorEx(ImGuiSeparatorFlags flags, float thickness)
+		{
+			SeparatorExNative(flags, thickness);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorEx(ImGuiSeparatorFlags flags)
+		{
+			SeparatorExNative(flags, (float)(1.0f));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SeparatorTextExNative(uint id, byte* label, byte* labelEnd, float extraWidth)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<uint, byte*, byte*, float, void>)funcTable[1391])(id, label, labelEnd, extraWidth);
+			#else
+			((delegate* unmanaged[Cdecl]<uint, nint, nint, float, void>)funcTable[1391])(id, (nint)label, (nint)labelEnd, extraWidth);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, byte* label, byte* labelEnd, float extraWidth)
+		{
+			SeparatorTextExNative(id, label, labelEnd, extraWidth);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, in byte label, byte* labelEnd, float extraWidth)
+		{
+			fixed (byte* plabel = &label)
+			{
+				SeparatorTextExNative(id, (byte*)plabel, labelEnd, extraWidth);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, ReadOnlySpan<byte> label, byte* labelEnd, float extraWidth)
+		{
+			fixed (byte* plabel = label)
+			{
+				SeparatorTextExNative(id, (byte*)plabel, labelEnd, extraWidth);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, string label, byte* labelEnd, float extraWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			SeparatorTextExNative(id, pStr0, labelEnd, extraWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, byte* label, in byte labelEnd, float extraWidth)
+		{
+			fixed (byte* plabelEnd = &labelEnd)
+			{
+				SeparatorTextExNative(id, label, (byte*)plabelEnd, extraWidth);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, byte* label, ReadOnlySpan<byte> labelEnd, float extraWidth)
+		{
+			fixed (byte* plabelEnd = labelEnd)
+			{
+				SeparatorTextExNative(id, label, (byte*)plabelEnd, extraWidth);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, byte* label, string labelEnd, float extraWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			SeparatorTextExNative(id, label, pStr0, extraWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, in byte label, in byte labelEnd, float extraWidth)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* plabelEnd = &labelEnd)
+				{
+					SeparatorTextExNative(id, (byte*)plabel, (byte*)plabelEnd, extraWidth);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, ReadOnlySpan<byte> label, ReadOnlySpan<byte> labelEnd, float extraWidth)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* plabelEnd = labelEnd)
+				{
+					SeparatorTextExNative(id, (byte*)plabel, (byte*)plabelEnd, extraWidth);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, string label, string labelEnd, float extraWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			SeparatorTextExNative(id, pStr0, pStr1, extraWidth);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, in byte label, ReadOnlySpan<byte> labelEnd, float extraWidth)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* plabelEnd = labelEnd)
+				{
+					SeparatorTextExNative(id, (byte*)plabel, (byte*)plabelEnd, extraWidth);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, in byte label, string labelEnd, float extraWidth)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(labelEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				SeparatorTextExNative(id, (byte*)plabel, pStr0, extraWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, ReadOnlySpan<byte> label, in byte labelEnd, float extraWidth)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* plabelEnd = &labelEnd)
+				{
+					SeparatorTextExNative(id, (byte*)plabel, (byte*)plabelEnd, extraWidth);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, ReadOnlySpan<byte> label, string labelEnd, float extraWidth)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(labelEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				SeparatorTextExNative(id, (byte*)plabel, pStr0, extraWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, string label, in byte labelEnd, float extraWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* plabelEnd = &labelEnd)
+			{
+				SeparatorTextExNative(id, pStr0, (byte*)plabelEnd, extraWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SeparatorTextEx(uint id, string label, ReadOnlySpan<byte> labelEnd, float extraWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* plabelEnd = labelEnd)
+			{
+				SeparatorTextExNative(id, pStr0, (byte*)plabelEnd, extraWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte CheckboxFlagsNative(byte* label, long* flags, long flagsValue)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, long*, long, byte>)funcTable[1392])(label, flags, flagsValue);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, long, byte>)funcTable[1392])((nint)label, (nint)flags, flagsValue);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(byte* label, long* flags, long flagsValue)
+		{
+			byte ret = CheckboxFlagsNative(label, flags, flagsValue);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(in byte label, long* flags, long flagsValue)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = CheckboxFlagsNative((byte*)plabel, flags, flagsValue);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(ReadOnlySpan<byte> label, long* flags, long flagsValue)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = CheckboxFlagsNative((byte*)plabel, flags, flagsValue);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(string label, long* flags, long flagsValue)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = CheckboxFlagsNative(pStr0, flags, flagsValue);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(byte* label, ref long flags, long flagsValue)
+		{
+			fixed (long* pflags = &flags)
+			{
+				byte ret = CheckboxFlagsNative(label, (long*)pflags, flagsValue);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(in byte label, ref long flags, long flagsValue)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (long* pflags = &flags)
+				{
+					byte ret = CheckboxFlagsNative((byte*)plabel, (long*)pflags, flagsValue);
 					return ret != 0;
 				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(ReadOnlySpan<byte> label, ref long flags, long flagsValue)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (long* pflags = &flags)
+				{
+					byte ret = CheckboxFlagsNative((byte*)plabel, (long*)pflags, flagsValue);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(string label, ref long flags, long flagsValue)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (long* pflags = &flags)
+			{
+				byte ret = CheckboxFlagsNative(pStr0, (long*)pflags, flagsValue);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte CheckboxFlagsNative(byte* label, ulong* flags, ulong flagsValue)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, ulong*, ulong, byte>)funcTable[1393])(label, flags, flagsValue);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ulong, byte>)funcTable[1393])((nint)label, (nint)flags, flagsValue);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(byte* label, ulong* flags, ulong flagsValue)
+		{
+			byte ret = CheckboxFlagsNative(label, flags, flagsValue);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(in byte label, ulong* flags, ulong flagsValue)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = CheckboxFlagsNative((byte*)plabel, flags, flagsValue);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(ReadOnlySpan<byte> label, ulong* flags, ulong flagsValue)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = CheckboxFlagsNative((byte*)plabel, flags, flagsValue);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(string label, ulong* flags, ulong flagsValue)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = CheckboxFlagsNative(pStr0, flags, flagsValue);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(byte* label, ref ulong flags, ulong flagsValue)
+		{
+			fixed (ulong* pflags = &flags)
+			{
+				byte ret = CheckboxFlagsNative(label, (ulong*)pflags, flagsValue);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(in byte label, ref ulong flags, ulong flagsValue)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (ulong* pflags = &flags)
+				{
+					byte ret = CheckboxFlagsNative((byte*)plabel, (ulong*)pflags, flagsValue);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(ReadOnlySpan<byte> label, ref ulong flags, ulong flagsValue)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (ulong* pflags = &flags)
+				{
+					byte ret = CheckboxFlagsNative((byte*)plabel, (ulong*)pflags, flagsValue);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CheckboxFlags(string label, ref ulong flags, ulong flagsValue)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pflags = &flags)
+			{
+				byte ret = CheckboxFlagsNative(pStr0, (ulong*)pflags, flagsValue);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte CloseButtonNative(uint id, Vector2 pos)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, Vector2, byte>)funcTable[1394])(id, pos);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<uint, Vector2, byte>)funcTable[1394])(id, pos);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CloseButton(uint id, Vector2 pos)
+		{
+			byte ret = CloseButtonNative(id, pos);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte CollapseButtonNative(uint id, Vector2 pos, ImGuiDockNode* dockNode)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, Vector2, ImGuiDockNode*, byte>)funcTable[1395])(id, pos, dockNode);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<uint, Vector2, nint, byte>)funcTable[1395])(id, pos, (nint)dockNode);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CollapseButton(uint id, Vector2 pos, ImGuiDockNodePtr dockNode)
+		{
+			byte ret = CollapseButtonNative(id, pos, (ImGuiDockNode*)dockNode);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool CollapseButton(uint id, Vector2 pos, ref ImGuiDockNode dockNode)
+		{
+			fixed (ImGuiDockNode* pdockNode = &dockNode)
+			{
+				byte ret = CollapseButtonNative(id, pos, (ImGuiDockNode*)pdockNode);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ScrollbarNative(ImGuiAxis axis)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiAxis, void>)funcTable[1396])(axis);
+			#else
+			((delegate* unmanaged[Cdecl]<ImGuiAxis, void>)funcTable[1396])(axis);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Scrollbar(ImGuiAxis axis)
+		{
+			ScrollbarNative(axis);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ScrollbarExNative(ImRect bb, uint id, ImGuiAxis axis, long* pScrollV, long availV, long contentsV, ImDrawFlags drawRoundingFlags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiAxis, long*, long, long, ImDrawFlags, byte>)funcTable[1397])(bb, id, axis, pScrollV, availV, contentsV, drawRoundingFlags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiAxis, nint, long, long, ImDrawFlags, byte>)funcTable[1397])(bb, id, axis, (nint)pScrollV, availV, contentsV, drawRoundingFlags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ScrollbarEx(ImRect bb, uint id, ImGuiAxis axis, long* pScrollV, long availV, long contentsV, ImDrawFlags drawRoundingFlags)
+		{
+			byte ret = ScrollbarExNative(bb, id, axis, pScrollV, availV, contentsV, drawRoundingFlags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ScrollbarEx(ImRect bb, uint id, ImGuiAxis axis, long* pScrollV, long availV, long contentsV)
+		{
+			byte ret = ScrollbarExNative(bb, id, axis, pScrollV, availV, contentsV, (ImDrawFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ScrollbarEx(ImRect bb, uint id, ImGuiAxis axis, ref long pScrollV, long availV, long contentsV, ImDrawFlags drawRoundingFlags)
+		{
+			fixed (long* ppScrollV = &pScrollV)
+			{
+				byte ret = ScrollbarExNative(bb, id, axis, (long*)ppScrollV, availV, contentsV, drawRoundingFlags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ScrollbarEx(ImRect bb, uint id, ImGuiAxis axis, ref long pScrollV, long availV, long contentsV)
+		{
+			fixed (long* ppScrollV = &pScrollV)
+			{
+				byte ret = ScrollbarExNative(bb, id, axis, (long*)ppScrollV, availV, contentsV, (ImDrawFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImRect GetWindowScrollbarRectNative(ImGuiWindow* window, ImGuiAxis axis)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiAxis, ImRect>)funcTable[1398])(window, axis);
+			#else
+			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImGuiAxis, ImRect>)funcTable[1398])((nint)window, axis);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImRect GetWindowScrollbarRect(ImGuiWindowPtr window, ImGuiAxis axis)
+		{
+			ImRect ret = GetWindowScrollbarRectNative((ImGuiWindow*)window, axis);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImRect GetWindowScrollbarRect(ref ImGuiWindow window, ImGuiAxis axis)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				ImRect ret = GetWindowScrollbarRectNative((ImGuiWindow*)pwindow, axis);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint GetWindowScrollbarIDNative(ImGuiWindow* window, ImGuiAxis axis)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiAxis, uint>)funcTable[1399])(window, axis);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<nint, ImGuiAxis, uint>)funcTable[1399])((nint)window, axis);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetWindowScrollbarID(ImGuiWindowPtr window, ImGuiAxis axis)
+		{
+			uint ret = GetWindowScrollbarIDNative((ImGuiWindow*)window, axis);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetWindowScrollbarID(ref ImGuiWindow window, ImGuiAxis axis)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				uint ret = GetWindowScrollbarIDNative((ImGuiWindow*)pwindow, axis);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// 0..3: corners<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint GetWindowResizeCornerIDNative(ImGuiWindow* window, int n)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, int, uint>)funcTable[1400])(window, n);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[1400])((nint)window, n);
+			#endif
+		}
+
+		/// <summary>
+		/// 0..3: corners<br/>
+		/// </summary>
+		public static uint GetWindowResizeCornerID(ImGuiWindowPtr window, int n)
+		{
+			uint ret = GetWindowResizeCornerIDNative((ImGuiWindow*)window, n);
+			return ret;
+		}
+
+		/// <summary>
+		/// 0..3: corners<br/>
+		/// </summary>
+		public static uint GetWindowResizeCornerID(ref ImGuiWindow window, int n)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				uint ret = GetWindowResizeCornerIDNative((ImGuiWindow*)pwindow, n);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint GetWindowResizeBorderIDNative(ImGuiWindow* window, ImGuiDir dir)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiDir, uint>)funcTable[1401])(window, dir);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<nint, ImGuiDir, uint>)funcTable[1401])((nint)window, dir);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetWindowResizeBorderID(ImGuiWindowPtr window, ImGuiDir dir)
+		{
+			uint ret = GetWindowResizeBorderIDNative((ImGuiWindow*)window, dir);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetWindowResizeBorderID(ref ImGuiWindow window, ImGuiDir dir)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				uint ret = GetWindowResizeBorderIDNative((ImGuiWindow*)pwindow, dir);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ButtonBehaviorNative(ImRect bb, uint id, bool* outHovered, bool* outHeld, ImGuiButtonFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImRect, uint, bool*, bool*, ImGuiButtonFlags, byte>)funcTable[1402])(bb, id, outHovered, outHeld, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, nint, nint, ImGuiButtonFlags, byte>)funcTable[1402])(bb, id, (nint)outHovered, (nint)outHeld, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonBehavior(ImRect bb, uint id, bool* outHovered, bool* outHeld, ImGuiButtonFlags flags)
+		{
+			byte ret = ButtonBehaviorNative(bb, id, outHovered, outHeld, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonBehavior(ImRect bb, uint id, bool* outHovered, bool* outHeld)
+		{
+			byte ret = ButtonBehaviorNative(bb, id, outHovered, outHeld, (ImGuiButtonFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonBehavior(ImRect bb, uint id, ref bool outHovered, bool* outHeld, ImGuiButtonFlags flags)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				byte ret = ButtonBehaviorNative(bb, id, (bool*)poutHovered, outHeld, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ButtonBehavior(ImRect bb, uint id, ref bool outHovered, bool* outHeld)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				byte ret = ButtonBehaviorNative(bb, id, (bool*)poutHovered, outHeld, (ImGuiButtonFlags)(0));
+				return ret != 0;
 			}
 		}
 	}

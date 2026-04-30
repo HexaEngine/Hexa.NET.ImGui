@@ -22,142 +22,6 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotErrorBars(in byte labelId, in ulong xs, in ulong ys, ulong* err, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, err, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(in byte labelId, in ulong xs, in ulong ys, ulong* err, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, err, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ulong)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(in byte labelId, in ulong xs, in ulong ys, ulong* err, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, err, count, (ImPlotErrorBarsFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, ulong* err, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, err, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, ulong* err, int count, ImPlotErrorBarsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, err, count, flags, offset, (int)(sizeof(ulong)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, ulong* err, int count, ImPlotErrorBarsFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, err, count, flags, (int)(0), (int)(sizeof(ulong)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, ulong* err, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, err, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, ulong* err, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, err, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ulong)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, ulong* err, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = labelId)
@@ -5025,6 +4889,144 @@ namespace Hexa.NET.ImPlot
 				fixed (float* pneg = &neg)
 				{
 					PlotErrorBarsNative(labelId, xs, (float*)pys, (float*)pneg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, float* xs, in float ys, in float neg, float* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (float*)pys, (float*)pneg, pos, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, float* xs, in float ys, in float neg, float* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (float*)pys, (float*)pneg, pos, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, float* xs, in float ys, in float neg, float* pos, int count)
+		{
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (float*)pys, (float*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, float* xs, in float ys, in float neg, float* pos, int count, int offset)
+		{
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (float*)pys, (float*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(byte* labelId, float* xs, in float ys, in float neg, float* pos, int count, int offset, int stride)
+		{
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (float*)pys, (float*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, float* xs, in float ys, in float neg, float* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, (float*)pys, (float*)pneg, pos, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, float* xs, in float ys, in float neg, float* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, (float*)pys, (float*)pneg, pos, count, flags, offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, float* xs, in float ys, in float neg, float* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, (float*)pys, (float*)pneg, pos, count, flags, (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotErrorBars(in byte labelId, float* xs, in float ys, in float neg, float* pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, (float*)pys, (float*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(float)));
+					}
 				}
 			}
 		}

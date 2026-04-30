@@ -22,90 +22,6 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(in byte labelId, in ulong values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (ulong*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in ulong values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (ulong*)pvalues, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in ulong values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (ulong*)pvalues, count, flags, offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in ulong values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (ulong*)pvalues, count, flags, (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in ulong values, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (ulong*)pvalues, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in ulong values, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (ulong*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in ulong values, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = labelId)
@@ -5035,6 +4951,74 @@ namespace Hexa.NET.ImPlot
 				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
 			}
 			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, angle0, flags);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, double* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, double* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
 			for (int i = 0; i < labelIds.Length; i++)
 			{
 				Utils.Free(pStrArray0[i]);

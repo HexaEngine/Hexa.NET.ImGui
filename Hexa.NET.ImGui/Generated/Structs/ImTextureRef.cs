@@ -36,35 +36,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImTextureRef(ImTextureDataPtr texData = default, ImTextureID texId = default)
+		public unsafe ImTextureRef(ImTextureData* texData = default, ImTextureID texId = default)
 		{
 			TexData = texData;
 			TexID = texId;
 		}
 
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void Destroy()
-		{
-			fixed (ImTextureRef* @this = &this)
-			{
-				ImGui.DestroyNative(@this);
-			}
-		}
-
-		/// <summary>
-		/// == (_TexData ? _TexData-&gt;TexID : _TexID)  Implemented below in the file.<br/>
-		/// </summary>
-		public unsafe ImTextureID GetTexID()
-		{
-			fixed (ImTextureRef* @this = &this)
-			{
-				ImTextureID ret = ImGui.GetTexIDNative(@this);
-				return ret;
-			}
-		}
 
 	}
 
@@ -117,23 +94,6 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref ImTextureID TexID => ref Unsafe.AsRef<ImTextureID>(&Handle->TexID);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void Destroy()
-		{
-			ImGui.DestroyNative(Handle);
-		}
-
-		/// <summary>
-		/// == (_TexData ? _TexData-&gt;TexID : _TexID)  Implemented below in the file.<br/>
-		/// </summary>
-		public unsafe ImTextureID GetTexID()
-		{
-			ImTextureID ret = ImGui.GetTexIDNative(Handle);
-			return ret;
-		}
-
 	}
 
 }

@@ -22,182 +22,6 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotBarGroups(string[] labelIds, sbyte* values, int itemCount, int groupCount, double groupSize, ImPlotBarGroupsFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotBarGroupsNative(pStrArray0, values, itemCount, groupCount, groupSize, (double)(0), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotBarGroups(string[] labelIds, sbyte* values, int itemCount, int groupCount, ImPlotBarGroupsFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotBarGroupsNative(pStrArray0, values, itemCount, groupCount, (double)(0.67), (double)(0), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotBarGroups(byte** labelIds, in sbyte values, int itemCount, int groupCount, double groupSize, double shift, ImPlotBarGroupsFlags flags)
-		{
-			fixed (sbyte* pvalues = &values)
-			{
-				PlotBarGroupsNative(labelIds, (sbyte*)pvalues, itemCount, groupCount, groupSize, shift, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotBarGroups(byte** labelIds, in sbyte values, int itemCount, int groupCount, double groupSize, double shift)
-		{
-			fixed (sbyte* pvalues = &values)
-			{
-				PlotBarGroupsNative(labelIds, (sbyte*)pvalues, itemCount, groupCount, groupSize, shift, (ImPlotBarGroupsFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotBarGroups(byte** labelIds, in sbyte values, int itemCount, int groupCount, double groupSize)
-		{
-			fixed (sbyte* pvalues = &values)
-			{
-				PlotBarGroupsNative(labelIds, (sbyte*)pvalues, itemCount, groupCount, groupSize, (double)(0), (ImPlotBarGroupsFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotBarGroups(byte** labelIds, in sbyte values, int itemCount, int groupCount)
-		{
-			fixed (sbyte* pvalues = &values)
-			{
-				PlotBarGroupsNative(labelIds, (sbyte*)pvalues, itemCount, groupCount, (double)(0.67), (double)(0), (ImPlotBarGroupsFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotBarGroups(byte** labelIds, in sbyte values, int itemCount, int groupCount, double groupSize, ImPlotBarGroupsFlags flags)
-		{
-			fixed (sbyte* pvalues = &values)
-			{
-				PlotBarGroupsNative(labelIds, (sbyte*)pvalues, itemCount, groupCount, groupSize, (double)(0), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotBarGroups(byte** labelIds, in sbyte values, int itemCount, int groupCount, ImPlotBarGroupsFlags flags)
-		{
-			fixed (sbyte* pvalues = &values)
-			{
-				PlotBarGroupsNative(labelIds, (sbyte*)pvalues, itemCount, groupCount, (double)(0.67), (double)(0), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotBarGroups(in byte* labelIds, in sbyte values, int itemCount, int groupCount, double groupSize, double shift, ImPlotBarGroupsFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (sbyte* pvalues = &values)
-				{
-					PlotBarGroupsNative((byte**)plabelIds, (sbyte*)pvalues, itemCount, groupCount, groupSize, shift, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotBarGroups(in byte* labelIds, in sbyte values, int itemCount, int groupCount, double groupSize, double shift)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (sbyte* pvalues = &values)
-				{
-					PlotBarGroupsNative((byte**)plabelIds, (sbyte*)pvalues, itemCount, groupCount, groupSize, shift, (ImPlotBarGroupsFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotBarGroups(in byte* labelIds, in sbyte values, int itemCount, int groupCount, double groupSize)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (sbyte* pvalues = &values)
-				{
-					PlotBarGroupsNative((byte**)plabelIds, (sbyte*)pvalues, itemCount, groupCount, groupSize, (double)(0), (ImPlotBarGroupsFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static void PlotBarGroups(in byte* labelIds, in sbyte values, int itemCount, int groupCount)
 		{
 			fixed (byte** plabelIds = &labelIds)
@@ -5016,6 +4840,182 @@ namespace Hexa.NET.ImPlot
 			fixed (ulong* pvalues = &values)
 			{
 				PlotBarGroupsNative(labelIds, (ulong*)pvalues, itemCount, groupCount, groupSize, shift, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(byte** labelIds, in ulong values, int itemCount, int groupCount, double groupSize, double shift)
+		{
+			fixed (ulong* pvalues = &values)
+			{
+				PlotBarGroupsNative(labelIds, (ulong*)pvalues, itemCount, groupCount, groupSize, shift, (ImPlotBarGroupsFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(byte** labelIds, in ulong values, int itemCount, int groupCount, double groupSize)
+		{
+			fixed (ulong* pvalues = &values)
+			{
+				PlotBarGroupsNative(labelIds, (ulong*)pvalues, itemCount, groupCount, groupSize, (double)(0), (ImPlotBarGroupsFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(byte** labelIds, in ulong values, int itemCount, int groupCount)
+		{
+			fixed (ulong* pvalues = &values)
+			{
+				PlotBarGroupsNative(labelIds, (ulong*)pvalues, itemCount, groupCount, (double)(0.67), (double)(0), (ImPlotBarGroupsFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(byte** labelIds, in ulong values, int itemCount, int groupCount, double groupSize, ImPlotBarGroupsFlags flags)
+		{
+			fixed (ulong* pvalues = &values)
+			{
+				PlotBarGroupsNative(labelIds, (ulong*)pvalues, itemCount, groupCount, groupSize, (double)(0), flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(byte** labelIds, in ulong values, int itemCount, int groupCount, ImPlotBarGroupsFlags flags)
+		{
+			fixed (ulong* pvalues = &values)
+			{
+				PlotBarGroupsNative(labelIds, (ulong*)pvalues, itemCount, groupCount, (double)(0.67), (double)(0), flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(in byte* labelIds, in ulong values, int itemCount, int groupCount, double groupSize, double shift, ImPlotBarGroupsFlags flags)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (ulong* pvalues = &values)
+				{
+					PlotBarGroupsNative((byte**)plabelIds, (ulong*)pvalues, itemCount, groupCount, groupSize, shift, flags);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(in byte* labelIds, in ulong values, int itemCount, int groupCount, double groupSize, double shift)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (ulong* pvalues = &values)
+				{
+					PlotBarGroupsNative((byte**)plabelIds, (ulong*)pvalues, itemCount, groupCount, groupSize, shift, (ImPlotBarGroupsFlags)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(in byte* labelIds, in ulong values, int itemCount, int groupCount, double groupSize)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (ulong* pvalues = &values)
+				{
+					PlotBarGroupsNative((byte**)plabelIds, (ulong*)pvalues, itemCount, groupCount, groupSize, (double)(0), (ImPlotBarGroupsFlags)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(in byte* labelIds, in ulong values, int itemCount, int groupCount)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (ulong* pvalues = &values)
+				{
+					PlotBarGroupsNative((byte**)plabelIds, (ulong*)pvalues, itemCount, groupCount, (double)(0.67), (double)(0), (ImPlotBarGroupsFlags)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(in byte* labelIds, in ulong values, int itemCount, int groupCount, double groupSize, ImPlotBarGroupsFlags flags)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (ulong* pvalues = &values)
+				{
+					PlotBarGroupsNative((byte**)plabelIds, (ulong*)pvalues, itemCount, groupCount, groupSize, (double)(0), flags);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(in byte* labelIds, in ulong values, int itemCount, int groupCount, ImPlotBarGroupsFlags flags)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (ulong* pvalues = &values)
+				{
+					PlotBarGroupsNative((byte**)plabelIds, (ulong*)pvalues, itemCount, groupCount, (double)(0.67), (double)(0), flags);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBarGroups(string[] labelIds, in ulong values, int itemCount, int groupCount, double groupSize, double shift, ImPlotBarGroupsFlags flags)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (ulong* pvalues = &values)
+			{
+				PlotBarGroupsNative(pStrArray0, (ulong*)pvalues, itemCount, groupCount, groupSize, shift, flags);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
 			}
 		}
 	}

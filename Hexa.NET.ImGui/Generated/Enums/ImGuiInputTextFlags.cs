@@ -145,7 +145,7 @@ namespace Hexa.NET.ImGui
 		CallbackEdit = unchecked(8388608),
 
 		/// <summary>
-		/// InputTextMultine(): word-wrap lines that are too long.<br/>
+		/// InputTextMultiline(): word-wrap lines that are too long.<br/>
 		/// </summary>
 		WordWrap = unchecked(16777216),
 	}

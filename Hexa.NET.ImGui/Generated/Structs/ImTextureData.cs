@@ -229,6 +229,18 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe ImTextureRef GetTexRef()
+		{
+			fixed (ImTextureData* @this = &this)
+			{
+				ImTextureRef ret = ImGui.GetTexRefNative(@this);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public unsafe void SetStatus(ImTextureStatus status)
 		{
 			fixed (ImTextureData* @this = &this)
@@ -421,6 +433,15 @@ namespace Hexa.NET.ImGui
 		public unsafe ImTextureID GetTexID()
 		{
 			ImTextureID ret = ImGui.GetTexIDNative(Handle);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImTextureRef GetTexRef()
+		{
+			ImTextureRef ret = ImGui.GetTexRefNative(Handle);
 			return ret;
 		}
 

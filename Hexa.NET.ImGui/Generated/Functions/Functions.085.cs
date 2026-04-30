@@ -21,92 +21,161 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, ReadOnlySpan<byte> format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, nint pStep, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, (void*)pStep, (void*)(default), format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)pStep, pStepFast, format, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast, byte* format)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)pStep, pStepFast, format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)pStep, pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, nint pStep)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)pStep, (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, nint pStep, byte* format)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)pStep, (void*)(default), format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)pStep, pStepFast, (byte*)(default), flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, nint pStep, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)pStep, (void*)(default), (byte*)(default), flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, nint pStep, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)pStep, (void*)(default), format, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast, byte* format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, pStepFast, format, flags);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, ReadOnlySpan<byte> format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast, byte* format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, pStepFast, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, flags);
-					return ret != 0;
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, nint pStep)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
-					return ret != 0;
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, nint pStep, byte* format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)(default), format, (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -114,32 +183,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, string format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, pStepFast, (byte*)(default), flags);
 				return ret != 0;
 			}
 		}
@@ -147,32 +195,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, string format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, nint pStep, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)(default), (byte*)(default), flags);
 				return ret != 0;
 			}
 		}
@@ -180,32 +207,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, string format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, nint pStep, byte* format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)(default), format, flags);
 				return ret != 0;
 			}
 		}
@@ -213,32 +219,383 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, pStepFast, format, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, pStepFast, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pStep)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pStep, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)(default), format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, pStepFast, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pStep, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)(default), (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pStep, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)(default), format, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)pStep, pStepFast, format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)pStep, pStepFast, format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)pStep, pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, nint pStep)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)pStep, (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, nint pStep, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)pStep, (void*)(default), format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, nint pStep, void* pStepFast, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)pStep, pStepFast, (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, nint pStep, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)pStep, (void*)(default), (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, nint pStep, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)pStep, (void*)(default), format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)pStepFast, format, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast, byte* format)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)pStepFast, (byte*)(default), flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)pStepFast, format, flags);
 				return ret != 0;
 			}
 		}
@@ -246,32 +603,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast, byte* format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -279,122 +615,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast)
 		{
-			fixed (byte* plabel = label)
+			fixed (byte* plabel = &label)
 			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, in byte format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, in byte format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, in byte format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, in byte format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, in byte format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -402,32 +627,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, string format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast, ImGuiInputTextFlags flags)
 		{
-			fixed (byte* plabel = label)
+			fixed (byte* plabel = &label)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)pStepFast, (byte*)(default), flags);
 				return ret != 0;
 			}
 		}
@@ -435,32 +639,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, string format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)pStepFast, format, flags);
 				return ret != 0;
 			}
 		}
@@ -468,32 +651,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, string format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast, byte* format)
 		{
 			fixed (byte* plabel = label)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -501,32 +663,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast)
 		{
 			fixed (byte* plabel = label)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -534,32 +675,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)pStepFast, (byte*)(default), flags);
 				return ret != 0;
 			}
 		}
@@ -567,7 +687,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -586,21 +706,18 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pformat = &format)
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)pStepFast, format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, pStepFast, (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
+				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, in byte format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast, byte* format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -619,21 +736,18 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pformat = &format)
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
+				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, in byte format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -652,21 +766,18 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pformat = &format)
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
+				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, in byte format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, nint pStepFast, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -685,13 +796,58 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pformat = &format)
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)pStepFast, (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, (void*)pStepFast, format, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast, byte* format)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, (void*)pStepFast, (byte*)(default), flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)pStepFast, format, flags);
 				return ret != 0;
 			}
 		}
@@ -699,7 +855,91 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)pStepFast, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)pStepFast, format, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)pStepFast, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -718,21 +958,18 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pformat = &format)
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, pStep, (void*)pStepFast, format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
+				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast, byte* format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -751,21 +988,18 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pformat = &format)
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
+				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -784,21 +1018,18 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pformat = format)
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, pStepFast, (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
+				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, void* pStep, nint pStepFast, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -817,13 +1048,58 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pformat = format)
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, pStep, (void*)pStepFast, (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, (void*)pStep, (void*)pStepFast, format, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast, byte* format)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, (void*)pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, (void*)pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, (void*)pStep, (void*)pStepFast, (byte*)(default), flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)pStep, (void*)pStepFast, format, flags);
 				return ret != 0;
 			}
 		}
@@ -831,7 +1107,91 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, ReadOnlySpan<byte> format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)pStep, (void*)pStepFast, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)pStep, (void*)pStepFast, format, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)pStep, (void*)pStepFast, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -850,21 +1210,18 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pformat = format)
+			byte ret = InputScalarNative(pStr0, dataType, pData, (void*)pStep, (void*)pStepFast, format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
+				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, ReadOnlySpan<byte> format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast, byte* format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -883,21 +1240,18 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pformat = format)
+			byte ret = InputScalarNative(pStr0, dataType, pData, (void*)pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
+				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -916,21 +1270,18 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pformat = format)
+			byte ret = InputScalarNative(pStr0, dataType, pData, (void*)pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
+				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, nint pStep, nint pStepFast, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -949,25 +1300,274 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pformat = format)
+			byte ret = InputScalarNative(pStr0, dataType, pData, (void*)pStep, (void*)pStepFast, (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, format, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast, byte* format)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, (byte*)(default), flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, format, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, format, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
-				return ret != 0;
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, nint pStep, nint pStepFast, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)pStep, (void*)pStepFast, (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
+				byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -975,11 +1575,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -987,11 +1587,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -999,11 +1599,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, in byte format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1011,11 +1611,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+				byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -1023,11 +1623,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -1035,11 +1635,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
+				byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -1047,11 +1647,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1059,11 +1659,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1071,11 +1671,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1083,11 +1683,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+				byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -1095,11 +1695,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -1107,7 +1707,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1126,7 +1726,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, pStepFast, pStr0, flags);
+			byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1137,7 +1737,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1156,7 +1756,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+			byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1167,7 +1767,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1186,7 +1786,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+			byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1197,7 +1797,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, string format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1216,7 +1816,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+			byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1227,7 +1827,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1246,7 +1846,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, pStep, (void*)(default), pStr0, flags);
+			byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1257,7 +1857,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1276,7 +1876,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr0, flags);
+			byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1287,13 +1887,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -1302,13 +1902,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -1317,13 +1917,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -1332,13 +1932,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, in byte format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -1347,13 +1947,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -1362,13 +1962,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -1377,13 +1977,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -1392,13 +1992,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -1407,13 +2007,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -1422,13 +2022,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -1437,13 +2037,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -1452,13 +2052,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -1467,7 +2067,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1503,7 +2103,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, pStepFast, pStr1, flags);
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, pStepFast, pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1518,7 +2118,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1554,7 +2154,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, pStepFast, pStr1, (ImGuiInputTextFlags)(0));
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, pStepFast, pStr1, (ImGuiInputTextFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1569,7 +2169,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1605,7 +2205,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1620,7 +2220,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, string format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1656,7 +2256,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
+			byte ret = InputScalarNative(pStr0, dataType, pData, (void*)(default), (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1671,7 +2271,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1707,7 +2307,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, (void*)(default), pStr1, flags);
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)(default), pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1722,7 +2322,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1758,7 +2358,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr1, flags);
+			byte ret = InputScalarNative(pStr0, dataType, pData, (void*)(default), (void*)(default), pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1773,13 +2373,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -1788,13 +2388,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -1803,13 +2403,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -1818,13 +2418,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -1833,13 +2433,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -1848,13 +2448,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -1863,7 +2463,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1884,7 +2484,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, pStr0, flags);
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1896,7 +2496,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1917,7 +2517,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1929,7 +2529,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1950,7 +2550,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1962,7 +2562,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, string format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1983,7 +2583,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1995,7 +2595,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, void* pStep, string format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2016,7 +2616,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), pStr0, flags);
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2028,7 +2628,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, void* pData, string format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2049,7 +2649,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr0, flags);
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2061,13 +2661,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -2076,13 +2676,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2091,13 +2691,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2106,13 +2706,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, in byte format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2121,13 +2721,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -2136,13 +2736,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -2151,7 +2751,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2172,7 +2772,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, pStr0, flags);
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2184,7 +2784,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, string format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, string format)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2205,7 +2805,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2217,7 +2817,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, string format)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2238,7 +2838,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2250,7 +2850,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, string format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, string format)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2271,7 +2871,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2283,7 +2883,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pStep, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, string format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2304,7 +2904,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, pStep, (void*)(default), pStr0, flags);
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2316,7 +2916,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, string format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2337,7 +2937,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)(default), (void*)(default), pStr0, flags);
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2349,7 +2949,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2370,7 +2970,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
+				byte ret = InputScalarNative(pStr0, dataType, pData, pStep, pStepFast, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2382,7 +2982,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, in byte format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2403,7 +3003,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(pStr0, dataType, pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2415,7 +3015,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2436,7 +3036,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2448,7 +3048,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, in byte format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2469,7 +3069,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(pStr0, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2481,7 +3081,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, in byte format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2502,7 +3102,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+				byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)(default), (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2514,7 +3114,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, in byte format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2535,7 +3135,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				byte ret = InputScalarNative(pStr0, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2547,7 +3147,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2568,7 +3168,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, flags);
+				byte ret = InputScalarNative(pStr0, dataType, pData, pStep, pStepFast, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2580,7 +3180,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2601,7 +3201,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(pStr0, dataType, pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2613,7 +3213,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2634,7 +3234,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2646,7 +3246,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2667,7 +3267,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(pStr0, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2679,7 +3279,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2700,7 +3300,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+				byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)(default), (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2712,7 +3312,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2733,7 +3333,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				byte ret = InputScalarNative(pStr0, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2745,11 +3345,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+				byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -2757,11 +3357,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -2769,11 +3369,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -2781,11 +3381,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+				byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -2793,11 +3393,35 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+				byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -2805,11 +3429,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -2817,11 +3441,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -2829,11 +3453,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+				byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -2841,7 +3465,31 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2860,7 +3508,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, pStepFast, pStr0, flags);
+			byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, pStepFast, pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2871,7 +3519,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2890,7 +3538,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+			byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2901,7 +3549,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2920,7 +3568,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+			byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2931,7 +3579,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2950,7 +3598,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)pStep, (void*)(default), pStr0, flags);
+			byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2961,1075 +3609,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, pStepFast, pStr1, flags);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, pStepFast, pStr1, (ImGuiInputTextFlags)(0));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, (void*)(default), pStr1, flags);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, string format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)pStep, (void*)(default), pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = &format)
-			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, in byte format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = &format)
-			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = &format)
-			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = &format)
-			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = format)
-			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = format)
-			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = format)
-			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = format)
-			{
-				byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, void* pStep, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4048,7 +3628,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr0, flags);
+			byte ret = InputScalarNative(label, dataType, (void*)pData, pStep, (void*)(default), pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4059,7 +3639,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format)
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, nint pData, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4078,7 +3658,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+			byte ret = InputScalarNative(label, dataType, (void*)pData, (void*)(default), (void*)(default), pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4089,73 +3669,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = InputScalarNNative(label, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4164,13 +3684,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4179,13 +3699,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4194,13 +3714,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4209,13 +3729,43 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4224,13 +3774,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4239,13 +3789,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, ReadOnlySpan<byte> format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4254,13 +3804,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4269,7 +3819,37 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4305,7 +3885,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr1, flags);
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, pStep, pStepFast, pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -4320,7 +3900,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4356,7 +3936,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr1, (ImGuiInputTextFlags)(0));
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, pStep, pStepFast, pStr1, (ImGuiInputTextFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -4371,7 +3951,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, void* pStep, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4407,7 +3987,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, pStep, (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -4422,7 +4002,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4458,7 +4038,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr1, flags);
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)(default), (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -4473,13 +4053,115 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, void* pStep, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, pStep, (void*)(default), pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)(default), (void*)(default), pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4488,13 +4170,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4503,13 +4185,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, ReadOnlySpan<byte> format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4518,13 +4200,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4533,7 +4215,37 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -4554,7 +4266,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr0, flags);
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, pStepFast, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4566,7 +4278,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -4587,7 +4299,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4599,7 +4311,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -4620,7 +4332,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4632,7 +4344,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -4653,7 +4365,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr0, flags);
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4665,13 +4377,79 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, void* pStep, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)(default), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(in byte label, ImGuiDataType dataType, nint pData, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)(default), (void*)(default), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4680,13 +4458,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4695,13 +4473,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4710,13 +4488,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4725,7 +4503,37 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -4746,7 +4554,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr0, flags);
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, pStepFast, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4758,7 +4566,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, string format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, string format)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -4779,7 +4587,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4791,7 +4599,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, string format)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -4812,7 +4620,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4824,7 +4632,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pStep, string format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -4845,7 +4653,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = InputScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pStep, (void*)(default), pStr0, flags);
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4857,7 +4665,73 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pStep, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, pStep, (void*)(default), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputScalarNative((byte*)plabel, dataType, (void*)pData, (void*)(default), (void*)(default), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, in byte format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4878,7 +4752,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+				byte ret = InputScalarNative(pStr0, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4890,7 +4764,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, in byte format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4911,7 +4785,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(pStr0, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4923,7 +4797,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format)
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, void* pStep, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4944,7 +4818,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				byte ret = InputScalarNative(pStr0, dataType, (void*)pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4956,7 +4830,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, in byte format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4977,7 +4851,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, (void*)(default), (byte*)pformat, flags);
+				byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4989,7 +4863,73 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool InputScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, void* pStep, in byte format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNative(pStr0, dataType, (void*)pData, pStep, (void*)(default), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, in byte format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNative(pStr0, dataType, (void*)pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5010,7 +4950,73 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = InputScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pStep, pStepFast, (byte*)pformat, flags);
+				byte ret = InputScalarNative(pStr0, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNative(pStr0, dataType, (void*)pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputScalar(string label, ImGuiDataType dataType, nint pData, void* pStep, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNative(pStr0, dataType, (void*)pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);

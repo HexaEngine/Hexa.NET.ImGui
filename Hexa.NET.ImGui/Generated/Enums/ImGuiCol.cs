@@ -294,38 +294,43 @@ namespace Hexa.NET.ImGui
 		TreeLines = unchecked(54),
 
 		/// <summary>
-		/// Rectangle highlighting a drop target<br/>
+		/// Rectangle border highlighting a drop target<br/>
 		/// </summary>
 		DragDropTarget = unchecked(55),
 
 		/// <summary>
+		/// Rectangle background highlighting a drop target<br/>
+		/// </summary>
+		DragDropTargetBg = unchecked(56),
+
+		/// <summary>
 		/// Unsaved Document marker (in window title and tabs)<br/>
 		/// </summary>
-		UnsavedMarker = unchecked(56),
+		UnsavedMarker = unchecked(57),
 
 		/// <summary>
 		/// Color of keyboardgamepad navigation cursorrectangle, when visible<br/>
 		/// </summary>
-		NavCursor = unchecked(57),
+		NavCursor = unchecked(58),
 
 		/// <summary>
-		/// Highlight window when using CTRL+TAB<br/>
+		/// Highlight window when using Ctrl+Tab<br/>
 		/// </summary>
-		NavWindowingHighlight = unchecked(58),
+		NavWindowingHighlight = unchecked(59),
 
 		/// <summary>
-		/// Darkencolorize entire screen behind the CTRL+TAB window list, when active<br/>
+		/// Darkencolorize entire screen behind the Ctrl+Tab window list, when active<br/>
 		/// </summary>
-		NavWindowingDimBg = unchecked(59),
+		NavWindowingDimBg = unchecked(60),
 
 		/// <summary>
 		/// Darkencolorize entire screen behind a modal window, when one is active<br/>
 		/// </summary>
-		ModalWindowDimBg = unchecked(60),
+		ModalWindowDimBg = unchecked(61),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Count = unchecked(61),
+		Count = unchecked(62),
 	}
 }

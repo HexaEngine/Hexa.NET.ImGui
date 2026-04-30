@@ -21,7 +21,91 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, string overlayText, int stride)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -57,7 +141,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+			PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, graphSize);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -71,7 +155,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, int stride)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -107,7 +191,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+			PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -121,7 +205,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, float scaleMin, int stride)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -157,7 +241,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+			PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -171,7 +255,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, int stride)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -207,7 +291,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+			PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -221,7 +305,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize, int stride)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -257,7 +341,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), graphSize, stride);
+			PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -271,7 +355,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize, int stride)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -307,7 +391,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+			PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -321,7 +405,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, Vector2 graphSize, int stride)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin, float scaleMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -357,7 +441,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+			PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -371,7 +455,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize, int stride)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -407,7 +491,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), graphSize, stride);
+			PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), graphSize);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -421,7 +505,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -457,7 +541,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, graphSize, stride);
+			PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -471,13 +555,163 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), graphSize);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, graphSize);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize);
 				}
 			}
 		}
@@ -485,13 +719,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -499,13 +733,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -513,13 +747,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -527,13 +761,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -541,13 +775,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -555,13 +789,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -569,13 +803,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
 				}
 			}
 		}
@@ -583,13 +817,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 				}
 			}
 		}
@@ -597,13 +831,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 				}
 			}
 		}
@@ -611,13 +845,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
 				}
 			}
 		}
@@ -625,13 +859,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
 				}
 			}
 		}
@@ -639,175 +873,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -828,7 +894,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize, stride);
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -839,7 +905,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -860,7 +926,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -871,7 +937,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -892,7 +958,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -903,7 +969,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -924,7 +990,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -935,7 +1001,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, string overlayText)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -956,7 +1022,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -967,7 +1033,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, string overlayText)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -988,7 +1054,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -999,7 +1065,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, string overlayText, float scaleMin)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin, float scaleMax)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1020,7 +1086,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1031,7 +1097,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1052,7 +1118,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1063,7 +1129,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1084,7 +1150,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1095,7 +1161,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText, Vector2 graphSize)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1116,7 +1182,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1127,7 +1193,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, string overlayText, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1148,7 +1214,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1159,7 +1225,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1180,7 +1246,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1191,397 +1257,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, string overlayText, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, string overlayText, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, string overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, string overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(in byte label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* poverlayText = &overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize);
 				}
 			}
 		}
@@ -1589,13 +1271,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* poverlayText = &overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -1603,13 +1285,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* poverlayText = &overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -1617,13 +1299,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* poverlayText = &overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -1631,13 +1313,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, in byte overlayText)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, in byte overlayText)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* poverlayText = &overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -1645,13 +1327,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, in byte overlayText)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, in byte overlayText, float scaleMin)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* poverlayText = &overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -1659,13 +1341,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, in byte overlayText, float scaleMin)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, in byte overlayText, float scaleMin, float scaleMax)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* poverlayText = &overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -1673,13 +1355,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, in byte overlayText, float scaleMin, float scaleMax)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, Vector2 graphSize)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* poverlayText = &overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
 				}
 			}
 		}
@@ -1687,13 +1369,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, Vector2 graphSize)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText, Vector2 graphSize)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* poverlayText = &overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 				}
 			}
 		}
@@ -1701,13 +1383,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, in byte overlayText, Vector2 graphSize)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, in byte overlayText, Vector2 graphSize)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* poverlayText = &overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 				}
 			}
 		}
@@ -1715,13 +1397,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, in byte overlayText, Vector2 graphSize)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, in byte overlayText, float scaleMin, Vector2 graphSize)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* poverlayText = &overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
 				}
 			}
 		}
@@ -1729,13 +1411,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, in byte overlayText, float scaleMin, Vector2 graphSize)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* poverlayText = &overlayText)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
 				}
 			}
 		}
@@ -1743,175 +1425,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, in byte overlayText, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, in byte overlayText, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, in byte overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, in byte overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, in byte overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, in byte overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -1932,7 +1446,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize, stride);
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1943,7 +1457,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -1964,7 +1478,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1975,7 +1489,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -1996,7 +1510,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2007,7 +1521,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2028,7 +1542,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2039,7 +1553,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, string overlayText)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2060,7 +1574,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2071,7 +1585,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, string overlayText)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2092,7 +1606,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2103,7 +1617,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, string overlayText, float scaleMin)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin, float scaleMax)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2124,7 +1638,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2135,7 +1649,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2156,7 +1670,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2167,7 +1681,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2188,7 +1702,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2199,7 +1713,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText, Vector2 graphSize)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2220,7 +1734,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2231,7 +1745,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, string overlayText, Vector2 graphSize)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2252,7 +1766,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2263,7 +1777,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2284,7 +1798,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2295,391 +1809,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, string overlayText, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, string overlayText, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, string overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, string overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(ReadOnlySpan<byte> label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2700,7 +1830,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2711,7 +1841,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2732,7 +1862,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2743,7 +1873,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2764,7 +1894,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2775,7 +1905,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2796,7 +1926,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2807,7 +1937,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, in byte overlayText)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, in byte overlayText)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2828,7 +1958,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2839,7 +1969,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, in byte overlayText)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, in byte overlayText, float scaleMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2860,7 +1990,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2871,7 +2001,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, in byte overlayText, float scaleMin)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, in byte overlayText, float scaleMin, float scaleMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2892,7 +2022,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2903,7 +2033,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, in byte overlayText, float scaleMin, float scaleMax)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2924,7 +2054,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2935,7 +2065,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, Vector2 graphSize)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, in byte overlayText, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2956,7 +2086,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2967,7 +2097,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, in byte overlayText, Vector2 graphSize)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, in byte overlayText, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2988,7 +2118,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2999,7 +2129,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, in byte overlayText, Vector2 graphSize)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, in byte overlayText, float scaleMin, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3020,7 +2150,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3031,7 +2161,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, in byte overlayText, float scaleMin, Vector2 graphSize)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3052,7 +2182,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3063,7 +2193,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3082,364 +2212,990 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, void* data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, int stride)
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, int stride)
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, in byte overlayText, int stride)
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, in byte overlayText, int stride)
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, in byte overlayText, float scaleMin, int stride)
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, int stride)
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin, float scaleMax)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, Vector2 graphSize, int stride)
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, Vector2 graphSize)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, in byte overlayText, Vector2 graphSize, int stride)
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, Vector2 graphSize)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, in byte overlayText, Vector2 graphSize, int stride)
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, Vector2 graphSize)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, in byte overlayText, float scaleMin, Vector2 graphSize, int stride)
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin, Vector2 graphSize)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
 			fixed (byte* poverlayText = &overlayText)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* poverlayText = overlayText)
+			{
+				PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlayText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlayText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlayText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlayText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlayText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlayText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin, float scaleMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlayText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlayText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), graphSize);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlayText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlayText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlayText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(byte* label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlayText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLinesNative(label, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize);
 				}
 			}
 		}
@@ -3447,7 +3203,329 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3466,20 +3544,38 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* poverlayText = overlayText)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, graphSize);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3498,20 +3594,38 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* poverlayText = overlayText)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3530,20 +3644,38 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* poverlayText = overlayText)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3562,20 +3694,38 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* poverlayText = overlayText)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3594,20 +3744,38 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* poverlayText = overlayText)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3626,20 +3794,38 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* poverlayText = overlayText)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin, float scaleMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3658,20 +3844,38 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* poverlayText = overlayText)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3690,20 +3894,38 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* poverlayText = overlayText)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), graphSize);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3722,20 +3944,38 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* poverlayText = overlayText)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3754,20 +3994,38 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* poverlayText = overlayText)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3786,20 +4044,38 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* poverlayText = overlayText)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), graphSize);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		public static void PlotLines(string label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3818,746 +4094,44 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* poverlayText = overlayText)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
 			}
-			fixed (byte* poverlayText = overlayText)
+			PlotLinesNative(pStr0, valuesGetter, (void*)data, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, graphSize);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, int stride)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* poverlayText = overlayText)
-			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* poverlayText = overlayText)
-			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* poverlayText = overlayText)
-			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* poverlayText = overlayText)
-			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* poverlayText = overlayText)
-			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* poverlayText = overlayText)
-			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* poverlayText = overlayText)
-			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* poverlayText = overlayText)
-			{
-				PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* poverlayText = overlayText)
-			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* poverlayText = overlayText)
-			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(string label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* poverlayText = overlayText)
-			{
-				PlotHistogramNative(pStr0, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, in byte overlayText)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, in byte overlayText)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, in byte overlayText, float scaleMin)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, in byte overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, in byte overlayText, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, in byte overlayText, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, in byte overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, in byte overlayText, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, in byte overlayText, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, in byte overlayText, float scaleMin, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, in byte overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, in byte overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, in byte overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize);
 				}
 			}
 		}
@@ -4565,13 +4139,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -4579,13 +4153,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -4593,13 +4167,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -4607,13 +4181,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -4621,13 +4195,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, ReadOnlySpan<byte> overlayText)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -4635,13 +4209,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				}
 			}
 		}
@@ -4649,13 +4223,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
 				}
 			}
 		}
@@ -4663,13 +4237,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 				}
 			}
 		}
@@ -4677,13 +4251,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
 				}
 			}
 		}
@@ -4691,13 +4265,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
 				}
 			}
 		}
@@ -4705,13 +4279,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				fixed (byte* poverlayText = overlayText)
 				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
 				}
 			}
 		}
@@ -4719,177 +4293,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, ReadOnlySpan<byte> overlayText, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -4908,7 +4314,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize, stride);
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4919,9 +4325,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -4940,7 +4346,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4951,9 +4357,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -4972,7 +4378,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4983,9 +4389,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -5004,7 +4410,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5015,9 +4421,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHistogram(byte* label, in float values, int valuesCount, int valuesOffset, string overlayText)
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabel = &label)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -5036,7 +4442,591 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(in byte label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, in byte overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, in byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, int valuesOffset, string overlayText)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLines(ReadOnlySpan<byte> label, delegate*<void*, int, float> valuesGetter, nint data, int valuesCount, string overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative((byte*)plabel, valuesGetter, (void*)data, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);

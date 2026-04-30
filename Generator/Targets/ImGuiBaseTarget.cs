@@ -66,7 +66,6 @@
 
         protected virtual void OnSetup(GeneratorBuilder builder)
         {
-
         }
     }
 }

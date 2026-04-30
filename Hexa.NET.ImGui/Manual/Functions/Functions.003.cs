@@ -1262,9 +1262,9 @@ namespace Hexa.NET.ImGui
 		internal static byte InputTextWithHintNative(byte* label, byte* hint, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, nuint, ImGuiInputTextFlags, delegate*<ImGuiInputTextCallbackData*, int>, void*, byte>)funcTable[1538])(label, hint, buf, bufSize, flags, callback, userData);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, nuint, ImGuiInputTextFlags, delegate*<ImGuiInputTextCallbackData*, int>, void*, byte>)funcTable[1543])(label, hint, buf, bufSize, flags, callback, userData);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nuint, ImGuiInputTextFlags, nint, nint, byte>)funcTable[1538])((nint)label, (nint)hint, (nint)buf, bufSize, flags, (nint)callback, (nint)userData);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nuint, ImGuiInputTextFlags, nint, nint, byte>)funcTable[1543])((nint)label, (nint)hint, (nint)buf, bufSize, flags, (nint)callback, (nint)userData);
 			#endif
 		}
 

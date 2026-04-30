@@ -25,31 +25,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int LastActiveFrame;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public int StackLevel;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public uint QueryMainId;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImVector<ImGuiStackLevelInfo> Results;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte QueryHookActive;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public byte OptHexEncodeNonAsciiChars;
 
 		/// <summary>
@@ -60,34 +35,23 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public int LastActiveFrame;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public float CopyToClipboardLastTime;
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImGuiTextBuffer ResultPathsBuf;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiTextBuffer ResultTempBuf;
-
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe ImGuiIDStackTool(int lastActiveFrame = default, int stackLevel = default, uint queryMainId = default, ImVector<ImGuiStackLevelInfo> results = default, bool queryHookActive = default, bool optHexEncodeNonAsciiChars = default, bool optCopyToClipboardOnCtrlC = default, float copyToClipboardLastTime = default, ImGuiTextBuffer resultPathsBuf = default, ImGuiTextBuffer resultTempBuf = default)
+		public unsafe ImGuiIDStackTool(bool optHexEncodeNonAsciiChars = default, bool optCopyToClipboardOnCtrlC = default, int lastActiveFrame = default, float copyToClipboardLastTime = default)
 		{
-			LastActiveFrame = lastActiveFrame;
-			StackLevel = stackLevel;
-			QueryMainId = queryMainId;
-			Results = results;
-			QueryHookActive = queryHookActive ? (byte)1 : (byte)0;
 			OptHexEncodeNonAsciiChars = optHexEncodeNonAsciiChars ? (byte)1 : (byte)0;
 			OptCopyToClipboardOnCtrlC = optCopyToClipboardOnCtrlC ? (byte)1 : (byte)0;
+			LastActiveFrame = lastActiveFrame;
 			CopyToClipboardLastTime = copyToClipboardLastTime;
-			ResultPathsBuf = resultPathsBuf;
-			ResultTempBuf = resultTempBuf;
 		}
 
 
@@ -137,26 +101,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int LastActiveFrame => ref Unsafe.AsRef<int>(&Handle->LastActiveFrame);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref int StackLevel => ref Unsafe.AsRef<int>(&Handle->StackLevel);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref uint QueryMainId => ref Unsafe.AsRef<uint>(&Handle->QueryMainId);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref ImVector<ImGuiStackLevelInfo> Results => ref Unsafe.AsRef<ImVector<ImGuiStackLevelInfo>>(&Handle->Results);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref bool QueryHookActive => ref Unsafe.AsRef<bool>(&Handle->QueryHookActive);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public ref bool OptHexEncodeNonAsciiChars => ref Unsafe.AsRef<bool>(&Handle->OptHexEncodeNonAsciiChars);
 		/// <summary>
 		/// To be documented.
@@ -165,15 +109,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref int LastActiveFrame => ref Unsafe.AsRef<int>(&Handle->LastActiveFrame);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ref float CopyToClipboardLastTime => ref Unsafe.AsRef<float>(&Handle->CopyToClipboardLastTime);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref ImGuiTextBuffer ResultPathsBuf => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->ResultPathsBuf);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref ImGuiTextBuffer ResultTempBuf => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->ResultTempBuf);
 	}
 
 }

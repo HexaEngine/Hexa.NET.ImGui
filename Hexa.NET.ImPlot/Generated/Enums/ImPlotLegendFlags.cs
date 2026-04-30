@@ -59,5 +59,10 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		Sort = unchecked(64),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		Reverse = unchecked(128),
 	}
 }

@@ -22,134 +22,6 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in float values, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				PlotStemsNative(pStr0, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(string labelId, in float values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				PlotStemsNative(pStr0, (float*)pvalues, count, reference, scale, (double)(0), flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(string labelId, in float values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				PlotStemsNative(pStr0, (float*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(string labelId, in float values, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				PlotStemsNative(pStr0, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PlotStemsNative(byte* labelId, double* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
 		{
@@ -5025,6 +4897,132 @@ namespace Hexa.NET.ImPlot
 				fixed (sbyte* pvalues = &values)
 				{
 					PlotStemsNative((byte*)plabelId, (sbyte*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(in byte labelId, in sbyte values, int count, double reference, double scale)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (sbyte*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(in byte labelId, in sbyte values, int count, double reference)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (sbyte*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(in byte labelId, in sbyte values, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (sbyte*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(in byte labelId, in sbyte values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (sbyte*)pvalues, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(in byte labelId, in sbyte values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (sbyte*)pvalues, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(in byte labelId, in sbyte values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (sbyte*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(in byte labelId, in sbyte values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (sbyte*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(in byte labelId, in sbyte values, int count, double reference, double scale, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (sbyte*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(in byte labelId, in sbyte values, int count, double reference, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (sbyte*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(sbyte)));
 				}
 			}
 		}

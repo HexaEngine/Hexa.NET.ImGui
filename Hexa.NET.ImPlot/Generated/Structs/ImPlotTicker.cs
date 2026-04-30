@@ -65,11 +65,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, byte* label)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, byte* label)
 		{
 			fixed (ImPlotTicker* @this = &this)
 			{
-				ImPlotTickPtr ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, label);
+				ImPlotTickC* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, label);
 				return ret;
 			}
 		}
@@ -77,13 +77,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, in byte label)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, in byte label)
 		{
 			fixed (ImPlotTicker* @this = &this)
 			{
 				fixed (byte* plabel = &label)
 				{
-					ImPlotTickPtr ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
+					ImPlotTickC* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
 					return ret;
 				}
 			}
@@ -92,13 +92,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, ReadOnlySpan<byte> label)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, ReadOnlySpan<byte> label)
 		{
 			fixed (ImPlotTicker* @this = &this)
 			{
 				fixed (byte* plabel = label)
 				{
-					ImPlotTickPtr ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
+					ImPlotTickC* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
 					return ret;
 				}
 			}
@@ -107,7 +107,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, string label)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, string label)
 		{
 			fixed (ImPlotTicker* @this = &this)
 			{
@@ -128,7 +128,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImPlotTickPtr ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, pStr0);
+				ImPlotTickC* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -140,11 +140,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, delegate*<double, byte*, int, void*, int> formatter, void* data)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, delegate*<double, byte*, int, void*, int> formatter, void* data)
 		{
 			fixed (ImPlotTicker* @this = &this)
 			{
-				ImPlotTickPtr ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
+				ImPlotTickC* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
 				return ret;
 			}
 		}
@@ -152,11 +152,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
 		{
 			fixed (ImPlotTicker* @this = &this)
 			{
-				ImPlotTickPtr ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
+				ImPlotTickC* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
 				return ret;
 			}
 		}
@@ -164,11 +164,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, delegate*<double, byte*, int, void*, int> formatter, nint data)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, delegate*<double, byte*, int, void*, int> formatter, nint data)
 		{
 			fixed (ImPlotTicker* @this = &this)
 			{
-				ImPlotTickPtr ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, (void*)data);
+				ImPlotTickC* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, (void*)data);
 				return ret;
 			}
 		}
@@ -176,11 +176,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, nint data)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, nint data)
 		{
 			fixed (ImPlotTicker* @this = &this)
 			{
-				ImPlotTickPtr ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), (void*)data);
+				ImPlotTickC* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), (void*)data);
 				return ret;
 			}
 		}
@@ -188,11 +188,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(ImPlotTick tick)
+		public unsafe ImPlotTickC* AddTick(ImPlotTickC tick)
 		{
 			fixed (ImPlotTicker* @this = &this)
 			{
-				ImPlotTickPtr ret = ImPlot.AddTickNative(@this, tick);
+				ImPlotTickC* ret = ImPlot.AddTickNative(@this, tick);
 				return ret;
 			}
 		}
@@ -235,7 +235,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* GetText(ImPlotTick tick)
+		public unsafe byte* GetText(ImPlotTickC tick)
 		{
 			fixed (ImPlotTicker* @this = &this)
 			{
@@ -247,7 +247,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string GetTextS(ImPlotTick tick)
+		public unsafe string GetTextS(ImPlotTickC tick)
 		{
 			fixed (ImPlotTicker* @this = &this)
 			{
@@ -356,20 +356,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, byte* label)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, byte* label)
 		{
-			ImPlotTickPtr ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, label);
+			ImPlotTickC* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, label);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, in byte label)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, in byte label)
 		{
 			fixed (byte* plabel = &label)
 			{
-				ImPlotTickPtr ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
+				ImPlotTickC* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
 				return ret;
 			}
 		}
@@ -377,11 +377,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, ReadOnlySpan<byte> label)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, ReadOnlySpan<byte> label)
 		{
 			fixed (byte* plabel = label)
 			{
-				ImPlotTickPtr ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
+				ImPlotTickC* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
 				return ret;
 			}
 		}
@@ -389,7 +389,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, string label)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, string label)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -408,7 +408,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImPlotTickPtr ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, pStr0);
+			ImPlotTickC* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -419,45 +419,45 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, delegate*<double, byte*, int, void*, int> formatter, void* data)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, delegate*<double, byte*, int, void*, int> formatter, void* data)
 		{
-			ImPlotTickPtr ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
+			ImPlotTickC* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
 		{
-			ImPlotTickPtr ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
+			ImPlotTickC* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, delegate*<double, byte*, int, void*, int> formatter, nint data)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, delegate*<double, byte*, int, void*, int> formatter, nint data)
 		{
-			ImPlotTickPtr ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, (void*)data);
+			ImPlotTickC* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, (void*)data);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, nint data)
+		public unsafe ImPlotTickC* AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, nint data)
 		{
-			ImPlotTickPtr ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), (void*)data);
+			ImPlotTickC* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), (void*)data);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickPtr AddTick(ImPlotTick tick)
+		public unsafe ImPlotTickC* AddTick(ImPlotTickC tick)
 		{
-			ImPlotTickPtr ret = ImPlot.AddTickNative(Handle, tick);
+			ImPlotTickC* ret = ImPlot.AddTickNative(Handle, tick);
 			return ret;
 		}
 
@@ -490,7 +490,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* GetText(ImPlotTick tick)
+		public unsafe byte* GetText(ImPlotTickC tick)
 		{
 			byte* ret = ImPlot.GetTextNative(Handle, tick);
 			return ret;
@@ -499,7 +499,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string GetTextS(ImPlotTick tick)
+		public unsafe string GetTextS(ImPlotTickC tick)
 		{
 			string ret = Utils.DecodeStringUTF8(ImPlot.GetTextNative(Handle, tick));
 			return ret;

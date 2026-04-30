@@ -29,6 +29,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public uint WindowID;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public int TableIndex;
 
 		/// <summary>
@@ -100,8 +105,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTableTempData(int tableIndex = default, float lastTimeActive = default, float angledHeadersExtraWidth = default, ImVector<ImGuiTableHeaderData> angledHeadersRequests = default, Vector2 userOuterSize = default, ImDrawListSplitter drawSplitter = default, ImRect hostBackupWorkRect = default, ImRect hostBackupParentWorkRect = default, Vector2 hostBackupPrevLineSize = default, Vector2 hostBackupCurrLineSize = default, Vector2 hostBackupCursorMaxPos = default, ImVec1 hostBackupColumnsOffset = default, float hostBackupItemWidth = default, int hostBackupItemWidthStackSize = default)
+		public unsafe ImGuiTableTempData(uint windowId = default, int tableIndex = default, float lastTimeActive = default, float angledHeadersExtraWidth = default, ImVector<ImGuiTableHeaderData> angledHeadersRequests = default, Vector2 userOuterSize = default, ImDrawListSplitter drawSplitter = default, ImRect hostBackupWorkRect = default, ImRect hostBackupParentWorkRect = default, Vector2 hostBackupPrevLineSize = default, Vector2 hostBackupCurrLineSize = default, Vector2 hostBackupCursorMaxPos = default, ImVec1 hostBackupColumnsOffset = default, float hostBackupItemWidth = default, int hostBackupItemWidthStackSize = default)
 		{
+			WindowID = windowId;
 			TableIndex = tableIndex;
 			LastTimeActive = lastTimeActive;
 			AngledHeadersExtraWidth = angledHeadersExtraWidth;
@@ -162,6 +168,10 @@ namespace Hexa.NET.ImGui
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTableTempDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref uint WindowID => ref Unsafe.AsRef<uint>(&Handle->WindowID);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

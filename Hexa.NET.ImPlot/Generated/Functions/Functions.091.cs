@@ -22,108 +22,6 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in uint xs, in uint ys, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					fixed (uint* pys = &ys)
-					{
-						PlotStemsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in uint xs, in uint ys, int count, ImPlotStemsFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					fixed (uint* pys = &ys)
-					{
-						PlotStemsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in uint xs, in uint ys, int count, double reference, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					fixed (uint* pys = &ys)
-					{
-						PlotStemsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in uint xs, in uint ys, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					fixed (uint* pys = &ys)
-					{
-						PlotStemsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in uint xs, in uint ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					fixed (uint* pys = &ys)
-					{
-						PlotStemsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, (double)(0), flags, offset, (int)(sizeof(uint)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in uint xs, in uint ys, int count, double reference, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					fixed (uint* pys = &ys)
-					{
-						PlotStemsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static void PlotStems(ReadOnlySpan<byte> labelId, in uint xs, in uint ys, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = labelId)
@@ -5027,6 +4925,104 @@ namespace Hexa.NET.ImPlot
 				fixed (ulong* pxs = &xs)
 				{
 					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, flags, offset, (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, double reference)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, double reference, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
 				}
 			}
 		}

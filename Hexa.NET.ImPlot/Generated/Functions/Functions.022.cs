@@ -22,230 +22,6 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairs(string labelId, in ulong values, int count, ImPlotStairsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pvalues = &values)
-			{
-				PlotStairsNative(pStr0, (ulong*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(string labelId, in ulong values, int count, double xscale, double xstart, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pvalues = &values)
-			{
-				PlotStairsNative(pStr0, (ulong*)pvalues, count, xscale, xstart, (ImPlotStairsFlags)(0), offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(string labelId, in ulong values, int count, double xscale, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pvalues = &values)
-			{
-				PlotStairsNative(pStr0, (ulong*)pvalues, count, xscale, (double)(0), (ImPlotStairsFlags)(0), offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(string labelId, in ulong values, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pvalues = &values)
-			{
-				PlotStairsNative(pStr0, (ulong*)pvalues, count, (double)(1), (double)(0), (ImPlotStairsFlags)(0), offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(string labelId, in ulong values, int count, double xscale, ImPlotStairsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pvalues = &values)
-			{
-				PlotStairsNative(pStr0, (ulong*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(string labelId, in ulong values, int count, ImPlotStairsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pvalues = &values)
-			{
-				PlotStairsNative(pStr0, (ulong*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(string labelId, in ulong values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pvalues = &values)
-			{
-				PlotStairsNative(pStr0, (ulong*)pvalues, count, xscale, xstart, (ImPlotStairsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static void PlotStairs(string labelId, in ulong values, int count, double xscale, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -5020,6 +4796,226 @@ namespace Hexa.NET.ImPlot
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(byte* labelId, in sbyte xs, in sbyte ys, int count, ImPlotStairsFlags flags, int offset, int stride)
+		{
+			fixed (sbyte* pxs = &xs)
+			{
+				fixed (sbyte* pys = &ys)
+				{
+					PlotStairsNative(labelId, (sbyte*)pxs, (sbyte*)pys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(byte* labelId, in sbyte xs, in sbyte ys, int count, ImPlotStairsFlags flags, int offset)
+		{
+			fixed (sbyte* pxs = &xs)
+			{
+				fixed (sbyte* pys = &ys)
+				{
+					PlotStairsNative(labelId, (sbyte*)pxs, (sbyte*)pys, count, flags, offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(byte* labelId, in sbyte xs, in sbyte ys, int count, ImPlotStairsFlags flags)
+		{
+			fixed (sbyte* pxs = &xs)
+			{
+				fixed (sbyte* pys = &ys)
+				{
+					PlotStairsNative(labelId, (sbyte*)pxs, (sbyte*)pys, count, flags, (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(byte* labelId, in sbyte xs, in sbyte ys, int count)
+		{
+			fixed (sbyte* pxs = &xs)
+			{
+				fixed (sbyte* pys = &ys)
+				{
+					PlotStairsNative(labelId, (sbyte*)pxs, (sbyte*)pys, count, (ImPlotStairsFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(byte* labelId, in sbyte xs, in sbyte ys, int count, int offset)
+		{
+			fixed (sbyte* pxs = &xs)
+			{
+				fixed (sbyte* pys = &ys)
+				{
+					PlotStairsNative(labelId, (sbyte*)pxs, (sbyte*)pys, count, (ImPlotStairsFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(byte* labelId, in sbyte xs, in sbyte ys, int count, int offset, int stride)
+		{
+			fixed (sbyte* pxs = &xs)
+			{
+				fixed (sbyte* pys = &ys)
+				{
+					PlotStairsNative(labelId, (sbyte*)pxs, (sbyte*)pys, count, (ImPlotStairsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in sbyte xs, in sbyte ys, int count, ImPlotStairsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotStairsNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in sbyte xs, in sbyte ys, int count, ImPlotStairsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotStairsNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, count, flags, offset, (int)(sizeof(sbyte)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in sbyte xs, in sbyte ys, int count, ImPlotStairsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotStairsNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, count, flags, (int)(0), (int)(sizeof(sbyte)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in sbyte xs, in sbyte ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotStairsNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, count, (ImPlotStairsFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in sbyte xs, in sbyte ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotStairsNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, count, (ImPlotStairsFlags)(0), offset, (int)(sizeof(sbyte)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(in byte labelId, in sbyte xs, in sbyte ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotStairsNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, count, (ImPlotStairsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(ReadOnlySpan<byte> labelId, in sbyte xs, in sbyte ys, int count, ImPlotStairsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotStairsNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotStairs(ReadOnlySpan<byte> labelId, in sbyte xs, in sbyte ys, int count, ImPlotStairsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotStairsNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, count, flags, offset, (int)(sizeof(sbyte)));
+					}
 				}
 			}
 		}

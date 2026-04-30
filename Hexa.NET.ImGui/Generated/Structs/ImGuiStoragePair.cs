@@ -26,7 +26,7 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[StructLayout(LayoutKind.Explicit)]
-		public partial struct ImGuiStoragePairUnion
+		public partial struct ImGuiStoragePairAnonymous
 		{
 			/// <summary>
 			/// To be documented.
@@ -50,7 +50,7 @@ namespace Hexa.NET.ImGui
 			/// <summary>
 			/// To be documented.
 			/// </summary>
-			public unsafe ImGuiStoragePairUnion(int valI = default, float valF = default, void* valP = default)
+			public unsafe ImGuiStoragePairAnonymous(int valI = default, float valF = default, void* valP = default)
 			{
 				ValI = valI;
 				ValF = valF;
@@ -68,13 +68,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiStoragePairUnion Union;
+		public ImGuiStoragePairAnonymous Union;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiStoragePair(uint key = default, ImGuiStoragePairUnion union = default)
+		public unsafe ImGuiStoragePair(uint key = default, ImGuiStoragePairAnonymous union = default)
 		{
 			Key = key;
 			Union = union;
@@ -142,7 +142,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiStoragePair.ImGuiStoragePairUnion Union => ref Unsafe.AsRef<ImGuiStoragePair.ImGuiStoragePairUnion>(&Handle->Union);
+		public ref ImGuiStoragePair.ImGuiStoragePairAnonymous Union => ref Unsafe.AsRef<ImGuiStoragePair.ImGuiStoragePairAnonymous>(&Handle->Union);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

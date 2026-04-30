@@ -22,218 +22,6 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairs(ReadOnlySpan<byte> labelId, long* xs, in long ys, int count, ImPlotStairsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStairsNative((byte*)plabelId, xs, (long*)pys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(ReadOnlySpan<byte> labelId, long* xs, in long ys, int count, ImPlotStairsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStairsNative((byte*)plabelId, xs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(ReadOnlySpan<byte> labelId, long* xs, in long ys, int count, ImPlotStairsFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStairsNative((byte*)plabelId, xs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(ReadOnlySpan<byte> labelId, long* xs, in long ys, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStairsNative((byte*)plabelId, xs, (long*)pys, count, (ImPlotStairsFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(ReadOnlySpan<byte> labelId, long* xs, in long ys, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStairsNative((byte*)plabelId, xs, (long*)pys, count, (ImPlotStairsFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(ReadOnlySpan<byte> labelId, long* xs, in long ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStairsNative((byte*)plabelId, xs, (long*)pys, count, (ImPlotStairsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(string labelId, long* xs, in long ys, int count, ImPlotStairsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotStairsNative(pStr0, xs, (long*)pys, count, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(string labelId, long* xs, in long ys, int count, ImPlotStairsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotStairsNative(pStr0, xs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(string labelId, long* xs, in long ys, int count, ImPlotStairsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotStairsNative(pStr0, xs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStairs(string labelId, long* xs, in long ys, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotStairsNative(pStr0, xs, (long*)pys, count, (ImPlotStairsFlags)(0), (int)(0), (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static void PlotStairs(string labelId, long* xs, in long ys, int count, int offset)
 		{
 			byte* pStr0 = null;
@@ -2514,10 +2302,10 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotStairsGNative(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, ImPlotStairsFlags flags)
+		internal static void PlotStairsGNative(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, ImPlotStairsFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, delegate*<void*, int, ImPlotPoint*, void*>, void*, int, ImPlotStairsFlags, void>)funcTable[116])(labelId, getter, data, count, flags);
+			((delegate* unmanaged[Cdecl]<byte*, delegate*<void*, int, ImPlotPointC*, void*>, void*, int, ImPlotStairsFlags, void>)funcTable[116])(labelId, getter, data, count, flags);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotStairsFlags, void>)funcTable[116])((nint)labelId, (nint)getter, (nint)data, count, flags);
 			#endif
@@ -2526,7 +2314,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, ImPlotStairsFlags flags)
+		public static void PlotStairsG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, ImPlotStairsFlags flags)
 		{
 			PlotStairsGNative(labelId, getter, data, count, flags);
 		}
@@ -2534,7 +2322,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count)
+		public static void PlotStairsG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count)
 		{
 			PlotStairsGNative(labelId, getter, data, count, (ImPlotStairsFlags)(0));
 		}
@@ -2542,7 +2330,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, ImPlotStairsFlags flags)
+		public static void PlotStairsG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, ImPlotStairsFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2553,7 +2341,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count)
+		public static void PlotStairsG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2564,7 +2352,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, ImPlotStairsFlags flags)
+		public static void PlotStairsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, ImPlotStairsFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2575,7 +2363,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count)
+		public static void PlotStairsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2586,7 +2374,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, ImPlotStairsFlags flags)
+		public static void PlotStairsG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, ImPlotStairsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2615,7 +2403,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count)
+		public static void PlotStairsG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2646,7 +2434,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotStairsG(byte* labelId, ImPlotPointGetter getter, void* data, int count, ImPlotStairsFlags flags)
 		{
-			PlotStairsGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
+			PlotStairsGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
 		}
 
 		/// <summary>
@@ -2654,7 +2442,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotStairsG(byte* labelId, ImPlotPointGetter getter, void* data, int count)
 		{
-			PlotStairsGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotStairsFlags)(0));
+			PlotStairsGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotStairsFlags)(0));
 		}
 
 		/// <summary>
@@ -2664,7 +2452,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
+				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
 			}
 		}
 
@@ -2675,7 +2463,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotStairsFlags)(0));
+				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotStairsFlags)(0));
 			}
 		}
 
@@ -2686,7 +2474,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
+				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
 			}
 		}
 
@@ -2697,7 +2485,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotStairsFlags)(0));
+				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotStairsFlags)(0));
 			}
 		}
 
@@ -2723,7 +2511,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotStairsGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
+			PlotStairsGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2752,7 +2540,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotStairsGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotStairsFlags)(0));
+			PlotStairsGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotStairsFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2762,7 +2550,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, ImPlotStairsFlags flags)
+		public static void PlotStairsG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, ImPlotStairsFlags flags)
 		{
 			PlotStairsGNative(labelId, getter, (void*)data, count, flags);
 		}
@@ -2770,7 +2558,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count)
+		public static void PlotStairsG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count)
 		{
 			PlotStairsGNative(labelId, getter, (void*)data, count, (ImPlotStairsFlags)(0));
 		}
@@ -2778,7 +2566,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, ImPlotStairsFlags flags)
+		public static void PlotStairsG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, ImPlotStairsFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2789,7 +2577,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count)
+		public static void PlotStairsG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2800,7 +2588,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, ImPlotStairsFlags flags)
+		public static void PlotStairsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, ImPlotStairsFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2811,7 +2599,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count)
+		public static void PlotStairsG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2822,7 +2610,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, ImPlotStairsFlags flags)
+		public static void PlotStairsG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, ImPlotStairsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2851,7 +2639,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStairsG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count)
+		public static void PlotStairsG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2882,7 +2670,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotStairsG(byte* labelId, ImPlotPointGetter getter, nint data, int count, ImPlotStairsFlags flags)
 		{
-			PlotStairsGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
+			PlotStairsGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
 		}
 
 		/// <summary>
@@ -2890,7 +2678,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotStairsG(byte* labelId, ImPlotPointGetter getter, nint data, int count)
 		{
-			PlotStairsGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotStairsFlags)(0));
+			PlotStairsGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotStairsFlags)(0));
 		}
 
 		/// <summary>
@@ -2900,7 +2688,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
+				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
 			}
 		}
 
@@ -2911,7 +2699,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotStairsFlags)(0));
+				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotStairsFlags)(0));
 			}
 		}
 
@@ -2922,7 +2710,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
+				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
 			}
 		}
 
@@ -2933,7 +2721,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotStairsFlags)(0));
+				PlotStairsGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotStairsFlags)(0));
 			}
 		}
 
@@ -2959,7 +2747,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotStairsGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
+			PlotStairsGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2988,7 +2776,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotStairsGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotStairsFlags)(0));
+			PlotStairsGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotStairsFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -5020,6 +4808,216 @@ namespace Hexa.NET.ImPlot
 				fixed (float* pvalues = &values)
 				{
 					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ReadOnlySpan<byte> labelId, in float values, int count, double yref, double xscale, double xstart, ImPlotShadedFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, yref, xscale, xstart, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ReadOnlySpan<byte> labelId, in float values, int count, double yref, double xscale, double xstart, ImPlotShadedFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, yref, xscale, xstart, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ReadOnlySpan<byte> labelId, in float values, int count, double yref, double xscale, double xstart, ImPlotShadedFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, yref, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ReadOnlySpan<byte> labelId, in float values, int count, double yref, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, yref, xscale, xstart, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ReadOnlySpan<byte> labelId, in float values, int count, double yref, double xscale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, yref, xscale, (double)(0), (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ReadOnlySpan<byte> labelId, in float values, int count, double yref)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, yref, (double)(1), (double)(0), (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ReadOnlySpan<byte> labelId, in float values, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ReadOnlySpan<byte> labelId, in float values, int count, double yref, double xscale, ImPlotShadedFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, yref, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ReadOnlySpan<byte> labelId, in float values, int count, double yref, ImPlotShadedFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, yref, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ReadOnlySpan<byte> labelId, in float values, int count, ImPlotShadedFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ReadOnlySpan<byte> labelId, in float values, int count, double yref, double xscale, double xstart, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, yref, xscale, xstart, (ImPlotShadedFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ReadOnlySpan<byte> labelId, in float values, int count, double yref, double xscale, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, yref, xscale, (double)(0), (ImPlotShadedFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ReadOnlySpan<byte> labelId, in float values, int count, double yref, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, yref, (double)(1), (double)(0), (ImPlotShadedFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ReadOnlySpan<byte> labelId, in float values, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotShadedFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShaded(ReadOnlySpan<byte> labelId, in float values, int count, double yref, double xscale, ImPlotShadedFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotShadedNative((byte*)plabelId, (float*)pvalues, count, yref, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
 				}
 			}
 		}

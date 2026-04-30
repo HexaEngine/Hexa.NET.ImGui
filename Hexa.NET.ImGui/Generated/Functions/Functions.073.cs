@@ -21,9 +21,1785 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(byte* label, ref int v, int vMin, int vMax, string format)
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax)
 		{
-			fixed (int* pv = &v)
+			fixed (float* pvRad = &vRad)
+			{
+				bool ret = SliderAngle(label, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", (ImGuiSliderFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				bool ret = SliderAngle(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				bool ret = SliderAngle(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, byte* format)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, byte* format)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, ImGuiSliderFlags flags)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				bool ret = SliderAngle(label, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, ImGuiSliderFlags flags)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				bool ret = SliderAngle(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, ImGuiSliderFlags flags)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				bool ret = SliderAngle(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, format, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", (ImGuiSliderFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, format, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", (ImGuiSliderFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					bool ret = SliderAngle((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax, byte* format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, format, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, format, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				bool ret = SliderAngle(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				bool ret = SliderAngle(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				bool ret = SliderAngle(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				bool ret = SliderAngle(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, (string)"%.0f deg", flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				bool ret = SliderAngle(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), (string)"%.0f deg", flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				bool ret = SliderAngle(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (string)"%.0f deg", flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, byte* format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), format, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, byte* format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), format, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, in byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, in byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = SliderAngleNative(label, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = SliderAngleNative(label, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = SliderAngleNative(label, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = SliderAngleNative(label, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = SliderAngleNative(label, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderAngleNative(label, vRad, vDegreesMin, vDegreesMax, pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, float vDegreesMax, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderAngleNative(label, vRad, vDegreesMin, vDegreesMax, pStr0, (ImGuiSliderFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderAngleNative(label, vRad, vDegreesMin, (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderAngleNative(label, vRad, (float)(-360.0f), (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderAngleNative(label, vRad, vDegreesMin, (float)(+360.0f), pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, float* vRad, string format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderAngleNative(label, vRad, (float)(-360.0f), (float)(+360.0f), pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, in byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, in byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, vDegreesMax, pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, vDegreesMax, pStr1, (ImGuiSliderFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, (float)(+360.0f), pStr1, (ImGuiSliderFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = SliderAngleNative(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), pStr1, (ImGuiSliderFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, (float)(+360.0f), pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, string format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = SliderAngleNative(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -42,7 +1818,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderInt4Native(label, (int*)pv, vMin, vMax, pStr0, (ImGuiSliderFlags)(0));
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -54,13 +1830,178 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(byte* label, ref int v, int vMin, int vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, float vDegreesMax, string format)
 		{
-			fixed (int* pv = &v)
+			fixed (byte* plabel = &label)
 			{
-				fixed (byte* pformat = format)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
 				{
-					byte ret = SliderInt4Native(label, (int*)pv, vMin, vMax, (byte*)pformat, flags);
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, pStr0, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, string format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, string format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, float* vRad, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -69,13 +2010,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(byte* label, ref int v, int vMin, int vMax, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format)
 		{
-			fixed (int* pv = &v)
+			fixed (byte* plabel = label)
 			{
-				fixed (byte* pformat = format)
+				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderInt4Native(label, (int*)pv, vMin, vMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -84,53 +2025,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(in byte label, ref int v, int vMin, int vMax, in byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pv = &v)
-				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = SliderInt4Native((byte*)plabel, (int*)pv, vMin, vMax, (byte*)pformat, flags);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderInt4(in byte label, ref int v, int vMin, int vMax, in byte format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pv = &v)
-				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = SliderInt4Native((byte*)plabel, (int*)pv, vMin, vMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderInt4(ReadOnlySpan<byte> label, ReadOnlySpan<int> v, int vMin, int vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (int* pv = v)
+				fixed (byte* pformat = &format)
 				{
-					fixed (byte* pformat = format)
-					{
-						byte ret = SliderInt4Native((byte*)plabel, (int*)pv, vMin, vMax, (byte*)pformat, flags);
-						return ret != 0;
-					}
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
 				}
 			}
 		}
@@ -138,17 +2040,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(ReadOnlySpan<byte> label, ReadOnlySpan<int> v, int vMin, int vMax, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (int* pv = v)
+				fixed (byte* pformat = &format)
 				{
-					fixed (byte* pformat = format)
-					{
-						byte ret = SliderInt4Native((byte*)plabel, (int*)pv, vMin, vMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-						return ret != 0;
-					}
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
 				}
 			}
 		}
@@ -156,7 +2055,235 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(string label, ref int v, int vMin, int vMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, float vDegreesMax, string format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, vDegreesMax, pStr0, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, string format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, string format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative((byte*)plabel, vRad, vDegreesMin, (float)(+360.0f), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, float* vRad, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative((byte*)plabel, vRad, (float)(-360.0f), (float)(+360.0f), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -175,7 +2302,997 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pv = &v)
+			fixed (byte* pformat = &format)
+			{
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax, in byte format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, in byte format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, in byte format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = SliderAngleNative(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, in byte format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, in byte format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = SliderAngleNative(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = SliderAngleNative(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, float vDegreesMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = SliderAngleNative(pStr0, vRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, float* vRad, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = SliderAngleNative(pStr0, vRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, in byte format)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, in byte format)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, in byte format)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, ReadOnlySpan<byte> format)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, ReadOnlySpan<byte> format)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, vDegreesMax, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, float vDegreesMax, string format)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, vDegreesMax, pStr0, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, string format)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, string format)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative(label, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(byte* label, ref float vRad, string format, ImGuiSliderFlags flags)
+		{
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderAngleNative(label, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, in byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, in byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, in byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
 			{
 				byte* pStr1 = null;
 				int pStrSize1 = 0;
@@ -194,7 +3311,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				byte ret = SliderInt4Native(pStr0, (int*)pv, vMin, vMax, pStr1, flags);
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, pStr1, flags);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -210,7 +3327,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(string label, ref int v, int vMin, int vMax, string format)
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -229,7 +3346,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				byte* pStr1 = null;
 				int pStrSize1 = 0;
@@ -248,7 +3365,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				byte ret = SliderInt4Native(pStr0, (int*)pv, vMin, vMax, pStr1, (ImGuiSliderFlags)(0));
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, pStr1, (ImGuiSliderFlags)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -264,15 +3381,231 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(in byte label, ref int v, int vMin, int vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr1, (ImGuiSliderFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr1, (ImGuiSliderFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr1, flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, string format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = SliderAngleNative(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr1, flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (int* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
 					fixed (byte* pformat = format)
 					{
-						byte ret = SliderInt4Native((byte*)plabel, (int*)pv, vMin, vMax, (byte*)pformat, flags);
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
 						return ret != 0;
 					}
 				}
@@ -282,15 +3615,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(in byte label, ref int v, int vMin, int vMax, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (int* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
 					fixed (byte* pformat = format)
 					{
-						byte ret = SliderInt4Native((byte*)plabel, (int*)pv, vMin, vMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 						return ret != 0;
 					}
 				}
@@ -300,11 +3633,83 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(in byte label, ref int v, int vMin, int vMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (int* pv = &v)
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
 				{
 					byte* pStr0 = null;
 					int pStrSize0 = 0;
@@ -323,7 +3728,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					byte ret = SliderInt4Native((byte*)plabel, (int*)pv, vMin, vMax, pStr0, flags);
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, pStr0, flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -336,11 +3741,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(in byte label, ref int v, int vMin, int vMax, string format)
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, float vDegreesMax, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (int* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
 					byte* pStr0 = null;
 					int pStrSize0 = 0;
@@ -359,7 +3764,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					byte ret = SliderInt4Native((byte*)plabel, (int*)pv, vMin, vMax, pStr0, (ImGuiSliderFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, pStr0, (ImGuiSliderFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -372,15 +3777,159 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(ReadOnlySpan<byte> label, ref int v, int vMin, int vMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, string format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, string format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr0, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(in byte label, ref float vRad, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr0, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (int* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
 					fixed (byte* pformat = &format)
 					{
-						byte ret = SliderInt4Native((byte*)plabel, (int*)pv, vMin, vMax, (byte*)pformat, flags);
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
 						return ret != 0;
 					}
 				}
@@ -390,15 +3939,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(ReadOnlySpan<byte> label, ref int v, int vMin, int vMax, in byte format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (int* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
 					fixed (byte* pformat = &format)
 					{
-						byte ret = SliderInt4Native((byte*)plabel, (int*)pv, vMin, vMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 						return ret != 0;
 					}
 				}
@@ -408,15 +3957,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(ReadOnlySpan<byte> label, ref int v, int vMin, int vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (int* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					fixed (byte* pformat = format)
+					fixed (byte* pformat = &format)
 					{
-						byte ret = SliderInt4Native((byte*)plabel, (int*)pv, vMin, vMax, (byte*)pformat, flags);
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 						return ret != 0;
 					}
 				}
@@ -426,15 +3975,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(ReadOnlySpan<byte> label, ref int v, int vMin, int vMax, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (int* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
-					fixed (byte* pformat = format)
+					fixed (byte* pformat = &format)
 					{
-						byte ret = SliderInt4Native((byte*)plabel, (int*)pv, vMin, vMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 						return ret != 0;
 					}
 				}
@@ -444,11 +3993,47 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(ReadOnlySpan<byte> label, ref int v, int vMin, int vMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (int* pv = &v)
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
 				{
 					byte* pStr0 = null;
 					int pStrSize0 = 0;
@@ -467,7 +4052,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					byte ret = SliderInt4Native((byte*)plabel, (int*)pv, vMin, vMax, pStr0, flags);
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, pStr0, flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -480,11 +4065,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(ReadOnlySpan<byte> label, ref int v, int vMin, int vMax, string format)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, float vDegreesMax, string format)
 		{
 			fixed (byte* plabel = label)
 			{
-				fixed (int* pv = &v)
+				fixed (float* pvRad = &vRad)
 				{
 					byte* pStr0 = null;
 					int pStrSize0 = 0;
@@ -503,7 +4088,7 @@ namespace Hexa.NET.ImGui
 						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					byte ret = SliderInt4Native((byte*)plabel, (int*)pv, vMin, vMax, pStr0, (ImGuiSliderFlags)(0));
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, vDegreesMax, pStr0, (ImGuiSliderFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -516,7 +4101,151 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(string label, ref int v, int vMin, int vMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, string format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, string format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr0, (ImGuiSliderFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, float vDegreesMin, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, vDegreesMin, (float)(+360.0f), pStr0, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(ReadOnlySpan<byte> label, ref float vRad, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvRad = &vRad)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (format != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(format);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte ret = SliderAngleNative((byte*)plabel, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), pStr0, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax, in byte format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -535,11 +4264,11 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderInt4Native(pStr0, (int*)pv, vMin, vMax, (byte*)pformat, flags);
+					byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -552,7 +4281,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(string label, ref int v, int vMin, int vMax, in byte format)
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -571,11 +4300,11 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderInt4Native(pStr0, (int*)pv, vMin, vMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -588,7 +4317,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(string label, ref int v, int vMin, int vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -607,11 +4336,11 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pv = &v)
+			fixed (float* pvRad = &vRad)
 			{
-				fixed (byte* pformat = format)
+				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderInt4Native(pStr0, (int*)pv, vMin, vMax, (byte*)pformat, flags);
+					byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -624,7 +4353,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderInt4(string label, ref int v, int vMin, int vMax, ReadOnlySpan<byte> format)
+		public static bool SliderAngle(string label, ref float vRad, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -643,11 +4372,299 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pv = &v)
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, in byte format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, in byte format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderAngleNative(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderInt4Native(pStr0, (int*)pv, vMin, vMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, float vDegreesMax, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, vDegreesMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, (ImGuiSliderFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, float vDegreesMin, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative(pStr0, (float*)pvRad, vDegreesMin, (float)(+360.0f), (byte*)pformat, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderAngle(string label, ref float vRad, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvRad = &vRad)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderAngleNative(pStr0, (float*)pvRad, (float)(-360.0f), (float)(+360.0f), (byte*)pformat, flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -661,71 +4678,59 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte SliderScalarNative(byte* label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		internal static byte SliderIntNative(byte* label, int* v, int vMin, int vMax, byte* format, ImGuiSliderFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDataType, void*, void*, void*, byte*, ImGuiSliderFlags, byte>)funcTable[192])(label, dataType, pData, pMin, pMax, format, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, int, byte*, ImGuiSliderFlags, byte>)funcTable[188])(label, v, vMin, vMax, format, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDataType, nint, nint, nint, nint, ImGuiSliderFlags, byte>)funcTable[192])((nint)label, dataType, (nint)pData, (nint)pMin, (nint)pMax, (nint)format, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, int, int, nint, ImGuiSliderFlags, byte>)funcTable[188])((nint)label, (nint)v, vMin, vMax, (nint)format, flags);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		public static bool SliderInt(byte* label, int* v, int vMin, int vMax, byte* format, ImGuiSliderFlags flags)
 		{
-			byte ret = SliderScalarNative(label, dataType, pData, pMin, pMax, format, flags);
+			byte ret = SliderIntNative(label, v, vMin, vMax, format, flags);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, byte* format)
+		public static bool SliderInt(byte* label, int* v, int vMin, int vMax, byte* format)
 		{
-			byte ret = SliderScalarNative(label, dataType, pData, pMin, pMax, format, (ImGuiSliderFlags)(0));
+			byte ret = SliderIntNative(label, v, vMin, vMax, format, (ImGuiSliderFlags)(0));
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax)
+		public static bool SliderInt(byte* label, int* v, int vMin, int vMax)
 		{
-			byte ret = SliderScalarNative(label, dataType, pData, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			return ret != 0;
+			bool ret = SliderInt(label, v, vMin, vMax, (string)"%d", (ImGuiSliderFlags)(0));
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ImGuiSliderFlags flags)
+		public static bool SliderInt(byte* label, int* v, int vMin, int vMax, ImGuiSliderFlags flags)
 		{
-			byte ret = SliderScalarNative(label, dataType, pData, pMin, pMax, (byte*)(default), flags);
-			return ret != 0;
+			bool ret = SliderInt(label, v, vMin, vMax, (string)"%d", flags);
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, byte* format)
+		public static bool SliderInt(in byte label, int* v, int vMin, int vMax, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, format, (ImGuiSliderFlags)(0));
+				byte ret = SliderIntNative((byte*)plabel, v, vMin, vMax, format, flags);
 				return ret != 0;
 			}
 		}
@@ -733,11 +4738,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax)
+		public static bool SliderInt(in byte label, int* v, int vMin, int vMax, byte* format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
+				byte ret = SliderIntNative((byte*)plabel, v, vMin, vMax, format, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -745,23 +4750,35 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ImGuiSliderFlags flags)
+		public static bool SliderInt(in byte label, int* v, int vMin, int vMax)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, (byte*)(default), flags);
-				return ret != 0;
+				bool ret = SliderInt((byte*)plabel, v, vMin, vMax, (string)"%d", (ImGuiSliderFlags)(0));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		public static bool SliderInt(in byte label, int* v, int vMin, int vMax, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				bool ret = SliderInt((byte*)plabel, v, vMin, vMax, (string)"%d", flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderInt(ReadOnlySpan<byte> label, int* v, int vMin, int vMax, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, format, flags);
+				byte ret = SliderIntNative((byte*)plabel, v, vMin, vMax, format, flags);
 				return ret != 0;
 			}
 		}
@@ -769,11 +4786,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, byte* format)
+		public static bool SliderInt(ReadOnlySpan<byte> label, int* v, int vMin, int vMax, byte* format)
 		{
 			fixed (byte* plabel = label)
 			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, format, (ImGuiSliderFlags)(0));
+				byte ret = SliderIntNative((byte*)plabel, v, vMin, vMax, format, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -781,31 +4798,31 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax)
+		public static bool SliderInt(ReadOnlySpan<byte> label, int* v, int vMin, int vMax)
 		{
 			fixed (byte* plabel = label)
 			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
+				bool ret = SliderInt((byte*)plabel, v, vMin, vMax, (string)"%d", (ImGuiSliderFlags)(0));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ImGuiSliderFlags flags)
+		public static bool SliderInt(ReadOnlySpan<byte> label, int* v, int vMin, int vMax, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, (byte*)(default), flags);
-				return ret != 0;
+				bool ret = SliderInt((byte*)plabel, v, vMin, vMax, (string)"%d", flags);
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		public static bool SliderInt(string label, int* v, int vMin, int vMax, byte* format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -824,7 +4841,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, pMax, format, flags);
+			byte ret = SliderIntNative(pStr0, v, vMin, vMax, format, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -835,7 +4852,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, byte* format)
+		public static bool SliderInt(string label, int* v, int vMin, int vMax, byte* format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -854,7 +4871,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, pMax, format, (ImGuiSliderFlags)(0));
+			byte ret = SliderIntNative(pStr0, v, vMin, vMax, format, (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -865,7 +4882,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax)
+		public static bool SliderInt(string label, int* v, int vMin, int vMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -884,18 +4901,18 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
+			bool ret = SliderInt(pStr0, v, vMin, vMax, (string)"%d", (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
-			return ret != 0;
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ImGuiSliderFlags flags)
+		public static bool SliderInt(string label, int* v, int vMin, int vMax, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -914,1896 +4931,72 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, pMax, (byte*)(default), flags);
+			bool ret = SliderInt(pStr0, v, vMin, vMax, (string)"%d", flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
-			return ret != 0;
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		public static bool SliderInt(byte* label, ref int v, int vMin, int vMax, byte* format, ImGuiSliderFlags flags)
 		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, format, flags);
-			return ret != 0;
+			fixed (int* pv = &v)
+			{
+				byte ret = SliderIntNative(label, (int*)pv, vMin, vMax, format, flags);
+				return ret != 0;
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, byte* format)
+		public static bool SliderInt(byte* label, ref int v, int vMin, int vMax, byte* format)
 		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, format, (ImGuiSliderFlags)(0));
-			return ret != 0;
+			fixed (int* pv = &v)
+			{
+				byte ret = SliderIntNative(label, (int*)pv, vMin, vMax, format, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax)
+		public static bool SliderInt(byte* label, ref int v, int vMin, int vMax)
 		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			return ret != 0;
+			fixed (int* pv = &v)
+			{
+				bool ret = SliderInt(label, (int*)pv, vMin, vMax, (string)"%d", (ImGuiSliderFlags)(0));
+				return ret;
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ImGuiSliderFlags flags)
+		public static bool SliderInt(byte* label, ref int v, int vMin, int vMax, ImGuiSliderFlags flags)
 		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, (byte*)(default), flags);
-			return ret != 0;
+			fixed (int* pv = &v)
+			{
+				bool ret = SliderInt(label, (int*)pv, vMin, vMax, (string)"%d", flags);
+				return ret;
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		public static bool SliderInt(in byte label, ref int v, int vMin, int vMax, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (int* pv = &v)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, (byte*)(default), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, format, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, byte* format)
-		{
-			byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax)
-		{
-			byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, (byte*)(default), flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, (byte*)(default), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, format, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, byte* format)
-		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax)
-		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, (byte*)(default), flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, pMax, format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, pMax, (byte*)(default), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNative(label, dataType, pData, pMin, (void*)pMax, format, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, byte* format)
-		{
-			byte ret = SliderScalarNative(label, dataType, pData, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax)
-		{
-			byte ret = SliderScalarNative(label, dataType, pData, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNative(label, dataType, pData, pMin, (void*)pMax, (byte*)(default), flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, (void*)pMax, format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, (void*)pMax, (byte*)(default), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, (void*)pMax, format, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, byte* format)
-		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax)
-		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, (void*)pMax, (byte*)(default), flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, (void*)pMax, format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, (void*)pMax, (byte*)(default), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, (void*)pMax, format, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, byte* format)
-		{
-			byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax)
-		{
-			byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, (void*)pMax, format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, (void*)pMax, format, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, byte* format)
-		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax)
-		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, (void*)pMax, format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(label, dataType, pData, pMin, pMax, (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, in byte format)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(label, dataType, pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = SliderScalarNative(label, dataType, pData, pMin, pMax, (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = SliderScalarNative(label, dataType, pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(label, dataType, pData, pMin, pMax, pStr0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(label, dataType, pData, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderIntNative((byte*)plabel, (int*)pv, vMin, vMax, format, flags);
 					return ret != 0;
 				}
 			}
@@ -2812,13 +5005,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, in byte format)
+		public static bool SliderInt(in byte label, ref int v, int vMin, int vMax, byte* format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (byte* pformat = &format)
+				fixed (int* pv = &v)
 				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderIntNative((byte*)plabel, (int*)pv, vMin, vMax, format, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2827,2205 +5020,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, pMax, pStr1, flags);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, pMax, pStr1, (ImGuiSliderFlags)(0));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderInt(in byte label, ref int v, int vMin, int vMax)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (byte* pformat = format)
+				fixed (int* pv = &v)
 				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, (byte*)pformat, flags);
-					return ret != 0;
+					bool ret = SliderInt((byte*)plabel, (int*)pv, vMin, vMax, (string)"%d", (ImGuiSliderFlags)(0));
+					return ret;
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, string format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, in byte format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, string format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, pMax, (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, in byte format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = format)
-			{
-				byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, pMax, (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = format)
-			{
-				byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, pStr0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, pStr1, flags);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, pStr1, (ImGuiSliderFlags)(0));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = format)
-			{
-				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = format)
-			{
-				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, pStr0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, pStr1, flags);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, pStr1, (ImGuiSliderFlags)(0));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = format)
-			{
-				byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = format)
-			{
-				byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* pformat = format)
-			{
-				byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, pStr0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, pMax, pStr1, flags);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, pMax, pStr1, (ImGuiSliderFlags)(0));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ReadOnlySpan<byte> format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, pStr0, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = &format)
-			{
-				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pformat = format)
-			{
-				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
 			}
 		}
 	}

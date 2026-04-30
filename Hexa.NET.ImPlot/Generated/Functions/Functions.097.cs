@@ -22,51 +22,6 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
 		{
 			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotPieChartFlags)(0));
@@ -5028,6 +4983,40 @@ namespace Hexa.NET.ImPlot
 				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
 			}
 			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, (double)(90), flags);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, uint* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotPieChartFlags flags)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
 			for (int i = 0; i < labelIds.Length; i++)
 			{
 				Utils.Free(pStrArray0[i]);

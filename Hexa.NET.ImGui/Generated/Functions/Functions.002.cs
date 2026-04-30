@@ -21,156 +21,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ImageButtonNative(pStr0, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol)
 		{
 			byte* pStr0 = null;
@@ -5044,6 +4894,132 @@ namespace Hexa.NET.ImGui
 				Utils.Free(pStr0);
 			}
 			return ret;
+		}
+
+		/// <summary>
+		/// If v_min &gt;= v_max we have no bound<br/>
+		/// </summary>
+		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DragFloatNative(pStr0, v, vSpeed, vMin, (float)(0.0f), format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// If v_min &gt;= v_max we have no bound<br/>
+		/// </summary>
+		public static bool DragFloat(string label, float* v, float vSpeed, byte* format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DragFloatNative(pStr0, v, vSpeed, (float)(0.0f), (float)(0.0f), format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// If v_min &gt;= v_max we have no bound<br/>
+		/// </summary>
+		public static bool DragFloat(string label, float* v, byte* format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DragFloatNative(pStr0, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// If v_min &gt;= v_max we have no bound<br/>
+		/// </summary>
+		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (float* pv = &v)
+			{
+				byte ret = DragFloatNative(label, (float*)pv, vSpeed, vMin, vMax, format, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// If v_min &gt;= v_max we have no bound<br/>
+		/// </summary>
+		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, byte* format)
+		{
+			fixed (float* pv = &v)
+			{
+				byte ret = DragFloatNative(label, (float*)pv, vSpeed, vMin, vMax, format, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// If v_min &gt;= v_max we have no bound<br/>
+		/// </summary>
+		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax)
+		{
+			fixed (float* pv = &v)
+			{
+				bool ret = DragFloat(label, (float*)pv, vSpeed, vMin, vMax, (string)"%.3f", (ImGuiSliderFlags)(0));
+				return ret;
+			}
 		}
 	}
 }

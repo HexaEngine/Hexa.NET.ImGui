@@ -22,144 +22,6 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys1, in ulong ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys1 = &ys1)
-					{
-						fixed (ulong* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys1, (ulong*)pys2, count, flags, offset, (int)(sizeof(ulong)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys1, in ulong ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys1 = &ys1)
-					{
-						fixed (ulong* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys1, (ulong*)pys2, count, flags, (int)(0), (int)(sizeof(ulong)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys1, in ulong ys2, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys1 = &ys1)
-					{
-						fixed (ulong* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys1, (ulong*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(ulong)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys1, in ulong ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys1 = &ys1)
-					{
-						fixed (ulong* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys1, (ulong*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(ulong)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys1, in ulong ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys1 = &ys1)
-					{
-						fixed (ulong* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys1, (ulong*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, in ulong xs, in ulong ys1, in ulong ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys1 = &ys1)
-				{
-					fixed (ulong* pys2 = &ys2)
-					{
-						PlotShadedNative(pStr0, (ulong*)pxs, (ulong*)pys1, (ulong*)pys2, count, flags, offset, stride);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static void PlotShaded(string labelId, in ulong xs, in ulong ys1, in ulong ys2, int count, ImPlotShadedFlags flags, int offset)
 		{
 			byte* pStr0 = null;
@@ -351,10 +213,10 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotShadedGNative(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
+		internal static void PlotShadedGNative(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, delegate*<void*, int, ImPlotPoint*, void*>, void*, delegate*<void*, int, ImPlotPoint*, void*>, void*, int, ImPlotShadedFlags, void>)funcTable[147])(labelId, getter1, data1, getter2, data2, count, flags);
+			((delegate* unmanaged[Cdecl]<byte*, delegate*<void*, int, ImPlotPointC*, void*>, void*, delegate*<void*, int, ImPlotPointC*, void*>, void*, int, ImPlotShadedFlags, void>)funcTable[147])(labelId, getter1, data1, getter2, data2, count, flags);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, int, ImPlotShadedFlags, void>)funcTable[147])((nint)labelId, (nint)getter1, (nint)data1, (nint)getter2, (nint)data2, count, flags);
 			#endif
@@ -363,7 +225,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			PlotShadedGNative(labelId, getter1, data1, getter2, data2, count, flags);
 		}
@@ -371,7 +233,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
 		{
 			PlotShadedGNative(labelId, getter1, data1, getter2, data2, count, (ImPlotShadedFlags)(0));
 		}
@@ -379,7 +241,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -390,7 +252,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -401,7 +263,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -412,7 +274,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -423,7 +285,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -452,7 +314,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -481,67 +343,67 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, flags);
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, flags);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, (ImPlotShadedFlags)(0));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, (ImPlotShadedFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -560,7 +422,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, flags);
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -570,7 +432,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -589,7 +451,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, data2, count, (ImPlotShadedFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -599,7 +461,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			PlotShadedGNative(labelId, getter1, (void*)data1, getter2, data2, count, flags);
 		}
@@ -607,7 +469,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
 		{
 			PlotShadedGNative(labelId, getter1, (void*)data1, getter2, data2, count, (ImPlotShadedFlags)(0));
 		}
@@ -615,7 +477,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -626,7 +488,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -637,7 +499,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -648,7 +510,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -659,7 +521,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -688,7 +550,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -717,67 +579,67 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, flags);
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, flags);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, (ImPlotShadedFlags)(0));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, (ImPlotShadedFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -796,7 +658,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, flags);
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -806,7 +668,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, void* data2, int count)
+		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, void* data2, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -825,7 +687,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, data2, count, (ImPlotShadedFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -835,67 +697,67 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
-			PlotShadedGNative(labelId, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
+			PlotShadedGNative(labelId, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count)
 		{
-			PlotShadedGNative(labelId, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(labelId, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -914,7 +776,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
+			PlotShadedGNative(pStr0, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -924,7 +786,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -943,7 +805,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(pStr0, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -955,7 +817,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 		}
 
 		/// <summary>
@@ -963,7 +825,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, void* data1, ImPlotPointGetter getter2, void* data2, int count)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
 		}
 
 		/// <summary>
@@ -973,7 +835,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 			}
 		}
 
@@ -984,7 +846,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
@@ -995,7 +857,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 			}
 		}
 
@@ -1006,7 +868,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
@@ -1032,7 +894,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1061,7 +923,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1071,67 +933,67 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
-			PlotShadedGNative(labelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
+			PlotShadedGNative(labelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count)
 		{
-			PlotShadedGNative(labelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(labelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1150,7 +1012,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
+			PlotShadedGNative(pStr0, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1160,7 +1022,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1179,7 +1041,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(pStr0, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1191,7 +1053,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count, ImPlotShadedFlags flags)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 		}
 
 		/// <summary>
@@ -1199,7 +1061,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, nint data1, ImPlotPointGetter getter2, void* data2, int count)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
 		}
 
 		/// <summary>
@@ -1209,7 +1071,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 			}
 		}
 
@@ -1220,7 +1082,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
@@ -1231,7 +1093,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 			}
 		}
 
@@ -1242,7 +1104,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
@@ -1268,7 +1130,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1297,7 +1159,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), data2, count, (ImPlotShadedFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1307,7 +1169,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			PlotShadedGNative(labelId, getter1, data1, getter2, (void*)data2, count, flags);
 		}
@@ -1315,7 +1177,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
 		{
 			PlotShadedGNative(labelId, getter1, data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
 		}
@@ -1323,7 +1185,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1334,7 +1196,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1345,7 +1207,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -1356,7 +1218,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -1367,7 +1229,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1396,7 +1258,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1425,67 +1287,67 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, flags);
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, flags);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1504,7 +1366,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, flags);
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1514,7 +1376,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, void* data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1533,7 +1395,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1543,7 +1405,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			PlotShadedGNative(labelId, getter1, (void*)data1, getter2, (void*)data2, count, flags);
 		}
@@ -1551,7 +1413,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
 		{
 			PlotShadedGNative(labelId, getter1, (void*)data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
 		}
@@ -1559,7 +1421,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1570,7 +1432,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1581,7 +1443,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -1592,7 +1454,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -1603,7 +1465,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1632,7 +1494,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1661,67 +1523,67 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, flags);
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, flags);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(in byte labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1740,7 +1602,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, flags);
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1750,7 +1612,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPoint*, void*> getter2, nint data2, int count)
+		public static void PlotShadedG(string labelId, ImPlotPointGetter getter1, nint data1, delegate*<void*, int, ImPlotPointC*, void*> getter2, nint data2, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1769,7 +1631,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, getter2, (void*)data2, count, (ImPlotShadedFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1779,67 +1641,67 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
-			PlotShadedGNative(labelId, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
+			PlotShadedGNative(labelId, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count)
 		{
-			PlotShadedGNative(labelId, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(labelId, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1858,7 +1720,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
+			PlotShadedGNative(pStr0, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1868,7 +1730,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1887,7 +1749,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, getter1, data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(pStr0, getter1, data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1899,7 +1761,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 		}
 
 		/// <summary>
@@ -1907,7 +1769,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, void* data1, ImPlotPointGetter getter2, nint data2, int count)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
 		}
 
 		/// <summary>
@@ -1917,7 +1779,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 			}
 		}
 
@@ -1928,7 +1790,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
@@ -1939,7 +1801,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 			}
 		}
 
@@ -1950,7 +1812,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
@@ -1976,7 +1838,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2005,7 +1867,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2015,67 +1877,67 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
-			PlotShadedGNative(labelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
+			PlotShadedGNative(labelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count)
+		public static void PlotShadedG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count)
 		{
-			PlotShadedGNative(labelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(labelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count)
+		public static void PlotShadedG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2094,7 +1956,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
+			PlotShadedGNative(pStr0, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2104,7 +1966,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count)
+		public static void PlotShadedG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2123,7 +1985,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, getter1, (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(pStr0, getter1, (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2135,7 +1997,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count, ImPlotShadedFlags flags)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 		}
 
 		/// <summary>
@@ -2143,7 +2005,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotShadedG(byte* labelId, ImPlotPointGetter getter1, nint data1, ImPlotPointGetter getter2, nint data2, int count)
 		{
-			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
 		}
 
 		/// <summary>
@@ -2153,7 +2015,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 			}
 		}
 
@@ -2164,7 +2026,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
@@ -2175,7 +2037,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 			}
 		}
 
@@ -2186,7 +2048,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+				PlotShadedGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
 			}
 		}
 
@@ -2212,7 +2074,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2241,7 +2103,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
+			PlotShadedGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter1), (void*)data1, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter2), (void*)data2, count, (ImPlotShadedFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -5019,6 +4881,167 @@ namespace Hexa.NET.ImPlot
 			fixed (byte* plabelId = labelId)
 			{
 				PlotBarsNative((byte*)plabelId, values, count, (double)(0.67), (double)(0), (ImPlotBarsFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBars(ReadOnlySpan<byte> labelId, double* values, int count, double barSize, ImPlotBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBarsNative((byte*)plabelId, values, count, barSize, (double)(0), flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBars(ReadOnlySpan<byte> labelId, double* values, int count, ImPlotBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBarsNative((byte*)plabelId, values, count, (double)(0.67), (double)(0), flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBars(ReadOnlySpan<byte> labelId, double* values, int count, double barSize, double shift, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBarsNative((byte*)plabelId, values, count, barSize, shift, (ImPlotBarsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBars(ReadOnlySpan<byte> labelId, double* values, int count, double barSize, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBarsNative((byte*)plabelId, values, count, barSize, (double)(0), (ImPlotBarsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBars(ReadOnlySpan<byte> labelId, double* values, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBarsNative((byte*)plabelId, values, count, (double)(0.67), (double)(0), (ImPlotBarsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBars(ReadOnlySpan<byte> labelId, double* values, int count, double barSize, ImPlotBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBarsNative((byte*)plabelId, values, count, barSize, (double)(0), flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBars(ReadOnlySpan<byte> labelId, double* values, int count, ImPlotBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBarsNative((byte*)plabelId, values, count, (double)(0.67), (double)(0), flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBars(ReadOnlySpan<byte> labelId, double* values, int count, double barSize, double shift, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBarsNative((byte*)plabelId, values, count, barSize, shift, (ImPlotBarsFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBars(ReadOnlySpan<byte> labelId, double* values, int count, double barSize, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBarsNative((byte*)plabelId, values, count, barSize, (double)(0), (ImPlotBarsFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBars(ReadOnlySpan<byte> labelId, double* values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBarsNative((byte*)plabelId, values, count, (double)(0.67), (double)(0), (ImPlotBarsFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBars(ReadOnlySpan<byte> labelId, double* values, int count, double barSize, ImPlotBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBarsNative((byte*)plabelId, values, count, barSize, (double)(0), flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBars(ReadOnlySpan<byte> labelId, double* values, int count, ImPlotBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBarsNative((byte*)plabelId, values, count, (double)(0.67), (double)(0), flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBars(string labelId, double* values, int count, double barSize, double shift, ImPlotBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotBarsNative(pStr0, values, count, barSize, shift, flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 	}

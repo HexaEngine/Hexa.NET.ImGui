@@ -43,7 +43,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -75,7 +75,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -107,7 +107,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -118,7 +118,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -139,7 +139,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -150,7 +150,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, string labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -171,7 +171,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -182,7 +182,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -214,7 +214,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -246,7 +246,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -267,7 +267,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -299,7 +299,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -331,7 +331,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -363,7 +363,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -374,7 +374,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -395,7 +395,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -406,7 +406,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, string labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -427,7 +427,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -438,7 +438,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -470,7 +470,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, double* values, int rows, int cols, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -502,7 +502,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -534,7 +534,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -566,7 +566,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPointC boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -587,7 +587,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = &labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -619,7 +619,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = &labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -651,7 +651,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = &labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -683,7 +683,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = &labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -694,7 +694,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPointC boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -715,7 +715,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = &labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -726,7 +726,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, in byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, in byte labelFmt, ImPlotPointC boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -747,7 +747,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = &labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -758,7 +758,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -790,7 +790,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -822,7 +822,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -843,7 +843,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = &labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -875,7 +875,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = &labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -907,7 +907,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = &labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -939,7 +939,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = &labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -950,7 +950,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -971,7 +971,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = &labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -982,7 +982,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, in byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, in byte labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1003,7 +1003,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = &labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1014,7 +1014,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1046,7 +1046,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1078,7 +1078,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1110,7 +1110,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1142,7 +1142,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1163,7 +1163,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1195,7 +1195,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1227,7 +1227,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1259,7 +1259,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1270,7 +1270,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1291,7 +1291,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1302,7 +1302,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1323,7 +1323,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1334,7 +1334,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1366,7 +1366,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1398,7 +1398,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1419,7 +1419,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1451,7 +1451,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1483,7 +1483,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1515,7 +1515,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1526,7 +1526,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1547,7 +1547,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1558,7 +1558,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1579,7 +1579,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* plabelFmt = labelFmt)
 			{
-				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1590,7 +1590,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1622,7 +1622,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1654,7 +1654,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -1668,7 +1668,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -1682,13 +1682,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (double* pvalues = &values)
 			{
 				fixed (byte* plabelFmt = &labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				}
 			}
 		}
@@ -1702,7 +1702,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (byte* plabelFmt = &labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				}
 			}
 		}
@@ -1716,7 +1716,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (byte* plabelFmt = &labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				}
 			}
 		}
@@ -1730,7 +1730,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (byte* plabelFmt = &labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				}
 			}
 		}
@@ -1738,13 +1738,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (double* pvalues = &values)
 			{
 				fixed (byte* plabelFmt = &labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				}
 			}
 		}
@@ -1752,13 +1752,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (double* pvalues = &values)
 			{
 				fixed (byte* plabelFmt = &labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				}
 			}
 		}
@@ -1766,7 +1766,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -1780,7 +1780,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -1794,13 +1794,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
 				fixed (byte* plabelFmt = &labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
@@ -1814,7 +1814,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (byte* plabelFmt = &labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
@@ -1828,7 +1828,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (byte* plabelFmt = &labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
@@ -1842,7 +1842,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (byte* plabelFmt = &labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
@@ -1850,13 +1850,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
 				fixed (byte* plabelFmt = &labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
@@ -1864,13 +1864,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
 				fixed (byte* plabelFmt = &labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
@@ -1878,7 +1878,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -1892,7 +1892,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -1906,7 +1906,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -1920,7 +1920,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -1934,13 +1934,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (double* pvalues = &values)
 			{
 				fixed (byte* plabelFmt = labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				}
 			}
 		}
@@ -1954,7 +1954,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (byte* plabelFmt = labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				}
 			}
 		}
@@ -1968,7 +1968,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (byte* plabelFmt = labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				}
 			}
 		}
@@ -1982,7 +1982,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (byte* plabelFmt = labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				}
 			}
 		}
@@ -1990,13 +1990,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (double* pvalues = &values)
 			{
 				fixed (byte* plabelFmt = labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				}
 			}
 		}
@@ -2004,13 +2004,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (double* pvalues = &values)
 			{
 				fixed (byte* plabelFmt = labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				}
 			}
 		}
@@ -2018,7 +2018,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2032,7 +2032,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2046,13 +2046,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
 				fixed (byte* plabelFmt = labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
@@ -2066,7 +2066,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (byte* plabelFmt = labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
@@ -2080,7 +2080,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (byte* plabelFmt = labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
@@ -2094,7 +2094,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (byte* plabelFmt = labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
@@ -2102,13 +2102,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
 				fixed (byte* plabelFmt = labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
@@ -2116,13 +2116,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
 				fixed (byte* plabelFmt = labelFmt)
 				{
-					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
@@ -2130,7 +2130,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2144,7 +2144,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2158,7 +2158,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2190,7 +2190,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2222,7 +2222,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2243,7 +2243,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2275,7 +2275,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2307,7 +2307,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2339,7 +2339,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2350,7 +2350,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2371,7 +2371,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2382,7 +2382,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, string labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2403,7 +2403,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2414,7 +2414,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2446,7 +2446,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2478,7 +2478,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2499,7 +2499,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2531,7 +2531,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2563,7 +2563,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2595,7 +2595,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2606,7 +2606,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2627,7 +2627,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2638,7 +2638,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, string labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2659,7 +2659,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2670,7 +2670,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2702,7 +2702,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(byte* labelId, in double values, int rows, int cols, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2734,7 +2734,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2751,7 +2751,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2768,7 +2768,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2776,7 +2776,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = &labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -2793,7 +2793,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = &labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -2810,7 +2810,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = &labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -2827,7 +2827,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = &labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -2836,7 +2836,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2844,7 +2844,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = &labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -2853,7 +2853,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2861,7 +2861,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = &labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -2870,7 +2870,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2887,7 +2887,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2904,7 +2904,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, in byte labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2912,7 +2912,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = &labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -2929,7 +2929,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = &labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -2946,7 +2946,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = &labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -2963,7 +2963,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = &labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -2972,7 +2972,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2980,7 +2980,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = &labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -2989,7 +2989,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2997,7 +2997,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = &labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -3006,7 +3006,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3023,7 +3023,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, in byte labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3040,7 +3040,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -3057,7 +3057,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -3074,7 +3074,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -3082,7 +3082,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -3099,7 +3099,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -3116,7 +3116,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -3133,7 +3133,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -3142,7 +3142,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -3150,7 +3150,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -3159,7 +3159,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -3167,7 +3167,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -3176,7 +3176,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -3193,7 +3193,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -3210,7 +3210,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -3218,7 +3218,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -3235,7 +3235,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -3252,7 +3252,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -3269,7 +3269,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -3278,7 +3278,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -3286,7 +3286,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -3295,7 +3295,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -3303,7 +3303,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -3312,7 +3312,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -3329,7 +3329,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -3346,7 +3346,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3399,7 +3399,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3452,7 +3452,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPointC boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3490,7 +3490,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -3543,7 +3543,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -3596,7 +3596,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -3649,7 +3649,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -3664,7 +3664,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPointC boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3702,7 +3702,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -3717,7 +3717,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, string labelFmt, ImPlotPointC boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3755,7 +3755,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -3770,7 +3770,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3823,7 +3823,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3876,7 +3876,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3914,7 +3914,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -3967,7 +3967,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -4020,7 +4020,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -4073,7 +4073,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -4088,7 +4088,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4126,7 +4126,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -4141,7 +4141,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, string labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4179,7 +4179,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -4194,7 +4194,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4247,7 +4247,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(string labelId, in double values, int rows, int cols, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4300,7 +4300,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4317,7 +4317,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4334,7 +4334,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4342,7 +4342,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -4359,7 +4359,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -4376,7 +4376,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -4393,7 +4393,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -4402,7 +4402,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4410,7 +4410,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -4419,7 +4419,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4427,7 +4427,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					}
 				}
 			}
@@ -4436,7 +4436,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4453,7 +4453,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4470,7 +4470,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4478,7 +4478,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -4495,7 +4495,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -4512,7 +4512,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -4529,7 +4529,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -4538,7 +4538,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4546,7 +4546,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -4555,7 +4555,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4563,7 +4563,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (byte* plabelFmt = labelFmt)
 					{
-						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+						PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					}
 				}
 			}
@@ -4572,7 +4572,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4589,7 +4589,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4606,7 +4606,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4641,7 +4641,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4676,7 +4676,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4699,7 +4699,7 @@ namespace Hexa.NET.ImPlot
 						int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4734,7 +4734,7 @@ namespace Hexa.NET.ImPlot
 						int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4769,7 +4769,7 @@ namespace Hexa.NET.ImPlot
 						int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4804,7 +4804,7 @@ namespace Hexa.NET.ImPlot
 						int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4816,7 +4816,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4839,7 +4839,7 @@ namespace Hexa.NET.ImPlot
 						int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4851,7 +4851,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, string labelFmt, ImPlotPointC boundsMin)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4874,7 +4874,7 @@ namespace Hexa.NET.ImPlot
 						int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4886,7 +4886,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4921,7 +4921,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, string labelFmt, ImPlotPointC boundsMin, ImPlotPointC boundsMax)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4956,7 +4956,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotHeatmap(in byte labelId, in double values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPointC boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -4979,7 +4979,7 @@ namespace Hexa.NET.ImPlot
 						int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -5014,7 +5014,7 @@ namespace Hexa.NET.ImPlot
 						int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPointC)(*ImPlotPointNative(0,0)), (ImPlotPointC)(*ImPlotPointNative(1,1)), flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);

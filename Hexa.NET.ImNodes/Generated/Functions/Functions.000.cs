@@ -526,12 +526,12 @@ namespace Hexa.NET.ImNodes
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void EditorContextGetPanningNative(Vector2* pOut)
+		internal static Vector2 EditorContextGetPanningNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[18])(pOut);
+			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[18])();
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[18])((nint)pOut);
+			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[18])();
 			#endif
 		}
 
@@ -540,28 +540,8 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static Vector2 EditorContextGetPanning()
 		{
-			Vector2 ret;
-			EditorContextGetPanningNative(&ret);
+			Vector2 ret = EditorContextGetPanningNative();
 			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void EditorContextGetPanning(Vector2* pOut)
-		{
-			EditorContextGetPanningNative(pOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void EditorContextGetPanning(ref Vector2 pOut)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				EditorContextGetPanningNative((Vector2*)ppOut);
-			}
 		}
 
 		/// <summary>
@@ -1272,12 +1252,12 @@ namespace Hexa.NET.ImNodes
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetNodeDimensionsNative(Vector2* pOut, int id)
+		internal static Vector2 GetNodeDimensionsNative(int id)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)funcTable[36])(pOut, id);
+			return ((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[36])(id);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[36])((nint)pOut, id);
+			return (Vector2)((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[36])(id);
 			#endif
 		}
 
@@ -1286,28 +1266,8 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static Vector2 GetNodeDimensions(int id)
 		{
-			Vector2 ret;
-			GetNodeDimensionsNative(&ret, id);
+			Vector2 ret = GetNodeDimensionsNative(id);
 			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetNodeDimensions(Vector2* pOut, int id)
-		{
-			GetNodeDimensionsNative(pOut, id);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetNodeDimensions(ref Vector2 pOut, int id)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetNodeDimensionsNative((Vector2*)ppOut, id);
-			}
 		}
 
 		/// <summary>
@@ -1645,12 +1605,12 @@ namespace Hexa.NET.ImNodes
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetNodeScreenSpacePosNative(Vector2* pOut, int nodeId)
+		internal static Vector2 GetNodeScreenSpacePosNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)funcTable[52])(pOut, nodeId);
+			return ((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[52])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[52])((nint)pOut, nodeId);
+			return (Vector2)((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[52])(nodeId);
 			#endif
 		}
 
@@ -1659,40 +1619,20 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static Vector2 GetNodeScreenSpacePos(int nodeId)
 		{
-			Vector2 ret;
-			GetNodeScreenSpacePosNative(&ret, nodeId);
+			Vector2 ret = GetNodeScreenSpacePosNative(nodeId);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void GetNodeScreenSpacePos(Vector2* pOut, int nodeId)
-		{
-			GetNodeScreenSpacePosNative(pOut, nodeId);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetNodeScreenSpacePos(ref Vector2 pOut, int nodeId)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetNodeScreenSpacePosNative((Vector2*)ppOut, nodeId);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetNodeEditorSpacePosNative(Vector2* pOut, int nodeId)
+		internal static Vector2 GetNodeEditorSpacePosNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)funcTable[53])(pOut, nodeId);
+			return ((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[53])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[53])((nint)pOut, nodeId);
+			return (Vector2)((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[53])(nodeId);
 			#endif
 		}
 
@@ -1701,40 +1641,20 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static Vector2 GetNodeEditorSpacePos(int nodeId)
 		{
-			Vector2 ret;
-			GetNodeEditorSpacePosNative(&ret, nodeId);
+			Vector2 ret = GetNodeEditorSpacePosNative(nodeId);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void GetNodeEditorSpacePos(Vector2* pOut, int nodeId)
-		{
-			GetNodeEditorSpacePosNative(pOut, nodeId);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetNodeEditorSpacePos(ref Vector2 pOut, int nodeId)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetNodeEditorSpacePosNative((Vector2*)ppOut, nodeId);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetNodeGridSpacePosNative(Vector2* pOut, int nodeId)
+		internal static Vector2 GetNodeGridSpacePosNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)funcTable[54])(pOut, nodeId);
+			return ((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[54])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[54])((nint)pOut, nodeId);
+			return (Vector2)((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[54])(nodeId);
 			#endif
 		}
 
@@ -1743,28 +1663,8 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static Vector2 GetNodeGridSpacePos(int nodeId)
 		{
-			Vector2 ret;
-			GetNodeGridSpacePosNative(&ret, nodeId);
+			Vector2 ret = GetNodeGridSpacePosNative(nodeId);
 			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetNodeGridSpacePos(Vector2* pOut, int nodeId)
-		{
-			GetNodeGridSpacePosNative(pOut, nodeId);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetNodeGridSpacePos(ref Vector2 pOut, int nodeId)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetNodeGridSpacePosNative((Vector2*)ppOut, nodeId);
-			}
 		}
 
 		/// <summary>
@@ -4239,115 +4139,6 @@ namespace Hexa.NET.ImNodes
 		{
 			bool* ret = GetIOKeyCtrlPtrNative();
 			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetAllocatorFunctionsNative(delegate*<nuint, void*, void*> allocFunc, delegate*<void*, void*, void> freeFunc, void* userData)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void>)funcTable[88])(allocFunc, freeFunc, userData);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[88])((nint)allocFunc, (nint)freeFunc, (nint)userData);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, delegate*<void*, void*, void> freeFunc, void* userData)
-		{
-			SetAllocatorFunctionsNative(allocFunc, freeFunc, userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, delegate*<void*, void*, void> freeFunc, void* userData)
-		{
-			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), freeFunc, userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, ImGuiMemFreeFunc freeFunc, void* userData)
-		{
-			SetAllocatorFunctionsNative(allocFunc, (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, ImGuiMemFreeFunc freeFunc, void* userData)
-		{
-			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, delegate*<void*, void*, void> freeFunc, nint userData)
-		{
-			SetAllocatorFunctionsNative(allocFunc, freeFunc, (void*)userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, delegate*<void*, void*, void> freeFunc, nint userData)
-		{
-			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), freeFunc, (void*)userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, ImGuiMemFreeFunc freeFunc, nint userData)
-		{
-			SetAllocatorFunctionsNative(allocFunc, (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), (void*)userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, ImGuiMemFreeFunc freeFunc, nint userData)
-		{
-			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), (void*)userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetAllocatorFunctionsNative(delegate*<nuint, void*, void*>* pAllocFunc, delegate*<void*, void*, void>* pFreeFunc, void** pUserData)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<delegate*<nuint, void*, void*>*, delegate*<void*, void*, void>*, void**, void>)funcTable[89])(pAllocFunc, pFreeFunc, pUserData);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[89])((nint)pAllocFunc, (nint)pFreeFunc, (nint)pUserData);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetAllocatorFunctions(delegate*<nuint, void*, void*>* pAllocFunc, delegate*<void*, void*, void>* pFreeFunc, void** pUserData)
-		{
-			GetAllocatorFunctionsNative(pAllocFunc, pFreeFunc, pUserData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetAllocatorFunctions(delegate*<nuint, void*, void*>* pAllocFunc, delegate*<void*, void*, void>* pFreeFunc, ref nint pUserData)
-		{
-			fixed (nint* ppUserData = &pUserData)
-			{
-				GetAllocatorFunctionsNative(pAllocFunc, pFreeFunc, (void**)ppUserData);
-			}
 		}
 
 	}

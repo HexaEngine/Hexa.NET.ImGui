@@ -21,596 +21,72 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
-		{
-			fixed (ImGuiDockNode* ptargetNode = &targetNode)
-			{
-				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-				{
-					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
-		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-					{
-						fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-						{
-							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (Vector2* poutPos = &outPos)
-			{
-				byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)target, (ImGuiDockNode*)targetNode, (ImGuiWindow*)payloadWindow, (ImGuiDockNode*)payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (Vector2* poutPos = &outPos)
-				{
-					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)targetNode, (ImGuiWindow*)payloadWindow, (ImGuiDockNode*)payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (ImGuiDockNode* ptargetNode = &targetNode)
-			{
-				fixed (Vector2* poutPos = &outPos)
-				{
-					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)payloadWindow, (ImGuiDockNode*)payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					fixed (Vector2* poutPos = &outPos)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)payloadWindow, (ImGuiDockNode*)payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-			{
-				fixed (Vector2* poutPos = &outPos)
-				{
-					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)target, (ImGuiDockNode*)targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-				{
-					fixed (Vector2* poutPos = &outPos)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (ImGuiDockNode* ptargetNode = &targetNode)
-			{
-				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-				{
-					fixed (Vector2* poutPos = &outPos)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-					{
-						fixed (Vector2* poutPos = &outPos)
-						{
-							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-			{
-				fixed (Vector2* poutPos = &outPos)
-				{
-					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)target, (ImGuiDockNode*)targetNode, (ImGuiWindow*)payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-				{
-					fixed (Vector2* poutPos = &outPos)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)targetNode, (ImGuiWindow*)payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (ImGuiDockNode* ptargetNode = &targetNode)
-			{
-				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-				{
-					fixed (Vector2* poutPos = &outPos)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-					{
-						fixed (Vector2* poutPos = &outPos)
-						{
-							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-			{
-				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-				{
-					fixed (Vector2* poutPos = &outPos)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)target, (ImGuiDockNode*)targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-				{
-					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-					{
-						fixed (Vector2* poutPos = &outPos)
-						{
-							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (ImGuiDockNode* ptargetNode = &targetNode)
-			{
-				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-				{
-					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-					{
-						fixed (Vector2* poutPos = &outPos)
-						{
-							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
-		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-					{
-						fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-						{
-							fixed (Vector2* poutPos = &outPos)
-							{
-								byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiDockNode* DockContextFindNodeByIDNative(ImGuiContext* ctx, uint id)
+		internal static void InputTextDeactivateHookNative(uint id)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiContext*, uint, ImGuiDockNode*>)funcTable[1226])(ctx, id);
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1419])(id);
 			#else
-			return (ImGuiDockNode*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)funcTable[1226])((nint)ctx, id);
+			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1419])(id);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiDockNodePtr DockContextFindNodeByID(ImGuiContextPtr ctx, uint id)
+		public static void InputTextDeactivateHook(uint id)
 		{
-			ImGuiDockNodePtr ret = DockContextFindNodeByIDNative((ImGuiContext*)ctx, id);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiDockNodePtr DockContextFindNodeByID(ref ImGuiContext ctx, uint id)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				ImGuiDockNodePtr ret = DockContextFindNodeByIDNative((ImGuiContext*)pctx, id);
-				return ret;
-			}
+			InputTextDeactivateHookNative(id);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DockNodeWindowMenuHandler_DefaultNative(ImGuiContext* ctx, ImGuiDockNode* node, ImGuiTabBar* tabBar)
+		internal static byte TempInputScalarNative(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin, void* pClampMax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiDockNode*, ImGuiTabBar*, void>)funcTable[1227])(ctx, node, tabBar);
+			return ((delegate* unmanaged[Cdecl]<ImRect, uint, byte*, ImGuiDataType, void*, byte*, void*, void*, byte>)funcTable[1420])(bb, id, label, dataType, pData, format, pClampMin, pClampMax);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[1227])((nint)ctx, (nint)node, (nint)tabBar);
+			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, nint, ImGuiDataType, nint, nint, nint, nint, byte>)funcTable[1420])(bb, id, (nint)label, dataType, (nint)pData, (nint)format, (nint)pClampMin, (nint)pClampMax);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void DockNodeWindowMenuHandler_Default(ImGuiContextPtr ctx, ImGuiDockNodePtr node, ImGuiTabBarPtr tabBar)
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin, void* pClampMax)
 		{
-			DockNodeWindowMenuHandler_DefaultNative((ImGuiContext*)ctx, (ImGuiDockNode*)node, (ImGuiTabBar*)tabBar);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockNodeWindowMenuHandler_Default(ref ImGuiContext ctx, ImGuiDockNodePtr node, ImGuiTabBarPtr tabBar)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				DockNodeWindowMenuHandler_DefaultNative((ImGuiContext*)pctx, (ImGuiDockNode*)node, (ImGuiTabBar*)tabBar);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockNodeWindowMenuHandler_Default(ImGuiContextPtr ctx, ref ImGuiDockNode node, ImGuiTabBarPtr tabBar)
-		{
-			fixed (ImGuiDockNode* pnode = &node)
-			{
-				DockNodeWindowMenuHandler_DefaultNative((ImGuiContext*)ctx, (ImGuiDockNode*)pnode, (ImGuiTabBar*)tabBar);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockNodeWindowMenuHandler_Default(ref ImGuiContext ctx, ref ImGuiDockNode node, ImGuiTabBarPtr tabBar)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				fixed (ImGuiDockNode* pnode = &node)
-				{
-					DockNodeWindowMenuHandler_DefaultNative((ImGuiContext*)pctx, (ImGuiDockNode*)pnode, (ImGuiTabBar*)tabBar);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockNodeWindowMenuHandler_Default(ImGuiContextPtr ctx, ImGuiDockNodePtr node, ref ImGuiTabBar tabBar)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				DockNodeWindowMenuHandler_DefaultNative((ImGuiContext*)ctx, (ImGuiDockNode*)node, (ImGuiTabBar*)ptabBar);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockNodeWindowMenuHandler_Default(ref ImGuiContext ctx, ImGuiDockNodePtr node, ref ImGuiTabBar tabBar)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				fixed (ImGuiTabBar* ptabBar = &tabBar)
-				{
-					DockNodeWindowMenuHandler_DefaultNative((ImGuiContext*)pctx, (ImGuiDockNode*)node, (ImGuiTabBar*)ptabBar);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockNodeWindowMenuHandler_Default(ImGuiContextPtr ctx, ref ImGuiDockNode node, ref ImGuiTabBar tabBar)
-		{
-			fixed (ImGuiDockNode* pnode = &node)
-			{
-				fixed (ImGuiTabBar* ptabBar = &tabBar)
-				{
-					DockNodeWindowMenuHandler_DefaultNative((ImGuiContext*)ctx, (ImGuiDockNode*)pnode, (ImGuiTabBar*)ptabBar);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockNodeWindowMenuHandler_Default(ref ImGuiContext ctx, ref ImGuiDockNode node, ref ImGuiTabBar tabBar)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				fixed (ImGuiDockNode* pnode = &node)
-				{
-					fixed (ImGuiTabBar* ptabBar = &tabBar)
-					{
-						DockNodeWindowMenuHandler_DefaultNative((ImGuiContext*)pctx, (ImGuiDockNode*)pnode, (ImGuiTabBar*)ptabBar);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte DockNodeBeginAmendTabBarNative(ImGuiDockNode* node)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[1228])(node);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[1228])((nint)node);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockNodeBeginAmendTabBar(ImGuiDockNodePtr node)
-		{
-			byte ret = DockNodeBeginAmendTabBarNative((ImGuiDockNode*)node);
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, format, pClampMin, pClampMax);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool DockNodeBeginAmendTabBar(ref ImGuiDockNode node)
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin)
 		{
-			fixed (ImGuiDockNode* pnode = &node)
-			{
-				byte ret = DockNodeBeginAmendTabBarNative((ImGuiDockNode*)pnode);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DockNodeEndAmendTabBarNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1229])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1229])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockNodeEndAmendTabBar()
-		{
-			DockNodeEndAmendTabBarNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiDockNode* DockNodeGetRootNodeNative(ImGuiDockNode* node)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, ImGuiDockNode*>)funcTable[1230])(node);
-			#else
-			return (ImGuiDockNode*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[1230])((nint)node);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiDockNodePtr DockNodeGetRootNode(ImGuiDockNodePtr node)
-		{
-			ImGuiDockNodePtr ret = DockNodeGetRootNodeNative((ImGuiDockNode*)node);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiDockNodePtr DockNodeGetRootNode(ref ImGuiDockNode node)
-		{
-			fixed (ImGuiDockNode* pnode = &node)
-			{
-				ImGuiDockNodePtr ret = DockNodeGetRootNodeNative((ImGuiDockNode*)pnode);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte DockNodeIsInHierarchyOfNative(ImGuiDockNode* node, ImGuiDockNode* parent)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, ImGuiDockNode*, byte>)funcTable[1231])(node, parent);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[1231])((nint)node, (nint)parent);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DockNodeIsInHierarchyOf(ImGuiDockNodePtr node, ImGuiDockNodePtr parent)
-		{
-			byte ret = DockNodeIsInHierarchyOfNative((ImGuiDockNode*)node, (ImGuiDockNode*)parent);
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, format, pClampMin, (void*)(default));
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool DockNodeIsInHierarchyOf(ref ImGuiDockNode node, ImGuiDockNodePtr parent)
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, byte* format)
 		{
-			fixed (ImGuiDockNode* pnode = &node)
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, format, (void*)(default), (void*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
 			{
-				byte ret = DockNodeIsInHierarchyOfNative((ImGuiDockNode*)pnode, (ImGuiDockNode*)parent);
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, pClampMin, pClampMax);
 				return ret != 0;
 			}
 		}
@@ -618,11 +94,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool DockNodeIsInHierarchyOf(ImGuiDockNodePtr node, ref ImGuiDockNode parent)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin)
 		{
-			fixed (ImGuiDockNode* pparent = &parent)
+			fixed (byte* plabel = &label)
 			{
-				byte ret = DockNodeIsInHierarchyOfNative((ImGuiDockNode*)node, (ImGuiDockNode*)pparent);
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, pClampMin, (void*)(default));
 				return ret != 0;
 			}
 		}
@@ -630,13 +106,502 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool DockNodeIsInHierarchyOf(ref ImGuiDockNode node, ref ImGuiDockNode parent)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, byte* format)
 		{
-			fixed (ImGuiDockNode* pnode = &node)
+			fixed (byte* plabel = &label)
 			{
-				fixed (ImGuiDockNode* pparent = &parent)
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, (void*)(default), (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, (void*)(default), (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DockNodeIsInHierarchyOfNative((ImGuiDockNode*)pnode, (ImGuiDockNode*)pparent);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, format, pClampMin, pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, format, pClampMin, (void*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, format, (void*)(default), (void*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin, void* pClampMax)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, format, pClampMin, pClampMax);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, format, pClampMin, (void*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, byte* format)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, format, (void*)(default), (void*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, (void*)(default), (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, (void*)(default), (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, format, pClampMin, pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, format, pClampMin, (void*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, format, (void*)(default), (void*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, in byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, (void*)(default), (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, (void*)(default), (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, string format, void* pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, pStr0, pClampMin, pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, string format, void* pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, pStr0, pClampMin, (void*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, pStr0, (void*)(default), (void*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, pClampMax);
 					return ret != 0;
 				}
 			}
@@ -645,180 +610,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int DockNodeGetDepthNative(ImGuiDockNode* node)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, int>)funcTable[1232])(node);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[1232])((nint)node);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int DockNodeGetDepth(ImGuiDockNodePtr node)
-		{
-			int ret = DockNodeGetDepthNative((ImGuiDockNode*)node);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int DockNodeGetDepth(in ImGuiDockNode node)
-		{
-			fixed (ImGuiDockNode* pnode = &node)
+			fixed (byte* plabel = &label)
 			{
-				int ret = DockNodeGetDepthNative((ImGuiDockNode*)pnode);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint DockNodeGetWindowMenuButtonIdNative(ImGuiDockNode* node)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, uint>)funcTable[1233])(node);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)funcTable[1233])((nint)node);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint DockNodeGetWindowMenuButtonId(ImGuiDockNodePtr node)
-		{
-			uint ret = DockNodeGetWindowMenuButtonIdNative((ImGuiDockNode*)node);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint DockNodeGetWindowMenuButtonId(in ImGuiDockNode node)
-		{
-			fixed (ImGuiDockNode* pnode = &node)
-			{
-				uint ret = DockNodeGetWindowMenuButtonIdNative((ImGuiDockNode*)pnode);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiDockNode* GetWindowDockNodeNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*>)funcTable[1234])();
-			#else
-			return (ImGuiDockNode*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1234])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiDockNodePtr GetWindowDockNode()
-		{
-			ImGuiDockNodePtr ret = GetWindowDockNodeNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte GetWindowAlwaysWantOwnTabBarNative(ImGuiWindow* window)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, byte>)funcTable[1235])(window);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[1235])((nint)window);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool GetWindowAlwaysWantOwnTabBar(ImGuiWindowPtr window)
-		{
-			byte ret = GetWindowAlwaysWantOwnTabBarNative((ImGuiWindow*)window);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool GetWindowAlwaysWantOwnTabBar(ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				byte ret = GetWindowAlwaysWantOwnTabBarNative((ImGuiWindow*)pwindow);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void BeginDockedNative(ImGuiWindow* window, bool* pOpen)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, bool*, void>)funcTable[1236])(window, pOpen);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1236])((nint)window, (nint)pOpen);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BeginDocked(ImGuiWindowPtr window, bool* pOpen)
-		{
-			BeginDockedNative((ImGuiWindow*)window, pOpen);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BeginDocked(ref ImGuiWindow window, bool* pOpen)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				BeginDockedNative((ImGuiWindow*)pwindow, pOpen);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BeginDocked(ImGuiWindowPtr window, ref bool pOpen)
-		{
-			fixed (bool* ppOpen = &pOpen)
-			{
-				BeginDockedNative((ImGuiWindow*)window, (bool*)ppOpen);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BeginDocked(ref ImGuiWindow window, ref bool pOpen)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				fixed (bool* ppOpen = &pOpen)
+				fixed (byte* pformat = &format)
 				{
-					BeginDockedNative((ImGuiWindow*)pwindow, (bool*)ppOpen);
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, (void*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -826,152 +625,73 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void BeginDockableDragDropSourceNative(ImGuiWindow* window)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, in byte format)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)funcTable[1237])(window);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1237])((nint)window);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BeginDockableDragDropSource(ImGuiWindowPtr window)
-		{
-			BeginDockableDragDropSourceNative((ImGuiWindow*)window);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BeginDockableDragDropSource(ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
+			fixed (byte* plabel = &label)
 			{
-				BeginDockableDragDropSourceNative((ImGuiWindow*)pwindow);
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)(default), (void*)(default));
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void BeginDockableDragDropTargetNative(ImGuiWindow* window)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin, void* pClampMax)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)funcTable[1238])(window);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1238])((nint)window);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BeginDockableDragDropTarget(ImGuiWindowPtr window)
-		{
-			BeginDockableDragDropTargetNative((ImGuiWindow*)window);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BeginDockableDragDropTarget(ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
+			fixed (byte* plabel = label)
 			{
-				BeginDockableDragDropTargetNative((ImGuiWindow*)pwindow);
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, pClampMax);
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetWindowDockNative(ImGuiWindow* window, uint dockId, ImGuiCond cond)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, uint, ImGuiCond, void>)funcTable[1239])(window, dockId, cond);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, ImGuiCond, void>)funcTable[1239])((nint)window, dockId, cond);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetWindowDock(ImGuiWindowPtr window, uint dockId, ImGuiCond cond)
-		{
-			SetWindowDockNative((ImGuiWindow*)window, dockId, cond);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetWindowDock(ref ImGuiWindow window, uint dockId, ImGuiCond cond)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
+			fixed (byte* plabel = label)
 			{
-				SetWindowDockNative((ImGuiWindow*)pwindow, dockId, cond);
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, (void*)(default));
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DockBuilderDockWindowNative(byte* windowName, uint nodeId)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, uint, void>)funcTable[1240])(windowName, nodeId);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[1240])((nint)windowName, nodeId);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderDockWindow(byte* windowName, uint nodeId)
-		{
-			DockBuilderDockWindowNative(windowName, nodeId);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderDockWindow(in byte windowName, uint nodeId)
-		{
-			fixed (byte* pwindowName = &windowName)
+			fixed (byte* plabel = label)
 			{
-				DockBuilderDockWindowNative((byte*)pwindowName, nodeId);
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)(default), (void*)(default));
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void DockBuilderDockWindow(ReadOnlySpan<byte> windowName, uint nodeId)
-		{
-			fixed (byte* pwindowName = windowName)
-			{
-				DockBuilderDockWindowNative((byte*)pwindowName, nodeId);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderDockWindow(string windowName, uint nodeId)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, string format, void* pClampMin, void* pClampMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (windowName != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(windowName);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -981,525 +701,14 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(windowName, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			DockBuilderDockWindowNative(pStr0, nodeId);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiDockNode* DockBuilderGetNodeNative(uint nodeId)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiDockNode*>)funcTable[1241])(nodeId);
-			#else
-			return (ImGuiDockNode*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1241])(nodeId);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiDockNodePtr DockBuilderGetNode(uint nodeId)
-		{
-			ImGuiDockNodePtr ret = DockBuilderGetNodeNative(nodeId);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiDockNode* DockBuilderGetCentralNodeNative(uint nodeId)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiDockNode*>)funcTable[1242])(nodeId);
-			#else
-			return (ImGuiDockNode*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1242])(nodeId);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiDockNodePtr DockBuilderGetCentralNode(uint nodeId)
-		{
-			ImGuiDockNodePtr ret = DockBuilderGetCentralNodeNative(nodeId);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint DockBuilderAddNodeNative(uint nodeId, ImGuiDockNodeFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiDockNodeFlags, uint>)funcTable[1243])(nodeId, flags);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, ImGuiDockNodeFlags, uint>)funcTable[1243])(nodeId, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint DockBuilderAddNode(uint nodeId, ImGuiDockNodeFlags flags)
-		{
-			uint ret = DockBuilderAddNodeNative(nodeId, flags);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint DockBuilderAddNode(uint nodeId)
-		{
-			uint ret = DockBuilderAddNodeNative(nodeId, (ImGuiDockNodeFlags)(0));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint DockBuilderAddNode()
-		{
-			uint ret = DockBuilderAddNodeNative((uint)(0), (ImGuiDockNodeFlags)(0));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint DockBuilderAddNode(ImGuiDockNodeFlags flags)
-		{
-			uint ret = DockBuilderAddNodeNative((uint)(0), flags);
-			return ret;
-		}
-
-		/// <summary>
-		/// Remove node and all its child, undock all windows<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DockBuilderRemoveNodeNative(uint nodeId)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1244])(nodeId);
-			#else
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1244])(nodeId);
-			#endif
-		}
-
-		/// <summary>
-		/// Remove node and all its child, undock all windows<br/>
-		/// </summary>
-		public static void DockBuilderRemoveNode(uint nodeId)
-		{
-			DockBuilderRemoveNodeNative(nodeId);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DockBuilderRemoveNodeDockedWindowsNative(uint nodeId, byte clearSettingsRefs)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, byte, void>)funcTable[1245])(nodeId, clearSettingsRefs);
-			#else
-			((delegate* unmanaged[Cdecl]<uint, byte, void>)funcTable[1245])(nodeId, clearSettingsRefs);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderRemoveNodeDockedWindows(uint nodeId, bool clearSettingsRefs)
-		{
-			DockBuilderRemoveNodeDockedWindowsNative(nodeId, clearSettingsRefs ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderRemoveNodeDockedWindows(uint nodeId)
-		{
-			DockBuilderRemoveNodeDockedWindowsNative(nodeId, (byte)(1));
-		}
-
-		/// <summary>
-		/// Remove all splithierarchy. All remaining docked windows will be re-docked to the remaining root node (node_id).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DockBuilderRemoveNodeChildNodesNative(uint nodeId)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1246])(nodeId);
-			#else
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1246])(nodeId);
-			#endif
-		}
-
-		/// <summary>
-		/// Remove all splithierarchy. All remaining docked windows will be re-docked to the remaining root node (node_id).<br/>
-		/// </summary>
-		public static void DockBuilderRemoveNodeChildNodes(uint nodeId)
-		{
-			DockBuilderRemoveNodeChildNodesNative(nodeId);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DockBuilderSetNodePosNative(uint nodeId, Vector2 pos)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, Vector2, void>)funcTable[1247])(nodeId, pos);
-			#else
-			((delegate* unmanaged[Cdecl]<uint, Vector2, void>)funcTable[1247])(nodeId, pos);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderSetNodePos(uint nodeId, Vector2 pos)
-		{
-			DockBuilderSetNodePosNative(nodeId, pos);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DockBuilderSetNodeSizeNative(uint nodeId, Vector2 size)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, Vector2, void>)funcTable[1248])(nodeId, size);
-			#else
-			((delegate* unmanaged[Cdecl]<uint, Vector2, void>)funcTable[1248])(nodeId, size);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderSetNodeSize(uint nodeId, Vector2 size)
-		{
-			DockBuilderSetNodeSizeNative(nodeId, size);
-		}
-
-		/// <summary>
-		/// Create 2 child nodes in this parent node.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint DockBuilderSplitNodeNative(uint nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, uint* outIdAtDir, uint* outIdAtOppositeDir)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiDir, float, uint*, uint*, uint>)funcTable[1249])(nodeId, splitDir, sizeRatioForNodeAtDir, outIdAtDir, outIdAtOppositeDir);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, ImGuiDir, float, nint, nint, uint>)funcTable[1249])(nodeId, splitDir, sizeRatioForNodeAtDir, (nint)outIdAtDir, (nint)outIdAtOppositeDir);
-			#endif
-		}
-
-		/// <summary>
-		/// Create 2 child nodes in this parent node.<br/>
-		/// </summary>
-		public static uint DockBuilderSplitNode(uint nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, uint* outIdAtDir, uint* outIdAtOppositeDir)
-		{
-			uint ret = DockBuilderSplitNodeNative(nodeId, splitDir, sizeRatioForNodeAtDir, outIdAtDir, outIdAtOppositeDir);
-			return ret;
-		}
-
-		/// <summary>
-		/// Create 2 child nodes in this parent node.<br/>
-		/// </summary>
-		public static uint DockBuilderSplitNode(uint nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, ref uint outIdAtDir, uint* outIdAtOppositeDir)
-		{
-			fixed (uint* poutIdAtDir = &outIdAtDir)
-			{
-				uint ret = DockBuilderSplitNodeNative(nodeId, splitDir, sizeRatioForNodeAtDir, (uint*)poutIdAtDir, outIdAtOppositeDir);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Create 2 child nodes in this parent node.<br/>
-		/// </summary>
-		public static uint DockBuilderSplitNode(uint nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, uint* outIdAtDir, ref uint outIdAtOppositeDir)
-		{
-			fixed (uint* poutIdAtOppositeDir = &outIdAtOppositeDir)
-			{
-				uint ret = DockBuilderSplitNodeNative(nodeId, splitDir, sizeRatioForNodeAtDir, outIdAtDir, (uint*)poutIdAtOppositeDir);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Create 2 child nodes in this parent node.<br/>
-		/// </summary>
-		public static uint DockBuilderSplitNode(uint nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, ref uint outIdAtDir, ref uint outIdAtOppositeDir)
-		{
-			fixed (uint* poutIdAtDir = &outIdAtDir)
-			{
-				fixed (uint* poutIdAtOppositeDir = &outIdAtOppositeDir)
-				{
-					uint ret = DockBuilderSplitNodeNative(nodeId, splitDir, sizeRatioForNodeAtDir, (uint*)poutIdAtDir, (uint*)poutIdAtOppositeDir);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DockBuilderCopyDockSpaceNative(uint srcDockspaceId, uint dstDockspaceId, ImVector<ConstPointer<byte>>* inWindowRemapPairs)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, uint, ImVector<ConstPointer<byte>>*, void>)funcTable[1250])(srcDockspaceId, dstDockspaceId, inWindowRemapPairs);
-			#else
-			((delegate* unmanaged[Cdecl]<uint, uint, nint, void>)funcTable[1250])(srcDockspaceId, dstDockspaceId, (nint)inWindowRemapPairs);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyDockSpace(uint srcDockspaceId, uint dstDockspaceId, ImVector<ConstPointer<byte>>* inWindowRemapPairs)
-		{
-			DockBuilderCopyDockSpaceNative(srcDockspaceId, dstDockspaceId, inWindowRemapPairs);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyDockSpace(uint srcDockspaceId, uint dstDockspaceId, ref ImVector<ConstPointer<byte>> inWindowRemapPairs)
-		{
-			fixed (ImVector<ConstPointer<byte>>* pinWindowRemapPairs = &inWindowRemapPairs)
-			{
-				DockBuilderCopyDockSpaceNative(srcDockspaceId, dstDockspaceId, (ImVector<ConstPointer<byte>>*)pinWindowRemapPairs);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DockBuilderCopyNodeNative(uint srcNodeId, uint dstNodeId, ImVector<uint>* outNodeRemapPairs)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, uint, ImVector<uint>*, void>)funcTable[1251])(srcNodeId, dstNodeId, outNodeRemapPairs);
-			#else
-			((delegate* unmanaged[Cdecl]<uint, uint, nint, void>)funcTable[1251])(srcNodeId, dstNodeId, (nint)outNodeRemapPairs);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyNode(uint srcNodeId, uint dstNodeId, ImVector<uint>* outNodeRemapPairs)
-		{
-			DockBuilderCopyNodeNative(srcNodeId, dstNodeId, outNodeRemapPairs);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyNode(uint srcNodeId, uint dstNodeId, ref ImVector<uint> outNodeRemapPairs)
-		{
-			fixed (ImVector<uint>* poutNodeRemapPairs = &outNodeRemapPairs)
-			{
-				DockBuilderCopyNodeNative(srcNodeId, dstNodeId, (ImVector<uint>*)poutNodeRemapPairs);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DockBuilderCopyWindowSettingsNative(byte* srcName, byte* dstName)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)funcTable[1252])(srcName, dstName);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1252])((nint)srcName, (nint)dstName);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyWindowSettings(byte* srcName, byte* dstName)
-		{
-			DockBuilderCopyWindowSettingsNative(srcName, dstName);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyWindowSettings(in byte srcName, byte* dstName)
-		{
-			fixed (byte* psrcName = &srcName)
-			{
-				DockBuilderCopyWindowSettingsNative((byte*)psrcName, dstName);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyWindowSettings(ReadOnlySpan<byte> srcName, byte* dstName)
-		{
-			fixed (byte* psrcName = srcName)
-			{
-				DockBuilderCopyWindowSettingsNative((byte*)psrcName, dstName);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyWindowSettings(string srcName, byte* dstName)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (srcName != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(srcName);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(srcName, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			DockBuilderCopyWindowSettingsNative(pStr0, dstName);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyWindowSettings(byte* srcName, in byte dstName)
-		{
-			fixed (byte* pdstName = &dstName)
-			{
-				DockBuilderCopyWindowSettingsNative(srcName, (byte*)pdstName);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyWindowSettings(byte* srcName, ReadOnlySpan<byte> dstName)
-		{
-			fixed (byte* pdstName = dstName)
-			{
-				DockBuilderCopyWindowSettingsNative(srcName, (byte*)pdstName);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyWindowSettings(byte* srcName, string dstName)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (dstName != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(dstName);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(dstName, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			DockBuilderCopyWindowSettingsNative(srcName, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyWindowSettings(in byte srcName, in byte dstName)
-		{
-			fixed (byte* psrcName = &srcName)
-			{
-				fixed (byte* pdstName = &dstName)
-				{
-					DockBuilderCopyWindowSettingsNative((byte*)psrcName, (byte*)pdstName);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyWindowSettings(ReadOnlySpan<byte> srcName, ReadOnlySpan<byte> dstName)
-		{
-			fixed (byte* psrcName = srcName)
-			{
-				fixed (byte* pdstName = dstName)
-				{
-					DockBuilderCopyWindowSettingsNative((byte*)psrcName, (byte*)pdstName);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyWindowSettings(string srcName, string dstName)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (srcName != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(srcName);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(srcName, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (dstName != null)
+			if (format != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(dstName);
+				pStrSize1 = Utils.GetByteCountUTF8(format);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -1509,10 +718,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(dstName, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			DockBuilderCopyWindowSettingsNative(pStr0, pStr1);
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, pStr1, pClampMin, pClampMax);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1521,110 +730,19 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void DockBuilderCopyWindowSettings(in byte srcName, ReadOnlySpan<byte> dstName)
-		{
-			fixed (byte* psrcName = &srcName)
-			{
-				fixed (byte* pdstName = dstName)
-				{
-					DockBuilderCopyWindowSettingsNative((byte*)psrcName, (byte*)pdstName);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyWindowSettings(in byte srcName, string dstName)
-		{
-			fixed (byte* psrcName = &srcName)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (dstName != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(dstName);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(dstName, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				DockBuilderCopyWindowSettingsNative((byte*)psrcName, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyWindowSettings(ReadOnlySpan<byte> srcName, in byte dstName)
-		{
-			fixed (byte* psrcName = srcName)
-			{
-				fixed (byte* pdstName = &dstName)
-				{
-					DockBuilderCopyWindowSettingsNative((byte*)psrcName, (byte*)pdstName);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyWindowSettings(ReadOnlySpan<byte> srcName, string dstName)
-		{
-			fixed (byte* psrcName = srcName)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (dstName != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(dstName);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(dstName, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				DockBuilderCopyWindowSettingsNative((byte*)psrcName, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderCopyWindowSettings(string srcName, in byte dstName)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, string format, void* pClampMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (srcName != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(srcName);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1634,29 +752,48 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(srcName, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pdstName = &dstName)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
 			{
-				DockBuilderCopyWindowSettingsNative(pStr0, (byte*)pdstName);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
 			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, pStr1, pClampMin, (void*)(default));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void DockBuilderCopyWindowSettings(string srcName, ReadOnlySpan<byte> dstName)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (srcName != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(srcName);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1666,225 +803,48 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(srcName, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pdstName = dstName)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
 			{
-				DockBuilderCopyWindowSettingsNative(pStr0, (byte*)pdstName);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DockBuilderFinishNative(uint nodeId)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1253])(nodeId);
-			#else
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1253])(nodeId);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void DockBuilderFinish(uint nodeId)
-		{
-			DockBuilderFinishNative(nodeId);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushFocusScopeNative(uint id)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1254])(id);
-			#else
-			((delegate* unmanaged[Cdecl]<uint, void>)funcTable[1254])(id);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PushFocusScope(uint id)
-		{
-			PushFocusScopeNative(id);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PopFocusScopeNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1255])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1255])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PopFocusScope()
-		{
-			PopFocusScopeNative();
-		}
-
-		/// <summary>
-		/// Focus scope we are outputting into, set by PushFocusScope()<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetCurrentFocusScopeNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint>)funcTable[1256])();
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint>)funcTable[1256])();
-			#endif
-		}
-
-		/// <summary>
-		/// Focus scope we are outputting into, set by PushFocusScope()<br/>
-		/// </summary>
-		public static uint GetCurrentFocusScope()
-		{
-			uint ret = GetCurrentFocusScopeNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsDragDropActiveNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[1257])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[1257])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsDragDropActive()
-		{
-			byte ret = IsDragDropActiveNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte BeginDragDropTargetCustomNative(ImRect bb, uint id)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect, uint, byte>)funcTable[1258])(bb, id);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, byte>)funcTable[1258])(bb, id);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginDragDropTargetCustom(ImRect bb, uint id)
-		{
-			byte ret = BeginDragDropTargetCustomNative(bb, id);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte BeginDragDropTargetViewportNative(ImGuiViewport* viewport, ImRect* pBb)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*, ImRect*, byte>)funcTable[1259])(viewport, pBb);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[1259])((nint)viewport, (nint)pBb);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginDragDropTargetViewport(ImGuiViewportPtr viewport, ImRectPtr pBb)
-		{
-			byte ret = BeginDragDropTargetViewportNative((ImGuiViewport*)viewport, (ImRect*)pBb);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginDragDropTargetViewport(ImGuiViewportPtr viewport)
-		{
-			byte ret = BeginDragDropTargetViewportNative((ImGuiViewport*)viewport, (ImRect*)(default));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginDragDropTargetViewport(ref ImGuiViewport viewport, ImRectPtr pBb)
-		{
-			fixed (ImGuiViewport* pviewport = &viewport)
-			{
-				byte ret = BeginDragDropTargetViewportNative((ImGuiViewport*)pviewport, (ImRect*)pBb);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginDragDropTargetViewport(ref ImGuiViewport viewport)
-		{
-			fixed (ImGuiViewport* pviewport = &viewport)
-			{
-				byte ret = BeginDragDropTargetViewportNative((ImGuiViewport*)pviewport, (ImRect*)(default));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginDragDropTargetViewport(ImGuiViewportPtr viewport, in ImRect pBb)
-		{
-			fixed (ImRect* ppBb = &pBb)
-			{
-				byte ret = BeginDragDropTargetViewportNative((ImGuiViewport*)viewport, (ImRect*)ppBb);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginDragDropTargetViewport(ref ImGuiViewport viewport, in ImRect pBb)
-		{
-			fixed (ImGuiViewport* pviewport = &viewport)
-			{
-				fixed (ImRect* ppBb = &pBb)
+				else
 				{
-					byte ret = BeginDragDropTargetViewportNative((ImGuiViewport*)pviewport, (ImRect*)ppBb);
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, pStr1, (void*)(default), (void*)(default));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, pClampMax);
 					return ret != 0;
 				}
 			}
@@ -1893,325 +853,62 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearDragDropNative()
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1260])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1260])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearDragDrop()
-		{
-			ClearDragDropNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsDragDropPayloadBeingAcceptedNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[1261])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[1261])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool IsDragDropPayloadBeingAccepted()
-		{
-			byte ret = IsDragDropPayloadBeingAcceptedNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void RenderDragDropTargetRectForItemNative(ImRect bb)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect, void>)funcTable[1262])(bb);
-			#else
-			((delegate* unmanaged[Cdecl]<ImRect, void>)funcTable[1262])(bb);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderDragDropTargetRectForItem(ImRect bb)
-		{
-			RenderDragDropTargetRectForItemNative(bb);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void RenderDragDropTargetRectExNative(ImDrawList* drawList, ImRect bb)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, void>)funcTable[1263])(drawList, bb);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImRect, void>)funcTable[1263])((nint)drawList, bb);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderDragDropTargetRectEx(ImDrawListPtr drawList, ImRect bb)
-		{
-			RenderDragDropTargetRectExNative((ImDrawList*)drawList, bb);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderDragDropTargetRectEx(ref ImDrawList drawList, ImRect bb)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			fixed (byte* plabel = &label)
 			{
-				RenderDragDropTargetRectExNative((ImDrawList*)pdrawList, bb);
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, (void*)(default));
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTypingSelectRequest* GetTypingSelectRequestNative(ImGuiTypingSelectFlags flags)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectFlags, ImGuiTypingSelectRequest*>)funcTable[1264])(flags);
-			#else
-			return (ImGuiTypingSelectRequest*)((delegate* unmanaged[Cdecl]<ImGuiTypingSelectFlags, nint>)funcTable[1264])(flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTypingSelectRequestPtr GetTypingSelectRequest(ImGuiTypingSelectFlags flags)
-		{
-			ImGuiTypingSelectRequestPtr ret = GetTypingSelectRequestNative(flags);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTypingSelectRequestPtr GetTypingSelectRequest()
-		{
-			ImGuiTypingSelectRequestPtr ret = GetTypingSelectRequestNative((ImGuiTypingSelectFlags)(ImGuiTypingSelectFlags.None));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int TypingSelectFindMatchNative(ImGuiTypingSelectRequest* req, int itemsCount, delegate*<void*, int, byte*> getItemNameFunc, void* userData, int navItemIdx)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectRequest*, int, delegate*<void*, int, byte*>, void*, int, int>)funcTable[1265])(req, itemsCount, getItemNameFunc, userData, navItemIdx);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, int, int>)funcTable[1265])((nint)req, itemsCount, (nint)getItemNameFunc, (nint)userData, navItemIdx);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int TypingSelectFindMatch(ImGuiTypingSelectRequestPtr req, int itemsCount, delegate*<void*, int, byte*> getItemNameFunc, void* userData, int navItemIdx)
-		{
-			int ret = TypingSelectFindMatchNative((ImGuiTypingSelectRequest*)req, itemsCount, getItemNameFunc, userData, navItemIdx);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int TypingSelectFindMatch(ref ImGuiTypingSelectRequest req, int itemsCount, delegate*<void*, int, byte*> getItemNameFunc, void* userData, int navItemIdx)
-		{
-			fixed (ImGuiTypingSelectRequest* preq = &req)
+			fixed (byte* plabel = &label)
 			{
-				int ret = TypingSelectFindMatchNative((ImGuiTypingSelectRequest*)preq, itemsCount, getItemNameFunc, userData, navItemIdx);
-				return ret;
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)(default), (void*)(default));
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int TypingSelectFindMatch(ImGuiTypingSelectRequestPtr req, int itemsCount, delegate*<void*, int, byte*> getItemNameFunc, nint userData, int navItemIdx)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, string format, void* pClampMin, void* pClampMax)
 		{
-			int ret = TypingSelectFindMatchNative((ImGuiTypingSelectRequest*)req, itemsCount, getItemNameFunc, (void*)userData, navItemIdx);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int TypingSelectFindMatch(ref ImGuiTypingSelectRequest req, int itemsCount, delegate*<void*, int, byte*> getItemNameFunc, nint userData, int navItemIdx)
-		{
-			fixed (ImGuiTypingSelectRequest* preq = &req)
+			fixed (byte* plabel = &label)
 			{
-				int ret = TypingSelectFindMatchNative((ImGuiTypingSelectRequest*)preq, itemsCount, getItemNameFunc, (void*)userData, navItemIdx);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int TypingSelectFindNextSingleCharMatchNative(ImGuiTypingSelectRequest* req, int itemsCount, delegate*<void*, int, byte*> getItemNameFunc, void* userData, int navItemIdx)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectRequest*, int, delegate*<void*, int, byte*>, void*, int, int>)funcTable[1266])(req, itemsCount, getItemNameFunc, userData, navItemIdx);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, int, int>)funcTable[1266])((nint)req, itemsCount, (nint)getItemNameFunc, (nint)userData, navItemIdx);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int TypingSelectFindNextSingleCharMatch(ImGuiTypingSelectRequestPtr req, int itemsCount, delegate*<void*, int, byte*> getItemNameFunc, void* userData, int navItemIdx)
-		{
-			int ret = TypingSelectFindNextSingleCharMatchNative((ImGuiTypingSelectRequest*)req, itemsCount, getItemNameFunc, userData, navItemIdx);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int TypingSelectFindNextSingleCharMatch(ref ImGuiTypingSelectRequest req, int itemsCount, delegate*<void*, int, byte*> getItemNameFunc, void* userData, int navItemIdx)
-		{
-			fixed (ImGuiTypingSelectRequest* preq = &req)
-			{
-				int ret = TypingSelectFindNextSingleCharMatchNative((ImGuiTypingSelectRequest*)preq, itemsCount, getItemNameFunc, userData, navItemIdx);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int TypingSelectFindNextSingleCharMatch(ImGuiTypingSelectRequestPtr req, int itemsCount, delegate*<void*, int, byte*> getItemNameFunc, nint userData, int navItemIdx)
-		{
-			int ret = TypingSelectFindNextSingleCharMatchNative((ImGuiTypingSelectRequest*)req, itemsCount, getItemNameFunc, (void*)userData, navItemIdx);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int TypingSelectFindNextSingleCharMatch(ref ImGuiTypingSelectRequest req, int itemsCount, delegate*<void*, int, byte*> getItemNameFunc, nint userData, int navItemIdx)
-		{
-			fixed (ImGuiTypingSelectRequest* preq = &req)
-			{
-				int ret = TypingSelectFindNextSingleCharMatchNative((ImGuiTypingSelectRequest*)preq, itemsCount, getItemNameFunc, (void*)userData, navItemIdx);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int TypingSelectFindBestLeadingMatchNative(ImGuiTypingSelectRequest* req, int itemsCount, delegate*<void*, int, byte*> getItemNameFunc, void* userData)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectRequest*, int, delegate*<void*, int, byte*>, void*, int>)funcTable[1267])(req, itemsCount, getItemNameFunc, userData);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, int>)funcTable[1267])((nint)req, itemsCount, (nint)getItemNameFunc, (nint)userData);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int TypingSelectFindBestLeadingMatch(ImGuiTypingSelectRequestPtr req, int itemsCount, delegate*<void*, int, byte*> getItemNameFunc, void* userData)
-		{
-			int ret = TypingSelectFindBestLeadingMatchNative((ImGuiTypingSelectRequest*)req, itemsCount, getItemNameFunc, userData);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int TypingSelectFindBestLeadingMatch(ref ImGuiTypingSelectRequest req, int itemsCount, delegate*<void*, int, byte*> getItemNameFunc, void* userData)
-		{
-			fixed (ImGuiTypingSelectRequest* preq = &req)
-			{
-				int ret = TypingSelectFindBestLeadingMatchNative((ImGuiTypingSelectRequest*)preq, itemsCount, getItemNameFunc, userData);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int TypingSelectFindBestLeadingMatch(ImGuiTypingSelectRequestPtr req, int itemsCount, delegate*<void*, int, byte*> getItemNameFunc, nint userData)
-		{
-			int ret = TypingSelectFindBestLeadingMatchNative((ImGuiTypingSelectRequest*)req, itemsCount, getItemNameFunc, (void*)userData);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int TypingSelectFindBestLeadingMatch(ref ImGuiTypingSelectRequest req, int itemsCount, delegate*<void*, int, byte*> getItemNameFunc, nint userData)
-		{
-			fixed (ImGuiTypingSelectRequest* preq = &req)
-			{
-				int ret = TypingSelectFindBestLeadingMatchNative((ImGuiTypingSelectRequest*)preq, itemsCount, getItemNameFunc, (void*)userData);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte BeginBoxSelectNative(ImRect scopeRect, ImGuiWindow* window, uint boxSelectId, ImGuiMultiSelectFlags msFlags)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect, ImGuiWindow*, uint, ImGuiMultiSelectFlags, byte>)funcTable[1268])(scopeRect, window, boxSelectId, msFlags);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImRect, nint, uint, ImGuiMultiSelectFlags, byte>)funcTable[1268])(scopeRect, (nint)window, boxSelectId, msFlags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginBoxSelect(ImRect scopeRect, ImGuiWindowPtr window, uint boxSelectId, ImGuiMultiSelectFlags msFlags)
-		{
-			byte ret = BeginBoxSelectNative(scopeRect, (ImGuiWindow*)window, boxSelectId, msFlags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginBoxSelect(ImRect scopeRect, ref ImGuiWindow window, uint boxSelectId, ImGuiMultiSelectFlags msFlags)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				byte ret = BeginBoxSelectNative(scopeRect, (ImGuiWindow*)pwindow, boxSelectId, msFlags);
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 				return ret != 0;
 			}
 		}
@@ -2219,77 +916,80 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void EndBoxSelectNative(ImRect scopeRect, ImGuiMultiSelectFlags msFlags)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, string format, void* pClampMin)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect, ImGuiMultiSelectFlags, void>)funcTable[1269])(scopeRect, msFlags);
-			#else
-			((delegate* unmanaged[Cdecl]<ImRect, ImGuiMultiSelectFlags, void>)funcTable[1269])(scopeRect, msFlags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void EndBoxSelect(ImRect scopeRect, ImGuiMultiSelectFlags msFlags)
-		{
-			EndBoxSelectNative(scopeRect, msFlags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void MultiSelectItemHeaderNative(uint id, bool* pSelected, ImGuiButtonFlags* pButtonFlags)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, bool*, ImGuiButtonFlags*, void>)funcTable[1270])(id, pSelected, pButtonFlags);
-			#else
-			((delegate* unmanaged[Cdecl]<uint, nint, nint, void>)funcTable[1270])(id, (nint)pSelected, (nint)pButtonFlags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MultiSelectItemHeader(uint id, bool* pSelected, ImGuiButtonFlags* pButtonFlags)
-		{
-			MultiSelectItemHeaderNative(id, pSelected, pButtonFlags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MultiSelectItemHeader(uint id, ref bool pSelected, ImGuiButtonFlags* pButtonFlags)
-		{
-			fixed (bool* ppSelected = &pSelected)
+			fixed (byte* plabel = &label)
 			{
-				MultiSelectItemHeaderNative(id, (bool*)ppSelected, pButtonFlags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MultiSelectItemHeader(uint id, bool* pSelected, ref ImGuiButtonFlags pButtonFlags)
-		{
-			fixed (ImGuiButtonFlags* ppButtonFlags = &pButtonFlags)
-			{
-				MultiSelectItemHeaderNative(id, pSelected, (ImGuiButtonFlags*)ppButtonFlags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MultiSelectItemHeader(uint id, ref bool pSelected, ref ImGuiButtonFlags pButtonFlags)
-		{
-			fixed (bool* ppSelected = &pSelected)
-			{
-				fixed (ImGuiButtonFlags* ppButtonFlags = &pButtonFlags)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
 				{
-					MultiSelectItemHeaderNative(id, (bool*)ppSelected, (ImGuiButtonFlags*)ppButtonFlags);
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, string format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, (void*)(default), (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, pClampMax);
+					return ret != 0;
 				}
 			}
 		}
@@ -2297,56 +997,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void MultiSelectItemFooterNative(uint id, bool* pSelected, bool* pPressed)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, bool*, bool*, void>)funcTable[1271])(id, pSelected, pPressed);
-			#else
-			((delegate* unmanaged[Cdecl]<uint, nint, nint, void>)funcTable[1271])(id, (nint)pSelected, (nint)pPressed);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MultiSelectItemFooter(uint id, bool* pSelected, bool* pPressed)
-		{
-			MultiSelectItemFooterNative(id, pSelected, pPressed);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MultiSelectItemFooter(uint id, ref bool pSelected, bool* pPressed)
-		{
-			fixed (bool* ppSelected = &pSelected)
+			fixed (byte* plabel = label)
 			{
-				MultiSelectItemFooterNative(id, (bool*)ppSelected, pPressed);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MultiSelectItemFooter(uint id, bool* pSelected, ref bool pPressed)
-		{
-			fixed (bool* ppPressed = &pPressed)
-			{
-				MultiSelectItemFooterNative(id, pSelected, (bool*)ppPressed);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MultiSelectItemFooter(uint id, ref bool pSelected, ref bool pPressed)
-		{
-			fixed (bool* ppSelected = &pSelected)
-			{
-				fixed (bool* ppPressed = &pPressed)
+				fixed (byte* pformat = &format)
 				{
-					MultiSelectItemFooterNative(id, (bool*)ppSelected, (bool*)ppPressed);
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, (void*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -2354,226 +1012,127 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void MultiSelectAddSetAllNative(ImGuiMultiSelectTempData* ms, byte selected)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, in byte format)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, byte, void>)funcTable[1272])(ms, selected);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, byte, void>)funcTable[1272])((nint)ms, selected);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MultiSelectAddSetAll(ImGuiMultiSelectTempDataPtr ms, bool selected)
-		{
-			MultiSelectAddSetAllNative((ImGuiMultiSelectTempData*)ms, selected ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MultiSelectAddSetAll(ref ImGuiMultiSelectTempData ms, bool selected)
-		{
-			fixed (ImGuiMultiSelectTempData* pms = &ms)
+			fixed (byte* plabel = label)
 			{
-				MultiSelectAddSetAllNative((ImGuiMultiSelectTempData*)pms, selected ? (byte)1 : (byte)0);
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)(default), (void*)(default));
+					return ret != 0;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void MultiSelectAddSetRangeNative(ImGuiMultiSelectTempData* ms, byte selected, int rangeDir, long firstItem, long lastItem)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, string format, void* pClampMin, void* pClampMax)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, byte, int, long, long, void>)funcTable[1273])(ms, selected, rangeDir, firstItem, lastItem);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, byte, int, long, long, void>)funcTable[1273])((nint)ms, selected, rangeDir, firstItem, lastItem);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MultiSelectAddSetRange(ImGuiMultiSelectTempDataPtr ms, bool selected, int rangeDir, long firstItem, long lastItem)
-		{
-			MultiSelectAddSetRangeNative((ImGuiMultiSelectTempData*)ms, selected ? (byte)1 : (byte)0, rangeDir, firstItem, lastItem);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void MultiSelectAddSetRange(ref ImGuiMultiSelectTempData ms, bool selected, int rangeDir, long firstItem, long lastItem)
-		{
-			fixed (ImGuiMultiSelectTempData* pms = &ms)
+			fixed (byte* plabel = label)
 			{
-				MultiSelectAddSetRangeNative((ImGuiMultiSelectTempData*)pms, selected ? (byte)1 : (byte)0, rangeDir, firstItem, lastItem);
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiBoxSelectState* GetBoxSelectStateNative(uint id)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, string format, void* pClampMin)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiBoxSelectState*>)funcTable[1274])(id);
-			#else
-			return (ImGuiBoxSelectState*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1274])(id);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiBoxSelectStatePtr GetBoxSelectState(uint id)
-		{
-			ImGuiBoxSelectStatePtr ret = GetBoxSelectStateNative(id);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiMultiSelectState* GetMultiSelectStateNative(uint id)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiMultiSelectState*>)funcTable[1275])(id);
-			#else
-			return (ImGuiMultiSelectState*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1275])(id);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiMultiSelectStatePtr GetMultiSelectState(uint id)
-		{
-			ImGuiMultiSelectStatePtr ret = GetMultiSelectStateNative(id);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetWindowClipRectBeforeSetChannelNative(ImGuiWindow* window, ImRect clipRect)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect, void>)funcTable[1276])(window, clipRect);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImRect, void>)funcTable[1276])((nint)window, clipRect);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetWindowClipRectBeforeSetChannel(ImGuiWindowPtr window, ImRect clipRect)
-		{
-			SetWindowClipRectBeforeSetChannelNative((ImGuiWindow*)window, clipRect);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetWindowClipRectBeforeSetChannel(ref ImGuiWindow window, ImRect clipRect)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
+			fixed (byte* plabel = label)
 			{
-				SetWindowClipRectBeforeSetChannelNative((ImGuiWindow*)pwindow, clipRect);
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
+		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void BeginColumnsNative(byte* strId, int count, ImGuiOldColumnFlags flags)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, string format)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int, ImGuiOldColumnFlags, void>)funcTable[1277])(strId, count, flags);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, ImGuiOldColumnFlags, void>)funcTable[1277])((nint)strId, count, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
-		/// </summary>
-		public static void BeginColumns(byte* strId, int count, ImGuiOldColumnFlags flags)
-		{
-			BeginColumnsNative(strId, count, flags);
-		}
-
-		/// <summary>
-		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
-		/// </summary>
-		public static void BeginColumns(byte* strId, int count)
-		{
-			BeginColumnsNative(strId, count, (ImGuiOldColumnFlags)(0));
-		}
-
-		/// <summary>
-		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
-		/// </summary>
-		public static void BeginColumns(in byte strId, int count, ImGuiOldColumnFlags flags)
-		{
-			fixed (byte* pstrId = &strId)
+			fixed (byte* plabel = label)
 			{
-				BeginColumnsNative((byte*)pstrId, count, flags);
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, (void*)(default), (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
+		/// To be documented.
 		/// </summary>
-		public static void BeginColumns(in byte strId, int count)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				BeginColumnsNative((byte*)pstrId, count, (ImGuiOldColumnFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
-		/// </summary>
-		public static void BeginColumns(ReadOnlySpan<byte> strId, int count, ImGuiOldColumnFlags flags)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				BeginColumnsNative((byte*)pstrId, count, flags);
-			}
-		}
-
-		/// <summary>
-		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
-		/// </summary>
-		public static void BeginColumns(ReadOnlySpan<byte> strId, int count)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				BeginColumnsNative((byte*)pstrId, count, (ImGuiOldColumnFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
-		/// </summary>
-		public static void BeginColumns(string strId, int count, ImGuiOldColumnFlags flags)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin, void* pClampMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (strId != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2583,26 +1142,30 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			BeginColumnsNative(pStr0, count, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = &format)
 			{
-				Utils.Free(pStr0);
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
+		/// To be documented.
 		/// </summary>
-		public static void BeginColumns(string strId, int count)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (strId != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2612,156 +1175,30 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			BeginColumnsNative(pStr0, count, (ImGuiOldColumnFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = &format)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// close columns<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void EndColumnsNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1278])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1278])();
-			#endif
-		}
-
-		/// <summary>
-		/// close columns<br/>
-		/// </summary>
-		public static void EndColumns()
-		{
-			EndColumnsNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushColumnClipRectNative(int columnIndex)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1279])(columnIndex);
-			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1279])(columnIndex);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PushColumnClipRect(int columnIndex)
-		{
-			PushColumnClipRectNative(columnIndex);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushColumnsBackgroundNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1280])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1280])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PushColumnsBackground()
-		{
-			PushColumnsBackgroundNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PopColumnsBackgroundNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1281])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1281])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PopColumnsBackground()
-		{
-			PopColumnsBackgroundNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetColumnsIDNative(byte* strId, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, uint>)funcTable[1282])(strId, count);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[1282])((nint)strId, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetColumnsID(byte* strId, int count)
-		{
-			uint ret = GetColumnsIDNative(strId, count);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetColumnsID(in byte strId, int count)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				uint ret = GetColumnsIDNative((byte*)pstrId, count);
-				return ret;
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint GetColumnsID(ReadOnlySpan<byte> strId, int count)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				uint ret = GetColumnsIDNative((byte*)pstrId, count);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetColumnsID(string strId, int count)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (strId != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2771,509 +1208,16 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			uint ret = GetColumnsIDNative(pStr0, count);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = &format)
 			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiOldColumns* FindOrCreateColumnsNative(ImGuiWindow* window, uint id)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, uint, ImGuiOldColumns*>)funcTable[1283])(window, id);
-			#else
-			return (ImGuiOldColumns*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)funcTable[1283])((nint)window, id);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiOldColumnsPtr FindOrCreateColumns(ImGuiWindowPtr window, uint id)
-		{
-			ImGuiOldColumnsPtr ret = FindOrCreateColumnsNative((ImGuiWindow*)window, id);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiOldColumnsPtr FindOrCreateColumns(ref ImGuiWindow window, uint id)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				ImGuiOldColumnsPtr ret = FindOrCreateColumnsNative((ImGuiWindow*)pwindow, id);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetColumnOffsetFromNormNative(ImGuiOldColumns* columns, float offsetNorm)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, float, float>)funcTable[1284])(columns, offsetNorm);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float, float>)funcTable[1284])((nint)columns, offsetNorm);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetColumnOffsetFromNorm(ImGuiOldColumnsPtr columns, float offsetNorm)
-		{
-			float ret = GetColumnOffsetFromNormNative((ImGuiOldColumns*)columns, offsetNorm);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetColumnOffsetFromNorm(in ImGuiOldColumns columns, float offsetNorm)
-		{
-			fixed (ImGuiOldColumns* pcolumns = &columns)
-			{
-				float ret = GetColumnOffsetFromNormNative((ImGuiOldColumns*)pcolumns, offsetNorm);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetColumnNormFromOffsetNative(ImGuiOldColumns* columns, float offset)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, float, float>)funcTable[1285])(columns, offset);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float, float>)funcTable[1285])((nint)columns, offset);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetColumnNormFromOffset(ImGuiOldColumnsPtr columns, float offset)
-		{
-			float ret = GetColumnNormFromOffsetNative((ImGuiOldColumns*)columns, offset);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetColumnNormFromOffset(in ImGuiOldColumns columns, float offset)
-		{
-			fixed (ImGuiOldColumns* pcolumns = &columns)
-			{
-				float ret = GetColumnNormFromOffsetNative((ImGuiOldColumns*)pcolumns, offset);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableOpenContextMenuNative(int columnN)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1286])(columnN);
-			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1286])(columnN);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableOpenContextMenu(int columnN)
-		{
-			TableOpenContextMenuNative(columnN);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableOpenContextMenu()
-		{
-			TableOpenContextMenuNative((int)(-1));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableSetColumnWidthNative(int columnN, float width)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[1287])(columnN, width);
-			#else
-			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[1287])(columnN, width);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSetColumnWidth(int columnN, float width)
-		{
-			TableSetColumnWidthNative(columnN, width);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableSetColumnSortDirectionNative(int columnN, ImGuiSortDirection sortDirection, byte appendToSortSpecs)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, ImGuiSortDirection, byte, void>)funcTable[1288])(columnN, sortDirection, appendToSortSpecs);
-			#else
-			((delegate* unmanaged[Cdecl]<int, ImGuiSortDirection, byte, void>)funcTable[1288])(columnN, sortDirection, appendToSortSpecs);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSetColumnSortDirection(int columnN, ImGuiSortDirection sortDirection, bool appendToSortSpecs)
-		{
-			TableSetColumnSortDirectionNative(columnN, sortDirection, appendToSortSpecs ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// Retrieve *PREVIOUS FRAME* hovered row. This difference with TableGetHoveredColumn() is the reason why this is not public yet.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int TableGetHoveredRowNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)funcTable[1289])();
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[1289])();
-			#endif
-		}
-
-		/// <summary>
-		/// Retrieve *PREVIOUS FRAME* hovered row. This difference with TableGetHoveredColumn() is the reason why this is not public yet.<br/>
-		/// </summary>
-		public static int TableGetHoveredRow()
-		{
-			int ret = TableGetHoveredRowNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float TableGetHeaderRowHeightNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[1290])();
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[1290])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float TableGetHeaderRowHeight()
-		{
-			float ret = TableGetHeaderRowHeightNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float TableGetHeaderAngledMaxLabelWidthNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[1291])();
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[1291])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float TableGetHeaderAngledMaxLabelWidth()
-		{
-			float ret = TableGetHeaderAngledMaxLabelWidthNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TablePushBackgroundChannelNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1292])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1292])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TablePushBackgroundChannel()
-		{
-			TablePushBackgroundChannelNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TablePopBackgroundChannelNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1293])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1293])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TablePopBackgroundChannel()
-		{
-			TablePopBackgroundChannelNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TablePushColumnChannelNative(int columnN)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1294])(columnN);
-			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1294])(columnN);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TablePushColumnChannel(int columnN)
-		{
-			TablePushColumnChannelNative(columnN);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TablePopColumnChannelNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1295])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1295])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TablePopColumnChannel()
-		{
-			TablePopColumnChannelNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableAngledHeadersRowExNative(uint rowId, float angle, float maxLabelWidth, ImGuiTableHeaderData* data, int dataCount)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, float, float, ImGuiTableHeaderData*, int, void>)funcTable[1296])(rowId, angle, maxLabelWidth, data, dataCount);
-			#else
-			((delegate* unmanaged[Cdecl]<uint, float, float, nint, int, void>)funcTable[1296])(rowId, angle, maxLabelWidth, (nint)data, dataCount);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableAngledHeadersRowEx(uint rowId, float angle, float maxLabelWidth, ImGuiTableHeaderDataPtr data, int dataCount)
-		{
-			TableAngledHeadersRowExNative(rowId, angle, maxLabelWidth, (ImGuiTableHeaderData*)data, dataCount);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableAngledHeadersRowEx(uint rowId, float angle, float maxLabelWidth, in ImGuiTableHeaderData data, int dataCount)
-		{
-			fixed (ImGuiTableHeaderData* pdata = &data)
-			{
-				TableAngledHeadersRowExNative(rowId, angle, maxLabelWidth, (ImGuiTableHeaderData*)pdata, dataCount);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTable* GetCurrentTableNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*>)funcTable[1297])();
-			#else
-			return (ImGuiTable*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1297])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTablePtr GetCurrentTable()
-		{
-			ImGuiTablePtr ret = GetCurrentTableNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTable* TableFindByIDNative(uint id)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiTable*>)funcTable[1298])(id);
-			#else
-			return (ImGuiTable*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1298])(id);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTablePtr TableFindByID(uint id)
-		{
-			ImGuiTablePtr ret = TableFindByIDNative(id);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte BeginTableExNative(byte* name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint, int, ImGuiTableFlags, Vector2, float, byte>)funcTable[1299])(name, id, columnsCount, flags, outerSize, innerWidth);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, uint, int, ImGuiTableFlags, Vector2, float, byte>)funcTable[1299])((nint)name, id, columnsCount, flags, outerSize, innerWidth);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(byte* name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
-		{
-			byte ret = BeginTableExNative(name, id, columnsCount, flags, outerSize, innerWidth);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(byte* name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize)
-		{
-			byte ret = BeginTableExNative(name, id, columnsCount, flags, outerSize, (float)(0.0f));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(byte* name, uint id, int columnsCount, ImGuiTableFlags flags)
-		{
-			byte ret = BeginTableExNative(name, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), (float)(0.0f));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(byte* name, uint id, int columnsCount)
-		{
-			byte ret = BeginTableExNative(name, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), (float)(0.0f));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(byte* name, uint id, int columnsCount, Vector2 outerSize)
-		{
-			byte ret = BeginTableExNative(name, id, columnsCount, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(byte* name, uint id, int columnsCount, ImGuiTableFlags flags, float innerWidth)
-		{
-			byte ret = BeginTableExNative(name, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), innerWidth);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(byte* name, uint id, int columnsCount, float innerWidth)
-		{
-			byte ret = BeginTableExNative(name, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), innerWidth);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(byte* name, uint id, int columnsCount, Vector2 outerSize, float innerWidth)
-		{
-			byte ret = BeginTableExNative(name, id, columnsCount, (ImGuiTableFlags)(0), outerSize, innerWidth);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(in byte name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
-		{
-			fixed (byte* pname = &name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, outerSize, innerWidth);
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, (void*)(default), (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 				return ret != 0;
 			}
 		}
@@ -3281,193 +1225,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginTableEx(in byte name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize)
-		{
-			fixed (byte* pname = &name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, outerSize, (float)(0.0f));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(in byte name, uint id, int columnsCount, ImGuiTableFlags flags)
-		{
-			fixed (byte* pname = &name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), (float)(0.0f));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(in byte name, uint id, int columnsCount)
-		{
-			fixed (byte* pname = &name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), (float)(0.0f));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(in byte name, uint id, int columnsCount, Vector2 outerSize)
-		{
-			fixed (byte* pname = &name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(in byte name, uint id, int columnsCount, ImGuiTableFlags flags, float innerWidth)
-		{
-			fixed (byte* pname = &name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), innerWidth);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(in byte name, uint id, int columnsCount, float innerWidth)
-		{
-			fixed (byte* pname = &name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), innerWidth);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(in byte name, uint id, int columnsCount, Vector2 outerSize, float innerWidth)
-		{
-			fixed (byte* pname = &name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), outerSize, innerWidth);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
-		{
-			fixed (byte* pname = name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, outerSize, innerWidth);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize)
-		{
-			fixed (byte* pname = name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, outerSize, (float)(0.0f));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount, ImGuiTableFlags flags)
-		{
-			fixed (byte* pname = name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), (float)(0.0f));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount)
-		{
-			fixed (byte* pname = name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), (float)(0.0f));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount, Vector2 outerSize)
-		{
-			fixed (byte* pname = name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount, ImGuiTableFlags flags, float innerWidth)
-		{
-			fixed (byte* pname = name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), innerWidth);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount, float innerWidth)
-		{
-			fixed (byte* pname = name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), innerWidth);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount, Vector2 outerSize, float innerWidth)
-		{
-			fixed (byte* pname = name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), outerSize, innerWidth);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(string name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin, void* pClampMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3477,10 +1241,181 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginTableExNative(pStr0, id, columnsCount, flags, outerSize, innerWidth);
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, (void*)(default), (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, in byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, (void*)(default), (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, (void*)(default), (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, string format, void* pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, pStr0, pClampMin, pClampMax);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3491,13 +1426,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginTableEx(string name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize)
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, string format, void* pClampMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (format != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(format);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3507,10 +1442,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginTableExNative(pStr0, id, columnsCount, flags, outerSize, (float)(0.0f));
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, pStr0, pClampMin, (void*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3521,13 +1456,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginTableEx(string name, uint id, int columnsCount, ImGuiTableFlags flags)
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (format != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(format);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3537,10 +1472,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginTableExNative(pStr0, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), (float)(0.0f));
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, pStr0, (void*)(default), (void*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3551,13 +1486,103 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginTableEx(string name, uint id, int columnsCount)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, in byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)(default), (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)(default), (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, string format, void* pClampMin, void* pClampMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3567,10 +1592,31 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginTableExNative(pStr0, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), (float)(0.0f));
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, pStr1, pClampMin, pClampMax);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3581,13 +1627,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginTableEx(string name, uint id, int columnsCount, Vector2 outerSize)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, string format, void* pClampMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3597,10 +1643,31 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginTableExNative(pStr0, id, columnsCount, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, pStr1, pClampMin, (void*)(default));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3611,13 +1678,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginTableEx(string name, uint id, int columnsCount, ImGuiTableFlags flags, float innerWidth)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3627,10 +1694,31 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginTableExNative(pStr0, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), innerWidth);
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, pStr1, (void*)(default), (void*)(default));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3641,349 +1729,77 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginTableEx(string name, uint id, int columnsCount, float innerWidth)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin, void* pClampMax)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
+			fixed (byte* plabel = &label)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)(default), (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, string format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, pClampMin, pClampMax);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					Utils.Free(pStr0);
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginTableExNative(pStr0, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), innerWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool BeginTableEx(string name, uint id, int columnsCount, Vector2 outerSize, float innerWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginTableExNative(pStr0, id, columnsCount, (ImGuiTableFlags)(0), outerSize, innerWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableBeginInitMemoryNative(ImGuiTable* table, int columnsCount)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)funcTable[1300])(table, columnsCount);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1300])((nint)table, columnsCount);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableBeginInitMemory(ImGuiTablePtr table, int columnsCount)
-		{
-			TableBeginInitMemoryNative((ImGuiTable*)table, columnsCount);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableBeginInitMemory(ref ImGuiTable table, int columnsCount)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableBeginInitMemoryNative((ImGuiTable*)ptable, columnsCount);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableBeginApplyRequestsNative(ImGuiTable* table)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1301])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1301])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableBeginApplyRequests(ImGuiTablePtr table)
-		{
-			TableBeginApplyRequestsNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableBeginApplyRequests(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableBeginApplyRequestsNative((ImGuiTable*)ptable);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableSetupDrawChannelsNative(ImGuiTable* table)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1302])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1302])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSetupDrawChannels(ImGuiTablePtr table)
-		{
-			TableSetupDrawChannelsNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSetupDrawChannels(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableSetupDrawChannelsNative((ImGuiTable*)ptable);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableUpdateLayoutNative(ImGuiTable* table)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1303])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1303])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableUpdateLayout(ImGuiTablePtr table)
-		{
-			TableUpdateLayoutNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableUpdateLayout(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableUpdateLayoutNative((ImGuiTable*)ptable);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableUpdateBordersNative(ImGuiTable* table)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1304])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1304])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableUpdateBorders(ImGuiTablePtr table)
-		{
-			TableUpdateBordersNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableUpdateBorders(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableUpdateBordersNative((ImGuiTable*)ptable);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableUpdateColumnsWeightFromWidthNative(ImGuiTable* table)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1305])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1305])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableUpdateColumnsWeightFromWidth(ImGuiTablePtr table)
-		{
-			TableUpdateColumnsWeightFromWidthNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableUpdateColumnsWeightFromWidth(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableUpdateColumnsWeightFromWidthNative((ImGuiTable*)ptable);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableDrawBordersNative(ImGuiTable* table)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1306])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1306])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableDrawBorders(ImGuiTablePtr table)
-		{
-			TableDrawBordersNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableDrawBorders(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableDrawBordersNative((ImGuiTable*)ptable);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableDrawDefaultContextMenuNative(ImGuiTable* table, ImGuiTableFlags flagsForSectionToDisplay)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableFlags, void>)funcTable[1307])(table, flagsForSectionToDisplay);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImGuiTableFlags, void>)funcTable[1307])((nint)table, flagsForSectionToDisplay);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableDrawDefaultContextMenu(ImGuiTablePtr table, ImGuiTableFlags flagsForSectionToDisplay)
-		{
-			TableDrawDefaultContextMenuNative((ImGuiTable*)table, flagsForSectionToDisplay);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableDrawDefaultContextMenu(ref ImGuiTable table, ImGuiTableFlags flagsForSectionToDisplay)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableDrawDefaultContextMenuNative((ImGuiTable*)ptable, flagsForSectionToDisplay);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte TableBeginContextMenuPopupNative(ImGuiTable* table)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, byte>)funcTable[1308])(table);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[1308])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TableBeginContextMenuPopup(ImGuiTablePtr table)
-		{
-			byte ret = TableBeginContextMenuPopupNative((ImGuiTable*)table);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool TableBeginContextMenuPopup(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				byte ret = TableBeginContextMenuPopupNative((ImGuiTable*)ptable);
 				return ret != 0;
 			}
 		}
@@ -3991,254 +1807,80 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableMergeDrawChannelsNative(ImGuiTable* table)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, string format, void* pClampMin)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1309])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1309])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableMergeDrawChannels(ImGuiTablePtr table)
-		{
-			TableMergeDrawChannelsNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableMergeDrawChannels(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			fixed (byte* plabel = &label)
 			{
-				TableMergeDrawChannelsNative((ImGuiTable*)ptable);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTableInstanceData* TableGetInstanceDataNative(ImGuiTable* table, int instanceNo)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, ImGuiTableInstanceData*>)funcTable[1310])(table, instanceNo);
-			#else
-			return (ImGuiTableInstanceData*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1310])((nint)table, instanceNo);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTableInstanceDataPtr TableGetInstanceData(ImGuiTablePtr table, int instanceNo)
-		{
-			ImGuiTableInstanceDataPtr ret = TableGetInstanceDataNative((ImGuiTable*)table, instanceNo);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTableInstanceDataPtr TableGetInstanceData(ref ImGuiTable table, int instanceNo)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				ImGuiTableInstanceDataPtr ret = TableGetInstanceDataNative((ImGuiTable*)ptable, instanceNo);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint TableGetInstanceIDNative(ImGuiTable* table, int instanceNo)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, uint>)funcTable[1311])(table, instanceNo);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[1311])((nint)table, instanceNo);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint TableGetInstanceID(ImGuiTablePtr table, int instanceNo)
-		{
-			uint ret = TableGetInstanceIDNative((ImGuiTable*)table, instanceNo);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint TableGetInstanceID(ref ImGuiTable table, int instanceNo)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				uint ret = TableGetInstanceIDNative((ImGuiTable*)ptable, instanceNo);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableSortSpecsSanitizeNative(ImGuiTable* table)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1312])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1312])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSortSpecsSanitize(ImGuiTablePtr table)
-		{
-			TableSortSpecsSanitizeNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSortSpecsSanitize(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableSortSpecsSanitizeNative((ImGuiTable*)ptable);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableSortSpecsBuildNative(ImGuiTable* table)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1313])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1313])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSortSpecsBuild(ImGuiTablePtr table)
-		{
-			TableSortSpecsBuildNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSortSpecsBuild(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableSortSpecsBuildNative((ImGuiTable*)ptable);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiSortDirection TableGetColumnNextSortDirectionNative(ImGuiTableColumn* column)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTableColumn*, ImGuiSortDirection>)funcTable[1314])(column);
-			#else
-			return (ImGuiSortDirection)((delegate* unmanaged[Cdecl]<nint, ImGuiSortDirection>)funcTable[1314])((nint)column);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiSortDirection TableGetColumnNextSortDirection(ImGuiTableColumnPtr column)
-		{
-			ImGuiSortDirection ret = TableGetColumnNextSortDirectionNative((ImGuiTableColumn*)column);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiSortDirection TableGetColumnNextSortDirection(ref ImGuiTableColumn column)
-		{
-			fixed (ImGuiTableColumn* pcolumn = &column)
-			{
-				ImGuiSortDirection ret = TableGetColumnNextSortDirectionNative((ImGuiTableColumn*)pcolumn);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableFixColumnSortDirectionNative(ImGuiTable* table, ImGuiTableColumn* column)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableColumn*, void>)funcTable[1315])(table, column);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1315])((nint)table, (nint)column);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableFixColumnSortDirection(ImGuiTablePtr table, ImGuiTableColumnPtr column)
-		{
-			TableFixColumnSortDirectionNative((ImGuiTable*)table, (ImGuiTableColumn*)column);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableFixColumnSortDirection(ref ImGuiTable table, ImGuiTableColumnPtr column)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableFixColumnSortDirectionNative((ImGuiTable*)ptable, (ImGuiTableColumn*)column);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableFixColumnSortDirection(ImGuiTablePtr table, ref ImGuiTableColumn column)
-		{
-			fixed (ImGuiTableColumn* pcolumn = &column)
-			{
-				TableFixColumnSortDirectionNative((ImGuiTable*)table, (ImGuiTableColumn*)pcolumn);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableFixColumnSortDirection(ref ImGuiTable table, ref ImGuiTableColumn column)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				fixed (ImGuiTableColumn* pcolumn = &column)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
 				{
-					TableFixColumnSortDirectionNative((ImGuiTable*)ptable, (ImGuiTableColumn*)pcolumn);
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, string format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)(default), (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, pClampMax);
+					return ret != 0;
 				}
 			}
 		}
@@ -4246,60 +1888,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float TableGetColumnWidthAutoNative(ImGuiTable* table, ImGuiTableColumn* column)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableColumn*, float>)funcTable[1316])(table, column);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, nint, float>)funcTable[1316])((nint)table, (nint)column);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float TableGetColumnWidthAuto(ImGuiTablePtr table, ImGuiTableColumnPtr column)
-		{
-			float ret = TableGetColumnWidthAutoNative((ImGuiTable*)table, (ImGuiTableColumn*)column);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float TableGetColumnWidthAuto(ref ImGuiTable table, ImGuiTableColumnPtr column)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			fixed (byte* plabel = label)
 			{
-				float ret = TableGetColumnWidthAutoNative((ImGuiTable*)ptable, (ImGuiTableColumn*)column);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float TableGetColumnWidthAuto(ImGuiTablePtr table, ref ImGuiTableColumn column)
-		{
-			fixed (ImGuiTableColumn* pcolumn = &column)
-			{
-				float ret = TableGetColumnWidthAutoNative((ImGuiTable*)table, (ImGuiTableColumn*)pcolumn);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float TableGetColumnWidthAuto(ref ImGuiTable table, ref ImGuiTableColumn column)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				fixed (ImGuiTableColumn* pcolumn = &column)
+				fixed (byte* pformat = &format)
 				{
-					float ret = TableGetColumnWidthAutoNative((ImGuiTable*)ptable, (ImGuiTableColumn*)pcolumn);
-					return ret;
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -4307,207 +1903,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableBeginRowNative(ImGuiTable* table)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1317])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1317])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableBeginRow(ImGuiTablePtr table)
-		{
-			TableBeginRowNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableBeginRow(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			fixed (byte* plabel = label)
 			{
-				TableBeginRowNative((ImGuiTable*)ptable);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableEndRowNative(ImGuiTable* table)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1318])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1318])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableEndRow(ImGuiTablePtr table)
-		{
-			TableEndRowNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableEndRow(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableEndRowNative((ImGuiTable*)ptable);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableBeginCellNative(ImGuiTable* table, int columnN)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)funcTable[1319])(table, columnN);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1319])((nint)table, columnN);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableBeginCell(ImGuiTablePtr table, int columnN)
-		{
-			TableBeginCellNative((ImGuiTable*)table, columnN);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableBeginCell(ref ImGuiTable table, int columnN)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableBeginCellNative((ImGuiTable*)ptable, columnN);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableEndCellNative(ImGuiTable* table)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1320])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1320])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableEndCell(ImGuiTablePtr table)
-		{
-			TableEndCellNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableEndCell(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableEndCellNative((ImGuiTable*)ptable);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableGetCellBgRectNative(ImRect* pOut, ImGuiTable* table, int columnN)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect*, ImGuiTable*, int, void>)funcTable[1321])(pOut, table, columnN);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, void>)funcTable[1321])((nint)pOut, (nint)table, columnN);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImRect TableGetCellBgRect(ImGuiTablePtr table, int columnN)
-		{
-			ImRect ret;
-			TableGetCellBgRectNative(&ret, (ImGuiTable*)table, columnN);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableGetCellBgRect(ImRectPtr pOut, ImGuiTablePtr table, int columnN)
-		{
-			TableGetCellBgRectNative((ImRect*)pOut, (ImGuiTable*)table, columnN);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableGetCellBgRect(ref ImRect pOut, ImGuiTablePtr table, int columnN)
-		{
-			fixed (ImRect* ppOut = &pOut)
-			{
-				TableGetCellBgRectNative((ImRect*)ppOut, (ImGuiTable*)table, columnN);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImRect TableGetCellBgRect(in ImGuiTable table, int columnN)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				ImRect ret;
-				TableGetCellBgRectNative(&ret, (ImGuiTable*)ptable, columnN);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableGetCellBgRect(ImRectPtr pOut, in ImGuiTable table, int columnN)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableGetCellBgRectNative((ImRect*)pOut, (ImGuiTable*)ptable, columnN);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableGetCellBgRect(ref ImRect pOut, in ImGuiTable table, int columnN)
-		{
-			fixed (ImRect* ppOut = &pOut)
-			{
-				fixed (ImGuiTable* ptable = &table)
+				fixed (byte* pformat = &format)
 				{
-					TableGetCellBgRectNative((ImRect*)ppOut, (ImGuiTable*)ptable, columnN);
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)(default), (void*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -4515,512 +1918,3112 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* TableGetColumnNameNative(ImGuiTable* table, int columnN)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format, void* pClampMin, void* pClampMax)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, byte*>)funcTable[1322])(table, columnN);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1322])((nint)table, columnN);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* TableGetColumnName(ImGuiTablePtr table, int columnN)
-		{
-			byte* ret = TableGetColumnNameNative((ImGuiTable*)table, columnN);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string TableGetColumnNameS(ImGuiTablePtr table, int columnN)
-		{
-			string ret = Utils.DecodeStringUTF8(TableGetColumnNameNative((ImGuiTable*)table, columnN));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* TableGetColumnName(in ImGuiTable table, int columnN)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			fixed (byte* plabel = label)
 			{
-				byte* ret = TableGetColumnNameNative((ImGuiTable*)ptable, columnN);
-				return ret;
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string TableGetColumnNameS(in ImGuiTable table, int columnN)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format, void* pClampMin)
 		{
-			fixed (ImGuiTable* ptable = &table)
+			fixed (byte* plabel = label)
 			{
-				string ret = Utils.DecodeStringUTF8(TableGetColumnNameNative((ImGuiTable*)ptable, columnN));
-				return ret;
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint TableGetColumnResizeIDNative(ImGuiTable* table, int columnN, int instanceNo)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, int, uint>)funcTable[1323])(table, columnN, instanceNo);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, int, uint>)funcTable[1323])((nint)table, columnN, instanceNo);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint TableGetColumnResizeID(ImGuiTablePtr table, int columnN, int instanceNo)
-		{
-			uint ret = TableGetColumnResizeIDNative((ImGuiTable*)table, columnN, instanceNo);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint TableGetColumnResizeID(ImGuiTablePtr table, int columnN)
-		{
-			uint ret = TableGetColumnResizeIDNative((ImGuiTable*)table, columnN, (int)(0));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint TableGetColumnResizeID(ref ImGuiTable table, int columnN, int instanceNo)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			fixed (byte* plabel = label)
 			{
-				uint ret = TableGetColumnResizeIDNative((ImGuiTable*)ptable, columnN, instanceNo);
-				return ret;
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)(default), (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint TableGetColumnResizeID(ref ImGuiTable table, int columnN)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin, void* pClampMax)
 		{
-			fixed (ImGuiTable* ptable = &table)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				uint ret = TableGetColumnResizeIDNative((ImGuiTable*)ptable, columnN, (int)(0));
-				return ret;
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float TableCalcMaxColumnWidthNative(ImGuiTable* table, int columnN)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, float>)funcTable[1324])(table, columnN);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, int, float>)funcTable[1324])((nint)table, columnN);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float TableCalcMaxColumnWidth(ImGuiTablePtr table, int columnN)
-		{
-			float ret = TableCalcMaxColumnWidthNative((ImGuiTable*)table, columnN);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float TableCalcMaxColumnWidth(in ImGuiTable table, int columnN)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				float ret = TableCalcMaxColumnWidthNative((ImGuiTable*)ptable, columnN);
-				return ret;
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableSetColumnWidthAutoSingleNative(ImGuiTable* table, int columnN)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, in byte format)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)funcTable[1325])(table, columnN);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1325])((nint)table, columnN);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSetColumnWidthAutoSingle(ImGuiTablePtr table, int columnN)
-		{
-			TableSetColumnWidthAutoSingleNative((ImGuiTable*)table, columnN);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSetColumnWidthAutoSingle(ref ImGuiTable table, int columnN)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				TableSetColumnWidthAutoSingleNative((ImGuiTable*)ptable, columnN);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, (void*)(default), (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableSetColumnWidthAutoAllNative(ImGuiTable* table)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin, void* pClampMax)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1326])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1326])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSetColumnWidthAutoAll(ImGuiTablePtr table)
-		{
-			TableSetColumnWidthAutoAllNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSetColumnWidthAutoAll(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				TableSetColumnWidthAutoAllNative((ImGuiTable*)ptable);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableRemoveNative(ImGuiTable* table)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1327])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1327])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableRemove(ImGuiTablePtr table)
-		{
-			TableRemoveNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableRemove(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				TableRemoveNative((ImGuiTable*)ptable);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableGcCompactTransientBuffersNative(ImGuiTable* table)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1328])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1328])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableGcCompactTransientBuffers(ImGuiTablePtr table)
-		{
-			TableGcCompactTransientBuffersNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableGcCompactTransientBuffers(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				TableGcCompactTransientBuffersNative((ImGuiTable*)ptable);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, (void*)(default), (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableGcCompactTransientBuffersNative(ImGuiTableTempData* table)
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, void* pClampMax)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTableTempData*, void>)funcTable[1329])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1329])((nint)table);
-			#endif
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, format, (void*)pClampMin, pClampMax);
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TableGcCompactTransientBuffers(ImGuiTableTempDataPtr table)
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin)
 		{
-			TableGcCompactTransientBuffersNative((ImGuiTableTempData*)table);
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, format, (void*)pClampMin, (void*)(default));
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TableGcCompactTransientBuffers(ref ImGuiTableTempData table)
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, void* pClampMax)
 		{
-			fixed (ImGuiTableTempData* ptable = &table)
+			fixed (byte* plabel = &label)
 			{
-				TableGcCompactTransientBuffersNative((ImGuiTableTempData*)ptable);
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, (void*)pClampMin, pClampMax);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableGcCompactSettingsNative()
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1330])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1330])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableGcCompactSettings()
-		{
-			TableGcCompactSettingsNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableLoadSettingsNative(ImGuiTable* table)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1331])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1331])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableLoadSettings(ImGuiTablePtr table)
-		{
-			TableLoadSettingsNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableLoadSettings(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			fixed (byte* plabel = &label)
 			{
-				TableLoadSettingsNative((ImGuiTable*)ptable);
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, (void*)pClampMin, (void*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableSaveSettingsNative(ImGuiTable* table)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, void* pClampMax)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1332])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1332])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSaveSettings(ImGuiTablePtr table)
-		{
-			TableSaveSettingsNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableSaveSettings(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			fixed (byte* plabel = label)
 			{
-				TableSaveSettingsNative((ImGuiTable*)ptable);
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, (void*)pClampMin, pClampMax);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableResetSettingsNative(ImGuiTable* table)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1333])(table);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1333])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableResetSettings(ImGuiTablePtr table)
-		{
-			TableResetSettingsNative((ImGuiTable*)table);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TableResetSettings(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			fixed (byte* plabel = label)
 			{
-				TableResetSettingsNative((ImGuiTable*)ptable);
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, (void*)pClampMin, (void*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTableSettings* TableGetBoundSettingsNative(ImGuiTable* table)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, void* pClampMax)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableSettings*>)funcTable[1334])(table);
-			#else
-			return (ImGuiTableSettings*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[1334])((nint)table);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTableSettingsPtr TableGetBoundSettings(ImGuiTablePtr table)
-		{
-			ImGuiTableSettingsPtr ret = TableGetBoundSettingsNative((ImGuiTable*)table);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTableSettingsPtr TableGetBoundSettings(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				ImGuiTableSettingsPtr ret = TableGetBoundSettingsNative((ImGuiTable*)ptable);
-				return ret;
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, format, (void*)pClampMin, pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, format, (void*)pClampMin, (void*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, void* pClampMax)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, format, (void*)pClampMin, pClampMax);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, format, (void*)pClampMin, (void*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, (void*)pClampMin, pClampMax);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void TableSettingsAddSettingsHandlerNative()
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1335])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[1335])();
-			#endif
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, (void*)pClampMin, (void*)(default));
+				return ret != 0;
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void TableSettingsAddSettingsHandler()
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, void* pClampMax)
 		{
-			TableSettingsAddSettingsHandlerNative();
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, (void*)pClampMin, pClampMax);
+				return ret != 0;
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTableSettings* TableSettingsCreateNative(uint id, int columnsCount)
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, int, ImGuiTableSettings*>)funcTable[1336])(id, columnsCount);
-			#else
-			return (ImGuiTableSettings*)((delegate* unmanaged[Cdecl]<uint, int, nint>)funcTable[1336])(id, columnsCount);
-			#endif
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, (void*)pClampMin, (void*)(default));
+				return ret != 0;
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiTableSettingsPtr TableSettingsCreate(uint id, int columnsCount)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, void* pClampMax)
 		{
-			ImGuiTableSettingsPtr ret = TableSettingsCreateNative(id, columnsCount);
-			return ret;
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, format, (void*)pClampMin, pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTableSettings* TableSettingsFindByIDNative(uint id)
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiTableSettings*>)funcTable[1337])(id);
-			#else
-			return (ImGuiTableSettings*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1337])(id);
-			#endif
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, format, (void*)pClampMin, (void*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, pStr0, (void*)pClampMin, pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, string format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, pStr0, (void*)pClampMin, (void*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, pStr1, (void*)pClampMin, pClampMax);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, string format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, pStr1, (void*)pClampMin, (void*)(default));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, string format, nint pClampMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, string format, nint pClampMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, pStr0, (void*)pClampMin, pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, string format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, pStr0, (void*)pClampMin, (void*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, pStr1, (void*)pClampMin, pClampMax);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, string format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, pStr1, (void*)pClampMin, (void*)(default));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, string format, nint pClampMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, void* pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format, nint pClampMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin, void* pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, format, pClampMin, (void*)pClampMax);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, format, pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, format, pClampMin, (void*)pClampMax);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, byte* format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, format, pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, string format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, pStr0, pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, string format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, pStr1, pClampMin, (void*)pClampMax);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, string format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, string format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, string format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, pStr0, pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, string format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, pStr1, pClampMin, (void*)pClampMax);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, string format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format, void* pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, in byte format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, void* pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, (byte*)pformat, pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, format, (void*)pClampMin, (void*)pClampMax);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, format, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, format, (void*)pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, format, (void*)pClampMin, (void*)pClampMax);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, format, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, byte* format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, format, (void*)pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, pData, pStr0, (void*)pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, pStr1, (void*)pClampMin, (void*)pClampMax);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, (void*)pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, string format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, pData, pStr0, (void*)pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, in byte format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, pStr0, dataType, pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, byte* label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, label, dataType, (void*)pData, pStr0, (void*)pClampMin, (void*)pClampMax);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, string label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, nint pClampMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TempInputScalarNative(bb, id, pStr0, dataType, (void*)pData, pStr1, (void*)pClampMin, (void*)pClampMax);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, ReadOnlySpan<byte> format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, in byte label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, in byte format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, (byte*)pformat, (void*)pClampMin, (void*)pClampMax);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TempInputScalar(ImRect bb, uint id, ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, string format, nint pClampMin, nint pClampMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TempInputScalarNative(bb, id, (byte*)plabel, dataType, (void*)pData, pStr0, (void*)pClampMin, (void*)pClampMax);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
 		}
 	}
 }

@@ -30,7 +30,7 @@ namespace Hexa.NET.ImGui
 		SingleSelect = unchecked(1),
 
 		/// <summary>
-		/// Disable CTRL+A shortcut to select all.<br/>
+		/// Disable Ctrl+A shortcut to select all.<br/>
 		/// </summary>
 		NoSelectAll = unchecked(2),
 
@@ -103,5 +103,10 @@ namespace Hexa.NET.ImGui
 		/// [Temporary] Enable navigation wrapping on X axis. Provided as a convenience because we don't have a design for the general Nav API for this yet. When the more general feature be public we may obsolete this flag in favor of new one.<br/>
 		/// </summary>
 		NavWrapX = unchecked(65536),
+
+		/// <summary>
+		/// Disable default right-click processing, which selects item on mouse down, and is designed for context-menus.<br/>
+		/// </summary>
+		NoSelectOnRightClick = unchecked(131072),
 	}
 }

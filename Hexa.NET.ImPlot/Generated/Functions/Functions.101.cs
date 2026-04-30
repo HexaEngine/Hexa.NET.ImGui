@@ -22,66 +22,6 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", angle0, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, labelFmt, angle0, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChart((byte**)plabelIds, values, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, double angle0)
 		{
 			fixed (byte** plabelIds = &labelIds)
@@ -5041,6 +4981,40 @@ namespace Hexa.NET.ImPlot
 				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
 			}
 			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", (double)(90), flags);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", angle0, flags);
 			for (int i = 0; i < labelIds.Length; i++)
 			{
 				Utils.Free(pStrArray0[i]);
