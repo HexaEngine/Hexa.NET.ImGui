@@ -6,10 +6,14 @@ on:
       - 2.**
   workflow_dispatch:
   
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: production
+
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
       - name: Checkout repository
@@ -18,7 +22,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '10.0.x'  # Change this to your required .NET version
+          dotnet-version: '10.0.x'
 
       - name: Restore dependencies
         run: |
@@ -70,5 +74,11 @@ jobs:
       - name: List packages
         run: ls ./nupkgs/
 
+      - name: Authenticate with NuGet
+        id: nuget-login
+        uses: NuGet/login@v1
+        with:
+          user: HexaEngine
+
       - name: Publish the package
-        run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+        run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
