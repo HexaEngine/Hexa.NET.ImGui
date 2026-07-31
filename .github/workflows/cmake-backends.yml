@@ -11,7 +11,6 @@ jobs:
       lib-name: ImGuiImpl
       repo: HexaEngine/cimgui_impl
       repo-tag: main
-      cmake-version: "~3.5.0"
       cmake-flags: -DBACKENDS_BASE_ONLY=ON -DIMGUI_WCHAR32=ON
       cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
       bin-name-osx: libImGuiImpl.dylib
