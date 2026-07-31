@@ -11,6 +11,7 @@ jobs:
       lib-name: ImGuiImpl
       repo: HexaEngine/cimgui_impl
       repo-tag: main
+      cmake-version: "~3.5.0"
       cmake-flags: -DBACKENDS_BASE_ONLY=ON -DIMGUI_WCHAR32=ON
       cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
       bin-name-osx: libImGuiImpl.dylib
@@ -124,7 +125,7 @@ jobs:
     uses: JunaMeinhold/cmake-actions/.github/workflows/create-pr.yml@v1.x.x
     with:
       lib-name: "ImGuiImpl"
-      lib-version: "v1.92.4"
+      lib-version: "v1.92.9"
       pr-base-branch: "main"
       pr-reviewers: JunaMeinhold
       pr-branch: backends-artifacts

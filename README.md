@@ -13,6 +13,7 @@ Welcome to Hexa.NET.ImGui! This custom wrapper is designed to be a high-performa
 - **Comprehensive Wrapper**: Integrates the core Dear ImGui library along with essential addons such as ImGuizmo, ImNodes, and ImPlot.
 - **Backends**: Includes a collection of native backends in the Hexa.NET.ImGui.Backends package. (incl. Android, Win32, OSX, D3D9, D3D10, D3D11, D3D12, Metal, OpenGL2, OpenGL3, Vulkan and extra packages for SDL2 and GLFW)
 - **FreeType Fonts**: Allows better text rendering and colored fonts to be loaded.
+- **Docking Support**: Full docking branch integration with access to DockBuilder APIs (via ImGuiP for internals)
 - **Multi Viewport Support**: Enables seamless multi-viewport rendering for advanced UI scenarios.
 - **Active Development**: Regular updates and improvements to ensure compatibility with the latest Dear ImGui features and .NET advancements.
 - **Trustworthy Builds**: Native libraries are built using GitHub Actions for added trustworthiness and can be found [here](https://github.com/HexaEngine/Hexa.NET.ImGui/actions).
@@ -22,18 +23,6 @@ Welcome to Hexa.NET.ImGui! This custom wrapper is designed to be a high-performa
 - **High performance** Using a static function table, all API calls are faster and startup time is reduced.
 - **Optimized String Handling**: Overloads that bypass UTF-8 encoding and avoid allocations.
 - **Wide range .NET support**: Supported versions net8.0, net7.0, netstandard2.1, netstandard2.0
-
-## 🎉 Acknowledgment to Our Sponsors
-We extend our heartfelt gratitude to all our sponsors for their generous support!
-
- - @Doprez
- - @qian-o
- - @NotNite
- - Mr Villa
- - @TheSameCat2
- - @SadE54
-
-Your contributions help keep this project thriving—thank you!
 
 ## Community
 - Discord: [https://discord.gg/VawN5d8HMh](https://discord.gg/VawN5d8HMh)
@@ -88,7 +77,7 @@ To get started with Hexa.NET.ImGui, follow these steps:
 
 ### Usage Example
 
-For a comprehensive example of how to use the library, refer to the [ExampleGFWLD3D11 project](https://github.com/HexaEngine/Hexa.NET.ImGui/tree/master/ExampleGLFWD3D11) [ExampleSDL3OpenGL3 project](https://github.com/HexaEngine/Hexa.NET.ImGui/tree/master/ExampleSDL3OpenGL3/).
+For a comprehensive example of how to use the library, refer to the [ExampleGFWLD3D11 project](https://github.com/HexaEngine/Hexa.NET.ImGui/tree/main/Examples/ExampleGLFWD3D11) [ExampleSDL3OpenGL3 project](https://github.com/HexaEngine/Hexa.NET.ImGui/tree/main/Examples/ExampleSDL3OpenGL3/).
 
 ### Using the Flexible and Optimized API
 
@@ -142,4 +131,13 @@ Contributions are welcome! If you have ideas for improvements or new features, f
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/master/LICENSE.txt) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/main/LICENSE.txt) file for more details.
+
+-----
+<div align="center" id="sponsor-section">
+
+## Thanks to our sponsors!
+
+[![Sponsors](https://raw.githubusercontent.com/HexaEngine/Sponsors/refs/heads/main/sponsors.svg)](https://ko-fi.com/junameinhold)
+
+</div>
