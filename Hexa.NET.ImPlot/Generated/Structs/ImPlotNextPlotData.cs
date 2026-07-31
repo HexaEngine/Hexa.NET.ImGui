@@ -36,12 +36,12 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotRangeC Range_0;
-		public ImPlotRangeC Range_1;
-		public ImPlotRangeC Range_2;
-		public ImPlotRangeC Range_3;
-		public ImPlotRangeC Range_4;
-		public ImPlotRangeC Range_5;
+		public ImPlotRange Range_0;
+		public ImPlotRange Range_1;
+		public ImPlotRange Range_2;
+		public ImPlotRange Range_3;
+		public ImPlotRange Range_4;
+		public ImPlotRange Range_5;
 
 		/// <summary>
 		/// To be documented.
@@ -87,7 +87,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotNextPlotData(ImPlotCond* rangeCond = default, ImPlotRangeCPtr range = default, bool* hasRange = default, bool* fit = default, double** linkedMin = default, double** linkedMax = default)
+		public unsafe ImPlotNextPlotData(ImPlotCond* rangeCond = default, ImPlotRangePtr range = default, bool* hasRange = default, bool* fit = default, double** linkedMin = default, double** linkedMax = default)
 		{
 			if (rangeCond != default(ImPlotCond*))
 			{
@@ -98,7 +98,7 @@ namespace Hexa.NET.ImPlot
 				RangeCond_4 = rangeCond[4];
 				RangeCond_5 = rangeCond[5];
 			}
-			if (range != default(ImPlotRangeCPtr))
+			if (range != default(ImPlotRangePtr))
 			{
 				Range_0 = range[0];
 				Range_1 = range[1];
@@ -148,7 +148,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotNextPlotData(Span<ImPlotCond> rangeCond = default, Span<ImPlotRangeC> range = default, Span<bool> hasRange = default, Span<bool> fit = default, Span<Pointer<double>> linkedMin = default, Span<Pointer<double>> linkedMax = default)
+		public unsafe ImPlotNextPlotData(Span<ImPlotCond> rangeCond = default, Span<ImPlotRange> range = default, Span<bool> hasRange = default, Span<bool> fit = default, Span<Pointer<double>> linkedMin = default, Span<Pointer<double>> linkedMax = default)
 		{
 			if (rangeCond != default(Span<ImPlotCond>))
 			{
@@ -159,7 +159,7 @@ namespace Hexa.NET.ImPlot
 				RangeCond_4 = rangeCond[4];
 				RangeCond_5 = rangeCond[5];
 			}
-			if (range != default(Span<ImPlotRangeC>))
+			if (range != default(Span<ImPlotRange>))
 			{
 				Range_0 = range[0];
 				Range_1 = range[1];
@@ -210,14 +210,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe Span<ImPlotRangeC> Range
+		public unsafe Span<ImPlotRange> Range
 		
 		{
 			get
 			{
-				fixed (ImPlotRangeC* p = &this.Range_0)
+				fixed (ImPlotRange* p = &this.Range_0)
 				{
-					return new Span<ImPlotRangeC>(p, 6);
+					return new Span<ImPlotRange>(p, 6);
 				}
 			}
 		}
@@ -328,12 +328,12 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe Span<ImPlotRangeC> Range
+		public unsafe Span<ImPlotRange> Range
 		
 		{
 			get
 			{
-				return new Span<ImPlotRangeC>(&Handle->Range_0, 6);
+				return new Span<ImPlotRange>(&Handle->Range_0, 6);
 			}
 		}
 		/// <summary>

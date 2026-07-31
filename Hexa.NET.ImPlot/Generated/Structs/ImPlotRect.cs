@@ -21,38 +21,26 @@ namespace Hexa.NET.ImPlot
 	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImPlotDateTimeSpecC
+	public partial struct ImPlotRect
 	{
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotDateFmt Date;
+		public ImPlotRange X;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotTimeFmt Time;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte UseISO8601;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte Use24HourClock;
+		public ImPlotRange Y;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotDateTimeSpecC(ImPlotDateFmt date = default, ImPlotTimeFmt time = default, bool useIso8601 = default, bool use24HourClock = default)
+		public unsafe ImPlotRect(ImPlotRange x = default, ImPlotRange y = default)
 		{
-			Date = date;
-			Time = time;
-			UseISO8601 = useIso8601 ? (byte)1 : (byte)0;
-			Use24HourClock = use24HourClock ? (byte)1 : (byte)0;
+			X = x;
+			Y = y;
 		}
 
 

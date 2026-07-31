@@ -51,12 +51,12 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotAxisC Axes_0;
-		public ImPlotAxisC Axes_1;
-		public ImPlotAxisC Axes_2;
-		public ImPlotAxisC Axes_3;
-		public ImPlotAxisC Axes_4;
-		public ImPlotAxisC Axes_5;
+		public ImPlotAxis Axes_0;
+		public ImPlotAxis Axes_1;
+		public ImPlotAxis Axes_2;
+		public ImPlotAxis Axes_3;
+		public ImPlotAxis Axes_4;
+		public ImPlotAxis Axes_5;
 
 		/// <summary>
 		/// To be documented.
@@ -162,14 +162,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotPlot(uint id = default, ImPlotFlags flags = default, ImPlotFlags previousFlags = default, ImPlotLocation mouseTextLocation = default, ImPlotMouseTextFlags mouseTextFlags = default, ImPlotAxisC* axes = default, ImGuiTextBuffer textBuffer = default, ImPlotItemGroup items = default, ImAxis currentX = default, ImAxis currentY = default, ImRect frameRect = default, ImRect canvasRect = default, ImRect plotRect = default, ImRect axesRect = default, ImRect selectRect = default, Vector2 selectStart = default, int titleOffset = default, bool justCreated = default, bool initialized = default, bool setupLocked = default, bool fitThisFrame = default, bool hovered = default, bool held = default, bool selecting = default, bool selected = default, bool contextLocked = default)
+		public unsafe ImPlotPlot(uint id = default, ImPlotFlags flags = default, ImPlotFlags previousFlags = default, ImPlotLocation mouseTextLocation = default, ImPlotMouseTextFlags mouseTextFlags = default, ImPlotAxis* axes = default, ImGuiTextBuffer textBuffer = default, ImPlotItemGroup items = default, ImAxis currentX = default, ImAxis currentY = default, ImRect frameRect = default, ImRect canvasRect = default, ImRect plotRect = default, ImRect axesRect = default, ImRect selectRect = default, Vector2 selectStart = default, int titleOffset = default, bool justCreated = default, bool initialized = default, bool setupLocked = default, bool fitThisFrame = default, bool hovered = default, bool held = default, bool selecting = default, bool selected = default, bool contextLocked = default)
 		{
 			ID = id;
 			Flags = flags;
 			PreviousFlags = previousFlags;
 			MouseTextLocation = mouseTextLocation;
 			MouseTextFlags = mouseTextFlags;
-			if (axes != default(ImPlotAxisC*))
+			if (axes != default(ImPlotAxis*))
 			{
 				Axes_0 = axes[0];
 				Axes_1 = axes[1];
@@ -203,14 +203,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotPlot(uint id = default, ImPlotFlags flags = default, ImPlotFlags previousFlags = default, ImPlotLocation mouseTextLocation = default, ImPlotMouseTextFlags mouseTextFlags = default, Span<ImPlotAxisC> axes = default, ImGuiTextBuffer textBuffer = default, ImPlotItemGroup items = default, ImAxis currentX = default, ImAxis currentY = default, ImRect frameRect = default, ImRect canvasRect = default, ImRect plotRect = default, ImRect axesRect = default, ImRect selectRect = default, Vector2 selectStart = default, int titleOffset = default, bool justCreated = default, bool initialized = default, bool setupLocked = default, bool fitThisFrame = default, bool hovered = default, bool held = default, bool selecting = default, bool selected = default, bool contextLocked = default)
+		public unsafe ImPlotPlot(uint id = default, ImPlotFlags flags = default, ImPlotFlags previousFlags = default, ImPlotLocation mouseTextLocation = default, ImPlotMouseTextFlags mouseTextFlags = default, Span<ImPlotAxis> axes = default, ImGuiTextBuffer textBuffer = default, ImPlotItemGroup items = default, ImAxis currentX = default, ImAxis currentY = default, ImRect frameRect = default, ImRect canvasRect = default, ImRect plotRect = default, ImRect axesRect = default, ImRect selectRect = default, Vector2 selectStart = default, int titleOffset = default, bool justCreated = default, bool initialized = default, bool setupLocked = default, bool fitThisFrame = default, bool hovered = default, bool held = default, bool selecting = default, bool selected = default, bool contextLocked = default)
 		{
 			ID = id;
 			Flags = flags;
 			PreviousFlags = previousFlags;
 			MouseTextLocation = mouseTextLocation;
 			MouseTextFlags = mouseTextFlags;
-			if (axes != default(Span<ImPlotAxisC>))
+			if (axes != default(Span<ImPlotAxis>))
 			{
 				Axes_0 = axes[0];
 				Axes_1 = axes[1];
@@ -245,14 +245,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe Span<ImPlotAxisC> Axes
+		public unsafe Span<ImPlotAxis> Axes
 		
 		{
 			get
 			{
-				fixed (ImPlotAxisC* p = &this.Axes_0)
+				fixed (ImPlotAxis* p = &this.Axes_0)
 				{
-					return new Span<ImPlotAxisC>(p, 6);
+					return new Span<ImPlotAxis>(p, 6);
 				}
 			}
 		}
@@ -305,7 +305,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* GetAxisLabel(ImPlotAxisC axis)
+		public unsafe byte* GetAxisLabel(ImPlotAxis axis)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
@@ -317,7 +317,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string GetAxisLabelS(ImPlotAxisC axis)
+		public unsafe string GetAxisLabelS(ImPlotAxis axis)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
@@ -377,7 +377,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ImPlotAxisC* axis, byte* label)
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, byte* label)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
@@ -388,13 +388,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ref ImPlotAxisC axis, byte* label)
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, byte* label)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
-				fixed (ImPlotAxisC* paxis = &axis)
+				fixed (ImPlotAxis* paxis = &axis)
 				{
-					ImPlot.SetAxisLabelNative(@this, (ImPlotAxisC*)paxis, label);
+					ImPlot.SetAxisLabelNative(@this, (ImPlotAxis*)paxis, label);
 				}
 			}
 		}
@@ -402,7 +402,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ImPlotAxisC* axis, in byte label)
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, in byte label)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
@@ -416,7 +416,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ImPlotAxisC* axis, ReadOnlySpan<byte> label)
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, ReadOnlySpan<byte> label)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
@@ -430,7 +430,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ImPlotAxisC* axis, string label)
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, string label)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
@@ -462,15 +462,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ref ImPlotAxisC axis, in byte label)
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, in byte label)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
-				fixed (ImPlotAxisC* paxis = &axis)
+				fixed (ImPlotAxis* paxis = &axis)
 				{
 					fixed (byte* plabel = &label)
 					{
-						ImPlot.SetAxisLabelNative(@this, (ImPlotAxisC*)paxis, (byte*)plabel);
+						ImPlot.SetAxisLabelNative(@this, (ImPlotAxis*)paxis, (byte*)plabel);
 					}
 				}
 			}
@@ -479,15 +479,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ref ImPlotAxisC axis, ReadOnlySpan<byte> label)
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, ReadOnlySpan<byte> label)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
-				fixed (ImPlotAxisC* paxis = &axis)
+				fixed (ImPlotAxis* paxis = &axis)
 				{
 					fixed (byte* plabel = label)
 					{
-						ImPlot.SetAxisLabelNative(@this, (ImPlotAxisC*)paxis, (byte*)plabel);
+						ImPlot.SetAxisLabelNative(@this, (ImPlotAxis*)paxis, (byte*)plabel);
 					}
 				}
 			}
@@ -496,11 +496,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ref ImPlotAxisC axis, string label)
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, string label)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
-				fixed (ImPlotAxisC* paxis = &axis)
+				fixed (ImPlotAxis* paxis = &axis)
 				{
 					byte* pStr0 = null;
 					int pStrSize0 = 0;
@@ -519,7 +519,7 @@ namespace Hexa.NET.ImPlot
 						int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImPlot.SetAxisLabelNative(@this, (ImPlotAxisC*)paxis, pStr0);
+					ImPlot.SetAxisLabelNative(@this, (ImPlotAxis*)paxis, pStr0);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -602,11 +602,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotAxisC* XAxis(int i)
+		public unsafe ImPlotAxis* XAxis(int i)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
-				ImPlotAxisC* ret = ImPlot.XAxisNative(@this, i);
+				ImPlotAxis* ret = ImPlot.XAxisNative(@this, i);
 				return ret;
 			}
 		}
@@ -614,11 +614,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotAxisC* ImPlotPlotXAxisConst(int i)
+		public unsafe ImPlotAxis* ImPlotPlotXAxisConst(int i)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
-				ImPlotAxisC* ret = ImPlot.ImPlotPlotXAxisConstNative(@this, i);
+				ImPlotAxis* ret = ImPlot.ImPlotPlotXAxisConstNative(@this, i);
 				return ret;
 			}
 		}
@@ -626,11 +626,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotAxisC* YAxis(int i)
+		public unsafe ImPlotAxis* YAxis(int i)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
-				ImPlotAxisC* ret = ImPlot.YAxisNative(@this, i);
+				ImPlotAxis* ret = ImPlot.YAxisNative(@this, i);
 				return ret;
 			}
 		}
@@ -638,11 +638,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotAxisC* ImPlotPlotYAxisConst(int i)
+		public unsafe ImPlotAxis* ImPlotPlotYAxisConst(int i)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
-				ImPlotAxisC* ret = ImPlot.ImPlotPlotYAxisConstNative(@this, i);
+				ImPlotAxis* ret = ImPlot.ImPlotPlotYAxisConstNative(@this, i);
 				return ret;
 			}
 		}
@@ -713,12 +713,12 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe Span<ImPlotAxisC> Axes
+		public unsafe Span<ImPlotAxis> Axes
 		
 		{
 			get
 			{
-				return new Span<ImPlotAxisC>(&Handle->Axes_0, 6);
+				return new Span<ImPlotAxis>(&Handle->Axes_0, 6);
 			}
 		}
 		/// <summary>
@@ -838,7 +838,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe byte* GetAxisLabel(ImPlotAxisC axis)
+		public unsafe byte* GetAxisLabel(ImPlotAxis axis)
 		{
 			byte* ret = ImPlot.GetAxisLabelNative(Handle, axis);
 			return ret;
@@ -847,7 +847,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe string GetAxisLabelS(ImPlotAxisC axis)
+		public unsafe string GetAxisLabelS(ImPlotAxis axis)
 		{
 			string ret = Utils.DecodeStringUTF8(ImPlot.GetAxisLabelNative(Handle, axis));
 			return ret;
@@ -892,7 +892,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ImPlotAxisC* axis, byte* label)
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, byte* label)
 		{
 			ImPlot.SetAxisLabelNative(Handle, axis, label);
 		}
@@ -900,18 +900,18 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ref ImPlotAxisC axis, byte* label)
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, byte* label)
 		{
-			fixed (ImPlotAxisC* paxis = &axis)
+			fixed (ImPlotAxis* paxis = &axis)
 			{
-				ImPlot.SetAxisLabelNative(Handle, (ImPlotAxisC*)paxis, label);
+				ImPlot.SetAxisLabelNative(Handle, (ImPlotAxis*)paxis, label);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ImPlotAxisC* axis, in byte label)
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, in byte label)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -922,7 +922,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ImPlotAxisC* axis, ReadOnlySpan<byte> label)
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, ReadOnlySpan<byte> label)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -933,7 +933,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ImPlotAxisC* axis, string label)
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, string label)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -962,13 +962,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ref ImPlotAxisC axis, in byte label)
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, in byte label)
 		{
-			fixed (ImPlotAxisC* paxis = &axis)
+			fixed (ImPlotAxis* paxis = &axis)
 			{
 				fixed (byte* plabel = &label)
 				{
-					ImPlot.SetAxisLabelNative(Handle, (ImPlotAxisC*)paxis, (byte*)plabel);
+					ImPlot.SetAxisLabelNative(Handle, (ImPlotAxis*)paxis, (byte*)plabel);
 				}
 			}
 		}
@@ -976,13 +976,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ref ImPlotAxisC axis, ReadOnlySpan<byte> label)
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, ReadOnlySpan<byte> label)
 		{
-			fixed (ImPlotAxisC* paxis = &axis)
+			fixed (ImPlotAxis* paxis = &axis)
 			{
 				fixed (byte* plabel = label)
 				{
-					ImPlot.SetAxisLabelNative(Handle, (ImPlotAxisC*)paxis, (byte*)plabel);
+					ImPlot.SetAxisLabelNative(Handle, (ImPlotAxis*)paxis, (byte*)plabel);
 				}
 			}
 		}
@@ -990,9 +990,9 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ref ImPlotAxisC axis, string label)
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, string label)
 		{
-			fixed (ImPlotAxisC* paxis = &axis)
+			fixed (ImPlotAxis* paxis = &axis)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -1011,7 +1011,7 @@ namespace Hexa.NET.ImPlot
 					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImPlot.SetAxisLabelNative(Handle, (ImPlotAxisC*)paxis, pStr0);
+				ImPlot.SetAxisLabelNative(Handle, (ImPlotAxis*)paxis, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1081,36 +1081,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotAxisC* XAxis(int i)
+		public unsafe ImPlotAxis* XAxis(int i)
 		{
-			ImPlotAxisC* ret = ImPlot.XAxisNative(Handle, i);
+			ImPlotAxis* ret = ImPlot.XAxisNative(Handle, i);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotAxisC* ImPlotPlotXAxisConst(int i)
+		public unsafe ImPlotAxis* ImPlotPlotXAxisConst(int i)
 		{
-			ImPlotAxisC* ret = ImPlot.ImPlotPlotXAxisConstNative(Handle, i);
+			ImPlotAxis* ret = ImPlot.ImPlotPlotXAxisConstNative(Handle, i);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotAxisC* YAxis(int i)
+		public unsafe ImPlotAxis* YAxis(int i)
 		{
-			ImPlotAxisC* ret = ImPlot.YAxisNative(Handle, i);
+			ImPlotAxis* ret = ImPlot.YAxisNative(Handle, i);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotAxisC* ImPlotPlotYAxisConst(int i)
+		public unsafe ImPlotAxis* ImPlotPlotYAxisConst(int i)
 		{
-			ImPlotAxisC* ret = ImPlot.ImPlotPlotYAxisConstNative(Handle, i);
+			ImPlotAxis* ret = ImPlot.ImPlotPlotYAxisConstNative(Handle, i);
 			return ret;
 		}
 

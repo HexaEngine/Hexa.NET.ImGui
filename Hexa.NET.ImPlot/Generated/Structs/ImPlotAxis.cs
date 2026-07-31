@@ -21,7 +21,7 @@ namespace Hexa.NET.ImPlot
 	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImPlotAxisC
+	public partial struct ImPlotAxis
 	{
 		/// <summary>
 		/// To be documented.
@@ -41,7 +41,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotRangeC Range;
+		public ImPlotRange Range;
 
 		/// <summary>
 		/// To be documented.
@@ -56,22 +56,22 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotRangeC FitExtents;
+		public ImPlotRange FitExtents;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotAxisC* OrthoAxis;
+		public unsafe ImPlotAxis* OrthoAxis;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotRangeC ConstraintRange;
+		public ImPlotRange ConstraintRange;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotRangeC ConstraintZoom;
+		public ImPlotRange ConstraintZoom;
 
 		/// <summary>
 		/// To be documented.
@@ -129,12 +129,12 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotTimeC PickerTimeMin;
+		public ImPlotTime PickerTimeMin;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotTimeC PickerTimeMax;
+		public ImPlotTime PickerTimeMax;
 
 		/// <summary>
 		/// To be documented.
@@ -278,7 +278,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotAxisC(uint id = default, ImPlotAxisFlags flags = default, ImPlotAxisFlags previousFlags = default, ImPlotRangeC range = default, ImPlotCond rangeCond = default, ImPlotScale scale = default, ImPlotRangeC fitExtents = default, ImPlotAxisC* orthoAxis = default, ImPlotRangeC constraintRange = default, ImPlotRangeC constraintZoom = default, ImPlotTicker ticker = default, delegate*<double, byte*, int, void*, int> formatter = default, void* formatterData = default, byte* formatSpec = default, delegate*<ImPlotTicker*, ImPlotRangeC, float, byte, delegate*<double, byte*, int, void*, int>, void*, void> locator = default, double* linkedMin = default, double* linkedMax = default, int pickerLevel = default, ImPlotTimeC pickerTimeMin = default, ImPlotTimeC pickerTimeMax = default, delegate*<double, void*, double> transformForward = default, delegate*<double, void*, double> transformInverse = default, void* transformData = default, float pixelMin = default, float pixelMax = default, double scaleMin = default, double scaleMax = default, double scaleToPixel = default, float datum1 = default, float datum2 = default, ImRect hoverRect = default, int labelOffset = default, uint colorMaj = default, uint colorMin = default, uint colorTick = default, uint colorTxt = default, uint colorBg = default, uint colorHov = default, uint colorAct = default, uint colorHiLi = default, bool enabled = default, bool vertical = default, bool fitThisFrame = default, bool hasRange = default, bool hasFormatSpec = default, bool showDefaultTicks = default, bool hovered = default, bool held = default)
+		public unsafe ImPlotAxis(uint id = default, ImPlotAxisFlags flags = default, ImPlotAxisFlags previousFlags = default, ImPlotRange range = default, ImPlotCond rangeCond = default, ImPlotScale scale = default, ImPlotRange fitExtents = default, ImPlotAxis* orthoAxis = default, ImPlotRange constraintRange = default, ImPlotRange constraintZoom = default, ImPlotTicker ticker = default, delegate*<double, byte*, int, void*, int> formatter = default, void* formatterData = default, byte* formatSpec = default, delegate*<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void> locator = default, double* linkedMin = default, double* linkedMax = default, int pickerLevel = default, ImPlotTime pickerTimeMin = default, ImPlotTime pickerTimeMax = default, delegate*<double, void*, double> transformForward = default, delegate*<double, void*, double> transformInverse = default, void* transformData = default, float pixelMin = default, float pixelMax = default, double scaleMin = default, double scaleMax = default, double scaleToPixel = default, float datum1 = default, float datum2 = default, ImRect hoverRect = default, int labelOffset = default, uint colorMaj = default, uint colorMin = default, uint colorTick = default, uint colorTxt = default, uint colorBg = default, uint colorHov = default, uint colorAct = default, uint colorHiLi = default, bool enabled = default, bool vertical = default, bool fitThisFrame = default, bool hasRange = default, bool hasFormatSpec = default, bool showDefaultTicks = default, bool hovered = default, bool held = default)
 		{
 			ID = id;
 			Flags = flags;
@@ -312,7 +312,7 @@ namespace Hexa.NET.ImPlot
 				FormatSpec_14 = formatSpec[14];
 				FormatSpec_15 = formatSpec[15];
 			}
-			Locator = (delegate*<ImPlotTicker*, ImPlotRangeC, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)locator;
+			Locator = (delegate*<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)locator;
 			LinkedMin = linkedMin;
 			LinkedMax = linkedMax;
 			PickerLevel = pickerLevel;
@@ -351,7 +351,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotAxisC(uint id = default, ImPlotAxisFlags flags = default, ImPlotAxisFlags previousFlags = default, ImPlotRangeC range = default, ImPlotCond rangeCond = default, ImPlotScale scale = default, ImPlotRangeC fitExtents = default, ImPlotAxisC* orthoAxis = default, ImPlotRangeC constraintRange = default, ImPlotRangeC constraintZoom = default, ImPlotTicker ticker = default, delegate*<double, byte*, int, void*, int> formatter = default, void* formatterData = default, Span<byte> formatSpec = default, delegate*<ImPlotTicker*, ImPlotRangeC, float, byte, delegate*<double, byte*, int, void*, int>, void*, void> locator = default, double* linkedMin = default, double* linkedMax = default, int pickerLevel = default, ImPlotTimeC pickerTimeMin = default, ImPlotTimeC pickerTimeMax = default, delegate*<double, void*, double> transformForward = default, delegate*<double, void*, double> transformInverse = default, void* transformData = default, float pixelMin = default, float pixelMax = default, double scaleMin = default, double scaleMax = default, double scaleToPixel = default, float datum1 = default, float datum2 = default, ImRect hoverRect = default, int labelOffset = default, uint colorMaj = default, uint colorMin = default, uint colorTick = default, uint colorTxt = default, uint colorBg = default, uint colorHov = default, uint colorAct = default, uint colorHiLi = default, bool enabled = default, bool vertical = default, bool fitThisFrame = default, bool hasRange = default, bool hasFormatSpec = default, bool showDefaultTicks = default, bool hovered = default, bool held = default)
+		public unsafe ImPlotAxis(uint id = default, ImPlotAxisFlags flags = default, ImPlotAxisFlags previousFlags = default, ImPlotRange range = default, ImPlotCond rangeCond = default, ImPlotScale scale = default, ImPlotRange fitExtents = default, ImPlotAxis* orthoAxis = default, ImPlotRange constraintRange = default, ImPlotRange constraintZoom = default, ImPlotTicker ticker = default, delegate*<double, byte*, int, void*, int> formatter = default, void* formatterData = default, Span<byte> formatSpec = default, delegate*<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void> locator = default, double* linkedMin = default, double* linkedMax = default, int pickerLevel = default, ImPlotTime pickerTimeMin = default, ImPlotTime pickerTimeMax = default, delegate*<double, void*, double> transformForward = default, delegate*<double, void*, double> transformInverse = default, void* transformData = default, float pixelMin = default, float pixelMax = default, double scaleMin = default, double scaleMax = default, double scaleToPixel = default, float datum1 = default, float datum2 = default, ImRect hoverRect = default, int labelOffset = default, uint colorMaj = default, uint colorMin = default, uint colorTick = default, uint colorTxt = default, uint colorBg = default, uint colorHov = default, uint colorAct = default, uint colorHiLi = default, bool enabled = default, bool vertical = default, bool fitThisFrame = default, bool hasRange = default, bool hasFormatSpec = default, bool showDefaultTicks = default, bool hovered = default, bool held = default)
 		{
 			ID = id;
 			Flags = flags;
@@ -385,7 +385,7 @@ namespace Hexa.NET.ImPlot
 				FormatSpec_14 = formatSpec[14];
 				FormatSpec_15 = formatSpec[15];
 			}
-			Locator = (delegate*<ImPlotTicker*, ImPlotRangeC, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)locator;
+			Locator = (delegate*<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)locator;
 			LinkedMin = linkedMin;
 			LinkedMax = linkedMax;
 			PickerLevel = pickerLevel;
@@ -430,40 +430,40 @@ namespace Hexa.NET.ImPlot
 	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	#endif
-	public unsafe struct ImPlotAxisCPtr : IEquatable<ImPlotAxisCPtr>
+	public unsafe struct ImPlotAxisPtr : IEquatable<ImPlotAxisPtr>
 	{
-		public ImPlotAxisCPtr(ImPlotAxisC* handle) { Handle = handle; }
+		public ImPlotAxisPtr(ImPlotAxis* handle) { Handle = handle; }
 
-		public ImPlotAxisC* Handle;
+		public ImPlotAxis* Handle;
 
 		public bool IsNull => Handle == null;
 
-		public static ImPlotAxisCPtr Null => new ImPlotAxisCPtr(null);
+		public static ImPlotAxisPtr Null => new ImPlotAxisPtr(null);
 
-		public ImPlotAxisC this[int index] { get => Handle[index]; set => Handle[index] = value; }
+		public ImPlotAxis this[int index] { get => Handle[index]; set => Handle[index] = value; }
 
-		public static implicit operator ImPlotAxisCPtr(ImPlotAxisC* handle) => new ImPlotAxisCPtr(handle);
+		public static implicit operator ImPlotAxisPtr(ImPlotAxis* handle) => new ImPlotAxisPtr(handle);
 
-		public static implicit operator ImPlotAxisC*(ImPlotAxisCPtr handle) => handle.Handle;
+		public static implicit operator ImPlotAxis*(ImPlotAxisPtr handle) => handle.Handle;
 
-		public static bool operator ==(ImPlotAxisCPtr left, ImPlotAxisCPtr right) => left.Handle == right.Handle;
+		public static bool operator ==(ImPlotAxisPtr left, ImPlotAxisPtr right) => left.Handle == right.Handle;
 
-		public static bool operator !=(ImPlotAxisCPtr left, ImPlotAxisCPtr right) => left.Handle != right.Handle;
+		public static bool operator !=(ImPlotAxisPtr left, ImPlotAxisPtr right) => left.Handle != right.Handle;
 
-		public static bool operator ==(ImPlotAxisCPtr left, ImPlotAxisC* right) => left.Handle == right;
+		public static bool operator ==(ImPlotAxisPtr left, ImPlotAxis* right) => left.Handle == right;
 
-		public static bool operator !=(ImPlotAxisCPtr left, ImPlotAxisC* right) => left.Handle != right;
+		public static bool operator !=(ImPlotAxisPtr left, ImPlotAxis* right) => left.Handle != right;
 
-		public bool Equals(ImPlotAxisCPtr other) => Handle == other.Handle;
+		public bool Equals(ImPlotAxisPtr other) => Handle == other.Handle;
 
 		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImPlotAxisCPtr handle && Equals(handle);
+		public override bool Equals(object obj) => obj is ImPlotAxisPtr handle && Equals(handle);
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
 		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImPlotAxisCPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		private string DebuggerDisplay => string.Format("ImPlotAxisPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
 		/// <summary>
 		/// To be documented.
@@ -480,7 +480,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotRangeC Range => ref Unsafe.AsRef<ImPlotRangeC>(&Handle->Range);
+		public ref ImPlotRange Range => ref Unsafe.AsRef<ImPlotRange>(&Handle->Range);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -492,19 +492,19 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotRangeC FitExtents => ref Unsafe.AsRef<ImPlotRangeC>(&Handle->FitExtents);
+		public ref ImPlotRange FitExtents => ref Unsafe.AsRef<ImPlotRange>(&Handle->FitExtents);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotAxisCPtr OrthoAxis => ref Unsafe.AsRef<ImPlotAxisCPtr>(&Handle->OrthoAxis);
+		public ref ImPlotAxisPtr OrthoAxis => ref Unsafe.AsRef<ImPlotAxisPtr>(&Handle->OrthoAxis);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotRangeC ConstraintRange => ref Unsafe.AsRef<ImPlotRangeC>(&Handle->ConstraintRange);
+		public ref ImPlotRange ConstraintRange => ref Unsafe.AsRef<ImPlotRange>(&Handle->ConstraintRange);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotRangeC ConstraintZoom => ref Unsafe.AsRef<ImPlotRangeC>(&Handle->ConstraintZoom);
+		public ref ImPlotRange ConstraintZoom => ref Unsafe.AsRef<ImPlotRange>(&Handle->ConstraintZoom);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -547,11 +547,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotTimeC PickerTimeMin => ref Unsafe.AsRef<ImPlotTimeC>(&Handle->PickerTimeMin);
+		public ref ImPlotTime PickerTimeMin => ref Unsafe.AsRef<ImPlotTime>(&Handle->PickerTimeMin);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImPlotTimeC PickerTimeMax => ref Unsafe.AsRef<ImPlotTimeC>(&Handle->PickerTimeMax);
+		public ref ImPlotTime PickerTimeMax => ref Unsafe.AsRef<ImPlotTime>(&Handle->PickerTimeMax);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

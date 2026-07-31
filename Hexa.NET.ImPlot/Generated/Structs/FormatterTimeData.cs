@@ -26,12 +26,12 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotTimeC Time;
+		public ImPlotTime Time;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImPlotDateTimeSpecC Spec;
+		public ImPlotDateTimeSpec Spec;
 
 		/// <summary>
 		/// To be documented.
@@ -46,7 +46,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe FormatterTimeData(ImPlotTimeC time = default, ImPlotDateTimeSpecC spec = default, delegate*<double, byte*, int, void*, int> userFormatter = default, void* userFormatterData = default)
+		public unsafe FormatterTimeData(ImPlotTime time = default, ImPlotDateTimeSpec spec = default, delegate*<double, byte*, int, void*, int> userFormatter = default, void* userFormatterData = default)
 		{
 			Time = time;
 			Spec = spec;

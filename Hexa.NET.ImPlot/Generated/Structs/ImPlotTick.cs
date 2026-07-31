@@ -21,7 +21,7 @@ namespace Hexa.NET.ImPlot
 	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImPlotTickC
+	public partial struct ImPlotTick
 	{
 		/// <summary>
 		/// To be documented.
@@ -67,7 +67,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTickC(double plotPos = default, float pixelPos = default, Vector2 labelSize = default, int textOffset = default, bool major = default, bool showLabel = default, int level = default, int idx = default)
+		public unsafe ImPlotTick(double plotPos = default, float pixelPos = default, Vector2 labelSize = default, int textOffset = default, bool major = default, bool showLabel = default, int level = default, int idx = default)
 		{
 			PlotPos = plotPos;
 			PixelPos = pixelPos;
@@ -88,40 +88,40 @@ namespace Hexa.NET.ImPlot
 	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	#endif
-	public unsafe struct ImPlotTickCPtr : IEquatable<ImPlotTickCPtr>
+	public unsafe struct ImPlotTickPtr : IEquatable<ImPlotTickPtr>
 	{
-		public ImPlotTickCPtr(ImPlotTickC* handle) { Handle = handle; }
+		public ImPlotTickPtr(ImPlotTick* handle) { Handle = handle; }
 
-		public ImPlotTickC* Handle;
+		public ImPlotTick* Handle;
 
 		public bool IsNull => Handle == null;
 
-		public static ImPlotTickCPtr Null => new ImPlotTickCPtr(null);
+		public static ImPlotTickPtr Null => new ImPlotTickPtr(null);
 
-		public ImPlotTickC this[int index] { get => Handle[index]; set => Handle[index] = value; }
+		public ImPlotTick this[int index] { get => Handle[index]; set => Handle[index] = value; }
 
-		public static implicit operator ImPlotTickCPtr(ImPlotTickC* handle) => new ImPlotTickCPtr(handle);
+		public static implicit operator ImPlotTickPtr(ImPlotTick* handle) => new ImPlotTickPtr(handle);
 
-		public static implicit operator ImPlotTickC*(ImPlotTickCPtr handle) => handle.Handle;
+		public static implicit operator ImPlotTick*(ImPlotTickPtr handle) => handle.Handle;
 
-		public static bool operator ==(ImPlotTickCPtr left, ImPlotTickCPtr right) => left.Handle == right.Handle;
+		public static bool operator ==(ImPlotTickPtr left, ImPlotTickPtr right) => left.Handle == right.Handle;
 
-		public static bool operator !=(ImPlotTickCPtr left, ImPlotTickCPtr right) => left.Handle != right.Handle;
+		public static bool operator !=(ImPlotTickPtr left, ImPlotTickPtr right) => left.Handle != right.Handle;
 
-		public static bool operator ==(ImPlotTickCPtr left, ImPlotTickC* right) => left.Handle == right;
+		public static bool operator ==(ImPlotTickPtr left, ImPlotTick* right) => left.Handle == right;
 
-		public static bool operator !=(ImPlotTickCPtr left, ImPlotTickC* right) => left.Handle != right;
+		public static bool operator !=(ImPlotTickPtr left, ImPlotTick* right) => left.Handle != right;
 
-		public bool Equals(ImPlotTickCPtr other) => Handle == other.Handle;
+		public bool Equals(ImPlotTickPtr other) => Handle == other.Handle;
 
 		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImPlotTickCPtr handle && Equals(handle);
+		public override bool Equals(object obj) => obj is ImPlotTickPtr handle && Equals(handle);
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
 		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImPlotTickCPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		private string DebuggerDisplay => string.Format("ImPlotTickPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
 		/// <summary>
 		/// To be documented.

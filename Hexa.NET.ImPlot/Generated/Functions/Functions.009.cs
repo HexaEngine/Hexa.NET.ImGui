@@ -58,10 +58,10 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotLineGNative(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, ImPlotLineFlags flags)
+		internal static void PlotLineGNative(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, ImPlotLineFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, delegate*<void*, int, ImPlotPointC*, void*>, void*, int, ImPlotLineFlags, void>)funcTable[74])(labelId, getter, data, count, flags);
+			((delegate* unmanaged[Cdecl]<byte*, delegate*<void*, int, ImPlotPoint*, void*>, void*, int, ImPlotLineFlags, void>)funcTable[74])(labelId, getter, data, count, flags);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotLineFlags, void>)funcTable[74])((nint)labelId, (nint)getter, (nint)data, count, flags);
 			#endif
@@ -70,7 +70,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, ImPlotLineFlags flags)
+		public static void PlotLineG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, ImPlotLineFlags flags)
 		{
 			PlotLineGNative(labelId, getter, data, count, flags);
 		}
@@ -78,7 +78,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count)
+		public static void PlotLineG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count)
 		{
 			PlotLineGNative(labelId, getter, data, count, (ImPlotLineFlags)(0));
 		}
@@ -86,7 +86,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, ImPlotLineFlags flags)
+		public static void PlotLineG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -97,7 +97,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count)
+		public static void PlotLineG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -108,7 +108,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, ImPlotLineFlags flags)
+		public static void PlotLineG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -119,7 +119,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count)
+		public static void PlotLineG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -130,7 +130,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count, ImPlotLineFlags flags)
+		public static void PlotLineG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count, ImPlotLineFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -159,7 +159,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, void* data, int count)
+		public static void PlotLineG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, void* data, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -190,7 +190,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotLineG(byte* labelId, ImPlotPointGetter getter, void* data, int count, ImPlotLineFlags flags)
 		{
-			PlotLineGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
+			PlotLineGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
 		}
 
 		/// <summary>
@@ -198,7 +198,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotLineG(byte* labelId, ImPlotPointGetter getter, void* data, int count)
 		{
-			PlotLineGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotLineFlags)(0));
+			PlotLineGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotLineFlags)(0));
 		}
 
 		/// <summary>
@@ -208,7 +208,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
+				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
 			}
 		}
 
@@ -219,7 +219,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotLineFlags)(0));
+				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotLineFlags)(0));
 			}
 		}
 
@@ -230,7 +230,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
+				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
 			}
 		}
 
@@ -241,7 +241,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotLineFlags)(0));
+				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotLineFlags)(0));
 			}
 		}
 
@@ -267,7 +267,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
+			PlotLineGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -296,7 +296,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotLineFlags)(0));
+			PlotLineGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, (ImPlotLineFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -306,7 +306,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, ImPlotLineFlags flags)
+		public static void PlotLineG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, ImPlotLineFlags flags)
 		{
 			PlotLineGNative(labelId, getter, (void*)data, count, flags);
 		}
@@ -314,7 +314,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(byte* labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count)
+		public static void PlotLineG(byte* labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count)
 		{
 			PlotLineGNative(labelId, getter, (void*)data, count, (ImPlotLineFlags)(0));
 		}
@@ -322,7 +322,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, ImPlotLineFlags flags)
+		public static void PlotLineG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -333,7 +333,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(in byte labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count)
+		public static void PlotLineG(in byte labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -344,7 +344,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, ImPlotLineFlags flags)
+		public static void PlotLineG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -355,7 +355,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count)
+		public static void PlotLineG(ReadOnlySpan<byte> labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -366,7 +366,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count, ImPlotLineFlags flags)
+		public static void PlotLineG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count, ImPlotLineFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -395,7 +395,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLineG(string labelId, delegate*<void*, int, ImPlotPointC*, void*> getter, nint data, int count)
+		public static void PlotLineG(string labelId, delegate*<void*, int, ImPlotPoint*, void*> getter, nint data, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -426,7 +426,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotLineG(byte* labelId, ImPlotPointGetter getter, nint data, int count, ImPlotLineFlags flags)
 		{
-			PlotLineGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
+			PlotLineGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
 		}
 
 		/// <summary>
@@ -434,7 +434,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotLineG(byte* labelId, ImPlotPointGetter getter, nint data, int count)
 		{
-			PlotLineGNative(labelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotLineFlags)(0));
+			PlotLineGNative(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotLineFlags)(0));
 		}
 
 		/// <summary>
@@ -444,7 +444,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
+				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
 			}
 		}
 
@@ -455,7 +455,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotLineFlags)(0));
+				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotLineFlags)(0));
 			}
 		}
 
@@ -466,7 +466,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
+				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
 			}
 		}
 
@@ -477,7 +477,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotLineFlags)(0));
+				PlotLineGNative((byte*)plabelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotLineFlags)(0));
 			}
 		}
 
@@ -503,7 +503,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
+			PlotLineGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -532,7 +532,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineGNative(pStr0, (delegate*<void*, int, ImPlotPointC*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotLineFlags)(0));
+			PlotLineGNative(pStr0, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), (void*)data, count, (ImPlotLineFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);

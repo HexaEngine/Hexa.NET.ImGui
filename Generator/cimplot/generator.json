@@ -7,7 +7,14 @@
   "LibName": "cimplot",
   "GenerateAdditionalOverloads": false,
   "TypeMappings": {
-    "time_t": "long"
+    "time_t": "long",
+    "ImPlotAxis_c": "ImPlotAxis",
+    "ImPlotDateTimeSpec_c": "ImPlotDateTimeSpec",
+    "ImPlotPoint_c": "ImPlotPoint",
+    "ImPlotRange_c": "ImPlotRange",
+    "ImPlotRect_c": "ImPlotRect",
+    "ImPlotTick_c": "ImPlotTick",
+    "ImPlotTime_c": "ImPlotTime"
   },
   "KnownEnumValueNames": {
     "ImGuiCond_None": "0",

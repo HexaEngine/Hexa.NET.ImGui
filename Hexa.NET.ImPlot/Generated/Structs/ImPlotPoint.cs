@@ -21,26 +21,26 @@ namespace Hexa.NET.ImPlot
 	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImPlotTimeC
+	public partial struct ImPlotPoint
 	{
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public long S;
+		public double X;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int Us;
+		public double Y;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTimeC(long s = default, int us = default)
+		public unsafe ImPlotPoint(double x = default, double y = default)
 		{
-			S = s;
-			Us = us;
+			X = x;
+			Y = y;
 		}
 
 

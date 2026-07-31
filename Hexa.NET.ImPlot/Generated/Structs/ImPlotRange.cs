@@ -21,7 +21,7 @@ namespace Hexa.NET.ImPlot
 	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImPlotRangeC
+	public partial struct ImPlotRange
 	{
 		/// <summary>
 		/// To be documented.
@@ -37,7 +37,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotRangeC(double min = default, double max = default)
+		public unsafe ImPlotRange(double min = default, double max = default)
 		{
 			Min = min;
 			Max = max;
@@ -52,40 +52,40 @@ namespace Hexa.NET.ImPlot
 	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	#endif
-	public unsafe struct ImPlotRangeCPtr : IEquatable<ImPlotRangeCPtr>
+	public unsafe struct ImPlotRangePtr : IEquatable<ImPlotRangePtr>
 	{
-		public ImPlotRangeCPtr(ImPlotRangeC* handle) { Handle = handle; }
+		public ImPlotRangePtr(ImPlotRange* handle) { Handle = handle; }
 
-		public ImPlotRangeC* Handle;
+		public ImPlotRange* Handle;
 
 		public bool IsNull => Handle == null;
 
-		public static ImPlotRangeCPtr Null => new ImPlotRangeCPtr(null);
+		public static ImPlotRangePtr Null => new ImPlotRangePtr(null);
 
-		public ImPlotRangeC this[int index] { get => Handle[index]; set => Handle[index] = value; }
+		public ImPlotRange this[int index] { get => Handle[index]; set => Handle[index] = value; }
 
-		public static implicit operator ImPlotRangeCPtr(ImPlotRangeC* handle) => new ImPlotRangeCPtr(handle);
+		public static implicit operator ImPlotRangePtr(ImPlotRange* handle) => new ImPlotRangePtr(handle);
 
-		public static implicit operator ImPlotRangeC*(ImPlotRangeCPtr handle) => handle.Handle;
+		public static implicit operator ImPlotRange*(ImPlotRangePtr handle) => handle.Handle;
 
-		public static bool operator ==(ImPlotRangeCPtr left, ImPlotRangeCPtr right) => left.Handle == right.Handle;
+		public static bool operator ==(ImPlotRangePtr left, ImPlotRangePtr right) => left.Handle == right.Handle;
 
-		public static bool operator !=(ImPlotRangeCPtr left, ImPlotRangeCPtr right) => left.Handle != right.Handle;
+		public static bool operator !=(ImPlotRangePtr left, ImPlotRangePtr right) => left.Handle != right.Handle;
 
-		public static bool operator ==(ImPlotRangeCPtr left, ImPlotRangeC* right) => left.Handle == right;
+		public static bool operator ==(ImPlotRangePtr left, ImPlotRange* right) => left.Handle == right;
 
-		public static bool operator !=(ImPlotRangeCPtr left, ImPlotRangeC* right) => left.Handle != right;
+		public static bool operator !=(ImPlotRangePtr left, ImPlotRange* right) => left.Handle != right;
 
-		public bool Equals(ImPlotRangeCPtr other) => Handle == other.Handle;
+		public bool Equals(ImPlotRangePtr other) => Handle == other.Handle;
 
 		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImPlotRangeCPtr handle && Equals(handle);
+		public override bool Equals(object obj) => obj is ImPlotRangePtr handle && Equals(handle);
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
 		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImPlotRangeCPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		private string DebuggerDisplay => string.Format("ImPlotRangePtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
 		/// <summary>
 		/// To be documented.
