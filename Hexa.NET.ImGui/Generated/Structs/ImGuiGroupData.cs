@@ -70,7 +70,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte BackupActiveIdHasBeenEditedThisFrame;
+		public byte BackupAnyIdHasBeenEditedThisFrame;
 
 		/// <summary>
 		/// To be documented.
@@ -96,7 +96,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiGroupData(uint windowId = default, Vector2 backupCursorPos = default, Vector2 backupCursorMaxPos = default, Vector2 backupCursorPosPrevLine = default, ImVec1 backupIndent = default, ImVec1 backupGroupOffset = default, Vector2 backupCurrLineSize = default, float backupCurrLineTextBaseOffset = default, uint backupActiveIdIsAlive = default, bool backupActiveIdHasBeenEditedThisFrame = default, bool backupDeactivatedIdIsAlive = default, bool backupHoveredIdIsAlive = default, bool backupIsSameLine = default, bool emitItem = default)
+		public unsafe ImGuiGroupData(uint windowId = default, Vector2 backupCursorPos = default, Vector2 backupCursorMaxPos = default, Vector2 backupCursorPosPrevLine = default, ImVec1 backupIndent = default, ImVec1 backupGroupOffset = default, Vector2 backupCurrLineSize = default, float backupCurrLineTextBaseOffset = default, uint backupActiveIdIsAlive = default, bool backupAnyIdHasBeenEditedThisFrame = default, bool backupDeactivatedIdIsAlive = default, bool backupHoveredIdIsAlive = default, bool backupIsSameLine = default, bool emitItem = default)
 		{
 			WindowID = windowId;
 			BackupCursorPos = backupCursorPos;
@@ -107,7 +107,7 @@ namespace Hexa.NET.ImGui
 			BackupCurrLineSize = backupCurrLineSize;
 			BackupCurrLineTextBaseOffset = backupCurrLineTextBaseOffset;
 			BackupActiveIdIsAlive = backupActiveIdIsAlive;
-			BackupActiveIdHasBeenEditedThisFrame = backupActiveIdHasBeenEditedThisFrame ? (byte)1 : (byte)0;
+			BackupAnyIdHasBeenEditedThisFrame = backupAnyIdHasBeenEditedThisFrame ? (byte)1 : (byte)0;
 			BackupDeactivatedIdIsAlive = backupDeactivatedIdIsAlive ? (byte)1 : (byte)0;
 			BackupHoveredIdIsAlive = backupHoveredIdIsAlive ? (byte)1 : (byte)0;
 			BackupIsSameLine = backupIsSameLine ? (byte)1 : (byte)0;
@@ -197,7 +197,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref bool BackupActiveIdHasBeenEditedThisFrame => ref Unsafe.AsRef<bool>(&Handle->BackupActiveIdHasBeenEditedThisFrame);
+		public ref bool BackupAnyIdHasBeenEditedThisFrame => ref Unsafe.AsRef<bool>(&Handle->BackupAnyIdHasBeenEditedThisFrame);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

@@ -95,13 +95,23 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public int SettingsDiscardMonths;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public byte SettingsHighlightOldEntries;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public byte ShowFontPreview;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiMetricsConfig(bool showDebugLog = default, bool showIdStackTool = default, bool showWindowsRects = default, bool showWindowsBeginOrder = default, bool showTablesRects = default, bool showDrawCmdMesh = default, bool showDrawCmdBoundingBoxes = default, bool showTextEncodingViewer = default, bool showTextureUsedRect = default, bool showDockingNodes = default, int showWindowsRectsType = default, int showTablesRectsType = default, int highlightMonitorIdx = default, uint highlightViewportId = default, bool showFontPreview = default)
+		public unsafe ImGuiMetricsConfig(bool showDebugLog = default, bool showIdStackTool = default, bool showWindowsRects = default, bool showWindowsBeginOrder = default, bool showTablesRects = default, bool showDrawCmdMesh = default, bool showDrawCmdBoundingBoxes = default, bool showTextEncodingViewer = default, bool showTextureUsedRect = default, bool showDockingNodes = default, int showWindowsRectsType = default, int showTablesRectsType = default, int highlightMonitorIdx = default, uint highlightViewportId = default, int settingsDiscardMonths = default, bool settingsHighlightOldEntries = default, bool showFontPreview = default)
 		{
 			ShowDebugLog = showDebugLog ? (byte)1 : (byte)0;
 			ShowIDStackTool = showIdStackTool ? (byte)1 : (byte)0;
@@ -117,6 +127,8 @@ namespace Hexa.NET.ImGui
 			ShowTablesRectsType = showTablesRectsType;
 			HighlightMonitorIdx = highlightMonitorIdx;
 			HighlightViewportID = highlightViewportId;
+			SettingsDiscardMonths = settingsDiscardMonths;
+			SettingsHighlightOldEntries = settingsHighlightOldEntries ? (byte)1 : (byte)0;
 			ShowFontPreview = showFontPreview ? (byte)1 : (byte)0;
 		}
 

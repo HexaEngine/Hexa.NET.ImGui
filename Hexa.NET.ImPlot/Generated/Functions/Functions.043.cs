@@ -22,19 +22,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, in ushort xs, in ushort ys1, in ushort ys2, int count, int offset, int stride)
+		public static void PlotPieChart(in byte* labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					fixed (ushort* pys1 = &ys1)
-					{
-						fixed (ushort* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys1, (ushort*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-						}
-					}
+					PlotPieChartNative((byte**)plabelIds, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, spec);
 				}
 			}
 		}
@@ -42,195 +36,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys1, in ushort ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = labelId)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				fixed (ushort* pxs = &xs)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					fixed (ushort* pys1 = &ys1)
-					{
-						fixed (ushort* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys1, (ushort*)pys2, count, flags, offset, stride);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys1, in ushort ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pxs = &xs)
-				{
-					fixed (ushort* pys1 = &ys1)
-					{
-						fixed (ushort* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys1, (ushort*)pys2, count, flags, offset, (int)(sizeof(ushort)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys1, in ushort ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pxs = &xs)
-				{
-					fixed (ushort* pys1 = &ys1)
-					{
-						fixed (ushort* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys1, (ushort*)pys2, count, flags, (int)(0), (int)(sizeof(ushort)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys1, in ushort ys2, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pxs = &xs)
-				{
-					fixed (ushort* pys1 = &ys1)
-					{
-						fixed (ushort* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys1, (ushort*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(ushort)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys1, in ushort ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pxs = &xs)
-				{
-					fixed (ushort* pys1 = &ys1)
-					{
-						fixed (ushort* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys1, (ushort*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(ushort)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys1, in ushort ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pxs = &xs)
-				{
-					fixed (ushort* pys1 = &ys1)
-					{
-						fixed (ushort* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys1, (ushort*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, in ushort xs, in ushort ys1, in ushort ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pxs = &xs)
-			{
-				fixed (ushort* pys1 = &ys1)
-				{
-					fixed (ushort* pys2 = &ys2)
-					{
-						PlotShadedNative(pStr0, (ushort*)pxs, (ushort*)pys1, (ushort*)pys2, count, flags, offset, stride);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, in ushort xs, in ushort ys1, in ushort ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
 			}
-			fixed (ushort* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				fixed (ushort* pys1 = &ys1)
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, spec);
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					fixed (ushort* pys2 = &ys2)
-					{
-						PlotShadedNative(pStr0, (ushort*)pxs, (ushort*)pys1, (ushort*)pys2, count, flags, offset, (int)(sizeof(ushort)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -238,37 +73,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in ushort xs, in ushort ys1, in ushort ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (ushort* pys1 = &ys1)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					fixed (ushort* pys2 = &ys2)
-					{
-						PlotShadedNative(pStr0, (ushort*)pxs, (ushort*)pys1, (ushort*)pys2, count, flags, (int)(0), (int)(sizeof(ushort)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -276,37 +110,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in ushort xs, in ushort ys1, in ushort ys2, int count)
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (ushort* pys1 = &ys1)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					fixed (ushort* pys2 = &ys2)
-					{
-						PlotShadedNative(pStr0, (ushort*)pxs, (ushort*)pys1, (ushort*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(ushort)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -314,37 +147,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in ushort xs, in ushort ys1, in ushort ys2, int count, int offset)
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (ushort* pys1 = &ys1)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					fixed (ushort* pys2 = &ys2)
-					{
-						PlotShadedNative(pStr0, (ushort*)pxs, (ushort*)pys1, (ushort*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(ushort)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -352,37 +184,1067 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in ushort xs, in ushort ys1, in ushort ys2, int count, int offset, int stride)
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (ushort* pys1 = &ys1)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					fixed (ushort* pys2 = &ys2)
-					{
-						PlotShadedNative(pStr0, (ushort*)pxs, (ushort*)pys1, (ushort*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), spec);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), spec);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, spec);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, sbyte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, sbyte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, sbyte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, sbyte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, sbyte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, sbyte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, sbyte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, sbyte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, sbyte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, angle0, spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, sbyte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, sbyte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, sbyte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in sbyte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (sbyte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in sbyte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		{
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (sbyte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in sbyte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		{
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (sbyte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in sbyte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotSpec spec)
+		{
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (sbyte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in sbyte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (sbyte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in sbyte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (sbyte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in sbyte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (sbyte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in sbyte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (sbyte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, spec);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), spec);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, sbyte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, sbyte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, sbyte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, sbyte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, sbyte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, sbyte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, sbyte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, sbyte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, sbyte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, sbyte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, sbyte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, sbyte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		{
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		{
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotSpec spec)
+		{
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, spec);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in sbyte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (sbyte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), spec);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -391,1121 +1253,537 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotShadedNative(byte* labelId, int* xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
+		internal static void PlotPieChartNative(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotSpec spec)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int*, int*, int*, int, ImPlotShadedFlags, int, int, void>)funcTable[143])(labelId, xs, ys1, ys2, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte**, byte*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotSpec, void>)funcTable[282])(labelIds, values, count, x, y, radius, fmt, fmtData, angle0, spec);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlotShadedFlags, int, int, void>)funcTable[143])((nint)labelId, (nint)xs, (nint)ys1, (nint)ys2, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotSpec, void>)funcTable[282])((nint)labelIds, (nint)values, count, x, y, radius, (nint)fmt, (nint)fmtData, angle0, spec);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotSpec spec)
 		{
-			PlotShadedNative(labelId, xs, ys1, ys2, count, flags, offset, stride);
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, angle0, spec);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
 		{
-			PlotShadedNative(labelId, xs, ys1, ys2, count, flags, offset, (int)(sizeof(int)));
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
 		{
-			PlotShadedNative(labelId, xs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, int* ys1, int* ys2, int count)
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
 		{
-			PlotShadedNative(labelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, int* ys1, int* ys2, int count, int offset)
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
 		{
-			PlotShadedNative(labelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, int* ys1, int* ys2, int count, int offset, int stride)
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotSpec spec)
 		{
-			PlotShadedNative(labelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), spec);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = &labelId)
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, flags, offset, stride);
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, angle0, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, flags, offset, (int)(sizeof(int)));
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, int* ys1, int* ys2, int count)
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, int* ys1, int* ys2, int count, int offset)
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, int* ys1, int* ys2, int count, int offset, int stride)
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, flags, offset, stride);
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, flags, offset, (int)(sizeof(int)));
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = labelId)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, int* ys1, int* ys2, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, int* ys1, int* ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, int* ys1, int* ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedNative(pStr0, xs, ys1, ys2, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				Utils.Free(pStr0);
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, angle0, spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotShadedNative(pStr0, xs, ys1, ys2, count, flags, offset, (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedNative(pStr0, xs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				Utils.Free(pStr0);
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, int* ys1, int* ys2, int count)
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotShadedNative(pStr0, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, int* ys1, int* ys2, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotShadedNative(pStr0, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, int* ys1, int* ys2, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotShadedNative(pStr0, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys1, ys2, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys1, ys2, count, flags, offset, (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, int* ys1, int* ys2, int count)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, int* ys1, int* ys2, int count, int offset)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, int* ys1, int* ys2, int count, int offset, int stride)
-		{
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (int*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, ys2, count, flags, offset, stride);
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, ys2, count, flags, offset, (int)(sizeof(int)));
-				}
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
 		{
-			fixed (byte* plabelId = &labelId)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				fixed (int* pxs = &xs)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, int* ys1, int* ys2, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, int* ys1, int* ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, int* ys1, int* ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, ys2, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, ys2, count, flags, offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, int* ys1, int* ys2, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, int* ys1, int* ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, int* ys1, int* ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(pStr0, (int*)pxs, ys1, ys2, count, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
 			}
-			fixed (int* pxs = &xs)
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				PlotShadedNative(pStr0, (int*)pxs, ys1, ys2, count, flags, offset, (int)(sizeof(int)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, int* ys1, int* ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(pStr0, (int*)pxs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, int* ys1, int* ys2, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
 			}
-			fixed (int* pxs = &xs)
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				PlotShadedNative(pStr0, (int*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, int* ys1, int* ys2, int count, int offset)
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotSpec spec)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(pStr0, (int*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, (double)(90), spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, int* ys1, int* ys2, int count, int offset, int stride)
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotSpec spec)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pxs = &xs)
-			{
-				PlotShadedNative(pStr0, (int*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (int* pys1 = &ys1)
-			{
-				PlotShadedNative(labelId, xs, (int*)pys1, ys2, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (int* pys1 = &ys1)
-			{
-				PlotShadedNative(labelId, xs, (int*)pys1, ys2, count, flags, offset, (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (int* pys1 = &ys1)
-			{
-				PlotShadedNative(labelId, xs, (int*)pys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, in int ys1, int* ys2, int count)
-		{
-			fixed (int* pys1 = &ys1)
-			{
-				PlotShadedNative(labelId, xs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, in int ys1, int* ys2, int count, int offset)
-		{
-			fixed (int* pys1 = &ys1)
-			{
-				PlotShadedNative(labelId, xs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, in int ys1, int* ys2, int count, int offset, int stride)
-		{
-			fixed (int* pys1 = &ys1)
-			{
-				PlotShadedNative(labelId, xs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative((byte*)plabelId, xs, (int*)pys1, ys2, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative((byte*)plabelId, xs, (int*)pys1, ys2, count, flags, offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative((byte*)plabelId, xs, (int*)pys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, in int ys1, int* ys2, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative((byte*)plabelId, xs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, in int ys1, int* ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative((byte*)plabelId, xs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, in int ys1, int* ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative((byte*)plabelId, xs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative((byte*)plabelId, xs, (int*)pys1, ys2, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative((byte*)plabelId, xs, (int*)pys1, ys2, count, flags, offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative((byte*)plabelId, xs, (int*)pys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, in int ys1, int* ys2, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative((byte*)plabelId, xs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, in int ys1, int* ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative((byte*)plabelId, xs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, in int ys1, int* ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative((byte*)plabelId, xs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pys1 = &ys1)
-			{
-				PlotShadedNative(pStr0, xs, (int*)pys1, ys2, count, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
 			}
-			fixed (int* pys1 = &ys1)
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), (double)(90), spec);
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				PlotShadedNative(pStr0, xs, (int*)pys1, ys2, count, flags, offset, (int)(sizeof(int)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotSpec spec)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pys1 = &ys1)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				PlotShadedNative(pStr0, xs, (int*)pys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, fmtData, angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotSpec spec)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotSpec spec)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
 				{
-					Utils.Free(pStr0);
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, fmtData, angle0, spec);
 				}
 			}
 		}
@@ -1513,31 +1791,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, in int ys1, int* ys2, int count)
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pys1 = &ys1)
-			{
-				PlotShadedNative(pStr0, xs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -1545,31 +1805,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, in int ys1, int* ys2, int count, int offset)
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pys1 = &ys1)
-			{
-				PlotShadedNative(pStr0, xs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -1577,31 +1819,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, in int ys1, int* ys2, int count, int offset, int stride)
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pys1 = &ys1)
-			{
-				PlotShadedNative(pStr0, xs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -1609,13 +1833,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
 		{
-			fixed (int* pxs = &xs)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				fixed (int* pys1 = &ys1)
+				fixed (byte* pvalues = &values)
 				{
-					PlotShadedNative(labelId, (int*)pxs, (int*)pys1, ys2, count, flags, offset, stride);
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -1623,13 +1847,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotSpec spec)
 		{
-			fixed (int* pxs = &xs)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				fixed (int* pys1 = &ys1)
+				fixed (byte* pvalues = &values)
 				{
-					PlotShadedNative(labelId, (int*)pxs, (int*)pys1, ys2, count, flags, offset, (int)(sizeof(int)));
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), spec);
 				}
 			}
 		}
@@ -1637,13 +1861,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotSpec spec)
 		{
-			fixed (int* pxs = &xs)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				fixed (int* pys1 = &ys1)
+				fixed (byte* pvalues = &values)
 				{
-					PlotShadedNative(labelId, (int*)pxs, (int*)pys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), spec);
 				}
 			}
 		}
@@ -1651,13 +1875,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, in int ys1, int* ys2, int count)
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotSpec spec)
 		{
-			fixed (int* pxs = &xs)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				fixed (int* pys1 = &ys1)
+				fixed (byte* pvalues = &values)
 				{
-					PlotShadedNative(labelId, (int*)pxs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, spec);
 				}
 			}
 		}
@@ -1665,301 +1889,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, in int ys1, int* ys2, int count, int offset)
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotSpec spec)
 		{
-			fixed (int* pxs = &xs)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				fixed (int* pys1 = &ys1)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					PlotShadedNative(labelId, (int*)pxs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, in int ys1, int* ys2, int count, int offset, int stride)
-		{
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative(labelId, (int*)pxs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, ys2, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, ys2, count, flags, offset, (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, in int ys1, int* ys2, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, in int ys1, int* ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, in int ys1, int* ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, ys2, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, ys2, count, flags, offset, (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, in int ys1, int* ys2, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, in int ys1, int* ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, in int ys1, int* ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative(pStr0, (int*)pxs, (int*)pys1, ys2, count, flags, offset, stride);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
 			}
-			fixed (int* pxs = &xs)
+			fixed (byte* pvalues = &values)
 			{
-				fixed (int* pys1 = &ys1)
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, fmtData, angle0, spec);
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					PlotShadedNative(pStr0, (int*)pxs, (int*)pys1, ys2, count, flags, offset, (int)(sizeof(int)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -1967,69 +1926,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, in int ys1, int* ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative(pStr0, (int*)pxs, (int*)pys1, ys2, count, flags, (int)(0), (int)(sizeof(int)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, in int ys1, int* ys2, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
 			}
-			fixed (int* pxs = &xs)
+			fixed (byte* pvalues = &values)
 			{
-				fixed (int* pys1 = &ys1)
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					PlotShadedNative(pStr0, (int*)pxs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -2037,69 +1963,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, in int ys1, int* ys2, int count, int offset)
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					PlotShadedNative(pStr0, (int*)pxs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, in int ys1, int* ys2, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
 			}
-			fixed (int* pxs = &xs)
+			fixed (byte* pvalues = &values)
 			{
-				fixed (int* pys1 = &ys1)
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					PlotShadedNative(pStr0, (int*)pxs, (int*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -2107,297 +2000,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
 		{
-			fixed (int* pys2 = &ys2)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				PlotShadedNative(labelId, xs, ys1, (int*)pys2, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (int* pys2 = &ys2)
-			{
-				PlotShadedNative(labelId, xs, ys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (int* pys2 = &ys2)
-			{
-				PlotShadedNative(labelId, xs, ys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, int* ys1, in int ys2, int count)
-		{
-			fixed (int* pys2 = &ys2)
-			{
-				PlotShadedNative(labelId, xs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, int* ys1, in int ys2, int count, int offset)
-		{
-			fixed (int* pys2 = &ys2)
-			{
-				PlotShadedNative(labelId, xs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, int* ys1, in int ys2, int count, int offset, int stride)
-		{
-			fixed (int* pys2 = &ys2)
-			{
-				PlotShadedNative(labelId, xs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys2 = &ys2)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					PlotShadedNative((byte*)plabelId, xs, ys1, (int*)pys2, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative((byte*)plabelId, xs, ys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative((byte*)plabelId, xs, ys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, int* ys1, in int ys2, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative((byte*)plabelId, xs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, int* ys1, in int ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative((byte*)plabelId, xs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, int* ys1, in int ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative((byte*)plabelId, xs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative((byte*)plabelId, xs, ys1, (int*)pys2, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative((byte*)plabelId, xs, ys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative((byte*)plabelId, xs, ys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, int* ys1, in int ys2, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative((byte*)plabelId, xs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, int* ys1, in int ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative((byte*)plabelId, xs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, int* ys1, in int ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative((byte*)plabelId, xs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pys2 = &ys2)
-			{
-				PlotShadedNative(pStr0, xs, ys1, (int*)pys2, count, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
 			}
-			fixed (int* pys2 = &ys2)
+			fixed (byte* pvalues = &values)
 			{
-				PlotShadedNative(pStr0, xs, ys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					Utils.Free(pStr0);
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -2405,63 +2037,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pys2 = &ys2)
-			{
-				PlotShadedNative(pStr0, xs, ys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, int* ys1, in int ys2, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
 			}
-			fixed (int* pys2 = &ys2)
+			fixed (byte* pvalues = &values)
 			{
-				PlotShadedNative(pStr0, xs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					Utils.Free(pStr0);
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -2469,63 +2074,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, int* ys1, in int ys2, int count, int offset)
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotSpec spec)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pys2 = &ys2)
-			{
-				PlotShadedNative(pStr0, xs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, int* ys1, in int ys2, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
 			}
-			fixed (int* pys2 = &ys2)
+			fixed (byte* pvalues = &values)
 			{
-				PlotShadedNative(pStr0, xs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), spec);
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					Utils.Free(pStr0);
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -2533,322 +2111,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotSpec spec)
 		{
-			fixed (int* pxs = &xs)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				fixed (int* pys2 = &ys2)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					PlotShadedNative(labelId, (int*)pxs, ys1, (int*)pys2, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(labelId, (int*)pxs, ys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(labelId, (int*)pxs, ys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, int* ys1, in int ys2, int count)
-		{
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(labelId, (int*)pxs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, int* ys1, in int ys2, int count, int offset)
-		{
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(labelId, (int*)pxs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, int* ys1, in int ys2, int count, int offset, int stride)
-		{
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(labelId, (int*)pxs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, (int*)pys2, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, int* ys1, in int ys2, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, int* ys1, in int ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, int* ys1, in int ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, (int*)pys2, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, int* ys1, in int ys2, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, int* ys1, in int ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, int* ys1, in int ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, (int*)pxs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys2 = &ys2)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), spec);
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					PlotShadedNative(pStr0, (int*)pxs, ys1, (int*)pys2, count, flags, offset, stride);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -2856,34 +2148,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotSpec spec)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys2 = &ys2)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, spec);
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					PlotShadedNative(pStr0, (int*)pxs, ys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -2891,567 +2185,525 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, int* ys1, in int ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotSpec spec)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(pStr0, (int*)pxs, ys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, int* ys1, in int ys2, int count)
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(pStr0, (int*)pxs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, int* ys1, in int ys2, int count, int offset)
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(pStr0, (int*)pxs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, int* ys1, in int ys2, int count, int offset, int stride)
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(pStr0, (int*)pxs, ys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (int* pys1 = &ys1)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(labelId, xs, (int*)pys1, (int*)pys2, count, flags, offset, stride);
-				}
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
 		{
-			fixed (int* pys1 = &ys1)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				fixed (int* pys2 = &ys2)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					PlotShadedNative(labelId, xs, (int*)pys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (int* pys1 = &ys1)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(labelId, xs, (int*)pys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, in int ys1, in int ys2, int count)
-		{
-			fixed (int* pys1 = &ys1)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(labelId, xs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, in int ys1, in int ys2, int count, int offset)
-		{
-			fixed (int* pys1 = &ys1)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(labelId, xs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, int* xs, in int ys1, in int ys2, int count, int offset, int stride)
-		{
-			fixed (int* pys1 = &ys1)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(labelId, xs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, xs, (int*)pys1, (int*)pys2, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, xs, (int*)pys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, xs, (int*)pys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, in int ys1, in int ys2, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, xs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, in int ys1, in int ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, xs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, int* xs, in int ys1, in int ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, xs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, xs, (int*)pys1, (int*)pys2, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, xs, (int*)pys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, xs, (int*)pys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, in int ys1, in int ys2, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, xs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, in int ys1, in int ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, xs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, int* xs, in int ys1, in int ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative((byte*)plabelId, xs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pys1 = &ys1)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(pStr0, xs, (int*)pys1, (int*)pys2, count, flags, offset, stride);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotSpec spec)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pys1 = &ys1)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(pStr0, xs, (int*)pys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotSpec spec)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pys1 = &ys1)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(pStr0, xs, (int*)pys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, in int ys1, in int ys2, int count)
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotSpec spec)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pys1 = &ys1)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys2 = &ys2)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotSpec spec)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotSpec spec)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
 				{
-					PlotShadedNative(pStr0, xs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, spec);
 				}
 			}
 		}
@@ -3459,34 +2711,134 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, in int ys1, in int ys2, int count, int offset)
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pys1 = &ys1)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys2 = &ys2)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, spec);
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					PlotShadedNative(pStr0, xs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -3494,51 +2846,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, int* xs, in int ys1, in int ys2, int count, int offset, int stride)
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pys1 = &ys1)
-			{
-				fixed (int* pys2 = &ys2)
-				{
-					PlotShadedNative(pStr0, xs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (int* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys1 = &ys1)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative(labelId, (int*)pxs, (int*)pys1, (int*)pys2, count, flags, offset, stride);
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -3546,400 +2883,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
 		{
-			fixed (int* pxs = &xs)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				fixed (int* pys1 = &ys1)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative(labelId, (int*)pxs, (int*)pys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative(labelId, (int*)pxs, (int*)pys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, in int ys1, in int ys2, int count)
-		{
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative(labelId, (int*)pxs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, in int ys1, in int ys2, int count, int offset)
-		{
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative(labelId, (int*)pxs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in int xs, in int ys1, in int ys2, int count, int offset, int stride)
-		{
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative(labelId, (int*)pxs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						fixed (int* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, (int*)pys2, count, flags, offset, stride);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						fixed (int* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						fixed (int* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, in int ys1, in int ys2, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						fixed (int* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, in int ys1, in int ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						fixed (int* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in int xs, in int ys1, in int ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						fixed (int* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						fixed (int* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, (int*)pys2, count, flags, offset, stride);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						fixed (int* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						fixed (int* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, in int ys1, in int ys2, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						fixed (int* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, in int ys1, in int ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						fixed (int* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in int xs, in int ys1, in int ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys1 = &ys1)
-					{
-						fixed (int* pys2 = &ys2)
-						{
-							PlotShadedNative((byte*)plabelId, (int*)pxs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pxs = &xs)
-			{
-				fixed (int* pys1 = &ys1)
-				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative(pStr0, (int*)pxs, (int*)pys1, (int*)pys2, count, flags, offset, stride);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
 			}
-			fixed (int* pxs = &xs)
+			fixed (byte* pvalues = &values)
 			{
-				fixed (int* pys1 = &ys1)
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative(pStr0, (int*)pxs, (int*)pys1, (int*)pys2, count, flags, offset, (int)(sizeof(int)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -3947,37 +2920,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, in int ys1, in int ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys1 = &ys1)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative(pStr0, (int*)pxs, (int*)pys1, (int*)pys2, count, flags, (int)(0), (int)(sizeof(int)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -3985,37 +2957,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, in int ys1, in int ys2, int count)
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys1 = &ys1)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative(pStr0, (int*)pxs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(int)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -4023,37 +2994,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, in int ys1, in int ys2, int count, int offset)
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotSpec spec)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys1 = &ys1)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), spec);
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative(pStr0, (int*)pxs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(int)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -4061,37 +3031,993 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in int xs, in int ys1, in int ys2, int count, int offset, int stride)
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotSpec spec)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (int* pys1 = &ys1)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), spec);
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					fixed (int* pys2 = &ys2)
-					{
-						PlotShadedNative(pStr0, (int*)pxs, (int*)pys1, (int*)pys2, count, (ImPlotShadedFlags)(0), offset, stride);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, spec);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, angle0, spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotSpec spec)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, spec);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), spec);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotSpec spec)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, spec);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (byte* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), spec);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -4100,663 +4026,537 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotShadedNative(byte* labelId, uint* xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
+		internal static void PlotPieChartNative(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotSpec spec)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, uint*, uint*, uint*, int, ImPlotShadedFlags, int, int, void>)funcTable[144])(labelId, xs, ys1, ys2, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte**, short*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotSpec, void>)funcTable[283])(labelIds, values, count, x, y, radius, fmt, fmtData, angle0, spec);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlotShadedFlags, int, int, void>)funcTable[144])((nint)labelId, (nint)xs, (nint)ys1, (nint)ys2, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotSpec, void>)funcTable[283])((nint)labelIds, (nint)values, count, x, y, radius, (nint)fmt, (nint)fmtData, angle0, spec);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, uint* xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotSpec spec)
 		{
-			PlotShadedNative(labelId, xs, ys1, ys2, count, flags, offset, stride);
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, angle0, spec);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, uint* xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset)
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
 		{
-			PlotShadedNative(labelId, xs, ys1, ys2, count, flags, offset, (int)(sizeof(uint)));
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, uint* xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
 		{
-			PlotShadedNative(labelId, xs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(uint)));
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, uint* xs, uint* ys1, uint* ys2, int count)
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
 		{
-			PlotShadedNative(labelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(uint)));
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, uint* xs, uint* ys1, uint* ys2, int count, int offset)
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
 		{
-			PlotShadedNative(labelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(uint)));
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(byte* labelId, uint* xs, uint* ys1, uint* ys2, int count, int offset, int stride)
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotSpec spec)
 		{
-			PlotShadedNative(labelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), spec);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, uint* xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = &labelId)
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, flags, offset, stride);
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, angle0, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, uint* xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset)
+		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, flags, offset, (int)(sizeof(uint)));
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, uint* xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(uint)));
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, uint* xs, uint* ys1, uint* ys2, int count)
+		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(uint)));
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, uint* xs, uint* ys1, uint* ys2, int count, int offset)
+		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(uint)));
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, uint* xs, uint* ys1, uint* ys2, int count, int offset, int stride)
+		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, uint* xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
+		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, flags, offset, stride);
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, uint* xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset)
+		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = labelId)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, flags, offset, (int)(sizeof(uint)));
+				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, uint* xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = labelId)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, uint* xs, uint* ys1, uint* ys2, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, uint* xs, uint* ys1, uint* ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, uint* xs, uint* ys1, uint* ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotShadedNative((byte*)plabelId, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, uint* xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedNative(pStr0, xs, ys1, ys2, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				Utils.Free(pStr0);
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, angle0, spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, uint* xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset)
+		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedNative(pStr0, xs, ys1, ys2, count, flags, offset, (int)(sizeof(uint)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				Utils.Free(pStr0);
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, uint* xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedNative(pStr0, xs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(uint)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				Utils.Free(pStr0);
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, uint* xs, uint* ys1, uint* ys2, int count)
+		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedNative(pStr0, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(uint)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				Utils.Free(pStr0);
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, uint* xs, uint* ys1, uint* ys2, int count, int offset)
+		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			PlotShadedNative(pStr0, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(uint)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				Utils.Free(pStr0);
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, uint* xs, uint* ys1, uint* ys2, int count, int offset, int stride)
+		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotSpec spec)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotShadedNative(pStr0, xs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in uint xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (uint*)pxs, ys1, ys2, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in uint xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (uint*)pxs, ys1, ys2, count, flags, offset, (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in uint xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (uint*)pxs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in uint xs, uint* ys1, uint* ys2, int count)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (uint*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in uint xs, uint* ys1, uint* ys2, int count, int offset)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (uint*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, in uint xs, uint* ys1, uint* ys2, int count, int offset, int stride)
-		{
-			fixed (uint* pxs = &xs)
-			{
-				PlotShadedNative(labelId, (uint*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in uint xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (uint*)pxs, ys1, ys2, count, flags, offset, stride);
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in uint xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				fixed (uint* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (uint*)pxs, ys1, ys2, count, flags, offset, (int)(sizeof(uint)));
-				}
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, (double)(90), spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, in uint xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = &labelId)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				fixed (uint* pxs = &xs)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					PlotShadedNative((byte*)plabelId, (uint*)pxs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(uint)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in uint xs, uint* ys1, uint* ys2, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (uint*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(uint)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in uint xs, uint* ys1, uint* ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (uint*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(uint)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, in uint xs, uint* ys1, uint* ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (uint*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in uint xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (uint*)pxs, ys1, ys2, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in uint xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (uint*)pxs, ys1, ys2, count, flags, offset, (int)(sizeof(uint)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in uint xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (uint*)pxs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(uint)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in uint xs, uint* ys1, uint* ys2, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (uint*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(uint)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in uint xs, uint* ys1, uint* ys2, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (uint*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(uint)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(ReadOnlySpan<byte> labelId, in uint xs, uint* ys1, uint* ys2, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (uint* pxs = &xs)
-				{
-					PlotShadedNative((byte*)plabelId, (uint*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(string labelId, in uint xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (uint* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				PlotShadedNative(pStr0, (uint*)pxs, ys1, ys2, count, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), (double)(90), spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in uint xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset)
+		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotSpec spec)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (uint* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				PlotShadedNative(pStr0, (uint*)pxs, ys1, ys2, count, flags, offset, (int)(sizeof(uint)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, spec);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
+		{
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
+		{
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
+		{
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
+		{
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotSpec spec)
+		{
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotSpec spec)
+		{
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotSpec spec)
+		{
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (short* pvalues = &values)
 				{
-					Utils.Free(pStr0);
+					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, angle0, spec);
 				}
 			}
 		}
@@ -4764,31 +4564,134 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in uint xs, uint* ys1, uint* ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte** plabelIds = &labelIds)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (short* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotSpec spec)
+		{
+			fixed (byte** plabelIds = &labelIds)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotSpec spec)
+		{
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArray0Size > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (uint* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				PlotShadedNative(pStr0, (uint*)pxs, ys1, ys2, count, flags, (int)(0), (int)(sizeof(uint)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, fmtData, angle0, spec);
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					Utils.Free(pStr0);
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -4796,31 +4699,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in uint xs, uint* ys1, uint* ys2, int count)
+		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (uint* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				PlotShadedNative(pStr0, (uint*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(uint)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					Utils.Free(pStr0);
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -4828,31 +4736,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in uint xs, uint* ys1, uint* ys2, int count, int offset)
+		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (uint* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				PlotShadedNative(pStr0, (uint*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(uint)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					Utils.Free(pStr0);
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -4860,111 +4773,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(string labelId, in uint xs, uint* ys1, uint* ys2, int count, int offset, int stride)
+		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (uint* pxs = &xs)
+			for (int i = 0; i < labelIds.Length; i++)
 			{
-				PlotShadedNative(pStr0, (uint*)pxs, ys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
 				{
-					Utils.Free(pStr0);
+					Utils.Free(pStrArray0[i]);
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, uint* xs, in uint ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (uint* pys1 = &ys1)
-			{
-				PlotShadedNative(labelId, xs, (uint*)pys1, ys2, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, uint* xs, in uint ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset)
-		{
-			fixed (uint* pys1 = &ys1)
-			{
-				PlotShadedNative(labelId, xs, (uint*)pys1, ys2, count, flags, offset, (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, uint* xs, in uint ys1, uint* ys2, int count, ImPlotShadedFlags flags)
-		{
-			fixed (uint* pys1 = &ys1)
-			{
-				PlotShadedNative(labelId, xs, (uint*)pys1, ys2, count, flags, (int)(0), (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, uint* xs, in uint ys1, uint* ys2, int count)
-		{
-			fixed (uint* pys1 = &ys1)
-			{
-				PlotShadedNative(labelId, xs, (uint*)pys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, uint* xs, in uint ys1, uint* ys2, int count, int offset)
-		{
-			fixed (uint* pys1 = &ys1)
-			{
-				PlotShadedNative(labelId, xs, (uint*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(byte* labelId, uint* xs, in uint ys1, uint* ys2, int count, int offset, int stride)
-		{
-			fixed (uint* pys1 = &ys1)
-			{
-				PlotShadedNative(labelId, xs, (uint*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotShaded(in byte labelId, uint* xs, in uint ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (uint* pys1 = &ys1)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
-					PlotShadedNative((byte*)plabelId, xs, (uint*)pys1, ys2, count, flags, offset, stride);
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -4972,13 +4810,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, uint* xs, in uint ys1, uint* ys2, int count, ImPlotShadedFlags flags, int offset)
+		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
 		{
-			fixed (byte* plabelId = &labelId)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				fixed (uint* pys1 = &ys1)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					PlotShadedNative((byte*)plabelId, xs, (uint*)pys1, ys2, count, flags, offset, (int)(sizeof(uint)));
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -4986,13 +4847,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, uint* xs, in uint ys1, uint* ys2, int count, ImPlotShadedFlags flags)
+		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = &labelId)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				fixed (uint* pys1 = &ys1)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					PlotShadedNative((byte*)plabelId, xs, (uint*)pys1, ys2, count, flags, (int)(0), (int)(sizeof(uint)));
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), spec);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -5000,13 +4884,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, uint* xs, in uint ys1, uint* ys2, int count)
+		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = &labelId)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				fixed (uint* pys1 = &ys1)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					PlotShadedNative((byte*)plabelId, xs, (uint*)pys1, ys2, count, (ImPlotShadedFlags)(0), (int)(0), (int)(sizeof(uint)));
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), spec);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
 				}
 			}
 		}
@@ -5014,15 +4921,102 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotShaded(in byte labelId, uint* xs, in uint ys1, uint* ys2, int count, int offset)
+		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotSpec spec)
 		{
-			fixed (byte* plabelId = &labelId)
+			byte** pStrArray0 = null;
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
 			{
-				fixed (uint* pys1 = &ys1)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					PlotShadedNative((byte*)plabelId, xs, (uint*)pys1, ys2, count, (ImPlotShadedFlags)(0), offset, (int)(sizeof(uint)));
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+				}
+				else
+				{
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+			}
+			fixed (short* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, spec);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotSpec spec)
+		{
+			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, spec);
 		}
 	}
 }

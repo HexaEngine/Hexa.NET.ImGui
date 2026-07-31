@@ -376,9 +376,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImParseFormatPrecisionNative(byte* format, int defaultValue)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, int>)funcTable[741])(format, defaultValue);
+			return ((delegate* unmanaged[Cdecl]<byte*, int, int>)funcTable[749])(format, defaultValue);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[741])((nint)format, defaultValue);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)funcTable[749])((nint)format, defaultValue);
 			#endif
 		}
 
@@ -446,20 +446,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return output UTF-8 bytes count<br/>
+		/// Helpers: UTF-8 &lt;&gt; wchar conversions return output UTF-8 bytes count<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static int ImTextCharToUtf8Native(byte* outBuf, uint c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint, int>)funcTable[742])(outBuf, c);
+			return ((delegate* unmanaged[Cdecl]<byte*, uint, int>)funcTable[750])(outBuf, c);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, uint, int>)funcTable[742])((nint)outBuf, c);
+			return (int)((delegate* unmanaged[Cdecl]<nint, uint, int>)funcTable[750])((nint)outBuf, c);
 			#endif
 		}
 
 		/// <summary>
-		/// return output UTF-8 bytes count<br/>
+		/// Helpers: UTF-8 &lt;&gt; wchar conversions return output UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharToUtf8(byte* outBuf, uint c)
 		{
@@ -468,7 +468,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return output UTF-8 bytes count<br/>
+		/// Helpers: UTF-8 &lt;&gt; wchar conversions return output UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharToUtf8(ref byte outBuf, uint c)
 		{
@@ -480,7 +480,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// return output UTF-8 bytes count<br/>
+		/// Helpers: UTF-8 &lt;&gt; wchar conversions return output UTF-8 bytes count<br/>
 		/// </summary>
 		public static int ImTextCharToUtf8(ReadOnlySpan<byte> outBuf, uint c)
 		{
@@ -498,9 +498,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImTextCharFromUtf8Native(uint* outChar, byte* inText, byte* inTextEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, byte*, byte*, int>)funcTable[743])(outChar, inText, inTextEnd);
+			return ((delegate* unmanaged[Cdecl]<uint*, byte*, byte*, int>)funcTable[751])(outChar, inText, inTextEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, nint, int>)funcTable[743])((nint)outChar, (nint)inText, (nint)inTextEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, nint, int>)funcTable[751])((nint)outChar, (nint)inText, (nint)inTextEnd);
 			#endif
 		}
 
@@ -1279,9 +1279,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImTextCountCharsFromUtf8Native(byte* inText, byte* inTextEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[744])(inText, inTextEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[752])(inText, inTextEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[744])((nint)inText, (nint)inTextEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[752])((nint)inText, (nint)inTextEnd);
 			#endif
 		}
 
@@ -1652,9 +1652,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImTextCountUtf8BytesFromCharNative(byte* inText, byte* inTextEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[745])(inText, inTextEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[753])(inText, inTextEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[745])((nint)inText, (nint)inTextEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[753])((nint)inText, (nint)inTextEnd);
 			#endif
 		}
 
@@ -2025,9 +2025,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImTextCountUtf8BytesFromStrNative(uint* inText, uint* inTextEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, uint*, int>)funcTable[746])(inText, inTextEnd);
+			return ((delegate* unmanaged[Cdecl]<uint*, uint*, int>)funcTable[754])(inText, inTextEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[746])((nint)inText, (nint)inTextEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[754])((nint)inText, (nint)inTextEnd);
 			#endif
 		}
 
@@ -2086,9 +2086,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImTextFindPreviousUtf8CodepointNative(byte* inTextStart, byte* inP)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[747])(inTextStart, inP);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)funcTable[755])(inTextStart, inP);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[747])((nint)inTextStart, (nint)inP);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[755])((nint)inTextStart, (nint)inP);
 			#endif
 		}
 
@@ -2819,9 +2819,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImTextFindValidUtf8CodepointEndNative(byte* inTextStart, byte* inTextEnd, byte* inP)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, byte*>)funcTable[748])(inTextStart, inTextEnd, inP);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, byte*>)funcTable[756])(inTextStart, inTextEnd, inP);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint>)funcTable[748])((nint)inTextStart, (nint)inTextEnd, (nint)inP);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint>)funcTable[756])((nint)inTextStart, (nint)inTextEnd, (nint)inP);
 			#endif
 		}
 

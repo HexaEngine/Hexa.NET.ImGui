@@ -25,40 +25,40 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public uint Storage_0;
-		public uint Storage_1;
-		public uint Storage_2;
-		public uint Storage_3;
-		public uint Storage_4;
+		public uint Data_0;
+		public uint Data_1;
+		public uint Data_2;
+		public uint Data_3;
+		public uint Data_4;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImBitArrayForNamedKeys(uint* storage = default)
+		public unsafe ImBitArrayForNamedKeys(uint* data = default)
 		{
-			if (storage != default(uint*))
+			if (data != default(uint*))
 			{
-				Storage_0 = storage[0];
-				Storage_1 = storage[1];
-				Storage_2 = storage[2];
-				Storage_3 = storage[3];
-				Storage_4 = storage[4];
+				Data_0 = data[0];
+				Data_1 = data[1];
+				Data_2 = data[2];
+				Data_3 = data[3];
+				Data_4 = data[4];
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImBitArrayForNamedKeys(Span<uint> storage = default)
+		public unsafe ImBitArrayForNamedKeys(Span<uint> data = default)
 		{
-			if (storage != default(Span<uint>))
+			if (data != default(Span<uint>))
 			{
-				Storage_0 = storage[0];
-				Storage_1 = storage[1];
-				Storage_2 = storage[2];
-				Storage_3 = storage[3];
-				Storage_4 = storage[4];
+				Data_0 = data[0];
+				Data_1 = data[1];
+				Data_2 = data[2];
+				Data_3 = data[3];
+				Data_4 = data[4];
 			}
 		}
 

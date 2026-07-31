@@ -21,7 +21,7 @@ namespace Hexa.NET.ImGui
 	/// - Accessing those requires chasing an extra pointer so for very frequently used data we leave them in the main table structure.<br/>
 	/// - We also leave out of this structure data that tend to be particularly useful for debuggingmetrics.<br/>
 	/// FIXME-TABLE: more transient data could be stored in a stacked ImGuiTableTempData: e.g. SortSpecs.<br/>
-	/// sizeof() ~ 136 bytes.<br/>
+	/// sizeof() ~ 176 bytes.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTableTempData
@@ -50,6 +50,21 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ImVector<ImGuiTableHeaderData> AngledHeadersRequests;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ImVector<ImGuiTableReconcileColumnData> ReconcileColumnsRequests;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void* OldColumnsRawData;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ImSpanImGuiTableColumn OldColumnsData;
 
 		/// <summary>
 		/// To be documented.
@@ -105,13 +120,16 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTableTempData(uint windowId = default, int tableIndex = default, float lastTimeActive = default, float angledHeadersExtraWidth = default, ImVector<ImGuiTableHeaderData> angledHeadersRequests = default, Vector2 userOuterSize = default, ImDrawListSplitter drawSplitter = default, ImRect hostBackupWorkRect = default, ImRect hostBackupParentWorkRect = default, Vector2 hostBackupPrevLineSize = default, Vector2 hostBackupCurrLineSize = default, Vector2 hostBackupCursorMaxPos = default, ImVec1 hostBackupColumnsOffset = default, float hostBackupItemWidth = default, int hostBackupItemWidthStackSize = default)
+		public unsafe ImGuiTableTempData(uint windowId = default, int tableIndex = default, float lastTimeActive = default, float angledHeadersExtraWidth = default, ImVector<ImGuiTableHeaderData> angledHeadersRequests = default, ImVector<ImGuiTableReconcileColumnData> reconcileColumnsRequests = default, void* oldColumnsRawData = default, ImSpanImGuiTableColumn oldColumnsData = default, Vector2 userOuterSize = default, ImDrawListSplitter drawSplitter = default, ImRect hostBackupWorkRect = default, ImRect hostBackupParentWorkRect = default, Vector2 hostBackupPrevLineSize = default, Vector2 hostBackupCurrLineSize = default, Vector2 hostBackupCursorMaxPos = default, ImVec1 hostBackupColumnsOffset = default, float hostBackupItemWidth = default, int hostBackupItemWidthStackSize = default)
 		{
 			WindowID = windowId;
 			TableIndex = tableIndex;
 			LastTimeActive = lastTimeActive;
 			AngledHeadersExtraWidth = angledHeadersExtraWidth;
 			AngledHeadersRequests = angledHeadersRequests;
+			ReconcileColumnsRequests = reconcileColumnsRequests;
+			OldColumnsRawData = oldColumnsRawData;
+			OldColumnsData = oldColumnsData;
 			UserOuterSize = userOuterSize;
 			DrawSplitter = drawSplitter;
 			HostBackupWorkRect = hostBackupWorkRect;
@@ -188,6 +206,18 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref ImVector<ImGuiTableHeaderData> AngledHeadersRequests => ref Unsafe.AsRef<ImVector<ImGuiTableHeaderData>>(&Handle->AngledHeadersRequests);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref ImVector<ImGuiTableReconcileColumnData> ReconcileColumnsRequests => ref Unsafe.AsRef<ImVector<ImGuiTableReconcileColumnData>>(&Handle->ReconcileColumnsRequests);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public void* OldColumnsRawData { get => Handle->OldColumnsRawData; set => Handle->OldColumnsRawData = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref ImSpanImGuiTableColumn OldColumnsData => ref Unsafe.AsRef<ImSpanImGuiTableColumn>(&Handle->OldColumnsData);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

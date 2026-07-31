@@ -114,223 +114,228 @@ namespace Hexa.NET.ImGui
 		CheckMark = unchecked(18),
 
 		/// <summary>
-		/// To be documented.
+		/// Checkbox background when Selected, otherwise use FrameBg<br/>
 		/// </summary>
-		SliderGrab = unchecked(19),
+		CheckboxSelectedBg = unchecked(19),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		SliderGrabActive = unchecked(20),
+		SliderGrab = unchecked(20),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Button = unchecked(21),
+		SliderGrabActive = unchecked(21),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		ButtonHovered = unchecked(22),
+		Button = unchecked(22),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		ButtonActive = unchecked(23),
+		ButtonHovered = unchecked(23),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		ButtonActive = unchecked(24),
 
 		/// <summary>
 		/// Header* colors are used for CollapsingHeader, TreeNode, Selectable, MenuItem<br/>
 		/// </summary>
-		Header = unchecked(24),
+		Header = unchecked(25),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		HeaderHovered = unchecked(25),
+		HeaderHovered = unchecked(26),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		HeaderActive = unchecked(26),
+		HeaderActive = unchecked(27),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Separator = unchecked(27),
+		Separator = unchecked(28),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		SeparatorHovered = unchecked(28),
+		SeparatorHovered = unchecked(29),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		SeparatorActive = unchecked(29),
+		SeparatorActive = unchecked(30),
 
 		/// <summary>
 		/// Resize grip in lower-right and lower-left corners of windows.<br/>
 		/// </summary>
-		ResizeGrip = unchecked(30),
+		ResizeGrip = unchecked(31),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		ResizeGripHovered = unchecked(31),
+		ResizeGripHovered = unchecked(32),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		ResizeGripActive = unchecked(32),
+		ResizeGripActive = unchecked(33),
 
 		/// <summary>
 		/// InputText cursorcaret<br/>
 		/// </summary>
-		InputTextCursor = unchecked(33),
+		InputTextCursor = unchecked(34),
 
 		/// <summary>
 		/// Tab background, when hovered<br/>
 		/// </summary>
-		TabHovered = unchecked(34),
+		TabHovered = unchecked(35),
 
 		/// <summary>
 		/// Tab background, when tab-bar is focused &amp; tab is unselected<br/>
 		/// </summary>
-		Tab = unchecked(35),
+		Tab = unchecked(36),
 
 		/// <summary>
 		/// Tab background, when tab-bar is focused &amp; tab is selected<br/>
 		/// </summary>
-		TabSelected = unchecked(36),
+		TabSelected = unchecked(37),
 
 		/// <summary>
 		/// Tab horizontal overline, when tab-bar is focused &amp; tab is selected<br/>
 		/// </summary>
-		TabSelectedOverline = unchecked(37),
+		TabSelectedOverline = unchecked(38),
 
 		/// <summary>
 		/// Tab background, when tab-bar is unfocused &amp; tab is unselected<br/>
 		/// </summary>
-		TabDimmed = unchecked(38),
+		TabDimmed = unchecked(39),
 
 		/// <summary>
 		/// Tab background, when tab-bar is unfocused &amp; tab is selected<br/>
 		/// </summary>
-		TabDimmedSelected = unchecked(39),
+		TabDimmedSelected = unchecked(40),
 
 		/// <summary>
 		/// ..horizontal overline, when tab-bar is unfocused &amp; tab is selected<br/>
 		/// </summary>
-		TabDimmedSelectedOverline = unchecked(40),
+		TabDimmedSelectedOverline = unchecked(41),
 
 		/// <summary>
 		/// Preview overlay color when about to docking something<br/>
 		/// </summary>
-		DockingPreview = unchecked(41),
+		DockingPreview = unchecked(42),
 
 		/// <summary>
 		/// Background color for empty node (e.g. CentralNode with no window docked into it)<br/>
 		/// </summary>
-		DockingEmptyBg = unchecked(42),
+		DockingEmptyBg = unchecked(43),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		PlotLines = unchecked(43),
+		PlotLines = unchecked(44),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		PlotLinesHovered = unchecked(44),
+		PlotLinesHovered = unchecked(45),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		PlotHistogram = unchecked(45),
+		PlotHistogram = unchecked(46),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		PlotHistogramHovered = unchecked(46),
+		PlotHistogramHovered = unchecked(47),
 
 		/// <summary>
 		/// Table header background<br/>
 		/// </summary>
-		TableHeaderBg = unchecked(47),
+		TableHeaderBg = unchecked(48),
 
 		/// <summary>
 		/// Table outer and header borders (prefer using Alpha=1.0 here)<br/>
 		/// </summary>
-		TableBorderStrong = unchecked(48),
+		TableBorderStrong = unchecked(49),
 
 		/// <summary>
 		/// Table inner borders (prefer using Alpha=1.0 here)<br/>
 		/// </summary>
-		TableBorderLight = unchecked(49),
+		TableBorderLight = unchecked(50),
 
 		/// <summary>
 		/// Table row background (even rows)<br/>
 		/// </summary>
-		TableRowBg = unchecked(50),
+		TableRowBg = unchecked(51),
 
 		/// <summary>
 		/// Table row background (odd rows)<br/>
 		/// </summary>
-		TableRowBgAlt = unchecked(51),
+		TableRowBgAlt = unchecked(52),
 
 		/// <summary>
 		/// Hyperlink color<br/>
 		/// </summary>
-		TextLink = unchecked(52),
+		TextLink = unchecked(53),
 
 		/// <summary>
 		/// Selected text inside an InputText<br/>
 		/// </summary>
-		TextSelectedBg = unchecked(53),
+		TextSelectedBg = unchecked(54),
 
 		/// <summary>
 		/// Tree node hierarchy outlines when using ImGuiTreeNodeFlags_DrawLines<br/>
 		/// </summary>
-		TreeLines = unchecked(54),
+		TreeLines = unchecked(55),
 
 		/// <summary>
 		/// Rectangle border highlighting a drop target<br/>
 		/// </summary>
-		DragDropTarget = unchecked(55),
+		DragDropTarget = unchecked(56),
 
 		/// <summary>
 		/// Rectangle background highlighting a drop target<br/>
 		/// </summary>
-		DragDropTargetBg = unchecked(56),
+		DragDropTargetBg = unchecked(57),
 
 		/// <summary>
 		/// Unsaved Document marker (in window title and tabs)<br/>
 		/// </summary>
-		UnsavedMarker = unchecked(57),
+		UnsavedMarker = unchecked(58),
 
 		/// <summary>
 		/// Color of keyboardgamepad navigation cursorrectangle, when visible<br/>
 		/// </summary>
-		NavCursor = unchecked(58),
+		NavCursor = unchecked(59),
 
 		/// <summary>
 		/// Highlight window when using Ctrl+Tab<br/>
 		/// </summary>
-		NavWindowingHighlight = unchecked(59),
+		NavWindowingHighlight = unchecked(60),
 
 		/// <summary>
 		/// Darkencolorize entire screen behind the Ctrl+Tab window list, when active<br/>
 		/// </summary>
-		NavWindowingDimBg = unchecked(60),
+		NavWindowingDimBg = unchecked(61),
 
 		/// <summary>
 		/// Darkencolorize entire screen behind a modal window, when one is active<br/>
 		/// </summary>
-		ModalWindowDimBg = unchecked(61),
+		ModalWindowDimBg = unchecked(62),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Count = unchecked(62),
+		Count = unchecked(63),
 	}
 }

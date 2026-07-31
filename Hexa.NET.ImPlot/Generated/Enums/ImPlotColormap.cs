@@ -19,6 +19,8 @@ namespace Hexa.NET.ImPlot
 	/// </summary>
 	public enum ImPlotColormap : int
 	{
+		Auto = -1,
+
 		/// <summary>
 		/// To be documented.
 		/// </summary>

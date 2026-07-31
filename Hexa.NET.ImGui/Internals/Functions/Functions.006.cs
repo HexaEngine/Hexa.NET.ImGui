@@ -1573,9 +1573,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImTextCountLinesNative(byte* inText, byte* inTextEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[749])(inText, inTextEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)funcTable[757])(inText, inTextEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[749])((nint)inText, (nint)inTextEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)funcTable[757])((nint)inText, (nint)inTextEnd);
 			#endif
 		}
 
@@ -1946,9 +1946,9 @@ namespace Hexa.NET.ImGui
 		internal static Vector2 ImFontCalcTextSizeExNative(ImFont* font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, byte* textEnd, byte** outRemaining, Vector2* outOffset, ImDrawTextFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFont*, float, float, float, byte*, byte*, byte*, byte**, Vector2*, ImDrawTextFlags, Vector2>)funcTable[750])(font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
+			return ((delegate* unmanaged[Cdecl]<ImFont*, float, float, float, byte*, byte*, byte*, byte**, Vector2*, ImDrawTextFlags, Vector2>)funcTable[758])(font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, outRemaining, outOffset, flags);
 			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<nint, float, float, float, nint, nint, nint, nint, nint, ImDrawTextFlags, Vector2>)funcTable[750])((nint)font, size, maxWidth, wrapWidth, (nint)textBegin, (nint)textEndDisplay, (nint)textEnd, (nint)outRemaining, (nint)outOffset, flags);
+			return (Vector2)((delegate* unmanaged[Cdecl]<nint, float, float, float, nint, nint, nint, nint, nint, ImDrawTextFlags, Vector2>)funcTable[758])((nint)font, size, maxWidth, wrapWidth, (nint)textBegin, (nint)textEndDisplay, (nint)textEnd, (nint)outRemaining, (nint)outOffset, flags);
 			#endif
 		}
 

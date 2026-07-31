@@ -22,1095 +22,1305 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt)
+		public static void PlotImage(ReadOnlySpan<byte> labelId, ImTextureRef texRef, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol, ImPlotSpec spec)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-				}
+				PlotImageNative((byte*)plabelId, texRef, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), tintCol, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
+		public static void PlotImage(ReadOnlySpan<byte> labelId, ImTextureRef texRef, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector4 tintCol, ImPlotSpec spec)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-				}
+				PlotImageNative((byte*)plabelId, texRef, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
+		public static void PlotImage(string labelId, ImTextureRef texRef, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol, ImPlotSpec spec)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (byte* pvalues = &values)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotImageNative(pStr0, texRef, boundsMin, boundsMax, uv0, uv1, tintCol, spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
+		public static void PlotImage(string labelId, ImTextureRef texRef, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotImageNative(pStr0, texRef, boundsMin, boundsMax, uv0, uv1, tintCol, (ImPlotSpec)(new ImPlotSpec()));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
+		public static void PlotImage(string labelId, ImTextureRef texRef, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotImageNative(pStr0, texRef, boundsMin, boundsMax, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), (ImPlotSpec)(new ImPlotSpec()));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt)
+		public static void PlotImage(string labelId, ImTextureRef texRef, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotImageNative(pStr0, texRef, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlotSpec)(new ImPlotSpec()));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
+		public static void PlotImage(string labelId, ImTextureRef texRef, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotImageNative(pStr0, texRef, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlotSpec)(new ImPlotSpec()));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
+		public static void PlotImage(string labelId, ImTextureRef texRef, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotImageNative(pStr0, texRef, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), tintCol, (ImPlotSpec)(new ImPlotSpec()));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
+		public static void PlotImage(string labelId, ImTextureRef texRef, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector4 tintCol)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotImageNative(pStr0, texRef, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, (ImPlotSpec)(new ImPlotSpec()));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
+		public static void PlotImage(string labelId, ImTextureRef texRef, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, ImPlotSpec spec)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotImageNative(pStr0, texRef, boundsMin, boundsMax, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+				Utils.Free(pStr0);
 			}
-			fixed (byte* pvalues = &values)
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotImage(string labelId, ImTextureRef texRef, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, ImPlotSpec spec)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotImageNative(pStr0, texRef, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		public static void PlotImage(string labelId, ImTextureRef texRef, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotSpec spec)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotImageNative(pStr0, texRef, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		public static void PlotImage(string labelId, ImTextureRef texRef, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol, ImPlotSpec spec)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotImageNative(pStr0, texRef, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), tintCol, spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotPieChartFlags flags)
+		public static void PlotImage(string labelId, ImTextureRef texRef, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector4 tintCol, ImPlotSpec spec)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotImageNative(pStr0, texRef, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PlotTextNative(byte* text, double x, double y, Vector2 pixOffset, ImPlotSpec spec)
 		{
-			fixed (byte* pvalues = &values)
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, double, double, Vector2, ImPlotSpec, void>)funcTable[342])(text, x, y, pixOffset, spec);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, double, double, Vector2, ImPlotSpec, void>)funcTable[342])((nint)text, x, y, pixOffset, spec);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotText(byte* text, double x, double y, Vector2 pixOffset, ImPlotSpec spec)
+		{
+			PlotTextNative(text, x, y, pixOffset, spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotText(byte* text, double x, double y, Vector2 pixOffset)
+		{
+			PlotTextNative(text, x, y, pixOffset, (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotText(byte* text, double x, double y)
+		{
+			PlotTextNative(text, x, y, (Vector2)(new Vector2(0,0)), (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotText(byte* text, double x, double y, ImPlotSpec spec)
+		{
+			PlotTextNative(text, x, y, (Vector2)(new Vector2(0,0)), spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotText(in byte text, double x, double y, Vector2 pixOffset, ImPlotSpec spec)
+		{
+			fixed (byte* ptext = &text)
 			{
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, flags);
+				PlotTextNative((byte*)ptext, x, y, pixOffset, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		public static void PlotText(in byte text, double x, double y, Vector2 pixOffset)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (byte* ptext = &text)
 			{
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
+				PlotTextNative((byte*)ptext, x, y, pixOffset, (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		public static void PlotText(in byte text, double x, double y)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (byte* ptext = &text)
 			{
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
+				PlotTextNative((byte*)ptext, x, y, (Vector2)(new Vector2(0,0)), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotPieChartFlags flags)
+		public static void PlotText(in byte text, double x, double y, ImPlotSpec spec)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (byte* ptext = &text)
 			{
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), flags);
+				PlotTextNative((byte*)ptext, x, y, (Vector2)(new Vector2(0,0)), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
+		public static void PlotText(ReadOnlySpan<byte> text, double x, double y, Vector2 pixOffset, ImPlotSpec spec)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			fixed (byte* ptext = text)
 			{
-				fixed (byte* pvalues = &values)
+				PlotTextNative((byte*)ptext, x, y, pixOffset, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotText(ReadOnlySpan<byte> text, double x, double y, Vector2 pixOffset)
+		{
+			fixed (byte* ptext = text)
+			{
+				PlotTextNative((byte*)ptext, x, y, pixOffset, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotText(ReadOnlySpan<byte> text, double x, double y)
+		{
+			fixed (byte* ptext = text)
+			{
+				PlotTextNative((byte*)ptext, x, y, (Vector2)(new Vector2(0,0)), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotText(ReadOnlySpan<byte> text, double x, double y, ImPlotSpec spec)
+		{
+			fixed (byte* ptext = text)
+			{
+				PlotTextNative((byte*)ptext, x, y, (Vector2)(new Vector2(0,0)), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotText(string text, double x, double y, Vector2 pixOffset, ImPlotSpec spec)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotTextNative(pStr0, x, y, pixOffset, spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
+		public static void PlotText(string text, double x, double y, Vector2 pixOffset)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotTextNative(pStr0, x, y, pixOffset, (ImPlotSpec)(new ImPlotSpec()));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
+		public static void PlotText(string text, double x, double y)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotTextNative(pStr0, x, y, (Vector2)(new Vector2(0,0)), (ImPlotSpec)(new ImPlotSpec()));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotPieChartFlags flags)
+		public static void PlotText(string text, double x, double y, ImPlotSpec spec)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotTextNative(pStr0, x, y, (Vector2)(new Vector2(0,0)), spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
+				Utils.Free(pStr0);
 			}
-			fixed (byte* pvalues = &values)
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PlotDummyNative(byte* labelId, ImPlotSpec spec)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, ImPlotSpec, void>)funcTable[343])(labelId, spec);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImPlotSpec, void>)funcTable[343])((nint)labelId, spec);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDummy(byte* labelId, ImPlotSpec spec)
+		{
+			PlotDummyNative(labelId, spec);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDummy(byte* labelId)
+		{
+			PlotDummyNative(labelId, (ImPlotSpec)(new ImPlotSpec()));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDummy(in byte labelId, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
 			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
+				PlotDummyNative((byte*)plabelId, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDummy(in byte labelId)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDummyNative((byte*)plabelId, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDummy(ReadOnlySpan<byte> labelId, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotDummyNative((byte*)plabelId, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDummy(ReadOnlySpan<byte> labelId)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotDummyNative((byte*)plabelId, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDummy(string labelId, ImPlotSpec spec)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotDummyNative(pStr0, spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		public static void PlotDummy(string labelId)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			PlotDummyNative(pStr0, (ImPlotSpec)(new ImPlotSpec()));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
+				Utils.Free(pStr0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte DragPointNative(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* outHeld)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int, double*, double*, Vector4, float, ImPlotDragToolFlags, bool*, bool*, bool*, byte>)funcTable[344])(id, x, y, col, size, flags, outClicked, outHovered, outHeld);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<int, nint, nint, Vector4, float, ImPlotDragToolFlags, nint, nint, nint, byte>)funcTable[344])(id, (nint)x, (nint)y, col, size, flags, (nint)outClicked, (nint)outHovered, (nint)outHeld);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, outHovered, outHeld);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, outHovered, (bool*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, (bool*)(default), (bool*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags)
+		{
+			byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size)
+		{
+			byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col)
+		{
+			byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags)
+		{
+			byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)(default), (bool*)(default), (bool*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked)
+		{
+			byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked)
+		{
+			byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, (bool*)(default), (bool*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered)
+		{
+			byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, outHovered, (bool*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, outHeld);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, outHeld);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, outHovered, outHeld);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
+				byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, outHovered, outHeld);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotPieChartFlags flags)
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			fixed (double* px = &x)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
+				byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, outHovered, (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, flags);
+				byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
+				byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
+				byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotPieChartFlags flags)
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col)
 		{
-			fixed (byte* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), flags);
+				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			fixed (double* px = &x)
 			{
-				fixed (byte* pvalues = &values)
+				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked)
+		{
+			fixed (double* px = &x)
+			{
+				byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked)
+		{
+			fixed (double* px = &x)
+			{
+				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* px = &x)
+			{
+				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, outHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, outHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, outHovered, outHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, outHovered, outHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, outHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, outHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, outHovered, outHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
 				{
-					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, flags);
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, outHovered, outHeld);
+					return ret != 0;
 				}
 			}
 		}
@@ -1118,13 +1328,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			fixed (double* px = &x)
 			{
-				fixed (byte* pvalues = &values)
+				fixed (double* py = &y)
 				{
-					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, outHovered, (bool*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -1132,13 +1343,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			fixed (double* px = &x)
 			{
-				fixed (byte* pvalues = &values)
+				fixed (double* py = &y)
 				{
-					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -1146,13 +1358,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotPieChartFlags flags)
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			fixed (double* px = &x)
 			{
-				fixed (byte* pvalues = &values)
+				fixed (double* py = &y)
 				{
-					PlotPieChartNative((byte**)plabelIds, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), flags);
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -1160,36 +1373,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			fixed (double* px = &x)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				fixed (double* py = &y)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -1197,36 +1388,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			fixed (double* px = &x)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				fixed (double* py = &y)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -1234,36 +1403,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			fixed (double* px = &x)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				fixed (double* py = &y)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)(default), (bool*)(default), (bool*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -1271,36 +1418,3062 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in byte values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotPieChartFlags flags)
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			fixed (double* px = &x)
 			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
+				fixed (double* py = &y)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
 				}
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked)
+		{
+			fixed (double* px = &x)
 			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
+				fixed (double* py = &y)
 				{
-					Utils.Free(pStrArray0[i]);
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
 				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
 				{
-					Utils.Free(pStrArray0);
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, outHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, outHovered, outHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, outHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, outHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, outHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, outHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, (bool*)poutHovered, outHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, outHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, outHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, outHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, (bool*)poutHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, outHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, outHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, outHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, outHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, outHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, outHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutHeld = &outHeld)
+			{
+				byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, outHovered, (bool*)poutHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutHeld = &outHeld)
+			{
+				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)poutHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutHeld = &outHeld)
+			{
+				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)poutHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutHeld = &outHeld)
+			{
+				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, outHovered, (bool*)poutHeld);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, outHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, outHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, outHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, outHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, outHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, outHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, outHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, outHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, (bool*)poutHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				fixed (bool* poutHeld = &outHeld)
+				{
+					byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)poutHeld);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, (bool*)poutHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* poutHeld = &outHeld)
+					{
+						byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* poutHeld = &outHeld)
+						{
+							byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* poutHeld = &outHeld)
+							{
+								byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* poutHeld = &outHeld)
+							{
+								byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* poutHeld = &outHeld)
+							{
+								byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool outHeld)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* poutHeld = &outHeld)
+							{
+								byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)poutHeld);
+								return ret != 0;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -1309,3593 +4482,506 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotPieChartNative(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		internal static byte DragLineXNative(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* outHeld)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, short*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)funcTable[233])(labelIds, values, count, x, y, radius, fmt, fmtData, angle0, flags);
+			return ((delegate* unmanaged[Cdecl]<int, double*, Vector4, float, ImPlotDragToolFlags, bool*, bool*, bool*, byte>)funcTable[345])(id, x, col, thickness, flags, outClicked, outHovered, outHeld);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)funcTable[233])((nint)labelIds, (nint)values, count, x, y, radius, (nint)fmt, (nint)fmtData, angle0, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<int, nint, Vector4, float, ImPlotDragToolFlags, nint, nint, nint, byte>)funcTable[345])(id, (nint)x, col, thickness, flags, (nint)outClicked, (nint)outHovered, (nint)outHeld);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* outHeld)
 		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, angle0, flags);
+			byte ret = DragLineXNative(id, x, col, thickness, flags, outClicked, outHovered, outHeld);
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
+		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
 		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
+			byte ret = DragLineXNative(id, x, col, thickness, flags, outClicked, outHovered, (bool*)(default));
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
+		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked)
 		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
+			byte ret = DragLineXNative(id, x, col, thickness, flags, outClicked, (bool*)(default), (bool*)(default));
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
+		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags)
 		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
+			byte ret = DragLineXNative(id, x, col, thickness, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
+		public static bool DragLineX(int id, double* x, Vector4 col, float thickness)
 		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
+			byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, double* x, Vector4 col)
 		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), flags);
+			byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags)
 		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
+			byte ret = DragLineXNative(id, x, col, (float)(1), flags, (bool*)(default), (bool*)(default), (bool*)(default));
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, bool* outClicked)
 		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, flags);
+			byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, double* x, Vector4 col, bool* outClicked)
 		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, angle0, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, angle0, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, angle0, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, fmtData, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)(default), angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)fmtData, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, fmt, (void*)fmtData, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in short values, int count, double x, double y, double radius, ImPlotFormatter fmt, nint fmtData, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), (void*)fmtData, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotPieChartNative(byte** labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte**, ushort*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)funcTable[234])(labelIds, values, count, x, y, radius, fmt, fmtData, angle0, flags);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, nint, nint, double, ImPlotPieChartFlags, void>)funcTable[234])((nint)labelIds, (nint)values, count, x, y, radius, (nint)fmt, (nint)fmtData, angle0, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, angle0, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, angle0, flags);
-			}
+			byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
+		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
 		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
-			}
+			byte ret = DragLineXNative(id, x, col, (float)(1), flags, outClicked, (bool*)(default), (bool*)(default));
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
+		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, bool* outClicked, bool* outHovered)
 		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			}
+			byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
+		public static bool DragLineX(int id, double* x, Vector4 col, bool* outClicked, bool* outHovered)
 		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-			}
+			byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
+		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
 		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-			}
+			byte ret = DragLineXNative(id, x, col, (float)(1), flags, outClicked, outHovered, (bool*)(default));
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, bool* outClicked, bool* outHovered, bool* outHeld)
 		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), flags);
-			}
+			byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), outClicked, outHovered, outHeld);
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, double* x, Vector4 col, bool* outClicked, bool* outHovered, bool* outHeld)
 		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
-			}
+			byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, outHovered, outHeld);
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* outHeld)
 		{
-			fixed (byte** plabelIds = &labelIds)
-			{
-				PlotPieChartNative((byte**)plabelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, flags);
-			}
+			byte ret = DragLineXNative(id, x, col, (float)(1), flags, outClicked, outHovered, outHeld);
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* outHeld)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			fixed (double* px = &x)
 			{
-				Utils.Free(pStrArray0);
+				byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, outClicked, outHovered, outHeld);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
+		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			fixed (double* px = &x)
 			{
-				Utils.Free(pStrArray0);
+				byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, outClicked, outHovered, (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
+		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			fixed (double* px = &x)
 			{
-				Utils.Free(pStrArray0);
+				byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
+		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			fixed (double* px = &x)
 			{
-				Utils.Free(pStrArray0);
+				byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
+		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			fixed (double* px = &x)
 			{
-				Utils.Free(pStrArray0);
+				byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, ref double x, Vector4 col)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			fixed (double* px = &x)
 			{
-				Utils.Free(pStrArray0);
+				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, ref double x, Vector4 col, ImPlotDragToolFlags flags)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			fixed (double* px = &x)
 			{
-				Utils.Free(pStrArray0);
+				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), flags, (bool*)(default), (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, bool* outClicked)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArray0Size >= Utils.MaxStackallocSize)
+			fixed (double* px = &x)
 			{
-				Utils.Free(pStrArray0);
+				byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, ref double x, Vector4 col, bool* outClicked)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, fmt, fmtData, angle0, flags);
+				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
+		public static bool DragLineX(int id, ref double x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
+				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), flags, outClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
+		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, bool* outClicked, bool* outHovered)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
+				byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
+		public static bool DragLineX(int id, ref double x, Vector4 col, bool* outClicked, bool* outHovered)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
+				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
+		public static bool DragLineX(int id, ref double x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
+				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), flags, outClicked, outHovered, (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, bool* outClicked, bool* outHovered, bool* outHeld)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), flags);
+				byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), outClicked, outHovered, outHeld);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, ref double x, Vector4 col, bool* outClicked, bool* outHovered, bool* outHeld)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
+				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, outHovered, outHeld);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(byte** labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, ref double x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* outHeld)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, flags);
+				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), flags, outClicked, outHovered, outHeld);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* outHeld)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			fixed (bool* poutClicked = &outClicked)
 			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (ushort*)pvalues, count, x, y, radius, fmt, fmtData, angle0, flags);
-				}
+				byte ret = DragLineXNative(id, x, col, thickness, flags, (bool*)poutClicked, outHovered, outHeld);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
+		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			fixed (bool* poutClicked = &outClicked)
 			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (ushort*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
-				}
+				byte ret = DragLineXNative(id, x, col, thickness, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
+		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			fixed (bool* poutClicked = &outClicked)
 			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (ushort*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-				}
+				byte ret = DragLineXNative(id, x, col, thickness, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
+		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ref bool outClicked)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			fixed (bool* poutClicked = &outClicked)
 			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (ushort*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-				}
+				byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
+		public static bool DragLineX(int id, double* x, Vector4 col, ref bool outClicked)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			fixed (bool* poutClicked = &outClicked)
 			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (ushort*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-				}
+				byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			fixed (bool* poutClicked = &outClicked)
 			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (ushort*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), flags);
-				}
+				byte ret = DragLineXNative(id, x, col, (float)(1), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ref bool outClicked, bool* outHovered)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			fixed (bool* poutClicked = &outClicked)
 			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (ushort*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
-				}
+				byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(in byte* labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, double* x, Vector4 col, ref bool outClicked, bool* outHovered)
 		{
-			fixed (byte** plabelIds = &labelIds)
+			fixed (bool* poutClicked = &outClicked)
 			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotPieChartNative((byte**)plabelIds, (ushort*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, flags);
-				}
+				byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
+			fixed (bool* poutClicked = &outClicked)
 			{
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, fmt, fmtData, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
+				byte ret = DragLineXNative(id, x, col, (float)(1), flags, (bool*)poutClicked, outHovered, (bool*)(default));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, double angle0)
+		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ref bool outClicked, bool* outHovered, bool* outHeld)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
+			fixed (bool* poutClicked = &outClicked)
 			{
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
+				byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, outHeld);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData)
+		public static bool DragLineX(int id, double* x, Vector4 col, ref bool outClicked, bool* outHovered, bool* outHeld)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
+			fixed (bool* poutClicked = &outClicked)
 			{
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
+				byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, outHeld);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt)
+		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* outHeld)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
+			fixed (bool* poutClicked = &outClicked)
 			{
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
+				byte ret = DragLineXNative(id, x, col, (float)(1), flags, (bool*)poutClicked, outHovered, outHeld);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0)
+		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* outHeld)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				fixed (bool* poutClicked = &outClicked)
 				{
-					Utils.Free(pStrArray0);
+					byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, (bool*)poutClicked, outHovered, outHeld);
+					return ret != 0;
 				}
 			}
 		}
@@ -4903,36 +4989,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, void* fmtData, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				fixed (bool* poutClicked = &outClicked)
 				{
-					Utils.Free(pStrArray0);
+					byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -4940,36 +5004,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				fixed (bool* poutClicked = &outClicked)
 				{
-					Utils.Free(pStrArray0);
+					byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -4977,46 +5019,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotPieChart(string[] labelIds, in ushort values, int count, double x, double y, double radius, delegate*<double, byte*, int, void*, int> fmt, double angle0, ImPlotPieChartFlags flags)
+		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ref bool outClicked)
 		{
-			byte** pStrArray0 = null;
-			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArray0Size > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
-				}
-				else
-				{
-					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
-					pStrArray0 = (byte**)pStrArray0Stack;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Utils.StringToUTF8Ptr(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* px = &x)
 			{
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArray0Size >= Utils.MaxStackallocSize)
+				fixed (bool* poutClicked = &outClicked)
 				{
-					Utils.Free(pStrArray0);
+					byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+					return ret != 0;
 				}
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
 		}
 	}
 }

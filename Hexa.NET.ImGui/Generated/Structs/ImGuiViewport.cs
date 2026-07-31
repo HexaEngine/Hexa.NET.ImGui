@@ -96,6 +96,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe void* PlatformIconData;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public unsafe void* PlatformHandle;
 
 		/// <summary>
@@ -127,7 +132,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiViewport(uint id = default, ImGuiViewportFlags flags = default, Vector2 pos = default, Vector2 size = default, Vector2 framebufferScale = default, Vector2 workPos = default, Vector2 workSize = default, float dpiScale = default, uint parentViewportId = default, ImGuiViewport* parentViewport = default, ImDrawData* drawData = default, void* rendererUserData = default, void* platformUserData = default, void* platformHandle = default, void* platformHandleRaw = default, bool platformWindowCreated = default, bool platformRequestMove = default, bool platformRequestResize = default, bool platformRequestClose = default)
+		public unsafe ImGuiViewport(uint id = default, ImGuiViewportFlags flags = default, Vector2 pos = default, Vector2 size = default, Vector2 framebufferScale = default, Vector2 workPos = default, Vector2 workSize = default, float dpiScale = default, uint parentViewportId = default, ImGuiViewport* parentViewport = default, ImDrawData* drawData = default, void* rendererUserData = default, void* platformUserData = default, void* platformIconData = default, void* platformHandle = default, void* platformHandleRaw = default, bool platformWindowCreated = default, bool platformRequestMove = default, bool platformRequestResize = default, bool platformRequestClose = default)
 		{
 			ID = id;
 			Flags = flags;
@@ -142,6 +147,7 @@ namespace Hexa.NET.ImGui
 			DrawData = drawData;
 			RendererUserData = rendererUserData;
 			PlatformUserData = platformUserData;
+			PlatformIconData = platformIconData;
 			PlatformHandle = platformHandle;
 			PlatformHandleRaw = platformHandleRaw;
 			PlatformWindowCreated = platformWindowCreated ? (byte)1 : (byte)0;
@@ -163,13 +169,37 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helpers<br/>
 		/// </summary>
 		public unsafe Vector2 GetCenter()
 		{
 			fixed (ImGuiViewport* @this = &this)
 			{
 				Vector2 ret = ImGui.GetCenterNative(@this);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe byte* GetDebugName()
+		{
+			fixed (ImGuiViewport* @this = &this)
+			{
+				byte* ret = ImGui.GetDebugNameNative(@this);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe string GetDebugNameS()
+		{
+			fixed (ImGuiViewport* @this = &this)
+			{
+				string ret = Utils.DecodeStringUTF8(ImGui.GetDebugNameNative(@this));
 				return ret;
 			}
 		}
@@ -284,6 +314,10 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public void* PlatformIconData { get => Handle->PlatformIconData; set => Handle->PlatformIconData = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public void* PlatformHandle { get => Handle->PlatformHandle; set => Handle->PlatformHandle = value; }
 		/// <summary>
 		/// To be documented.
@@ -314,11 +348,29 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helpers<br/>
 		/// </summary>
 		public unsafe Vector2 GetCenter()
 		{
 			Vector2 ret = ImGui.GetCenterNative(Handle);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe byte* GetDebugName()
+		{
+			byte* ret = ImGui.GetDebugNameNative(Handle);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe string GetDebugNameS()
+		{
+			string ret = Utils.DecodeStringUTF8(ImGui.GetDebugNameNative(Handle));
 			return ret;
 		}
 

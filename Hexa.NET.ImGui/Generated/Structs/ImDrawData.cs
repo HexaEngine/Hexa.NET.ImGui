@@ -32,7 +32,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int CmdListsCount;
+		public int FrameCount;
 
 		/// <summary>
 		/// To be documented.
@@ -78,10 +78,10 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawData(bool valid = default, int cmdListsCount = default, int totalIdxCount = default, int totalVtxCount = default, ImVector<ImDrawListPtr> cmdLists = default, Vector2 displayPos = default, Vector2 displaySize = default, Vector2 framebufferScale = default, ImGuiViewportPtr ownerViewport = default, ImVector<ImTextureDataPtr>* textures = default)
+		public unsafe ImDrawData(bool valid = default, int frameCount = default, int totalIdxCount = default, int totalVtxCount = default, ImVector<ImDrawListPtr> cmdLists = default, Vector2 displayPos = default, Vector2 displaySize = default, Vector2 framebufferScale = default, ImGuiViewportPtr ownerViewport = default, ImVector<ImTextureDataPtr>* textures = default)
 		{
 			Valid = valid ? (byte)1 : (byte)0;
-			CmdListsCount = cmdListsCount;
+			FrameCount = frameCount;
 			TotalIdxCount = totalIdxCount;
 			TotalVtxCount = totalVtxCount;
 			CmdLists = cmdLists;
@@ -212,7 +212,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int CmdListsCount => ref Unsafe.AsRef<int>(&Handle->CmdListsCount);
+		public ref int FrameCount => ref Unsafe.AsRef<int>(&Handle->FrameCount);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

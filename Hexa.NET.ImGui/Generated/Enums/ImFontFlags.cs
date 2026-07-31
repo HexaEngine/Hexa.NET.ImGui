@@ -38,5 +38,10 @@ namespace Hexa.NET.ImGui
 		/// [Internal] Disable loading new baked sizes, disable garbage collecting current ones. e.g. if you want to lock a font to a single size. Important: if you use this to preload given sizes, consider the possibility of multiple font density used on Retina display.<br/>
 		/// </summary>
 		LockBakedSizes = unchecked(8),
+
+		/// <summary>
+		/// [Internal] Reference size was not set explicitly.<br/>
+		/// </summary>
+		ImplicitRefSize = unchecked(16),
 	}
 }

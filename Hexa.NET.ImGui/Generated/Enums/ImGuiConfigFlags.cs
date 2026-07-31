@@ -25,7 +25,7 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// Master keyboard navigation enable flag. Enable full Tabbing + directional arrows + spaceenter to activate.<br/>
+		/// Master keyboard navigation enable flag. Enable full Tabbing + directional arrows + SpaceEnter to activate. Note: some features such as basic Tabbing and CtrL+Tab are enabled by regardless of this flag (and may be disabled via other means, see #4828, #9218).<br/>
 		/// </summary>
 		NavEnableKeyboard = unchecked(1),
 

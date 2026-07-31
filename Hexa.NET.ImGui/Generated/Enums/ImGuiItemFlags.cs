@@ -20,7 +20,7 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiItemFlags : int
 	{
 		/// <summary>
-		/// (Default)<br/>
+		/// Default:<br/>
 		/// </summary>
 		None = unchecked(0),
 
@@ -30,7 +30,7 @@ namespace Hexa.NET.ImGui
 		NoTabStop = unchecked(1),
 
 		/// <summary>
-		/// false     Disable any form of focusing (keyboardgamepad directional navigation and SetKeyboardFocusHere() calls).<br/>
+		/// false     Disable any form of focusing: keyboardgamepad directional navigation and SetKeyboardFocusHere() calls.<br/>
 		/// </summary>
 		NoNav = unchecked(2),
 
@@ -53,5 +53,25 @@ namespace Hexa.NET.ImGui
 		/// false     Allow submitting an item with the same identifier as an item already submitted this frame without triggering a warning tooltip if io.ConfigDebugHighlightIdConflicts is set.<br/>
 		/// </summary>
 		AllowDuplicateId = unchecked(32),
+
+		/// <summary>
+		/// false     [Internal] Disable interactions. DOES NOT affect visuals. This is used by BeginDisabled()EndDisabled() and only provided here so you can read back via GetItemFlags().<br/>
+		/// </summary>
+		Disabled = unchecked(64),
+
+		/// <summary>
+		/// true      InputText: apply keyboard edits to backing value while typing. Otherwise, edits are applied when validating, tabbing out or losing focus.<br/>
+		/// </summary>
+		LiveEditOnInputText = unchecked(128),
+
+		/// <summary>
+		/// false     DragXXX, SliderXXX, InputScalar: apply keyboard edits to backing value while typing. Otherwise, edits are applied when validating, tabbing out or losing focus.<br/>
+		/// </summary>
+		LiveEditOnInputScalar = unchecked(256),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		LiveEditOnInput = unchecked(384),
 	}
 }

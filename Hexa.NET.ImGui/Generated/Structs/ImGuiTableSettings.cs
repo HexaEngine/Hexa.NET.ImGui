@@ -40,32 +40,36 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public sbyte ColumnsCount;
+		public short ColumnsCount;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public sbyte ColumnsCountMax;
+		public short ColumnsCountMax;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte WantApply;
+		public ImGuiPackedDate LastUsedDate;
 
+		public bool RawBits0;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTableSettings(uint id = default, ImGuiTableFlags saveFlags = default, float refScale = default, sbyte columnsCount = default, sbyte columnsCountMax = default, bool wantApply = default)
+		public unsafe ImGuiTableSettings(uint id = default, ImGuiTableFlags saveFlags = default, float refScale = default, short columnsCount = default, short columnsCountMax = default, ImGuiPackedDate lastUsedDate = default, bool wantApply = default)
 		{
 			ID = id;
 			SaveFlags = saveFlags;
 			RefScale = refScale;
 			ColumnsCount = columnsCount;
 			ColumnsCountMax = columnsCountMax;
-			WantApply = wantApply ? (byte)1 : (byte)0;
+			LastUsedDate = lastUsedDate;
+			WantApply = wantApply;
 		}
 
+
+		public bool WantApply { get => Bitfield.Get(RawBits0, 0, 1); set => Bitfield.Set(ref RawBits0, value, 0, 1); }
 
 	}
 
@@ -125,15 +129,19 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref sbyte ColumnsCount => ref Unsafe.AsRef<sbyte>(&Handle->ColumnsCount);
+		public ref short ColumnsCount => ref Unsafe.AsRef<short>(&Handle->ColumnsCount);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref sbyte ColumnsCountMax => ref Unsafe.AsRef<sbyte>(&Handle->ColumnsCountMax);
+		public ref short ColumnsCountMax => ref Unsafe.AsRef<short>(&Handle->ColumnsCountMax);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref bool WantApply => ref Unsafe.AsRef<bool>(&Handle->WantApply);
+		public ref ImGuiPackedDate LastUsedDate => ref Unsafe.AsRef<ImGuiPackedDate>(&Handle->LastUsedDate);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public bool WantApply { get => Handle->WantApply; set => Handle->WantApply = value; }
 	}
 
 }

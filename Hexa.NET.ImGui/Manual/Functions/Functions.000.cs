@@ -18,20 +18,24 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte InputTextNative(byte* label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, ImGuiInputTextFlags, delegate*<ImGuiInputTextCallbackData*, int>, void*, byte>)funcTable[1541])(label, buf, bufSize, flags, callback, userData);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, ImGuiInputTextFlags, delegate*<ImGuiInputTextCallbackData*, int>, void*, byte>)funcTable[1585])(label, buf, bufSize, flags, callback, userData);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nuint, ImGuiInputTextFlags, nint, nint, byte>)funcTable[1541])((nint)label, (nint)buf, bufSize, flags, (nint)callback, (nint)userData);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nuint, ImGuiInputTextFlags, nint, nint, byte>)funcTable[1585])((nint)label, (nint)buf, bufSize, flags, (nint)callback, (nint)userData);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -40,7 +44,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -49,7 +55,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags)
 		{
@@ -58,7 +66,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize)
 		{
@@ -67,7 +77,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -76,7 +88,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
 		{
@@ -85,7 +99,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize, void* userData)
 		{
@@ -94,7 +110,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -103,7 +121,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -115,7 +135,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -127,7 +149,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags)
 		{
@@ -139,7 +163,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize)
 		{
@@ -151,7 +177,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -163,7 +191,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
 		{
@@ -175,7 +205,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize, void* userData)
 		{
@@ -187,7 +219,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -199,7 +233,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -211,7 +247,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -223,7 +261,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags)
 		{
@@ -235,7 +275,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize)
 		{
@@ -247,7 +289,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -259,7 +303,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
 		{
@@ -271,7 +317,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, void* userData)
 		{
@@ -283,7 +331,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -295,7 +345,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -325,7 +377,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -355,7 +409,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags)
 		{
@@ -385,7 +441,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize)
 		{
@@ -415,7 +473,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -445,7 +505,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
 		{
@@ -475,7 +537,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize, void* userData)
 		{
@@ -505,7 +569,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -535,7 +601,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -547,7 +615,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -559,7 +629,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags)
 		{
@@ -571,7 +643,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize)
 		{
@@ -583,7 +657,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -595,7 +671,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
 		{
@@ -607,7 +685,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize, void* userData)
 		{
@@ -619,7 +699,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -631,7 +713,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -665,7 +749,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -699,7 +785,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags)
 		{
@@ -733,7 +821,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize)
 		{
@@ -767,7 +857,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -801,7 +893,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
 		{
@@ -835,7 +929,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize, void* userData)
 		{
@@ -869,7 +965,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -903,7 +1001,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -918,7 +1018,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -933,7 +1035,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags)
 		{
@@ -948,7 +1052,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize)
 		{
@@ -963,7 +1069,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -978,7 +1086,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
 		{
@@ -993,7 +1103,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize, void* userData)
 		{
@@ -1008,7 +1120,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -1023,7 +1137,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -1038,7 +1154,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -1053,7 +1171,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags)
 		{
@@ -1068,7 +1188,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize)
 		{
@@ -1083,7 +1205,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -1098,7 +1222,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
 		{
@@ -1113,7 +1239,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize, void* userData)
 		{
@@ -1128,7 +1256,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -1143,7 +1273,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -1198,7 +1330,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -1253,7 +1387,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags)
 		{
@@ -1308,7 +1444,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize)
 		{
@@ -1363,7 +1501,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -1418,7 +1558,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
 		{
@@ -1473,7 +1615,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize, void* userData)
 		{
@@ -1528,7 +1672,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -1583,7 +1729,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -1620,7 +1768,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -1657,7 +1807,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags)
 		{
@@ -1694,7 +1846,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize)
 		{
@@ -1731,7 +1885,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -1768,7 +1924,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
 		{
@@ -1805,7 +1963,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize, void* userData)
 		{
@@ -1842,7 +2002,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -1879,7 +2041,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -1916,7 +2080,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -1953,7 +2119,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags)
 		{
@@ -1990,7 +2158,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize)
 		{
@@ -2027,7 +2197,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -2064,7 +2236,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
 		{
@@ -2101,7 +2275,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize, void* userData)
 		{
@@ -2138,7 +2314,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -2175,7 +2353,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -2208,7 +2388,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -2241,7 +2423,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags)
 		{
@@ -2274,7 +2458,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref byte buf, nuint bufSize)
 		{
@@ -2307,7 +2493,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
 		{
@@ -2340,7 +2528,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
 		{
@@ -2373,7 +2563,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref byte buf, nuint bufSize, void* userData)
 		{
@@ -2406,7 +2598,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
 		{
@@ -2439,7 +2633,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2448,7 +2644,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -2457,7 +2655,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize, ImGuiInputTextCallback callback)
 		{
@@ -2466,7 +2666,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2475,7 +2677,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2487,7 +2691,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -2499,7 +2705,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize, ImGuiInputTextCallback callback)
 		{
@@ -2511,7 +2719,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2523,7 +2733,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2535,7 +2747,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -2547,7 +2761,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, ImGuiInputTextCallback callback)
 		{
@@ -2559,7 +2775,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2571,7 +2789,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2601,7 +2821,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -2631,7 +2853,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize, ImGuiInputTextCallback callback)
 		{
@@ -2661,7 +2885,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2691,7 +2917,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2703,7 +2931,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -2715,7 +2945,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize, ImGuiInputTextCallback callback)
 		{
@@ -2727,7 +2959,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2739,7 +2973,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2773,7 +3009,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -2807,7 +3045,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize, ImGuiInputTextCallback callback)
 		{
@@ -2841,7 +3081,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2875,7 +3117,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2890,7 +3134,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -2905,7 +3151,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize, ImGuiInputTextCallback callback)
 		{
@@ -2920,7 +3168,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2935,7 +3185,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2950,7 +3202,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -2965,7 +3219,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize, ImGuiInputTextCallback callback)
 		{
@@ -2980,7 +3236,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -2995,7 +3253,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -3050,7 +3310,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -3105,7 +3367,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize, ImGuiInputTextCallback callback)
 		{
@@ -3160,7 +3424,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -3215,7 +3481,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -3252,7 +3520,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -3289,7 +3559,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize, ImGuiInputTextCallback callback)
 		{
@@ -3326,7 +3598,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -3363,7 +3637,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -3400,7 +3676,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -3437,7 +3715,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize, ImGuiInputTextCallback callback)
 		{
@@ -3474,7 +3754,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -3511,7 +3793,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -3544,7 +3828,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -3577,7 +3863,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref byte buf, nuint bufSize, ImGuiInputTextCallback callback)
 		{
@@ -3610,7 +3898,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref byte buf, nuint bufSize, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -3643,7 +3933,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3652,7 +3944,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3661,7 +3955,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize, nint userData)
 		{
@@ -3670,7 +3966,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, byte* buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3679,7 +3977,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3691,7 +3991,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3703,7 +4005,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize, nint userData)
 		{
@@ -3715,7 +4019,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, byte* buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3727,7 +4033,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3739,7 +4047,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3751,7 +4061,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, nint userData)
 		{
@@ -3763,7 +4075,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3775,7 +4089,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3805,7 +4121,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3835,7 +4153,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize, nint userData)
 		{
@@ -3865,7 +4185,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, byte* buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3895,7 +4217,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3907,7 +4231,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3919,7 +4245,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize, nint userData)
 		{
@@ -3931,7 +4259,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3943,7 +4273,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3977,7 +4309,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -4011,7 +4345,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize, nint userData)
 		{
@@ -4045,7 +4381,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(byte* label, ref string buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4079,7 +4417,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4094,7 +4434,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -4109,7 +4451,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize, nint userData)
 		{
@@ -4124,7 +4468,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4139,7 +4485,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4154,7 +4502,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -4169,7 +4519,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize, nint userData)
 		{
@@ -4184,7 +4536,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4199,7 +4553,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4254,7 +4610,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -4309,7 +4667,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize, nint userData)
 		{
@@ -4364,7 +4724,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(string label, ref string buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4419,7 +4781,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4456,7 +4820,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -4493,7 +4859,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize, nint userData)
 		{
@@ -4530,7 +4898,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(in byte label, ref string buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4567,7 +4937,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4604,7 +4976,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Input with Keyboard<br/>
+		/// - If you want to use InputText() with std::string or any custom dynamic string type, use the wrapper in misccppimgui_stdlib.h.cpp!<br/>
+		/// - Most of the ImGuiInputTextFlags flags are only useful for InputText() and not for InputFloatX, InputIntX, InputDouble etc.<br/>
 		/// </summary>
 		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -4638,396 +5012,6 @@ namespace Hexa.NET.ImGui
 				}
 				return ret != 0;
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize, nint userData)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (buf != null)
-				{
-					pStrSize0 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputTextNative((byte*)plabel, pStr0, bufSize, (ImGuiInputTextFlags)(0), (delegate*<ImGuiInputTextCallbackData*, int>)(default), (void*)userData);
-				if (ret != 0)
-				{
-					buf = Utils.DecodeStringUTF8(pStr0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(ReadOnlySpan<byte> label, ref string buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (buf != null)
-				{
-					pStrSize0 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = InputTextNative((byte*)plabel, pStr0, bufSize, (ImGuiInputTextFlags)(0), callback, (void*)userData);
-				if (ret != 0)
-				{
-					buf = Utils.DecodeStringUTF8(pStr0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(string label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pbuf = &buf)
-			{
-				byte ret = InputTextNative(pStr0, (byte*)pbuf, bufSize, flags, callback, (void*)userData);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(string label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pbuf = &buf)
-			{
-				byte ret = InputTextNative(pStr0, (byte*)pbuf, bufSize, flags, (delegate*<ImGuiInputTextCallbackData*, int>)(default), (void*)userData);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(string label, ref byte buf, nuint bufSize, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pbuf = &buf)
-			{
-				byte ret = InputTextNative(pStr0, (byte*)pbuf, bufSize, (ImGuiInputTextFlags)(0), (delegate*<ImGuiInputTextCallbackData*, int>)(default), (void*)userData);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(string label, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pbuf = &buf)
-			{
-				byte ret = InputTextNative(pStr0, (byte*)pbuf, bufSize, (ImGuiInputTextFlags)(0), callback, (void*)userData);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(byte* label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, nint userData)
-		{
-			byte ret = InputTextNative(label, buf, bufSize, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)userData);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(byte* label, byte* buf, nuint bufSize, ImGuiInputTextCallback callback, nint userData)
-		{
-			byte ret = InputTextNative(label, buf, bufSize, (ImGuiInputTextFlags)(0), (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)userData);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(in byte label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, nint userData)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = InputTextNative((byte*)plabel, buf, bufSize, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)userData);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(in byte label, byte* buf, nuint bufSize, ImGuiInputTextCallback callback, nint userData)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = InputTextNative((byte*)plabel, buf, bufSize, (ImGuiInputTextFlags)(0), (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)userData);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, nint userData)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = InputTextNative((byte*)plabel, buf, bufSize, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)userData);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(ReadOnlySpan<byte> label, byte* buf, nuint bufSize, ImGuiInputTextCallback callback, nint userData)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = InputTextNative((byte*)plabel, buf, bufSize, (ImGuiInputTextFlags)(0), (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)userData);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(string label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = InputTextNative(pStr0, buf, bufSize, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)userData);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(string label, byte* buf, nuint bufSize, ImGuiInputTextCallback callback, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = InputTextNative(pStr0, buf, bufSize, (ImGuiInputTextFlags)(0), (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)userData);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(byte* label, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, nint userData)
-		{
-			fixed (byte* pbuf = &buf)
-			{
-				byte ret = InputTextNative(label, (byte*)pbuf, bufSize, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)userData);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(byte* label, ref byte buf, nuint bufSize, ImGuiInputTextCallback callback, nint userData)
-		{
-			fixed (byte* pbuf = &buf)
-			{
-				byte ret = InputTextNative(label, (byte*)pbuf, bufSize, (ImGuiInputTextFlags)(0), (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)userData);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputText(byte* label, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (buf != null)
-			{
-				pStrSize0 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = InputTextNative(label, pStr0, bufSize, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)userData);
-			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
-			{
-				buf = Utils.DecodeStringUTF8(pStr0);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
 		}
 	}
 }

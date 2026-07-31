@@ -2209,9 +2209,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImTextCalcWordWrapNextLineStartNative(byte* text, byte* textEnd, ImDrawTextFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ImDrawTextFlags, byte*>)funcTable[752])(text, textEnd, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ImDrawTextFlags, byte*>)funcTable[760])(text, textEnd, flags);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, ImDrawTextFlags, nint>)funcTable[752])((nint)text, (nint)textEnd, flags);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, ImDrawTextFlags, nint>)funcTable[760])((nint)text, (nint)textEnd, flags);
 			#endif
 		}
 
@@ -3659,12 +3659,240 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImTextInitClassifiersNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[761])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[761])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImTextInitClassifiers()
+		{
+			ImTextInitClassifiersNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImTextClassifierClearNative(uint* bits, uint codepointMin, uint codepointEnd, ImWcharClass charClass)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<uint*, uint, uint, ImWcharClass, void>)funcTable[762])(bits, codepointMin, codepointEnd, charClass);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, uint, uint, ImWcharClass, void>)funcTable[762])((nint)bits, codepointMin, codepointEnd, charClass);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImTextClassifierClear(uint* bits, uint codepointMin, uint codepointEnd, ImWcharClass charClass)
+		{
+			ImTextClassifierClearNative(bits, codepointMin, codepointEnd, charClass);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImTextClassifierClear(ref uint bits, uint codepointMin, uint codepointEnd, ImWcharClass charClass)
+		{
+			fixed (uint* pbits = &bits)
+			{
+				ImTextClassifierClearNative((uint*)pbits, codepointMin, codepointEnd, charClass);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImTextClassifierSetCharClassNative(uint* bits, uint codepointMin, uint codepointEnd, ImWcharClass charClass, uint c)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<uint*, uint, uint, ImWcharClass, uint, void>)funcTable[763])(bits, codepointMin, codepointEnd, charClass, c);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, uint, uint, ImWcharClass, uint, void>)funcTable[763])((nint)bits, codepointMin, codepointEnd, charClass, c);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImTextClassifierSetCharClass(uint* bits, uint codepointMin, uint codepointEnd, ImWcharClass charClass, uint c)
+		{
+			ImTextClassifierSetCharClassNative(bits, codepointMin, codepointEnd, charClass, c);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImTextClassifierSetCharClass(ref uint bits, uint codepointMin, uint codepointEnd, ImWcharClass charClass, uint c)
+		{
+			fixed (uint* pbits = &bits)
+			{
+				ImTextClassifierSetCharClassNative((uint*)pbits, codepointMin, codepointEnd, charClass, c);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImTextClassifierSetCharClassFromStrNative(uint* bits, uint codepointMin, uint codepointEnd, ImWcharClass charClass, byte* s)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<uint*, uint, uint, ImWcharClass, byte*, void>)funcTable[764])(bits, codepointMin, codepointEnd, charClass, s);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, uint, uint, ImWcharClass, nint, void>)funcTable[764])((nint)bits, codepointMin, codepointEnd, charClass, (nint)s);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImTextClassifierSetCharClassFromStr(uint* bits, uint codepointMin, uint codepointEnd, ImWcharClass charClass, byte* s)
+		{
+			ImTextClassifierSetCharClassFromStrNative(bits, codepointMin, codepointEnd, charClass, s);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImTextClassifierSetCharClassFromStr(ref uint bits, uint codepointMin, uint codepointEnd, ImWcharClass charClass, byte* s)
+		{
+			fixed (uint* pbits = &bits)
+			{
+				ImTextClassifierSetCharClassFromStrNative((uint*)pbits, codepointMin, codepointEnd, charClass, s);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImTextClassifierSetCharClassFromStr(uint* bits, uint codepointMin, uint codepointEnd, ImWcharClass charClass, in byte s)
+		{
+			fixed (byte* ps = &s)
+			{
+				ImTextClassifierSetCharClassFromStrNative(bits, codepointMin, codepointEnd, charClass, (byte*)ps);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImTextClassifierSetCharClassFromStr(uint* bits, uint codepointMin, uint codepointEnd, ImWcharClass charClass, ReadOnlySpan<byte> s)
+		{
+			fixed (byte* ps = s)
+			{
+				ImTextClassifierSetCharClassFromStrNative(bits, codepointMin, codepointEnd, charClass, (byte*)ps);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImTextClassifierSetCharClassFromStr(uint* bits, uint codepointMin, uint codepointEnd, ImWcharClass charClass, string s)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (s != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(s);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(s, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImTextClassifierSetCharClassFromStrNative(bits, codepointMin, codepointEnd, charClass, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImTextClassifierSetCharClassFromStr(ref uint bits, uint codepointMin, uint codepointEnd, ImWcharClass charClass, in byte s)
+		{
+			fixed (uint* pbits = &bits)
+			{
+				fixed (byte* ps = &s)
+				{
+					ImTextClassifierSetCharClassFromStrNative((uint*)pbits, codepointMin, codepointEnd, charClass, (byte*)ps);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImTextClassifierSetCharClassFromStr(ref uint bits, uint codepointMin, uint codepointEnd, ImWcharClass charClass, ReadOnlySpan<byte> s)
+		{
+			fixed (uint* pbits = &bits)
+			{
+				fixed (byte* ps = s)
+				{
+					ImTextClassifierSetCharClassFromStrNative((uint*)pbits, codepointMin, codepointEnd, charClass, (byte*)ps);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImTextClassifierSetCharClassFromStr(ref uint bits, uint codepointMin, uint codepointEnd, ImWcharClass charClass, string s)
+		{
+			fixed (uint* pbits = &bits)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (s != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(s);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(s, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImTextClassifierSetCharClassFromStrNative((uint*)pbits, codepointMin, codepointEnd, charClass, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImFileHandle ImFileOpenNative(byte* filename, byte* mode)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ImFileHandle>)funcTable[753])(filename, mode);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ImFileHandle>)funcTable[765])(filename, mode);
 			#else
-			return (ImFileHandle)((delegate* unmanaged[Cdecl]<nint, nint, ImFileHandle>)funcTable[753])((nint)filename, (nint)mode);
+			return (ImFileHandle)((delegate* unmanaged[Cdecl]<nint, nint, ImFileHandle>)funcTable[765])((nint)filename, (nint)mode);
 			#endif
 		}
 
@@ -4035,9 +4263,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImFileCloseNative(ImFileHandle file)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFileHandle, byte>)funcTable[754])(file);
+			return ((delegate* unmanaged[Cdecl]<ImFileHandle, byte>)funcTable[766])(file);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImFileHandle, byte>)funcTable[754])(file);
+			return (byte)((delegate* unmanaged[Cdecl]<ImFileHandle, byte>)funcTable[766])(file);
 			#endif
 		}
 
@@ -4057,9 +4285,9 @@ namespace Hexa.NET.ImGui
 		internal static ulong ImFileGetSizeNative(ImFileHandle file)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFileHandle, ulong>)funcTable[755])(file);
+			return ((delegate* unmanaged[Cdecl]<ImFileHandle, ulong>)funcTable[767])(file);
 			#else
-			return (ulong)((delegate* unmanaged[Cdecl]<ImFileHandle, ulong>)funcTable[755])(file);
+			return (ulong)((delegate* unmanaged[Cdecl]<ImFileHandle, ulong>)funcTable[767])(file);
 			#endif
 		}
 
@@ -4079,9 +4307,9 @@ namespace Hexa.NET.ImGui
 		internal static ulong ImFileReadNative(void* data, ulong size, ulong count, ImFileHandle file)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, ulong, ulong, ImFileHandle, ulong>)funcTable[756])(data, size, count, file);
+			return ((delegate* unmanaged[Cdecl]<void*, ulong, ulong, ImFileHandle, ulong>)funcTable[768])(data, size, count, file);
 			#else
-			return (ulong)((delegate* unmanaged[Cdecl]<nint, ulong, ulong, ImFileHandle, ulong>)funcTable[756])((nint)data, size, count, file);
+			return (ulong)((delegate* unmanaged[Cdecl]<nint, ulong, ulong, ImFileHandle, ulong>)funcTable[768])((nint)data, size, count, file);
 			#endif
 		}
 
@@ -4110,9 +4338,9 @@ namespace Hexa.NET.ImGui
 		internal static ulong ImFileWriteNative(void* data, ulong size, ulong count, ImFileHandle file)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, ulong, ulong, ImFileHandle, ulong>)funcTable[757])(data, size, count, file);
+			return ((delegate* unmanaged[Cdecl]<void*, ulong, ulong, ImFileHandle, ulong>)funcTable[769])(data, size, count, file);
 			#else
-			return (ulong)((delegate* unmanaged[Cdecl]<nint, ulong, ulong, ImFileHandle, ulong>)funcTable[757])((nint)data, size, count, file);
+			return (ulong)((delegate* unmanaged[Cdecl]<nint, ulong, ulong, ImFileHandle, ulong>)funcTable[769])((nint)data, size, count, file);
 			#endif
 		}
 
@@ -4141,9 +4369,9 @@ namespace Hexa.NET.ImGui
 		internal static void* ImFileLoadToMemoryNative(byte* filename, byte* mode, nuint* outFileSize, int paddingBytes)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, nuint*, int, void*>)funcTable[758])(filename, mode, outFileSize, paddingBytes);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, nuint*, int, void*>)funcTable[770])(filename, mode, outFileSize, paddingBytes);
 			#else
-			return (void*)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, nint>)funcTable[758])((nint)filename, (nint)mode, (nint)outFileSize, paddingBytes);
+			return (void*)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, nint>)funcTable[770])((nint)filename, (nint)mode, (nint)outFileSize, paddingBytes);
 			#endif
 		}
 
@@ -4835,201 +5063,6 @@ namespace Hexa.NET.ImGui
 				Utils.Free(pStr0);
 			}
 			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void* ImFileLoadToMemory(string filename, string mode)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (filename != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(filename);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (mode != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(mode);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(mode, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			void* ret = ImFileLoadToMemoryNative(pStr0, pStr1, (nuint*)(default), (int)(0));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void* ImFileLoadToMemory(string filename, string mode, int paddingBytes)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (filename != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(filename);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (mode != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(mode);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(mode, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			void* ret = ImFileLoadToMemoryNative(pStr0, pStr1, (nuint*)(default), paddingBytes);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void* ImFileLoadToMemory(in byte filename, ReadOnlySpan<byte> mode, nuint* outFileSize, int paddingBytes)
-		{
-			fixed (byte* pfilename = &filename)
-			{
-				fixed (byte* pmode = mode)
-				{
-					void* ret = ImFileLoadToMemoryNative((byte*)pfilename, (byte*)pmode, outFileSize, paddingBytes);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void* ImFileLoadToMemory(in byte filename, ReadOnlySpan<byte> mode, nuint* outFileSize)
-		{
-			fixed (byte* pfilename = &filename)
-			{
-				fixed (byte* pmode = mode)
-				{
-					void* ret = ImFileLoadToMemoryNative((byte*)pfilename, (byte*)pmode, outFileSize, (int)(0));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void* ImFileLoadToMemory(in byte filename, ReadOnlySpan<byte> mode)
-		{
-			fixed (byte* pfilename = &filename)
-			{
-				fixed (byte* pmode = mode)
-				{
-					void* ret = ImFileLoadToMemoryNative((byte*)pfilename, (byte*)pmode, (nuint*)(default), (int)(0));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void* ImFileLoadToMemory(in byte filename, ReadOnlySpan<byte> mode, int paddingBytes)
-		{
-			fixed (byte* pfilename = &filename)
-			{
-				fixed (byte* pmode = mode)
-				{
-					void* ret = ImFileLoadToMemoryNative((byte*)pfilename, (byte*)pmode, (nuint*)(default), paddingBytes);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void* ImFileLoadToMemory(in byte filename, string mode, nuint* outFileSize, int paddingBytes)
-		{
-			fixed (byte* pfilename = &filename)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (mode != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(mode);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(mode, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				void* ret = ImFileLoadToMemoryNative((byte*)pfilename, pStr0, outFileSize, paddingBytes);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
 		}
 	}
 }

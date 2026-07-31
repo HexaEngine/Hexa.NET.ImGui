@@ -21,130 +21,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, byte* format)
-		{
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax)
-		{
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)(default), flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -163,18 +40,21 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pMin, pMax, format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = format)
 			{
-				Utils.Free(pStr0);
+				byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, pMax, (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
-			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, byte* format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, void* pMax, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -193,118 +73,13 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (byte* pformat = format)
 			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					Utils.Free(pStr0);
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)(default), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, (void*)pMax, format, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, byte* format)
-		{
-			byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax)
-		{
-			byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, (void*)pMax, (byte*)(default), flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, format, flags);
 				return ret != 0;
 			}
 		}
@@ -312,971 +87,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, (void*)pMax, format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, (void*)pMax, (byte*)(default), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, (void*)pMax, format, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, byte* format)
-		{
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax)
-		{
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)(default), flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, (void*)pMax, format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)(default), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, (void*)pMax, format, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, byte* format)
-		{
-			byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax)
-		{
-			byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, (void*)pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, (void*)pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, (void*)pMin, (void*)pMax, format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, format, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax, byte* format)
-		{
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax)
-		{
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, (byte*)(default), (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pMin, nint pMax, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pMin, (void*)pMax, (byte*)(default), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -1284,11 +99,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, in byte format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1296,11 +111,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -1308,11 +123,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1320,7 +135,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1339,7 +154,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, pMax, pStr0, flags);
+			byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1350,7 +165,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, string format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1369,7 +184,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
+			byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1380,13 +195,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -1395,13 +210,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, in byte format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -1410,13 +225,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -1425,13 +240,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -1440,7 +255,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1476,7 +291,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, pMax, pStr1, flags);
+			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1491,7 +306,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, string format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1527,7 +342,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, pMax, pStr1, (ImGuiSliderFlags)(0));
+			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, pStr1, (ImGuiSliderFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1542,13 +357,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -1557,13 +372,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -1572,7 +387,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1593,7 +408,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, pStr0, flags);
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1605,7 +420,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, string format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -1626,7 +441,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1638,13 +453,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -1653,13 +468,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, in byte format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -1668,7 +483,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -1689,7 +504,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, pStr0, flags);
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1701,7 +516,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, string format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, string format)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -1722,7 +537,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1734,7 +549,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1755,7 +570,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1767,7 +582,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, in byte format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1788,7 +603,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1800,7 +615,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1821,7 +636,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1833,7 +648,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, void* pMax, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1854,7 +669,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1866,11 +681,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -1878,11 +693,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, in byte format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1890,11 +705,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -1902,11 +717,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -1914,7 +729,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1933,7 +748,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, pMax, pStr0, flags);
+			byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1944,7 +759,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, string format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1963,7 +778,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
+			byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1974,13 +789,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -1989,13 +804,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, in byte format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2004,13 +819,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -2019,13 +834,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2034,7 +849,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2070,7 +885,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, pMax, pStr1, flags);
+			byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -2085,7 +900,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, string format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2121,7 +936,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, pMax, pStr1, (ImGuiSliderFlags)(0));
+			byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, pStr1, (ImGuiSliderFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -2136,13 +951,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -2151,13 +966,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2166,7 +981,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2187,7 +1002,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, pStr0, flags);
+				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2199,7 +1014,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, string format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2220,7 +1035,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2232,13 +1047,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -2247,13 +1062,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, in byte format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2262,7 +1077,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2283,7 +1098,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, pStr0, flags);
+				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2295,7 +1110,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, string format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, string format)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2316,7 +1131,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2328,7 +1143,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2349,7 +1164,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2361,7 +1176,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, in byte format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2382,7 +1197,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2394,7 +1209,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2415,7 +1230,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2427,7 +1242,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, void* pMax, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2448,7 +1263,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2460,11 +1275,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -2472,11 +1287,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, in byte format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -2484,11 +1299,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -2496,11 +1311,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -2508,7 +1323,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2527,7 +1342,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, pMax, pStr0, flags);
+			byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2538,7 +1353,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, string format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2557,7 +1372,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
+			byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2568,13 +1383,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -2583,13 +1398,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, in byte format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2598,13 +1413,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -2613,13 +1428,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2628,7 +1443,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2664,7 +1479,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, (void*)pMin, pMax, pStr1, flags);
+			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, pMax, pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -2679,7 +1494,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, string format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2715,7 +1530,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, (void*)pMin, pMax, pStr1, (ImGuiSliderFlags)(0));
+			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, pMax, pStr1, (ImGuiSliderFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -2730,13 +1545,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -2745,13 +1560,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2760,7 +1575,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2781,7 +1596,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, pStr0, flags);
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2793,7 +1608,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, string format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2814,7 +1629,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2826,13 +1641,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -2841,13 +1656,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, in byte format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -2856,7 +1671,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2877,7 +1692,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, pStr0, flags);
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2889,7 +1704,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, string format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, string format)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -2910,7 +1725,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2922,7 +1737,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2943,7 +1758,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2955,7 +1770,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, in byte format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2976,7 +1791,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2988,7 +1803,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3009,7 +1824,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3021,7 +1836,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, void* pMax, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3042,7 +1857,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3054,11 +1869,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(label, dataType, pData, pMin, (void*)pMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -3066,11 +1881,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, in byte format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(label, dataType, pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -3078,11 +1893,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(label, dataType, pData, pMin, (void*)pMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -3090,11 +1905,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(label, dataType, pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -3102,7 +1917,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3121,7 +1936,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, (void*)pMin, pMax, pStr0, flags);
+			byte ret = SliderScalarNative(label, dataType, pData, pMin, (void*)pMax, pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3132,7 +1947,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, string format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3151,7 +1966,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
+			byte ret = SliderScalarNative(label, dataType, pData, pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3162,13 +1977,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3177,13 +1992,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, in byte format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3192,13 +2007,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3207,13 +2022,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3222,7 +2037,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3258,7 +2073,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pMin, pMax, pStr1, flags);
+			byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, (void*)pMax, pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3273,7 +2088,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, string format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3309,7 +2124,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pMin, pMax, pStr1, (ImGuiSliderFlags)(0));
+			byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, (void*)pMax, pStr1, (ImGuiSliderFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3324,13 +2139,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3339,13 +2154,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3354,7 +2169,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3375,7 +2190,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, pStr0, flags);
+				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3387,7 +2202,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, string format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3408,7 +2223,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3420,13 +2235,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3435,13 +2250,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, in byte format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3450,7 +2265,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -3471,7 +2286,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, pStr0, flags);
+				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3483,7 +2298,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, string format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, string format)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -3504,7 +2319,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, (void*)pMin, pMax, pStr0, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3516,7 +2331,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3537,7 +2352,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, (void*)pMax, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3549,7 +2364,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, in byte format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3570,7 +2385,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3582,7 +2397,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3603,7 +2418,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, (void*)pMax, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3615,7 +2430,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, void* pMin, nint pMax, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3636,7 +2451,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, (void*)pMin, pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(pStr0, dataType, pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3648,11 +2463,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -3660,11 +2475,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, in byte format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -3672,11 +2487,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -3684,11 +2499,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -3696,7 +2511,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3715,7 +2530,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, (void*)pMax, pStr0, flags);
+			byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, (void*)pMax, pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3726,7 +2541,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, string format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3745,7 +2560,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
+			byte ret = SliderScalarNative(label, dataType, (void*)pData, pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3756,13 +2571,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3771,13 +2586,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, in byte format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3786,13 +2601,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3801,13 +2616,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3816,7 +2631,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3852,7 +2667,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, (void*)pMax, pStr1, flags);
+			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, (void*)pMax, pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3867,7 +2682,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, string format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3903,7 +2718,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, (void*)pMax, pStr1, (ImGuiSliderFlags)(0));
+			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, (void*)pMax, pStr1, (ImGuiSliderFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3918,13 +2733,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -3933,13 +2748,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -3948,7 +2763,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -3969,7 +2784,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, pStr0, flags);
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3981,7 +2796,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, string format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -4002,7 +2817,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4014,13 +2829,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4029,13 +2844,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, in byte format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4044,7 +2859,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -4065,7 +2880,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, pStr0, flags);
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4077,7 +2892,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, string format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, string format)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -4098,7 +2913,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4110,7 +2925,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4131,7 +2946,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4143,7 +2958,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, in byte format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4164,7 +2979,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4176,7 +2991,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4197,7 +3012,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4209,7 +3024,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, void* pMin, nint pMax, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4230,7 +3045,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4242,11 +3057,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -4254,11 +3069,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, in byte format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -4266,11 +3081,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -4278,11 +3093,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -4290,7 +3105,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4309,7 +3124,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, (void*)pMax, pStr0, flags);
+			byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, (void*)pMax, pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4320,7 +3135,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, string format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4339,7 +3154,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
+			byte ret = SliderScalarNative(label, dataType, pData, (void*)pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4350,13 +3165,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4365,13 +3180,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, in byte format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4380,13 +3195,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4395,13 +3210,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4410,7 +3225,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4446,7 +3261,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, (void*)pMax, pStr1, flags);
+			byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, (void*)pMax, pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -4461,7 +3276,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, string format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4497,7 +3312,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, (void*)pMax, pStr1, (ImGuiSliderFlags)(0));
+			byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, (void*)pMax, pStr1, (ImGuiSliderFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -4512,13 +3327,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4527,13 +3342,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4542,7 +3357,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -4563,7 +3378,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, pStr0, flags);
+				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4575,7 +3390,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, string format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, string format)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -4596,7 +3411,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4608,13 +3423,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4623,13 +3438,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, in byte format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, in byte format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4638,7 +3453,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, string format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -4659,7 +3474,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, pStr0, flags);
+				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, pStr0, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4671,7 +3486,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, string format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, string format)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -4692,7 +3507,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative((byte*)plabel, dataType, pData, (void*)pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4704,7 +3519,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4725,7 +3540,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4737,7 +3552,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, in byte format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, in byte format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4758,7 +3573,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4770,7 +3585,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4791,7 +3606,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4803,7 +3618,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, nint pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, void* pData, nint pMin, nint pMax, ReadOnlySpan<byte> format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4824,7 +3639,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(pStr0, dataType, pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4836,11 +3651,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -4848,11 +3663,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, in byte format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, in byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -4860,11 +3675,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
 				return ret != 0;
 			}
 		}
@@ -4872,11 +3687,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* pformat = format)
 			{
-				byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -4884,7 +3699,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4903,7 +3718,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, (void*)pMax, pStr0, flags);
+			byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, (void*)pMax, pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4914,7 +3729,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, string format)
+		public static bool SliderScalar(byte* label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4933,7 +3748,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
+			byte ret = SliderScalarNative(label, dataType, (void*)pData, (void*)pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4944,13 +3759,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4959,13 +3774,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, in byte format)
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, in byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (byte* pformat = &format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -4974,13 +3789,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
@@ -4989,13 +3804,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, ReadOnlySpan<byte> format)
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, ReadOnlySpan<byte> format)
 		{
 			fixed (byte* plabel = label)
 			{
 				fixed (byte* pformat = format)
 				{
-					byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}
@@ -5004,7 +3819,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pMin, nint pMax, string format, ImGuiSliderFlags flags)
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, string format, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5040,7 +3855,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, (void*)pMin, (void*)pMax, pStr1, flags);
+			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, (void*)pMax, pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -5049,6 +3864,1159 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, (void*)pMax, pStr1, (ImGuiSliderFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalar(in byte label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, string format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, in byte format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, string format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, string format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = SliderScalarNative((byte*)plabel, dataType, (void*)pData, (void*)pMin, (void*)pMax, pStr0, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, in byte format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, in byte format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = &format)
+			{
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalar(string label, ImGuiDataType dataType, nint pData, nint pMin, nint pMax, ReadOnlySpan<byte> format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pformat = format)
+			{
+				byte ret = SliderScalarNative(pStr0, dataType, (void*)pData, (void*)pMin, (void*)pMax, (byte*)pformat, (ImGuiSliderFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte SliderScalarNNative(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDataType, void*, int, void*, void*, byte*, ImGuiSliderFlags, byte>)funcTable[193])(label, dataType, pData, components, pMin, pMax, format, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDataType, nint, int, nint, nint, nint, ImGuiSliderFlags, byte>)funcTable[193])((nint)label, dataType, (nint)pData, components, (nint)pMin, (nint)pMax, (nint)format, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		{
+			byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, pMax, format, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, byte* format)
+		{
+			byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, pMax, format, (ImGuiSliderFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax)
+		{
+			byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ImGuiSliderFlags flags)
+		{
+			byte ret = SliderScalarNNative(label, dataType, pData, components, pMin, pMax, (byte*)(default), flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, format, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, format, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, format, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, format, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, pMin, pMax, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, pMax, format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, pMax, format, (ImGuiSliderFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pMin, void* pMax, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, pMin, pMax, (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		{
+			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, pMax, format, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, byte* format)
+		{
+			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, pMax, format, (ImGuiSliderFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax)
+		{
+			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, ImGuiSliderFlags flags)
+		{
+			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, pMin, pMax, (byte*)(default), flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, format, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, format, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, format, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, format, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, (void*)pData, components, pMin, pMax, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, pMax, format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, pMax, format, (ImGuiSliderFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(string label, ImGuiDataType dataType, nint pData, int components, void* pMin, void* pMax, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderScalarNNative(pStr0, dataType, (void*)pData, components, pMin, pMax, (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		{
+			byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, pMax, format, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, byte* format)
+		{
+			byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax)
+		{
+			byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, ImGuiSliderFlags flags)
+		{
+			byte ret = SliderScalarNNative(label, dataType, pData, components, (void*)pMin, pMax, (byte*)(default), flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, format, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(in byte label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, format, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = SliderScalarNNative((byte*)plabel, dataType, pData, components, (void*)pMin, pMax, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, (void*)pMin, pMax, format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, (void*)pMin, pMax, format, (ImGuiSliderFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, (void*)pMin, pMax, (byte*)(default), (ImGuiSliderFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(string label, ImGuiDataType dataType, void* pData, int components, nint pMin, void* pMax, ImGuiSliderFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = SliderScalarNNative(pStr0, dataType, pData, components, (void*)pMin, pMax, (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool SliderScalarN(byte* label, ImGuiDataType dataType, nint pData, int components, nint pMin, void* pMax, byte* format, ImGuiSliderFlags flags)
+		{
+			byte ret = SliderScalarNNative(label, dataType, (void*)pData, components, (void*)pMin, pMax, format, flags);
 			return ret != 0;
 		}
 	}

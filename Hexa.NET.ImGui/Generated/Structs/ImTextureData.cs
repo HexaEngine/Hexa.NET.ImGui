@@ -46,6 +46,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe void* QueueUserData;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ImTextureID TexID;
 
 		/// <summary>
@@ -112,11 +117,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImTextureData(int uniqueId = default, ImTextureStatus status = default, void* backendUserData = default, ImTextureID texId = default, ImTextureFormat format = default, int width = default, int height = default, int bytesPerPixel = default, byte* pixels = default, ImTextureRect usedRect = default, ImTextureRect updateRect = default, ImVector<ImTextureRect> updates = default, int unusedFrames = default, ushort refCount = default, bool useColors = default, bool wantDestroyNextFrame = default)
+		public unsafe ImTextureData(int uniqueId = default, ImTextureStatus status = default, void* backendUserData = default, void* queueUserData = default, ImTextureID texId = default, ImTextureFormat format = default, int width = default, int height = default, int bytesPerPixel = default, byte* pixels = default, ImTextureRect usedRect = default, ImTextureRect updateRect = default, ImVector<ImTextureRect> updates = default, int unusedFrames = default, ushort refCount = default, bool useColors = default, bool wantDestroyNextFrame = default)
 		{
 			UniqueID = uniqueId;
 			Status = status;
 			BackendUserData = backendUserData;
+			QueueUserData = queueUserData;
 			TexID = texId;
 			Format = format;
 			Width = width;
@@ -250,7 +256,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Called by Renderer backend<br/>
+		/// - Call SetTexID() and SetStatus() after honoring texture requests. Never modify TexID and Status directly!<br/>
+		/// - A backend may decide to destroy a texture that we did not request to destroy, which is fine (e.g. freeing resources), but we immediately set the texture back in _WantCreate mode.<br/>
 		/// </summary>
 		public unsafe void SetTexID(ImTextureID texId)
 		{
@@ -315,6 +323,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public void* BackendUserData { get => Handle->BackendUserData; set => Handle->BackendUserData = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public void* QueueUserData { get => Handle->QueueUserData; set => Handle->QueueUserData = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -454,7 +466,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Called by Renderer backend<br/>
+		/// - Call SetTexID() and SetStatus() after honoring texture requests. Never modify TexID and Status directly!<br/>
+		/// - A backend may decide to destroy a texture that we did not request to destroy, which is fine (e.g. freeing resources), but we immediately set the texture back in _WantCreate mode.<br/>
 		/// </summary>
 		public unsafe void SetTexID(ImTextureID texId)
 		{

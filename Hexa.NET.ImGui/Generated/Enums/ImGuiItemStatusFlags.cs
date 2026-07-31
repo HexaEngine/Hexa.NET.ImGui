@@ -78,5 +78,10 @@ namespace Hexa.NET.ImGui
 		/// g.LastItemData.Shortcut valid. Set by SetNextItemShortcut() -&gt; ItemAdd().<br/>
 		/// </summary>
 		HasShortcut = unchecked(1024),
+
+		/// <summary>
+		/// Similar to ImGuiItemStatusFlags_Edited but bypassing ImGuiItemFlags_NoMarkEdited.<br/>
+		/// </summary>
+		EditedInternal = unchecked(2048),
 	}
 }

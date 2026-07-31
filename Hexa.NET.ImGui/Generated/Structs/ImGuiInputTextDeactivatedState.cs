@@ -18,6 +18,7 @@ namespace Hexa.NET.ImGui
 {
 	/// <summary>
 	/// Internal temporary state for deactivating InputText() instances.<br/>
+	/// Store as part of ImGuiDeactivatedItemData?<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiInputTextDeactivatedState
@@ -30,15 +31,21 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public int ElapseFrame;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ImVector<byte> TextA;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiInputTextDeactivatedState(uint id = default, ImVector<byte> textA = default)
+		public unsafe ImGuiInputTextDeactivatedState(uint id = default, int elapseFrame = default, ImVector<byte> textA = default)
 		{
 			ID = id;
+			ElapseFrame = elapseFrame;
 			TextA = textA;
 		}
 
@@ -90,6 +97,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref uint ID => ref Unsafe.AsRef<uint>(&Handle->ID);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref int ElapseFrame => ref Unsafe.AsRef<int>(&Handle->ElapseFrame);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

@@ -60,12 +60,17 @@ namespace Hexa.NET.ImGui
 		NoSpeedTweaks = unchecked(2048),
 
 		/// <summary>
+		/// DragScalarN(), SliderScalarN(): Draw RGBA color markers on each component.<br/>
+		/// </summary>
+		ColorMarkers = unchecked(4096),
+
+		/// <summary>
 		/// To be documented.
 		/// </summary>
 		AlwaysClamp = unchecked(1536),
 
 		/// <summary>
-		/// [Internal] We treat using those bits as being potentially a 'float power' argument from the previous API that has got miscast to this enum, and will trigger an assert if needed.<br/>
+		/// [Internal] We treat using those bits as being potentially a 'float power' argument from legacy API (obsoleted 2020-08) that has got miscast to this enum, and will trigger an assert if needed.<br/>
 		/// </summary>
 		InvalidMask = unchecked(1879048207),
 	}

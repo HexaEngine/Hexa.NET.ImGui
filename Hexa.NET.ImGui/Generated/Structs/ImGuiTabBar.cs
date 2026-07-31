@@ -55,6 +55,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public uint NextScrollToTabId;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public uint VisibleTabId;
 
 		/// <summary>
@@ -206,7 +211,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTabBar(ImGuiWindowPtr window = default, ImVector<ImGuiTabItem> tabs = default, ImGuiTabBarFlags flags = default, uint id = default, uint selectedTabId = default, uint nextSelectedTabId = default, uint visibleTabId = default, int currFrameVisible = default, int prevFrameVisible = default, ImRect barRect = default, float barRectPrevWidth = default, float currTabsContentsHeight = default, float prevTabsContentsHeight = default, float widthAllTabs = default, float widthAllTabsIdeal = default, float scrollingAnim = default, float scrollingTarget = default, float scrollingTargetDistToVisibility = default, float scrollingSpeed = default, float scrollingRectMinX = default, float scrollingRectMaxX = default, float separatorMinX = default, float separatorMaxX = default, uint reorderRequestTabId = default, short reorderRequestOffset = default, sbyte beginCount = default, bool wantLayout = default, bool visibleTabWasSubmitted = default, bool tabsAddedNew = default, bool scrollButtonEnabled = default, short tabsActiveCount = default, short lastTabItemIdx = default, float itemSpacingY = default, Vector2 framePadding = default, Vector2 backupCursorPos = default, ImGuiTextBuffer tabsNames = default)
+		public unsafe ImGuiTabBar(ImGuiWindowPtr window = default, ImVector<ImGuiTabItem> tabs = default, ImGuiTabBarFlags flags = default, uint id = default, uint selectedTabId = default, uint nextSelectedTabId = default, uint nextScrollToTabId = default, uint visibleTabId = default, int currFrameVisible = default, int prevFrameVisible = default, ImRect barRect = default, float barRectPrevWidth = default, float currTabsContentsHeight = default, float prevTabsContentsHeight = default, float widthAllTabs = default, float widthAllTabsIdeal = default, float scrollingAnim = default, float scrollingTarget = default, float scrollingTargetDistToVisibility = default, float scrollingSpeed = default, float scrollingRectMinX = default, float scrollingRectMaxX = default, float separatorMinX = default, float separatorMaxX = default, uint reorderRequestTabId = default, short reorderRequestOffset = default, sbyte beginCount = default, bool wantLayout = default, bool visibleTabWasSubmitted = default, bool tabsAddedNew = default, bool scrollButtonEnabled = default, short tabsActiveCount = default, short lastTabItemIdx = default, float itemSpacingY = default, Vector2 framePadding = default, Vector2 backupCursorPos = default, ImGuiTextBuffer tabsNames = default)
 		{
 			Window = window;
 			Tabs = tabs;
@@ -214,6 +219,7 @@ namespace Hexa.NET.ImGui
 			ID = id;
 			SelectedTabId = selectedTabId;
 			NextSelectedTabId = nextSelectedTabId;
+			NextScrollToTabId = nextScrollToTabId;
 			VisibleTabId = visibleTabId;
 			CurrFrameVisible = currFrameVisible;
 			PrevFrameVisible = prevFrameVisible;
@@ -314,6 +320,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref uint NextSelectedTabId => ref Unsafe.AsRef<uint>(&Handle->NextSelectedTabId);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref uint NextScrollToTabId => ref Unsafe.AsRef<uint>(&Handle->NextScrollToTabId);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

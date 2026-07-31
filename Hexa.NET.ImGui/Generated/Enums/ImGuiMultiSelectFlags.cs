@@ -65,7 +65,7 @@ namespace Hexa.NET.ImGui
 		BoxSelect2D = unchecked(128),
 
 		/// <summary>
-		/// Disable scrolling when box-selecting near edges of scope.<br/>
+		/// Disable scrolling when box-selecting and moving mouse near edges of scope.<br/>
 		/// </summary>
 		BoxSelectNoScroll = unchecked(256),
 
@@ -90,14 +90,19 @@ namespace Hexa.NET.ImGui
 		ScopeRect = unchecked(4096),
 
 		/// <summary>
-		/// Apply selection on mouse down when clicking on unselected item. (Default)<br/>
+		/// Apply selection on mouse down when clicking on unselected item, on mouse up when clicking on selected item. (Default)<br/>
 		/// </summary>
-		OnClick = unchecked(8192),
+		OnAuto = unchecked(8192),
+
+		/// <summary>
+		/// Apply selection on mouse down when clicking on any items. Prevents Drag and Drop from being used on multiple-selection, but allows e.g. BoxSelect to always reselect even when clicking inside an existing selection. (Excel style behavior)<br/>
+		/// </summary>
+		OnClickAlways = unchecked(16384),
 
 		/// <summary>
 		/// Apply selection on mouse release when clicking an unselected item. Allow dragging an unselected item without altering selection.<br/>
 		/// </summary>
-		OnClickRelease = unchecked(16384),
+		OnClickRelease = unchecked(32768),
 
 		/// <summary>
 		/// [Temporary] Enable navigation wrapping on X axis. Provided as a convenience because we don't have a design for the general Nav API for this yet. When the more general feature be public we may obsolete this flag in favor of new one.<br/>
@@ -108,5 +113,15 @@ namespace Hexa.NET.ImGui
 		/// Disable default right-click processing, which selects item on mouse down, and is designed for context-menus.<br/>
 		/// </summary>
 		NoSelectOnRightClick = unchecked(131072),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		OnMask = unchecked(57344),
+
+		/// <summary>
+		/// [Internal]<br/>
+		/// </summary>
+		CheckboxMode = unchecked(1048576),
 	}
 }

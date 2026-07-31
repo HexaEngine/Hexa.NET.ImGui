@@ -19,346 +19,193 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
-		public static uint DockSpaceOverViewport(ImGuiViewportPtr viewport, in ImGuiWindowClass windowClass)
+		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool selected, bool enabled)
 		{
-			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				uint ret = DockSpaceOverViewportNative((uint)(0), (ImGuiViewport*)viewport, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint DockSpaceOverViewport(uint dockspaceId, ImGuiDockNodeFlags flags, in ImGuiWindowClass windowClass)
-		{
-			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
-			{
-				uint ret = DockSpaceOverViewportNative(dockspaceId, (ImGuiViewport*)(default), flags, (ImGuiWindowClass*)pwindowClass);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint DockSpaceOverViewport(ImGuiDockNodeFlags flags, in ImGuiWindowClass windowClass)
-		{
-			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
-			{
-				uint ret = DockSpaceOverViewportNative((uint)(0), (ImGuiViewport*)(default), flags, (ImGuiWindowClass*)pwindowClass);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint DockSpaceOverViewport(ImGuiViewportPtr viewport, ImGuiDockNodeFlags flags, in ImGuiWindowClass windowClass)
-		{
-			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
-			{
-				uint ret = DockSpaceOverViewportNative((uint)(0), (ImGuiViewport*)viewport, flags, (ImGuiWindowClass*)pwindowClass);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint DockSpaceOverViewport(uint dockspaceId, in ImGuiViewport viewport, ImGuiDockNodeFlags flags, in ImGuiWindowClass windowClass)
-		{
-			fixed (ImGuiViewport* pviewport = &viewport)
-			{
-				fixed (ImGuiWindowClass* pwindowClass = &windowClass)
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					uint ret = DockSpaceOverViewportNative(dockspaceId, (ImGuiViewport*)pviewport, flags, (ImGuiWindowClass*)pwindowClass);
-					return ret;
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint DockSpaceOverViewport(uint dockspaceId, in ImGuiViewport viewport, in ImGuiWindowClass windowClass)
-		{
-			fixed (ImGuiViewport* pviewport = &viewport)
-			{
-				fixed (ImGuiWindowClass* pwindowClass = &windowClass)
+				else
 				{
-					uint ret = DockSpaceOverViewportNative(dockspaceId, (ImGuiViewport*)pviewport, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
-					return ret;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint DockSpaceOverViewport(in ImGuiViewport viewport, in ImGuiWindowClass windowClass)
-		{
-			fixed (ImGuiViewport* pviewport = &viewport)
+			fixed (byte* pshortcut = shortcut)
 			{
-				fixed (ImGuiWindowClass* pwindowClass = &windowClass)
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					uint ret = DockSpaceOverViewportNative((uint)(0), (ImGuiViewport*)pviewport, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
-					return ret;
+					Utils.Free(pStr0);
 				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// return true when activated.<br/>
 		/// </summary>
-		public static uint DockSpaceOverViewport(in ImGuiViewport viewport, ImGuiDockNodeFlags flags, in ImGuiWindowClass windowClass)
+		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool selected)
 		{
-			fixed (ImGuiViewport* pviewport = &viewport)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
 			{
-				fixed (ImGuiWindowClass* pwindowClass = &windowClass)
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					uint ret = DockSpaceOverViewportNative((uint)(0), (ImGuiViewport*)pviewport, flags, (ImGuiWindowClass*)pwindowClass);
-					return ret;
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// set next window dock id<br/>
+		/// return true when activated.<br/>
+		/// </summary>
+		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, (byte)(0), (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetNextWindowDockIDNative(uint dockId, ImGuiCond cond)
+		internal static byte MenuItemNative(byte* label, byte* shortcut, bool* pSelected, byte enabled)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint, ImGuiCond, void>)funcTable[311])(dockId, cond);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, bool*, byte, byte>)funcTable[257])(label, shortcut, pSelected, enabled);
 			#else
-			((delegate* unmanaged[Cdecl]<uint, ImGuiCond, void>)funcTable[311])(dockId, cond);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, byte, byte>)funcTable[257])((nint)label, (nint)shortcut, (nint)pSelected, enabled);
 			#endif
 		}
 
 		/// <summary>
-		/// set next window dock id<br/>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		public static void SetNextWindowDockID(uint dockId, ImGuiCond cond)
+		public static bool MenuItem(byte* label, byte* shortcut, bool* pSelected, bool enabled)
 		{
-			SetNextWindowDockIDNative(dockId, cond);
-		}
-
-		/// <summary>
-		/// set next window dock id<br/>
-		/// </summary>
-		public static void SetNextWindowDockID(uint dockId)
-		{
-			SetNextWindowDockIDNative(dockId, (ImGuiCond)(0));
-		}
-
-		/// <summary>
-		/// set next window class (control docking compatibility + provide hints to platform backend via custom viewport flags and platform parentchild relationship)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetNextWindowClassNative(ImGuiWindowClass* windowClass)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiWindowClass*, void>)funcTable[312])(windowClass);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[312])((nint)windowClass);
-			#endif
-		}
-
-		/// <summary>
-		/// set next window class (control docking compatibility + provide hints to platform backend via custom viewport flags and platform parentchild relationship)<br/>
-		/// </summary>
-		public static void SetNextWindowClass(ImGuiWindowClassPtr windowClass)
-		{
-			SetNextWindowClassNative((ImGuiWindowClass*)windowClass);
-		}
-
-		/// <summary>
-		/// set next window class (control docking compatibility + provide hints to platform backend via custom viewport flags and platform parentchild relationship)<br/>
-		/// </summary>
-		public static void SetNextWindowClass(in ImGuiWindowClass windowClass)
-		{
-			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
-			{
-				SetNextWindowClassNative((ImGuiWindowClass*)pwindowClass);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetWindowDockIDNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint>)funcTable[313])();
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint>)funcTable[313])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetWindowDockID()
-		{
-			uint ret = GetWindowDockIDNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// is current window docked into another window?<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsWindowDockedNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[314])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[314])();
-			#endif
-		}
-
-		/// <summary>
-		/// is current window docked into another window?<br/>
-		/// </summary>
-		public static bool IsWindowDocked()
-		{
-			byte ret = IsWindowDockedNative();
+			byte ret = MenuItemNative(label, shortcut, pSelected, enabled ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
 		/// <summary>
-		/// start logging to tty (stdout)<br/>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogToTTYNative(int autoOpenDepth)
+		public static bool MenuItem(byte* label, byte* shortcut, bool* pSelected)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[315])(autoOpenDepth);
-			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[315])(autoOpenDepth);
-			#endif
+			byte ret = MenuItemNative(label, shortcut, pSelected, (byte)(1));
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// start logging to tty (stdout)<br/>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		public static void LogToTTY(int autoOpenDepth)
+		public static bool MenuItem(in byte label, byte* shortcut, bool* pSelected, bool enabled)
 		{
-			LogToTTYNative(autoOpenDepth);
-		}
-
-		/// <summary>
-		/// start logging to tty (stdout)<br/>
-		/// </summary>
-		public static void LogToTTY()
-		{
-			LogToTTYNative((int)(-1));
-		}
-
-		/// <summary>
-		/// start logging to file<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogToFileNative(int autoOpenDepth, byte* filename)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, byte*, void>)funcTable[316])(autoOpenDepth, filename);
-			#else
-			((delegate* unmanaged[Cdecl]<int, nint, void>)funcTable[316])(autoOpenDepth, (nint)filename);
-			#endif
-		}
-
-		/// <summary>
-		/// start logging to file<br/>
-		/// </summary>
-		public static void LogToFile(int autoOpenDepth, byte* filename)
-		{
-			LogToFileNative(autoOpenDepth, filename);
-		}
-
-		/// <summary>
-		/// start logging to file<br/>
-		/// </summary>
-		public static void LogToFile(int autoOpenDepth)
-		{
-			LogToFileNative(autoOpenDepth, (byte*)(default));
-		}
-
-		/// <summary>
-		/// start logging to file<br/>
-		/// </summary>
-		public static void LogToFile()
-		{
-			LogToFileNative((int)(-1), (byte*)(default));
-		}
-
-		/// <summary>
-		/// start logging to file<br/>
-		/// </summary>
-		public static void LogToFile(byte* filename)
-		{
-			LogToFileNative((int)(-1), filename);
-		}
-
-		/// <summary>
-		/// start logging to file<br/>
-		/// </summary>
-		public static void LogToFile(int autoOpenDepth, in byte filename)
-		{
-			fixed (byte* pfilename = &filename)
+			fixed (byte* plabel = &label)
 			{
-				LogToFileNative(autoOpenDepth, (byte*)pfilename);
+				byte ret = MenuItemNative((byte*)plabel, shortcut, pSelected, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		public static void LogToFile(in byte filename)
+		public static bool MenuItem(in byte label, byte* shortcut, bool* pSelected)
 		{
-			fixed (byte* pfilename = &filename)
+			fixed (byte* plabel = &label)
 			{
-				LogToFileNative((int)(-1), (byte*)pfilename);
+				byte ret = MenuItemNative((byte*)plabel, shortcut, pSelected, (byte)(1));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		public static void LogToFile(int autoOpenDepth, ReadOnlySpan<byte> filename)
+		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, bool* pSelected, bool enabled)
 		{
-			fixed (byte* pfilename = filename)
+			fixed (byte* plabel = label)
 			{
-				LogToFileNative(autoOpenDepth, (byte*)pfilename);
+				byte ret = MenuItemNative((byte*)plabel, shortcut, pSelected, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		public static void LogToFile(ReadOnlySpan<byte> filename)
+		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, bool* pSelected)
 		{
-			fixed (byte* pfilename = filename)
+			fixed (byte* plabel = label)
 			{
-				LogToFileNative((int)(-1), (byte*)pfilename);
+				byte ret = MenuItemNative((byte*)plabel, shortcut, pSelected, (byte)(1));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		public static void LogToFile(int autoOpenDepth, string filename)
+		public static bool MenuItem(string label, byte* shortcut, bool* pSelected, bool enabled)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (filename != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(filename);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -368,26 +215,27 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			LogToFileNative(autoOpenDepth, pStr0);
+			byte ret = MenuItemNative(pStr0, shortcut, pSelected, enabled ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// start logging to file<br/>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
 		/// </summary>
-		public static void LogToFile(string filename)
+		public static bool MenuItem(string label, byte* shortcut, bool* pSelected)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (filename != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(filename);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -397,134 +245,1523 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			LogToFileNative((int)(-1), pStr0);
+			byte ret = MenuItemNative(pStr0, shortcut, pSelected, (byte)(1));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// start logging to OS clipboard<br/>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, in byte shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* pshortcut = &shortcut)
+			{
+				byte ret = MenuItemNative(label, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, in byte shortcut, bool* pSelected)
+		{
+			fixed (byte* pshortcut = &shortcut)
+			{
+				byte ret = MenuItemNative(label, (byte*)pshortcut, pSelected, (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(label, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, bool* pSelected)
+		{
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(label, (byte*)pshortcut, pSelected, (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, string shortcut, bool* pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (shortcut != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemNative(label, pStr0, pSelected, enabled ? (byte)1 : (byte)0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, string shortcut, bool* pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (shortcut != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemNative(label, pStr0, pSelected, (byte)(1));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, in byte shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, in byte shortcut, bool* pSelected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, bool* pSelected)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, string shortcut, bool* pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (shortcut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = MenuItemNative(pStr0, pStr1, pSelected, enabled ? (byte)1 : (byte)0);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, string shortcut, bool* pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (shortcut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = MenuItemNative(pStr0, pStr1, pSelected, (byte)(1));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, ReadOnlySpan<byte> shortcut, bool* pSelected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, string shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = MenuItemNative((byte*)plabel, pStr0, pSelected, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, string shortcut, bool* pSelected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = MenuItemNative((byte*)plabel, pStr0, pSelected, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, in byte shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, in byte shortcut, bool* pSelected)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, bool* pSelected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = MenuItemNative((byte*)plabel, pStr0, pSelected, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, bool* pSelected)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = MenuItemNative((byte*)plabel, pStr0, pSelected, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, in byte shortcut, bool* pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = &shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, in byte shortcut, bool* pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = &shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, pSelected, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool* pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, bool* pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = shortcut)
+			{
+				byte ret = MenuItemNative(pStr0, (byte*)pshortcut, pSelected, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, byte* shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(label, shortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, byte* shortcut, ref bool pSelected)
+		{
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(label, shortcut, (bool*)ppSelected, (byte)(1));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, byte* shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, shortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, byte* shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, shortcut, (bool*)ppSelected, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, shortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, byte* shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, shortcut, (bool*)ppSelected, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, byte* shortcut, ref bool pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(pStr0, shortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, byte* shortcut, ref bool pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(pStr0, shortcut, (bool*)ppSelected, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, in byte shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* pshortcut = &shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(label, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, in byte shortcut, ref bool pSelected)
+		{
+			fixed (byte* pshortcut = &shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(label, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* pshortcut = shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(label, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
+		{
+			fixed (byte* pshortcut = shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(label, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, string shortcut, ref bool pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (shortcut != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(label, pStr0, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(byte* label, string shortcut, ref bool pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (shortcut != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(label, pStr0, (bool*)ppSelected, (byte)(1));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, in byte shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, in byte shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, string shortcut, ref bool pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (shortcut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(pStr0, pStr1, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, string shortcut, ref bool pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (shortcut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (bool* ppSelected = &pSelected)
+			{
+				byte ret = MenuItemNative(pStr0, pStr1, (bool*)ppSelected, (byte)(1));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, string shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, pStr0, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(in byte label, string shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, pStr0, (bool*)ppSelected, (byte)(1));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, in byte shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, in byte shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					fixed (bool* ppSelected = &pSelected)
+					{
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, ref bool pSelected, bool enabled)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, pStr0, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(ReadOnlySpan<byte> label, string shortcut, ref bool pSelected)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (shortcut != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative((byte*)plabel, pStr0, (bool*)ppSelected, (byte)(1));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, in byte shortcut, ref bool pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = &shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(pStr0, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, in byte shortcut, ref bool pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = &shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(pStr0, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, ref bool pSelected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(pStr0, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true when activated + toggle (*p_selected) if p_selected != NULL<br/>
+		/// </summary>
+		public static bool MenuItem(string label, ReadOnlySpan<byte> shortcut, ref bool pSelected)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pshortcut = shortcut)
+			{
+				fixed (bool* ppSelected = &pSelected)
+				{
+					byte ret = MenuItemNative(pStr0, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Tooltips<br/>
+		/// - Tooltips are windows following the mouse. They do not take focus away.<br/>
+		/// - A tooltip window can contain items of any types.<br/>
+		/// - SetTooltip() is more or less a shortcut for the 'if (BeginTooltip())  Text(...); EndTooltip(); ' idiom (with a subtlety that it discard any previously submitted tooltip) beginappend a tooltip window.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogToClipboardNative(int autoOpenDepth)
+		internal static byte BeginTooltipNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[317])(autoOpenDepth);
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[258])();
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[317])(autoOpenDepth);
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[258])();
 			#endif
 		}
 
 		/// <summary>
-		/// start logging to OS clipboard<br/>
+		/// Tooltips<br/>
+		/// - Tooltips are windows following the mouse. They do not take focus away.<br/>
+		/// - A tooltip window can contain items of any types.<br/>
+		/// - SetTooltip() is more or less a shortcut for the 'if (BeginTooltip())  Text(...); EndTooltip(); ' idiom (with a subtlety that it discard any previously submitted tooltip) beginappend a tooltip window.<br/>
 		/// </summary>
-		public static void LogToClipboard(int autoOpenDepth)
+		public static bool BeginTooltip()
 		{
-			LogToClipboardNative(autoOpenDepth);
+			byte ret = BeginTooltipNative();
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// start logging to OS clipboard<br/>
-		/// </summary>
-		public static void LogToClipboard()
-		{
-			LogToClipboardNative((int)(-1));
-		}
-
-		/// <summary>
-		/// stop logging (close file, etc.)<br/>
+		/// only call EndTooltip() if BeginTooltip()BeginItemTooltip() returns true!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogFinishNative()
+		internal static void EndTooltipNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[318])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[259])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[318])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[259])();
 			#endif
 		}
 
 		/// <summary>
-		/// stop logging (close file, etc.)<br/>
+		/// only call EndTooltip() if BeginTooltip()BeginItemTooltip() returns true!<br/>
 		/// </summary>
-		public static void LogFinish()
+		public static void EndTooltip()
 		{
-			LogFinishNative();
+			EndTooltipNative();
 		}
 
 		/// <summary>
-		/// helper to display buttons for logging to ttyfileclipboard<br/>
+		/// set a text-only tooltip. Often used after a ImGui::IsItemHovered() check. Override any previous call to SetTooltip().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogButtonsNative()
+		internal static void SetTooltipNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[319])();
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[260])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[319])();
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[260])((nint)fmt);
 			#endif
 		}
 
 		/// <summary>
-		/// helper to display buttons for logging to ttyfileclipboard<br/>
+		/// set a text-only tooltip. Often used after a ImGui::IsItemHovered() check. Override any previous call to SetTooltip().<br/>
 		/// </summary>
-		public static void LogButtons()
+		public static void SetTooltip(byte* fmt)
 		{
-			LogButtonsNative();
+			SetTooltipNative(fmt);
 		}
 
 		/// <summary>
-		/// pass text data straight to log (without being displayed)<br/>
+		/// set a text-only tooltip. Often used after a ImGui::IsItemHovered() check. Override any previous call to SetTooltip().<br/>
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogTextNative(byte* fmt)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[320])(fmt);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[320])((nint)fmt);
-			#endif
-		}
-
-		/// <summary>
-		/// pass text data straight to log (without being displayed)<br/>
-		/// </summary>
-		public static void LogText(byte* fmt)
-		{
-			LogTextNative(fmt);
-		}
-
-		/// <summary>
-		/// pass text data straight to log (without being displayed)<br/>
-		/// </summary>
-		public static void LogText(in byte fmt)
+		public static void SetTooltip(in byte fmt)
 		{
 			fixed (byte* pfmt = &fmt)
 			{
-				LogTextNative((byte*)pfmt);
+				SetTooltipNative((byte*)pfmt);
 			}
 		}
 
 		/// <summary>
-		/// pass text data straight to log (without being displayed)<br/>
+		/// set a text-only tooltip. Often used after a ImGui::IsItemHovered() check. Override any previous call to SetTooltip().<br/>
 		/// </summary>
-		public static void LogText(ReadOnlySpan<byte> fmt)
+		public static void SetTooltip(ReadOnlySpan<byte> fmt)
 		{
 			fixed (byte* pfmt = fmt)
 			{
-				LogTextNative((byte*)pfmt);
+				SetTooltipNative((byte*)pfmt);
 			}
 		}
 
 		/// <summary>
-		/// pass text data straight to log (without being displayed)<br/>
+		/// set a text-only tooltip. Often used after a ImGui::IsItemHovered() check. Override any previous call to SetTooltip().<br/>
 		/// </summary>
-		public static void LogText(string fmt)
+		public static void SetTooltip(string fmt)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -543,7 +1780,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			LogTextNative(pStr0);
+			SetTooltipNative(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -554,49 +1791,49 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LogTextVNative(byte* fmt, nuint args)
+		internal static void SetTooltipVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[321])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[261])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[321])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[261])((nint)fmt, args);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void LogTextV(byte* fmt, nuint args)
+		public static void SetTooltipV(byte* fmt, nuint args)
 		{
-			LogTextVNative(fmt, args);
+			SetTooltipVNative(fmt, args);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void LogTextV(in byte fmt, nuint args)
+		public static void SetTooltipV(in byte fmt, nuint args)
 		{
 			fixed (byte* pfmt = &fmt)
 			{
-				LogTextVNative((byte*)pfmt, args);
+				SetTooltipVNative((byte*)pfmt, args);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void LogTextV(ReadOnlySpan<byte> fmt, nuint args)
+		public static void SetTooltipV(ReadOnlySpan<byte> fmt, nuint args)
 		{
 			fixed (byte* pfmt = fmt)
 			{
-				LogTextVNative((byte*)pfmt, args);
+				SetTooltipVNative((byte*)pfmt, args);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void LogTextV(string fmt, nuint args)
+		public static void SetTooltipV(string fmt, nuint args)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -615,7 +1852,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			LogTextVNative(pStr0, args);
+			SetTooltipVNative(pStr0, args);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -623,125 +1860,338 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// call after submitting an item which may be dragged. when this return true, you can call SetDragDropPayload() + EndDragDropSource()<br/>
+		/// Tooltips: helpers for showing a tooltip when hovering an item<br/>
+		/// - BeginItemTooltip() is a shortcut for the 'if (IsItemHovered(ImGuiHoveredFlags_ForTooltip) &amp;&amp; BeginTooltip())' idiom.<br/>
+		/// - SetItemTooltip() is a shortcut for the 'if (IsItemHovered(ImGuiHoveredFlags_ForTooltip))  SetTooltip(...); ' idiom.<br/>
+		/// - Where 'ImGuiHoveredFlags_ForTooltip' itself is a shortcut to use 'style.HoverFlagsForTooltipMouse' or 'style.HoverFlagsForTooltipNav' depending on active input type. For mouse it defaults to 'ImGuiHoveredFlags_Stationary | ImGuiHoveredFlags_DelayShort'. beginappend a tooltip window if preceding item was hovered.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte BeginDragDropSourceNative(ImGuiDragDropFlags flags)
+		internal static byte BeginItemTooltipNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDragDropFlags, byte>)funcTable[322])(flags);
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[262])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiDragDropFlags, byte>)funcTable[322])(flags);
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[262])();
 			#endif
 		}
 
 		/// <summary>
-		/// call after submitting an item which may be dragged. when this return true, you can call SetDragDropPayload() + EndDragDropSource()<br/>
+		/// Tooltips: helpers for showing a tooltip when hovering an item<br/>
+		/// - BeginItemTooltip() is a shortcut for the 'if (IsItemHovered(ImGuiHoveredFlags_ForTooltip) &amp;&amp; BeginTooltip())' idiom.<br/>
+		/// - SetItemTooltip() is a shortcut for the 'if (IsItemHovered(ImGuiHoveredFlags_ForTooltip))  SetTooltip(...); ' idiom.<br/>
+		/// - Where 'ImGuiHoveredFlags_ForTooltip' itself is a shortcut to use 'style.HoverFlagsForTooltipMouse' or 'style.HoverFlagsForTooltipNav' depending on active input type. For mouse it defaults to 'ImGuiHoveredFlags_Stationary | ImGuiHoveredFlags_DelayShort'. beginappend a tooltip window if preceding item was hovered.<br/>
 		/// </summary>
-		public static bool BeginDragDropSource(ImGuiDragDropFlags flags)
+		public static bool BeginItemTooltip()
 		{
-			byte ret = BeginDragDropSourceNative(flags);
+			byte ret = BeginItemTooltipNative();
 			return ret != 0;
 		}
 
 		/// <summary>
-		/// call after submitting an item which may be dragged. when this return true, you can call SetDragDropPayload() + EndDragDropSource()<br/>
-		/// </summary>
-		public static bool BeginDragDropSource()
-		{
-			byte ret = BeginDragDropSourceNative((ImGuiDragDropFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte SetDragDropPayloadNative(byte* type, void* data, nuint sz, ImGuiCond cond)
+		internal static void SetItemTooltipNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, void*, nuint, ImGuiCond, byte>)funcTable[323])(type, data, sz, cond);
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[263])(fmt);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nuint, ImGuiCond, byte>)funcTable[323])((nint)type, (nint)data, sz, cond);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[263])((nint)fmt);
 			#endif
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().<br/>
 		/// </summary>
-		public static bool SetDragDropPayload(byte* type, void* data, nuint sz, ImGuiCond cond)
+		public static void SetItemTooltip(byte* fmt)
 		{
-			byte ret = SetDragDropPayloadNative(type, data, sz, cond);
-			return ret != 0;
+			SetItemTooltipNative(fmt);
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().<br/>
 		/// </summary>
-		public static bool SetDragDropPayload(byte* type, void* data, nuint sz)
+		public static void SetItemTooltip(in byte fmt)
 		{
-			byte ret = SetDragDropPayloadNative(type, data, sz, (ImGuiCond)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
-		/// </summary>
-		public static bool SetDragDropPayload(in byte type, void* data, nuint sz, ImGuiCond cond)
-		{
-			fixed (byte* ptype = &type)
+			fixed (byte* pfmt = &fmt)
 			{
-				byte ret = SetDragDropPayloadNative((byte*)ptype, data, sz, cond);
+				SetItemTooltipNative((byte*)pfmt);
+			}
+		}
+
+		/// <summary>
+		/// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().<br/>
+		/// </summary>
+		public static void SetItemTooltip(ReadOnlySpan<byte> fmt)
+		{
+			fixed (byte* pfmt = fmt)
+			{
+				SetItemTooltipNative((byte*)pfmt);
+			}
+		}
+
+		/// <summary>
+		/// set a text-only tooltip if preceding item was hovered. override any previous call to SetTooltip().<br/>
+		/// </summary>
+		public static void SetItemTooltip(string fmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			SetItemTooltipNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetItemTooltipVNative(byte* fmt, nuint args)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[264])(fmt, args);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[264])((nint)fmt, args);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetItemTooltipV(byte* fmt, nuint args)
+		{
+			SetItemTooltipVNative(fmt, args);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetItemTooltipV(in byte fmt, nuint args)
+		{
+			fixed (byte* pfmt = &fmt)
+			{
+				SetItemTooltipVNative((byte*)pfmt, args);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetItemTooltipV(ReadOnlySpan<byte> fmt, nuint args)
+		{
+			fixed (byte* pfmt = fmt)
+			{
+				SetItemTooltipVNative((byte*)pfmt, args);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetItemTooltipV(string fmt, nuint args)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			SetItemTooltipVNative(pStr0, args);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// Popups, Modals<br/>
+		/// - They block normal mouse hovering detection (and therefore most mouse interactions) behind them.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing Escape (call 'Shortcut(ImGuiKey_Escape)' to claim a higher-priority shortcut).<br/>
+		/// - Their visibility state (~bool) is held internally instead of being held by the programmer as we are used to with regular Begin*() calls.<br/>
+		/// - The 3 properties above are related: we need to retain popup visibility state in the library because popups may be closed as any time.<br/>
+		/// - You can bypass the hovering restriction by using ImGuiHoveredFlags_AllowWhenBlockedByPopup when calling IsItemHovered() or IsWindowHovered().<br/>
+		/// - IMPORTANT: Popup identifiers are relative to the current ID stack, so OpenPopup and BeginPopup generally needs to be at the same level of the stack.<br/>
+		/// This is sometimes leading to confusing mistakes. May rework this in the future.<br/>
+		/// - BeginPopup(): query popup state, if open start appending into the window. Call EndPopup() afterwards if returned true. ImGuiWindowFlags are forwarded to the window.<br/>
+		/// - BeginPopupModal(): block every interaction behind the window, cannot be closed by user, add a dimming background, has a title bar. return true if the popup is open, and you can start outputting to it.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte BeginPopupNative(byte* strId, ImGuiWindowFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiWindowFlags, byte>)funcTable[265])(strId, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiWindowFlags, byte>)funcTable[265])((nint)strId, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// Popups, Modals<br/>
+		/// - They block normal mouse hovering detection (and therefore most mouse interactions) behind them.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing Escape (call 'Shortcut(ImGuiKey_Escape)' to claim a higher-priority shortcut).<br/>
+		/// - Their visibility state (~bool) is held internally instead of being held by the programmer as we are used to with regular Begin*() calls.<br/>
+		/// - The 3 properties above are related: we need to retain popup visibility state in the library because popups may be closed as any time.<br/>
+		/// - You can bypass the hovering restriction by using ImGuiHoveredFlags_AllowWhenBlockedByPopup when calling IsItemHovered() or IsWindowHovered().<br/>
+		/// - IMPORTANT: Popup identifiers are relative to the current ID stack, so OpenPopup and BeginPopup generally needs to be at the same level of the stack.<br/>
+		/// This is sometimes leading to confusing mistakes. May rework this in the future.<br/>
+		/// - BeginPopup(): query popup state, if open start appending into the window. Call EndPopup() afterwards if returned true. ImGuiWindowFlags are forwarded to the window.<br/>
+		/// - BeginPopupModal(): block every interaction behind the window, cannot be closed by user, add a dimming background, has a title bar. return true if the popup is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopup(byte* strId, ImGuiWindowFlags flags)
+		{
+			byte ret = BeginPopupNative(strId, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Popups, Modals<br/>
+		/// - They block normal mouse hovering detection (and therefore most mouse interactions) behind them.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing Escape (call 'Shortcut(ImGuiKey_Escape)' to claim a higher-priority shortcut).<br/>
+		/// - Their visibility state (~bool) is held internally instead of being held by the programmer as we are used to with regular Begin*() calls.<br/>
+		/// - The 3 properties above are related: we need to retain popup visibility state in the library because popups may be closed as any time.<br/>
+		/// - You can bypass the hovering restriction by using ImGuiHoveredFlags_AllowWhenBlockedByPopup when calling IsItemHovered() or IsWindowHovered().<br/>
+		/// - IMPORTANT: Popup identifiers are relative to the current ID stack, so OpenPopup and BeginPopup generally needs to be at the same level of the stack.<br/>
+		/// This is sometimes leading to confusing mistakes. May rework this in the future.<br/>
+		/// - BeginPopup(): query popup state, if open start appending into the window. Call EndPopup() afterwards if returned true. ImGuiWindowFlags are forwarded to the window.<br/>
+		/// - BeginPopupModal(): block every interaction behind the window, cannot be closed by user, add a dimming background, has a title bar. return true if the popup is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopup(byte* strId)
+		{
+			byte ret = BeginPopupNative(strId, (ImGuiWindowFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Popups, Modals<br/>
+		/// - They block normal mouse hovering detection (and therefore most mouse interactions) behind them.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing Escape (call 'Shortcut(ImGuiKey_Escape)' to claim a higher-priority shortcut).<br/>
+		/// - Their visibility state (~bool) is held internally instead of being held by the programmer as we are used to with regular Begin*() calls.<br/>
+		/// - The 3 properties above are related: we need to retain popup visibility state in the library because popups may be closed as any time.<br/>
+		/// - You can bypass the hovering restriction by using ImGuiHoveredFlags_AllowWhenBlockedByPopup when calling IsItemHovered() or IsWindowHovered().<br/>
+		/// - IMPORTANT: Popup identifiers are relative to the current ID stack, so OpenPopup and BeginPopup generally needs to be at the same level of the stack.<br/>
+		/// This is sometimes leading to confusing mistakes. May rework this in the future.<br/>
+		/// - BeginPopup(): query popup state, if open start appending into the window. Call EndPopup() afterwards if returned true. ImGuiWindowFlags are forwarded to the window.<br/>
+		/// - BeginPopupModal(): block every interaction behind the window, cannot be closed by user, add a dimming background, has a title bar. return true if the popup is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopup(in byte strId, ImGuiWindowFlags flags)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = BeginPopupNative((byte*)pstrId, flags);
 				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// Popups, Modals<br/>
+		/// - They block normal mouse hovering detection (and therefore most mouse interactions) behind them.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing Escape (call 'Shortcut(ImGuiKey_Escape)' to claim a higher-priority shortcut).<br/>
+		/// - Their visibility state (~bool) is held internally instead of being held by the programmer as we are used to with regular Begin*() calls.<br/>
+		/// - The 3 properties above are related: we need to retain popup visibility state in the library because popups may be closed as any time.<br/>
+		/// - You can bypass the hovering restriction by using ImGuiHoveredFlags_AllowWhenBlockedByPopup when calling IsItemHovered() or IsWindowHovered().<br/>
+		/// - IMPORTANT: Popup identifiers are relative to the current ID stack, so OpenPopup and BeginPopup generally needs to be at the same level of the stack.<br/>
+		/// This is sometimes leading to confusing mistakes. May rework this in the future.<br/>
+		/// - BeginPopup(): query popup state, if open start appending into the window. Call EndPopup() afterwards if returned true. ImGuiWindowFlags are forwarded to the window.<br/>
+		/// - BeginPopupModal(): block every interaction behind the window, cannot be closed by user, add a dimming background, has a title bar. return true if the popup is open, and you can start outputting to it.<br/>
 		/// </summary>
-		public static bool SetDragDropPayload(in byte type, void* data, nuint sz)
+		public static bool BeginPopup(in byte strId)
 		{
-			fixed (byte* ptype = &type)
+			fixed (byte* pstrId = &strId)
 			{
-				byte ret = SetDragDropPayloadNative((byte*)ptype, data, sz, (ImGuiCond)(0));
+				byte ret = BeginPopupNative((byte*)pstrId, (ImGuiWindowFlags)(0));
 				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// Popups, Modals<br/>
+		/// - They block normal mouse hovering detection (and therefore most mouse interactions) behind them.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing Escape (call 'Shortcut(ImGuiKey_Escape)' to claim a higher-priority shortcut).<br/>
+		/// - Their visibility state (~bool) is held internally instead of being held by the programmer as we are used to with regular Begin*() calls.<br/>
+		/// - The 3 properties above are related: we need to retain popup visibility state in the library because popups may be closed as any time.<br/>
+		/// - You can bypass the hovering restriction by using ImGuiHoveredFlags_AllowWhenBlockedByPopup when calling IsItemHovered() or IsWindowHovered().<br/>
+		/// - IMPORTANT: Popup identifiers are relative to the current ID stack, so OpenPopup and BeginPopup generally needs to be at the same level of the stack.<br/>
+		/// This is sometimes leading to confusing mistakes. May rework this in the future.<br/>
+		/// - BeginPopup(): query popup state, if open start appending into the window. Call EndPopup() afterwards if returned true. ImGuiWindowFlags are forwarded to the window.<br/>
+		/// - BeginPopupModal(): block every interaction behind the window, cannot be closed by user, add a dimming background, has a title bar. return true if the popup is open, and you can start outputting to it.<br/>
 		/// </summary>
-		public static bool SetDragDropPayload(ReadOnlySpan<byte> type, void* data, nuint sz, ImGuiCond cond)
+		public static bool BeginPopup(ReadOnlySpan<byte> strId, ImGuiWindowFlags flags)
 		{
-			fixed (byte* ptype = type)
+			fixed (byte* pstrId = strId)
 			{
-				byte ret = SetDragDropPayloadNative((byte*)ptype, data, sz, cond);
+				byte ret = BeginPopupNative((byte*)pstrId, flags);
 				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// Popups, Modals<br/>
+		/// - They block normal mouse hovering detection (and therefore most mouse interactions) behind them.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing Escape (call 'Shortcut(ImGuiKey_Escape)' to claim a higher-priority shortcut).<br/>
+		/// - Their visibility state (~bool) is held internally instead of being held by the programmer as we are used to with regular Begin*() calls.<br/>
+		/// - The 3 properties above are related: we need to retain popup visibility state in the library because popups may be closed as any time.<br/>
+		/// - You can bypass the hovering restriction by using ImGuiHoveredFlags_AllowWhenBlockedByPopup when calling IsItemHovered() or IsWindowHovered().<br/>
+		/// - IMPORTANT: Popup identifiers are relative to the current ID stack, so OpenPopup and BeginPopup generally needs to be at the same level of the stack.<br/>
+		/// This is sometimes leading to confusing mistakes. May rework this in the future.<br/>
+		/// - BeginPopup(): query popup state, if open start appending into the window. Call EndPopup() afterwards if returned true. ImGuiWindowFlags are forwarded to the window.<br/>
+		/// - BeginPopupModal(): block every interaction behind the window, cannot be closed by user, add a dimming background, has a title bar. return true if the popup is open, and you can start outputting to it.<br/>
 		/// </summary>
-		public static bool SetDragDropPayload(ReadOnlySpan<byte> type, void* data, nuint sz)
+		public static bool BeginPopup(ReadOnlySpan<byte> strId)
 		{
-			fixed (byte* ptype = type)
+			fixed (byte* pstrId = strId)
 			{
-				byte ret = SetDragDropPayloadNative((byte*)ptype, data, sz, (ImGuiCond)(0));
+				byte ret = BeginPopupNative((byte*)pstrId, (ImGuiWindowFlags)(0));
 				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// Popups, Modals<br/>
+		/// - They block normal mouse hovering detection (and therefore most mouse interactions) behind them.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing Escape (call 'Shortcut(ImGuiKey_Escape)' to claim a higher-priority shortcut).<br/>
+		/// - Their visibility state (~bool) is held internally instead of being held by the programmer as we are used to with regular Begin*() calls.<br/>
+		/// - The 3 properties above are related: we need to retain popup visibility state in the library because popups may be closed as any time.<br/>
+		/// - You can bypass the hovering restriction by using ImGuiHoveredFlags_AllowWhenBlockedByPopup when calling IsItemHovered() or IsWindowHovered().<br/>
+		/// - IMPORTANT: Popup identifiers are relative to the current ID stack, so OpenPopup and BeginPopup generally needs to be at the same level of the stack.<br/>
+		/// This is sometimes leading to confusing mistakes. May rework this in the future.<br/>
+		/// - BeginPopup(): query popup state, if open start appending into the window. Call EndPopup() afterwards if returned true. ImGuiWindowFlags are forwarded to the window.<br/>
+		/// - BeginPopupModal(): block every interaction behind the window, cannot be closed by user, add a dimming background, has a title bar. return true if the popup is open, and you can start outputting to it.<br/>
 		/// </summary>
-		public static bool SetDragDropPayload(string type, void* data, nuint sz, ImGuiCond cond)
+		public static bool BeginPopup(string strId, ImGuiWindowFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (type != null)
+			if (strId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(type);
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -751,10 +2201,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SetDragDropPayloadNative(pStr0, data, sz, cond);
+			byte ret = BeginPopupNative(pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -763,15 +2213,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// Popups, Modals<br/>
+		/// - They block normal mouse hovering detection (and therefore most mouse interactions) behind them.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing Escape (call 'Shortcut(ImGuiKey_Escape)' to claim a higher-priority shortcut).<br/>
+		/// - Their visibility state (~bool) is held internally instead of being held by the programmer as we are used to with regular Begin*() calls.<br/>
+		/// - The 3 properties above are related: we need to retain popup visibility state in the library because popups may be closed as any time.<br/>
+		/// - You can bypass the hovering restriction by using ImGuiHoveredFlags_AllowWhenBlockedByPopup when calling IsItemHovered() or IsWindowHovered().<br/>
+		/// - IMPORTANT: Popup identifiers are relative to the current ID stack, so OpenPopup and BeginPopup generally needs to be at the same level of the stack.<br/>
+		/// This is sometimes leading to confusing mistakes. May rework this in the future.<br/>
+		/// - BeginPopup(): query popup state, if open start appending into the window. Call EndPopup() afterwards if returned true. ImGuiWindowFlags are forwarded to the window.<br/>
+		/// - BeginPopupModal(): block every interaction behind the window, cannot be closed by user, add a dimming background, has a title bar. return true if the popup is open, and you can start outputting to it.<br/>
 		/// </summary>
-		public static bool SetDragDropPayload(string type, void* data, nuint sz)
+		public static bool BeginPopup(string strId)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (type != null)
+			if (strId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(type);
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -781,10 +2240,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SetDragDropPayloadNative(pStr0, data, sz, (ImGuiCond)(0));
+			byte ret = BeginPopupNative(pStr0, (ImGuiWindowFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -793,3997 +2252,250 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
-		public static bool SetDragDropPayload(byte* type, nint data, nuint sz, ImGuiCond cond)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte BeginPopupModalNative(byte* name, bool* pOpen, ImGuiWindowFlags flags)
 		{
-			byte ret = SetDragDropPayloadNative(type, (void*)data, sz, cond);
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, bool*, ImGuiWindowFlags, byte>)funcTable[266])(name, pOpen, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiWindowFlags, byte>)funcTable[266])((nint)name, (nint)pOpen, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopupModal(byte* name, bool* pOpen, ImGuiWindowFlags flags)
+		{
+			byte ret = BeginPopupModalNative(name, pOpen, flags);
 			return ret != 0;
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
-		public static bool SetDragDropPayload(byte* type, nint data, nuint sz)
+		public static bool BeginPopupModal(byte* name, bool* pOpen)
 		{
-			byte ret = SetDragDropPayloadNative(type, (void*)data, sz, (ImGuiCond)(0));
+			byte ret = BeginPopupModalNative(name, pOpen, (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
-		public static bool SetDragDropPayload(in byte type, nint data, nuint sz, ImGuiCond cond)
+		public static bool BeginPopupModal(byte* name)
 		{
-			fixed (byte* ptype = &type)
+			byte ret = BeginPopupModalNative(name, (bool*)(default), (ImGuiWindowFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopupModal(byte* name, ImGuiWindowFlags flags)
+		{
+			byte ret = BeginPopupModalNative(name, (bool*)(default), flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopupModal(in byte name, bool* pOpen, ImGuiWindowFlags flags)
+		{
+			fixed (byte* pname = &name)
 			{
-				byte ret = SetDragDropPayloadNative((byte*)ptype, (void*)data, sz, cond);
+				byte ret = BeginPopupModalNative((byte*)pname, pOpen, flags);
 				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
-		public static bool SetDragDropPayload(in byte type, nint data, nuint sz)
+		public static bool BeginPopupModal(in byte name, bool* pOpen)
 		{
-			fixed (byte* ptype = &type)
+			fixed (byte* pname = &name)
 			{
-				byte ret = SetDragDropPayloadNative((byte*)ptype, (void*)data, sz, (ImGuiCond)(0));
+				byte ret = BeginPopupModalNative((byte*)pname, pOpen, (ImGuiWindowFlags)(0));
 				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
-		public static bool SetDragDropPayload(ReadOnlySpan<byte> type, nint data, nuint sz, ImGuiCond cond)
+		public static bool BeginPopupModal(in byte name)
 		{
-			fixed (byte* ptype = type)
+			fixed (byte* pname = &name)
 			{
-				byte ret = SetDragDropPayloadNative((byte*)ptype, (void*)data, sz, cond);
+				byte ret = BeginPopupModalNative((byte*)pname, (bool*)(default), (ImGuiWindowFlags)(0));
 				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
-		public static bool SetDragDropPayload(ReadOnlySpan<byte> type, nint data, nuint sz)
+		public static bool BeginPopupModal(in byte name, ImGuiWindowFlags flags)
 		{
-			fixed (byte* ptype = type)
+			fixed (byte* pname = &name)
 			{
-				byte ret = SetDragDropPayloadNative((byte*)ptype, (void*)data, sz, (ImGuiCond)(0));
+				byte ret = BeginPopupModalNative((byte*)pname, (bool*)(default), flags);
 				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
-		public static bool SetDragDropPayload(string type, nint data, nuint sz, ImGuiCond cond)
+		public static bool BeginPopupModal(ReadOnlySpan<byte> name, bool* pOpen, ImGuiWindowFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (type != null)
+			fixed (byte* pname = name)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(type);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SetDragDropPayloadNative(pStr0, (void*)data, sz, cond);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// type is a user defined string of maximum 32 characters. Strings starting with '_' are reserved for dear imgui internal types. Data is copied and held by imgui. Return true when payload has been accepted.<br/>
-		/// </summary>
-		public static bool SetDragDropPayload(string type, nint data, nuint sz)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (type != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(type);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = SetDragDropPayloadNative(pStr0, (void*)data, sz, (ImGuiCond)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// only call EndDragDropSource() if BeginDragDropSource() returns true!<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void EndDragDropSourceNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[324])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[324])();
-			#endif
-		}
-
-		/// <summary>
-		/// only call EndDragDropSource() if BeginDragDropSource() returns true!<br/>
-		/// </summary>
-		public static void EndDragDropSource()
-		{
-			EndDragDropSourceNative();
-		}
-
-		/// <summary>
-		/// call after submitting an item that may receive a payload. If this returns true, you can call AcceptDragDropPayload() + EndDragDropTarget()<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte BeginDragDropTargetNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[325])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[325])();
-			#endif
-		}
-
-		/// <summary>
-		/// call after submitting an item that may receive a payload. If this returns true, you can call AcceptDragDropPayload() + EndDragDropTarget()<br/>
-		/// </summary>
-		public static bool BeginDragDropTarget()
-		{
-			byte ret = BeginDragDropTargetNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiPayload* AcceptDragDropPayloadNative(byte* type, ImGuiDragDropFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDragDropFlags, ImGuiPayload*>)funcTable[326])(type, flags);
-			#else
-			return (ImGuiPayload*)((delegate* unmanaged[Cdecl]<nint, ImGuiDragDropFlags, nint>)funcTable[326])((nint)type, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
-		/// </summary>
-		public static ImGuiPayloadPtr AcceptDragDropPayload(byte* type, ImGuiDragDropFlags flags)
-		{
-			ImGuiPayloadPtr ret = AcceptDragDropPayloadNative(type, flags);
-			return ret;
-		}
-
-		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
-		/// </summary>
-		public static ImGuiPayloadPtr AcceptDragDropPayload(byte* type)
-		{
-			ImGuiPayloadPtr ret = AcceptDragDropPayloadNative(type, (ImGuiDragDropFlags)(0));
-			return ret;
-		}
-
-		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
-		/// </summary>
-		public static ImGuiPayloadPtr AcceptDragDropPayload(in byte type, ImGuiDragDropFlags flags)
-		{
-			fixed (byte* ptype = &type)
-			{
-				ImGuiPayloadPtr ret = AcceptDragDropPayloadNative((byte*)ptype, flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
-		/// </summary>
-		public static ImGuiPayloadPtr AcceptDragDropPayload(in byte type)
-		{
-			fixed (byte* ptype = &type)
-			{
-				ImGuiPayloadPtr ret = AcceptDragDropPayloadNative((byte*)ptype, (ImGuiDragDropFlags)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
-		/// </summary>
-		public static ImGuiPayloadPtr AcceptDragDropPayload(ReadOnlySpan<byte> type, ImGuiDragDropFlags flags)
-		{
-			fixed (byte* ptype = type)
-			{
-				ImGuiPayloadPtr ret = AcceptDragDropPayloadNative((byte*)ptype, flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
-		/// </summary>
-		public static ImGuiPayloadPtr AcceptDragDropPayload(ReadOnlySpan<byte> type)
-		{
-			fixed (byte* ptype = type)
-			{
-				ImGuiPayloadPtr ret = AcceptDragDropPayloadNative((byte*)ptype, (ImGuiDragDropFlags)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
-		/// </summary>
-		public static ImGuiPayloadPtr AcceptDragDropPayload(string type, ImGuiDragDropFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (type != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(type);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImGuiPayloadPtr ret = AcceptDragDropPayloadNative(pStr0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// accept contents of a given type. If ImGuiDragDropFlags_AcceptBeforeDelivery is set you can peek into the payload before the mouse button is released.<br/>
-		/// </summary>
-		public static ImGuiPayloadPtr AcceptDragDropPayload(string type)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (type != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(type);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImGuiPayloadPtr ret = AcceptDragDropPayloadNative(pStr0, (ImGuiDragDropFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// only call EndDragDropTarget() if BeginDragDropTarget() returns true!<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void EndDragDropTargetNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[327])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[327])();
-			#endif
-		}
-
-		/// <summary>
-		/// only call EndDragDropTarget() if BeginDragDropTarget() returns true!<br/>
-		/// </summary>
-		public static void EndDragDropTarget()
-		{
-			EndDragDropTargetNative();
-		}
-
-		/// <summary>
-		/// peek directly into the current payload from anywhere. returns NULL when drag and drop is finished or inactive. use ImGuiPayload::IsDataType() to test for the payload type.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiPayload* GetDragDropPayloadNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiPayload*>)funcTable[328])();
-			#else
-			return (ImGuiPayload*)((delegate* unmanaged[Cdecl]<nint>)funcTable[328])();
-			#endif
-		}
-
-		/// <summary>
-		/// peek directly into the current payload from anywhere. returns NULL when drag and drop is finished or inactive. use ImGuiPayload::IsDataType() to test for the payload type.<br/>
-		/// </summary>
-		public static ImGuiPayloadPtr GetDragDropPayload()
-		{
-			ImGuiPayloadPtr ret = GetDragDropPayloadNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void BeginDisabledNative(byte disabled)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[329])(disabled);
-			#else
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[329])(disabled);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BeginDisabled(bool disabled)
-		{
-			BeginDisabledNative(disabled ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BeginDisabled()
-		{
-			BeginDisabledNative((byte)(1));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void EndDisabledNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[330])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[330])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void EndDisabled()
-		{
-			EndDisabledNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushClipRectNative(Vector2 clipRectMin, Vector2 clipRectMax, byte intersectWithCurrentClipRect)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, void>)funcTable[331])(clipRectMin, clipRectMax, intersectWithCurrentClipRect);
-			#else
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, void>)funcTable[331])(clipRectMin, clipRectMax, intersectWithCurrentClipRect);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PushClipRect(Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
-		{
-			PushClipRectNative(clipRectMin, clipRectMax, intersectWithCurrentClipRect ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PopClipRectNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[332])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[332])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PopClipRect()
-		{
-			PopClipRectNative();
-		}
-
-		/// <summary>
-		/// make last item the default focused item of a newly appearing window.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetItemDefaultFocusNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[333])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[333])();
-			#endif
-		}
-
-		/// <summary>
-		/// make last item the default focused item of a newly appearing window.<br/>
-		/// </summary>
-		public static void SetItemDefaultFocus()
-		{
-			SetItemDefaultFocusNative();
-		}
-
-		/// <summary>
-		/// focus keyboard on the next widget. Use positive 'offset' to access sub components of a multiple component widget. Use -1 to access previous widget.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetKeyboardFocusHereNative(int offset)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[334])(offset);
-			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[334])(offset);
-			#endif
-		}
-
-		/// <summary>
-		/// focus keyboard on the next widget. Use positive 'offset' to access sub components of a multiple component widget. Use -1 to access previous widget.<br/>
-		/// </summary>
-		public static void SetKeyboardFocusHere(int offset)
-		{
-			SetKeyboardFocusHereNative(offset);
-		}
-
-		/// <summary>
-		/// focus keyboard on the next widget. Use positive 'offset' to access sub components of a multiple component widget. Use -1 to access previous widget.<br/>
-		/// </summary>
-		public static void SetKeyboardFocusHere()
-		{
-			SetKeyboardFocusHereNative((int)(0));
-		}
-
-		/// <summary>
-		/// alter visibility of keyboardgamepad cursor. by default: show when using an arrow key, hide when clicking with mouse.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetNavCursorVisibleNative(byte visible)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[335])(visible);
-			#else
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[335])(visible);
-			#endif
-		}
-
-		/// <summary>
-		/// alter visibility of keyboardgamepad cursor. by default: show when using an arrow key, hide when clicking with mouse.<br/>
-		/// </summary>
-		public static void SetNavCursorVisible(bool visible)
-		{
-			SetNavCursorVisibleNative(visible ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// allow next item to be overlapped by a subsequent item. Useful with invisible buttons, selectable, treenode covering an area where subsequent items may need to be added. Note that both Selectable() and TreeNode() have dedicated flags doing this.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetNextItemAllowOverlapNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[336])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[336])();
-			#endif
-		}
-
-		/// <summary>
-		/// allow next item to be overlapped by a subsequent item. Useful with invisible buttons, selectable, treenode covering an area where subsequent items may need to be added. Note that both Selectable() and TreeNode() have dedicated flags doing this.<br/>
-		/// </summary>
-		public static void SetNextItemAllowOverlap()
-		{
-			SetNextItemAllowOverlapNative();
-		}
-
-		/// <summary>
-		/// is the last item hovered? (and usable, aka not blocked by a popup, etc.). See ImGuiHoveredFlags for more options.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemHoveredNative(ImGuiHoveredFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiHoveredFlags, byte>)funcTable[337])(flags);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiHoveredFlags, byte>)funcTable[337])(flags);
-			#endif
-		}
-
-		/// <summary>
-		/// is the last item hovered? (and usable, aka not blocked by a popup, etc.). See ImGuiHoveredFlags for more options.<br/>
-		/// </summary>
-		public static bool IsItemHovered(ImGuiHoveredFlags flags)
-		{
-			byte ret = IsItemHoveredNative(flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is the last item hovered? (and usable, aka not blocked by a popup, etc.). See ImGuiHoveredFlags for more options.<br/>
-		/// </summary>
-		public static bool IsItemHovered()
-		{
-			byte ret = IsItemHoveredNative((ImGuiHoveredFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is the last item active? (e.g. button being held, text field being edited. This will continuously return true while holding mouse button on an item. Items that don't interact will always return false)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemActiveNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[338])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[338])();
-			#endif
-		}
-
-		/// <summary>
-		/// is the last item active? (e.g. button being held, text field being edited. This will continuously return true while holding mouse button on an item. Items that don't interact will always return false)<br/>
-		/// </summary>
-		public static bool IsItemActive()
-		{
-			byte ret = IsItemActiveNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is the last item focused for keyboardgamepad navigation?<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemFocusedNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[339])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[339])();
-			#endif
-		}
-
-		/// <summary>
-		/// is the last item focused for keyboardgamepad navigation?<br/>
-		/// </summary>
-		public static bool IsItemFocused()
-		{
-			byte ret = IsItemFocusedNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is the last item hovered and mouse clicked on? (**)  == IsMouseClicked(mouse_button) &amp;&amp; IsItemHovered()Important. (**) this is NOT equivalent to the behavior of e.g. Button(). Read comments in function definition.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemClickedNative(ImGuiMouseButton mouseButton)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[340])(mouseButton);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[340])(mouseButton);
-			#endif
-		}
-
-		/// <summary>
-		/// is the last item hovered and mouse clicked on? (**)  == IsMouseClicked(mouse_button) &amp;&amp; IsItemHovered()Important. (**) this is NOT equivalent to the behavior of e.g. Button(). Read comments in function definition.<br/>
-		/// </summary>
-		public static bool IsItemClicked(ImGuiMouseButton mouseButton)
-		{
-			byte ret = IsItemClickedNative(mouseButton);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is the last item hovered and mouse clicked on? (**)  == IsMouseClicked(mouse_button) &amp;&amp; IsItemHovered()Important. (**) this is NOT equivalent to the behavior of e.g. Button(). Read comments in function definition.<br/>
-		/// </summary>
-		public static bool IsItemClicked()
-		{
-			byte ret = IsItemClickedNative((ImGuiMouseButton)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is the last item visible? (items may be out of sight because of clippingscrolling)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemVisibleNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[341])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[341])();
-			#endif
-		}
-
-		/// <summary>
-		/// is the last item visible? (items may be out of sight because of clippingscrolling)<br/>
-		/// </summary>
-		public static bool IsItemVisible()
-		{
-			byte ret = IsItemVisibleNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// did the last item modify its underlying value this frame? or was pressed? This is generally the same as the "bool" return value of many widgets.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemEditedNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[342])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[342])();
-			#endif
-		}
-
-		/// <summary>
-		/// did the last item modify its underlying value this frame? or was pressed? This is generally the same as the "bool" return value of many widgets.<br/>
-		/// </summary>
-		public static bool IsItemEdited()
-		{
-			byte ret = IsItemEditedNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was the last item just made active (item was previously inactive).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemActivatedNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[343])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[343])();
-			#endif
-		}
-
-		/// <summary>
-		/// was the last item just made active (item was previously inactive).<br/>
-		/// </summary>
-		public static bool IsItemActivated()
-		{
-			byte ret = IsItemActivatedNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was the last item just made inactive (item was previously active). Useful for UndoRedo patterns with widgets that require continuous editing.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemDeactivatedNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[344])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[344])();
-			#endif
-		}
-
-		/// <summary>
-		/// was the last item just made inactive (item was previously active). Useful for UndoRedo patterns with widgets that require continuous editing.<br/>
-		/// </summary>
-		public static bool IsItemDeactivated()
-		{
-			byte ret = IsItemDeactivatedNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was the last item just made inactive and made a value change when it was active? (e.g. SliderDrag moved). Useful for UndoRedo patterns with widgets that require continuous editing. Note that you may get false positives (some widgets such as Combo()ListBox()Selectable() will return true even when clicking an already selected item).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemDeactivatedAfterEditNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[345])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[345])();
-			#endif
-		}
-
-		/// <summary>
-		/// was the last item just made inactive and made a value change when it was active? (e.g. SliderDrag moved). Useful for UndoRedo patterns with widgets that require continuous editing. Note that you may get false positives (some widgets such as Combo()ListBox()Selectable() will return true even when clicking an already selected item).<br/>
-		/// </summary>
-		public static bool IsItemDeactivatedAfterEdit()
-		{
-			byte ret = IsItemDeactivatedAfterEditNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was the last item open state toggled? set by TreeNode().<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsItemToggledOpenNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[346])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[346])();
-			#endif
-		}
-
-		/// <summary>
-		/// was the last item open state toggled? set by TreeNode().<br/>
-		/// </summary>
-		public static bool IsItemToggledOpen()
-		{
-			byte ret = IsItemToggledOpenNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is any item hovered?<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsAnyItemHoveredNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[347])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[347])();
-			#endif
-		}
-
-		/// <summary>
-		/// is any item hovered?<br/>
-		/// </summary>
-		public static bool IsAnyItemHovered()
-		{
-			byte ret = IsAnyItemHoveredNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is any item active?<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsAnyItemActiveNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[348])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[348])();
-			#endif
-		}
-
-		/// <summary>
-		/// is any item active?<br/>
-		/// </summary>
-		public static bool IsAnyItemActive()
-		{
-			byte ret = IsAnyItemActiveNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is any item focused?<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsAnyItemFocusedNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[349])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[349])();
-			#endif
-		}
-
-		/// <summary>
-		/// is any item focused?<br/>
-		/// </summary>
-		public static bool IsAnyItemFocused()
-		{
-			byte ret = IsAnyItemFocusedNative();
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// get ID of last item (~~ often same ImGui::GetID(label) beforehand)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetItemIDNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint>)funcTable[350])();
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint>)funcTable[350])();
-			#endif
-		}
-
-		/// <summary>
-		/// get ID of last item (~~ often same ImGui::GetID(label) beforehand)<br/>
-		/// </summary>
-		public static uint GetItemID()
-		{
-			uint ret = GetItemIDNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// get upper-left bounding rectangle of the last item (screen space)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector2 GetItemRectMinNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[351])();
-			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[351])();
-			#endif
-		}
-
-		/// <summary>
-		/// get upper-left bounding rectangle of the last item (screen space)<br/>
-		/// </summary>
-		public static Vector2 GetItemRectMin()
-		{
-			Vector2 ret = GetItemRectMinNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// get lower-right bounding rectangle of the last item (screen space)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector2 GetItemRectMaxNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[352])();
-			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[352])();
-			#endif
-		}
-
-		/// <summary>
-		/// get lower-right bounding rectangle of the last item (screen space)<br/>
-		/// </summary>
-		public static Vector2 GetItemRectMax()
-		{
-			Vector2 ret = GetItemRectMaxNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// get size of last item<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector2 GetItemRectSizeNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[353])();
-			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[353])();
-			#endif
-		}
-
-		/// <summary>
-		/// get size of last item<br/>
-		/// </summary>
-		public static Vector2 GetItemRectSize()
-		{
-			Vector2 ret = GetItemRectSizeNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// return primarydefault viewport. This can never be NULL.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiViewport* GetMainViewportNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*>)funcTable[354])();
-			#else
-			return (ImGuiViewport*)((delegate* unmanaged[Cdecl]<nint>)funcTable[354])();
-			#endif
-		}
-
-		/// <summary>
-		/// return primarydefault viewport. This can never be NULL.<br/>
-		/// </summary>
-		public static ImGuiViewportPtr GetMainViewport()
-		{
-			ImGuiViewportPtr ret = GetMainViewportNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImDrawList* GetBackgroundDrawListNative(ImGuiViewport* viewport)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*, ImDrawList*>)funcTable[355])(viewport);
-			#else
-			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[355])((nint)viewport);
-			#endif
-		}
-
-		/// <summary>
-		/// get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
-		/// </summary>
-		public static ImDrawListPtr GetBackgroundDrawList(ImGuiViewportPtr viewport)
-		{
-			ImDrawListPtr ret = GetBackgroundDrawListNative((ImGuiViewport*)viewport);
-			return ret;
-		}
-
-		/// <summary>
-		/// get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
-		/// </summary>
-		public static ImDrawListPtr GetBackgroundDrawList()
-		{
-			ImDrawListPtr ret = GetBackgroundDrawListNative((ImGuiViewport*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
-		/// </summary>
-		public static ImDrawListPtr GetBackgroundDrawList(ref ImGuiViewport viewport)
-		{
-			fixed (ImGuiViewport* pviewport = &viewport)
-			{
-				ImDrawListPtr ret = GetBackgroundDrawListNative((ImGuiViewport*)pviewport);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImDrawList* GetForegroundDrawListNative(ImGuiViewport* viewport)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*, ImDrawList*>)funcTable[356])(viewport);
-			#else
-			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[356])((nint)viewport);
-			#endif
-		}
-
-		/// <summary>
-		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
-		/// </summary>
-		public static ImDrawListPtr GetForegroundDrawList(ImGuiViewportPtr viewport)
-		{
-			ImDrawListPtr ret = GetForegroundDrawListNative((ImGuiViewport*)viewport);
-			return ret;
-		}
-
-		/// <summary>
-		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
-		/// </summary>
-		public static ImDrawListPtr GetForegroundDrawList()
-		{
-			ImDrawListPtr ret = GetForegroundDrawListNative((ImGuiViewport*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
-		/// </summary>
-		public static ImDrawListPtr GetForegroundDrawList(ref ImGuiViewport viewport)
-		{
-			fixed (ImGuiViewport* pviewport = &viewport)
-			{
-				ImDrawListPtr ret = GetForegroundDrawListNative((ImGuiViewport*)pviewport);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// test if rectangle (of given size, starting from cursor position) is visible  not clipped.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsRectVisibleNative(Vector2 size)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2, byte>)funcTable[357])(size);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<Vector2, byte>)funcTable[357])(size);
-			#endif
-		}
-
-		/// <summary>
-		/// test if rectangle (of given size, starting from cursor position) is visible  not clipped.<br/>
-		/// </summary>
-		public static bool IsRectVisible(Vector2 size)
-		{
-			byte ret = IsRectVisibleNative(size);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// test if rectangle (of given size, starting from cursor position) is visible  not clipped.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsRectVisibleNative(Vector2 rectMin, Vector2 rectMax)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte>)funcTable[358])(rectMin, rectMax);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte>)funcTable[358])(rectMin, rectMax);
-			#endif
-		}
-
-		/// <summary>
-		/// test if rectangle (in screen space) is visible  not clipped. to perform coarse clipping on user's side.<br/>
-		/// </summary>
-		public static bool IsRectVisible(Vector2 rectMin, Vector2 rectMax)
-		{
-			byte ret = IsRectVisibleNative(rectMin, rectMax);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// get global imgui time. incremented by io.DeltaTime every frame.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static double GetTimeNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double>)funcTable[359])();
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<double>)funcTable[359])();
-			#endif
-		}
-
-		/// <summary>
-		/// get global imgui time. incremented by io.DeltaTime every frame.<br/>
-		/// </summary>
-		public static double GetTime()
-		{
-			double ret = GetTimeNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// get global imgui frame count. incremented by 1 every frame.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int GetFrameCountNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)funcTable[360])();
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[360])();
-			#endif
-		}
-
-		/// <summary>
-		/// get global imgui frame count. incremented by 1 every frame.<br/>
-		/// </summary>
-		public static int GetFrameCount()
-		{
-			int ret = GetFrameCountNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// you may use this when creating your own ImDrawList instances.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImDrawListSharedData* GetDrawListSharedDataNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawListSharedData*>)funcTable[361])();
-			#else
-			return (ImDrawListSharedData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[361])();
-			#endif
-		}
-
-		/// <summary>
-		/// you may use this when creating your own ImDrawList instances.<br/>
-		/// </summary>
-		public static ImDrawListSharedDataPtr GetDrawListSharedData()
-		{
-			ImDrawListSharedDataPtr ret = GetDrawListSharedDataNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// get a string corresponding to the enum value (for display, saving, etc.).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* GetStyleColorNameNative(ImGuiCol idx)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiCol, byte*>)funcTable[362])(idx);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<ImGuiCol, nint>)funcTable[362])(idx);
-			#endif
-		}
-
-		/// <summary>
-		/// get a string corresponding to the enum value (for display, saving, etc.).<br/>
-		/// </summary>
-		public static byte* GetStyleColorName(ImGuiCol idx)
-		{
-			byte* ret = GetStyleColorNameNative(idx);
-			return ret;
-		}
-
-		/// <summary>
-		/// get a string corresponding to the enum value (for display, saving, etc.).<br/>
-		/// </summary>
-		public static string GetStyleColorNameS(ImGuiCol idx)
-		{
-			string ret = Utils.DecodeStringUTF8(GetStyleColorNameNative(idx));
-			return ret;
-		}
-
-		/// <summary>
-		/// replace current window storage with our own (if you want to manipulate it yourself, typically clear subsection of it)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetStateStorageNative(ImGuiStorage* storage)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStorage*, void>)funcTable[363])(storage);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[363])((nint)storage);
-			#endif
-		}
-
-		/// <summary>
-		/// replace current window storage with our own (if you want to manipulate it yourself, typically clear subsection of it)<br/>
-		/// </summary>
-		public static void SetStateStorage(ImGuiStoragePtr storage)
-		{
-			SetStateStorageNative((ImGuiStorage*)storage);
-		}
-
-		/// <summary>
-		/// replace current window storage with our own (if you want to manipulate it yourself, typically clear subsection of it)<br/>
-		/// </summary>
-		public static void SetStateStorage(ref ImGuiStorage storage)
-		{
-			fixed (ImGuiStorage* pstorage = &storage)
-			{
-				SetStateStorageNative((ImGuiStorage*)pstorage);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiStorage* GetStateStorageNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*>)funcTable[364])();
-			#else
-			return (ImGuiStorage*)((delegate* unmanaged[Cdecl]<nint>)funcTable[364])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiStoragePtr GetStateStorage()
-		{
-			ImGuiStoragePtr ret = GetStateStorageNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector2 CalcTextSizeNative(byte* text, byte* textEnd, byte hideTextAfterDoubleHash, float wrapWidth)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte, float, Vector2>)funcTable[365])(text, textEnd, hideTextAfterDoubleHash, wrapWidth);
-			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<nint, nint, byte, float, Vector2>)funcTable[365])((nint)text, (nint)textEnd, hideTextAfterDoubleHash, wrapWidth);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			Vector2 ret = CalcTextSizeNative(text, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, byte* textEnd, bool hideTextAfterDoubleHash)
-		{
-			Vector2 ret = CalcTextSizeNative(text, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, byte* textEnd)
-		{
-			Vector2 ret = CalcTextSizeNative(text, textEnd, (byte)(0), (float)(-1.0f));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text)
-		{
-			Vector2 ret = CalcTextSizeNative(text, (byte*)(default), (byte)(0), (float)(-1.0f));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, bool hideTextAfterDoubleHash)
-		{
-			Vector2 ret = CalcTextSizeNative(text, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, byte* textEnd, float wrapWidth)
-		{
-			Vector2 ret = CalcTextSizeNative(text, textEnd, (byte)(0), wrapWidth);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, float wrapWidth)
-		{
-			Vector2 ret = CalcTextSizeNative(text, (byte*)(default), (byte)(0), wrapWidth);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			Vector2 ret = CalcTextSizeNative(text, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, byte* textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = &text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, byte* textEnd)
-		{
-			fixed (byte* ptext = &text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, (byte)(0), (float)(-1.0f));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text)
-		{
-			fixed (byte* ptext = &text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), (byte)(0), (float)(-1.0f));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = &text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, byte* textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, (byte)(0), wrapWidth);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), (byte)(0), wrapWidth);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, byte* textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, byte* textEnd)
-		{
-			fixed (byte* ptext = text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, (byte)(0), (float)(-1.0f));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text)
-		{
-			fixed (byte* ptext = text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), (byte)(0), (float)(-1.0f));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, (byte)(0), wrapWidth);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), (byte)(0), wrapWidth);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(pStr0, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, byte* textEnd, bool hideTextAfterDoubleHash)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(pStr0, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, byte* textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(pStr0, textEnd, (byte)(0), (float)(-1.0f));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(pStr0, (byte*)(default), (byte)(0), (float)(-1.0f));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, bool hideTextAfterDoubleHash)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(pStr0, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, byte* textEnd, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(pStr0, textEnd, (byte)(0), wrapWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(pStr0, (byte*)(default), (byte)(0), wrapWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(pStr0, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, in byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, in byte textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, in byte textEnd)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, in byte textEnd, float wrapWidth)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, (byte)(0), wrapWidth);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, (byte)(0), wrapWidth);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(text, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, string textEnd, bool hideTextAfterDoubleHash)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(text, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(text, pStr0, (byte)(0), (float)(-1.0f));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(byte* text, string textEnd, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(text, pStr0, (byte)(0), wrapWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, in byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, in byte textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, in byte textEnd)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, in byte textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(pStr0, pStr1, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, string textEnd, bool hideTextAfterDoubleHash)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(pStr0, pStr1, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(pStr0, pStr1, (byte)(0), (float)(-1.0f));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, string textEnd, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			Vector2 ret = CalcTextSizeNative(pStr0, pStr1, (byte)(0), wrapWidth);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, string textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = &text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, string textEnd)
-		{
-			fixed (byte* ptext = &text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, (byte)(0), (float)(-1.0f));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(in byte text, string textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, (byte)(0), wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, in byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, in byte textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, in byte textEnd)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, in byte textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, string textEnd, bool hideTextAfterDoubleHash)
-		{
-			fixed (byte* ptext = text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, string textEnd)
-		{
-			fixed (byte* ptext = text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, (byte)(0), (float)(-1.0f));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = text)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, (byte)(0), wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, in byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, in byte textEnd, bool hideTextAfterDoubleHash)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, in byte textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, in byte textEnd, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, (byte)(0), wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, ReadOnlySpan<byte> textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 CalcTextSize(string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEnd = textEnd)
-			{
-				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, (byte)(0), wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector4 ColorConvertU32ToFloat4Native(uint input)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, Vector4>)funcTable[366])(input);
-			#else
-			return (Vector4)((delegate* unmanaged[Cdecl]<uint, Vector4>)funcTable[366])(input);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector4 ColorConvertU32ToFloat4(uint input)
-		{
-			Vector4 ret = ColorConvertU32ToFloat4Native(input);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint ColorConvertFloat4ToU32Native(Vector4 input)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[367])(input);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[367])(input);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint ColorConvertFloat4ToU32(Vector4 input)
-		{
-			uint ret = ColorConvertFloat4ToU32Native(input);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ColorConvertRGBtoHSVNative(float r, float g, float b, float* outH, float* outS, float* outV)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, float, float*, float*, float*, void>)funcTable[368])(r, g, b, outH, outS, outV);
-			#else
-			((delegate* unmanaged[Cdecl]<float, float, float, nint, nint, nint, void>)funcTable[368])(r, g, b, (nint)outH, (nint)outS, (nint)outV);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, float* outH, float* outS, float* outV)
-		{
-			ColorConvertRGBtoHSVNative(r, g, b, outH, outS, outV);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, ref float outH, float* outS, float* outV)
-		{
-			fixed (float* poutH = &outH)
-			{
-				ColorConvertRGBtoHSVNative(r, g, b, (float*)poutH, outS, outV);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, float* outH, ref float outS, float* outV)
-		{
-			fixed (float* poutS = &outS)
-			{
-				ColorConvertRGBtoHSVNative(r, g, b, outH, (float*)poutS, outV);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, ref float outH, ref float outS, float* outV)
-		{
-			fixed (float* poutH = &outH)
-			{
-				fixed (float* poutS = &outS)
-				{
-					ColorConvertRGBtoHSVNative(r, g, b, (float*)poutH, (float*)poutS, outV);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, float* outH, float* outS, ref float outV)
-		{
-			fixed (float* poutV = &outV)
-			{
-				ColorConvertRGBtoHSVNative(r, g, b, outH, outS, (float*)poutV);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, ref float outH, float* outS, ref float outV)
-		{
-			fixed (float* poutH = &outH)
-			{
-				fixed (float* poutV = &outV)
-				{
-					ColorConvertRGBtoHSVNative(r, g, b, (float*)poutH, outS, (float*)poutV);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, float* outH, ref float outS, ref float outV)
-		{
-			fixed (float* poutS = &outS)
-			{
-				fixed (float* poutV = &outV)
-				{
-					ColorConvertRGBtoHSVNative(r, g, b, outH, (float*)poutS, (float*)poutV);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertRGBtoHSV(float r, float g, float b, ref float outH, ref float outS, ref float outV)
-		{
-			fixed (float* poutH = &outH)
-			{
-				fixed (float* poutS = &outS)
-				{
-					fixed (float* poutV = &outV)
-					{
-						ColorConvertRGBtoHSVNative(r, g, b, (float*)poutH, (float*)poutS, (float*)poutV);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ColorConvertHSVtoRGBNative(float h, float s, float v, float* outR, float* outG, float* outB)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, float, float*, float*, float*, void>)funcTable[369])(h, s, v, outR, outG, outB);
-			#else
-			((delegate* unmanaged[Cdecl]<float, float, float, nint, nint, nint, void>)funcTable[369])(h, s, v, (nint)outR, (nint)outG, (nint)outB);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, float* outR, float* outG, float* outB)
-		{
-			ColorConvertHSVtoRGBNative(h, s, v, outR, outG, outB);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, ref float outR, float* outG, float* outB)
-		{
-			fixed (float* poutR = &outR)
-			{
-				ColorConvertHSVtoRGBNative(h, s, v, (float*)poutR, outG, outB);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, float* outR, ref float outG, float* outB)
-		{
-			fixed (float* poutG = &outG)
-			{
-				ColorConvertHSVtoRGBNative(h, s, v, outR, (float*)poutG, outB);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, ref float outR, ref float outG, float* outB)
-		{
-			fixed (float* poutR = &outR)
-			{
-				fixed (float* poutG = &outG)
-				{
-					ColorConvertHSVtoRGBNative(h, s, v, (float*)poutR, (float*)poutG, outB);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, float* outR, float* outG, ref float outB)
-		{
-			fixed (float* poutB = &outB)
-			{
-				ColorConvertHSVtoRGBNative(h, s, v, outR, outG, (float*)poutB);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, ref float outR, float* outG, ref float outB)
-		{
-			fixed (float* poutR = &outR)
-			{
-				fixed (float* poutB = &outB)
-				{
-					ColorConvertHSVtoRGBNative(h, s, v, (float*)poutR, outG, (float*)poutB);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, float* outR, ref float outG, ref float outB)
-		{
-			fixed (float* poutG = &outG)
-			{
-				fixed (float* poutB = &outB)
-				{
-					ColorConvertHSVtoRGBNative(h, s, v, outR, (float*)poutG, (float*)poutB);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ColorConvertHSVtoRGB(float h, float s, float v, ref float outR, ref float outG, ref float outB)
-		{
-			fixed (float* poutR = &outR)
-			{
-				fixed (float* poutG = &outG)
-				{
-					fixed (float* poutB = &outB)
-					{
-						ColorConvertHSVtoRGBNative(h, s, v, (float*)poutR, (float*)poutG, (float*)poutB);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// is key being held.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsKeyDownNative(ImGuiKey key)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[370])(key);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[370])(key);
-			#endif
-		}
-
-		/// <summary>
-		/// is key being held.<br/>
-		/// </summary>
-		public static bool IsKeyDown(ImGuiKey key)
-		{
-			byte ret = IsKeyDownNative(key);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was key pressed (went from !Down to Down)? if repeat=true, uses io.KeyRepeatDelay  KeyRepeatRate<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsKeyPressedNative(ImGuiKey key, byte repeat)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte, byte>)funcTable[371])(key, repeat);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte, byte>)funcTable[371])(key, repeat);
-			#endif
-		}
-
-		/// <summary>
-		/// was key pressed (went from !Down to Down)? if repeat=true, uses io.KeyRepeatDelay  KeyRepeatRate<br/>
-		/// </summary>
-		public static bool IsKeyPressed(ImGuiKey key, bool repeat)
-		{
-			byte ret = IsKeyPressedNative(key, repeat ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was key pressed (went from !Down to Down)? if repeat=true, uses io.KeyRepeatDelay  KeyRepeatRate<br/>
-		/// </summary>
-		public static bool IsKeyPressed(ImGuiKey key)
-		{
-			byte ret = IsKeyPressedNative(key, (byte)(1));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was key released (went from Down to !Down)?<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsKeyReleasedNative(ImGuiKey key)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[372])(key);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[372])(key);
-			#endif
-		}
-
-		/// <summary>
-		/// was key released (went from Down to !Down)?<br/>
-		/// </summary>
-		public static bool IsKeyReleased(ImGuiKey key)
-		{
-			byte ret = IsKeyReleasedNative(key);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// was key chord (mods + key) pressed, e.g. you can pass 'ImGuiMod_Ctrl | ImGuiKey_S' as a key-chord. This doesn't do any routing or focus check, please consider using Shortcut() function instead.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsKeyChordPressedNative(int keyChord)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, byte>)funcTable[373])(keyChord);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)funcTable[373])(keyChord);
-			#endif
-		}
-
-		/// <summary>
-		/// was key chord (mods + key) pressed, e.g. you can pass 'ImGuiMod_Ctrl | ImGuiKey_S' as a key-chord. This doesn't do any routing or focus check, please consider using Shortcut() function instead.<br/>
-		/// </summary>
-		public static bool IsKeyChordPressed(int keyChord)
-		{
-			byte ret = IsKeyChordPressedNative(keyChord);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// uses provided repeat ratedelay. return a count, most often 0 or 1 but might be &gt;1 if RepeatRate is small enough that DeltaTime &gt; RepeatRate<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int GetKeyPressedAmountNative(ImGuiKey key, float repeatDelay, float rate)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, float, float, int>)funcTable[374])(key, repeatDelay, rate);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImGuiKey, float, float, int>)funcTable[374])(key, repeatDelay, rate);
-			#endif
-		}
-
-		/// <summary>
-		/// uses provided repeat ratedelay. return a count, most often 0 or 1 but might be &gt;1 if RepeatRate is small enough that DeltaTime &gt; RepeatRate<br/>
-		/// </summary>
-		public static int GetKeyPressedAmount(ImGuiKey key, float repeatDelay, float rate)
-		{
-			int ret = GetKeyPressedAmountNative(key, repeatDelay, rate);
-			return ret;
-		}
-
-		/// <summary>
-		/// [DEBUG] returns English name of the key. Those names are provided for debugging purpose and are not meant to be saved persistently nor compared.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* GetKeyNameNative(ImGuiKey key)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte*>)funcTable[375])(key);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<ImGuiKey, nint>)funcTable[375])(key);
-			#endif
-		}
-
-		/// <summary>
-		/// [DEBUG] returns English name of the key. Those names are provided for debugging purpose and are not meant to be saved persistently nor compared.<br/>
-		/// </summary>
-		public static byte* GetKeyName(ImGuiKey key)
-		{
-			byte* ret = GetKeyNameNative(key);
-			return ret;
-		}
-
-		/// <summary>
-		/// [DEBUG] returns English name of the key. Those names are provided for debugging purpose and are not meant to be saved persistently nor compared.<br/>
-		/// </summary>
-		public static string GetKeyNameS(ImGuiKey key)
-		{
-			string ret = Utils.DecodeStringUTF8(GetKeyNameNative(key));
-			return ret;
-		}
-
-		/// <summary>
-		/// Override io.WantCaptureKeyboard flag next frame (said flag is left for your application to handle, typically when true it instructs your app to ignore inputs). e.g. force capture keyboard when your widget is being hovered. This is equivalent to setting "io.WantCaptureKeyboard = want_capture_keyboard"; after the next NewFrame() call.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetNextFrameWantCaptureKeyboardNative(byte wantCaptureKeyboard)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[376])(wantCaptureKeyboard);
-			#else
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[376])(wantCaptureKeyboard);
-			#endif
-		}
-
-		/// <summary>
-		/// Override io.WantCaptureKeyboard flag next frame (said flag is left for your application to handle, typically when true it instructs your app to ignore inputs). e.g. force capture keyboard when your widget is being hovered. This is equivalent to setting "io.WantCaptureKeyboard = want_capture_keyboard"; after the next NewFrame() call.<br/>
-		/// </summary>
-		public static void SetNextFrameWantCaptureKeyboard(bool wantCaptureKeyboard)
-		{
-			SetNextFrameWantCaptureKeyboardNative(wantCaptureKeyboard ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ShortcutNative(int keyChord, ImGuiInputFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, byte>)funcTable[377])(keyChord, flags);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, byte>)funcTable[377])(keyChord, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Shortcut(int keyChord, ImGuiInputFlags flags)
-		{
-			byte ret = ShortcutNative(keyChord, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Shortcut(int keyChord)
-		{
-			byte ret = ShortcutNative(keyChord, (ImGuiInputFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetNextItemShortcutNative(int keyChord, ImGuiInputFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, void>)funcTable[378])(keyChord, flags);
-			#else
-			((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, void>)funcTable[378])(keyChord, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetNextItemShortcut(int keyChord, ImGuiInputFlags flags)
-		{
-			SetNextItemShortcutNative(keyChord, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetNextItemShortcut(int keyChord)
-		{
-			SetNextItemShortcutNative(keyChord, (ImGuiInputFlags)(0));
-		}
-
-		/// <summary>
-		/// Set key owner to last item ID if it is hovered or active. Equivalent to 'if (IsItemHovered() || IsItemActive())  SetKeyOwner(key, GetItemID());'.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetItemKeyOwnerNative(ImGuiKey key)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiKey, void>)funcTable[379])(key);
-			#else
-			((delegate* unmanaged[Cdecl]<ImGuiKey, void>)funcTable[379])(key);
-			#endif
-		}
-
-		/// <summary>
-		/// Set key owner to last item ID if it is hovered or active. Equivalent to 'if (IsItemHovered() || IsItemActive())  SetKeyOwner(key, GetItemID());'.<br/>
-		/// </summary>
-		public static void SetItemKeyOwner(ImGuiKey key)
-		{
-			SetItemKeyOwnerNative(key);
-		}
-
-		/// <summary>
-		/// is mouse button held?<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseDownNative(ImGuiMouseButton button)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[380])(button);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[380])(button);
-			#endif
-		}
-
-		/// <summary>
-		/// is mouse button held?<br/>
-		/// </summary>
-		public static bool IsMouseDown(ImGuiMouseButton button)
-		{
-			byte ret = IsMouseDownNative(button);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseClickedNative(ImGuiMouseButton button, byte repeat)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte, byte>)funcTable[381])(button, repeat);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte, byte>)funcTable[381])(button, repeat);
-			#endif
-		}
-
-		/// <summary>
-		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
-		/// </summary>
-		public static bool IsMouseClicked(ImGuiMouseButton button, bool repeat)
-		{
-			byte ret = IsMouseClickedNative(button, repeat ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
-		/// </summary>
-		public static bool IsMouseClicked(ImGuiMouseButton button)
-		{
-			byte ret = IsMouseClickedNative(button, (byte)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// did mouse button released? (went from Down to !Down)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseReleasedNative(ImGuiMouseButton button)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[382])(button);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[382])(button);
-			#endif
-		}
-
-		/// <summary>
-		/// did mouse button released? (went from Down to !Down)<br/>
-		/// </summary>
-		public static bool IsMouseReleased(ImGuiMouseButton button)
-		{
-			byte ret = IsMouseReleasedNative(button);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// did mouse button double-clicked? Same as GetMouseClickedCount() == 2. (note that a double-click will also report IsMouseClicked() == true)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseDoubleClickedNative(ImGuiMouseButton button)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[383])(button);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[383])(button);
-			#endif
-		}
-
-		/// <summary>
-		/// did mouse button double-clicked? Same as GetMouseClickedCount() == 2. (note that a double-click will also report IsMouseClicked() == true)<br/>
-		/// </summary>
-		public static bool IsMouseDoubleClicked(ImGuiMouseButton button)
-		{
-			byte ret = IsMouseDoubleClickedNative(button);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// delayed mouse release (use very sparingly!). Generally used with 'delay &gt;= io.MouseDoubleClickTime' + combined with a 'io.MouseClickedLastCount==1' test. This is a very rarely used UI idiom, but some apps use this: e.g. MS Explorer single click on an icon to rename.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseReleasedWithDelayNative(ImGuiMouseButton button, float delay)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[384])(button, delay);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[384])(button, delay);
-			#endif
-		}
-
-		/// <summary>
-		/// delayed mouse release (use very sparingly!). Generally used with 'delay &gt;= io.MouseDoubleClickTime' + combined with a 'io.MouseClickedLastCount==1' test. This is a very rarely used UI idiom, but some apps use this: e.g. MS Explorer single click on an icon to rename.<br/>
-		/// </summary>
-		public static bool IsMouseReleasedWithDelay(ImGuiMouseButton button, float delay)
-		{
-			byte ret = IsMouseReleasedWithDelayNative(button, delay);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// return the number of successive mouse-clicks at the time where a click happen (otherwise 0).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int GetMouseClickedCountNative(ImGuiMouseButton button)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int>)funcTable[385])(button);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int>)funcTable[385])(button);
-			#endif
-		}
-
-		/// <summary>
-		/// return the number of successive mouse-clicks at the time where a click happen (otherwise 0).<br/>
-		/// </summary>
-		public static int GetMouseClickedCount(ImGuiMouseButton button)
-		{
-			int ret = GetMouseClickedCountNative(button);
-			return ret;
-		}
-
-		/// <summary>
-		/// is mouse hovering given bounding rect (in screen space). clipped by current clipping settings, but disregarding of other consideration of focuswindow orderingpopup-block.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseHoveringRectNative(Vector2 rMin, Vector2 rMax, byte clip)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, byte>)funcTable[386])(rMin, rMax, clip);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, byte>)funcTable[386])(rMin, rMax, clip);
-			#endif
-		}
-
-		/// <summary>
-		/// is mouse hovering given bounding rect (in screen space). clipped by current clipping settings, but disregarding of other consideration of focuswindow orderingpopup-block.<br/>
-		/// </summary>
-		public static bool IsMouseHoveringRect(Vector2 rMin, Vector2 rMax, bool clip)
-		{
-			byte ret = IsMouseHoveringRectNative(rMin, rMax, clip ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// is mouse hovering given bounding rect (in screen space). clipped by current clipping settings, but disregarding of other consideration of focuswindow orderingpopup-block.<br/>
-		/// </summary>
-		public static bool IsMouseHoveringRect(Vector2 rMin, Vector2 rMax)
-		{
-			byte ret = IsMouseHoveringRectNative(rMin, rMax, (byte)(1));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMousePosValidNative(Vector2* mousePos)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2*, byte>)funcTable[387])(mousePos);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[387])((nint)mousePos);
-			#endif
-		}
-
-		/// <summary>
-		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
-		/// </summary>
-		public static bool IsMousePosValid(Vector2* mousePos)
-		{
-			byte ret = IsMousePosValidNative(mousePos);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
-		/// </summary>
-		public static bool IsMousePosValid()
-		{
-			byte ret = IsMousePosValidNative((Vector2*)(default));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
-		/// </summary>
-		public static bool IsMousePosValid(in Vector2 mousePos)
-		{
-			fixed (Vector2* pmousePos = &mousePos)
-			{
-				byte ret = IsMousePosValidNative((Vector2*)pmousePos);
+				byte ret = BeginPopupModalNative((byte*)pname, pOpen, flags);
 				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// [WILL OBSOLETE] is any mouse button held? This was designed for backends, but prefer having backend maintain a mask of held mouse buttons, because upcoming input queue system will make this invalid.<br/>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsAnyMouseDownNative()
+		public static bool BeginPopupModal(ReadOnlySpan<byte> name, bool* pOpen)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[388])();
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[388])();
-			#endif
+			fixed (byte* pname = name)
+			{
+				byte ret = BeginPopupModalNative((byte*)pname, pOpen, (ImGuiWindowFlags)(0));
+				return ret != 0;
+			}
 		}
 
 		/// <summary>
-		/// [WILL OBSOLETE] is any mouse button held? This was designed for backends, but prefer having backend maintain a mask of held mouse buttons, because upcoming input queue system will make this invalid.<br/>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
-		public static bool IsAnyMouseDown()
+		public static bool BeginPopupModal(ReadOnlySpan<byte> name)
 		{
-			byte ret = IsAnyMouseDownNative();
+			fixed (byte* pname = name)
+			{
+				byte ret = BeginPopupModalNative((byte*)pname, (bool*)(default), (ImGuiWindowFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopupModal(ReadOnlySpan<byte> name, ImGuiWindowFlags flags)
+		{
+			fixed (byte* pname = name)
+			{
+				byte ret = BeginPopupModalNative((byte*)pname, (bool*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopupModal(string name, bool* pOpen, ImGuiWindowFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginPopupModalNative(pStr0, pOpen, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
 			return ret != 0;
 		}
 
 		/// <summary>
-		/// shortcut to ImGui::GetIO().MousePos provided by user, to be consistent with other calls<br/>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector2 GetMousePosNative()
+		public static bool BeginPopupModal(string name, bool* pOpen)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[389])();
-			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[389])();
-			#endif
-		}
-
-		/// <summary>
-		/// shortcut to ImGui::GetIO().MousePos provided by user, to be consistent with other calls<br/>
-		/// </summary>
-		public static Vector2 GetMousePos()
-		{
-			Vector2 ret = GetMousePosNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// retrieve mouse position at the time of opening popup we have BeginPopup() into (helper to avoid user backing that value themselves)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector2 GetMousePosOnOpeningCurrentPopupNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[390])();
-			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[390])();
-			#endif
-		}
-
-		/// <summary>
-		/// retrieve mouse position at the time of opening popup we have BeginPopup() into (helper to avoid user backing that value themselves)<br/>
-		/// </summary>
-		public static Vector2 GetMousePosOnOpeningCurrentPopup()
-		{
-			Vector2 ret = GetMousePosOnOpeningCurrentPopupNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// is mouse dragging? (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte IsMouseDraggingNative(ImGuiMouseButton button, float lockThreshold)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[391])(button, lockThreshold);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[391])(button, lockThreshold);
-			#endif
-		}
-
-		/// <summary>
-		/// is mouse dragging? (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static bool IsMouseDragging(ImGuiMouseButton button, float lockThreshold)
-		{
-			byte ret = IsMouseDraggingNative(button, lockThreshold);
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginPopupModalNative(pStr0, pOpen, (ImGuiWindowFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
 			return ret != 0;
 		}
 
 		/// <summary>
-		/// is mouse dragging? (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
-		public static bool IsMouseDragging(ImGuiMouseButton button)
+		public static bool BeginPopupModal(string name)
 		{
-			byte ret = IsMouseDraggingNative(button, (float)(-1.0f));
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginPopupModalNative(pStr0, (bool*)(default), (ImGuiWindowFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
 			return ret != 0;
 		}
 
 		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector2 GetMouseDragDeltaNative(ImGuiMouseButton button, float lockThreshold)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, Vector2>)funcTable[392])(button, lockThreshold);
-			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, Vector2>)funcTable[392])(button, lockThreshold);
-			#endif
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static Vector2 GetMouseDragDelta(ImGuiMouseButton button, float lockThreshold)
-		{
-			Vector2 ret = GetMouseDragDeltaNative(button, lockThreshold);
-			return ret;
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static Vector2 GetMouseDragDelta(ImGuiMouseButton button)
-		{
-			Vector2 ret = GetMouseDragDeltaNative(button, (float)(-1.0f));
-			return ret;
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static Vector2 GetMouseDragDelta()
-		{
-			Vector2 ret = GetMouseDragDeltaNative((ImGuiMouseButton)(0), (float)(-1.0f));
-			return ret;
-		}
-
-		/// <summary>
-		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
-		/// </summary>
-		public static Vector2 GetMouseDragDelta(float lockThreshold)
-		{
-			Vector2 ret = GetMouseDragDeltaNative((ImGuiMouseButton)(0), lockThreshold);
-			return ret;
-		}
-
-		/// <summary>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ResetMouseDragDeltaNative(ImGuiMouseButton button)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMouseButton, void>)funcTable[393])(button);
-			#else
-			((delegate* unmanaged[Cdecl]<ImGuiMouseButton, void>)funcTable[393])(button);
-			#endif
-		}
-
-		/// <summary>
-		/// </summary>
-		public static void ResetMouseDragDelta(ImGuiMouseButton button)
-		{
-			ResetMouseDragDeltaNative(button);
-		}
-
-		/// <summary>
-		/// </summary>
-		public static void ResetMouseDragDelta()
-		{
-			ResetMouseDragDeltaNative((ImGuiMouseButton)(0));
-		}
-
-		/// <summary>
-		/// get desired mouse cursor shape. Important: reset in ImGui::NewFrame(), this is updated during the frame. valid before Render(). If you use software rendering by setting io.MouseDrawCursor ImGui will render those for you<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiMouseCursor GetMouseCursorNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseCursor>)funcTable[394])();
-			#else
-			return (ImGuiMouseCursor)((delegate* unmanaged[Cdecl]<ImGuiMouseCursor>)funcTable[394])();
-			#endif
-		}
-
-		/// <summary>
-		/// get desired mouse cursor shape. Important: reset in ImGui::NewFrame(), this is updated during the frame. valid before Render(). If you use software rendering by setting io.MouseDrawCursor ImGui will render those for you<br/>
-		/// </summary>
-		public static ImGuiMouseCursor GetMouseCursor()
-		{
-			ImGuiMouseCursor ret = GetMouseCursorNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// set desired mouse cursor shape<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetMouseCursorNative(ImGuiMouseCursor cursorType)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMouseCursor, void>)funcTable[395])(cursorType);
-			#else
-			((delegate* unmanaged[Cdecl]<ImGuiMouseCursor, void>)funcTable[395])(cursorType);
-			#endif
-		}
-
-		/// <summary>
-		/// set desired mouse cursor shape<br/>
-		/// </summary>
-		public static void SetMouseCursor(ImGuiMouseCursor cursorType)
-		{
-			SetMouseCursorNative(cursorType);
-		}
-
-		/// <summary>
-		/// Override io.WantCaptureMouse flag next frame (said flag is left for your application to handle, typical when true it instructs your app to ignore inputs). This is equivalent to setting "io.WantCaptureMouse = want_capture_mouse;" after the next NewFrame() call.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetNextFrameWantCaptureMouseNative(byte wantCaptureMouse)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[396])(wantCaptureMouse);
-			#else
-			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[396])(wantCaptureMouse);
-			#endif
-		}
-
-		/// <summary>
-		/// Override io.WantCaptureMouse flag next frame (said flag is left for your application to handle, typical when true it instructs your app to ignore inputs). This is equivalent to setting "io.WantCaptureMouse = want_capture_mouse;" after the next NewFrame() call.<br/>
-		/// </summary>
-		public static void SetNextFrameWantCaptureMouse(bool wantCaptureMouse)
-		{
-			SetNextFrameWantCaptureMouseNative(wantCaptureMouse ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* GetClipboardTextNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*>)funcTable[397])();
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint>)funcTable[397])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* GetClipboardText()
-		{
-			byte* ret = GetClipboardTextNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string GetClipboardTextS()
-		{
-			string ret = Utils.DecodeStringUTF8(GetClipboardTextNative());
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetClipboardTextNative(byte* text)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[398])(text);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[398])((nint)text);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetClipboardText(byte* text)
-		{
-			SetClipboardTextNative(text);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetClipboardText(in byte text)
-		{
-			fixed (byte* ptext = &text)
-			{
-				SetClipboardTextNative((byte*)ptext);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetClipboardText(ReadOnlySpan<byte> text)
-		{
-			fixed (byte* ptext = text)
-			{
-				SetClipboardTextNative((byte*)ptext);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetClipboardText(string text)
+		public static bool BeginPopupModal(string name, ImGuiWindowFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (name != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(name);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4793,171 +2505,341 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			SetClipboardTextNative(pStr0);
+			byte ret = BeginPopupModalNative(pStr0, (bool*)(default), flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopupModal(byte* name, ref bool pOpen, ImGuiWindowFlags flags)
+		{
+			fixed (bool* ppOpen = &pOpen)
+			{
+				byte ret = BeginPopupModalNative(name, (bool*)ppOpen, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopupModal(byte* name, ref bool pOpen)
+		{
+			fixed (bool* ppOpen = &pOpen)
+			{
+				byte ret = BeginPopupModalNative(name, (bool*)ppOpen, (ImGuiWindowFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopupModal(in byte name, ref bool pOpen, ImGuiWindowFlags flags)
+		{
+			fixed (byte* pname = &name)
+			{
+				fixed (bool* ppOpen = &pOpen)
+				{
+					byte ret = BeginPopupModalNative((byte*)pname, (bool*)ppOpen, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopupModal(in byte name, ref bool pOpen)
+		{
+			fixed (byte* pname = &name)
+			{
+				fixed (bool* ppOpen = &pOpen)
+				{
+					byte ret = BeginPopupModalNative((byte*)pname, (bool*)ppOpen, (ImGuiWindowFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopupModal(ReadOnlySpan<byte> name, ref bool pOpen, ImGuiWindowFlags flags)
+		{
+			fixed (byte* pname = name)
+			{
+				fixed (bool* ppOpen = &pOpen)
+				{
+					byte ret = BeginPopupModalNative((byte*)pname, (bool*)ppOpen, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopupModal(ReadOnlySpan<byte> name, ref bool pOpen)
+		{
+			fixed (byte* pname = name)
+			{
+				fixed (bool* ppOpen = &pOpen)
+				{
+					byte ret = BeginPopupModalNative((byte*)pname, (bool*)ppOpen, (ImGuiWindowFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopupModal(string name, ref bool pOpen, ImGuiWindowFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (bool* ppOpen = &pOpen)
+			{
+				byte ret = BeginPopupModalNative(pStr0, (bool*)ppOpen, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// return true if the modal is open, and you can start outputting to it.<br/>
+		/// </summary>
+		public static bool BeginPopupModal(string name, ref bool pOpen)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (bool* ppOpen = &pOpen)
+			{
+				byte ret = BeginPopupModalNative(pStr0, (bool*)ppOpen, (ImGuiWindowFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// only call EndPopup() if BeginPopupXXX() returns true!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LoadIniSettingsFromDiskNative(byte* iniFilename)
+		internal static void EndPopupNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[399])(iniFilename);
+			((delegate* unmanaged[Cdecl]<void>)funcTable[267])();
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[399])((nint)iniFilename);
+			((delegate* unmanaged[Cdecl]<void>)funcTable[267])();
 			#endif
 		}
 
 		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
+		/// only call EndPopup() if BeginPopupXXX() returns true!<br/>
 		/// </summary>
-		public static void LoadIniSettingsFromDisk(byte* iniFilename)
+		public static void EndPopup()
 		{
-			LoadIniSettingsFromDiskNative(iniFilename);
+			EndPopupNative();
 		}
 
 		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
-		/// </summary>
-		public static void LoadIniSettingsFromDisk(in byte iniFilename)
-		{
-			fixed (byte* piniFilename = &iniFilename)
-			{
-				LoadIniSettingsFromDiskNative((byte*)piniFilename);
-			}
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
-		/// </summary>
-		public static void LoadIniSettingsFromDisk(ReadOnlySpan<byte> iniFilename)
-		{
-			fixed (byte* piniFilename = iniFilename)
-			{
-				LoadIniSettingsFromDiskNative((byte*)piniFilename);
-			}
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
-		/// </summary>
-		public static void LoadIniSettingsFromDisk(string iniFilename)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (iniFilename != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(iniFilename);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(iniFilename, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			LoadIniSettingsFromDiskNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// Popups: openclose functions<br/>
+		/// - OpenPopup(): set popup state to open (unless one of the specified ImGuiPopupFlags prevent opening).<br/>
+		/// - OpenPopupXXX() functions return true when the popup is toggled open, which allows you to capture local state if needed.<br/>
+		/// You may also call IsWindowAppearing() inside the later BeginPopup() scope if you need to preparecompute data for the popup.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing ESCAPE.<br/>
+		/// - CloseCurrentPopup(): use inside the BeginPopup()EndPopup() scope to close manually.<br/>
+		/// - CloseCurrentPopup() is called by default by Selectable()MenuItem() when activated (FIXME: need some options).<br/>
+		/// - Use ImGuiPopupFlags_NoOpenOverExistingPopup to avoid opening a popup if there's already one at the same level. This is equivalent to e.g. testing for !IsAnyPopupOpen() prior to OpenPopup().<br/>
+		/// - Use IsWindowAppearing() after BeginPopup() to tell if a window just opened. call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void LoadIniSettingsFromMemoryNative(byte* iniData, nuint iniSize)
+		internal static byte OpenPopupNative(byte* strId, ImGuiPopupFlags popupFlags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[400])(iniData, iniSize);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[268])(strId, popupFlags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[400])((nint)iniData, iniSize);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[268])((nint)strId, popupFlags);
 			#endif
 		}
 
 		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// Popups: openclose functions<br/>
+		/// - OpenPopup(): set popup state to open (unless one of the specified ImGuiPopupFlags prevent opening).<br/>
+		/// - OpenPopupXXX() functions return true when the popup is toggled open, which allows you to capture local state if needed.<br/>
+		/// You may also call IsWindowAppearing() inside the later BeginPopup() scope if you need to preparecompute data for the popup.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing ESCAPE.<br/>
+		/// - CloseCurrentPopup(): use inside the BeginPopup()EndPopup() scope to close manually.<br/>
+		/// - CloseCurrentPopup() is called by default by Selectable()MenuItem() when activated (FIXME: need some options).<br/>
+		/// - Use ImGuiPopupFlags_NoOpenOverExistingPopup to avoid opening a popup if there's already one at the same level. This is equivalent to e.g. testing for !IsAnyPopupOpen() prior to OpenPopup().<br/>
+		/// - Use IsWindowAppearing() after BeginPopup() to tell if a window just opened. call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
-		public static void LoadIniSettingsFromMemory(byte* iniData, nuint iniSize)
+		public static bool OpenPopup(byte* strId, ImGuiPopupFlags popupFlags)
 		{
-			LoadIniSettingsFromMemoryNative(iniData, iniSize);
+			byte ret = OpenPopupNative(strId, popupFlags);
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// Popups: openclose functions<br/>
+		/// - OpenPopup(): set popup state to open (unless one of the specified ImGuiPopupFlags prevent opening).<br/>
+		/// - OpenPopupXXX() functions return true when the popup is toggled open, which allows you to capture local state if needed.<br/>
+		/// You may also call IsWindowAppearing() inside the later BeginPopup() scope if you need to preparecompute data for the popup.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing ESCAPE.<br/>
+		/// - CloseCurrentPopup(): use inside the BeginPopup()EndPopup() scope to close manually.<br/>
+		/// - CloseCurrentPopup() is called by default by Selectable()MenuItem() when activated (FIXME: need some options).<br/>
+		/// - Use ImGuiPopupFlags_NoOpenOverExistingPopup to avoid opening a popup if there's already one at the same level. This is equivalent to e.g. testing for !IsAnyPopupOpen() prior to OpenPopup().<br/>
+		/// - Use IsWindowAppearing() after BeginPopup() to tell if a window just opened. call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
-		public static void LoadIniSettingsFromMemory(byte* iniData)
+		public static bool OpenPopup(byte* strId)
 		{
-			LoadIniSettingsFromMemoryNative(iniData, (nuint)(0));
+			byte ret = OpenPopupNative(strId, (ImGuiPopupFlags)(0));
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// Popups: openclose functions<br/>
+		/// - OpenPopup(): set popup state to open (unless one of the specified ImGuiPopupFlags prevent opening).<br/>
+		/// - OpenPopupXXX() functions return true when the popup is toggled open, which allows you to capture local state if needed.<br/>
+		/// You may also call IsWindowAppearing() inside the later BeginPopup() scope if you need to preparecompute data for the popup.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing ESCAPE.<br/>
+		/// - CloseCurrentPopup(): use inside the BeginPopup()EndPopup() scope to close manually.<br/>
+		/// - CloseCurrentPopup() is called by default by Selectable()MenuItem() when activated (FIXME: need some options).<br/>
+		/// - Use ImGuiPopupFlags_NoOpenOverExistingPopup to avoid opening a popup if there's already one at the same level. This is equivalent to e.g. testing for !IsAnyPopupOpen() prior to OpenPopup().<br/>
+		/// - Use IsWindowAppearing() after BeginPopup() to tell if a window just opened. call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
-		public static void LoadIniSettingsFromMemory(in byte iniData, nuint iniSize)
+		public static bool OpenPopup(in byte strId, ImGuiPopupFlags popupFlags)
 		{
-			fixed (byte* piniData = &iniData)
+			fixed (byte* pstrId = &strId)
 			{
-				LoadIniSettingsFromMemoryNative((byte*)piniData, iniSize);
+				byte ret = OpenPopupNative((byte*)pstrId, popupFlags);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// Popups: openclose functions<br/>
+		/// - OpenPopup(): set popup state to open (unless one of the specified ImGuiPopupFlags prevent opening).<br/>
+		/// - OpenPopupXXX() functions return true when the popup is toggled open, which allows you to capture local state if needed.<br/>
+		/// You may also call IsWindowAppearing() inside the later BeginPopup() scope if you need to preparecompute data for the popup.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing ESCAPE.<br/>
+		/// - CloseCurrentPopup(): use inside the BeginPopup()EndPopup() scope to close manually.<br/>
+		/// - CloseCurrentPopup() is called by default by Selectable()MenuItem() when activated (FIXME: need some options).<br/>
+		/// - Use ImGuiPopupFlags_NoOpenOverExistingPopup to avoid opening a popup if there's already one at the same level. This is equivalent to e.g. testing for !IsAnyPopupOpen() prior to OpenPopup().<br/>
+		/// - Use IsWindowAppearing() after BeginPopup() to tell if a window just opened. call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
-		public static void LoadIniSettingsFromMemory(in byte iniData)
+		public static bool OpenPopup(in byte strId)
 		{
-			fixed (byte* piniData = &iniData)
+			fixed (byte* pstrId = &strId)
 			{
-				LoadIniSettingsFromMemoryNative((byte*)piniData, (nuint)(0));
+				byte ret = OpenPopupNative((byte*)pstrId, (ImGuiPopupFlags)(0));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// Popups: openclose functions<br/>
+		/// - OpenPopup(): set popup state to open (unless one of the specified ImGuiPopupFlags prevent opening).<br/>
+		/// - OpenPopupXXX() functions return true when the popup is toggled open, which allows you to capture local state if needed.<br/>
+		/// You may also call IsWindowAppearing() inside the later BeginPopup() scope if you need to preparecompute data for the popup.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing ESCAPE.<br/>
+		/// - CloseCurrentPopup(): use inside the BeginPopup()EndPopup() scope to close manually.<br/>
+		/// - CloseCurrentPopup() is called by default by Selectable()MenuItem() when activated (FIXME: need some options).<br/>
+		/// - Use ImGuiPopupFlags_NoOpenOverExistingPopup to avoid opening a popup if there's already one at the same level. This is equivalent to e.g. testing for !IsAnyPopupOpen() prior to OpenPopup().<br/>
+		/// - Use IsWindowAppearing() after BeginPopup() to tell if a window just opened. call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
-		public static void LoadIniSettingsFromMemory(ReadOnlySpan<byte> iniData, nuint iniSize)
+		public static bool OpenPopup(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
 		{
-			fixed (byte* piniData = iniData)
+			fixed (byte* pstrId = strId)
 			{
-				LoadIniSettingsFromMemoryNative((byte*)piniData, iniSize);
+				byte ret = OpenPopupNative((byte*)pstrId, popupFlags);
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// Popups: openclose functions<br/>
+		/// - OpenPopup(): set popup state to open (unless one of the specified ImGuiPopupFlags prevent opening).<br/>
+		/// - OpenPopupXXX() functions return true when the popup is toggled open, which allows you to capture local state if needed.<br/>
+		/// You may also call IsWindowAppearing() inside the later BeginPopup() scope if you need to preparecompute data for the popup.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing ESCAPE.<br/>
+		/// - CloseCurrentPopup(): use inside the BeginPopup()EndPopup() scope to close manually.<br/>
+		/// - CloseCurrentPopup() is called by default by Selectable()MenuItem() when activated (FIXME: need some options).<br/>
+		/// - Use ImGuiPopupFlags_NoOpenOverExistingPopup to avoid opening a popup if there's already one at the same level. This is equivalent to e.g. testing for !IsAnyPopupOpen() prior to OpenPopup().<br/>
+		/// - Use IsWindowAppearing() after BeginPopup() to tell if a window just opened. call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
-		public static void LoadIniSettingsFromMemory(ReadOnlySpan<byte> iniData)
+		public static bool OpenPopup(ReadOnlySpan<byte> strId)
 		{
-			fixed (byte* piniData = iniData)
+			fixed (byte* pstrId = strId)
 			{
-				LoadIniSettingsFromMemoryNative((byte*)piniData, (nuint)(0));
+				byte ret = OpenPopupNative((byte*)pstrId, (ImGuiPopupFlags)(0));
+				return ret != 0;
 			}
 		}
 
 		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// Popups: openclose functions<br/>
+		/// - OpenPopup(): set popup state to open (unless one of the specified ImGuiPopupFlags prevent opening).<br/>
+		/// - OpenPopupXXX() functions return true when the popup is toggled open, which allows you to capture local state if needed.<br/>
+		/// You may also call IsWindowAppearing() inside the later BeginPopup() scope if you need to preparecompute data for the popup.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing ESCAPE.<br/>
+		/// - CloseCurrentPopup(): use inside the BeginPopup()EndPopup() scope to close manually.<br/>
+		/// - CloseCurrentPopup() is called by default by Selectable()MenuItem() when activated (FIXME: need some options).<br/>
+		/// - Use ImGuiPopupFlags_NoOpenOverExistingPopup to avoid opening a popup if there's already one at the same level. This is equivalent to e.g. testing for !IsAnyPopupOpen() prior to OpenPopup().<br/>
+		/// - Use IsWindowAppearing() after BeginPopup() to tell if a window just opened. call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
-		public static void LoadIniSettingsFromMemory(string iniData, nuint iniSize)
+		public static bool OpenPopup(string strId, ImGuiPopupFlags popupFlags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (iniData != null)
+			if (strId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(iniData);
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4967,26 +2849,35 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(iniData, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			LoadIniSettingsFromMemoryNative(pStr0, iniSize);
+			byte ret = OpenPopupNative(pStr0, popupFlags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// Popups: openclose functions<br/>
+		/// - OpenPopup(): set popup state to open (unless one of the specified ImGuiPopupFlags prevent opening).<br/>
+		/// - OpenPopupXXX() functions return true when the popup is toggled open, which allows you to capture local state if needed.<br/>
+		/// You may also call IsWindowAppearing() inside the later BeginPopup() scope if you need to preparecompute data for the popup.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing ESCAPE.<br/>
+		/// - CloseCurrentPopup(): use inside the BeginPopup()EndPopup() scope to close manually.<br/>
+		/// - CloseCurrentPopup() is called by default by Selectable()MenuItem() when activated (FIXME: need some options).<br/>
+		/// - Use ImGuiPopupFlags_NoOpenOverExistingPopup to avoid opening a popup if there's already one at the same level. This is equivalent to e.g. testing for !IsAnyPopupOpen() prior to OpenPopup().<br/>
+		/// - Use IsWindowAppearing() after BeginPopup() to tell if a window just opened. call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
-		public static void LoadIniSettingsFromMemory(string iniData)
+		public static bool OpenPopup(string strId)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (iniData != null)
+			if (strId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(iniData);
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4996,26 +2887,2146 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(iniData, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			LoadIniSettingsFromMemoryNative(pStr0, (nuint)(0));
+			byte ret = OpenPopupNative(pStr0, (ImGuiPopupFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
-		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
+		/// Popups: openclose functions<br/>
+		/// - OpenPopup(): set popup state to open (unless one of the specified ImGuiPopupFlags prevent opening).<br/>
+		/// - OpenPopupXXX() functions return true when the popup is toggled open, which allows you to capture local state if needed.<br/>
+		/// You may also call IsWindowAppearing() inside the later BeginPopup() scope if you need to preparecompute data for the popup.<br/>
+		/// - If not modal: they can be closed by clicking anywhere outside them, or by pressing ESCAPE.<br/>
+		/// - CloseCurrentPopup(): use inside the BeginPopup()EndPopup() scope to close manually.<br/>
+		/// - CloseCurrentPopup() is called by default by Selectable()MenuItem() when activated (FIXME: need some options).<br/>
+		/// - Use ImGuiPopupFlags_NoOpenOverExistingPopup to avoid opening a popup if there's already one at the same level. This is equivalent to e.g. testing for !IsAnyPopupOpen() prior to OpenPopup().<br/>
+		/// - Use IsWindowAppearing() after BeginPopup() to tell if a window just opened. call to mark popup as open (don't call every frame!).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SaveIniSettingsToDiskNative(byte* iniFilename)
+		internal static byte OpenPopupNative(uint id, ImGuiPopupFlags popupFlags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[401])(iniFilename);
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiPopupFlags, byte>)funcTable[269])(id, popupFlags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[401])((nint)iniFilename);
+			return (byte)((delegate* unmanaged[Cdecl]<uint, ImGuiPopupFlags, byte>)funcTable[269])(id, popupFlags);
+			#endif
+		}
+
+		/// <summary>
+		/// id overload to facilitate calling from nested stacks<br/>
+		/// </summary>
+		public static bool OpenPopup(uint id, ImGuiPopupFlags popupFlags)
+		{
+			byte ret = OpenPopupNative(id, popupFlags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// id overload to facilitate calling from nested stacks<br/>
+		/// </summary>
+		public static bool OpenPopup(uint id)
+		{
+			byte ret = OpenPopupNative(id, (ImGuiPopupFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte OpenPopupOnItemClickNative(byte* strId, ImGuiPopupFlags popupFlags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[270])(strId, popupFlags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[270])((nint)strId, popupFlags);
+			#endif
+		}
+
+		/// <summary>
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// </summary>
+		public static bool OpenPopupOnItemClick(byte* strId, ImGuiPopupFlags popupFlags)
+		{
+			byte ret = OpenPopupOnItemClickNative(strId, popupFlags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// </summary>
+		public static bool OpenPopupOnItemClick(byte* strId)
+		{
+			byte ret = OpenPopupOnItemClickNative(strId, (ImGuiPopupFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// </summary>
+		public static bool OpenPopupOnItemClick()
+		{
+			byte ret = OpenPopupOnItemClickNative((byte*)(default), (ImGuiPopupFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// </summary>
+		public static bool OpenPopupOnItemClick(ImGuiPopupFlags popupFlags)
+		{
+			byte ret = OpenPopupOnItemClickNative((byte*)(default), popupFlags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// </summary>
+		public static bool OpenPopupOnItemClick(in byte strId, ImGuiPopupFlags popupFlags)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = OpenPopupOnItemClickNative((byte*)pstrId, popupFlags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// </summary>
+		public static bool OpenPopupOnItemClick(in byte strId)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = OpenPopupOnItemClickNative((byte*)pstrId, (ImGuiPopupFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// </summary>
+		public static bool OpenPopupOnItemClick(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = OpenPopupOnItemClickNative((byte*)pstrId, popupFlags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// </summary>
+		public static bool OpenPopupOnItemClick(ReadOnlySpan<byte> strId)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = OpenPopupOnItemClickNative((byte*)pstrId, (ImGuiPopupFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// </summary>
+		public static bool OpenPopupOnItemClick(string strId, ImGuiPopupFlags popupFlags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = OpenPopupOnItemClickNative(pStr0, popupFlags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// helper to open popup when clicked on last item. Default to ImGuiPopupFlags_MouseButtonRight == 1. (note: actually triggers on the mouse _released_ event to be consistent with popup behaviors)<br/>
+		/// </summary>
+		public static bool OpenPopupOnItemClick(string strId)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = OpenPopupOnItemClickNative(pStr0, (ImGuiPopupFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// manually close the popup we have begin-ed into.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void CloseCurrentPopupNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[271])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[271])();
+			#endif
+		}
+
+		/// <summary>
+		/// manually close the popup we have begin-ed into.<br/>
+		/// </summary>
+		public static void CloseCurrentPopup()
+		{
+			CloseCurrentPopupNative();
+		}
+
+		/// <summary>
+		/// Popups: Open+Begin popup combined functions helpers to create context menus.<br/>
+		/// - Helpers to do OpenPopup+BeginPopup where the Open action is triggered by e.g. hovering an item and right-clicking.<br/>
+		/// - IMPORTANT: Notice that BeginPopupContextXXX takes ImGuiPopupFlags just like OpenPopup() and unlike BeginPopup(). For full consistency, we may add ImGuiWindowFlags to the BeginPopupContextXXX functions in the future.<br/>
+		/// - IMPORTANT: If you ever used the left mouse button with BeginPopupContextXXX() helpers before 1.92.6:<br/>
+		/// - Before this version, OpenPopupOnItemClick(), BeginPopupContextItem(), BeginPopupContextWindow(), BeginPopupContextVoid() had 'a ImGuiPopupFlags popup_flags = 1' default value in their function signature.<br/>
+		/// - Before: Explicitly passing a literal 0 meant ImGuiPopupFlags_MouseButtonLeft. The default = 1 meant ImGuiPopupFlags_MouseButtonRight.<br/>
+		/// - After: The default = 0 means ImGuiPopupFlags_MouseButtonRight. Explicitly passing a literal 1 also means ImGuiPopupFlags_MouseButtonRight (if legacy behavior are enabled) or will assert (if legacy behavior are disabled).<br/>
+		/// - TL;DR: if you don't want to use right mouse button for popups, always specify it explicitly using a named ImGuiPopupFlags_MouseButtonXXXX value.<br/>
+		/// - Read "API BREAKING CHANGES" 20260107 (1.92.6) entry in imgui.cpp or GitHub topic #9157 for all details. open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte BeginPopupContextItemNative(byte* strId, ImGuiPopupFlags popupFlags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[272])(strId, popupFlags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[272])((nint)strId, popupFlags);
+			#endif
+		}
+
+		/// <summary>
+		/// Popups: Open+Begin popup combined functions helpers to create context menus.<br/>
+		/// - Helpers to do OpenPopup+BeginPopup where the Open action is triggered by e.g. hovering an item and right-clicking.<br/>
+		/// - IMPORTANT: Notice that BeginPopupContextXXX takes ImGuiPopupFlags just like OpenPopup() and unlike BeginPopup(). For full consistency, we may add ImGuiWindowFlags to the BeginPopupContextXXX functions in the future.<br/>
+		/// - IMPORTANT: If you ever used the left mouse button with BeginPopupContextXXX() helpers before 1.92.6:<br/>
+		/// - Before this version, OpenPopupOnItemClick(), BeginPopupContextItem(), BeginPopupContextWindow(), BeginPopupContextVoid() had 'a ImGuiPopupFlags popup_flags = 1' default value in their function signature.<br/>
+		/// - Before: Explicitly passing a literal 0 meant ImGuiPopupFlags_MouseButtonLeft. The default = 1 meant ImGuiPopupFlags_MouseButtonRight.<br/>
+		/// - After: The default = 0 means ImGuiPopupFlags_MouseButtonRight. Explicitly passing a literal 1 also means ImGuiPopupFlags_MouseButtonRight (if legacy behavior are enabled) or will assert (if legacy behavior are disabled).<br/>
+		/// - TL;DR: if you don't want to use right mouse button for popups, always specify it explicitly using a named ImGuiPopupFlags_MouseButtonXXXX value.<br/>
+		/// - Read "API BREAKING CHANGES" 20260107 (1.92.6) entry in imgui.cpp or GitHub topic #9157 for all details. open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// </summary>
+		public static bool BeginPopupContextItem(byte* strId, ImGuiPopupFlags popupFlags)
+		{
+			byte ret = BeginPopupContextItemNative(strId, popupFlags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Popups: Open+Begin popup combined functions helpers to create context menus.<br/>
+		/// - Helpers to do OpenPopup+BeginPopup where the Open action is triggered by e.g. hovering an item and right-clicking.<br/>
+		/// - IMPORTANT: Notice that BeginPopupContextXXX takes ImGuiPopupFlags just like OpenPopup() and unlike BeginPopup(). For full consistency, we may add ImGuiWindowFlags to the BeginPopupContextXXX functions in the future.<br/>
+		/// - IMPORTANT: If you ever used the left mouse button with BeginPopupContextXXX() helpers before 1.92.6:<br/>
+		/// - Before this version, OpenPopupOnItemClick(), BeginPopupContextItem(), BeginPopupContextWindow(), BeginPopupContextVoid() had 'a ImGuiPopupFlags popup_flags = 1' default value in their function signature.<br/>
+		/// - Before: Explicitly passing a literal 0 meant ImGuiPopupFlags_MouseButtonLeft. The default = 1 meant ImGuiPopupFlags_MouseButtonRight.<br/>
+		/// - After: The default = 0 means ImGuiPopupFlags_MouseButtonRight. Explicitly passing a literal 1 also means ImGuiPopupFlags_MouseButtonRight (if legacy behavior are enabled) or will assert (if legacy behavior are disabled).<br/>
+		/// - TL;DR: if you don't want to use right mouse button for popups, always specify it explicitly using a named ImGuiPopupFlags_MouseButtonXXXX value.<br/>
+		/// - Read "API BREAKING CHANGES" 20260107 (1.92.6) entry in imgui.cpp or GitHub topic #9157 for all details. open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// </summary>
+		public static bool BeginPopupContextItem(byte* strId)
+		{
+			byte ret = BeginPopupContextItemNative(strId, (ImGuiPopupFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Popups: Open+Begin popup combined functions helpers to create context menus.<br/>
+		/// - Helpers to do OpenPopup+BeginPopup where the Open action is triggered by e.g. hovering an item and right-clicking.<br/>
+		/// - IMPORTANT: Notice that BeginPopupContextXXX takes ImGuiPopupFlags just like OpenPopup() and unlike BeginPopup(). For full consistency, we may add ImGuiWindowFlags to the BeginPopupContextXXX functions in the future.<br/>
+		/// - IMPORTANT: If you ever used the left mouse button with BeginPopupContextXXX() helpers before 1.92.6:<br/>
+		/// - Before this version, OpenPopupOnItemClick(), BeginPopupContextItem(), BeginPopupContextWindow(), BeginPopupContextVoid() had 'a ImGuiPopupFlags popup_flags = 1' default value in their function signature.<br/>
+		/// - Before: Explicitly passing a literal 0 meant ImGuiPopupFlags_MouseButtonLeft. The default = 1 meant ImGuiPopupFlags_MouseButtonRight.<br/>
+		/// - After: The default = 0 means ImGuiPopupFlags_MouseButtonRight. Explicitly passing a literal 1 also means ImGuiPopupFlags_MouseButtonRight (if legacy behavior are enabled) or will assert (if legacy behavior are disabled).<br/>
+		/// - TL;DR: if you don't want to use right mouse button for popups, always specify it explicitly using a named ImGuiPopupFlags_MouseButtonXXXX value.<br/>
+		/// - Read "API BREAKING CHANGES" 20260107 (1.92.6) entry in imgui.cpp or GitHub topic #9157 for all details. open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// </summary>
+		public static bool BeginPopupContextItem()
+		{
+			byte ret = BeginPopupContextItemNative((byte*)(default), (ImGuiPopupFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Popups: Open+Begin popup combined functions helpers to create context menus.<br/>
+		/// - Helpers to do OpenPopup+BeginPopup where the Open action is triggered by e.g. hovering an item and right-clicking.<br/>
+		/// - IMPORTANT: Notice that BeginPopupContextXXX takes ImGuiPopupFlags just like OpenPopup() and unlike BeginPopup(). For full consistency, we may add ImGuiWindowFlags to the BeginPopupContextXXX functions in the future.<br/>
+		/// - IMPORTANT: If you ever used the left mouse button with BeginPopupContextXXX() helpers before 1.92.6:<br/>
+		/// - Before this version, OpenPopupOnItemClick(), BeginPopupContextItem(), BeginPopupContextWindow(), BeginPopupContextVoid() had 'a ImGuiPopupFlags popup_flags = 1' default value in their function signature.<br/>
+		/// - Before: Explicitly passing a literal 0 meant ImGuiPopupFlags_MouseButtonLeft. The default = 1 meant ImGuiPopupFlags_MouseButtonRight.<br/>
+		/// - After: The default = 0 means ImGuiPopupFlags_MouseButtonRight. Explicitly passing a literal 1 also means ImGuiPopupFlags_MouseButtonRight (if legacy behavior are enabled) or will assert (if legacy behavior are disabled).<br/>
+		/// - TL;DR: if you don't want to use right mouse button for popups, always specify it explicitly using a named ImGuiPopupFlags_MouseButtonXXXX value.<br/>
+		/// - Read "API BREAKING CHANGES" 20260107 (1.92.6) entry in imgui.cpp or GitHub topic #9157 for all details. open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// </summary>
+		public static bool BeginPopupContextItem(ImGuiPopupFlags popupFlags)
+		{
+			byte ret = BeginPopupContextItemNative((byte*)(default), popupFlags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Popups: Open+Begin popup combined functions helpers to create context menus.<br/>
+		/// - Helpers to do OpenPopup+BeginPopup where the Open action is triggered by e.g. hovering an item and right-clicking.<br/>
+		/// - IMPORTANT: Notice that BeginPopupContextXXX takes ImGuiPopupFlags just like OpenPopup() and unlike BeginPopup(). For full consistency, we may add ImGuiWindowFlags to the BeginPopupContextXXX functions in the future.<br/>
+		/// - IMPORTANT: If you ever used the left mouse button with BeginPopupContextXXX() helpers before 1.92.6:<br/>
+		/// - Before this version, OpenPopupOnItemClick(), BeginPopupContextItem(), BeginPopupContextWindow(), BeginPopupContextVoid() had 'a ImGuiPopupFlags popup_flags = 1' default value in their function signature.<br/>
+		/// - Before: Explicitly passing a literal 0 meant ImGuiPopupFlags_MouseButtonLeft. The default = 1 meant ImGuiPopupFlags_MouseButtonRight.<br/>
+		/// - After: The default = 0 means ImGuiPopupFlags_MouseButtonRight. Explicitly passing a literal 1 also means ImGuiPopupFlags_MouseButtonRight (if legacy behavior are enabled) or will assert (if legacy behavior are disabled).<br/>
+		/// - TL;DR: if you don't want to use right mouse button for popups, always specify it explicitly using a named ImGuiPopupFlags_MouseButtonXXXX value.<br/>
+		/// - Read "API BREAKING CHANGES" 20260107 (1.92.6) entry in imgui.cpp or GitHub topic #9157 for all details. open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// </summary>
+		public static bool BeginPopupContextItem(in byte strId, ImGuiPopupFlags popupFlags)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = BeginPopupContextItemNative((byte*)pstrId, popupFlags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Popups: Open+Begin popup combined functions helpers to create context menus.<br/>
+		/// - Helpers to do OpenPopup+BeginPopup where the Open action is triggered by e.g. hovering an item and right-clicking.<br/>
+		/// - IMPORTANT: Notice that BeginPopupContextXXX takes ImGuiPopupFlags just like OpenPopup() and unlike BeginPopup(). For full consistency, we may add ImGuiWindowFlags to the BeginPopupContextXXX functions in the future.<br/>
+		/// - IMPORTANT: If you ever used the left mouse button with BeginPopupContextXXX() helpers before 1.92.6:<br/>
+		/// - Before this version, OpenPopupOnItemClick(), BeginPopupContextItem(), BeginPopupContextWindow(), BeginPopupContextVoid() had 'a ImGuiPopupFlags popup_flags = 1' default value in their function signature.<br/>
+		/// - Before: Explicitly passing a literal 0 meant ImGuiPopupFlags_MouseButtonLeft. The default = 1 meant ImGuiPopupFlags_MouseButtonRight.<br/>
+		/// - After: The default = 0 means ImGuiPopupFlags_MouseButtonRight. Explicitly passing a literal 1 also means ImGuiPopupFlags_MouseButtonRight (if legacy behavior are enabled) or will assert (if legacy behavior are disabled).<br/>
+		/// - TL;DR: if you don't want to use right mouse button for popups, always specify it explicitly using a named ImGuiPopupFlags_MouseButtonXXXX value.<br/>
+		/// - Read "API BREAKING CHANGES" 20260107 (1.92.6) entry in imgui.cpp or GitHub topic #9157 for all details. open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// </summary>
+		public static bool BeginPopupContextItem(in byte strId)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = BeginPopupContextItemNative((byte*)pstrId, (ImGuiPopupFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Popups: Open+Begin popup combined functions helpers to create context menus.<br/>
+		/// - Helpers to do OpenPopup+BeginPopup where the Open action is triggered by e.g. hovering an item and right-clicking.<br/>
+		/// - IMPORTANT: Notice that BeginPopupContextXXX takes ImGuiPopupFlags just like OpenPopup() and unlike BeginPopup(). For full consistency, we may add ImGuiWindowFlags to the BeginPopupContextXXX functions in the future.<br/>
+		/// - IMPORTANT: If you ever used the left mouse button with BeginPopupContextXXX() helpers before 1.92.6:<br/>
+		/// - Before this version, OpenPopupOnItemClick(), BeginPopupContextItem(), BeginPopupContextWindow(), BeginPopupContextVoid() had 'a ImGuiPopupFlags popup_flags = 1' default value in their function signature.<br/>
+		/// - Before: Explicitly passing a literal 0 meant ImGuiPopupFlags_MouseButtonLeft. The default = 1 meant ImGuiPopupFlags_MouseButtonRight.<br/>
+		/// - After: The default = 0 means ImGuiPopupFlags_MouseButtonRight. Explicitly passing a literal 1 also means ImGuiPopupFlags_MouseButtonRight (if legacy behavior are enabled) or will assert (if legacy behavior are disabled).<br/>
+		/// - TL;DR: if you don't want to use right mouse button for popups, always specify it explicitly using a named ImGuiPopupFlags_MouseButtonXXXX value.<br/>
+		/// - Read "API BREAKING CHANGES" 20260107 (1.92.6) entry in imgui.cpp or GitHub topic #9157 for all details. open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// </summary>
+		public static bool BeginPopupContextItem(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginPopupContextItemNative((byte*)pstrId, popupFlags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Popups: Open+Begin popup combined functions helpers to create context menus.<br/>
+		/// - Helpers to do OpenPopup+BeginPopup where the Open action is triggered by e.g. hovering an item and right-clicking.<br/>
+		/// - IMPORTANT: Notice that BeginPopupContextXXX takes ImGuiPopupFlags just like OpenPopup() and unlike BeginPopup(). For full consistency, we may add ImGuiWindowFlags to the BeginPopupContextXXX functions in the future.<br/>
+		/// - IMPORTANT: If you ever used the left mouse button with BeginPopupContextXXX() helpers before 1.92.6:<br/>
+		/// - Before this version, OpenPopupOnItemClick(), BeginPopupContextItem(), BeginPopupContextWindow(), BeginPopupContextVoid() had 'a ImGuiPopupFlags popup_flags = 1' default value in their function signature.<br/>
+		/// - Before: Explicitly passing a literal 0 meant ImGuiPopupFlags_MouseButtonLeft. The default = 1 meant ImGuiPopupFlags_MouseButtonRight.<br/>
+		/// - After: The default = 0 means ImGuiPopupFlags_MouseButtonRight. Explicitly passing a literal 1 also means ImGuiPopupFlags_MouseButtonRight (if legacy behavior are enabled) or will assert (if legacy behavior are disabled).<br/>
+		/// - TL;DR: if you don't want to use right mouse button for popups, always specify it explicitly using a named ImGuiPopupFlags_MouseButtonXXXX value.<br/>
+		/// - Read "API BREAKING CHANGES" 20260107 (1.92.6) entry in imgui.cpp or GitHub topic #9157 for all details. open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// </summary>
+		public static bool BeginPopupContextItem(ReadOnlySpan<byte> strId)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginPopupContextItemNative((byte*)pstrId, (ImGuiPopupFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Popups: Open+Begin popup combined functions helpers to create context menus.<br/>
+		/// - Helpers to do OpenPopup+BeginPopup where the Open action is triggered by e.g. hovering an item and right-clicking.<br/>
+		/// - IMPORTANT: Notice that BeginPopupContextXXX takes ImGuiPopupFlags just like OpenPopup() and unlike BeginPopup(). For full consistency, we may add ImGuiWindowFlags to the BeginPopupContextXXX functions in the future.<br/>
+		/// - IMPORTANT: If you ever used the left mouse button with BeginPopupContextXXX() helpers before 1.92.6:<br/>
+		/// - Before this version, OpenPopupOnItemClick(), BeginPopupContextItem(), BeginPopupContextWindow(), BeginPopupContextVoid() had 'a ImGuiPopupFlags popup_flags = 1' default value in their function signature.<br/>
+		/// - Before: Explicitly passing a literal 0 meant ImGuiPopupFlags_MouseButtonLeft. The default = 1 meant ImGuiPopupFlags_MouseButtonRight.<br/>
+		/// - After: The default = 0 means ImGuiPopupFlags_MouseButtonRight. Explicitly passing a literal 1 also means ImGuiPopupFlags_MouseButtonRight (if legacy behavior are enabled) or will assert (if legacy behavior are disabled).<br/>
+		/// - TL;DR: if you don't want to use right mouse button for popups, always specify it explicitly using a named ImGuiPopupFlags_MouseButtonXXXX value.<br/>
+		/// - Read "API BREAKING CHANGES" 20260107 (1.92.6) entry in imgui.cpp or GitHub topic #9157 for all details. open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// </summary>
+		public static bool BeginPopupContextItem(string strId, ImGuiPopupFlags popupFlags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginPopupContextItemNative(pStr0, popupFlags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Popups: Open+Begin popup combined functions helpers to create context menus.<br/>
+		/// - Helpers to do OpenPopup+BeginPopup where the Open action is triggered by e.g. hovering an item and right-clicking.<br/>
+		/// - IMPORTANT: Notice that BeginPopupContextXXX takes ImGuiPopupFlags just like OpenPopup() and unlike BeginPopup(). For full consistency, we may add ImGuiWindowFlags to the BeginPopupContextXXX functions in the future.<br/>
+		/// - IMPORTANT: If you ever used the left mouse button with BeginPopupContextXXX() helpers before 1.92.6:<br/>
+		/// - Before this version, OpenPopupOnItemClick(), BeginPopupContextItem(), BeginPopupContextWindow(), BeginPopupContextVoid() had 'a ImGuiPopupFlags popup_flags = 1' default value in their function signature.<br/>
+		/// - Before: Explicitly passing a literal 0 meant ImGuiPopupFlags_MouseButtonLeft. The default = 1 meant ImGuiPopupFlags_MouseButtonRight.<br/>
+		/// - After: The default = 0 means ImGuiPopupFlags_MouseButtonRight. Explicitly passing a literal 1 also means ImGuiPopupFlags_MouseButtonRight (if legacy behavior are enabled) or will assert (if legacy behavior are disabled).<br/>
+		/// - TL;DR: if you don't want to use right mouse button for popups, always specify it explicitly using a named ImGuiPopupFlags_MouseButtonXXXX value.<br/>
+		/// - Read "API BREAKING CHANGES" 20260107 (1.92.6) entry in imgui.cpp or GitHub topic #9157 for all details. open+begin popup when clicked on last item. Use str_id==NULL to associate the popup to previous item. If you want to use that on a non-interactive item such as Text() you need to pass in an explicit ID here. read comments in .cpp!<br/>
+		/// </summary>
+		public static bool BeginPopupContextItem(string strId)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginPopupContextItemNative(pStr0, (ImGuiPopupFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked on current window.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte BeginPopupContextWindowNative(byte* strId, ImGuiPopupFlags popupFlags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[273])(strId, popupFlags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[273])((nint)strId, popupFlags);
+			#endif
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked on current window.<br/>
+		/// </summary>
+		public static bool BeginPopupContextWindow(byte* strId, ImGuiPopupFlags popupFlags)
+		{
+			byte ret = BeginPopupContextWindowNative(strId, popupFlags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked on current window.<br/>
+		/// </summary>
+		public static bool BeginPopupContextWindow(byte* strId)
+		{
+			byte ret = BeginPopupContextWindowNative(strId, (ImGuiPopupFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked on current window.<br/>
+		/// </summary>
+		public static bool BeginPopupContextWindow()
+		{
+			byte ret = BeginPopupContextWindowNative((byte*)(default), (ImGuiPopupFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked on current window.<br/>
+		/// </summary>
+		public static bool BeginPopupContextWindow(ImGuiPopupFlags popupFlags)
+		{
+			byte ret = BeginPopupContextWindowNative((byte*)(default), popupFlags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked on current window.<br/>
+		/// </summary>
+		public static bool BeginPopupContextWindow(in byte strId, ImGuiPopupFlags popupFlags)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = BeginPopupContextWindowNative((byte*)pstrId, popupFlags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked on current window.<br/>
+		/// </summary>
+		public static bool BeginPopupContextWindow(in byte strId)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = BeginPopupContextWindowNative((byte*)pstrId, (ImGuiPopupFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked on current window.<br/>
+		/// </summary>
+		public static bool BeginPopupContextWindow(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginPopupContextWindowNative((byte*)pstrId, popupFlags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked on current window.<br/>
+		/// </summary>
+		public static bool BeginPopupContextWindow(ReadOnlySpan<byte> strId)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginPopupContextWindowNative((byte*)pstrId, (ImGuiPopupFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked on current window.<br/>
+		/// </summary>
+		public static bool BeginPopupContextWindow(string strId, ImGuiPopupFlags popupFlags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginPopupContextWindowNative(pStr0, popupFlags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked on current window.<br/>
+		/// </summary>
+		public static bool BeginPopupContextWindow(string strId)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginPopupContextWindowNative(pStr0, (ImGuiPopupFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte BeginPopupContextVoidNative(byte* strId, ImGuiPopupFlags popupFlags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[274])(strId, popupFlags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[274])((nint)strId, popupFlags);
+			#endif
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// </summary>
+		public static bool BeginPopupContextVoid(byte* strId, ImGuiPopupFlags popupFlags)
+		{
+			byte ret = BeginPopupContextVoidNative(strId, popupFlags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// </summary>
+		public static bool BeginPopupContextVoid(byte* strId)
+		{
+			byte ret = BeginPopupContextVoidNative(strId, (ImGuiPopupFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// </summary>
+		public static bool BeginPopupContextVoid()
+		{
+			byte ret = BeginPopupContextVoidNative((byte*)(default), (ImGuiPopupFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// </summary>
+		public static bool BeginPopupContextVoid(ImGuiPopupFlags popupFlags)
+		{
+			byte ret = BeginPopupContextVoidNative((byte*)(default), popupFlags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// </summary>
+		public static bool BeginPopupContextVoid(in byte strId, ImGuiPopupFlags popupFlags)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = BeginPopupContextVoidNative((byte*)pstrId, popupFlags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// </summary>
+		public static bool BeginPopupContextVoid(in byte strId)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = BeginPopupContextVoidNative((byte*)pstrId, (ImGuiPopupFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// </summary>
+		public static bool BeginPopupContextVoid(ReadOnlySpan<byte> strId, ImGuiPopupFlags popupFlags)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginPopupContextVoidNative((byte*)pstrId, popupFlags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// </summary>
+		public static bool BeginPopupContextVoid(ReadOnlySpan<byte> strId)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginPopupContextVoidNative((byte*)pstrId, (ImGuiPopupFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// </summary>
+		public static bool BeginPopupContextVoid(string strId, ImGuiPopupFlags popupFlags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginPopupContextVoidNative(pStr0, popupFlags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// open+begin popup when clicked in void (where there are no windows).<br/>
+		/// </summary>
+		public static bool BeginPopupContextVoid(string strId)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginPopupContextVoidNative(pStr0, (ImGuiPopupFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Popups: query functions<br/>
+		/// - IsPopupOpen(): return true if the popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId: return true if any popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId + ImGuiPopupFlags_AnyPopupLevel: return true if any popup is open. return true if the popup is open.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsPopupOpenNative(byte* strId, ImGuiPopupFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)funcTable[275])(strId, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiPopupFlags, byte>)funcTable[275])((nint)strId, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// Popups: query functions<br/>
+		/// - IsPopupOpen(): return true if the popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId: return true if any popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId + ImGuiPopupFlags_AnyPopupLevel: return true if any popup is open. return true if the popup is open.<br/>
+		/// </summary>
+		public static bool IsPopupOpen(byte* strId, ImGuiPopupFlags flags)
+		{
+			byte ret = IsPopupOpenNative(strId, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Popups: query functions<br/>
+		/// - IsPopupOpen(): return true if the popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId: return true if any popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId + ImGuiPopupFlags_AnyPopupLevel: return true if any popup is open. return true if the popup is open.<br/>
+		/// </summary>
+		public static bool IsPopupOpen(byte* strId)
+		{
+			byte ret = IsPopupOpenNative(strId, (ImGuiPopupFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Popups: query functions<br/>
+		/// - IsPopupOpen(): return true if the popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId: return true if any popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId + ImGuiPopupFlags_AnyPopupLevel: return true if any popup is open. return true if the popup is open.<br/>
+		/// </summary>
+		public static bool IsPopupOpen(in byte strId, ImGuiPopupFlags flags)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = IsPopupOpenNative((byte*)pstrId, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Popups: query functions<br/>
+		/// - IsPopupOpen(): return true if the popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId: return true if any popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId + ImGuiPopupFlags_AnyPopupLevel: return true if any popup is open. return true if the popup is open.<br/>
+		/// </summary>
+		public static bool IsPopupOpen(in byte strId)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = IsPopupOpenNative((byte*)pstrId, (ImGuiPopupFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Popups: query functions<br/>
+		/// - IsPopupOpen(): return true if the popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId: return true if any popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId + ImGuiPopupFlags_AnyPopupLevel: return true if any popup is open. return true if the popup is open.<br/>
+		/// </summary>
+		public static bool IsPopupOpen(ReadOnlySpan<byte> strId, ImGuiPopupFlags flags)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = IsPopupOpenNative((byte*)pstrId, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Popups: query functions<br/>
+		/// - IsPopupOpen(): return true if the popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId: return true if any popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId + ImGuiPopupFlags_AnyPopupLevel: return true if any popup is open. return true if the popup is open.<br/>
+		/// </summary>
+		public static bool IsPopupOpen(ReadOnlySpan<byte> strId)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = IsPopupOpenNative((byte*)pstrId, (ImGuiPopupFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Popups: query functions<br/>
+		/// - IsPopupOpen(): return true if the popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId: return true if any popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId + ImGuiPopupFlags_AnyPopupLevel: return true if any popup is open. return true if the popup is open.<br/>
+		/// </summary>
+		public static bool IsPopupOpen(string strId, ImGuiPopupFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = IsPopupOpenNative(pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Popups: query functions<br/>
+		/// - IsPopupOpen(): return true if the popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId: return true if any popup is open at the current BeginPopup() level of the popup stack.<br/>
+		/// - IsPopupOpen() with ImGuiPopupFlags_AnyPopupId + ImGuiPopupFlags_AnyPopupLevel: return true if any popup is open. return true if the popup is open.<br/>
+		/// </summary>
+		public static bool IsPopupOpen(string strId)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = IsPopupOpenNative(pStr0, (ImGuiPopupFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte BeginTableNative(byte* strId, int columns, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, int, ImGuiTableFlags, Vector2, float, byte>)funcTable[276])(strId, columns, flags, outerSize, innerWidth);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, ImGuiTableFlags, Vector2, float, byte>)funcTable[276])((nint)strId, columns, flags, outerSize, innerWidth);
+			#endif
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(byte* strId, int columns, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
+		{
+			byte ret = BeginTableNative(strId, columns, flags, outerSize, innerWidth);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(byte* strId, int columns, ImGuiTableFlags flags, Vector2 outerSize)
+		{
+			byte ret = BeginTableNative(strId, columns, flags, outerSize, (float)(0.0f));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(byte* strId, int columns, ImGuiTableFlags flags)
+		{
+			byte ret = BeginTableNative(strId, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(byte* strId, int columns)
+		{
+			byte ret = BeginTableNative(strId, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(byte* strId, int columns, Vector2 outerSize)
+		{
+			byte ret = BeginTableNative(strId, columns, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(byte* strId, int columns, ImGuiTableFlags flags, float innerWidth)
+		{
+			byte ret = BeginTableNative(strId, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(byte* strId, int columns, float innerWidth)
+		{
+			byte ret = BeginTableNative(strId, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(byte* strId, int columns, Vector2 outerSize, float innerWidth)
+		{
+			byte ret = BeginTableNative(strId, columns, (ImGuiTableFlags)(0), outerSize, innerWidth);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(in byte strId, int columns, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, flags, outerSize, innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(in byte strId, int columns, ImGuiTableFlags flags, Vector2 outerSize)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, flags, outerSize, (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(in byte strId, int columns, ImGuiTableFlags flags)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(in byte strId, int columns)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(in byte strId, int columns, Vector2 outerSize)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(in byte strId, int columns, ImGuiTableFlags flags, float innerWidth)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(in byte strId, int columns, float innerWidth)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(in byte strId, int columns, Vector2 outerSize, float innerWidth)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), outerSize, innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(ReadOnlySpan<byte> strId, int columns, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, flags, outerSize, innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(ReadOnlySpan<byte> strId, int columns, ImGuiTableFlags flags, Vector2 outerSize)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, flags, outerSize, (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(ReadOnlySpan<byte> strId, int columns, ImGuiTableFlags flags)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(ReadOnlySpan<byte> strId, int columns)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(ReadOnlySpan<byte> strId, int columns, Vector2 outerSize)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(ReadOnlySpan<byte> strId, int columns, ImGuiTableFlags flags, float innerWidth)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(ReadOnlySpan<byte> strId, int columns, float innerWidth)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(ReadOnlySpan<byte> strId, int columns, Vector2 outerSize, float innerWidth)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), outerSize, innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(string strId, int columns, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTableNative(pStr0, columns, flags, outerSize, innerWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(string strId, int columns, ImGuiTableFlags flags, Vector2 outerSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTableNative(pStr0, columns, flags, outerSize, (float)(0.0f));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(string strId, int columns, ImGuiTableFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTableNative(pStr0, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(string strId, int columns)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTableNative(pStr0, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(string strId, int columns, Vector2 outerSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTableNative(pStr0, columns, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(string strId, int columns, ImGuiTableFlags flags, float innerWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTableNative(pStr0, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(string strId, int columns, float innerWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTableNative(pStr0, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Tables<br/>
+		/// - Full-featured replacement for old Columns API.<br/>
+		/// - See Demo-&gt;Tables for demo code. See top of imgui_tables.cpp for general commentary.<br/>
+		/// - See ImGuiTableFlags_ and ImGuiTableColumnFlags_ enums for a description of available flags.<br/>
+		/// The typical call flow is:<br/>
+		/// - 1. Call BeginTable(), early out if returning false.<br/>
+		/// - 2. Optionally call TableSetupColumn() to submit column nameflagsdefaults.<br/>
+		/// - 3. Optionally call TableSetupScrollFreeze() to request scroll freezing of columnsrows.<br/>
+		/// - 4. Optionally call TableHeadersRow() to submit a header row. Names are pulled from TableSetupColumn() data.<br/>
+		/// - 5. Populate contents:<br/>
+		/// - In most situations you can use TableNextRow() + TableSetColumnIndex(N) to start appending into a column.<br/>
+		/// - If you are using tables as a sort of grid, where every column is holding the same type of contents,<br/>
+		/// you may prefer using TableNextColumn() instead of TableNextRow() + TableSetColumnIndex().<br/>
+		/// TableNextColumn() will automatically wrap-around into the next row if needed.<br/>
+		/// - IMPORTANT: Comparatively to the old Columns() API, we need to call TableNextColumn() for the first column!<br/>
+		/// - Summary of possible call flow:<br/>
+		/// - TableNextRow() -&gt; TableSetColumnIndex(0) -&gt; Text("Hello 0") -&gt; TableSetColumnIndex(1) -&gt; Text("Hello 1")   OK<br/>
+		/// - TableNextRow() -&gt; TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK<br/>
+		/// -                   TableNextColumn()      -&gt; Text("Hello 0") -&gt; TableNextColumn()      -&gt; Text("Hello 1")   OK: TableNextColumn() automatically gets to next row!<br/>
+		/// - TableNextRow()                           -&gt; Text("Hello 0")                                                Not OK! Missing TableSetColumnIndex() or TableNextColumn()! Text will not appear!<br/>
+		/// - 5. Call EndTable()<br/>
+		/// </summary>
+		public static bool BeginTable(string strId, int columns, Vector2 outerSize, float innerWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTableNative(pStr0, columns, (ImGuiTableFlags)(0), outerSize, innerWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// only call EndTable() if BeginTable() returns true!<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void EndTableNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[277])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[277])();
 			#endif
 		}
 	}

@@ -14,7 +14,8 @@
     "ImPlotRange_c": "ImPlotRange",
     "ImPlotRect_c": "ImPlotRect",
     "ImPlotTick_c": "ImPlotTick",
-    "ImPlotTime_c": "ImPlotTime"
+    "ImPlotTime_c": "ImPlotTime",
+    "ImPlotSpec_c": "ImPlotSpec"
   },
   "KnownEnumValueNames": {
     "ImGuiCond_None": "0",
@@ -35,7 +36,8 @@
     "ImPlotPoint(0,0)": "*ImPlotPointNative(0,0)",
     "ImPlotRect()": "*ImPlotRectNative()",
     "ImPlotRange()": "*ImPlotRangeNative()",
-    "ImPlotCond_Once": "ImPlotCond.Once"
+    "ImPlotCond_Once": "ImPlotCond.Once",
+    "ImPlotSpec()": "new ImPlotSpec()"
   },
   "IgnoredParts": [ "ImPlot" ],
   "Usings": [ "Hexa.NET.ImGui" ]

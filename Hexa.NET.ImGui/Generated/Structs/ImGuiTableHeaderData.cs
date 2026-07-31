@@ -27,7 +27,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public sbyte Index;
+		public short Index;
 
 		/// <summary>
 		/// To be documented.
@@ -48,7 +48,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTableHeaderData(sbyte index = default, uint textColor = default, uint bgColor0 = default, uint bgColor1 = default)
+		public unsafe ImGuiTableHeaderData(short index = default, uint textColor = default, uint bgColor0 = default, uint bgColor1 = default)
 		{
 			Index = index;
 			TextColor = textColor;
@@ -103,7 +103,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref sbyte Index => ref Unsafe.AsRef<sbyte>(&Handle->Index);
+		public ref short Index => ref Unsafe.AsRef<short>(&Handle->Index);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

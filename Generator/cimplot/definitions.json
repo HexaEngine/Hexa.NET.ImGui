@@ -5163,13 +5163,13 @@
           "type": "ImPlotMarker"
         }
       ],
-      "argsoriginal": "(const char* label_id,const ImPlotSpec& spec=ImPlotSpec(),const ImVec4& item_col=IMPLOT_AUTO_COL,ImPlotMarker item_mkr=ImPlotMarker_Invalid)",
+      "argsoriginal": "(const char* label_id,const ImPlotSpec& spec=ImPlotSpec(),const ImVec4& item_col=IMPLOT_AUTO_COL,ImPlotMarker item_mkr=ImPlotMarker_Auto)",
       "call_args": "(label_id,ConvertToCPP_ImPlotSpec(spec),ConvertToCPP_ImVec4(item_col),item_mkr)",
       "call_args_old": "(label_id,spec,item_col,item_mkr)",
       "cimguiname": "ImPlot_BeginItem",
       "defaults": {
         "item_col": "IMPLOT_AUTO_COL",
-        "item_mkr": "ImPlotMarker_Invalid",
+        "item_mkr": "ImPlotMarker_Auto",
         "spec": "ImPlotSpec()"
       },
       "funcname": "BeginItem",

@@ -48,5 +48,10 @@ namespace Hexa.NET.ImGui
 		/// InvisibleButton(): do not disable navigationtabbing. Otherwise disabled by default.<br/>
 		/// </summary>
 		EnableNav = unchecked(8),
+
+		/// <summary>
+		/// Hit testing will allow subsequent widgets to overlap this one. Require previous frame HoveredId to match before being usable. Shortcut to calling SetNextItemAllowOverlap().<br/>
+		/// </summary>
+		AllowOverlap = unchecked(4096),
 	}
 }

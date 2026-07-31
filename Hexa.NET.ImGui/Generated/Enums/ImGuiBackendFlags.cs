@@ -65,7 +65,7 @@ namespace Hexa.NET.ImGui
 		HasMouseHoveredViewport = unchecked(4096),
 
 		/// <summary>
-		/// Backend Platform supports honoring viewport-&gt;ParentViewportParentViewportId value, by applying the corresponding parentchild relation at the Platform level.<br/>
+		/// Backend Platform supports honoring viewport-&gt;ParentViewportParentViewportId value, by applying the corresponding parentchild relationship at the Platform level. Child windows always appear in front of their parent window.<br/>
 		/// </summary>
 		HasParentViewport = unchecked(8192),
 	}

@@ -30,40 +30,42 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public uint UserID;
+		public uint ID;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public sbyte Index;
+		public short Index;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public sbyte DisplayOrder;
+		public short DisplayOrder;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public sbyte SortOrder;
+		public short SortOrder;
 
 		public byte RawBits0;
 		public sbyte RawBits1;
 		public byte RawBits2;
+		public bool RawBits3;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTableColumnSettings(float widthOrWeight = default, uint userId = default, sbyte index = default, sbyte displayOrder = default, sbyte sortOrder = default, byte sortDirection = default, sbyte isEnabled = default, byte isStretch = default)
+		public unsafe ImGuiTableColumnSettings(float widthOrWeight = default, uint id = default, short index = default, short displayOrder = default, short sortOrder = default, byte sortDirection = default, sbyte isEnabled = default, byte isStretch = default, bool isLoaded = default)
 		{
 			WidthOrWeight = widthOrWeight;
-			UserID = userId;
+			ID = id;
 			Index = index;
 			DisplayOrder = displayOrder;
 			SortOrder = sortOrder;
 			SortDirection = sortDirection;
 			IsEnabled = isEnabled;
 			IsStretch = isStretch;
+			IsLoaded = isLoaded;
 		}
 
 
@@ -72,6 +74,8 @@ namespace Hexa.NET.ImGui
 		public sbyte IsEnabled { get => Bitfield.Get(RawBits1, 0, 2); set => Bitfield.Set(ref RawBits1, value, 0, 2); }
 
 		public byte IsStretch { get => Bitfield.Get(RawBits2, 0, 1); set => Bitfield.Set(ref RawBits2, value, 0, 1); }
+
+		public bool IsLoaded { get => Bitfield.Get(RawBits3, 0, 1); set => Bitfield.Set(ref RawBits3, value, 0, 1); }
 
 	}
 
@@ -123,19 +127,19 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint UserID => ref Unsafe.AsRef<uint>(&Handle->UserID);
+		public ref uint ID => ref Unsafe.AsRef<uint>(&Handle->ID);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref sbyte Index => ref Unsafe.AsRef<sbyte>(&Handle->Index);
+		public ref short Index => ref Unsafe.AsRef<short>(&Handle->Index);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref sbyte DisplayOrder => ref Unsafe.AsRef<sbyte>(&Handle->DisplayOrder);
+		public ref short DisplayOrder => ref Unsafe.AsRef<short>(&Handle->DisplayOrder);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref sbyte SortOrder => ref Unsafe.AsRef<sbyte>(&Handle->SortOrder);
+		public ref short SortOrder => ref Unsafe.AsRef<short>(&Handle->SortOrder);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -148,6 +152,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public byte IsStretch { get => Handle->IsStretch; set => Handle->IsStretch = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public bool IsLoaded { get => Handle->IsLoaded; set => Handle->IsLoaded = value; }
 	}
 
 }

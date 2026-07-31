@@ -58,13 +58,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public sbyte DrawLinesTableColumn;
+		public short DrawLinesTableColumn;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTreeNodeStackData(uint id = default, ImGuiTreeNodeFlags treeFlags = default, ImGuiItemFlags itemFlags = default, ImRect navRect = default, float drawLinesX1 = default, float drawLinesToNodesY2 = default, sbyte drawLinesTableColumn = default)
+		public unsafe ImGuiTreeNodeStackData(uint id = default, ImGuiTreeNodeFlags treeFlags = default, ImGuiItemFlags itemFlags = default, ImRect navRect = default, float drawLinesX1 = default, float drawLinesToNodesY2 = default, short drawLinesTableColumn = default)
 		{
 			ID = id;
 			TreeFlags = treeFlags;
@@ -146,7 +146,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref sbyte DrawLinesTableColumn => ref Unsafe.AsRef<sbyte>(&Handle->DrawLinesTableColumn);
+		public ref short DrawLinesTableColumn => ref Unsafe.AsRef<short>(&Handle->DrawLinesTableColumn);
 	}
 
 }

@@ -18,6 +18,7 @@ namespace Hexa.NET.ImGui
 {
 	/// <summary>
 	/// Data used by IsItemDeactivated()IsItemDeactivatedAfterEdit() functions<br/>
+	/// Also see ImGuiInputTextDeactivatedState which is an extension for this for InputText()<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiDeactivatedItemData

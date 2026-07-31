@@ -87,7 +87,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		EventMask = unchecked(4095),
+		EventTable = unchecked(4096),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		EventMask = unchecked(8191),
 
 		/// <summary>
 		/// Also send output to TTY<br/>
@@ -95,8 +100,13 @@ namespace Hexa.NET.ImGui
 		OutputToTty = unchecked(1048576),
 
 		/// <summary>
-		/// Also send output to Test Engine<br/>
+		/// Also send output to Debugger Console [Windows only]<br/>
 		/// </summary>
-		OutputToTestEngine = unchecked(2097152),
+		OutputToDebugger = unchecked(2097152),
+
+		/// <summary>
+		/// Also send output to Dear ImGui Test Engine<br/>
+		/// </summary>
+		OutputToTestEngine = unchecked(4194304),
 	}
 }

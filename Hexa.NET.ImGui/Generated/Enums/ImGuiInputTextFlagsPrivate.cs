@@ -27,7 +27,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// For internal use by TempInputText(), will skip calling ItemAdd(). Require bounding-box to strictly match.<br/>
 		/// </summary>
-		MergedItem = unchecked(134217728),
+		TempInput = unchecked(134217728),
 
 		/// <summary>
 		/// For internal use by InputScalar() and TempInputScalar()<br/>

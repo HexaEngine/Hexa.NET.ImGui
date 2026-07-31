@@ -280,7 +280,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Context creation and access<br/>
+		/// - Each context create its own ImFontAtlas by default. You may instance one yourself and pass it to CreateContext() to share a font atlas between contexts.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for details.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiContext* CreateContextNative(ImFontAtlas* sharedFontAtlas)
@@ -293,7 +296,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Context creation and access<br/>
+		/// - Each context create its own ImFontAtlas by default. You may instance one yourself and pass it to CreateContext() to share a font atlas between contexts.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for details.<br/>
 		/// </summary>
 		public static ImGuiContextPtr CreateContext(ImFontAtlasPtr sharedFontAtlas)
 		{
@@ -302,7 +308,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Context creation and access<br/>
+		/// - Each context create its own ImFontAtlas by default. You may instance one yourself and pass it to CreateContext() to share a font atlas between contexts.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for details.<br/>
 		/// </summary>
 		public static ImGuiContextPtr CreateContext()
 		{
@@ -311,7 +320,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Context creation and access<br/>
+		/// - Each context create its own ImFontAtlas by default. You may instance one yourself and pass it to CreateContext() to share a font atlas between contexts.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for details.<br/>
 		/// </summary>
 		public static ImGuiContextPtr CreateContext(ref ImFontAtlas sharedFontAtlas)
 		{
@@ -417,7 +429,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// access the ImGuiIO structure (mousekeyboardgamepad inputs, time, various configuration optionsflags)<br/>
+		/// Main access the ImGuiIO structure (mousekeyboardgamepad inputs, time, various configuration optionsflags)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImGuiIO* GetIONative()
@@ -430,7 +442,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// access the ImGuiIO structure (mousekeyboardgamepad inputs, time, various configuration optionsflags)<br/>
+		/// Main access the ImGuiIO structure (mousekeyboardgamepad inputs, time, various configuration optionsflags)<br/>
 		/// </summary>
 		public static ImGuiIOPtr GetIO()
 		{
@@ -568,7 +580,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
+		/// Demo, Debug, Information create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ShowDemoWindowNative(bool* pOpen)
@@ -581,7 +593,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
+		/// Demo, Debug, Information create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
 		/// </summary>
 		public static void ShowDemoWindow(bool* pOpen)
 		{
@@ -589,7 +601,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
+		/// Demo, Debug, Information create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
 		/// </summary>
 		public static void ShowDemoWindow()
 		{
@@ -597,7 +609,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
+		/// Demo, Debug, Information create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
 		/// </summary>
 		public static void ShowDemoWindow(ref bool pOpen)
 		{
@@ -1008,7 +1020,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// new, recommended style (default)<br/>
+		/// Styles new, recommended style (default)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void StyleColorsDarkNative(ImGuiStyle* dst)
@@ -1021,7 +1033,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// new, recommended style (default)<br/>
+		/// Styles new, recommended style (default)<br/>
 		/// </summary>
 		public static void StyleColorsDark(ImGuiStylePtr dst)
 		{
@@ -1029,7 +1041,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// new, recommended style (default)<br/>
+		/// Styles new, recommended style (default)<br/>
 		/// </summary>
 		public static void StyleColorsDark()
 		{
@@ -1037,7 +1049,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// new, recommended style (default)<br/>
+		/// Styles new, recommended style (default)<br/>
 		/// </summary>
 		public static void StyleColorsDark(ref ImGuiStyle dst)
 		{
@@ -1128,7 +1140,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginNative(byte* name, bool* pOpen, ImGuiWindowFlags flags)
@@ -1141,7 +1164,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(byte* name, bool* pOpen, ImGuiWindowFlags flags)
 		{
@@ -1150,7 +1184,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(byte* name, bool* pOpen)
 		{
@@ -1159,7 +1204,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(byte* name)
 		{
@@ -1168,7 +1224,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(byte* name, ImGuiWindowFlags flags)
 		{
@@ -1177,7 +1244,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(in byte name, bool* pOpen, ImGuiWindowFlags flags)
 		{
@@ -1189,7 +1267,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(in byte name, bool* pOpen)
 		{
@@ -1201,7 +1290,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(in byte name)
 		{
@@ -1213,7 +1313,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(in byte name, ImGuiWindowFlags flags)
 		{
@@ -1225,7 +1336,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(ReadOnlySpan<byte> name, bool* pOpen, ImGuiWindowFlags flags)
 		{
@@ -1237,7 +1359,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(ReadOnlySpan<byte> name, bool* pOpen)
 		{
@@ -1249,7 +1382,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(ReadOnlySpan<byte> name)
 		{
@@ -1261,7 +1405,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(ReadOnlySpan<byte> name, ImGuiWindowFlags flags)
 		{
@@ -1273,7 +1428,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(string name, bool* pOpen, ImGuiWindowFlags flags)
 		{
@@ -1303,7 +1469,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(string name, bool* pOpen)
 		{
@@ -1333,7 +1510,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(string name)
 		{
@@ -1363,7 +1551,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(string name, ImGuiWindowFlags flags)
 		{
@@ -1393,7 +1592,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(byte* name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
@@ -1405,7 +1615,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(byte* name, ref bool pOpen)
 		{
@@ -1417,7 +1638,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(in byte name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
@@ -1432,7 +1664,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(in byte name, ref bool pOpen)
 		{
@@ -1447,7 +1690,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(ReadOnlySpan<byte> name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
@@ -1462,7 +1716,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(ReadOnlySpan<byte> name, ref bool pOpen)
 		{
@@ -1477,7 +1742,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(string name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
@@ -1510,7 +1786,18 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows<br/>
+		/// - Begin() = push window to the stack and start appending to it. End() = pop window from the stack.<br/>
+		/// - Passing 'bool* p_open != NULL' shows a window-closing widget in the upper-right corner of the window,<br/>
+		/// which clicking will set the boolean to false when clicked.<br/>
+		/// - You may append multiple times to the same window during the same frame by calling Begin()End() pairs multiple times.<br/>
+		/// Some information such as 'flags' or 'p_open' will only be considered by the first call to Begin().<br/>
+		/// - Begin() return false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching End() for each Begin() call, regardless of its return value!<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
+		/// - Note that the bottom of window stack always contains a window called "Debug".<br/>
 		/// </summary>
 		public static bool Begin(string name, ref bool pOpen)
 		{
@@ -1564,7 +1851,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginChildNative(byte* strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
@@ -1577,7 +1881,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(byte* strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
@@ -1586,7 +1907,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(byte* strId, Vector2 size, ImGuiChildFlags childFlags)
 		{
@@ -1595,7 +1933,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(byte* strId, Vector2 size)
 		{
@@ -1604,7 +1959,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(byte* strId)
 		{
@@ -1613,7 +1985,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(byte* strId, ImGuiChildFlags childFlags)
 		{
@@ -1622,7 +2011,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(byte* strId, Vector2 size, ImGuiWindowFlags windowFlags)
 		{
@@ -1631,7 +2037,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(byte* strId, ImGuiWindowFlags windowFlags)
 		{
@@ -1640,7 +2063,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(byte* strId, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
@@ -1649,7 +2089,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(in byte strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
@@ -1661,7 +2118,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(in byte strId, Vector2 size, ImGuiChildFlags childFlags)
 		{
@@ -1673,7 +2147,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(in byte strId, Vector2 size)
 		{
@@ -1685,7 +2176,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(in byte strId)
 		{
@@ -1697,7 +2205,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(in byte strId, ImGuiChildFlags childFlags)
 		{
@@ -1709,7 +2234,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(in byte strId, Vector2 size, ImGuiWindowFlags windowFlags)
 		{
@@ -1721,7 +2263,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(in byte strId, ImGuiWindowFlags windowFlags)
 		{
@@ -1733,7 +2292,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(in byte strId, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
@@ -1745,7 +2321,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(ReadOnlySpan<byte> strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
@@ -1757,7 +2350,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(ReadOnlySpan<byte> strId, Vector2 size, ImGuiChildFlags childFlags)
 		{
@@ -1769,7 +2379,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(ReadOnlySpan<byte> strId, Vector2 size)
 		{
@@ -1781,7 +2408,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(ReadOnlySpan<byte> strId)
 		{
@@ -1793,7 +2437,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(ReadOnlySpan<byte> strId, ImGuiChildFlags childFlags)
 		{
@@ -1805,7 +2466,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(ReadOnlySpan<byte> strId, Vector2 size, ImGuiWindowFlags windowFlags)
 		{
@@ -1817,7 +2495,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(ReadOnlySpan<byte> strId, ImGuiWindowFlags windowFlags)
 		{
@@ -1829,7 +2524,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(ReadOnlySpan<byte> strId, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
@@ -1841,7 +2553,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(string strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
@@ -1871,7 +2600,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(string strId, Vector2 size, ImGuiChildFlags childFlags)
 		{
@@ -1901,7 +2647,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(string strId, Vector2 size)
 		{
@@ -1931,7 +2694,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(string strId)
 		{
@@ -1961,7 +2741,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(string strId, ImGuiChildFlags childFlags)
 		{
@@ -1991,7 +2788,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(string strId, Vector2 size, ImGuiWindowFlags windowFlags)
 		{
@@ -2021,7 +2835,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(string strId, ImGuiWindowFlags windowFlags)
 		{
@@ -2051,7 +2882,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(string strId, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
@@ -2081,7 +2929,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginChildNative(uint id, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
@@ -2094,7 +2959,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(uint id, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
@@ -2103,7 +2985,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(uint id, Vector2 size, ImGuiChildFlags childFlags)
 		{
@@ -2112,7 +3011,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(uint id, Vector2 size)
 		{
@@ -2121,7 +3037,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(uint id)
 		{
@@ -2130,7 +3063,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(uint id, ImGuiChildFlags childFlags)
 		{
@@ -2139,7 +3089,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(uint id, Vector2 size, ImGuiWindowFlags windowFlags)
 		{
@@ -2148,7 +3115,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(uint id, ImGuiWindowFlags windowFlags)
 		{
@@ -2157,7 +3141,24 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Child Windows<br/>
+		/// - Use child windows to begin into a self-contained independent scrollingclipping regions within a host window. Child windows can embed their own child.<br/>
+		/// - Before 1.90 (November 2023), the "ImGuiChildFlags child_flags = 0" parameter was "bool border = false".<br/>
+		/// This API is backward compatible with old code, as we guarantee that ImGuiChildFlags_Borders == true.<br/>
+		/// Consider updating your old code:<br/>
+		/// BeginChild("Name", size, false)   -&gt; Begin("Name", size, 0); or Begin("Name", size, ImGuiChildFlags_None);<br/>
+		/// BeginChild("Name", size, true)    -&gt; Begin("Name", size, ImGuiChildFlags_Borders);<br/>
+		/// - Manual sizing (each axis can use a different setting e.g. ImVec2(0.0f, 400.0f)):<br/>
+		/// == 0.0f: use remaining parent window size for this axis.<br/>
+		/// &gt; 0.0f: use specified size for this axis.<br/>
+		/// &lt; 0.0f: rightbottom-align to specified distance from available content boundaries.<br/>
+		/// - Specifying ImGuiChildFlags_AutoResizeX or ImGuiChildFlags_AutoResizeY makes the sizing automatic based on child contents.<br/>
+		/// Combining both ImGuiChildFlags_AutoResizeX _and_ ImGuiChildFlags_AutoResizeY defeats purpose of a scrolling region and is NOT recommended.<br/>
+		/// - BeginChild() returns false to indicate the window is collapsed or fully clipped, so you may early out and omit submitting<br/>
+		/// anything to the window. Always call a matching EndChild() for each BeginChild() call, regardless of its return value.<br/>
+		/// [Important: due to legacy reason, BeginEnd and BeginChildEndChild are inconsistent with all other functions<br/>
+		/// such as BeginMenuEndMenu, BeginPopupEndPopup, etc. where the EndXXX call should only be called if the corresponding<br/>
+		/// BeginXXX function returned true. Begin and BeginChild are the only odd ones out. Will be fixed in a future update.]<br/>
 		/// </summary>
 		public static bool BeginChild(uint id, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
@@ -2187,7 +3188,8 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows Utilities<br/>
+		/// - 'current window' = the window we are appending into while inside a Begin()End() block. 'next window' = next window we will Begin() into.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte IsWindowAppearingNative()
@@ -2200,7 +3202,8 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Windows Utilities<br/>
+		/// - 'current window' = the window we are appending into while inside a Begin()End() block. 'next window' = next window we will Begin() into.<br/>
 		/// </summary>
 		public static bool IsWindowAppearing()
 		{
@@ -2447,7 +3450,8 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
+		/// Window manipulation<br/>
+		/// - Prefer using SetNextXXX functions (before Begin) rather that SetXXX functions (after Begin). set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SetNextWindowPosNative(Vector2 pos, ImGuiCond cond, Vector2 pivot)
@@ -2460,7 +3464,8 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
+		/// Window manipulation<br/>
+		/// - Prefer using SetNextXXX functions (before Begin) rather that SetXXX functions (after Begin). set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
 		/// </summary>
 		public static void SetNextWindowPos(Vector2 pos, ImGuiCond cond, Vector2 pivot)
 		{
@@ -2468,7 +3473,8 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
+		/// Window manipulation<br/>
+		/// - Prefer using SetNextXXX functions (before Begin) rather that SetXXX functions (after Begin). set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
 		/// </summary>
 		public static void SetNextWindowPos(Vector2 pos, ImGuiCond cond)
 		{
@@ -2476,7 +3482,8 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
+		/// Window manipulation<br/>
+		/// - Prefer using SetNextXXX functions (before Begin) rather that SetXXX functions (after Begin). set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
 		/// </summary>
 		public static void SetNextWindowPos(Vector2 pos)
 		{
@@ -2484,7 +3491,8 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
+		/// Window manipulation<br/>
+		/// - Prefer using SetNextXXX functions (before Begin) rather that SetXXX functions (after Begin). set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
 		/// </summary>
 		public static void SetNextWindowPos(Vector2 pos, Vector2 pivot)
 		{
@@ -3313,7 +4321,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get scrolling amount [0 .. GetScrollMaxX()]<br/>
+		/// Windows Scrolling<br/>
+		/// - Any change of Scroll will be applied at the beginning of next frame in the first call to Begin().<br/>
+		/// - You may instead use SetNextWindowScroll() prior to calling Begin() to avoid this delay, as an alternative to using SetScrollX()SetScrollY(). get scrolling amount [0 .. GetScrollMaxX()]<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GetScrollXNative()
@@ -3326,7 +4336,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// get scrolling amount [0 .. GetScrollMaxX()]<br/>
+		/// Windows Scrolling<br/>
+		/// - Any change of Scroll will be applied at the beginning of next frame in the first call to Begin().<br/>
+		/// - You may instead use SetNextWindowScroll() prior to calling Begin() to avoid this delay, as an alternative to using SetScrollX()SetScrollY(). get scrolling amount [0 .. GetScrollMaxX()]<br/>
 		/// </summary>
 		public static float GetScrollX()
 		{
@@ -3559,7 +4571,22 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Use NULL as a shortcut to keep current font. Use 0.0f to keep current size.<br/>
+		/// Parameters stacks (font)<br/>
+		/// - PushFont(font, 0.0f)                        Change font and keep current size<br/>
+		/// - PushFont(NULL, 20.0f)                       Keep font and change current size<br/>
+		/// - PushFont(font, 20.0f)                       Change font and set size to 20.0f<br/>
+		/// - PushFont(font, style.FontSizeBase * 2.0f)   Change font and set size to be twice bigger than current size.<br/>
+		/// - PushFont(font, font-&gt;LegacySize)            Change font and set size to size passed to AddFontXXX() function. Same as pre-1.92 behavior.<br/>
+		/// *IMPORTANT* before 1.92, fonts had a single size. They can now be dynamically be adjusted.<br/>
+		/// - In 1.92 we have REMOVED the single parameter version of PushFont() because it seems like the easiest way to provide an error-proof transition.<br/>
+		/// - PushFont(font) before 1.92 = PushFont(font, font-&gt;LegacySize) after 1.92           Use default font size as passed to AddFontXXX() function.<br/>
+		/// *IMPORTANT* global scale factors are applied over the provided size.<br/>
+		/// - Global scale factors are: 'style.FontScaleMain', 'style.FontScaleDpi' and maybe more.<br/>
+		/// -  If you want to apply a factor to the _current_ font size:<br/>
+		/// - CORRECT:   PushFont(NULL, style.FontSizeBase)          use current unscaled size    == does nothing<br/>
+		/// - CORRECT:   PushFont(NULL, style.FontSizeBase * 2.0f)   use current unscaled size x2 == make text twice bigger<br/>
+		/// - INCORRECT: PushFont(NULL, GetFontSize())               INCORRECT! using size after global factors already applied == GLOBAL SCALING FACTORS WILL APPLY TWICE!<br/>
+		/// - INCORRECT: PushFont(NULL, GetFontSize() * 2.0f)        INCORRECT! using size after global factors already applied == GLOBAL SCALING FACTORS WILL APPLY TWICE! Use NULL as a shortcut to keep current font. Use 0.0f to keep current size.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushFontNative(ImFont* font, float fontSizeBaseUnscaled)
@@ -3572,7 +4599,22 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Use NULL as a shortcut to keep current font. Use 0.0f to keep current size.<br/>
+		/// Parameters stacks (font)<br/>
+		/// - PushFont(font, 0.0f)                        Change font and keep current size<br/>
+		/// - PushFont(NULL, 20.0f)                       Keep font and change current size<br/>
+		/// - PushFont(font, 20.0f)                       Change font and set size to 20.0f<br/>
+		/// - PushFont(font, style.FontSizeBase * 2.0f)   Change font and set size to be twice bigger than current size.<br/>
+		/// - PushFont(font, font-&gt;LegacySize)            Change font and set size to size passed to AddFontXXX() function. Same as pre-1.92 behavior.<br/>
+		/// *IMPORTANT* before 1.92, fonts had a single size. They can now be dynamically be adjusted.<br/>
+		/// - In 1.92 we have REMOVED the single parameter version of PushFont() because it seems like the easiest way to provide an error-proof transition.<br/>
+		/// - PushFont(font) before 1.92 = PushFont(font, font-&gt;LegacySize) after 1.92           Use default font size as passed to AddFontXXX() function.<br/>
+		/// *IMPORTANT* global scale factors are applied over the provided size.<br/>
+		/// - Global scale factors are: 'style.FontScaleMain', 'style.FontScaleDpi' and maybe more.<br/>
+		/// -  If you want to apply a factor to the _current_ font size:<br/>
+		/// - CORRECT:   PushFont(NULL, style.FontSizeBase)          use current unscaled size    == does nothing<br/>
+		/// - CORRECT:   PushFont(NULL, style.FontSizeBase * 2.0f)   use current unscaled size x2 == make text twice bigger<br/>
+		/// - INCORRECT: PushFont(NULL, GetFontSize())               INCORRECT! using size after global factors already applied == GLOBAL SCALING FACTORS WILL APPLY TWICE!<br/>
+		/// - INCORRECT: PushFont(NULL, GetFontSize() * 2.0f)        INCORRECT! using size after global factors already applied == GLOBAL SCALING FACTORS WILL APPLY TWICE! Use NULL as a shortcut to keep current font. Use 0.0f to keep current size.<br/>
 		/// </summary>
 		public static void PushFont(ImFontPtr font, float fontSizeBaseUnscaled)
 		{
@@ -3580,7 +4622,22 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Use NULL as a shortcut to keep current font. Use 0.0f to keep current size.<br/>
+		/// Parameters stacks (font)<br/>
+		/// - PushFont(font, 0.0f)                        Change font and keep current size<br/>
+		/// - PushFont(NULL, 20.0f)                       Keep font and change current size<br/>
+		/// - PushFont(font, 20.0f)                       Change font and set size to 20.0f<br/>
+		/// - PushFont(font, style.FontSizeBase * 2.0f)   Change font and set size to be twice bigger than current size.<br/>
+		/// - PushFont(font, font-&gt;LegacySize)            Change font and set size to size passed to AddFontXXX() function. Same as pre-1.92 behavior.<br/>
+		/// *IMPORTANT* before 1.92, fonts had a single size. They can now be dynamically be adjusted.<br/>
+		/// - In 1.92 we have REMOVED the single parameter version of PushFont() because it seems like the easiest way to provide an error-proof transition.<br/>
+		/// - PushFont(font) before 1.92 = PushFont(font, font-&gt;LegacySize) after 1.92           Use default font size as passed to AddFontXXX() function.<br/>
+		/// *IMPORTANT* global scale factors are applied over the provided size.<br/>
+		/// - Global scale factors are: 'style.FontScaleMain', 'style.FontScaleDpi' and maybe more.<br/>
+		/// -  If you want to apply a factor to the _current_ font size:<br/>
+		/// - CORRECT:   PushFont(NULL, style.FontSizeBase)          use current unscaled size    == does nothing<br/>
+		/// - CORRECT:   PushFont(NULL, style.FontSizeBase * 2.0f)   use current unscaled size x2 == make text twice bigger<br/>
+		/// - INCORRECT: PushFont(NULL, GetFontSize())               INCORRECT! using size after global factors already applied == GLOBAL SCALING FACTORS WILL APPLY TWICE!<br/>
+		/// - INCORRECT: PushFont(NULL, GetFontSize() * 2.0f)        INCORRECT! using size after global factors already applied == GLOBAL SCALING FACTORS WILL APPLY TWICE! Use NULL as a shortcut to keep current font. Use 0.0f to keep current size.<br/>
 		/// </summary>
 		public static void PushFont(ref ImFont font, float fontSizeBaseUnscaled)
 		{
@@ -3678,7 +4735,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// modify a style color. always use this if you modify the style after NewFrame().<br/>
+		/// Parameters stacks (shared) modify a style color. always use this if you modify the style after NewFrame().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushStyleColorNative(ImGuiCol idx, uint col)
@@ -3691,7 +4748,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// modify a style color. always use this if you modify the style after NewFrame().<br/>
+		/// Parameters stacks (shared) modify a style color. always use this if you modify the style after NewFrame().<br/>
 		/// </summary>
 		public static void PushStyleColor(ImGuiCol idx, uint col)
 		{
@@ -3699,7 +4756,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// modify a style color. always use this if you modify the style after NewFrame().<br/>
+		/// Parameters stacks (shared) modify a style color. always use this if you modify the style after NewFrame().<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushStyleColorNative(ImGuiCol idx, Vector4 col)
@@ -3712,7 +4769,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// modify a style color. always use this if you modify the style after NewFrame().<br/>
+		/// Parameters stacks (shared) modify a style color. always use this if you modify the style after NewFrame().<br/>
 		/// </summary>
 		public static void PushStyleColor(ImGuiCol idx, Vector4 col)
 		{
@@ -3904,7 +4961,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// push width of items for common large "item+label" widgets. &gt;0.0f: width in pixels, &lt;0.0f align xx pixels to the right of window (so -FLT_MIN always align width to the right side).<br/>
+		/// Parameters stacks (current window) push width of items for common large "item+label" widgets. &gt;0.0f: width in pixels, &lt;0.0f align xx pixels to the right of window (so -FLT_MIN always align width to the right side).<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void PushItemWidthNative(float itemWidth)
@@ -3917,7 +4974,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// push width of items for common large "item+label" widgets. &gt;0.0f: width in pixels, &lt;0.0f align xx pixels to the right of window (so -FLT_MIN always align width to the right side).<br/>
+		/// Parameters stacks (current window) push width of items for common large "item+label" widgets. &gt;0.0f: width in pixels, &lt;0.0f align xx pixels to the right of window (so -FLT_MIN always align width to the right side).<br/>
 		/// </summary>
 		public static void PushItemWidth(float itemWidth)
 		{
@@ -3956,1079 +5013,6 @@ namespace Hexa.NET.ImGui
 			#else
 			((delegate* unmanaged[Cdecl]<float, void>)funcTable[94])(itemWidth);
 			#endif
-		}
-
-		/// <summary>
-		/// set width of the _next_ common large "item+label" widget. &gt;0.0f: width in pixels, &lt;0.0f align xx pixels to the right of window (so -FLT_MIN always align width to the right side)<br/>
-		/// </summary>
-		public static void SetNextItemWidth(float itemWidth)
-		{
-			SetNextItemWidthNative(itemWidth);
-		}
-
-		/// <summary>
-		/// width of item given pushed settings and current cursor position. NOT necessarily the width of last item unlike most 'Item' functions.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float CalcItemWidthNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[95])();
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[95])();
-			#endif
-		}
-
-		/// <summary>
-		/// width of item given pushed settings and current cursor position. NOT necessarily the width of last item unlike most 'Item' functions.<br/>
-		/// </summary>
-		public static float CalcItemWidth()
-		{
-			float ret = CalcItemWidthNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// push word-wrapping position for Text*() commands. &lt; 0.0f: no wrapping; 0.0f: wrap to end of window (or column); &gt; 0.0f: wrap at 'wrap_pos_x' position in window local space<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushTextWrapPosNative(float wrapLocalPosX)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[96])(wrapLocalPosX);
-			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[96])(wrapLocalPosX);
-			#endif
-		}
-
-		/// <summary>
-		/// push word-wrapping position for Text*() commands. &lt; 0.0f: no wrapping; 0.0f: wrap to end of window (or column); &gt; 0.0f: wrap at 'wrap_pos_x' position in window local space<br/>
-		/// </summary>
-		public static void PushTextWrapPos(float wrapLocalPosX)
-		{
-			PushTextWrapPosNative(wrapLocalPosX);
-		}
-
-		/// <summary>
-		/// push word-wrapping position for Text*() commands. &lt; 0.0f: no wrapping; 0.0f: wrap to end of window (or column); &gt; 0.0f: wrap at 'wrap_pos_x' position in window local space<br/>
-		/// </summary>
-		public static void PushTextWrapPos()
-		{
-			PushTextWrapPosNative((float)(0.0f));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PopTextWrapPosNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[97])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[97])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PopTextWrapPos()
-		{
-			PopTextWrapPosNative();
-		}
-
-		/// <summary>
-		/// get UV coordinate for a white pixel, useful to draw custom shapes via the ImDrawList API<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector2 GetFontTexUvWhitePixelNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[98])();
-			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[98])();
-			#endif
-		}
-
-		/// <summary>
-		/// get UV coordinate for a white pixel, useful to draw custom shapes via the ImDrawList API<br/>
-		/// </summary>
-		public static Vector2 GetFontTexUvWhitePixel()
-		{
-			Vector2 ret = GetFontTexUvWhitePixelNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// retrieve given style color with style alpha applied and optional extra alpha multiplier, packed as a 32-bit value suitable for ImDrawList<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetColorU32Native(ImGuiCol idx, float alphaMul)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiCol, float, uint>)funcTable[99])(idx, alphaMul);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<ImGuiCol, float, uint>)funcTable[99])(idx, alphaMul);
-			#endif
-		}
-
-		/// <summary>
-		/// retrieve given style color with style alpha applied and optional extra alpha multiplier, packed as a 32-bit value suitable for ImDrawList<br/>
-		/// </summary>
-		public static uint GetColorU32(ImGuiCol idx, float alphaMul)
-		{
-			uint ret = GetColorU32Native(idx, alphaMul);
-			return ret;
-		}
-
-		/// <summary>
-		/// retrieve given style color with style alpha applied and optional extra alpha multiplier, packed as a 32-bit value suitable for ImDrawList<br/>
-		/// </summary>
-		public static uint GetColorU32(ImGuiCol idx)
-		{
-			uint ret = GetColorU32Native(idx, (float)(1.0f));
-			return ret;
-		}
-
-		/// <summary>
-		/// retrieve given style color with style alpha applied and optional extra alpha multiplier, packed as a 32-bit value suitable for ImDrawList<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetColorU32Native(Vector4 col)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[100])(col);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[100])(col);
-			#endif
-		}
-
-		/// <summary>
-		/// retrieve given color with style alpha applied, packed as a 32-bit value suitable for ImDrawList<br/>
-		/// </summary>
-		public static uint GetColorU32(Vector4 col)
-		{
-			uint ret = GetColorU32Native(col);
-			return ret;
-		}
-
-		/// <summary>
-		/// retrieve given style color with style alpha applied and optional extra alpha multiplier, packed as a 32-bit value suitable for ImDrawList<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetColorU32Native(uint col, float alphaMul)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, float, uint>)funcTable[101])(col, alphaMul);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, float, uint>)funcTable[101])(col, alphaMul);
-			#endif
-		}
-
-		/// <summary>
-		/// retrieve given color with style alpha applied, packed as a 32-bit value suitable for ImDrawList<br/>
-		/// </summary>
-		public static uint GetColorU32(uint col, float alphaMul)
-		{
-			uint ret = GetColorU32Native(col, alphaMul);
-			return ret;
-		}
-
-		/// <summary>
-		/// retrieve given color with style alpha applied, packed as a 32-bit value suitable for ImDrawList<br/>
-		/// </summary>
-		public static uint GetColorU32(uint col)
-		{
-			uint ret = GetColorU32Native(col, (float)(1.0f));
-			return ret;
-		}
-
-		/// <summary>
-		/// retrieve style color as stored in ImGuiStyle structure. use to feed back into PushStyleColor(), otherwise use GetColorU32() to get style color with style alpha baked in.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector4* GetStyleColorVec4Native(ImGuiCol idx)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiCol, Vector4*>)funcTable[102])(idx);
-			#else
-			return (Vector4*)((delegate* unmanaged[Cdecl]<ImGuiCol, nint>)funcTable[102])(idx);
-			#endif
-		}
-
-		/// <summary>
-		/// retrieve style color as stored in ImGuiStyle structure. use to feed back into PushStyleColor(), otherwise use GetColorU32() to get style color with style alpha baked in.<br/>
-		/// </summary>
-		public static Vector4* GetStyleColorVec4(ImGuiCol idx)
-		{
-			Vector4* ret = GetStyleColorVec4Native(idx);
-			return ret;
-		}
-
-		/// <summary>
-		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND (prefer using this rather than GetCursorPos(), also more useful to work with ImDrawList API).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector2 GetCursorScreenPosNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[103])();
-			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[103])();
-			#endif
-		}
-
-		/// <summary>
-		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND (prefer using this rather than GetCursorPos(), also more useful to work with ImDrawList API).<br/>
-		/// </summary>
-		public static Vector2 GetCursorScreenPos()
-		{
-			Vector2 ret = GetCursorScreenPosNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetCursorScreenPosNative(Vector2 pos)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[104])(pos);
-			#else
-			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[104])(pos);
-			#endif
-		}
-
-		/// <summary>
-		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND.<br/>
-		/// </summary>
-		public static void SetCursorScreenPos(Vector2 pos)
-		{
-			SetCursorScreenPosNative(pos);
-		}
-
-		/// <summary>
-		/// available space from current position. THIS IS YOUR BEST FRIEND.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector2 GetContentRegionAvailNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[105])();
-			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[105])();
-			#endif
-		}
-
-		/// <summary>
-		/// available space from current position. THIS IS YOUR BEST FRIEND.<br/>
-		/// </summary>
-		public static Vector2 GetContentRegionAvail()
-		{
-			Vector2 ret = GetContentRegionAvailNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// [window-local] cursor position in window-local coordinates. This is not your best friend.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector2 GetCursorPosNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[106])();
-			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[106])();
-			#endif
-		}
-
-		/// <summary>
-		/// [window-local] cursor position in window-local coordinates. This is not your best friend.<br/>
-		/// </summary>
-		public static Vector2 GetCursorPos()
-		{
-			Vector2 ret = GetCursorPosNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// [window-local] "<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetCursorPosXNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[107])();
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[107])();
-			#endif
-		}
-
-		/// <summary>
-		/// [window-local] "<br/>
-		/// </summary>
-		public static float GetCursorPosX()
-		{
-			float ret = GetCursorPosXNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// [window-local] "<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetCursorPosYNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[108])();
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[108])();
-			#endif
-		}
-
-		/// <summary>
-		/// [window-local] "<br/>
-		/// </summary>
-		public static float GetCursorPosY()
-		{
-			float ret = GetCursorPosYNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// [window-local] "<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetCursorPosNative(Vector2 localPos)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[109])(localPos);
-			#else
-			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[109])(localPos);
-			#endif
-		}
-
-		/// <summary>
-		/// [window-local] "<br/>
-		/// </summary>
-		public static void SetCursorPos(Vector2 localPos)
-		{
-			SetCursorPosNative(localPos);
-		}
-
-		/// <summary>
-		/// [window-local] "<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetCursorPosXNative(float localX)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[110])(localX);
-			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[110])(localX);
-			#endif
-		}
-
-		/// <summary>
-		/// [window-local] "<br/>
-		/// </summary>
-		public static void SetCursorPosX(float localX)
-		{
-			SetCursorPosXNative(localX);
-		}
-
-		/// <summary>
-		/// [window-local] "<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetCursorPosYNative(float localY)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[111])(localY);
-			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[111])(localY);
-			#endif
-		}
-
-		/// <summary>
-		/// [window-local] "<br/>
-		/// </summary>
-		public static void SetCursorPosY(float localY)
-		{
-			SetCursorPosYNative(localY);
-		}
-
-		/// <summary>
-		/// [window-local] initial cursor position, in window-local coordinates. Call GetCursorScreenPos() after Begin() to get the absolute coordinates version.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector2 GetCursorStartPosNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[112])();
-			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[112])();
-			#endif
-		}
-
-		/// <summary>
-		/// [window-local] initial cursor position, in window-local coordinates. Call GetCursorScreenPos() after Begin() to get the absolute coordinates version.<br/>
-		/// </summary>
-		public static Vector2 GetCursorStartPos()
-		{
-			Vector2 ret = GetCursorStartPosNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// separator, generally horizontal. inside a menu bar or in horizontal layout mode, this becomes a vertical separator.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SeparatorNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[113])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[113])();
-			#endif
-		}
-
-		/// <summary>
-		/// separator, generally horizontal. inside a menu bar or in horizontal layout mode, this becomes a vertical separator.<br/>
-		/// </summary>
-		public static void Separator()
-		{
-			SeparatorNative();
-		}
-
-		/// <summary>
-		/// call between widgets or groups to layout them horizontally. X position given in window coordinates.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SameLineNative(float offsetFromStartX, float spacing)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[114])(offsetFromStartX, spacing);
-			#else
-			((delegate* unmanaged[Cdecl]<float, float, void>)funcTable[114])(offsetFromStartX, spacing);
-			#endif
-		}
-
-		/// <summary>
-		/// call between widgets or groups to layout them horizontally. X position given in window coordinates.<br/>
-		/// </summary>
-		public static void SameLine(float offsetFromStartX, float spacing)
-		{
-			SameLineNative(offsetFromStartX, spacing);
-		}
-
-		/// <summary>
-		/// call between widgets or groups to layout them horizontally. X position given in window coordinates.<br/>
-		/// </summary>
-		public static void SameLine(float offsetFromStartX)
-		{
-			SameLineNative(offsetFromStartX, (float)(-1.0f));
-		}
-
-		/// <summary>
-		/// call between widgets or groups to layout them horizontally. X position given in window coordinates.<br/>
-		/// </summary>
-		public static void SameLine()
-		{
-			SameLineNative((float)(0.0f), (float)(-1.0f));
-		}
-
-		/// <summary>
-		/// undo a SameLine() or force a new line when in a horizontal-layout context.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void NewLineNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[115])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[115])();
-			#endif
-		}
-
-		/// <summary>
-		/// undo a SameLine() or force a new line when in a horizontal-layout context.<br/>
-		/// </summary>
-		public static void NewLine()
-		{
-			NewLineNative();
-		}
-
-		/// <summary>
-		/// add vertical spacing.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SpacingNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[116])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[116])();
-			#endif
-		}
-
-		/// <summary>
-		/// add vertical spacing.<br/>
-		/// </summary>
-		public static void Spacing()
-		{
-			SpacingNative();
-		}
-
-		/// <summary>
-		/// add a dummy item of given size. unlike InvisibleButton(), Dummy() won't take the mouse click or be navigable into.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DummyNative(Vector2 size)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[117])(size);
-			#else
-			((delegate* unmanaged[Cdecl]<Vector2, void>)funcTable[117])(size);
-			#endif
-		}
-
-		/// <summary>
-		/// add a dummy item of given size. unlike InvisibleButton(), Dummy() won't take the mouse click or be navigable into.<br/>
-		/// </summary>
-		public static void Dummy(Vector2 size)
-		{
-			DummyNative(size);
-		}
-
-		/// <summary>
-		/// move content position toward the right, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void IndentNative(float indentW)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[118])(indentW);
-			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[118])(indentW);
-			#endif
-		}
-
-		/// <summary>
-		/// move content position toward the right, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
-		/// </summary>
-		public static void Indent(float indentW)
-		{
-			IndentNative(indentW);
-		}
-
-		/// <summary>
-		/// move content position toward the right, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
-		/// </summary>
-		public static void Indent()
-		{
-			IndentNative((float)(0.0f));
-		}
-
-		/// <summary>
-		/// move content position back to the left, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void UnindentNative(float indentW)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[119])(indentW);
-			#else
-			((delegate* unmanaged[Cdecl]<float, void>)funcTable[119])(indentW);
-			#endif
-		}
-
-		/// <summary>
-		/// move content position back to the left, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
-		/// </summary>
-		public static void Unindent(float indentW)
-		{
-			UnindentNative(indentW);
-		}
-
-		/// <summary>
-		/// move content position back to the left, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
-		/// </summary>
-		public static void Unindent()
-		{
-			UnindentNative((float)(0.0f));
-		}
-
-		/// <summary>
-		/// lock horizontal starting position<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void BeginGroupNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[120])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[120])();
-			#endif
-		}
-
-		/// <summary>
-		/// lock horizontal starting position<br/>
-		/// </summary>
-		public static void BeginGroup()
-		{
-			BeginGroupNative();
-		}
-
-		/// <summary>
-		/// unlock horizontal starting position + capture the whole group bounding box into one "item" (so you can use IsItemHovered() or layout primitives such as SameLine() on whole group, etc.)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void EndGroupNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[121])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[121])();
-			#endif
-		}
-
-		/// <summary>
-		/// unlock horizontal starting position + capture the whole group bounding box into one "item" (so you can use IsItemHovered() or layout primitives such as SameLine() on whole group, etc.)<br/>
-		/// </summary>
-		public static void EndGroup()
-		{
-			EndGroupNative();
-		}
-
-		/// <summary>
-		/// vertically align upcoming text baseline to FramePadding.y so that it will align properly to regularly framed items (call if you have text on a line before a framed item)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AlignTextToFramePaddingNative()
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[122])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[122])();
-			#endif
-		}
-
-		/// <summary>
-		/// vertically align upcoming text baseline to FramePadding.y so that it will align properly to regularly framed items (call if you have text on a line before a framed item)<br/>
-		/// </summary>
-		public static void AlignTextToFramePadding()
-		{
-			AlignTextToFramePaddingNative();
-		}
-
-		/// <summary>
-		/// ~ FontSize<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetTextLineHeightNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[123])();
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[123])();
-			#endif
-		}
-
-		/// <summary>
-		/// ~ FontSize<br/>
-		/// </summary>
-		public static float GetTextLineHeight()
-		{
-			float ret = GetTextLineHeightNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// ~ FontSize + style.ItemSpacing.y (distance in pixels between 2 consecutive lines of text)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetTextLineHeightWithSpacingNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[124])();
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[124])();
-			#endif
-		}
-
-		/// <summary>
-		/// ~ FontSize + style.ItemSpacing.y (distance in pixels between 2 consecutive lines of text)<br/>
-		/// </summary>
-		public static float GetTextLineHeightWithSpacing()
-		{
-			float ret = GetTextLineHeightWithSpacingNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// ~ FontSize + style.FramePadding.y * 2<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetFrameHeightNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[125])();
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[125])();
-			#endif
-		}
-
-		/// <summary>
-		/// ~ FontSize + style.FramePadding.y * 2<br/>
-		/// </summary>
-		public static float GetFrameHeight()
-		{
-			float ret = GetFrameHeightNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// ~ FontSize + style.FramePadding.y * 2 + style.ItemSpacing.y (distance in pixels between 2 consecutive lines of framed widgets)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetFrameHeightWithSpacingNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float>)funcTable[126])();
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[126])();
-			#endif
-		}
-
-		/// <summary>
-		/// ~ FontSize + style.FramePadding.y * 2 + style.ItemSpacing.y (distance in pixels between 2 consecutive lines of framed widgets)<br/>
-		/// </summary>
-		public static float GetFrameHeightWithSpacing()
-		{
-			float ret = GetFrameHeightWithSpacingNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushIDNative(byte* strId)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[127])(strId);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[127])((nint)strId);
-			#endif
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(byte* strId)
-		{
-			PushIDNative(strId);
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(in byte strId)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				PushIDNative((byte*)pstrId);
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(ReadOnlySpan<byte> strId)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				PushIDNative((byte*)pstrId);
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(string strId)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PushIDNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushIDNative(byte* strIdBegin, byte* strIdEnd)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)funcTable[128])(strIdBegin, strIdEnd);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[128])((nint)strIdBegin, (nint)strIdEnd);
-			#endif
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(byte* strIdBegin, byte* strIdEnd)
-		{
-			PushIDNative(strIdBegin, strIdEnd);
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(in byte strIdBegin, byte* strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = &strIdBegin)
-			{
-				PushIDNative((byte*)pstrIdBegin, strIdEnd);
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = strIdBegin)
-			{
-				PushIDNative((byte*)pstrIdBegin, strIdEnd);
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(string strIdBegin, byte* strIdEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strIdBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strIdBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strIdBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PushIDNative(pStr0, strIdEnd);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(byte* strIdBegin, in byte strIdEnd)
-		{
-			fixed (byte* pstrIdEnd = &strIdEnd)
-			{
-				PushIDNative(strIdBegin, (byte*)pstrIdEnd);
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
-		{
-			fixed (byte* pstrIdEnd = strIdEnd)
-			{
-				PushIDNative(strIdBegin, (byte*)pstrIdEnd);
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(byte* strIdBegin, string strIdEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strIdEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strIdEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PushIDNative(strIdBegin, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(in byte strIdBegin, in byte strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = &strIdBegin)
-			{
-				fixed (byte* pstrIdEnd = &strIdEnd)
-				{
-					PushIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = strIdBegin)
-			{
-				fixed (byte* pstrIdEnd = strIdEnd)
-				{
-					PushIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(string strIdBegin, string strIdEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strIdBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strIdBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strIdBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (strIdEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(strIdEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(strIdEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PushIDNative(pStr0, pStr1);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(in byte strIdBegin, ReadOnlySpan<byte> strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = &strIdBegin)
-			{
-				fixed (byte* pstrIdEnd = strIdEnd)
-				{
-					PushIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// push string into the ID stack (will hash string).<br/>
-		/// </summary>
-		public static void PushID(in byte strIdBegin, string strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = &strIdBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (strIdEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(strIdEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PushIDNative((byte*)pstrIdBegin, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
 		}
 	}
 }

@@ -22,7 +22,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, short* xs, short* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(string labelId, in float values, float* szs, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -41,359 +41,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineNative(pStr0, xs, ys, count, flags, (int)(0), (int)(sizeof(short)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (float* pvalues = &values)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, short* xs, short* ys, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, xs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, short* xs, short* ys, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, xs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, short* xs, short* ys, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, xs, ys, count, (ImPlotLineFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, in short xs, short* ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (short* pxs = &xs)
-			{
-				PlotLineNative(labelId, (short*)pxs, ys, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, in short xs, short* ys, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (short* pxs = &xs)
-			{
-				PlotLineNative(labelId, (short*)pxs, ys, count, flags, offset, (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, in short xs, short* ys, int count, ImPlotLineFlags flags)
-		{
-			fixed (short* pxs = &xs)
-			{
-				PlotLineNative(labelId, (short*)pxs, ys, count, flags, (int)(0), (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, in short xs, short* ys, int count)
-		{
-			fixed (short* pxs = &xs)
-			{
-				PlotLineNative(labelId, (short*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, in short xs, short* ys, int count, int offset)
-		{
-			fixed (short* pxs = &xs)
-			{
-				PlotLineNative(labelId, (short*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, in short xs, short* ys, int count, int offset, int stride)
-		{
-			fixed (short* pxs = &xs)
-			{
-				PlotLineNative(labelId, (short*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in short xs, short* ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pxs, ys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in short xs, short* ys, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pxs, ys, count, flags, offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in short xs, short* ys, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pxs, ys, count, flags, (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in short xs, short* ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in short xs, short* ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in short xs, short* ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in short xs, short* ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pxs, ys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in short xs, short* ys, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pxs, ys, count, flags, offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in short xs, short* ys, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pxs, ys, count, flags, (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in short xs, short* ys, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in short xs, short* ys, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in short xs, short* ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, in short xs, short* ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (short* pxs = &xs)
-			{
-				PlotLineNative(pStr0, (short*)pxs, ys, count, flags, offset, stride);
+				PlotBubblesNative(pStr0, (float*)pvalues, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -404,7 +54,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in short xs, short* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(string labelId, in float values, float* szs, int count, double xscale, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -423,9 +73,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pxs = &xs)
+			fixed (float* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (short*)pxs, ys, count, flags, offset, (int)(sizeof(short)));
+				PlotBubblesNative(pStr0, (float*)pvalues, szs, count, xscale, (double)(0), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -436,7 +86,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in short xs, short* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(string labelId, in float values, float* szs, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -455,9 +105,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pxs = &xs)
+			fixed (float* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (short*)pxs, ys, count, flags, (int)(0), (int)(sizeof(short)));
+				PlotBubblesNative(pStr0, (float*)pvalues, szs, count, (double)(1), (double)(0), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -468,7 +118,241 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in short xs, short* ys, int count)
+		public static void PlotBubbles(byte* labelId, float* values, in float szs, int count, double xscale, double xstart, ImPlotSpec spec)
+		{
+			fixed (float* pszs = &szs)
+			{
+				PlotBubblesNative(labelId, values, (float*)pszs, count, xscale, xstart, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, float* values, in float szs, int count, double xscale, double xstart)
+		{
+			fixed (float* pszs = &szs)
+			{
+				PlotBubblesNative(labelId, values, (float*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, float* values, in float szs, int count, double xscale)
+		{
+			fixed (float* pszs = &szs)
+			{
+				PlotBubblesNative(labelId, values, (float*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, float* values, in float szs, int count)
+		{
+			fixed (float* pszs = &szs)
+			{
+				PlotBubblesNative(labelId, values, (float*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, float* values, in float szs, int count, double xscale, ImPlotSpec spec)
+		{
+			fixed (float* pszs = &szs)
+			{
+				PlotBubblesNative(labelId, values, (float*)pszs, count, xscale, (double)(0), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, float* values, in float szs, int count, ImPlotSpec spec)
+		{
+			fixed (float* pszs = &szs)
+			{
+				PlotBubblesNative(labelId, values, (float*)pszs, count, (double)(1), (double)(0), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, float* values, in float szs, int count, double xscale, double xstart, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative((byte*)plabelId, values, (float*)pszs, count, xscale, xstart, spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, float* values, in float szs, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative((byte*)plabelId, values, (float*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, float* values, in float szs, int count, double xscale)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative((byte*)plabelId, values, (float*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, float* values, in float szs, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative((byte*)plabelId, values, (float*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, float* values, in float szs, int count, double xscale, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative((byte*)plabelId, values, (float*)pszs, count, xscale, (double)(0), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, float* values, in float szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative((byte*)plabelId, values, (float*)pszs, count, (double)(1), (double)(0), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, float* values, in float szs, int count, double xscale, double xstart, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative((byte*)plabelId, values, (float*)pszs, count, xscale, xstart, spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, float* values, in float szs, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative((byte*)plabelId, values, (float*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, float* values, in float szs, int count, double xscale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative((byte*)plabelId, values, (float*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, float* values, in float szs, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative((byte*)plabelId, values, (float*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, float* values, in float szs, int count, double xscale, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative((byte*)plabelId, values, (float*)pszs, count, xscale, (double)(0), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, float* values, in float szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative((byte*)plabelId, values, (float*)pszs, count, (double)(1), (double)(0), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(string labelId, float* values, in float szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -487,9 +371,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pxs = &xs)
+			fixed (float* pszs = &szs)
 			{
-				PlotLineNative(pStr0, (short*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
+				PlotBubblesNative(pStr0, values, (float*)pszs, count, xscale, xstart, spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -500,7 +384,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in short xs, short* ys, int count, int offset)
+		public static void PlotBubbles(string labelId, float* values, in float szs, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -519,9 +403,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pxs = &xs)
+			fixed (float* pszs = &szs)
 			{
-				PlotLineNative(pStr0, (short*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
+				PlotBubblesNative(pStr0, values, (float*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -532,7 +416,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in short xs, short* ys, int count, int offset, int stride)
+		public static void PlotBubbles(string labelId, float* values, in float szs, int count, double xscale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -551,9 +435,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pxs = &xs)
+			fixed (float* pszs = &szs)
 			{
-				PlotLineNative(pStr0, (short*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+				PlotBubblesNative(pStr0, values, (float*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -564,241 +448,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, short* xs, in short ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (short* pys = &ys)
-			{
-				PlotLineNative(labelId, xs, (short*)pys, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, short* xs, in short ys, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (short* pys = &ys)
-			{
-				PlotLineNative(labelId, xs, (short*)pys, count, flags, offset, (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, short* xs, in short ys, int count, ImPlotLineFlags flags)
-		{
-			fixed (short* pys = &ys)
-			{
-				PlotLineNative(labelId, xs, (short*)pys, count, flags, (int)(0), (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, short* xs, in short ys, int count)
-		{
-			fixed (short* pys = &ys)
-			{
-				PlotLineNative(labelId, xs, (short*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, short* xs, in short ys, int count, int offset)
-		{
-			fixed (short* pys = &ys)
-			{
-				PlotLineNative(labelId, xs, (short*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, short* xs, in short ys, int count, int offset, int stride)
-		{
-			fixed (short* pys = &ys)
-			{
-				PlotLineNative(labelId, xs, (short*)pys, count, (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, short* xs, in short ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative((byte*)plabelId, xs, (short*)pys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, short* xs, in short ys, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative((byte*)plabelId, xs, (short*)pys, count, flags, offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, short* xs, in short ys, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative((byte*)plabelId, xs, (short*)pys, count, flags, (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, short* xs, in short ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative((byte*)plabelId, xs, (short*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, short* xs, in short ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative((byte*)plabelId, xs, (short*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, short* xs, in short ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative((byte*)plabelId, xs, (short*)pys, count, (ImPlotLineFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* xs, in short ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative((byte*)plabelId, xs, (short*)pys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* xs, in short ys, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative((byte*)plabelId, xs, (short*)pys, count, flags, offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* xs, in short ys, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative((byte*)plabelId, xs, (short*)pys, count, flags, (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* xs, in short ys, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative((byte*)plabelId, xs, (short*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* xs, in short ys, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative((byte*)plabelId, xs, (short*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* xs, in short ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative((byte*)plabelId, xs, (short*)pys, count, (ImPlotLineFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, short* xs, in short ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(string labelId, float* values, in float szs, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -817,9 +467,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pys = &ys)
+			fixed (float* pszs = &szs)
 			{
-				PlotLineNative(pStr0, xs, (short*)pys, count, flags, offset, stride);
+				PlotBubblesNative(pStr0, values, (float*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -830,7 +480,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, short* xs, in short ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(string labelId, float* values, in float szs, int count, double xscale, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -849,9 +499,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pys = &ys)
+			fixed (float* pszs = &szs)
 			{
-				PlotLineNative(pStr0, xs, (short*)pys, count, flags, offset, (int)(sizeof(short)));
+				PlotBubblesNative(pStr0, values, (float*)pszs, count, xscale, (double)(0), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -862,7 +512,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, short* xs, in short ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(string labelId, float* values, in float szs, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -881,9 +531,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pys = &ys)
+			fixed (float* pszs = &szs)
 			{
-				PlotLineNative(pStr0, xs, (short*)pys, count, flags, (int)(0), (int)(sizeof(short)));
+				PlotBubblesNative(pStr0, values, (float*)pszs, count, (double)(1), (double)(0), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -894,7 +544,295 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, short* xs, in short ys, int count)
+		public static void PlotBubbles(byte* labelId, in float values, in float szs, int count, double xscale, double xstart, ImPlotSpec spec)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative(labelId, (float*)pvalues, (float*)pszs, count, xscale, xstart, spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, in float values, in float szs, int count, double xscale, double xstart)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative(labelId, (float*)pvalues, (float*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, in float values, in float szs, int count, double xscale)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative(labelId, (float*)pvalues, (float*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, in float values, in float szs, int count)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative(labelId, (float*)pvalues, (float*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, in float values, in float szs, int count, double xscale, ImPlotSpec spec)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative(labelId, (float*)pvalues, (float*)pszs, count, xscale, (double)(0), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, in float values, in float szs, int count, ImPlotSpec spec)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (float* pszs = &szs)
+				{
+					PlotBubblesNative(labelId, (float*)pvalues, (float*)pszs, count, (double)(1), (double)(0), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, in float values, in float szs, int count, double xscale, double xstart, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (float* pszs = &szs)
+					{
+						PlotBubblesNative((byte*)plabelId, (float*)pvalues, (float*)pszs, count, xscale, xstart, spec);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, in float values, in float szs, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (float* pszs = &szs)
+					{
+						PlotBubblesNative((byte*)plabelId, (float*)pvalues, (float*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, in float values, in float szs, int count, double xscale)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (float* pszs = &szs)
+					{
+						PlotBubblesNative((byte*)plabelId, (float*)pvalues, (float*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, in float values, in float szs, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (float* pszs = &szs)
+					{
+						PlotBubblesNative((byte*)plabelId, (float*)pvalues, (float*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, in float values, in float szs, int count, double xscale, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (float* pszs = &szs)
+					{
+						PlotBubblesNative((byte*)plabelId, (float*)pvalues, (float*)pszs, count, xscale, (double)(0), spec);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, in float values, in float szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (float* pszs = &szs)
+					{
+						PlotBubblesNative((byte*)plabelId, (float*)pvalues, (float*)pszs, count, (double)(1), (double)(0), spec);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in float values, in float szs, int count, double xscale, double xstart, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (float* pszs = &szs)
+					{
+						PlotBubblesNative((byte*)plabelId, (float*)pvalues, (float*)pszs, count, xscale, xstart, spec);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in float values, in float szs, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (float* pszs = &szs)
+					{
+						PlotBubblesNative((byte*)plabelId, (float*)pvalues, (float*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in float values, in float szs, int count, double xscale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (float* pszs = &szs)
+					{
+						PlotBubblesNative((byte*)plabelId, (float*)pvalues, (float*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in float values, in float szs, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (float* pszs = &szs)
+					{
+						PlotBubblesNative((byte*)plabelId, (float*)pvalues, (float*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in float values, in float szs, int count, double xscale, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (float* pszs = &szs)
+					{
+						PlotBubblesNative((byte*)plabelId, (float*)pvalues, (float*)pszs, count, xscale, (double)(0), spec);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in float values, in float szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (float* pszs = &szs)
+					{
+						PlotBubblesNative((byte*)plabelId, (float*)pvalues, (float*)pszs, count, (double)(1), (double)(0), spec);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(string labelId, in float values, in float szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -913,395 +851,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pys = &ys)
+			fixed (float* pvalues = &values)
 			{
-				PlotLineNative(pStr0, xs, (short*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (float* pszs = &szs)
 				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, short* xs, in short ys, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (short* pys = &ys)
-			{
-				PlotLineNative(pStr0, xs, (short*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, short* xs, in short ys, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (short* pys = &ys)
-			{
-				PlotLineNative(pStr0, xs, (short*)pys, count, (ImPlotLineFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, in short xs, in short ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (short* pxs = &xs)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative(labelId, (short*)pxs, (short*)pys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, in short xs, in short ys, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (short* pxs = &xs)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative(labelId, (short*)pxs, (short*)pys, count, flags, offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, in short xs, in short ys, int count, ImPlotLineFlags flags)
-		{
-			fixed (short* pxs = &xs)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative(labelId, (short*)pxs, (short*)pys, count, flags, (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, in short xs, in short ys, int count)
-		{
-			fixed (short* pxs = &xs)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative(labelId, (short*)pxs, (short*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, in short xs, in short ys, int count, int offset)
-		{
-			fixed (short* pxs = &xs)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative(labelId, (short*)pxs, (short*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, in short xs, in short ys, int count, int offset, int stride)
-		{
-			fixed (short* pxs = &xs)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative(labelId, (short*)pxs, (short*)pys, count, (ImPlotLineFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in short xs, in short ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					fixed (short* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (short*)pxs, (short*)pys, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in short xs, in short ys, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					fixed (short* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (short*)pxs, (short*)pys, count, flags, offset, (int)(sizeof(short)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in short xs, in short ys, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					fixed (short* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (short*)pxs, (short*)pys, count, flags, (int)(0), (int)(sizeof(short)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in short xs, in short ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					fixed (short* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (short*)pxs, (short*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in short xs, in short ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					fixed (short* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (short*)pxs, (short*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in short xs, in short ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					fixed (short* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (short*)pxs, (short*)pys, count, (ImPlotLineFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in short xs, in short ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					fixed (short* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (short*)pxs, (short*)pys, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in short xs, in short ys, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					fixed (short* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (short*)pxs, (short*)pys, count, flags, offset, (int)(sizeof(short)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in short xs, in short ys, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					fixed (short* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (short*)pxs, (short*)pys, count, flags, (int)(0), (int)(sizeof(short)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in short xs, in short ys, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					fixed (short* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (short*)pxs, (short*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in short xs, in short ys, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					fixed (short* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (short*)pxs, (short*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in short xs, in short ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pxs = &xs)
-				{
-					fixed (short* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (short*)pxs, (short*)pys, count, (ImPlotLineFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(string labelId, in short xs, in short ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (short* pxs = &xs)
-			{
-				fixed (short* pys = &ys)
-				{
-					PlotLineNative(pStr0, (short*)pxs, (short*)pys, count, flags, offset, stride);
+					PlotBubblesNative(pStr0, (float*)pvalues, (float*)pszs, count, xscale, xstart, spec);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1313,7 +867,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in short xs, in short ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(string labelId, in float values, in float szs, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1332,11 +886,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pxs = &xs)
+			fixed (float* pvalues = &values)
 			{
-				fixed (short* pys = &ys)
+				fixed (float* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (short*)pxs, (short*)pys, count, flags, offset, (int)(sizeof(short)));
+					PlotBubblesNative(pStr0, (float*)pvalues, (float*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1348,7 +902,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in short xs, in short ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(string labelId, in float values, in float szs, int count, double xscale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1367,11 +921,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pxs = &xs)
+			fixed (float* pvalues = &values)
 			{
-				fixed (short* pys = &ys)
+				fixed (float* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (short*)pxs, (short*)pys, count, flags, (int)(0), (int)(sizeof(short)));
+					PlotBubblesNative(pStr0, (float*)pvalues, (float*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1383,7 +937,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in short xs, in short ys, int count)
+		public static void PlotBubbles(string labelId, in float values, in float szs, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1402,11 +956,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pxs = &xs)
+			fixed (float* pvalues = &values)
 			{
-				fixed (short* pys = &ys)
+				fixed (float* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (short*)pxs, (short*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
+					PlotBubblesNative(pStr0, (float*)pvalues, (float*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1418,7 +972,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in short xs, in short ys, int count, int offset)
+		public static void PlotBubbles(string labelId, in float values, in float szs, int count, double xscale, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1437,11 +991,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pxs = &xs)
+			fixed (float* pvalues = &values)
 			{
-				fixed (short* pys = &ys)
+				fixed (float* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (short*)pxs, (short*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
+					PlotBubblesNative(pStr0, (float*)pvalues, (float*)pszs, count, xscale, (double)(0), spec);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1453,7 +1007,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in short xs, in short ys, int count, int offset, int stride)
+		public static void PlotBubbles(string labelId, in float values, in float szs, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1472,11 +1026,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pxs = &xs)
+			fixed (float* pvalues = &values)
 			{
-				fixed (short* pys = &ys)
+				fixed (float* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (short*)pxs, (short*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+					PlotBubblesNative(pStr0, (float*)pvalues, (float*)pszs, count, (double)(1), (double)(0), spec);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1489,199 +1043,199 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotLineNative(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		internal static void PlotBubblesNative(byte* labelId, double* values, double* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ushort*, ushort*, int, ImPlotLineFlags, int, int, void>)funcTable[69])(labelId, xs, ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, double*, double*, int, double, double, ImPlotSpec, void>)funcTable[114])(labelId, values, szs, count, xscale, xstart, spec);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotLineFlags, int, int, void>)funcTable[69])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, double, double, ImPlotSpec, void>)funcTable[114])((nint)labelId, (nint)values, (nint)szs, count, xscale, xstart, spec);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, double* values, double* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
-			PlotLineNative(labelId, xs, ys, count, flags, offset, stride);
+			PlotBubblesNative(labelId, values, szs, count, xscale, xstart, spec);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(byte* labelId, double* values, double* szs, int count, double xscale, double xstart)
 		{
-			PlotLineNative(labelId, xs, ys, count, flags, offset, (int)(sizeof(ushort)));
+			PlotBubblesNative(labelId, values, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(byte* labelId, double* values, double* szs, int count, double xscale)
 		{
-			PlotLineNative(labelId, xs, ys, count, flags, (int)(0), (int)(sizeof(ushort)));
+			PlotBubblesNative(labelId, values, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, ushort* xs, ushort* ys, int count)
+		public static void PlotBubbles(byte* labelId, double* values, double* szs, int count)
 		{
-			PlotLineNative(labelId, xs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			PlotBubblesNative(labelId, values, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, ushort* xs, ushort* ys, int count, int offset)
+		public static void PlotBubbles(byte* labelId, double* values, double* szs, int count, double xscale, ImPlotSpec spec)
 		{
-			PlotLineNative(labelId, xs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+			PlotBubblesNative(labelId, values, szs, count, xscale, (double)(0), spec);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, ushort* xs, ushort* ys, int count, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, double* values, double* szs, int count, ImPlotSpec spec)
 		{
-			PlotLineNative(labelId, xs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+			PlotBubblesNative(labelId, values, szs, count, (double)(1), (double)(0), spec);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(in byte labelId, double* values, double* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, flags, offset, (int)(sizeof(ushort)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, xstart, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(in byte labelId, double* values, double* szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, flags, (int)(0), (int)(sizeof(ushort)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, ushort* xs, ushort* ys, int count)
+		public static void PlotBubbles(in byte labelId, double* values, double* szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, ushort* xs, ushort* ys, int count, int offset)
+		public static void PlotBubbles(in byte labelId, double* values, double* szs, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, ushort* xs, ushort* ys, int count, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, double* values, double* szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, (double)(0), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, double* values, double* szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotBubblesNative((byte*)plabelId, values, szs, count, (double)(1), (double)(0), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, double* values, double* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, flags, offset, stride);
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, xstart, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, double* values, double* szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, flags, offset, (int)(sizeof(ushort)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, double* values, double* szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, flags, (int)(0), (int)(sizeof(ushort)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, int count)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, double* values, double* szs, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, int count, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, double* values, double* szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, (double)(0), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* xs, ushort* ys, int count, int offset, int stride)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, double* values, double* szs, int count, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+				PlotBubblesNative((byte*)plabelId, values, szs, count, (double)(1), (double)(0), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(string labelId, double* values, double* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1700,7 +1254,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineNative(pStr0, xs, ys, count, flags, offset, stride);
+			PlotBubblesNative(pStr0, values, szs, count, xscale, xstart, spec);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1710,7 +1264,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(string labelId, double* values, double* szs, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1729,7 +1283,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineNative(pStr0, xs, ys, count, flags, offset, (int)(sizeof(ushort)));
+			PlotBubblesNative(pStr0, values, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1739,7 +1293,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(string labelId, double* values, double* szs, int count, double xscale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1758,7 +1312,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineNative(pStr0, xs, ys, count, flags, (int)(0), (int)(sizeof(ushort)));
+			PlotBubblesNative(pStr0, values, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1768,7 +1322,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, ushort* xs, ushort* ys, int count)
+		public static void PlotBubbles(string labelId, double* values, double* szs, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1787,7 +1341,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineNative(pStr0, xs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			PlotBubblesNative(pStr0, values, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1797,7 +1351,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, ushort* xs, ushort* ys, int count, int offset)
+		public static void PlotBubbles(string labelId, double* values, double* szs, int count, double xscale, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1816,7 +1370,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineNative(pStr0, xs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+			PlotBubblesNative(pStr0, values, szs, count, xscale, (double)(0), spec);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1826,7 +1380,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, ushort* xs, ushort* ys, int count, int offset, int stride)
+		public static void PlotBubbles(string labelId, double* values, double* szs, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1845,7 +1399,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineNative(pStr0, xs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+			PlotBubblesNative(pStr0, values, szs, count, (double)(1), (double)(0), spec);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1855,93 +1409,79 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in ushort xs, ushort* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, in double values, double* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				PlotLineNative(labelId, (ushort*)pxs, ys, count, flags, offset, stride);
+				PlotBubblesNative(labelId, (double*)pvalues, szs, count, xscale, xstart, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in ushort xs, ushort* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(byte* labelId, in double values, double* szs, int count, double xscale, double xstart)
 		{
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				PlotLineNative(labelId, (ushort*)pxs, ys, count, flags, offset, (int)(sizeof(ushort)));
+				PlotBubblesNative(labelId, (double*)pvalues, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in ushort xs, ushort* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(byte* labelId, in double values, double* szs, int count, double xscale)
 		{
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				PlotLineNative(labelId, (ushort*)pxs, ys, count, flags, (int)(0), (int)(sizeof(ushort)));
+				PlotBubblesNative(labelId, (double*)pvalues, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in ushort xs, ushort* ys, int count)
+		public static void PlotBubbles(byte* labelId, in double values, double* szs, int count)
 		{
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				PlotLineNative(labelId, (ushort*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				PlotBubblesNative(labelId, (double*)pvalues, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in ushort xs, ushort* ys, int count, int offset)
+		public static void PlotBubbles(byte* labelId, in double values, double* szs, int count, double xscale, ImPlotSpec spec)
 		{
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				PlotLineNative(labelId, (ushort*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+				PlotBubblesNative(labelId, (double*)pvalues, szs, count, xscale, (double)(0), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in ushort xs, ushort* ys, int count, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, in double values, double* szs, int count, ImPlotSpec spec)
 		{
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				PlotLineNative(labelId, (ushort*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+				PlotBubblesNative(labelId, (double*)pvalues, szs, count, (double)(1), (double)(0), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in ushort xs, ushort* ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pxs = &xs)
-				{
-					PlotLineNative((byte*)plabelId, (ushort*)pxs, ys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in ushort xs, ushort* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(in byte labelId, in double values, double* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (ushort*)pxs, ys, count, flags, offset, (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, (double*)pvalues, szs, count, xscale, xstart, spec);
 				}
 			}
 		}
@@ -1949,13 +1489,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in ushort xs, ushort* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(in byte labelId, in double values, double* szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (ushort*)pxs, ys, count, flags, (int)(0), (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, (double*)pvalues, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -1963,13 +1503,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in ushort xs, ushort* ys, int count)
+		public static void PlotBubbles(in byte labelId, in double values, double* szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (ushort*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, (double*)pvalues, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -1977,13 +1517,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in ushort xs, ushort* ys, int count, int offset)
+		public static void PlotBubbles(in byte labelId, in double values, double* szs, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (ushort*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, (double*)pvalues, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -1991,13 +1531,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in ushort xs, ushort* ys, int count, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, in double values, double* szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (ushort*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+					PlotBubblesNative((byte*)plabelId, (double*)pvalues, szs, count, xscale, (double)(0), spec);
 				}
 			}
 		}
@@ -2005,13 +1545,27 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, in double values, double* szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotBubblesNative((byte*)plabelId, (double*)pvalues, szs, count, (double)(1), (double)(0), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in double values, double* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (ushort*)pxs, ys, count, flags, offset, stride);
+					PlotBubblesNative((byte*)plabelId, (double*)pvalues, szs, count, xscale, xstart, spec);
 				}
 			}
 		}
@@ -2019,13 +1573,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in double values, double* szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (ushort*)pxs, ys, count, flags, offset, (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, (double*)pvalues, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -2033,13 +1587,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in double values, double* szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (ushort*)pxs, ys, count, flags, (int)(0), (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, (double*)pvalues, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -2047,13 +1601,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, int count)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in double values, double* szs, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (ushort*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, (double*)pvalues, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -2061,13 +1615,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, int count, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in double values, double* szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (ushort*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, (double*)pvalues, szs, count, xscale, (double)(0), spec);
 				}
 			}
 		}
@@ -2075,13 +1629,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in ushort xs, ushort* ys, int count, int offset, int stride)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in double values, double* szs, int count, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (ushort*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+					PlotBubblesNative((byte*)plabelId, (double*)pvalues, szs, count, (double)(1), (double)(0), spec);
 				}
 			}
 		}
@@ -2089,7 +1643,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in ushort xs, ushort* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(string labelId, in double values, double* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2108,9 +1662,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (ushort*)pxs, ys, count, flags, offset, stride);
+				PlotBubblesNative(pStr0, (double*)pvalues, szs, count, xscale, xstart, spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2121,7 +1675,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in ushort xs, ushort* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(string labelId, in double values, double* szs, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2140,9 +1694,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (ushort*)pxs, ys, count, flags, offset, (int)(sizeof(ushort)));
+				PlotBubblesNative(pStr0, (double*)pvalues, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2153,7 +1707,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in ushort xs, ushort* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(string labelId, in double values, double* szs, int count, double xscale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2172,9 +1726,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (ushort*)pxs, ys, count, flags, (int)(0), (int)(sizeof(ushort)));
+				PlotBubblesNative(pStr0, (double*)pvalues, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2185,7 +1739,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in ushort xs, ushort* ys, int count)
+		public static void PlotBubbles(string labelId, in double values, double* szs, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2204,9 +1758,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (ushort*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				PlotBubblesNative(pStr0, (double*)pvalues, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2217,7 +1771,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in ushort xs, ushort* ys, int count, int offset)
+		public static void PlotBubbles(string labelId, in double values, double* szs, int count, double xscale, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2236,9 +1790,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (ushort*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+				PlotBubblesNative(pStr0, (double*)pvalues, szs, count, xscale, (double)(0), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2249,7 +1803,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in ushort xs, ushort* ys, int count, int offset, int stride)
+		public static void PlotBubbles(string labelId, in double values, double* szs, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2268,9 +1822,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (ushort*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+				PlotBubblesNative(pStr0, (double*)pvalues, szs, count, (double)(1), (double)(0), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2281,93 +1835,79 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, ushort* xs, in ushort ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, double* values, in double szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
-			fixed (ushort* pys = &ys)
+			fixed (double* pszs = &szs)
 			{
-				PlotLineNative(labelId, xs, (ushort*)pys, count, flags, offset, stride);
+				PlotBubblesNative(labelId, values, (double*)pszs, count, xscale, xstart, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, ushort* xs, in ushort ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(byte* labelId, double* values, in double szs, int count, double xscale, double xstart)
 		{
-			fixed (ushort* pys = &ys)
+			fixed (double* pszs = &szs)
 			{
-				PlotLineNative(labelId, xs, (ushort*)pys, count, flags, offset, (int)(sizeof(ushort)));
+				PlotBubblesNative(labelId, values, (double*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, ushort* xs, in ushort ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(byte* labelId, double* values, in double szs, int count, double xscale)
 		{
-			fixed (ushort* pys = &ys)
+			fixed (double* pszs = &szs)
 			{
-				PlotLineNative(labelId, xs, (ushort*)pys, count, flags, (int)(0), (int)(sizeof(ushort)));
+				PlotBubblesNative(labelId, values, (double*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, ushort* xs, in ushort ys, int count)
+		public static void PlotBubbles(byte* labelId, double* values, in double szs, int count)
 		{
-			fixed (ushort* pys = &ys)
+			fixed (double* pszs = &szs)
 			{
-				PlotLineNative(labelId, xs, (ushort*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				PlotBubblesNative(labelId, values, (double*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, ushort* xs, in ushort ys, int count, int offset)
+		public static void PlotBubbles(byte* labelId, double* values, in double szs, int count, double xscale, ImPlotSpec spec)
 		{
-			fixed (ushort* pys = &ys)
+			fixed (double* pszs = &szs)
 			{
-				PlotLineNative(labelId, xs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+				PlotBubblesNative(labelId, values, (double*)pszs, count, xscale, (double)(0), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, ushort* xs, in ushort ys, int count, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, double* values, in double szs, int count, ImPlotSpec spec)
 		{
-			fixed (ushort* pys = &ys)
+			fixed (double* pszs = &szs)
 			{
-				PlotLineNative(labelId, xs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+				PlotBubblesNative(labelId, values, (double*)pszs, count, (double)(1), (double)(0), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, ushort* xs, in ushort ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pys = &ys)
-				{
-					PlotLineNative((byte*)plabelId, xs, (ushort*)pys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, ushort* xs, in ushort ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(in byte labelId, double* values, in double szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (ushort*)pys, count, flags, offset, (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, values, (double*)pszs, count, xscale, xstart, spec);
 				}
 			}
 		}
@@ -2375,13 +1915,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, ushort* xs, in ushort ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(in byte labelId, double* values, in double szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (ushort*)pys, count, flags, (int)(0), (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, values, (double*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -2389,13 +1929,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, ushort* xs, in ushort ys, int count)
+		public static void PlotBubbles(in byte labelId, double* values, in double szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (ushort*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, values, (double*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -2403,13 +1943,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, ushort* xs, in ushort ys, int count, int offset)
+		public static void PlotBubbles(in byte labelId, double* values, in double szs, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, values, (double*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -2417,13 +1957,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, ushort* xs, in ushort ys, int count, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, double* values, in double szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+					PlotBubblesNative((byte*)plabelId, values, (double*)pszs, count, xscale, (double)(0), spec);
 				}
 			}
 		}
@@ -2431,13 +1971,27 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* xs, in ushort ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, double* values, in double szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pszs = &szs)
+				{
+					PlotBubblesNative((byte*)plabelId, values, (double*)pszs, count, (double)(1), (double)(0), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, double* values, in double szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (ushort*)pys, count, flags, offset, stride);
+					PlotBubblesNative((byte*)plabelId, values, (double*)pszs, count, xscale, xstart, spec);
 				}
 			}
 		}
@@ -2445,13 +1999,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* xs, in ushort ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, double* values, in double szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (ushort*)pys, count, flags, offset, (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, values, (double*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -2459,13 +2013,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* xs, in ushort ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, double* values, in double szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (ushort*)pys, count, flags, (int)(0), (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, values, (double*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -2473,13 +2027,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* xs, in ushort ys, int count)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, double* values, in double szs, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (ushort*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, values, (double*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -2487,13 +2041,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* xs, in ushort ys, int count, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, double* values, in double szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+					PlotBubblesNative((byte*)plabelId, values, (double*)pszs, count, xscale, (double)(0), spec);
 				}
 			}
 		}
@@ -2501,13 +2055,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* xs, in ushort ys, int count, int offset, int stride)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, double* values, in double szs, int count, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+					PlotBubblesNative((byte*)plabelId, values, (double*)pszs, count, (double)(1), (double)(0), spec);
 				}
 			}
 		}
@@ -2515,7 +2069,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, ushort* xs, in ushort ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(string labelId, double* values, in double szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2534,9 +2088,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pys = &ys)
+			fixed (double* pszs = &szs)
 			{
-				PlotLineNative(pStr0, xs, (ushort*)pys, count, flags, offset, stride);
+				PlotBubblesNative(pStr0, values, (double*)pszs, count, xscale, xstart, spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2547,7 +2101,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, ushort* xs, in ushort ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(string labelId, double* values, in double szs, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2566,9 +2120,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pys = &ys)
+			fixed (double* pszs = &szs)
 			{
-				PlotLineNative(pStr0, xs, (ushort*)pys, count, flags, offset, (int)(sizeof(ushort)));
+				PlotBubblesNative(pStr0, values, (double*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2579,7 +2133,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, ushort* xs, in ushort ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(string labelId, double* values, in double szs, int count, double xscale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2598,9 +2152,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pys = &ys)
+			fixed (double* pszs = &szs)
 			{
-				PlotLineNative(pStr0, xs, (ushort*)pys, count, flags, (int)(0), (int)(sizeof(ushort)));
+				PlotBubblesNative(pStr0, values, (double*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2611,7 +2165,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, ushort* xs, in ushort ys, int count)
+		public static void PlotBubbles(string labelId, double* values, in double szs, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2630,9 +2184,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pys = &ys)
+			fixed (double* pszs = &szs)
 			{
-				PlotLineNative(pStr0, xs, (ushort*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				PlotBubblesNative(pStr0, values, (double*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2643,7 +2197,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, ushort* xs, in ushort ys, int count, int offset)
+		public static void PlotBubbles(string labelId, double* values, in double szs, int count, double xscale, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2662,9 +2216,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pys = &ys)
+			fixed (double* pszs = &szs)
 			{
-				PlotLineNative(pStr0, xs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+				PlotBubblesNative(pStr0, values, (double*)pszs, count, xscale, (double)(0), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2675,7 +2229,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, ushort* xs, in ushort ys, int count, int offset, int stride)
+		public static void PlotBubbles(string labelId, double* values, in double szs, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2694,9 +2248,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pys = &ys)
+			fixed (double* pszs = &szs)
 			{
-				PlotLineNative(pStr0, xs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+				PlotBubblesNative(pStr0, values, (double*)pszs, count, (double)(1), (double)(0), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2707,13 +2261,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in ushort xs, in ushort ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, in double values, in double szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative(labelId, (ushort*)pxs, (ushort*)pys, count, flags, offset, stride);
+					PlotBubblesNative(labelId, (double*)pvalues, (double*)pszs, count, xscale, xstart, spec);
 				}
 			}
 		}
@@ -2721,13 +2275,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in ushort xs, in ushort ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(byte* labelId, in double values, in double szs, int count, double xscale, double xstart)
 		{
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative(labelId, (ushort*)pxs, (ushort*)pys, count, flags, offset, (int)(sizeof(ushort)));
+					PlotBubblesNative(labelId, (double*)pvalues, (double*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -2735,13 +2289,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in ushort xs, in ushort ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(byte* labelId, in double values, in double szs, int count, double xscale)
 		{
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative(labelId, (ushort*)pxs, (ushort*)pys, count, flags, (int)(0), (int)(sizeof(ushort)));
+					PlotBubblesNative(labelId, (double*)pvalues, (double*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -2749,13 +2303,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in ushort xs, in ushort ys, int count)
+		public static void PlotBubbles(byte* labelId, in double values, in double szs, int count)
 		{
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative(labelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+					PlotBubblesNative(labelId, (double*)pvalues, (double*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -2763,13 +2317,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in ushort xs, in ushort ys, int count, int offset)
+		public static void PlotBubbles(byte* labelId, in double values, in double szs, int count, double xscale, ImPlotSpec spec)
 		{
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative(labelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+					PlotBubblesNative(labelId, (double*)pvalues, (double*)pszs, count, xscale, (double)(0), spec);
 				}
 			}
 		}
@@ -2777,13 +2331,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in ushort xs, in ushort ys, int count, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, in double values, in double szs, int count, ImPlotSpec spec)
 		{
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative(labelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+					PlotBubblesNative(labelId, (double*)pvalues, (double*)pszs, count, (double)(1), (double)(0), spec);
 				}
 			}
 		}
@@ -2791,32 +2345,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in ushort xs, in ushort ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pxs = &xs)
-				{
-					fixed (ushort* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in ushort xs, in ushort ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(in byte labelId, in double values, in double szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					fixed (ushort* pys = &ys)
+					fixed (double* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, flags, offset, (int)(sizeof(ushort)));
+						PlotBubblesNative((byte*)plabelId, (double*)pvalues, (double*)pszs, count, xscale, xstart, spec);
 					}
 				}
 			}
@@ -2825,15 +2362,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in ushort xs, in ushort ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(in byte labelId, in double values, in double szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					fixed (ushort* pys = &ys)
+					fixed (double* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, flags, (int)(0), (int)(sizeof(ushort)));
+						PlotBubblesNative((byte*)plabelId, (double*)pvalues, (double*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 					}
 				}
 			}
@@ -2842,15 +2379,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in ushort xs, in ushort ys, int count)
+		public static void PlotBubbles(in byte labelId, in double values, in double szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					fixed (ushort* pys = &ys)
+					fixed (double* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+						PlotBubblesNative((byte*)plabelId, (double*)pvalues, (double*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 					}
 				}
 			}
@@ -2859,15 +2396,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in ushort xs, in ushort ys, int count, int offset)
+		public static void PlotBubbles(in byte labelId, in double values, in double szs, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					fixed (ushort* pys = &ys)
+					fixed (double* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+						PlotBubblesNative((byte*)plabelId, (double*)pvalues, (double*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 					}
 				}
 			}
@@ -2876,15 +2413,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in ushort xs, in ushort ys, int count, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, in double values, in double szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					fixed (ushort* pys = &ys)
+					fixed (double* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+						PlotBubblesNative((byte*)plabelId, (double*)pvalues, (double*)pszs, count, xscale, (double)(0), spec);
 					}
 				}
 			}
@@ -2893,15 +2430,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, in double values, in double szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					fixed (double* pszs = &szs)
+					{
+						PlotBubblesNative((byte*)plabelId, (double*)pvalues, (double*)pszs, count, (double)(1), (double)(0), spec);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in double values, in double szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					fixed (ushort* pys = &ys)
+					fixed (double* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, flags, offset, stride);
+						PlotBubblesNative((byte*)plabelId, (double*)pvalues, (double*)pszs, count, xscale, xstart, spec);
 					}
 				}
 			}
@@ -2910,15 +2464,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in double values, in double szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					fixed (ushort* pys = &ys)
+					fixed (double* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, flags, offset, (int)(sizeof(ushort)));
+						PlotBubblesNative((byte*)plabelId, (double*)pvalues, (double*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 					}
 				}
 			}
@@ -2927,15 +2481,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in double values, in double szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					fixed (ushort* pys = &ys)
+					fixed (double* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, flags, (int)(0), (int)(sizeof(ushort)));
+						PlotBubblesNative((byte*)plabelId, (double*)pvalues, (double*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 					}
 				}
 			}
@@ -2944,15 +2498,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys, int count)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in double values, in double szs, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					fixed (ushort* pys = &ys)
+					fixed (double* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+						PlotBubblesNative((byte*)plabelId, (double*)pvalues, (double*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 					}
 				}
 			}
@@ -2961,15 +2515,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys, int count, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in double values, in double szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					fixed (ushort* pys = &ys)
+					fixed (double* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+						PlotBubblesNative((byte*)plabelId, (double*)pvalues, (double*)pszs, count, xscale, (double)(0), spec);
 					}
 				}
 			}
@@ -2978,15 +2532,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in ushort xs, in ushort ys, int count, int offset, int stride)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in double values, in double szs, int count, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ushort* pxs = &xs)
+				fixed (double* pvalues = &values)
 				{
-					fixed (ushort* pys = &ys)
+					fixed (double* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+						PlotBubblesNative((byte*)plabelId, (double*)pvalues, (double*)pszs, count, (double)(1), (double)(0), spec);
 					}
 				}
 			}
@@ -2995,7 +2549,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in ushort xs, in ushort ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(string labelId, in double values, in double szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3014,11 +2568,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (ushort*)pxs, (ushort*)pys, count, flags, offset, stride);
+					PlotBubblesNative(pStr0, (double*)pvalues, (double*)pszs, count, xscale, xstart, spec);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3030,7 +2584,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in ushort xs, in ushort ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(string labelId, in double values, in double szs, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3049,11 +2603,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (ushort*)pxs, (ushort*)pys, count, flags, offset, (int)(sizeof(ushort)));
+					PlotBubblesNative(pStr0, (double*)pvalues, (double*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3065,7 +2619,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in ushort xs, in ushort ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(string labelId, in double values, in double szs, int count, double xscale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3084,11 +2638,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (ushort*)pxs, (ushort*)pys, count, flags, (int)(0), (int)(sizeof(ushort)));
+					PlotBubblesNative(pStr0, (double*)pvalues, (double*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3100,7 +2654,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in ushort xs, in ushort ys, int count)
+		public static void PlotBubbles(string labelId, in double values, in double szs, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3119,11 +2673,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (ushort*)pxs, (ushort*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+					PlotBubblesNative(pStr0, (double*)pvalues, (double*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3135,7 +2689,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in ushort xs, in ushort ys, int count, int offset)
+		public static void PlotBubbles(string labelId, in double values, in double szs, int count, double xscale, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3154,11 +2708,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (ushort*)pxs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+					PlotBubblesNative(pStr0, (double*)pvalues, (double*)pszs, count, xscale, (double)(0), spec);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3170,7 +2724,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in ushort xs, in ushort ys, int count, int offset, int stride)
+		public static void PlotBubbles(string labelId, in double values, in double szs, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3189,11 +2743,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pxs = &xs)
+			fixed (double* pvalues = &values)
 			{
-				fixed (ushort* pys = &ys)
+				fixed (double* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (ushort*)pxs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+					PlotBubblesNative(pStr0, (double*)pvalues, (double*)pszs, count, (double)(1), (double)(0), spec);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3206,199 +2760,199 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotLineNative(byte* labelId, int* xs, int* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		internal static void PlotBubblesNative(byte* labelId, sbyte* values, sbyte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int*, int*, int, ImPlotLineFlags, int, int, void>)funcTable[70])(labelId, xs, ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, sbyte*, sbyte*, int, double, double, ImPlotSpec, void>)funcTable[115])(labelId, values, szs, count, xscale, xstart, spec);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotLineFlags, int, int, void>)funcTable[70])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, double, double, ImPlotSpec, void>)funcTable[115])((nint)labelId, (nint)values, (nint)szs, count, xscale, xstart, spec);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, int* xs, int* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, sbyte* values, sbyte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
-			PlotLineNative(labelId, xs, ys, count, flags, offset, stride);
+			PlotBubblesNative(labelId, values, szs, count, xscale, xstart, spec);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, int* xs, int* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(byte* labelId, sbyte* values, sbyte* szs, int count, double xscale, double xstart)
 		{
-			PlotLineNative(labelId, xs, ys, count, flags, offset, (int)(sizeof(int)));
+			PlotBubblesNative(labelId, values, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, int* xs, int* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(byte* labelId, sbyte* values, sbyte* szs, int count, double xscale)
 		{
-			PlotLineNative(labelId, xs, ys, count, flags, (int)(0), (int)(sizeof(int)));
+			PlotBubblesNative(labelId, values, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, int* xs, int* ys, int count)
+		public static void PlotBubbles(byte* labelId, sbyte* values, sbyte* szs, int count)
 		{
-			PlotLineNative(labelId, xs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+			PlotBubblesNative(labelId, values, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, int* xs, int* ys, int count, int offset)
+		public static void PlotBubbles(byte* labelId, sbyte* values, sbyte* szs, int count, double xscale, ImPlotSpec spec)
 		{
-			PlotLineNative(labelId, xs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+			PlotBubblesNative(labelId, values, szs, count, xscale, (double)(0), spec);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, int* xs, int* ys, int count, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, sbyte* values, sbyte* szs, int count, ImPlotSpec spec)
 		{
-			PlotLineNative(labelId, xs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+			PlotBubblesNative(labelId, values, szs, count, (double)(1), (double)(0), spec);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, int* xs, int* ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, int* xs, int* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(in byte labelId, sbyte* values, sbyte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, flags, offset, (int)(sizeof(int)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, xstart, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, int* xs, int* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(in byte labelId, sbyte* values, sbyte* szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, flags, (int)(0), (int)(sizeof(int)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, int* xs, int* ys, int count)
+		public static void PlotBubbles(in byte labelId, sbyte* values, sbyte* szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, int* xs, int* ys, int count, int offset)
+		public static void PlotBubbles(in byte labelId, sbyte* values, sbyte* szs, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, int* xs, int* ys, int count, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, sbyte* values, sbyte* szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, (double)(0), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, int* xs, int* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, sbyte* values, sbyte* szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotBubblesNative((byte*)plabelId, values, szs, count, (double)(1), (double)(0), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, sbyte* values, sbyte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, flags, offset, stride);
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, xstart, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, int* xs, int* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, sbyte* values, sbyte* szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, flags, offset, (int)(sizeof(int)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, int* xs, int* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, sbyte* values, sbyte* szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, flags, (int)(0), (int)(sizeof(int)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, int* xs, int* ys, int count)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, sbyte* values, sbyte* szs, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, int* xs, int* ys, int count, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, sbyte* values, sbyte* szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, (double)(0), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, int* xs, int* ys, int count, int offset, int stride)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, sbyte* values, sbyte* szs, int count, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+				PlotBubblesNative((byte*)plabelId, values, szs, count, (double)(1), (double)(0), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, int* xs, int* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(string labelId, sbyte* values, sbyte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3417,7 +2971,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineNative(pStr0, xs, ys, count, flags, offset, stride);
+			PlotBubblesNative(pStr0, values, szs, count, xscale, xstart, spec);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3427,7 +2981,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, int* xs, int* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(string labelId, sbyte* values, sbyte* szs, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3446,7 +3000,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineNative(pStr0, xs, ys, count, flags, offset, (int)(sizeof(int)));
+			PlotBubblesNative(pStr0, values, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3456,7 +3010,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, int* xs, int* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(string labelId, sbyte* values, sbyte* szs, int count, double xscale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3475,7 +3029,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineNative(pStr0, xs, ys, count, flags, (int)(0), (int)(sizeof(int)));
+			PlotBubblesNative(pStr0, values, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3485,7 +3039,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, int* xs, int* ys, int count)
+		public static void PlotBubbles(string labelId, sbyte* values, sbyte* szs, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3504,7 +3058,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineNative(pStr0, xs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+			PlotBubblesNative(pStr0, values, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3514,7 +3068,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, int* xs, int* ys, int count, int offset)
+		public static void PlotBubbles(string labelId, sbyte* values, sbyte* szs, int count, double xscale, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3533,7 +3087,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineNative(pStr0, xs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+			PlotBubblesNative(pStr0, values, szs, count, xscale, (double)(0), spec);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3543,7 +3097,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, int* xs, int* ys, int count, int offset, int stride)
+		public static void PlotBubbles(string labelId, sbyte* values, sbyte* szs, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3562,7 +3116,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotLineNative(pStr0, xs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+			PlotBubblesNative(pStr0, values, szs, count, (double)(1), (double)(0), spec);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3572,93 +3126,79 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in int xs, int* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, in sbyte values, sbyte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				PlotLineNative(labelId, (int*)pxs, ys, count, flags, offset, stride);
+				PlotBubblesNative(labelId, (sbyte*)pvalues, szs, count, xscale, xstart, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in int xs, int* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(byte* labelId, in sbyte values, sbyte* szs, int count, double xscale, double xstart)
 		{
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				PlotLineNative(labelId, (int*)pxs, ys, count, flags, offset, (int)(sizeof(int)));
+				PlotBubblesNative(labelId, (sbyte*)pvalues, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in int xs, int* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(byte* labelId, in sbyte values, sbyte* szs, int count, double xscale)
 		{
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				PlotLineNative(labelId, (int*)pxs, ys, count, flags, (int)(0), (int)(sizeof(int)));
+				PlotBubblesNative(labelId, (sbyte*)pvalues, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in int xs, int* ys, int count)
+		public static void PlotBubbles(byte* labelId, in sbyte values, sbyte* szs, int count)
 		{
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				PlotLineNative(labelId, (int*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+				PlotBubblesNative(labelId, (sbyte*)pvalues, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in int xs, int* ys, int count, int offset)
+		public static void PlotBubbles(byte* labelId, in sbyte values, sbyte* szs, int count, double xscale, ImPlotSpec spec)
 		{
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				PlotLineNative(labelId, (int*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+				PlotBubblesNative(labelId, (sbyte*)pvalues, szs, count, xscale, (double)(0), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in int xs, int* ys, int count, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, in sbyte values, sbyte* szs, int count, ImPlotSpec spec)
 		{
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				PlotLineNative(labelId, (int*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+				PlotBubblesNative(labelId, (sbyte*)pvalues, szs, count, (double)(1), (double)(0), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in int xs, int* ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					PlotLineNative((byte*)plabelId, (int*)pxs, ys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in int xs, int* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(in byte labelId, in sbyte values, sbyte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (int*)pxs, ys, count, flags, offset, (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, szs, count, xscale, xstart, spec);
 				}
 			}
 		}
@@ -3666,13 +3206,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in int xs, int* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(in byte labelId, in sbyte values, sbyte* szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (int*)pxs, ys, count, flags, (int)(0), (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -3680,13 +3220,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in int xs, int* ys, int count)
+		public static void PlotBubbles(in byte labelId, in sbyte values, sbyte* szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (int*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -3694,13 +3234,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in int xs, int* ys, int count, int offset)
+		public static void PlotBubbles(in byte labelId, in sbyte values, sbyte* szs, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (int*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -3708,13 +3248,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in int xs, int* ys, int count, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, in sbyte values, sbyte* szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (int*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+					PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, szs, count, xscale, (double)(0), spec);
 				}
 			}
 		}
@@ -3722,13 +3262,27 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in int xs, int* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, in sbyte values, sbyte* szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, szs, count, (double)(1), (double)(0), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in sbyte values, sbyte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (int*)pxs, ys, count, flags, offset, stride);
+					PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, szs, count, xscale, xstart, spec);
 				}
 			}
 		}
@@ -3736,13 +3290,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in int xs, int* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in sbyte values, sbyte* szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (int*)pxs, ys, count, flags, offset, (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -3750,13 +3304,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in int xs, int* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in sbyte values, sbyte* szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (int*)pxs, ys, count, flags, (int)(0), (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -3764,13 +3318,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in int xs, int* ys, int count)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in sbyte values, sbyte* szs, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (int*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -3778,13 +3332,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in int xs, int* ys, int count, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in sbyte values, sbyte* szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (int*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, szs, count, xscale, (double)(0), spec);
 				}
 			}
 		}
@@ -3792,13 +3346,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in int xs, int* ys, int count, int offset, int stride)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in sbyte values, sbyte* szs, int count, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (int*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+					PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, szs, count, (double)(1), (double)(0), spec);
 				}
 			}
 		}
@@ -3806,7 +3360,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in int xs, int* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(string labelId, in sbyte values, sbyte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3825,9 +3379,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (int*)pxs, ys, count, flags, offset, stride);
+				PlotBubblesNative(pStr0, (sbyte*)pvalues, szs, count, xscale, xstart, spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3838,7 +3392,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in int xs, int* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(string labelId, in sbyte values, sbyte* szs, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3857,9 +3411,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (int*)pxs, ys, count, flags, offset, (int)(sizeof(int)));
+				PlotBubblesNative(pStr0, (sbyte*)pvalues, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3870,7 +3424,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in int xs, int* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(string labelId, in sbyte values, sbyte* szs, int count, double xscale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3889,9 +3443,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (int*)pxs, ys, count, flags, (int)(0), (int)(sizeof(int)));
+				PlotBubblesNative(pStr0, (sbyte*)pvalues, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3902,7 +3456,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in int xs, int* ys, int count)
+		public static void PlotBubbles(string labelId, in sbyte values, sbyte* szs, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3921,9 +3475,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (int*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+				PlotBubblesNative(pStr0, (sbyte*)pvalues, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3934,7 +3488,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in int xs, int* ys, int count, int offset)
+		public static void PlotBubbles(string labelId, in sbyte values, sbyte* szs, int count, double xscale, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3953,9 +3507,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (int*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+				PlotBubblesNative(pStr0, (sbyte*)pvalues, szs, count, xscale, (double)(0), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3966,7 +3520,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in int xs, int* ys, int count, int offset, int stride)
+		public static void PlotBubbles(string labelId, in sbyte values, sbyte* szs, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3985,9 +3539,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (int*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+				PlotBubblesNative(pStr0, (sbyte*)pvalues, szs, count, (double)(1), (double)(0), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3998,93 +3552,79 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, int* xs, in int ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, sbyte* values, in sbyte szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
-			fixed (int* pys = &ys)
+			fixed (sbyte* pszs = &szs)
 			{
-				PlotLineNative(labelId, xs, (int*)pys, count, flags, offset, stride);
+				PlotBubblesNative(labelId, values, (sbyte*)pszs, count, xscale, xstart, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, int* xs, in int ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(byte* labelId, sbyte* values, in sbyte szs, int count, double xscale, double xstart)
 		{
-			fixed (int* pys = &ys)
+			fixed (sbyte* pszs = &szs)
 			{
-				PlotLineNative(labelId, xs, (int*)pys, count, flags, offset, (int)(sizeof(int)));
+				PlotBubblesNative(labelId, values, (sbyte*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, int* xs, in int ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(byte* labelId, sbyte* values, in sbyte szs, int count, double xscale)
 		{
-			fixed (int* pys = &ys)
+			fixed (sbyte* pszs = &szs)
 			{
-				PlotLineNative(labelId, xs, (int*)pys, count, flags, (int)(0), (int)(sizeof(int)));
+				PlotBubblesNative(labelId, values, (sbyte*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, int* xs, in int ys, int count)
+		public static void PlotBubbles(byte* labelId, sbyte* values, in sbyte szs, int count)
 		{
-			fixed (int* pys = &ys)
+			fixed (sbyte* pszs = &szs)
 			{
-				PlotLineNative(labelId, xs, (int*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+				PlotBubblesNative(labelId, values, (sbyte*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, int* xs, in int ys, int count, int offset)
+		public static void PlotBubbles(byte* labelId, sbyte* values, in sbyte szs, int count, double xscale, ImPlotSpec spec)
 		{
-			fixed (int* pys = &ys)
+			fixed (sbyte* pszs = &szs)
 			{
-				PlotLineNative(labelId, xs, (int*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+				PlotBubblesNative(labelId, values, (sbyte*)pszs, count, xscale, (double)(0), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, int* xs, in int ys, int count, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, sbyte* values, in sbyte szs, int count, ImPlotSpec spec)
 		{
-			fixed (int* pys = &ys)
+			fixed (sbyte* pszs = &szs)
 			{
-				PlotLineNative(labelId, xs, (int*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+				PlotBubblesNative(labelId, values, (sbyte*)pszs, count, (double)(1), (double)(0), spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, int* xs, in int ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pys = &ys)
-				{
-					PlotLineNative((byte*)plabelId, xs, (int*)pys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, int* xs, in int ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(in byte labelId, sbyte* values, in sbyte szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (int*)pys, count, flags, offset, (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, values, (sbyte*)pszs, count, xscale, xstart, spec);
 				}
 			}
 		}
@@ -4092,13 +3632,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, int* xs, in int ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(in byte labelId, sbyte* values, in sbyte szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (int*)pys, count, flags, (int)(0), (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, values, (sbyte*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -4106,13 +3646,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, int* xs, in int ys, int count)
+		public static void PlotBubbles(in byte labelId, sbyte* values, in sbyte szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (int*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, values, (sbyte*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -4120,13 +3660,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, int* xs, in int ys, int count, int offset)
+		public static void PlotBubbles(in byte labelId, sbyte* values, in sbyte szs, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (int*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, values, (sbyte*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -4134,13 +3674,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, int* xs, in int ys, int count, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, sbyte* values, in sbyte szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (int*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+					PlotBubblesNative((byte*)plabelId, values, (sbyte*)pszs, count, xscale, (double)(0), spec);
 				}
 			}
 		}
@@ -4148,13 +3688,27 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, sbyte* values, in sbyte szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pszs = &szs)
+				{
+					PlotBubblesNative((byte*)plabelId, values, (sbyte*)pszs, count, (double)(1), (double)(0), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, sbyte* values, in sbyte szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (int*)pys, count, flags, offset, stride);
+					PlotBubblesNative((byte*)plabelId, values, (sbyte*)pszs, count, xscale, xstart, spec);
 				}
 			}
 		}
@@ -4162,13 +3716,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, sbyte* values, in sbyte szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (int*)pys, count, flags, offset, (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, values, (sbyte*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -4176,13 +3730,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, sbyte* values, in sbyte szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (int*)pys, count, flags, (int)(0), (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, values, (sbyte*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -4190,13 +3744,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, sbyte* values, in sbyte szs, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (int*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, values, (sbyte*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -4204,13 +3758,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, sbyte* values, in sbyte szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (int*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+					PlotBubblesNative((byte*)plabelId, values, (sbyte*)pszs, count, xscale, (double)(0), spec);
 				}
 			}
 		}
@@ -4218,13 +3772,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, int offset, int stride)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, sbyte* values, in sbyte szs, int count, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative((byte*)plabelId, xs, (int*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+					PlotBubblesNative((byte*)plabelId, values, (sbyte*)pszs, count, (double)(1), (double)(0), spec);
 				}
 			}
 		}
@@ -4232,7 +3786,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, int* xs, in int ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(string labelId, sbyte* values, in sbyte szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4251,9 +3805,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pys = &ys)
+			fixed (sbyte* pszs = &szs)
 			{
-				PlotLineNative(pStr0, xs, (int*)pys, count, flags, offset, stride);
+				PlotBubblesNative(pStr0, values, (sbyte*)pszs, count, xscale, xstart, spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4264,7 +3818,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, int* xs, in int ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(string labelId, sbyte* values, in sbyte szs, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4283,9 +3837,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pys = &ys)
+			fixed (sbyte* pszs = &szs)
 			{
-				PlotLineNative(pStr0, xs, (int*)pys, count, flags, offset, (int)(sizeof(int)));
+				PlotBubblesNative(pStr0, values, (sbyte*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4296,7 +3850,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, int* xs, in int ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(string labelId, sbyte* values, in sbyte szs, int count, double xscale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4315,9 +3869,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pys = &ys)
+			fixed (sbyte* pszs = &szs)
 			{
-				PlotLineNative(pStr0, xs, (int*)pys, count, flags, (int)(0), (int)(sizeof(int)));
+				PlotBubblesNative(pStr0, values, (sbyte*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4328,7 +3882,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, int* xs, in int ys, int count)
+		public static void PlotBubbles(string labelId, sbyte* values, in sbyte szs, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4347,9 +3901,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pys = &ys)
+			fixed (sbyte* pszs = &szs)
 			{
-				PlotLineNative(pStr0, xs, (int*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+				PlotBubblesNative(pStr0, values, (sbyte*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4360,7 +3914,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, int* xs, in int ys, int count, int offset)
+		public static void PlotBubbles(string labelId, sbyte* values, in sbyte szs, int count, double xscale, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4379,9 +3933,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pys = &ys)
+			fixed (sbyte* pszs = &szs)
 			{
-				PlotLineNative(pStr0, xs, (int*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+				PlotBubblesNative(pStr0, values, (sbyte*)pszs, count, xscale, (double)(0), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4392,7 +3946,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, int* xs, in int ys, int count, int offset, int stride)
+		public static void PlotBubbles(string labelId, sbyte* values, in sbyte szs, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4411,9 +3965,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pys = &ys)
+			fixed (sbyte* pszs = &szs)
 			{
-				PlotLineNative(pStr0, xs, (int*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+				PlotBubblesNative(pStr0, values, (sbyte*)pszs, count, (double)(1), (double)(0), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4424,13 +3978,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in int xs, in int ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, in sbyte values, in sbyte szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative(labelId, (int*)pxs, (int*)pys, count, flags, offset, stride);
+					PlotBubblesNative(labelId, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, xstart, spec);
 				}
 			}
 		}
@@ -4438,13 +3992,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in int xs, in int ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(byte* labelId, in sbyte values, in sbyte szs, int count, double xscale, double xstart)
 		{
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative(labelId, (int*)pxs, (int*)pys, count, flags, offset, (int)(sizeof(int)));
+					PlotBubblesNative(labelId, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -4452,13 +4006,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in int xs, in int ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(byte* labelId, in sbyte values, in sbyte szs, int count, double xscale)
 		{
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative(labelId, (int*)pxs, (int*)pys, count, flags, (int)(0), (int)(sizeof(int)));
+					PlotBubblesNative(labelId, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -4466,13 +4020,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in int xs, in int ys, int count)
+		public static void PlotBubbles(byte* labelId, in sbyte values, in sbyte szs, int count)
 		{
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative(labelId, (int*)pxs, (int*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+					PlotBubblesNative(labelId, (sbyte*)pvalues, (sbyte*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 				}
 			}
 		}
@@ -4480,13 +4034,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in int xs, in int ys, int count, int offset)
+		public static void PlotBubbles(byte* labelId, in sbyte values, in sbyte szs, int count, double xscale, ImPlotSpec spec)
 		{
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative(labelId, (int*)pxs, (int*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+					PlotBubblesNative(labelId, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, (double)(0), spec);
 				}
 			}
 		}
@@ -4494,13 +4048,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, in int xs, in int ys, int count, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, in sbyte values, in sbyte szs, int count, ImPlotSpec spec)
 		{
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative(labelId, (int*)pxs, (int*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+					PlotBubblesNative(labelId, (sbyte*)pvalues, (sbyte*)pszs, count, (double)(1), (double)(0), spec);
 				}
 			}
 		}
@@ -4508,32 +4062,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in int xs, in int ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (int* pxs = &xs)
-				{
-					fixed (int* pys = &ys)
-					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(in byte labelId, in int xs, in int ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(in byte labelId, in sbyte values, in sbyte szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					fixed (int* pys = &ys)
+					fixed (sbyte* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, flags, offset, (int)(sizeof(int)));
+						PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, xstart, spec);
 					}
 				}
 			}
@@ -4542,15 +4079,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in int xs, in int ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(in byte labelId, in sbyte values, in sbyte szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					fixed (int* pys = &ys)
+					fixed (sbyte* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, flags, (int)(0), (int)(sizeof(int)));
+						PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 					}
 				}
 			}
@@ -4559,15 +4096,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in int xs, in int ys, int count)
+		public static void PlotBubbles(in byte labelId, in sbyte values, in sbyte szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					fixed (int* pys = &ys)
+					fixed (sbyte* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+						PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 					}
 				}
 			}
@@ -4576,15 +4113,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in int xs, in int ys, int count, int offset)
+		public static void PlotBubbles(in byte labelId, in sbyte values, in sbyte szs, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					fixed (int* pys = &ys)
+					fixed (sbyte* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+						PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, (sbyte*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 					}
 				}
 			}
@@ -4593,15 +4130,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, in int xs, in int ys, int count, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, in sbyte values, in sbyte szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					fixed (int* pys = &ys)
+					fixed (sbyte* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+						PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, (double)(0), spec);
 					}
 				}
 			}
@@ -4610,15 +4147,32 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, in sbyte values, in sbyte szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (sbyte* pvalues = &values)
+				{
+					fixed (sbyte* pszs = &szs)
+					{
+						PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, (sbyte*)pszs, count, (double)(1), (double)(0), spec);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in sbyte values, in sbyte szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					fixed (int* pys = &ys)
+					fixed (sbyte* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, flags, offset, stride);
+						PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, xstart, spec);
 					}
 				}
 			}
@@ -4627,15 +4181,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in sbyte values, in sbyte szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					fixed (int* pys = &ys)
+					fixed (sbyte* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, flags, offset, (int)(sizeof(int)));
+						PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 					}
 				}
 			}
@@ -4644,15 +4198,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in sbyte values, in sbyte szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					fixed (int* pys = &ys)
+					fixed (sbyte* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, flags, (int)(0), (int)(sizeof(int)));
+						PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 					}
 				}
 			}
@@ -4661,15 +4215,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in sbyte values, in sbyte szs, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					fixed (int* pys = &ys)
+					fixed (sbyte* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+						PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, (sbyte*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 					}
 				}
 			}
@@ -4678,15 +4232,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, int offset)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in sbyte values, in sbyte szs, int count, double xscale, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					fixed (int* pys = &ys)
+					fixed (sbyte* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+						PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, (double)(0), spec);
 					}
 				}
 			}
@@ -4695,15 +4249,15 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, int offset, int stride)
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in sbyte values, in sbyte szs, int count, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pxs = &xs)
+				fixed (sbyte* pvalues = &values)
 				{
-					fixed (int* pys = &ys)
+					fixed (sbyte* pszs = &szs)
 					{
-						PlotLineNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+						PlotBubblesNative((byte*)plabelId, (sbyte*)pvalues, (sbyte*)pszs, count, (double)(1), (double)(0), spec);
 					}
 				}
 			}
@@ -4712,7 +4266,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in int xs, in int ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(string labelId, in sbyte values, in sbyte szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4731,11 +4285,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (int*)pxs, (int*)pys, count, flags, offset, stride);
+					PlotBubblesNative(pStr0, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, xstart, spec);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4747,7 +4301,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in int xs, in int ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(string labelId, in sbyte values, in sbyte szs, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4766,11 +4320,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (int*)pxs, (int*)pys, count, flags, offset, (int)(sizeof(int)));
+					PlotBubblesNative(pStr0, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4782,7 +4336,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in int xs, in int ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(string labelId, in sbyte values, in sbyte szs, int count, double xscale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4801,11 +4355,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (int*)pxs, (int*)pys, count, flags, (int)(0), (int)(sizeof(int)));
+					PlotBubblesNative(pStr0, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4817,7 +4371,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in int xs, in int ys, int count)
+		public static void PlotBubbles(string labelId, in sbyte values, in sbyte szs, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4836,11 +4390,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (int*)pxs, (int*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
+					PlotBubblesNative(pStr0, (sbyte*)pvalues, (sbyte*)pszs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4852,7 +4406,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in int xs, in int ys, int count, int offset)
+		public static void PlotBubbles(string labelId, in sbyte values, in sbyte szs, int count, double xscale, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4871,11 +4425,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (int*)pxs, (int*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
+					PlotBubblesNative(pStr0, (sbyte*)pvalues, (sbyte*)pszs, count, xscale, (double)(0), spec);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4887,7 +4441,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(string labelId, in int xs, in int ys, int count, int offset, int stride)
+		public static void PlotBubbles(string labelId, in sbyte values, in sbyte szs, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4906,11 +4460,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pxs = &xs)
+			fixed (sbyte* pvalues = &values)
 			{
-				fixed (int* pys = &ys)
+				fixed (sbyte* pszs = &szs)
 				{
-					PlotLineNative(pStr0, (int*)pxs, (int*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+					PlotBubblesNative(pStr0, (sbyte*)pvalues, (sbyte*)pszs, count, (double)(1), (double)(0), spec);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4923,104 +4477,558 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotLineNative(byte* labelId, uint* xs, uint* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		internal static void PlotBubblesNative(byte* labelId, byte* values, byte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, uint*, uint*, int, ImPlotLineFlags, int, int, void>)funcTable[71])(labelId, xs, ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, int, double, double, ImPlotSpec, void>)funcTable[116])(labelId, values, szs, count, xscale, xstart, spec);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotLineFlags, int, int, void>)funcTable[71])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, double, double, ImPlotSpec, void>)funcTable[116])((nint)labelId, (nint)values, (nint)szs, count, xscale, xstart, spec);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, uint* xs, uint* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, byte* values, byte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
-			PlotLineNative(labelId, xs, ys, count, flags, offset, stride);
+			PlotBubblesNative(labelId, values, szs, count, xscale, xstart, spec);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, uint* xs, uint* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(byte* labelId, byte* values, byte* szs, int count, double xscale, double xstart)
 		{
-			PlotLineNative(labelId, xs, ys, count, flags, offset, (int)(sizeof(uint)));
+			PlotBubblesNative(labelId, values, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, uint* xs, uint* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(byte* labelId, byte* values, byte* szs, int count, double xscale)
 		{
-			PlotLineNative(labelId, xs, ys, count, flags, (int)(0), (int)(sizeof(uint)));
+			PlotBubblesNative(labelId, values, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, uint* xs, uint* ys, int count)
+		public static void PlotBubbles(byte* labelId, byte* values, byte* szs, int count)
 		{
-			PlotLineNative(labelId, xs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(uint)));
+			PlotBubblesNative(labelId, values, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, uint* xs, uint* ys, int count, int offset)
+		public static void PlotBubbles(byte* labelId, byte* values, byte* szs, int count, double xscale, ImPlotSpec spec)
 		{
-			PlotLineNative(labelId, xs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(uint)));
+			PlotBubblesNative(labelId, values, szs, count, xscale, (double)(0), spec);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, uint* xs, uint* ys, int count, int offset, int stride)
+		public static void PlotBubbles(byte* labelId, byte* values, byte* szs, int count, ImPlotSpec spec)
 		{
-			PlotLineNative(labelId, xs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+			PlotBubblesNative(labelId, values, szs, count, (double)(1), (double)(0), spec);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, uint* xs, uint* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotBubbles(in byte labelId, byte* values, byte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, flags, offset, stride);
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, xstart, spec);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, uint* xs, uint* ys, int count, ImPlotLineFlags flags, int offset)
+		public static void PlotBubbles(in byte labelId, byte* values, byte* szs, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, flags, offset, (int)(sizeof(uint)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, uint* xs, uint* ys, int count, ImPlotLineFlags flags)
+		public static void PlotBubbles(in byte labelId, byte* values, byte* szs, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, flags, (int)(0), (int)(sizeof(uint)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(in byte labelId, uint* xs, uint* ys, int count)
+		public static void PlotBubbles(in byte labelId, byte* values, byte* szs, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(uint)));
+				PlotBubblesNative((byte*)plabelId, values, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, byte* values, byte* szs, int count, double xscale, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, (double)(0), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, byte* values, byte* szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotBubblesNative((byte*)plabelId, values, szs, count, (double)(1), (double)(0), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, byte* values, byte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, xstart, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, byte* values, byte* szs, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, byte* values, byte* szs, int count, double xscale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, byte* values, byte* szs, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBubblesNative((byte*)plabelId, values, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, byte* values, byte* szs, int count, double xscale, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBubblesNative((byte*)plabelId, values, szs, count, xscale, (double)(0), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, byte* values, byte* szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotBubblesNative((byte*)plabelId, values, szs, count, (double)(1), (double)(0), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(string labelId, byte* values, byte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotBubblesNative(pStr0, values, szs, count, xscale, xstart, spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(string labelId, byte* values, byte* szs, int count, double xscale, double xstart)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotBubblesNative(pStr0, values, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(string labelId, byte* values, byte* szs, int count, double xscale)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotBubblesNative(pStr0, values, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(string labelId, byte* values, byte* szs, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotBubblesNative(pStr0, values, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(string labelId, byte* values, byte* szs, int count, double xscale, ImPlotSpec spec)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotBubblesNative(pStr0, values, szs, count, xscale, (double)(0), spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(string labelId, byte* values, byte* szs, int count, ImPlotSpec spec)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotBubblesNative(pStr0, values, szs, count, (double)(1), (double)(0), spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, in byte values, byte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotBubblesNative(labelId, (byte*)pvalues, szs, count, xscale, xstart, spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, in byte values, byte* szs, int count, double xscale, double xstart)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotBubblesNative(labelId, (byte*)pvalues, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, in byte values, byte* szs, int count, double xscale)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotBubblesNative(labelId, (byte*)pvalues, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, in byte values, byte* szs, int count)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotBubblesNative(labelId, (byte*)pvalues, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, in byte values, byte* szs, int count, double xscale, ImPlotSpec spec)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotBubblesNative(labelId, (byte*)pvalues, szs, count, xscale, (double)(0), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(byte* labelId, in byte values, byte* szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* pvalues = &values)
+			{
+				PlotBubblesNative(labelId, (byte*)pvalues, szs, count, (double)(1), (double)(0), spec);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, in byte values, byte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotBubblesNative((byte*)plabelId, (byte*)pvalues, szs, count, xscale, xstart, spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, in byte values, byte* szs, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotBubblesNative((byte*)plabelId, (byte*)pvalues, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, in byte values, byte* szs, int count, double xscale)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotBubblesNative((byte*)plabelId, (byte*)pvalues, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, in byte values, byte* szs, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotBubblesNative((byte*)plabelId, (byte*)pvalues, szs, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, in byte values, byte* szs, int count, double xscale, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotBubblesNative((byte*)plabelId, (byte*)pvalues, szs, count, xscale, (double)(0), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(in byte labelId, in byte values, byte* szs, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotBubblesNative((byte*)plabelId, (byte*)pvalues, szs, count, (double)(1), (double)(0), spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in byte values, byte* szs, int count, double xscale, double xstart, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotBubblesNative((byte*)plabelId, (byte*)pvalues, szs, count, xscale, xstart, spec);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in byte values, byte* szs, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotBubblesNative((byte*)plabelId, (byte*)pvalues, szs, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotBubbles(ReadOnlySpan<byte> labelId, in byte values, byte* szs, int count, double xscale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotBubblesNative((byte*)plabelId, (byte*)pvalues, szs, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
+				}
 			}
 		}
 	}

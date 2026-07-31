@@ -45,7 +45,7 @@ namespace Hexa.NET.ImGui
 		Disabled = unchecked(8),
 
 		/// <summary>
-		/// (WIP) Hit testing to allow subsequent widgets to overlap this one<br/>
+		/// Hit testing will allow subsequent widgets to overlap this one. Require previous frame HoveredId to match before being usable. Shortcut to calling SetNextItemAllowOverlap().<br/>
 		/// </summary>
 		AllowOverlap = unchecked(16),
 

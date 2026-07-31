@@ -19,6 +19,8 @@ namespace Hexa.NET.ImPlot
 	/// </summary>
 	public enum ImAxis : int
 	{
+		Auto = -1,
+
 		/// <summary>
 		/// To be documented.
 		/// </summary>

@@ -19,7 +19,479 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(string label, in byte hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* phint = &hint)
+			{
+				byte ret = InputTextExNative(pStr0, (byte*)phint, buf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(string label, ReadOnlySpan<byte> hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* phint = hint)
+			{
+				byte ret = InputTextExNative(pStr0, (byte*)phint, buf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), userData);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(string label, ReadOnlySpan<byte> hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* phint = hint)
+			{
+				byte ret = InputTextExNative(pStr0, (byte*)phint, buf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(byte* label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+		{
+			fixed (byte* pbuf = &buf)
+			{
+				byte ret = InputTextExNative(label, hint, (byte*)pbuf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), userData);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(byte* label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
+		{
+			fixed (byte* pbuf = &buf)
+			{
+				byte ret = InputTextExNative(label, hint, (byte*)pbuf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(byte* label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (buf != null)
+			{
+				pStrSize0 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputTextExNative(label, hint, pStr0, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), userData);
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
+			{
+				buf = Utils.DecodeStringUTF8(pStr0);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(byte* label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (buf != null)
+			{
+				pStrSize0 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputTextExNative(label, hint, pStr0, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)(default));
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
+			{
+				buf = Utils.DecodeStringUTF8(pStr0);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(in byte label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextExNative((byte*)plabel, hint, (byte*)pbuf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), userData);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(in byte label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextExNative((byte*)plabel, hint, (byte*)pbuf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(ReadOnlySpan<byte> label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextExNative((byte*)plabel, hint, (byte*)pbuf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), userData);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(ReadOnlySpan<byte> label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextExNative((byte*)plabel, hint, (byte*)pbuf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(string label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (buf != null)
+			{
+				pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputTextExNative(pStr0, hint, pStr1, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), userData);
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(string label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (buf != null)
+			{
+				pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputTextExNative(pStr0, hint, pStr1, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)(default));
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(in byte label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (buf != null)
+				{
+					pStrSize0 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputTextExNative((byte*)plabel, hint, pStr0, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), userData);
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
+				{
+					buf = Utils.DecodeStringUTF8(pStr0);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(in byte label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (buf != null)
+				{
+					pStrSize0 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputTextExNative((byte*)plabel, hint, pStr0, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), (void*)(default));
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
+				{
+					buf = Utils.DecodeStringUTF8(pStr0);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// InputText<br/>
+		/// </summary>
+		public static bool InputTextEx(ReadOnlySpan<byte> label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (buf != null)
+				{
+					pStrSize0 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputTextExNative((byte*)plabel, hint, pStr0, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), userData);
+				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
+				{
+					buf = Utils.DecodeStringUTF8(pStr0);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -56,7 +528,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -89,7 +561,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -122,7 +594,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -137,7 +609,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -152,7 +624,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -167,7 +639,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -182,7 +654,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -237,7 +709,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -292,7 +764,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -329,7 +801,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -366,7 +838,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -403,7 +875,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -440,7 +912,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -473,7 +945,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -506,7 +978,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -524,7 +996,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -542,7 +1014,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -560,7 +1032,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -578,7 +1050,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -654,7 +1126,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -730,7 +1202,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -770,7 +1242,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -810,7 +1282,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -828,7 +1300,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -846,7 +1318,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -886,7 +1358,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -926,7 +1398,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -962,7 +1434,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -998,7 +1470,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -1056,7 +1528,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -1114,7 +1586,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -1132,7 +1604,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -1150,7 +1622,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -1190,7 +1662,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -1230,7 +1702,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -1270,7 +1742,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -1310,7 +1782,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -1346,7 +1818,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -1382,7 +1854,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -1440,7 +1912,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -1498,7 +1970,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -1534,7 +2006,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -1570,7 +2042,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -1628,7 +2100,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -1686,7 +2158,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -1722,7 +2194,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -1758,7 +2230,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -1816,7 +2288,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -1874,7 +2346,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
@@ -1928,7 +2400,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback)
 		{
@@ -1982,7 +2454,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -1991,7 +2463,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2000,7 +2472,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2012,7 +2484,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2024,7 +2496,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2036,7 +2508,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2048,7 +2520,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2078,7 +2550,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2108,7 +2580,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, in byte hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2120,7 +2592,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, in byte hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2132,7 +2604,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, ReadOnlySpan<byte> hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2144,7 +2616,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, ReadOnlySpan<byte> hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2156,7 +2628,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, string hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2186,7 +2658,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, string hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2216,7 +2688,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, in byte hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2231,7 +2703,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, in byte hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2246,7 +2718,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2261,7 +2733,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2276,7 +2748,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, string hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2327,7 +2799,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, string hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2378,7 +2850,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, ReadOnlySpan<byte> hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2393,7 +2865,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, ReadOnlySpan<byte> hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2408,7 +2880,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, string hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2441,7 +2913,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, string hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2474,7 +2946,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, in byte hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2489,7 +2961,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, in byte hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2504,7 +2976,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, string hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2537,7 +3009,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, string hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2570,7 +3042,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, in byte hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2603,7 +3075,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, in byte hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2636,7 +3108,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, ReadOnlySpan<byte> hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2669,7 +3141,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, ReadOnlySpan<byte> hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2702,7 +3174,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2714,7 +3186,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2726,7 +3198,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2760,7 +3232,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2794,7 +3266,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2809,7 +3281,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2824,7 +3296,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2839,7 +3311,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2854,7 +3326,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -2909,7 +3381,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -2964,7 +3436,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3001,7 +3473,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3038,7 +3510,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3075,7 +3547,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3112,7 +3584,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3145,7 +3617,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3178,7 +3650,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3193,7 +3665,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3208,7 +3680,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3223,7 +3695,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3238,7 +3710,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3293,7 +3765,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3348,7 +3820,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3385,7 +3857,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3422,7 +3894,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3459,7 +3931,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3496,7 +3968,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3529,7 +4001,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(byte* label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3562,7 +4034,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3580,7 +4052,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3598,7 +4070,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3616,7 +4088,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3634,7 +4106,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3710,7 +4182,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(string label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3786,7 +4258,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3826,7 +4298,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3866,7 +4338,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3884,7 +4356,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3902,7 +4374,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -3942,7 +4414,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -3982,7 +4454,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4018,7 +4490,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -4054,7 +4526,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4112,7 +4584,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(in byte label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -4170,7 +4642,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4188,7 +4660,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -4206,7 +4678,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4246,7 +4718,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -4286,7 +4758,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4326,7 +4798,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -4366,7 +4838,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4402,7 +4874,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -4438,7 +4910,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
 		{
@@ -4496,7 +4968,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// InputText<br/>
 		/// </summary>
 		public static bool InputTextEx(ReadOnlySpan<byte> label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
 		{
@@ -4541,490 +5013,6 @@ namespace Hexa.NET.ImGui
 				{
 					buf = Utils.DecodeStringUTF8(pStr1);
 				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextEx(string label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phint = &hint)
-			{
-				fixed (byte* pbuf = &buf)
-				{
-					byte ret = InputTextExNative(pStr0, (byte*)phint, (byte*)pbuf, bufSize, sizeArg, flags, callback, (void*)userData);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextEx(string label, in byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phint = &hint)
-			{
-				fixed (byte* pbuf = &buf)
-				{
-					byte ret = InputTextExNative(pStr0, (byte*)phint, (byte*)pbuf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)(default), (void*)userData);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextEx(string label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phint = &hint)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (buf != null)
-				{
-					pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = InputTextExNative(pStr0, (byte*)phint, pStr1, bufSize, sizeArg, flags, callback, (void*)userData);
-				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
-				{
-					buf = Utils.DecodeStringUTF8(pStr1);
-				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextEx(string label, in byte hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phint = &hint)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (buf != null)
-				{
-					pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = InputTextExNative(pStr0, (byte*)phint, pStr1, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)(default), (void*)userData);
-				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
-				{
-					buf = Utils.DecodeStringUTF8(pStr1);
-				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextEx(string label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phint = hint)
-			{
-				fixed (byte* pbuf = &buf)
-				{
-					byte ret = InputTextExNative(pStr0, (byte*)phint, (byte*)pbuf, bufSize, sizeArg, flags, callback, (void*)userData);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextEx(string label, ReadOnlySpan<byte> hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phint = hint)
-			{
-				fixed (byte* pbuf = &buf)
-				{
-					byte ret = InputTextExNative(pStr0, (byte*)phint, (byte*)pbuf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)(default), (void*)userData);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextEx(string label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phint = hint)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (buf != null)
-				{
-					pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = InputTextExNative(pStr0, (byte*)phint, pStr1, bufSize, sizeArg, flags, callback, (void*)userData);
-				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
-				{
-					buf = Utils.DecodeStringUTF8(pStr1);
-				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextEx(string label, ReadOnlySpan<byte> hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* phint = hint)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (buf != null)
-				{
-					pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = InputTextExNative(pStr0, (byte*)phint, pStr1, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)(default), (void*)userData);
-				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
-				{
-					buf = Utils.DecodeStringUTF8(pStr1);
-				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextEx(string label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (hint != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(hint);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(hint, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			fixed (byte* pbuf = &buf)
-			{
-				byte ret = InputTextExNative(pStr0, pStr1, (byte*)pbuf, bufSize, sizeArg, flags, callback, (void*)userData);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextEx(string label, string hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, nint userData)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (hint != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(hint);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(hint, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			fixed (byte* pbuf = &buf)
-			{
-				byte ret = InputTextExNative(pStr0, pStr1, (byte*)pbuf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)(default), (void*)userData);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);

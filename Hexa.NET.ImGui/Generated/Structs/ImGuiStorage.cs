@@ -45,7 +45,7 @@ namespace Hexa.NET.ImGui
 
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: for quicker full rebuild of a storage (instead of an incremental one), you may add all your contents and then sort once.<br/>
 		/// </summary>
 		public unsafe void BuildSortByKey()
 		{
@@ -56,7 +56,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// - Get***() functions find pair, never addallocate. Pairs are sorted so a query is O(log N)<br/>
+		/// - Set***() functions find pair, insertion on demand if missing.<br/>
+		/// - Sorted insertion is costly, paid once. A typical frame shouldn't need to insert any new pair.<br/>
 		/// </summary>
 		public unsafe void Clear()
 		{
@@ -187,7 +189,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// - Get***Ref() functions finds pair, insert on demand if missing, return pointer. Useful if you intend to do Get+Set.<br/>
+		/// - References are only valid until a new value is added to the storage. Calling a Set***() function or a Get***Ref() function invalidates the pointer.<br/>
+		/// - A typical use case where this is convenient for quick hacking (e.g. add storage during a live Edit&amp;Continue session if you can't modify existing struct)<br/>
+		/// float* pvar = ImGui::GetFloatRef(key); ImGui::SliderFloat("var", pvar, 0, 100.0f); some_var += *pvar;<br/>
 		/// </summary>
 		public unsafe int* GetIntRef(uint key, int defaultVal)
 		{
@@ -199,7 +204,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// - Get***Ref() functions finds pair, insert on demand if missing, return pointer. Useful if you intend to do Get+Set.<br/>
+		/// - References are only valid until a new value is added to the storage. Calling a Set***() function or a Get***Ref() function invalidates the pointer.<br/>
+		/// - A typical use case where this is convenient for quick hacking (e.g. add storage during a live Edit&amp;Continue session if you can't modify existing struct)<br/>
+		/// float* pvar = ImGui::GetFloatRef(key); ImGui::SliderFloat("var", pvar, 0, 100.0f); some_var += *pvar;<br/>
 		/// </summary>
 		public unsafe int* GetIntRef(uint key)
 		{
@@ -259,7 +267,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Obsolete: use on your own storage if you know only integer are being stored (openclose all tree nodes)<br/>
 		/// </summary>
 		public unsafe void SetAllInt(int val)
 		{
@@ -372,7 +380,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public ref ImVector<ImGuiStoragePair> Data => ref Unsafe.AsRef<ImVector<ImGuiStoragePair>>(&Handle->Data);
 		/// <summary>
-		/// To be documented.
+		/// Advanced: for quicker full rebuild of a storage (instead of an incremental one), you may add all your contents and then sort once.<br/>
 		/// </summary>
 		public unsafe void BuildSortByKey()
 		{
@@ -380,7 +388,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// - Get***() functions find pair, never addallocate. Pairs are sorted so a query is O(log N)<br/>
+		/// - Set***() functions find pair, insertion on demand if missing.<br/>
+		/// - Sorted insertion is costly, paid once. A typical frame shouldn't need to insert any new pair.<br/>
 		/// </summary>
 		public unsafe void Clear()
 		{
@@ -478,7 +488,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// - Get***Ref() functions finds pair, insert on demand if missing, return pointer. Useful if you intend to do Get+Set.<br/>
+		/// - References are only valid until a new value is added to the storage. Calling a Set***() function or a Get***Ref() function invalidates the pointer.<br/>
+		/// - A typical use case where this is convenient for quick hacking (e.g. add storage during a live Edit&amp;Continue session if you can't modify existing struct)<br/>
+		/// float* pvar = ImGui::GetFloatRef(key); ImGui::SliderFloat("var", pvar, 0, 100.0f); some_var += *pvar;<br/>
 		/// </summary>
 		public unsafe int* GetIntRef(uint key, int defaultVal)
 		{
@@ -487,7 +500,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// - Get***Ref() functions finds pair, insert on demand if missing, return pointer. Useful if you intend to do Get+Set.<br/>
+		/// - References are only valid until a new value is added to the storage. Calling a Set***() function or a Get***Ref() function invalidates the pointer.<br/>
+		/// - A typical use case where this is convenient for quick hacking (e.g. add storage during a live Edit&amp;Continue session if you can't modify existing struct)<br/>
+		/// float* pvar = ImGui::GetFloatRef(key); ImGui::SliderFloat("var", pvar, 0, 100.0f); some_var += *pvar;<br/>
 		/// </summary>
 		public unsafe int* GetIntRef(uint key)
 		{
@@ -532,7 +548,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Obsolete: use on your own storage if you know only integer are being stored (openclose all tree nodes)<br/>
 		/// </summary>
 		public unsafe void SetAllInt(int val)
 		{

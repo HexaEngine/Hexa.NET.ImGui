@@ -22,63 +22,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, double reference, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, in int xs, int* ys, int count, int xBins, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -97,20 +41,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, reference, flags, offset, stride);
+				double ret = PlotHistogram2DNative(pStr0, (int*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(string labelId, in int xs, int* ys, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -129,20 +74,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, reference, flags, offset, (int)(sizeof(ulong)));
+				double ret = PlotHistogram2DNative(pStr0, (int*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(string labelId, in int xs, int* ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -161,20 +107,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
+				double ret = PlotHistogram2DNative(pStr0, (int*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, ulong* ys, int count, double reference)
+		public static double PlotHistogram2D(string labelId, in int xs, int* ys, int count, ImPlotRect range, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -193,414 +140,172 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+				double ret = PlotHistogram2DNative(pStr0, (int*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, ulong* ys, int count)
+		public static double PlotHistogram2D(byte* labelId, int* xs, in int ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (int* pys = &ys)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				double ret = PlotHistogram2DNative(labelId, xs, (int*)pys, count, xBins, yBins, range, spec);
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, ulong* ys, int count, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(byte* labelId, int* xs, in int ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (int* pys = &ys)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				double ret = PlotHistogram2DNative(labelId, xs, (int*)pys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, ulong* ys, int count, double reference, int offset)
+		public static double PlotHistogram2D(byte* labelId, int* xs, in int ys, int count, int xBins, int yBins)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (int* pys = &ys)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				double ret = PlotHistogram2DNative(labelId, xs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, ulong* ys, int count, int offset)
+		public static double PlotHistogram2D(byte* labelId, int* xs, in int ys, int count, int xBins)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (int* pys = &ys)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				double ret = PlotHistogram2DNative(labelId, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(byte* labelId, int* xs, in int ys, int count)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (int* pys = &ys)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				double ret = PlotHistogram2DNative(labelId, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, ulong* ys, int count, double reference, int offset, int stride)
+		public static double PlotHistogram2D(byte* labelId, int* xs, in int ys, int count, int xBins, ImPlotRect range)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (int* pys = &ys)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				double ret = PlotHistogram2DNative(labelId, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, ulong* ys, int count, int offset, int stride)
+		public static double PlotHistogram2D(byte* labelId, int* xs, in int ys, int count, ImPlotRect range)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (int* pys = &ys)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				double ret = PlotHistogram2DNative(labelId, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(byte* labelId, int* xs, in int ys, int count, int xBins, int yBins, ImPlotSpec spec)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (int* pys = &ys)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, (double)(0), flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				double ret = PlotHistogram2DNative(labelId, xs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, ulong* xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(byte* labelId, int* xs, in int ys, int count, int xBins, ImPlotSpec spec)
 		{
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, flags, offset, stride);
+				double ret = PlotHistogram2DNative(labelId, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, ulong* xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(byte* labelId, int* xs, in int ys, int count, ImPlotSpec spec)
 		{
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
+				double ret = PlotHistogram2DNative(labelId, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, ulong* xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(byte* labelId, int* xs, in int ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
 		{
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
+				double ret = PlotHistogram2DNative(labelId, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, ulong* xs, in ulong ys, int count, double reference)
+		public static double PlotHistogram2D(byte* labelId, int* xs, in int ys, int count, ImPlotRect range, ImPlotSpec spec)
 		{
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+				double ret = PlotHistogram2DNative(labelId, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, ulong* xs, in ulong ys, int count)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(byte* labelId, ulong* xs, in ulong ys, int count, ImPlotStemsFlags flags)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(byte* labelId, ulong* xs, in ulong ys, int count, double reference, int offset)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(byte* labelId, ulong* xs, in ulong ys, int count, int offset)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(byte* labelId, ulong* xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(byte* labelId, ulong* xs, in ulong ys, int count, double reference, int offset, int stride)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(byte* labelId, ulong* xs, in ulong ys, int count, int offset, int stride)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(byte* labelId, ulong* xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotStems(in byte labelId, ulong* xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(in byte labelId, int* xs, in int ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, flags, offset, stride);
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, yBins, range, spec);
+					return ret;
 				}
 			}
 		}
@@ -608,13 +313,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, ulong* xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(in byte labelId, int* xs, in int ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -622,13 +328,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, ulong* xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(in byte labelId, int* xs, in int ys, int count, int xBins, int yBins)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -636,13 +343,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, ulong* xs, in ulong ys, int count, double reference)
+		public static double PlotHistogram2D(in byte labelId, int* xs, in int ys, int count, int xBins)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -650,13 +358,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, ulong* xs, in ulong ys, int count)
+		public static double PlotHistogram2D(in byte labelId, int* xs, in int ys, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -664,13 +373,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, ulong* xs, in ulong ys, int count, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(in byte labelId, int* xs, in int ys, int count, int xBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -678,13 +388,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, ulong* xs, in ulong ys, int count, double reference, int offset)
+		public static double PlotHistogram2D(in byte labelId, int* xs, in int ys, int count, ImPlotRect range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -692,13 +403,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, ulong* xs, in ulong ys, int count, int offset)
+		public static double PlotHistogram2D(in byte labelId, int* xs, in int ys, int count, int xBins, int yBins, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
 				}
 			}
 		}
@@ -706,13 +418,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, ulong* xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(in byte labelId, int* xs, in int ys, int count, int xBins, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
 				}
 			}
 		}
@@ -720,13 +433,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, ulong* xs, in ulong ys, int count, double reference, int offset, int stride)
+		public static double PlotHistogram2D(in byte labelId, int* xs, in int ys, int count, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
 				}
 			}
 		}
@@ -734,13 +448,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, ulong* xs, in ulong ys, int count, int offset, int stride)
+		public static double PlotHistogram2D(in byte labelId, int* xs, in int ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
 				}
 			}
 		}
@@ -748,13 +463,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, ulong* xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(in byte labelId, int* xs, in int ys, int count, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), flags, offset, stride);
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
 				}
 			}
 		}
@@ -762,13 +478,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, ulong* xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, flags, offset, stride);
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, yBins, range, spec);
+					return ret;
 				}
 			}
 		}
@@ -776,13 +493,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, ulong* xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -790,13 +508,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, ulong* xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, int xBins, int yBins)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -804,13 +523,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, ulong* xs, in ulong ys, int count, double reference)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, int xBins)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -818,13 +538,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, ulong* xs, in ulong ys, int count)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -832,13 +553,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, ulong* xs, in ulong ys, int count, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, int xBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -846,13 +568,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, ulong* xs, in ulong ys, int count, double reference, int offset)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, ImPlotRect range)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -860,13 +583,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, ulong* xs, in ulong ys, int count, int offset)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, int xBins, int yBins, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
 				}
 			}
 		}
@@ -874,13 +598,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, ulong* xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, int xBins, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
 				}
 			}
 		}
@@ -888,13 +613,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, ulong* xs, in ulong ys, int count, double reference, int offset, int stride)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
 				}
 			}
 		}
@@ -902,13 +628,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, ulong* xs, in ulong ys, int count, int offset, int stride)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
 				}
 			}
 		}
@@ -916,13 +643,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, ulong* xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, int* xs, in int ys, int count, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), flags, offset, stride);
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
 				}
 			}
 		}
@@ -930,7 +658,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, ulong* xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, int* xs, in int ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -949,20 +677,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, reference, flags, offset, stride);
+				double ret = PlotHistogram2DNative(pStr0, xs, (int*)pys, count, xBins, yBins, range, spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, ulong* xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(string labelId, int* xs, in int ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -981,20 +710,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
+				double ret = PlotHistogram2DNative(pStr0, xs, (int*)pys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, ulong* xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(string labelId, int* xs, in int ys, int count, int xBins, int yBins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1013,20 +743,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
+				double ret = PlotHistogram2DNative(pStr0, xs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, ulong* xs, in ulong ys, int count, double reference)
+		public static double PlotHistogram2D(string labelId, int* xs, in int ys, int count, int xBins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1045,20 +776,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+				double ret = PlotHistogram2DNative(pStr0, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, ulong* xs, in ulong ys, int count)
+		public static double PlotHistogram2D(string labelId, int* xs, in int ys, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1077,20 +809,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+				double ret = PlotHistogram2DNative(pStr0, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, ulong* xs, in ulong ys, int count, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(string labelId, int* xs, in int ys, int count, int xBins, ImPlotRect range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1109,20 +842,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
+				double ret = PlotHistogram2DNative(pStr0, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, ulong* xs, in ulong ys, int count, double reference, int offset)
+		public static double PlotHistogram2D(string labelId, int* xs, in int ys, int count, ImPlotRect range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1141,20 +875,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+				double ret = PlotHistogram2DNative(pStr0, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, ulong* xs, in ulong ys, int count, int offset)
+		public static double PlotHistogram2D(string labelId, int* xs, in int ys, int count, int xBins, int yBins, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1173,20 +908,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+				double ret = PlotHistogram2DNative(pStr0, xs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, ulong* xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(string labelId, int* xs, in int ys, int count, int xBins, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1205,20 +941,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
+				double ret = PlotHistogram2DNative(pStr0, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, ulong* xs, in ulong ys, int count, double reference, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, int* xs, in int ys, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1237,20 +974,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
+				double ret = PlotHistogram2DNative(pStr0, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, ulong* xs, in ulong ys, int count, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, int* xs, in int ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1269,20 +1007,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				double ret = PlotHistogram2DNative(pStr0, xs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, ulong* xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, int* xs, in int ys, int count, ImPlotRect range, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1301,26 +1040,28 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pys = &ys)
+			fixed (int* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, (double)(0), flags, offset, stride);
+				double ret = PlotHistogram2DNative(pStr0, xs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, in ulong xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(byte* labelId, in int xs, in int ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, reference, flags, offset, stride);
+					double ret = PlotHistogram2DNative(labelId, (int*)pxs, (int*)pys, count, xBins, yBins, range, spec);
+					return ret;
 				}
 			}
 		}
@@ -1328,13 +1069,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, in ulong xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(byte* labelId, in int xs, in int ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(labelId, (int*)pxs, (int*)pys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -1342,13 +1084,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, in ulong xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(byte* labelId, in int xs, in int ys, int count, int xBins, int yBins)
 		{
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(labelId, (int*)pxs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -1356,13 +1099,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, in ulong xs, in ulong ys, int count, double reference)
+		public static double PlotHistogram2D(byte* labelId, in int xs, in int ys, int count, int xBins)
 		{
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(labelId, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -1370,13 +1114,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, in ulong xs, in ulong ys, int count)
+		public static double PlotHistogram2D(byte* labelId, in int xs, in int ys, int count)
 		{
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(labelId, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -1384,13 +1129,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, in ulong xs, in ulong ys, int count, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(byte* labelId, in int xs, in int ys, int count, int xBins, ImPlotRect range)
 		{
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(labelId, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -1398,13 +1144,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, in ulong xs, in ulong ys, int count, double reference, int offset)
+		public static double PlotHistogram2D(byte* labelId, in int xs, in int ys, int count, ImPlotRect range)
 		{
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(labelId, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
 				}
 			}
 		}
@@ -1412,13 +1159,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, in ulong xs, in ulong ys, int count, int offset)
+		public static double PlotHistogram2D(byte* labelId, in int xs, in int ys, int count, int xBins, int yBins, ImPlotSpec spec)
 		{
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(labelId, (int*)pxs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
 				}
 			}
 		}
@@ -1426,13 +1174,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, in ulong xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(byte* labelId, in int xs, in int ys, int count, int xBins, ImPlotSpec spec)
 		{
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(labelId, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
 				}
 			}
 		}
@@ -1440,13 +1189,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, in ulong xs, in ulong ys, int count, double reference, int offset, int stride)
+		public static double PlotHistogram2D(byte* labelId, in int xs, in int ys, int count, ImPlotSpec spec)
 		{
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
+					double ret = PlotHistogram2DNative(labelId, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
 				}
 			}
 		}
@@ -1454,13 +1204,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, in ulong xs, in ulong ys, int count, int offset, int stride)
+		public static double PlotHistogram2D(byte* labelId, in int xs, in int ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
 		{
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+					double ret = PlotHistogram2DNative(labelId, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
 				}
 			}
 		}
@@ -1468,13 +1219,14 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(byte* labelId, in ulong xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(byte* labelId, in int xs, in int ys, int count, ImPlotRect range, ImPlotSpec spec)
 		{
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, offset, stride);
+					double ret = PlotHistogram2DNative(labelId, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
 				}
 			}
 		}
@@ -1482,15 +1234,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, in ulong xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(in byte labelId, in int xs, in int ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, flags, offset, stride);
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, yBins, range, spec);
+						return ret;
 					}
 				}
 			}
@@ -1499,15 +1252,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, in ulong xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(in byte labelId, in int xs, in int ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
 					}
 				}
 			}
@@ -1516,15 +1270,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, in ulong xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(in byte labelId, in int xs, in int ys, int count, int xBins, int yBins)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
 					}
 				}
 			}
@@ -1533,15 +1288,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, in ulong xs, in ulong ys, int count, double reference)
+		public static double PlotHistogram2D(in byte labelId, in int xs, in int ys, int count, int xBins)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
 					}
 				}
 			}
@@ -1550,15 +1306,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, in ulong xs, in ulong ys, int count)
+		public static double PlotHistogram2D(in byte labelId, in int xs, in int ys, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
 					}
 				}
 			}
@@ -1567,15 +1324,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, in ulong xs, in ulong ys, int count, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(in byte labelId, in int xs, in int ys, int count, int xBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
 					}
 				}
 			}
@@ -1584,15 +1342,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, in ulong xs, in ulong ys, int count, double reference, int offset)
+		public static double PlotHistogram2D(in byte labelId, in int xs, in int ys, int count, ImPlotRect range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
 					}
 				}
 			}
@@ -1601,15 +1360,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, in ulong xs, in ulong ys, int count, int offset)
+		public static double PlotHistogram2D(in byte labelId, in int xs, in int ys, int count, int xBins, int yBins, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+						return ret;
 					}
 				}
 			}
@@ -1618,15 +1378,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, in ulong xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(in byte labelId, in int xs, in int ys, int count, int xBins, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+						return ret;
 					}
 				}
 			}
@@ -1635,15 +1396,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, in ulong xs, in ulong ys, int count, double reference, int offset, int stride)
+		public static double PlotHistogram2D(in byte labelId, in int xs, in int ys, int count, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+						return ret;
 					}
 				}
 			}
@@ -1652,15 +1414,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, in ulong xs, in ulong ys, int count, int offset, int stride)
+		public static double PlotHistogram2D(in byte labelId, in int xs, in int ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+						return ret;
 					}
 				}
 			}
@@ -1669,15 +1432,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(in byte labelId, in ulong xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(in byte labelId, in int xs, in int ys, int count, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, offset, stride);
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+						return ret;
 					}
 				}
 			}
@@ -1686,15 +1450,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, flags, offset, stride);
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, yBins, range, spec);
+						return ret;
 					}
 				}
 			}
@@ -1703,15 +1468,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
 					}
 				}
 			}
@@ -1720,15 +1486,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, int xBins, int yBins)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
 					}
 				}
 			}
@@ -1737,15 +1504,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, int count, double reference)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, int xBins)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
 					}
 				}
 			}
@@ -1754,15 +1522,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, int count)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
 					}
 				}
 			}
@@ -1771,15 +1540,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, int count, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, int xBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
 					}
 				}
 			}
@@ -1788,15 +1558,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, int count, double reference, int offset)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, ImPlotRect range)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
 					}
 				}
 			}
@@ -1805,15 +1576,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, int count, int offset)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, int xBins, int yBins, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+						return ret;
 					}
 				}
 			}
@@ -1822,15 +1594,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, int xBins, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+						return ret;
 					}
 				}
 			}
@@ -1839,15 +1612,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, int count, double reference, int offset, int stride)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+						return ret;
 					}
 				}
 			}
@@ -1856,15 +1630,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, int count, int offset, int stride)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+						return ret;
 					}
 				}
 			}
@@ -1873,15 +1648,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(ReadOnlySpan<byte> labelId, in ulong xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in int xs, in int ys, int count, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (int* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (int* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, offset, stride);
+						double ret = PlotHistogram2DNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+						return ret;
 					}
 				}
 			}
@@ -1890,7 +1666,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, in int xs, in int ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1909,15 +1685,16 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, reference, flags, offset, stride);
+					double ret = PlotHistogram2DNative(pStr0, (int*)pxs, (int*)pys, count, xBins, yBins, range, spec);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
+					return ret;
 				}
 			}
 		}
@@ -1925,7 +1702,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(string labelId, in int xs, in int ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1944,15 +1721,16 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(pStr0, (int*)pxs, (int*)pys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
+					return ret;
 				}
 			}
 		}
@@ -1960,7 +1738,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, in ulong ys, int count, double reference, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(string labelId, in int xs, in int ys, int count, int xBins, int yBins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1979,15 +1757,16 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(pStr0, (int*)pxs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
+					return ret;
 				}
 			}
 		}
@@ -1995,7 +1774,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, in ulong ys, int count, double reference)
+		public static double PlotHistogram2D(string labelId, in int xs, in int ys, int count, int xBins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2014,15 +1793,16 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(pStr0, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
+					return ret;
 				}
 			}
 		}
@@ -2030,7 +1810,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, in ulong ys, int count)
+		public static double PlotHistogram2D(string labelId, in int xs, in int ys, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2049,15 +1829,16 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(pStr0, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
+					return ret;
 				}
 			}
 		}
@@ -2065,7 +1846,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, in ulong ys, int count, ImPlotStemsFlags flags)
+		public static double PlotHistogram2D(string labelId, in int xs, in int ys, int count, int xBins, ImPlotRect range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2084,15 +1865,16 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(pStr0, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
+					return ret;
 				}
 			}
 		}
@@ -2100,7 +1882,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, in ulong ys, int count, double reference, int offset)
+		public static double PlotHistogram2D(string labelId, in int xs, in int ys, int count, ImPlotRect range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2119,15 +1901,16 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(pStr0, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
+					return ret;
 				}
 			}
 		}
@@ -2135,7 +1918,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, in ulong ys, int count, int offset)
+		public static double PlotHistogram2D(string labelId, in int xs, in int ys, int count, int xBins, int yBins, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2154,15 +1937,16 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(pStr0, (int*)pxs, (int*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
+					return ret;
 				}
 			}
 		}
@@ -2170,7 +1954,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset)
+		public static double PlotHistogram2D(string labelId, in int xs, in int ys, int count, int xBins, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2189,15 +1973,16 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
+					double ret = PlotHistogram2DNative(pStr0, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
+					return ret;
 				}
 			}
 		}
@@ -2205,7 +1990,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, in ulong ys, int count, double reference, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, in int xs, in int ys, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2224,15 +2009,16 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
+					double ret = PlotHistogram2DNative(pStr0, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
+					return ret;
 				}
 			}
 		}
@@ -2240,7 +2026,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, in ulong ys, int count, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, in int xs, in int ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2259,15 +2045,16 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+					double ret = PlotHistogram2DNative(pStr0, (int*)pxs, (int*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
+					return ret;
 				}
 			}
 		}
@@ -2275,7 +2062,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotStems(string labelId, in ulong xs, in ulong ys, int count, ImPlotStemsFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, in int xs, in int ys, int count, ImPlotRect range, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2294,15 +2081,16 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (int* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (int* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, offset, stride);
+					double ret = PlotHistogram2DNative(pStr0, (int*)pxs, (int*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
+					return ret;
 				}
 			}
 		}
@@ -2311,199 +2099,415 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotInfLinesNative(byte* labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		internal static double PlotHistogram2DNative(byte* labelId, uint* xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, float*, int, ImPlotInfLinesFlags, int, int, void>)funcTable[219])(labelId, values, count, flags, offset, stride);
+			return ((delegate* unmanaged[Cdecl]<byte*, uint*, uint*, int, int, int, ImPlotRect, ImPlotSpec, double>)funcTable[326])(labelId, xs, ys, count, xBins, yBins, range, spec);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, ImPlotInfLinesFlags, int, int, void>)funcTable[219])((nint)labelId, (nint)values, count, flags, offset, stride);
+			return (double)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, int, int, ImPlotRect, ImPlotSpec, double>)funcTable[326])((nint)labelId, (nint)xs, (nint)ys, count, xBins, yBins, range, spec);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(byte* labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(byte* labelId, uint* xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
-			PlotInfLinesNative(labelId, values, count, flags, offset, stride);
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, yBins, range, spec);
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(byte* labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset)
+		public static double PlotHistogram2D(byte* labelId, uint* xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
-			PlotInfLinesNative(labelId, values, count, flags, offset, (int)(sizeof(float)));
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(byte* labelId, float* values, int count, ImPlotInfLinesFlags flags)
+		public static double PlotHistogram2D(byte* labelId, uint* xs, uint* ys, int count, int xBins, int yBins)
 		{
-			PlotInfLinesNative(labelId, values, count, flags, (int)(0), (int)(sizeof(float)));
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(byte* labelId, float* values, int count)
+		public static double PlotHistogram2D(byte* labelId, uint* xs, uint* ys, int count, int xBins)
 		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(float)));
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(byte* labelId, float* values, int count, int offset)
+		public static double PlotHistogram2D(byte* labelId, uint* xs, uint* ys, int count)
 		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(float)));
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(byte* labelId, float* values, int count, int offset, int stride)
+		public static double PlotHistogram2D(byte* labelId, uint* xs, uint* ys, int count, int xBins, ImPlotRect range)
 		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(in byte labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(byte* labelId, uint* xs, uint* ys, int count, ImPlotRect range)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, uint* xs, uint* ys, int count, int xBins, int yBins, ImPlotSpec spec)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, uint* xs, uint* ys, int count, int xBins, ImPlotSpec spec)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, uint* xs, uint* ys, int count, ImPlotSpec spec)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, uint* xs, uint* ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, uint* xs, uint* ys, int count, ImPlotRect range, ImPlotSpec spec)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, uint* xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, stride);
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, range, spec);
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(in byte labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset)
+		public static double PlotHistogram2D(in byte labelId, uint* xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, (int)(sizeof(float)));
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(in byte labelId, float* values, int count, ImPlotInfLinesFlags flags)
+		public static double PlotHistogram2D(in byte labelId, uint* xs, uint* ys, int count, int xBins, int yBins)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, (int)(0), (int)(sizeof(float)));
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(in byte labelId, float* values, int count)
+		public static double PlotHistogram2D(in byte labelId, uint* xs, uint* ys, int count, int xBins)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(float)));
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(in byte labelId, float* values, int count, int offset)
+		public static double PlotHistogram2D(in byte labelId, uint* xs, uint* ys, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(float)));
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(in byte labelId, float* values, int count, int offset, int stride)
+		public static double PlotHistogram2D(in byte labelId, uint* xs, uint* ys, int count, int xBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(in byte labelId, uint* xs, uint* ys, int count, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, uint* xs, uint* ys, int count, int xBins, int yBins, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, uint* xs, uint* ys, int count, int xBins, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, uint* xs, uint* ys, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, uint* xs, uint* ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, uint* xs, uint* ys, int count, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, stride);
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, range, spec);
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, (int)(sizeof(float)));
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotInfLinesFlags flags)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, int count, int xBins, int yBins)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, (int)(0), (int)(sizeof(float)));
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, float* values, int count)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, int count, int xBins)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(float)));
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, float* values, int count, int offset)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(float)));
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, float* values, int count, int offset, int stride)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, int count, int xBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, int count, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, int count, int xBins, int yBins, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, int count, int xBins, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, int count, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, uint* xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2522,17 +2526,18 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, flags, offset, stride);
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, yBins, range, spec);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset)
+		public static double PlotHistogram2D(string labelId, uint* xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2551,17 +2556,18 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, flags, offset, (int)(sizeof(float)));
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, float* values, int count, ImPlotInfLinesFlags flags)
+		public static double PlotHistogram2D(string labelId, uint* xs, uint* ys, int count, int xBins, int yBins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2580,17 +2586,18 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, flags, (int)(0), (int)(sizeof(float)));
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, float* values, int count)
+		public static double PlotHistogram2D(string labelId, uint* xs, uint* ys, int count, int xBins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2609,17 +2616,18 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(float)));
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, float* values, int count, int offset)
+		public static double PlotHistogram2D(string labelId, uint* xs, uint* ys, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2638,17 +2646,18 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(float)));
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, float* values, int count, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, uint* xs, uint* ys, int count, int xBins, ImPlotRect range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2667,251 +2676,18 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(byte* labelId, in float values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (float*)pvalues, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in float values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (float*)pvalues, count, flags, offset, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in float values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (float*)pvalues, count, flags, (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in float values, int count)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in float values, int count, int offset)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in float values, int count, int offset, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in float values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in float values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, flags, offset, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in float values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, flags, (int)(0), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in float values, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in float values, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in float values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in float values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in float values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, flags, offset, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in float values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, flags, (int)(0), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in float values, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in float values, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in float values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (float* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(string labelId, in float values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, uint* xs, uint* ys, int count, ImPlotRect range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2930,20 +2706,705 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				PlotInfLinesNative(pStr0, (float*)pvalues, count, flags, offset, stride);
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, uint* xs, uint* ys, int count, int xBins, int yBins, ImPlotSpec spec)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, uint* xs, uint* ys, int count, int xBins, ImPlotSpec spec)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, uint* xs, uint* ys, int count, ImPlotSpec spec)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, uint* xs, uint* ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, uint* xs, uint* ys, int count, ImPlotRect range, ImPlotSpec spec)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (uint*)pxs, ys, count, xBins, yBins, range, spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (uint*)pxs, ys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, uint* ys, int count, int xBins, int yBins)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (uint*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, uint* ys, int count, int xBins)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, uint* ys, int count)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, uint* ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, uint* ys, int count, ImPlotRect range)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, uint* ys, int count, int xBins, int yBins, ImPlotSpec spec)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (uint*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, uint* ys, int count, int xBins, ImPlotSpec spec)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, uint* ys, int count, ImPlotSpec spec)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, uint* ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, uint* ys, int count, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, yBins, range, spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, uint* ys, int count, int xBins, int yBins)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, uint* ys, int count, int xBins)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, uint* ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, uint* ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, uint* ys, int count, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, uint* ys, int count, int xBins, int yBins, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, uint* ys, int count, int xBins, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, uint* ys, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, uint* ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, uint* ys, int count, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in uint xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, yBins, range, spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in uint xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in uint xs, uint* ys, int count, int xBins, int yBins)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in uint xs, uint* ys, int count, int xBins)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in uint xs, uint* ys, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in uint xs, uint* ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in uint xs, uint* ys, int count, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in uint xs, uint* ys, int count, int xBins, int yBins, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in uint xs, uint* ys, int count, int xBins, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in uint xs, uint* ys, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in uint xs, uint* ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, in uint xs, uint* ys, int count, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, in uint xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(pStr0, (uint*)pxs, ys, count, xBins, yBins, range, spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, in float values, int count, ImPlotInfLinesFlags flags, int offset)
+		public static double PlotHistogram2D(string labelId, in uint xs, uint* ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2962,20 +3423,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative(pStr0, (float*)pvalues, count, flags, offset, (int)(sizeof(float)));
+				double ret = PlotHistogram2DNative(pStr0, (uint*)pxs, ys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, in float values, int count, ImPlotInfLinesFlags flags)
+		public static double PlotHistogram2D(string labelId, in uint xs, uint* ys, int count, int xBins, int yBins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2994,20 +3456,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative(pStr0, (float*)pvalues, count, flags, (int)(0), (int)(sizeof(float)));
+				double ret = PlotHistogram2DNative(pStr0, (uint*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, in float values, int count)
+		public static double PlotHistogram2D(string labelId, in uint xs, uint* ys, int count, int xBins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3026,20 +3489,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative(pStr0, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(float)));
+				double ret = PlotHistogram2DNative(pStr0, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, in float values, int count, int offset)
+		public static double PlotHistogram2D(string labelId, in uint xs, uint* ys, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3058,20 +3522,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative(pStr0, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(float)));
+				double ret = PlotHistogram2DNative(pStr0, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, in float values, int count, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, in uint xs, uint* ys, int count, int xBins, ImPlotRect range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3090,213 +3555,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative(pStr0, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, stride);
+				double ret = PlotHistogram2DNative(pStr0, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotInfLinesNative(byte* labelId, double* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, double*, int, ImPlotInfLinesFlags, int, int, void>)funcTable[220])(labelId, values, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, ImPlotInfLinesFlags, int, int, void>)funcTable[220])((nint)labelId, (nint)values, count, flags, offset, stride);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, double* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			PlotInfLinesNative(labelId, values, count, flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, double* values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			PlotInfLinesNative(labelId, values, count, flags, offset, (int)(sizeof(double)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, double* values, int count, ImPlotInfLinesFlags flags)
-		{
-			PlotInfLinesNative(labelId, values, count, flags, (int)(0), (int)(sizeof(double)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, double* values, int count)
-		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(double)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, double* values, int count, int offset)
-		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(double)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, double* values, int count, int offset, int stride)
-		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, double* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, double* values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, (int)(sizeof(double)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, double* values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, double* values, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, double* values, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(double)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, double* values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, double* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, double* values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, (int)(sizeof(double)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, double* values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, double* values, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, double* values, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(double)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, double* values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(string labelId, double* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, in uint xs, uint* ys, int count, ImPlotRect range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3315,428 +3588,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (uint* pxs = &xs)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(string labelId, double* values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotInfLinesNative(pStr0, values, count, flags, offset, (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(string labelId, double* values, int count, ImPlotInfLinesFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotInfLinesNative(pStr0, values, count, flags, (int)(0), (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(string labelId, double* values, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(string labelId, double* values, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(string labelId, double* values, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in double values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (double*)pvalues, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in double values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (double*)pvalues, count, flags, offset, (int)(sizeof(double)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in double values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (double*)pvalues, count, flags, (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in double values, int count)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (double*)pvalues, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in double values, int count, int offset)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (double*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(double)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in double values, int count, int offset, int stride)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (double*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in double values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (double*)pvalues, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in double values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (double*)pvalues, count, flags, offset, (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in double values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (double*)pvalues, count, flags, (int)(0), (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in double values, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (double*)pvalues, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in double values, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (double*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in double values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (double*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in double values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (double*)pvalues, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in double values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (double*)pvalues, count, flags, offset, (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in double values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (double*)pvalues, count, flags, (int)(0), (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in double values, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (double*)pvalues, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in double values, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (double*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in double values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (double*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(string labelId, in double values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pvalues = &values)
-			{
-				PlotInfLinesNative(pStr0, (double*)pvalues, count, flags, offset, stride);
+				double ret = PlotHistogram2DNative(pStr0, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, in double values, int count, ImPlotInfLinesFlags flags, int offset)
+		public static double PlotHistogram2D(string labelId, in uint xs, uint* ys, int count, int xBins, int yBins, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3755,20 +3621,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative(pStr0, (double*)pvalues, count, flags, offset, (int)(sizeof(double)));
+				double ret = PlotHistogram2DNative(pStr0, (uint*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, in double values, int count, ImPlotInfLinesFlags flags)
+		public static double PlotHistogram2D(string labelId, in uint xs, uint* ys, int count, int xBins, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3787,20 +3654,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative(pStr0, (double*)pvalues, count, flags, (int)(0), (int)(sizeof(double)));
+				double ret = PlotHistogram2DNative(pStr0, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, in double values, int count)
+		public static double PlotHistogram2D(string labelId, in uint xs, uint* ys, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3819,20 +3687,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative(pStr0, (double*)pvalues, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(double)));
+				double ret = PlotHistogram2DNative(pStr0, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, in double values, int count, int offset)
+		public static double PlotHistogram2D(string labelId, in uint xs, uint* ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3851,20 +3720,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative(pStr0, (double*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(double)));
+				double ret = PlotHistogram2DNative(pStr0, (uint*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, in double values, int count, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, in uint xs, uint* ys, int count, ImPlotRect range, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3883,213 +3753,525 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative(pStr0, (double*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, stride);
+				double ret = PlotHistogram2DNative(pStr0, (uint*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotInfLinesNative(byte* labelId, sbyte* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(byte* labelId, uint* xs, in uint ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, sbyte*, int, ImPlotInfLinesFlags, int, int, void>)funcTable[221])(labelId, values, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, ImPlotInfLinesFlags, int, int, void>)funcTable[221])((nint)labelId, (nint)values, count, flags, offset, stride);
-			#endif
+			fixed (uint* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (uint*)pys, count, xBins, yBins, range, spec);
+				return ret;
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(byte* labelId, sbyte* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(byte* labelId, uint* xs, in uint ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
-			PlotInfLinesNative(labelId, values, count, flags, offset, stride);
+			fixed (uint* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (uint*)pys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(byte* labelId, sbyte* values, int count, ImPlotInfLinesFlags flags, int offset)
+		public static double PlotHistogram2D(byte* labelId, uint* xs, in uint ys, int count, int xBins, int yBins)
 		{
-			PlotInfLinesNative(labelId, values, count, flags, offset, (int)(sizeof(sbyte)));
+			fixed (uint* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (uint*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(byte* labelId, sbyte* values, int count, ImPlotInfLinesFlags flags)
+		public static double PlotHistogram2D(byte* labelId, uint* xs, in uint ys, int count, int xBins)
 		{
-			PlotInfLinesNative(labelId, values, count, flags, (int)(0), (int)(sizeof(sbyte)));
+			fixed (uint* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(byte* labelId, sbyte* values, int count)
+		public static double PlotHistogram2D(byte* labelId, uint* xs, in uint ys, int count)
 		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+			fixed (uint* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(byte* labelId, sbyte* values, int count, int offset)
+		public static double PlotHistogram2D(byte* labelId, uint* xs, in uint ys, int count, int xBins, ImPlotRect range)
 		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(sbyte)));
+			fixed (uint* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(byte* labelId, sbyte* values, int count, int offset, int stride)
+		public static double PlotHistogram2D(byte* labelId, uint* xs, in uint ys, int count, ImPlotRect range)
 		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
+			fixed (uint* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+				return ret;
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(in byte labelId, sbyte* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(byte* labelId, uint* xs, in uint ys, int count, int xBins, int yBins, ImPlotSpec spec)
+		{
+			fixed (uint* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (uint*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, uint* xs, in uint ys, int count, int xBins, ImPlotSpec spec)
+		{
+			fixed (uint* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, uint* xs, in uint ys, int count, ImPlotSpec spec)
+		{
+			fixed (uint* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, uint* xs, in uint ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (uint* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, uint* xs, in uint ys, int count, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (uint* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, uint* xs, in uint ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, stride);
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, yBins, range, spec);
+					return ret;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(in byte labelId, sbyte* values, int count, ImPlotInfLinesFlags flags, int offset)
+		public static double PlotHistogram2D(in byte labelId, uint* xs, in uint ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, (int)(sizeof(sbyte)));
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(in byte labelId, sbyte* values, int count, ImPlotInfLinesFlags flags)
+		public static double PlotHistogram2D(in byte labelId, uint* xs, in uint ys, int count, int xBins, int yBins)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, (int)(0), (int)(sizeof(sbyte)));
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(in byte labelId, sbyte* values, int count)
+		public static double PlotHistogram2D(in byte labelId, uint* xs, in uint ys, int count, int xBins)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(in byte labelId, sbyte* values, int count, int offset)
+		public static double PlotHistogram2D(in byte labelId, uint* xs, in uint ys, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(sbyte)));
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(in byte labelId, sbyte* values, int count, int offset, int stride)
+		public static double PlotHistogram2D(in byte labelId, uint* xs, in uint ys, int count, int xBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, sbyte* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(in byte labelId, uint* xs, in uint ys, int count, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, uint* xs, in uint ys, int count, int xBins, int yBins, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, uint* xs, in uint ys, int count, int xBins, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, uint* xs, in uint ys, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, uint* xs, in uint ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, uint* xs, in uint ys, int count, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, in uint ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, stride);
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, yBins, range, spec);
+					return ret;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, sbyte* values, int count, ImPlotInfLinesFlags flags, int offset)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, in uint ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, (int)(sizeof(sbyte)));
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, sbyte* values, int count, ImPlotInfLinesFlags flags)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, in uint ys, int count, int xBins, int yBins)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, (int)(0), (int)(sizeof(sbyte)));
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, sbyte* values, int count)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, in uint ys, int count, int xBins)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, sbyte* values, int count, int offset)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, in uint ys, int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(sbyte)));
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, sbyte* values, int count, int offset, int stride)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, in uint ys, int count, int xBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, sbyte* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, in uint ys, int count, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, in uint ys, int count, int xBins, int yBins, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, in uint ys, int count, int xBins, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, in uint ys, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, in uint ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, uint* xs, in uint ys, int count, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, uint* xs, in uint ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4108,428 +4290,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (uint* pys = &ys)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(string labelId, sbyte* values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotInfLinesNative(pStr0, values, count, flags, offset, (int)(sizeof(sbyte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(string labelId, sbyte* values, int count, ImPlotInfLinesFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotInfLinesNative(pStr0, values, count, flags, (int)(0), (int)(sizeof(sbyte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(string labelId, sbyte* values, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(sbyte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(string labelId, sbyte* values, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(sbyte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(string labelId, sbyte* values, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in sbyte values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (sbyte* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (sbyte*)pvalues, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in sbyte values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (sbyte* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (sbyte*)pvalues, count, flags, offset, (int)(sizeof(sbyte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in sbyte values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (sbyte* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (sbyte*)pvalues, count, flags, (int)(0), (int)(sizeof(sbyte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in sbyte values, int count)
-		{
-			fixed (sbyte* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (sbyte*)pvalues, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(sbyte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in sbyte values, int count, int offset)
-		{
-			fixed (sbyte* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (sbyte*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(sbyte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, in sbyte values, int count, int offset, int stride)
-		{
-			fixed (sbyte* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (sbyte*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in sbyte values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (sbyte* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (sbyte*)pvalues, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in sbyte values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (sbyte* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (sbyte*)pvalues, count, flags, offset, (int)(sizeof(sbyte)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in sbyte values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (sbyte* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (sbyte*)pvalues, count, flags, (int)(0), (int)(sizeof(sbyte)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in sbyte values, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (sbyte* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (sbyte*)pvalues, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(sbyte)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in sbyte values, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (sbyte* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (sbyte*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(sbyte)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, in sbyte values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (sbyte* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (sbyte*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in sbyte values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (sbyte* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (sbyte*)pvalues, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in sbyte values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (sbyte* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (sbyte*)pvalues, count, flags, offset, (int)(sizeof(sbyte)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in sbyte values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (sbyte* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (sbyte*)pvalues, count, flags, (int)(0), (int)(sizeof(sbyte)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in sbyte values, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (sbyte* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (sbyte*)pvalues, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(sbyte)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in sbyte values, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (sbyte* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (sbyte*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(sbyte)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, in sbyte values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (sbyte* pvalues = &values)
-				{
-					PlotInfLinesNative((byte*)plabelId, (sbyte*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(string labelId, in sbyte values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (sbyte* pvalues = &values)
-			{
-				PlotInfLinesNative(pStr0, (sbyte*)pvalues, count, flags, offset, stride);
+				double ret = PlotHistogram2DNative(pStr0, xs, (uint*)pys, count, xBins, yBins, range, spec);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, in sbyte values, int count, ImPlotInfLinesFlags flags, int offset)
+		public static double PlotHistogram2D(string labelId, uint* xs, in uint ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4548,20 +4323,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (sbyte* pvalues = &values)
+			fixed (uint* pys = &ys)
 			{
-				PlotInfLinesNative(pStr0, (sbyte*)pvalues, count, flags, offset, (int)(sizeof(sbyte)));
+				double ret = PlotHistogram2DNative(pStr0, xs, (uint*)pys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, in sbyte values, int count, ImPlotInfLinesFlags flags)
+		public static double PlotHistogram2D(string labelId, uint* xs, in uint ys, int count, int xBins, int yBins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4580,20 +4356,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (sbyte* pvalues = &values)
+			fixed (uint* pys = &ys)
 			{
-				PlotInfLinesNative(pStr0, (sbyte*)pvalues, count, flags, (int)(0), (int)(sizeof(sbyte)));
+				double ret = PlotHistogram2DNative(pStr0, xs, (uint*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, in sbyte values, int count)
+		public static double PlotHistogram2D(string labelId, uint* xs, in uint ys, int count, int xBins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4612,20 +4389,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (sbyte* pvalues = &values)
+			fixed (uint* pys = &ys)
 			{
-				PlotInfLinesNative(pStr0, (sbyte*)pvalues, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				double ret = PlotHistogram2DNative(pStr0, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, in sbyte values, int count, int offset)
+		public static double PlotHistogram2D(string labelId, uint* xs, in uint ys, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4644,20 +4422,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (sbyte* pvalues = &values)
+			fixed (uint* pys = &ys)
 			{
-				PlotInfLinesNative(pStr0, (sbyte*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(sbyte)));
+				double ret = PlotHistogram2DNative(pStr0, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, in sbyte values, int count, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, uint* xs, in uint ys, int count, int xBins, ImPlotRect range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4676,213 +4455,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (sbyte* pvalues = &values)
+			fixed (uint* pys = &ys)
 			{
-				PlotInfLinesNative(pStr0, (sbyte*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, stride);
+				double ret = PlotHistogram2DNative(pStr0, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotInfLinesNative(byte* labelId, byte* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, int, ImPlotInfLinesFlags, int, int, void>)funcTable[222])(labelId, values, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, ImPlotInfLinesFlags, int, int, void>)funcTable[222])((nint)labelId, (nint)values, count, flags, offset, stride);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, byte* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			PlotInfLinesNative(labelId, values, count, flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, byte* values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			PlotInfLinesNative(labelId, values, count, flags, offset, (int)(sizeof(byte)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, byte* values, int count, ImPlotInfLinesFlags flags)
-		{
-			PlotInfLinesNative(labelId, values, count, flags, (int)(0), (int)(sizeof(byte)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, byte* values, int count)
-		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(byte)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, byte* values, int count, int offset)
-		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(byte)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(byte* labelId, byte* values, int count, int offset, int stride)
-		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, byte* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, byte* values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, byte* values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, byte* values, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, byte* values, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(in byte labelId, byte* values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, byte* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, byte* values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, byte* values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, byte* values, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, byte* values, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(ReadOnlySpan<byte> labelId, byte* values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotInfLines(string labelId, byte* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		public static double PlotHistogram2D(string labelId, uint* xs, in uint ys, int count, ImPlotRect range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4901,17 +4488,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (uint* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				double ret = PlotHistogram2DNative(pStr0, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, byte* values, int count, ImPlotInfLinesFlags flags, int offset)
+		public static double PlotHistogram2D(string labelId, uint* xs, in uint ys, int count, int xBins, int yBins, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4930,17 +4521,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, flags, offset, (int)(sizeof(byte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (uint* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				double ret = PlotHistogram2DNative(pStr0, xs, (uint*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, byte* values, int count, ImPlotInfLinesFlags flags)
+		public static double PlotHistogram2D(string labelId, uint* xs, in uint ys, int count, int xBins, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4959,17 +4554,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, flags, (int)(0), (int)(sizeof(byte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (uint* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				double ret = PlotHistogram2DNative(pStr0, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, byte* values, int count)
+		public static double PlotHistogram2D(string labelId, uint* xs, in uint ys, int count, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4988,17 +4587,21 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(byte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (uint* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				double ret = PlotHistogram2DNative(pStr0, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotInfLines(string labelId, byte* values, int count, int offset)
+		public static double PlotHistogram2D(string labelId, uint* xs, in uint ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5017,10 +4620,407 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(byte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (uint* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				double ret = PlotHistogram2DNative(pStr0, xs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, uint* xs, in uint ys, int count, ImPlotRect range, ImPlotSpec spec)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(pStr0, xs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, in uint ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (uint*)pxs, (uint*)pys, count, xBins, yBins, range, spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, in uint ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (uint*)pxs, (uint*)pys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, in uint ys, int count, int xBins, int yBins)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (uint*)pxs, (uint*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, in uint ys, int count, int xBins)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (uint*)pxs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, in uint ys, int count)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (uint*)pxs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, in uint ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (uint*)pxs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, in uint ys, int count, ImPlotRect range)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (uint*)pxs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, in uint ys, int count, int xBins, int yBins, ImPlotSpec spec)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (uint*)pxs, (uint*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, in uint ys, int count, int xBins, ImPlotSpec spec)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (uint*)pxs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, in uint ys, int count, ImPlotSpec spec)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (uint*)pxs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, in uint ys, int count, int xBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (uint*)pxs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, in uint xs, in uint ys, int count, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (uint*)pxs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, spec);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, in uint ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, xBins, yBins, range, spec);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, in uint ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, xBins, yBins, range, (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, in uint ys, int count, int xBins, int yBins)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, in uint ys, int count, int xBins)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, in uint ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, in uint ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, in uint ys, int count, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotSpec)(new ImPlotSpec()));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, in uint ys, int count, int xBins, int yBins, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), spec);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, in uint ys, int count, int xBins, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(in byte labelId, in uint xs, in uint ys, int count, ImPlotSpec spec)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), spec);
+						return ret;
+					}
+				}
 			}
 		}
 	}

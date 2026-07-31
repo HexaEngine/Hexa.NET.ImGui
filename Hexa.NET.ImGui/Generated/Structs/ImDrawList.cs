@@ -236,7 +236,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [Internal helpers]<br/>
 		/// </summary>
 		public unsafe void _SetDrawListSharedData(ImDrawListSharedData* data)
 		{
@@ -247,7 +247,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [Internal helpers]<br/>
 		/// </summary>
 		public unsafe void _SetDrawListSharedData(ref ImDrawListSharedData data)
 		{
@@ -327,7 +327,16 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, void* userdata, nuint userdataSize)
 		{
@@ -338,7 +347,16 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, void* userdata)
 		{
@@ -349,7 +367,56 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
+		/// </summary>
+		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddCallbackNative(@this, callback, (void*)(default), (nuint)(0));
+			}
+		}
+
+		/// <summary>
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
+		/// </summary>
+		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, nuint userdataSize)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddCallbackNative(@this, callback, (void*)(default), userdataSize);
+			}
+		}
+
+		/// <summary>
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, nuint userdataSize)
 		{
@@ -360,7 +427,16 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(ImDrawCallback callback, void* userdata)
 		{
@@ -371,7 +447,56 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
+		/// </summary>
+		public unsafe void AddCallback(ImDrawCallback callback)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddCallbackNative(@this, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), (void*)(default), (nuint)(0));
+			}
+		}
+
+		/// <summary>
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
+		/// </summary>
+		public unsafe void AddCallback(ImDrawCallback callback, nuint userdataSize)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddCallbackNative(@this, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), (void*)(default), userdataSize);
+			}
+		}
+
+		/// <summary>
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, nint userdata, nuint userdataSize)
 		{
@@ -382,7 +507,16 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, nint userdata)
 		{
@@ -393,7 +527,16 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(ImDrawCallback callback, nint userdata, nuint userdataSize)
 		{
@@ -404,7 +547,16 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(ImDrawCallback callback, nint userdata)
 		{
@@ -531,7 +683,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// This is useful if you need to forcefully create a new draw call (to allow for dependent rendering  blending). Otherwise primitives are merged into the same draw-call as much as possible<br/>
+		/// Advanced: Miscellaneous This is useful if you need to forcefully create a new draw call (to allow for dependent rendering  blending). Otherwise primitives are merged into the same draw-call as much as possible<br/>
 		/// </summary>
 		public unsafe void AddDrawCmd()
 		{
@@ -663,7 +815,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Image primitives<br/>
+		/// - Read FAQ to understand what ImTextureIDImTextureRef are.<br/>
+		/// - "p_min" and "p_max" represent the upper-left and lower-right corners of the rectangle.<br/>
+		/// - "uv_min" and "uv_max" represent the normalized texture coordinates to use for those corners. Using (0,0)-&gt;(1,1) texture coordinates will generally display the entire texture.<br/>
 		/// </summary>
 		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col)
 		{
@@ -674,7 +829,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Image primitives<br/>
+		/// - Read FAQ to understand what ImTextureIDImTextureRef are.<br/>
+		/// - "p_min" and "p_max" represent the upper-left and lower-right corners of the rectangle.<br/>
+		/// - "uv_min" and "uv_max" represent the normalized texture coordinates to use for those corners. Using (0,0)-&gt;(1,1) texture coordinates will generally display the entire texture.<br/>
 		/// </summary>
 		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax)
 		{
@@ -685,7 +843,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Image primitives<br/>
+		/// - Read FAQ to understand what ImTextureIDImTextureRef are.<br/>
+		/// - "p_min" and "p_max" represent the upper-left and lower-right corners of the rectangle.<br/>
+		/// - "uv_min" and "uv_max" represent the normalized texture coordinates to use for those corners. Using (0,0)-&gt;(1,1) texture coordinates will generally display the entire texture.<br/>
 		/// </summary>
 		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin)
 		{
@@ -696,7 +857,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Image primitives<br/>
+		/// - Read FAQ to understand what ImTextureIDImTextureRef are.<br/>
+		/// - "p_min" and "p_max" represent the upper-left and lower-right corners of the rectangle.<br/>
+		/// - "uv_min" and "uv_max" represent the normalized texture coordinates to use for those corners. Using (0,0)-&gt;(1,1) texture coordinates will generally display the entire texture.<br/>
 		/// </summary>
 		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax)
 		{
@@ -707,7 +871,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Image primitives<br/>
+		/// - Read FAQ to understand what ImTextureIDImTextureRef are.<br/>
+		/// - "p_min" and "p_max" represent the upper-left and lower-right corners of the rectangle.<br/>
+		/// - "uv_min" and "uv_max" represent the normalized texture coordinates to use for those corners. Using (0,0)-&gt;(1,1) texture coordinates will generally display the entire texture.<br/>
 		/// </summary>
 		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, uint col)
 		{
@@ -718,7 +885,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Image primitives<br/>
+		/// - Read FAQ to understand what ImTextureIDImTextureRef are.<br/>
+		/// - "p_min" and "p_max" represent the upper-left and lower-right corners of the rectangle.<br/>
+		/// - "uv_min" and "uv_max" represent the normalized texture coordinates to use for those corners. Using (0,0)-&gt;(1,1) texture coordinates will generally display the entire texture.<br/>
 		/// </summary>
 		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, uint col)
 		{
@@ -861,7 +1031,13 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Primitives<br/>
+		/// - Filled shapes must always use clockwise winding order. The anti-aliasing fringe depends on it. Counter-clockwise shapes will have "inward" anti-aliasing.<br/>
+		/// - For rectangular primitives, "p_min" and "p_max" represent the upper-left and lower-right corners.<br/>
+		/// - For circle primitives, use "num_segments == 0" to automatically calculate tessellation (preferred).<br/>
+		/// In older versions (until Dear ImGui 1.77) the AddCircle functions defaulted to num_segments == 12.<br/>
+		/// In future versions we will use textures to provide cheaper and higher-quality circles.<br/>
+		/// Use AddNgon() and AddNgonFilled() functions if you need to guarantee a specific number of sides.<br/>
 		/// </summary>
 		public unsafe void AddLine(Vector2 p1, Vector2 p2, uint col, float thickness)
 		{
@@ -872,13 +1048,63 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Primitives<br/>
+		/// - Filled shapes must always use clockwise winding order. The anti-aliasing fringe depends on it. Counter-clockwise shapes will have "inward" anti-aliasing.<br/>
+		/// - For rectangular primitives, "p_min" and "p_max" represent the upper-left and lower-right corners.<br/>
+		/// - For circle primitives, use "num_segments == 0" to automatically calculate tessellation (preferred).<br/>
+		/// In older versions (until Dear ImGui 1.77) the AddCircle functions defaulted to num_segments == 12.<br/>
+		/// In future versions we will use textures to provide cheaper and higher-quality circles.<br/>
+		/// Use AddNgon() and AddNgonFilled() functions if you need to guarantee a specific number of sides.<br/>
 		/// </summary>
 		public unsafe void AddLine(Vector2 p1, Vector2 p2, uint col)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
 				ImGui.AddLineNative(@this, p1, p2, col, (float)(1.0f));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddLineH(float minX, float maxX, float y, uint col, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddLineHNative(@this, minX, maxX, y, col, thickness);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddLineH(float minX, float maxX, float y, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddLineHNative(@this, minX, maxX, y, col, (float)(1.0f));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddLineV(float x, float minY, float maxY, uint col, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddLineVNative(@this, x, minY, maxY, col, thickness);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddLineV(float x, float minY, float maxY, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddLineVNative(@this, x, minY, maxY, col, (float)(1.0f));
 			}
 		}
 
@@ -916,26 +1142,59 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// General polygon<br/>
+		/// - Only simple polygons are supported by filling functions (no self-intersections, no holes).<br/>
+		/// - Concave polygon fill is more expensive than convex one: it has O(N^2) complexity. Provided as a convenience for the user but not used by the main library.<br/>
 		/// </summary>
-		public unsafe void AddPolyline(Vector2* points, int numPoints, uint col, ImDrawFlags flags, float thickness)
+		public unsafe void AddPolyline(Vector2* points, int numPoints, uint col, float thickness, ImDrawFlags flags)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddPolylineNative(@this, points, numPoints, col, flags, thickness);
+				ImGui.AddPolylineNative(@this, points, numPoints, col, thickness, flags);
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// General polygon<br/>
+		/// - Only simple polygons are supported by filling functions (no self-intersections, no holes).<br/>
+		/// - Concave polygon fill is more expensive than convex one: it has O(N^2) complexity. Provided as a convenience for the user but not used by the main library.<br/>
 		/// </summary>
-		public unsafe void AddPolyline(in Vector2 points, int numPoints, uint col, ImDrawFlags flags, float thickness)
+		public unsafe void AddPolyline(Vector2* points, int numPoints, uint col, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddPolylineNative(@this, points, numPoints, col, thickness, (ImDrawFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// General polygon<br/>
+		/// - Only simple polygons are supported by filling functions (no self-intersections, no holes).<br/>
+		/// - Concave polygon fill is more expensive than convex one: it has O(N^2) complexity. Provided as a convenience for the user but not used by the main library.<br/>
+		/// </summary>
+		public unsafe void AddPolyline(in Vector2 points, int numPoints, uint col, float thickness, ImDrawFlags flags)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
 				fixed (Vector2* ppoints = &points)
 				{
-					ImGui.AddPolylineNative(@this, (Vector2*)ppoints, numPoints, col, flags, thickness);
+					ImGui.AddPolylineNative(@this, (Vector2*)ppoints, numPoints, col, thickness, flags);
+				}
+			}
+		}
+
+		/// <summary>
+		/// General polygon<br/>
+		/// - Only simple polygons are supported by filling functions (no self-intersections, no holes).<br/>
+		/// - Concave polygon fill is more expensive than convex one: it has O(N^2) complexity. Provided as a convenience for the user but not used by the main library.<br/>
+		/// </summary>
+		public unsafe void AddPolyline(in Vector2 points, int numPoints, uint col, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (Vector2* ppoints = &points)
+				{
+					ImGui.AddPolylineNative(@this, (Vector2*)ppoints, numPoints, col, thickness, (ImDrawFlags)(0));
 				}
 			}
 		}
@@ -976,55 +1235,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
-		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
+		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, float thickness, ImDrawFlags flags)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddRectNative(@this, pMin, pMax, col, rounding, flags, thickness);
-			}
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
-		{
-			fixed (ImDrawList* @this = &this)
-			{
-				ImGui.AddRectNative(@this, pMin, pMax, col, rounding, flags, (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding)
-		{
-			fixed (ImDrawList* @this = &this)
-			{
-				ImGui.AddRectNative(@this, pMin, pMax, col, rounding, (ImDrawFlags)(0), (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col)
-		{
-			fixed (ImDrawList* @this = &this)
-			{
-				ImGui.AddRectNative(@this, pMin, pMax, col, (float)(0.0f), (ImDrawFlags)(0), (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
-		{
-			fixed (ImDrawList* @this = &this)
-			{
-				ImGui.AddRectNative(@this, pMin, pMax, col, (float)(0.0f), flags, (float)(1.0f));
+				ImGui.AddRectNative(@this, pMin, pMax, col, rounding, thickness, flags);
 			}
 		}
 
@@ -1035,18 +1250,51 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddRectNative(@this, pMin, pMax, col, rounding, (ImDrawFlags)(0), thickness);
+				ImGui.AddRectNative(@this, pMin, pMax, col, rounding, thickness, (ImDrawFlags)(0));
 			}
 		}
 
 		/// <summary>
 		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
-		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags, float thickness)
+		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddRectNative(@this, pMin, pMax, col, (float)(0.0f), flags, thickness);
+				ImGui.AddRectNative(@this, pMin, pMax, col, rounding, (float)(1.0f), (ImDrawFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// </summary>
+		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddRectNative(@this, pMin, pMax, col, (float)(0.0f), (float)(1.0f), (ImDrawFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// </summary>
+		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddRectNative(@this, pMin, pMax, col, rounding, (float)(1.0f), flags);
+			}
+		}
+
+		/// <summary>
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// </summary>
+		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddRectNative(@this, pMin, pMax, col, (float)(0.0f), (float)(1.0f), flags);
 			}
 		}
 
@@ -7780,7 +8028,12 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Channels<br/>
+		/// - Use to split render into layers. By switching channels to can render out-of-order (e.g. submit FG primitives before BG primitives)<br/>
+		/// - Use to minimize draw calls (e.g. if going back-and-forth between multiple clipping rectangles, prefer to append into separate channels then merge at the end)<br/>
+		/// - This API shouldn't have been in ImDrawList in the first place!<br/>
+		/// Prefer using your own persistent instance of ImDrawListSplitter as you can stack them.<br/>
+		/// Using the ImDrawList::ChannelsXXXX you cannot stack a split over another.<br/>
 		/// </summary>
 		public unsafe void ChannelsSplit(int count)
 		{
@@ -7915,7 +8168,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Stateful path API, add points then finish with PathFillConvex() or PathStroke()<br/>
+		/// - Important: filled shapes must always use clockwise winding order! The anti-aliasing fringe depends on it. Counter-clockwise shapes will have "inward" anti-aliasing.<br/>
+		/// so e.g. 'PathArcTo(center, radius, PI * -0.5f, PI)' is ok, whereas 'PathArcTo(center, radius, PI, PI * -0.5f)' won't have correct anti-aliasing when followed by PathFillConvex().<br/>
 		/// </summary>
 		public unsafe void PathClear()
 		{
@@ -8038,33 +8293,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void PathStroke(uint col, ImDrawFlags flags, float thickness)
+		public unsafe void PathStroke(uint col, float thickness, ImDrawFlags flags)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PathStrokeNative(@this, col, flags, thickness);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void PathStroke(uint col, ImDrawFlags flags)
-		{
-			fixed (ImDrawList* @this = &this)
-			{
-				ImGui.PathStrokeNative(@this, col, flags, (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void PathStroke(uint col)
-		{
-			fixed (ImDrawList* @this = &this)
-			{
-				ImGui.PathStrokeNative(@this, col, (ImDrawFlags)(0), (float)(1.0f));
+				ImGui.PathStrokeNative(@this, col, thickness, flags);
 			}
 		}
 
@@ -8075,7 +8308,29 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PathStrokeNative(@this, col, (ImDrawFlags)(0), thickness);
+				ImGui.PathStrokeNative(@this, col, thickness, (ImDrawFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void PathStroke(uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PathStrokeNative(@this, col, (float)(1.0f), (ImDrawFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void PathStroke(uint col, ImDrawFlags flags)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PathStrokeNative(@this, col, (float)(1.0f), flags);
 			}
 		}
 
@@ -8135,7 +8390,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Primitives allocations<br/>
+		/// - We render triangles (three vertices)<br/>
+		/// - All primitives needs to be reserved via PrimReserve() beforehand.<br/>
 		/// </summary>
 		public unsafe void PrimReserve(int idxCount, int vtxCount)
 		{
@@ -8414,7 +8671,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [Internal helpers]<br/>
 		/// </summary>
 		public unsafe void _SetDrawListSharedData(ImDrawListSharedData* data)
 		{
@@ -8422,7 +8679,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [Internal helpers]<br/>
 		/// </summary>
 		public unsafe void _SetDrawListSharedData(ref ImDrawListSharedData data)
 		{
@@ -8481,7 +8738,16 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, void* userdata, nuint userdataSize)
 		{
@@ -8489,7 +8755,16 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, void* userdata)
 		{
@@ -8497,7 +8772,50 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
+		/// </summary>
+		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback)
+		{
+			ImGui.AddCallbackNative(Handle, callback, (void*)(default), (nuint)(0));
+		}
+
+		/// <summary>
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
+		/// </summary>
+		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, nuint userdataSize)
+		{
+			ImGui.AddCallbackNative(Handle, callback, (void*)(default), userdataSize);
+		}
+
+		/// <summary>
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(ImDrawCallback callback, void* userdata, nuint userdataSize)
 		{
@@ -8505,7 +8823,16 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(ImDrawCallback callback, void* userdata)
 		{
@@ -8513,7 +8840,50 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
+		/// </summary>
+		public unsafe void AddCallback(ImDrawCallback callback)
+		{
+			ImGui.AddCallbackNative(Handle, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), (void*)(default), (nuint)(0));
+		}
+
+		/// <summary>
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
+		/// </summary>
+		public unsafe void AddCallback(ImDrawCallback callback, nuint userdataSize)
+		{
+			ImGui.AddCallbackNative(Handle, (delegate*<ImDrawList*, ImDrawCmd*, void>)Utils.GetFunctionPointerForDelegate(callback), (void*)(default), userdataSize);
+		}
+
+		/// <summary>
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, nint userdata, nuint userdataSize)
 		{
@@ -8521,7 +8891,16 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*, void> callback, nint userdata)
 		{
@@ -8529,7 +8908,16 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(ImDrawCallback callback, nint userdata, nuint userdataSize)
 		{
@@ -8537,7 +8925,16 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Draw Callbacks<br/>
+		/// - May be used to alter render state (change sampler, blending, current shader). May be used to emit custom rendering commands (difficult to do correctly, but possible).<br/>
+		/// - Use special GetPlatformIO().DrawCallback_ResetRenderState callback to instruct backend to reset its render state to the default.<br/>
+		/// - See other standard callbacks in GetPlatformIO(), which may or not be supported by your backend.<br/>
+		/// - Your rendering loop must check for 'UserCallback' in ImDrawCmd and call the function instead of rendering triangles. All standard backends are honoring this.<br/>
+		/// - For some backends, the callback may access selected render-states exposed by the backend in a ImGui_ImplXXXX_RenderState structure pointed to by platform_io.Renderer_RenderState.<br/>
+		/// - IMPORTANT: please be mindful of the different level of indirection between using size==0 (copying argument) and using size&gt;0 (copying pointed data into a buffer).<br/>
+		/// - If userdata_size == 0: we copystore the 'userdata' argument as-is. It will be available unmodified in ImDrawCmd::UserCallbackData during render.<br/>
+		/// - If userdata_size &gt; 0,  we copystore 'userdata_size' bytes pointed to by 'userdata'. We store them in a buffer stored inside the drawlist. ImDrawCmd::UserCallbackData will point inside that buffer so you have to retrieve data from there. Your callback may need to use ImDrawCmd::UserCallbackDataSize if you expect dynamically-sized data.<br/>
+		/// - Support for userdata_size &gt; 0 was added in v1.91.4, October 2024. So earlier code always only allowed to copystore a simple void*.<br/>
 		/// </summary>
 		public unsafe void AddCallback(ImDrawCallback callback, nint userdata)
 		{
@@ -8631,7 +9028,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// This is useful if you need to forcefully create a new draw call (to allow for dependent rendering  blending). Otherwise primitives are merged into the same draw-call as much as possible<br/>
+		/// Advanced: Miscellaneous This is useful if you need to forcefully create a new draw call (to allow for dependent rendering  blending). Otherwise primitives are merged into the same draw-call as much as possible<br/>
 		/// </summary>
 		public unsafe void AddDrawCmd()
 		{
@@ -8727,7 +9124,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Image primitives<br/>
+		/// - Read FAQ to understand what ImTextureIDImTextureRef are.<br/>
+		/// - "p_min" and "p_max" represent the upper-left and lower-right corners of the rectangle.<br/>
+		/// - "uv_min" and "uv_max" represent the normalized texture coordinates to use for those corners. Using (0,0)-&gt;(1,1) texture coordinates will generally display the entire texture.<br/>
 		/// </summary>
 		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col)
 		{
@@ -8735,7 +9135,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Image primitives<br/>
+		/// - Read FAQ to understand what ImTextureIDImTextureRef are.<br/>
+		/// - "p_min" and "p_max" represent the upper-left and lower-right corners of the rectangle.<br/>
+		/// - "uv_min" and "uv_max" represent the normalized texture coordinates to use for those corners. Using (0,0)-&gt;(1,1) texture coordinates will generally display the entire texture.<br/>
 		/// </summary>
 		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax)
 		{
@@ -8743,7 +9146,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Image primitives<br/>
+		/// - Read FAQ to understand what ImTextureIDImTextureRef are.<br/>
+		/// - "p_min" and "p_max" represent the upper-left and lower-right corners of the rectangle.<br/>
+		/// - "uv_min" and "uv_max" represent the normalized texture coordinates to use for those corners. Using (0,0)-&gt;(1,1) texture coordinates will generally display the entire texture.<br/>
 		/// </summary>
 		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin)
 		{
@@ -8751,7 +9157,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Image primitives<br/>
+		/// - Read FAQ to understand what ImTextureIDImTextureRef are.<br/>
+		/// - "p_min" and "p_max" represent the upper-left and lower-right corners of the rectangle.<br/>
+		/// - "uv_min" and "uv_max" represent the normalized texture coordinates to use for those corners. Using (0,0)-&gt;(1,1) texture coordinates will generally display the entire texture.<br/>
 		/// </summary>
 		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax)
 		{
@@ -8759,7 +9168,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Image primitives<br/>
+		/// - Read FAQ to understand what ImTextureIDImTextureRef are.<br/>
+		/// - "p_min" and "p_max" represent the upper-left and lower-right corners of the rectangle.<br/>
+		/// - "uv_min" and "uv_max" represent the normalized texture coordinates to use for those corners. Using (0,0)-&gt;(1,1) texture coordinates will generally display the entire texture.<br/>
 		/// </summary>
 		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, Vector2 uvMin, uint col)
 		{
@@ -8767,7 +9179,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Image primitives<br/>
+		/// - Read FAQ to understand what ImTextureIDImTextureRef are.<br/>
+		/// - "p_min" and "p_max" represent the upper-left and lower-right corners of the rectangle.<br/>
+		/// - "uv_min" and "uv_max" represent the normalized texture coordinates to use for those corners. Using (0,0)-&gt;(1,1) texture coordinates will generally display the entire texture.<br/>
 		/// </summary>
 		public unsafe void AddImage(ImTextureRef texRef, Vector2 pMin, Vector2 pMax, uint col)
 		{
@@ -8871,7 +9286,13 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Primitives<br/>
+		/// - Filled shapes must always use clockwise winding order. The anti-aliasing fringe depends on it. Counter-clockwise shapes will have "inward" anti-aliasing.<br/>
+		/// - For rectangular primitives, "p_min" and "p_max" represent the upper-left and lower-right corners.<br/>
+		/// - For circle primitives, use "num_segments == 0" to automatically calculate tessellation (preferred).<br/>
+		/// In older versions (until Dear ImGui 1.77) the AddCircle functions defaulted to num_segments == 12.<br/>
+		/// In future versions we will use textures to provide cheaper and higher-quality circles.<br/>
+		/// Use AddNgon() and AddNgonFilled() functions if you need to guarantee a specific number of sides.<br/>
 		/// </summary>
 		public unsafe void AddLine(Vector2 p1, Vector2 p2, uint col, float thickness)
 		{
@@ -8879,11 +9300,49 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Primitives<br/>
+		/// - Filled shapes must always use clockwise winding order. The anti-aliasing fringe depends on it. Counter-clockwise shapes will have "inward" anti-aliasing.<br/>
+		/// - For rectangular primitives, "p_min" and "p_max" represent the upper-left and lower-right corners.<br/>
+		/// - For circle primitives, use "num_segments == 0" to automatically calculate tessellation (preferred).<br/>
+		/// In older versions (until Dear ImGui 1.77) the AddCircle functions defaulted to num_segments == 12.<br/>
+		/// In future versions we will use textures to provide cheaper and higher-quality circles.<br/>
+		/// Use AddNgon() and AddNgonFilled() functions if you need to guarantee a specific number of sides.<br/>
 		/// </summary>
 		public unsafe void AddLine(Vector2 p1, Vector2 p2, uint col)
 		{
 			ImGui.AddLineNative(Handle, p1, p2, col, (float)(1.0f));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddLineH(float minX, float maxX, float y, uint col, float thickness)
+		{
+			ImGui.AddLineHNative(Handle, minX, maxX, y, col, thickness);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddLineH(float minX, float maxX, float y, uint col)
+		{
+			ImGui.AddLineHNative(Handle, minX, maxX, y, col, (float)(1.0f));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddLineV(float x, float minY, float maxY, uint col, float thickness)
+		{
+			ImGui.AddLineVNative(Handle, x, minY, maxY, col, thickness);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void AddLineV(float x, float minY, float maxY, uint col)
+		{
+			ImGui.AddLineVNative(Handle, x, minY, maxY, col, (float)(1.0f));
 		}
 
 		/// <summary>
@@ -8911,21 +9370,48 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// General polygon<br/>
+		/// - Only simple polygons are supported by filling functions (no self-intersections, no holes).<br/>
+		/// - Concave polygon fill is more expensive than convex one: it has O(N^2) complexity. Provided as a convenience for the user but not used by the main library.<br/>
 		/// </summary>
-		public unsafe void AddPolyline(Vector2* points, int numPoints, uint col, ImDrawFlags flags, float thickness)
+		public unsafe void AddPolyline(Vector2* points, int numPoints, uint col, float thickness, ImDrawFlags flags)
 		{
-			ImGui.AddPolylineNative(Handle, points, numPoints, col, flags, thickness);
+			ImGui.AddPolylineNative(Handle, points, numPoints, col, thickness, flags);
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// General polygon<br/>
+		/// - Only simple polygons are supported by filling functions (no self-intersections, no holes).<br/>
+		/// - Concave polygon fill is more expensive than convex one: it has O(N^2) complexity. Provided as a convenience for the user but not used by the main library.<br/>
 		/// </summary>
-		public unsafe void AddPolyline(in Vector2 points, int numPoints, uint col, ImDrawFlags flags, float thickness)
+		public unsafe void AddPolyline(Vector2* points, int numPoints, uint col, float thickness)
+		{
+			ImGui.AddPolylineNative(Handle, points, numPoints, col, thickness, (ImDrawFlags)(0));
+		}
+
+		/// <summary>
+		/// General polygon<br/>
+		/// - Only simple polygons are supported by filling functions (no self-intersections, no holes).<br/>
+		/// - Concave polygon fill is more expensive than convex one: it has O(N^2) complexity. Provided as a convenience for the user but not used by the main library.<br/>
+		/// </summary>
+		public unsafe void AddPolyline(in Vector2 points, int numPoints, uint col, float thickness, ImDrawFlags flags)
 		{
 			fixed (Vector2* ppoints = &points)
 			{
-				ImGui.AddPolylineNative(Handle, (Vector2*)ppoints, numPoints, col, flags, thickness);
+				ImGui.AddPolylineNative(Handle, (Vector2*)ppoints, numPoints, col, thickness, flags);
+			}
+		}
+
+		/// <summary>
+		/// General polygon<br/>
+		/// - Only simple polygons are supported by filling functions (no self-intersections, no holes).<br/>
+		/// - Concave polygon fill is more expensive than convex one: it has O(N^2) complexity. Provided as a convenience for the user but not used by the main library.<br/>
+		/// </summary>
+		public unsafe void AddPolyline(in Vector2 points, int numPoints, uint col, float thickness)
+		{
+			fixed (Vector2* ppoints = &points)
+			{
+				ImGui.AddPolylineNative(Handle, (Vector2*)ppoints, numPoints, col, thickness, (ImDrawFlags)(0));
 			}
 		}
 
@@ -8956,41 +9442,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
-		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
+		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, float thickness, ImDrawFlags flags)
 		{
-			ImGui.AddRectNative(Handle, pMin, pMax, col, rounding, flags, thickness);
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
-		{
-			ImGui.AddRectNative(Handle, pMin, pMax, col, rounding, flags, (float)(1.0f));
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding)
-		{
-			ImGui.AddRectNative(Handle, pMin, pMax, col, rounding, (ImDrawFlags)(0), (float)(1.0f));
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col)
-		{
-			ImGui.AddRectNative(Handle, pMin, pMax, col, (float)(0.0f), (ImDrawFlags)(0), (float)(1.0f));
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
-		{
-			ImGui.AddRectNative(Handle, pMin, pMax, col, (float)(0.0f), flags, (float)(1.0f));
+			ImGui.AddRectNative(Handle, pMin, pMax, col, rounding, thickness, flags);
 		}
 
 		/// <summary>
@@ -8998,15 +9452,39 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, float thickness)
 		{
-			ImGui.AddRectNative(Handle, pMin, pMax, col, rounding, (ImDrawFlags)(0), thickness);
+			ImGui.AddRectNative(Handle, pMin, pMax, col, rounding, thickness, (ImDrawFlags)(0));
 		}
 
 		/// <summary>
 		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
 		/// </summary>
-		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags, float thickness)
+		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
-			ImGui.AddRectNative(Handle, pMin, pMax, col, (float)(0.0f), flags, thickness);
+			ImGui.AddRectNative(Handle, pMin, pMax, col, rounding, (float)(1.0f), (ImDrawFlags)(0));
+		}
+
+		/// <summary>
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// </summary>
+		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col)
+		{
+			ImGui.AddRectNative(Handle, pMin, pMax, col, (float)(0.0f), (float)(1.0f), (ImDrawFlags)(0));
+		}
+
+		/// <summary>
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// </summary>
+		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
+		{
+			ImGui.AddRectNative(Handle, pMin, pMax, col, rounding, (float)(1.0f), flags);
+		}
+
+		/// <summary>
+		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
+		/// </summary>
+		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
+		{
+			ImGui.AddRectNative(Handle, pMin, pMax, col, (float)(0.0f), (float)(1.0f), flags);
 		}
 
 		/// <summary>
@@ -14929,7 +15407,12 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Channels<br/>
+		/// - Use to split render into layers. By switching channels to can render out-of-order (e.g. submit FG primitives before BG primitives)<br/>
+		/// - Use to minimize draw calls (e.g. if going back-and-forth between multiple clipping rectangles, prefer to append into separate channels then merge at the end)<br/>
+		/// - This API shouldn't have been in ImDrawList in the first place!<br/>
+		/// Prefer using your own persistent instance of ImDrawListSplitter as you can stack them.<br/>
+		/// Using the ImDrawList::ChannelsXXXX you cannot stack a split over another.<br/>
 		/// </summary>
 		public unsafe void ChannelsSplit(int count)
 		{
@@ -15028,7 +15511,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Stateful path API, add points then finish with PathFillConvex() or PathStroke()<br/>
+		/// - Important: filled shapes must always use clockwise winding order! The anti-aliasing fringe depends on it. Counter-clockwise shapes will have "inward" anti-aliasing.<br/>
+		/// so e.g. 'PathArcTo(center, radius, PI * -0.5f, PI)' is ok, whereas 'PathArcTo(center, radius, PI, PI * -0.5f)' won't have correct anti-aliasing when followed by PathFillConvex().<br/>
 		/// </summary>
 		public unsafe void PathClear()
 		{
@@ -15118,25 +15603,9 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void PathStroke(uint col, ImDrawFlags flags, float thickness)
+		public unsafe void PathStroke(uint col, float thickness, ImDrawFlags flags)
 		{
-			ImGui.PathStrokeNative(Handle, col, flags, thickness);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void PathStroke(uint col, ImDrawFlags flags)
-		{
-			ImGui.PathStrokeNative(Handle, col, flags, (float)(1.0f));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void PathStroke(uint col)
-		{
-			ImGui.PathStrokeNative(Handle, col, (ImDrawFlags)(0), (float)(1.0f));
+			ImGui.PathStrokeNative(Handle, col, thickness, flags);
 		}
 
 		/// <summary>
@@ -15144,7 +15613,23 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe void PathStroke(uint col, float thickness)
 		{
-			ImGui.PathStrokeNative(Handle, col, (ImDrawFlags)(0), thickness);
+			ImGui.PathStrokeNative(Handle, col, thickness, (ImDrawFlags)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void PathStroke(uint col)
+		{
+			ImGui.PathStrokeNative(Handle, col, (float)(1.0f), (ImDrawFlags)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void PathStroke(uint col, ImDrawFlags flags)
+		{
+			ImGui.PathStrokeNative(Handle, col, (float)(1.0f), flags);
 		}
 
 		/// <summary>
@@ -15188,7 +15673,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Advanced: Primitives allocations<br/>
+		/// - We render triangles (three vertices)<br/>
+		/// - All primitives needs to be reserved via PrimReserve() beforehand.<br/>
 		/// </summary>
 		public unsafe void PrimReserve(int idxCount, int vtxCount)
 		{

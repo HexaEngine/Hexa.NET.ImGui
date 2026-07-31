@@ -21,6 +21,461 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool InputTextWithHint(in byte label, byte* hint, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextWithHintNative((byte*)plabel, hint, (byte*)pbuf, bufSize, (ImGuiInputTextFlags)(0), callback, (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(in byte label, byte* hint, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextWithHintNative((byte*)plabel, hint, (byte*)pbuf, bufSize, flags, (delegate*<ImGuiInputTextCallbackData*, int>)(default), userData);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(in byte label, byte* hint, ref byte buf, nuint bufSize, void* userData)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextWithHintNative((byte*)plabel, hint, (byte*)pbuf, bufSize, (ImGuiInputTextFlags)(0), (delegate*<ImGuiInputTextCallbackData*, int>)(default), userData);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(in byte label, byte* hint, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextWithHintNative((byte*)plabel, hint, (byte*)pbuf, bufSize, (ImGuiInputTextFlags)(0), callback, userData);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(ReadOnlySpan<byte> label, byte* hint, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextWithHintNative((byte*)plabel, hint, (byte*)pbuf, bufSize, flags, callback, userData);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(ReadOnlySpan<byte> label, byte* hint, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextWithHintNative((byte*)plabel, hint, (byte*)pbuf, bufSize, flags, callback, (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(ReadOnlySpan<byte> label, byte* hint, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextWithHintNative((byte*)plabel, hint, (byte*)pbuf, bufSize, flags, (delegate*<ImGuiInputTextCallbackData*, int>)(default), (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(ReadOnlySpan<byte> label, byte* hint, ref byte buf, nuint bufSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextWithHintNative((byte*)plabel, hint, (byte*)pbuf, bufSize, (ImGuiInputTextFlags)(0), (delegate*<ImGuiInputTextCallbackData*, int>)(default), (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(ReadOnlySpan<byte> label, byte* hint, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextWithHintNative((byte*)plabel, hint, (byte*)pbuf, bufSize, (ImGuiInputTextFlags)(0), callback, (void*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(ReadOnlySpan<byte> label, byte* hint, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextWithHintNative((byte*)plabel, hint, (byte*)pbuf, bufSize, flags, (delegate*<ImGuiInputTextCallbackData*, int>)(default), userData);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(ReadOnlySpan<byte> label, byte* hint, ref byte buf, nuint bufSize, void* userData)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextWithHintNative((byte*)plabel, hint, (byte*)pbuf, bufSize, (ImGuiInputTextFlags)(0), (delegate*<ImGuiInputTextCallbackData*, int>)(default), userData);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(ReadOnlySpan<byte> label, byte* hint, ref byte buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					byte ret = InputTextWithHintNative((byte*)plabel, hint, (byte*)pbuf, bufSize, (ImGuiInputTextFlags)(0), callback, userData);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(string label, byte* hint, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (buf != null)
+			{
+				pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputTextWithHintNative(pStr0, hint, pStr1, bufSize, flags, callback, userData);
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(string label, byte* hint, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (buf != null)
+			{
+				pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputTextWithHintNative(pStr0, hint, pStr1, bufSize, flags, callback, (void*)(default));
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(string label, byte* hint, ref string buf, nuint bufSize, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (buf != null)
+			{
+				pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputTextWithHintNative(pStr0, hint, pStr1, bufSize, flags, (delegate*<ImGuiInputTextCallbackData*, int>)(default), (void*)(default));
+			if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(string label, byte* hint, ref string buf, nuint bufSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (buf != null)
+			{
+				pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputTextWithHintNative(pStr0, hint, pStr1, bufSize, (ImGuiInputTextFlags)(0), (delegate*<ImGuiInputTextCallbackData*, int>)(default), (void*)(default));
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool InputTextWithHint(string label, byte* hint, ref string buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (buf != null)
+			{
+				pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputTextWithHintNative(pStr0, hint, pStr1, bufSize, (ImGuiInputTextFlags)(0), callback, (void*)(default));
+			if (ret != 0)
+			{
+				buf = Utils.DecodeStringUTF8(pStr1);
+			}
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool InputTextWithHint(string label, byte* hint, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
 		{
 			byte* pStr0 = null;
@@ -4598,430 +5053,6 @@ namespace Hexa.NET.ImGui
 					Utils.Free(pStr0);
 				}
 				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextWithHint(in byte label, string hint, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (hint != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(hint);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(hint, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (buf != null)
-				{
-					pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = InputTextWithHintNative((byte*)plabel, pStr0, pStr1, bufSize, flags, callback, (void*)(default));
-				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
-				{
-					buf = Utils.DecodeStringUTF8(pStr1);
-				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextWithHint(in byte label, string hint, ref string buf, nuint bufSize, ImGuiInputTextFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (hint != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(hint);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(hint, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (buf != null)
-				{
-					pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = InputTextWithHintNative((byte*)plabel, pStr0, pStr1, bufSize, flags, (delegate*<ImGuiInputTextCallbackData*, int>)(default), (void*)(default));
-				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
-				{
-					buf = Utils.DecodeStringUTF8(pStr1);
-				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextWithHint(in byte label, string hint, ref string buf, nuint bufSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (hint != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(hint);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(hint, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (buf != null)
-				{
-					pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = InputTextWithHintNative((byte*)plabel, pStr0, pStr1, bufSize, (ImGuiInputTextFlags)(0), (delegate*<ImGuiInputTextCallbackData*, int>)(default), (void*)(default));
-				if (ret != 0)
-				{
-					buf = Utils.DecodeStringUTF8(pStr1);
-				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextWithHint(in byte label, string hint, ref string buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (hint != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(hint);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(hint, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (buf != null)
-				{
-					pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = InputTextWithHintNative((byte*)plabel, pStr0, pStr1, bufSize, (ImGuiInputTextFlags)(0), callback, (void*)(default));
-				if (ret != 0)
-				{
-					buf = Utils.DecodeStringUTF8(pStr1);
-				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextWithHint(in byte label, string hint, ref string buf, nuint bufSize, ImGuiInputTextFlags flags, void* userData)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (hint != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(hint);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(hint, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (buf != null)
-				{
-					pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = InputTextWithHintNative((byte*)plabel, pStr0, pStr1, bufSize, flags, (delegate*<ImGuiInputTextCallbackData*, int>)(default), userData);
-				if (ret != 0 || ((flags & ImGuiInputTextFlags.EnterReturnsTrue) != 0 && IsItemDeactivatedAfterEdit()))
-				{
-					buf = Utils.DecodeStringUTF8(pStr1);
-				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextWithHint(in byte label, string hint, ref string buf, nuint bufSize, void* userData)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (hint != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(hint);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(hint, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (buf != null)
-				{
-					pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = InputTextWithHintNative((byte*)plabel, pStr0, pStr1, bufSize, (ImGuiInputTextFlags)(0), (delegate*<ImGuiInputTextCallbackData*, int>)(default), userData);
-				if (ret != 0)
-				{
-					buf = Utils.DecodeStringUTF8(pStr1);
-				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextWithHint(in byte label, string hint, ref string buf, nuint bufSize, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (hint != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(hint);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(hint, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (buf != null)
-				{
-					pStrSize1 = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = InputTextWithHintNative((byte*)plabel, pStr0, pStr1, bufSize, (ImGuiInputTextFlags)(0), callback, userData);
-				if (ret != 0)
-				{
-					buf = Utils.DecodeStringUTF8(pStr1);
-				}
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool InputTextWithHint(ReadOnlySpan<byte> label, in byte hint, ref byte buf, nuint bufSize, ImGuiInputTextFlags flags, delegate*<ImGuiInputTextCallbackData*, int> callback, void* userData)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* phint = &hint)
-				{
-					fixed (byte* pbuf = &buf)
-					{
-						byte ret = InputTextWithHintNative((byte*)plabel, (byte*)phint, (byte*)pbuf, bufSize, flags, callback, userData);
-						return ret != 0;
-					}
-				}
 			}
 		}
 	}

@@ -65,6 +65,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public int PlatformSessionDate;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public int RendererTextureMaxWidth;
 
 		/// <summary>
@@ -77,6 +82,18 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe void* RendererRenderState;
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void* DrawCallbackResetRenderState;
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void* DrawCallbackSetSamplerLinear;
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void* DrawCallbackSetSamplerNearest;
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -221,7 +238,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiPlatformIO(delegate*<ImGuiContext*, byte*> platformGetclipboardtextfn = default, delegate*<ImGuiContext*, byte*, void> platformSetclipboardtextfn = default, void* platformClipboarduserdata = default, delegate*<ImGuiContext*, byte*, bool> platformOpeninshellfn = default, void* platformOpeninshelluserdata = default, delegate*<ImGuiContext*, ImGuiViewport*, ImGuiPlatformImeData*, void> platformSetimedatafn = default, void* platformImeuserdata = default, uint platformLocaledecimalpoint = default, int rendererTexturemaxwidth = default, int rendererTexturemaxheight = default, void* rendererRenderstate = default, delegate*<ImGuiViewport*, void> platformCreatewindow = default, delegate*<ImGuiViewport*, void> platformDestroywindow = default, delegate*<ImGuiViewport*, void> platformShowwindow = default, delegate*<ImGuiViewport*, Vector2, void> platformSetwindowpos = default, delegate*<ImGuiViewport*, Vector2> platformGetwindowpos = default, delegate*<ImGuiViewport*, Vector2, void> platformSetwindowsize = default, delegate*<ImGuiViewport*, Vector2> platformGetwindowsize = default, delegate*<ImGuiViewport*, Vector2> platformGetwindowframebufferscale = default, delegate*<ImGuiViewport*, void> platformSetwindowfocus = default, delegate*<ImGuiViewport*, bool> platformGetwindowfocus = default, delegate*<ImGuiViewport*, bool> platformGetwindowminimized = default, delegate*<ImGuiViewport*, byte*, void> platformSetwindowtitle = default, delegate*<ImGuiViewport*, float, void> platformSetwindowalpha = default, delegate*<ImGuiViewport*, void> platformUpdatewindow = default, delegate*<ImGuiViewport*, void*, void> platformRenderwindow = default, delegate*<ImGuiViewport*, void*, void> platformSwapbuffers = default, delegate*<ImGuiViewport*, float> platformGetwindowdpiscale = default, delegate*<ImGuiViewport*, void> platformOnchangedviewport = default, delegate*<ImGuiViewport*, Vector4> platformGetwindowworkareainsets = default, delegate*<ImGuiViewport*, ulong, void*, ulong*, int> platformCreatevksurface = default, delegate*<ImGuiViewport*, void> rendererCreatewindow = default, delegate*<ImGuiViewport*, void> rendererDestroywindow = default, delegate*<ImGuiViewport*, Vector2, void> rendererSetwindowsize = default, delegate*<ImGuiViewport*, void*, void> rendererRenderwindow = default, delegate*<ImGuiViewport*, void*, void> rendererSwapbuffers = default, ImVector<ImGuiPlatformMonitor> monitors = default, ImVector<ImTextureDataPtr> textures = default, ImVector<ImGuiViewportPtr> viewports = default)
+		public unsafe ImGuiPlatformIO(delegate*<ImGuiContext*, byte*> platformGetclipboardtextfn = default, delegate*<ImGuiContext*, byte*, void> platformSetclipboardtextfn = default, void* platformClipboarduserdata = default, delegate*<ImGuiContext*, byte*, bool> platformOpeninshellfn = default, void* platformOpeninshelluserdata = default, delegate*<ImGuiContext*, ImGuiViewport*, ImGuiPlatformImeData*, void> platformSetimedatafn = default, void* platformImeuserdata = default, uint platformLocaledecimalpoint = default, int platformSessiondate = default, int rendererTexturemaxwidth = default, int rendererTexturemaxheight = default, void* rendererRenderstate = default, delegate*<ImDrawList*, ImDrawCmd*, void> drawcallbackResetrenderstate = default, delegate*<ImDrawList*, ImDrawCmd*, void> drawcallbackSetsamplerlinear = default, delegate*<ImDrawList*, ImDrawCmd*, void> drawcallbackSetsamplernearest = default, delegate*<ImGuiViewport*, void> platformCreatewindow = default, delegate*<ImGuiViewport*, void> platformDestroywindow = default, delegate*<ImGuiViewport*, void> platformShowwindow = default, delegate*<ImGuiViewport*, Vector2, void> platformSetwindowpos = default, delegate*<ImGuiViewport*, Vector2> platformGetwindowpos = default, delegate*<ImGuiViewport*, Vector2, void> platformSetwindowsize = default, delegate*<ImGuiViewport*, Vector2> platformGetwindowsize = default, delegate*<ImGuiViewport*, Vector2> platformGetwindowframebufferscale = default, delegate*<ImGuiViewport*, void> platformSetwindowfocus = default, delegate*<ImGuiViewport*, bool> platformGetwindowfocus = default, delegate*<ImGuiViewport*, bool> platformGetwindowminimized = default, delegate*<ImGuiViewport*, byte*, void> platformSetwindowtitle = default, delegate*<ImGuiViewport*, float, void> platformSetwindowalpha = default, delegate*<ImGuiViewport*, void> platformUpdatewindow = default, delegate*<ImGuiViewport*, void*, void> platformRenderwindow = default, delegate*<ImGuiViewport*, void*, void> platformSwapbuffers = default, delegate*<ImGuiViewport*, float> platformGetwindowdpiscale = default, delegate*<ImGuiViewport*, void> platformOnchangedviewport = default, delegate*<ImGuiViewport*, Vector4> platformGetwindowworkareainsets = default, delegate*<ImGuiViewport*, ulong, void*, ulong*, int> platformCreatevksurface = default, delegate*<ImGuiViewport*, void> rendererCreatewindow = default, delegate*<ImGuiViewport*, void> rendererDestroywindow = default, delegate*<ImGuiViewport*, Vector2, void> rendererSetwindowsize = default, delegate*<ImGuiViewport*, void*, void> rendererRenderwindow = default, delegate*<ImGuiViewport*, void*, void> rendererSwapbuffers = default, ImVector<ImGuiPlatformMonitor> monitors = default, ImVector<ImTextureDataPtr> textures = default, ImVector<ImGuiViewportPtr> viewports = default)
 		{
 			PlatformGetClipboardTextFn = (delegate*<ImGuiContext*, byte*>*)platformGetclipboardtextfn;
 			PlatformSetClipboardTextFn = (delegate*<ImGuiContext*, byte*, void>*)platformSetclipboardtextfn;
@@ -231,9 +248,13 @@ namespace Hexa.NET.ImGui
 			PlatformSetImeDataFn = (delegate*<ImGuiContext*, ImGuiViewport*, ImGuiPlatformImeData*, void>*)platformSetimedatafn;
 			PlatformImeUserData = platformImeuserdata;
 			PlatformLocaleDecimalPoint = platformLocaledecimalpoint;
+			PlatformSessionDate = platformSessiondate;
 			RendererTextureMaxWidth = rendererTexturemaxwidth;
 			RendererTextureMaxHeight = rendererTexturemaxheight;
 			RendererRenderState = rendererRenderstate;
+			DrawCallbackResetRenderState = (delegate*<ImDrawList*, ImDrawCmd*, void>)drawcallbackResetrenderstate;
+			DrawCallbackSetSamplerLinear = (delegate*<ImDrawList*, ImDrawCmd*, void>)drawcallbackSetsamplerlinear;
+			DrawCallbackSetSamplerNearest = (delegate*<ImDrawList*, ImDrawCmd*, void>)drawcallbackSetsamplernearest;
 			PlatformCreateWindow = (delegate*<ImGuiViewport*, void>*)platformCreatewindow;
 			PlatformDestroyWindow = (delegate*<ImGuiViewport*, void>*)platformDestroywindow;
 			PlatformShowWindow = (delegate*<ImGuiViewport*, void>*)platformShowwindow;
@@ -376,6 +397,10 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref int PlatformSessionDate => ref Unsafe.AsRef<int>(&Handle->PlatformSessionDate);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ref int RendererTextureMaxWidth => ref Unsafe.AsRef<int>(&Handle->RendererTextureMaxWidth);
 		/// <summary>
 		/// To be documented.
@@ -385,6 +410,18 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public void* RendererRenderState { get => Handle->RendererRenderState; set => Handle->RendererRenderState = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public void* DrawCallbackResetRenderState { get => Handle->DrawCallbackResetRenderState; set => Handle->DrawCallbackResetRenderState = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public void* DrawCallbackSetSamplerLinear { get => Handle->DrawCallbackSetSamplerLinear; set => Handle->DrawCallbackSetSamplerLinear = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public void* DrawCallbackSetSamplerNearest { get => Handle->DrawCallbackSetSamplerNearest; set => Handle->DrawCallbackSetSamplerNearest = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>

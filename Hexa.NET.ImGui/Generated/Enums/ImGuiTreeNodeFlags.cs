@@ -35,7 +35,7 @@ namespace Hexa.NET.ImGui
 		Framed = unchecked(2),
 
 		/// <summary>
-		/// Hit testing to allow subsequent widgets to overlap this one<br/>
+		/// Hit testing will allow subsequent widgets to overlap this one. Require previous frame HoveredId to match before being usable. Shortcut to calling SetNextItemAllowOverlap().<br/>
 		/// </summary>
 		AllowOverlap = unchecked(4),
 
@@ -65,7 +65,7 @@ namespace Hexa.NET.ImGui
 		OpenOnArrow = unchecked(128),
 
 		/// <summary>
-		/// No collapsing, no arrow (use as a convenience for leaf nodes).<br/>
+		/// No collapsing, no arrow (use as a convenience for leaf nodes). Note: will always open a treeid scope and return true. If you never use that scope, add ImGuiTreeNodeFlags_NoTreePushOnOpen.<br/>
 		/// </summary>
 		Leaf = unchecked(256),
 

@@ -86,6 +86,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ImRect UnclipRects_0;
+		public ImRect UnclipRects_1;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ImRect BoxSelectRectPrev;
 
 		/// <summary>
@@ -97,7 +103,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiBoxSelectState(uint id = default, bool isActive = default, bool isStarting = default, bool isStartedFromVoid = default, bool isStartedSetNavIdOnce = default, bool requestClear = default, int keyMods = default, Vector2 startPosRel = default, Vector2 endPosRel = default, Vector2 scrollAccum = default, ImGuiWindowPtr window = default, bool unclipMode = default, ImRect unclipRect = default, ImRect boxSelectRectPrev = default, ImRect boxSelectRectCurr = default)
+		public unsafe ImGuiBoxSelectState(uint id = default, bool isActive = default, bool isStarting = default, bool isStartedFromVoid = default, bool isStartedSetNavIdOnce = default, bool requestClear = default, int keyMods = default, Vector2 startPosRel = default, Vector2 endPosRel = default, Vector2 scrollAccum = default, ImGuiWindowPtr window = default, bool unclipMode = default, ImRect unclipRect = default, ImRect* unclipRects = default, ImRect boxSelectRectPrev = default, ImRect boxSelectRectCurr = default)
 		{
 			ID = id;
 			IsActive = isActive ? (byte)1 : (byte)0;
@@ -112,6 +118,38 @@ namespace Hexa.NET.ImGui
 			Window = window;
 			UnclipMode = unclipMode ? (byte)1 : (byte)0;
 			UnclipRect = unclipRect;
+			if (unclipRects != default(ImRect*))
+			{
+				UnclipRects_0 = unclipRects[0];
+				UnclipRects_1 = unclipRects[1];
+			}
+			BoxSelectRectPrev = boxSelectRectPrev;
+			BoxSelectRectCurr = boxSelectRectCurr;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImGuiBoxSelectState(uint id = default, bool isActive = default, bool isStarting = default, bool isStartedFromVoid = default, bool isStartedSetNavIdOnce = default, bool requestClear = default, int keyMods = default, Vector2 startPosRel = default, Vector2 endPosRel = default, Vector2 scrollAccum = default, ImGuiWindowPtr window = default, bool unclipMode = default, ImRect unclipRect = default, Span<ImRect> unclipRects = default, ImRect boxSelectRectPrev = default, ImRect boxSelectRectCurr = default)
+		{
+			ID = id;
+			IsActive = isActive ? (byte)1 : (byte)0;
+			IsStarting = isStarting ? (byte)1 : (byte)0;
+			IsStartedFromVoid = isStartedFromVoid ? (byte)1 : (byte)0;
+			IsStartedSetNavIdOnce = isStartedSetNavIdOnce ? (byte)1 : (byte)0;
+			RequestClear = requestClear ? (byte)1 : (byte)0;
+			KeyMods = keyMods;
+			StartPosRel = startPosRel;
+			EndPosRel = endPosRel;
+			ScrollAccum = scrollAccum;
+			Window = window;
+			UnclipMode = unclipMode ? (byte)1 : (byte)0;
+			UnclipRect = unclipRect;
+			if (unclipRects != default(Span<ImRect>))
+			{
+				UnclipRects_0 = unclipRects[0];
+				UnclipRects_1 = unclipRects[1];
+			}
 			BoxSelectRectPrev = boxSelectRectPrev;
 			BoxSelectRectCurr = boxSelectRectCurr;
 		}
@@ -119,6 +157,20 @@ namespace Hexa.NET.ImGui
 
 		public int KeyMods { get => Bitfield.Get(RawBits0, 0, 16); set => Bitfield.Set(ref RawBits0, value, 0, 16); }
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe Span<ImRect> UnclipRects
+		
+		{
+			get
+			{
+				fixed (ImRect* p = &this.UnclipRects_0)
+				{
+					return new Span<ImRect>(p, 2);
+				}
+			}
+		}
 	}
 
 	/// <summary>
@@ -214,6 +266,17 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref ImRect UnclipRect => ref Unsafe.AsRef<ImRect>(&Handle->UnclipRect);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe Span<ImRect> UnclipRects
+		
+		{
+			get
+			{
+				return new Span<ImRect>(&Handle->UnclipRects_0, 2);
+			}
+		}
 		/// <summary>
 		/// To be documented.
 		/// </summary>

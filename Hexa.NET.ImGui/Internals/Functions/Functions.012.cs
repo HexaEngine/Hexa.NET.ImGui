@@ -21,6 +21,424 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void append(ref ImGuiTextIndex self, in byte baseValue, int oldSize, int newSize)
+		{
+			fixed (ImGuiTextIndex* pself = &self)
+			{
+				fixed (byte* pbaseValue = &baseValue)
+				{
+					appendNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, oldSize, newSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void append(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int oldSize, int newSize)
+		{
+			fixed (ImGuiTextIndex* pself = &self)
+			{
+				fixed (byte* pbaseValue = baseValue)
+				{
+					appendNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, oldSize, newSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void append(ref ImGuiTextIndex self, string baseValue, int oldSize, int newSize)
+		{
+			fixed (ImGuiTextIndex* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (baseValue != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(baseValue);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				appendNative((ImGuiTextIndex*)pself, pStr0, oldSize, newSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiPackedDate* ImGuiPackedDateNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiPackedDate*>)funcTable[875])();
+			#else
+			return (ImGuiPackedDate*)((delegate* unmanaged[Cdecl]<nint>)funcTable[875])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiPackedDatePtr ImGuiPackedDate()
+		{
+			ImGuiPackedDatePtr ret = ImGuiPackedDateNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiPackedDate* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiPackedDate*, void>)funcTable[876])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[876])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiPackedDatePtr self)
+		{
+			DestroyNative((ImGuiPackedDate*)self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiPackedDate self)
+		{
+			fixed (ImGuiPackedDate* pself = &self)
+			{
+				DestroyNative((ImGuiPackedDate*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiPackedDate* ImGuiPackedDateNative(int yyyymmdd)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiPackedDate*>)funcTable[877])(yyyymmdd);
+			#else
+			return (ImGuiPackedDate*)((delegate* unmanaged[Cdecl]<int, nint>)funcTable[877])(yyyymmdd);
+			#endif
+		}
+
+		/// <summary>
+		/// Pack<br/>
+		/// </summary>
+		public static ImGuiPackedDatePtr ImGuiPackedDate(int yyyymmdd)
+		{
+			ImGuiPackedDatePtr ret = ImGuiPackedDateNative(yyyymmdd);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsValidNative(ImGuiPackedDate* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiPackedDate*, byte>)funcTable[878])(self);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[878])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsValid(ImGuiPackedDatePtr self)
+		{
+			byte ret = IsValidNative((ImGuiPackedDate*)self);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsValid(ref ImGuiPackedDate self)
+		{
+			fixed (ImGuiPackedDate* pself = &self)
+			{
+				byte ret = IsValidNative((ImGuiPackedDate*)pself);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Unpack<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int UnpackNative(ImGuiPackedDate* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiPackedDate*, int>)funcTable[879])(self);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[879])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// Unpack<br/>
+		/// </summary>
+		public static int Unpack(ImGuiPackedDatePtr self)
+		{
+			int ret = UnpackNative((ImGuiPackedDate*)self);
+			return ret;
+		}
+
+		/// <summary>
+		/// Unpack<br/>
+		/// </summary>
+		public static int Unpack(ref ImGuiPackedDate self)
+		{
+			fixed (ImGuiPackedDate* pself = &self)
+			{
+				int ret = UnpackNative((ImGuiPackedDate*)pself);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// FIXME-OPT: Stupid but enough for what we do with it.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SubtractMonthsNative(ImGuiPackedDate* self, int m)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiPackedDate*, int, void>)funcTable[880])(self, m);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[880])((nint)self, m);
+			#endif
+		}
+
+		/// <summary>
+		/// FIXME-OPT: Stupid but enough for what we do with it.<br/>
+		/// </summary>
+		public static void SubtractMonths(ImGuiPackedDatePtr self, int m)
+		{
+			SubtractMonthsNative((ImGuiPackedDate*)self, m);
+		}
+
+		/// <summary>
+		/// FIXME-OPT: Stupid but enough for what we do with it.<br/>
+		/// </summary>
+		public static void SubtractMonths(ref ImGuiPackedDate self, int m)
+		{
+			fixed (ImGuiPackedDate* pself = &self)
+			{
+				SubtractMonthsNative((ImGuiPackedDate*)pself, m);
+			}
+		}
+
+		/// <summary>
+		/// Helper: ImGuiStorage<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiStoragePair* ImLowerBoundNative(ImGuiStoragePair* inBegin, ImGuiStoragePair* inEnd, uint key)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiStoragePair*, ImGuiStoragePair*, uint, ImGuiStoragePair*>)funcTable[881])(inBegin, inEnd, key);
+			#else
+			return (ImGuiStoragePair*)((delegate* unmanaged[Cdecl]<nint, nint, uint, nint>)funcTable[881])((nint)inBegin, (nint)inEnd, key);
+			#endif
+		}
+
+		/// <summary>
+		/// Helper: ImGuiStorage<br/>
+		/// </summary>
+		public static ImGuiStoragePairPtr ImLowerBound(ImGuiStoragePairPtr inBegin, ImGuiStoragePairPtr inEnd, uint key)
+		{
+			ImGuiStoragePairPtr ret = ImLowerBoundNative((ImGuiStoragePair*)inBegin, (ImGuiStoragePair*)inEnd, key);
+			return ret;
+		}
+
+		/// <summary>
+		/// Helper: ImGuiStorage<br/>
+		/// </summary>
+		public static ImGuiStoragePairPtr ImLowerBound(ref ImGuiStoragePair inBegin, ImGuiStoragePairPtr inEnd, uint key)
+		{
+			fixed (ImGuiStoragePair* pinBegin = &inBegin)
+			{
+				ImGuiStoragePairPtr ret = ImLowerBoundNative((ImGuiStoragePair*)pinBegin, (ImGuiStoragePair*)inEnd, key);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Helper: ImGuiStorage<br/>
+		/// </summary>
+		public static ImGuiStoragePairPtr ImLowerBound(ImGuiStoragePairPtr inBegin, ref ImGuiStoragePair inEnd, uint key)
+		{
+			fixed (ImGuiStoragePair* pinEnd = &inEnd)
+			{
+				ImGuiStoragePairPtr ret = ImLowerBoundNative((ImGuiStoragePair*)inBegin, (ImGuiStoragePair*)pinEnd, key);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Helper: ImGuiStorage<br/>
+		/// </summary>
+		public static ImGuiStoragePairPtr ImLowerBound(ref ImGuiStoragePair inBegin, ref ImGuiStoragePair inEnd, uint key)
+		{
+			fixed (ImGuiStoragePair* pinBegin = &inBegin)
+			{
+				fixed (ImGuiStoragePair* pinEnd = &inEnd)
+				{
+					ImGuiStoragePairPtr ret = ImLowerBoundNative((ImGuiStoragePair*)pinBegin, (ImGuiStoragePair*)pinEnd, key);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImDrawListSharedData* ImDrawListSharedDataNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImDrawListSharedData*>)funcTable[882])();
+			#else
+			return (ImDrawListSharedData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[882])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImDrawListSharedDataPtr ImDrawListSharedData()
+		{
+			ImDrawListSharedDataPtr ret = ImDrawListSharedDataNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImDrawListSharedData* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawListSharedData*, void>)funcTable[883])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[883])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImDrawListSharedDataPtr self)
+		{
+			DestroyNative((ImDrawListSharedData*)self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImDrawListSharedData self)
+		{
+			fixed (ImDrawListSharedData* pself = &self)
+			{
+				DestroyNative((ImDrawListSharedData*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetCircleTessellationMaxErrorNative(ImDrawListSharedData* self, float maxError)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawListSharedData*, float, void>)funcTable[884])(self, maxError);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, float, void>)funcTable[884])((nint)self, maxError);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetCircleTessellationMaxError(ImDrawListSharedDataPtr self, float maxError)
+		{
+			SetCircleTessellationMaxErrorNative((ImDrawListSharedData*)self, maxError);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetCircleTessellationMaxError(ref ImDrawListSharedData self, float maxError)
+		{
+			fixed (ImDrawListSharedData* pself = &self)
+			{
+				SetCircleTessellationMaxErrorNative((ImDrawListSharedData*)pself, maxError);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImDrawDataBuilder* ImDrawDataBuilderNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImDrawDataBuilder*>)funcTable[885])();
+			#else
+			return (ImDrawDataBuilder*)((delegate* unmanaged[Cdecl]<nint>)funcTable[885])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImDrawDataBuilderPtr ImDrawDataBuilder()
+		{
+			ImDrawDataBuilderPtr ret = ImDrawDataBuilderNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImDrawDataBuilder* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawDataBuilder*, void>)funcTable[886])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[886])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(ImDrawDataBuilderPtr self)
 		{
 			DestroyNative((ImDrawDataBuilder*)self);
@@ -44,9 +462,9 @@ namespace Hexa.NET.ImGui
 		internal static void* GetVarPtrNative(ImGuiStyleVarInfo* self, void* parent)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStyleVarInfo*, void*, void*>)funcTable[867])(self, parent);
+			return ((delegate* unmanaged[Cdecl]<ImGuiStyleVarInfo*, void*, void*>)funcTable[887])(self, parent);
 			#else
-			return (void*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[867])((nint)self, (nint)parent);
+			return (void*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[887])((nint)self, (nint)parent);
 			#endif
 		}
 
@@ -99,9 +517,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiStyleMod* ImGuiStyleModNative(ImGuiStyleVar idx, int v)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStyleVar, int, ImGuiStyleMod*>)funcTable[868])(idx, v);
+			return ((delegate* unmanaged[Cdecl]<ImGuiStyleVar, int, ImGuiStyleMod*>)funcTable[888])(idx, v);
 			#else
-			return (ImGuiStyleMod*)((delegate* unmanaged[Cdecl]<ImGuiStyleVar, int, nint>)funcTable[868])(idx, v);
+			return (ImGuiStyleMod*)((delegate* unmanaged[Cdecl]<ImGuiStyleVar, int, nint>)funcTable[888])(idx, v);
 			#endif
 		}
 
@@ -121,9 +539,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiStyleMod* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStyleMod*, void>)funcTable[869])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiStyleMod*, void>)funcTable[889])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[869])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[889])((nint)self);
 			#endif
 		}
 
@@ -153,9 +571,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiStyleMod* ImGuiStyleModNative(ImGuiStyleVar idx, float v)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, ImGuiStyleMod*>)funcTable[870])(idx, v);
+			return ((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, ImGuiStyleMod*>)funcTable[890])(idx, v);
 			#else
-			return (ImGuiStyleMod*)((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, nint>)funcTable[870])(idx, v);
+			return (ImGuiStyleMod*)((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, nint>)funcTable[890])(idx, v);
 			#endif
 		}
 
@@ -175,9 +593,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiStyleMod* ImGuiStyleModNative(ImGuiStyleVar idx, Vector2 v)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStyleVar, Vector2, ImGuiStyleMod*>)funcTable[871])(idx, v);
+			return ((delegate* unmanaged[Cdecl]<ImGuiStyleVar, Vector2, ImGuiStyleMod*>)funcTable[891])(idx, v);
 			#else
-			return (ImGuiStyleMod*)((delegate* unmanaged[Cdecl]<ImGuiStyleVar, Vector2, nint>)funcTable[871])(idx, v);
+			return (ImGuiStyleMod*)((delegate* unmanaged[Cdecl]<ImGuiStyleVar, Vector2, nint>)funcTable[891])(idx, v);
 			#endif
 		}
 
@@ -197,9 +615,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiComboPreviewData* ImGuiComboPreviewDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiComboPreviewData*>)funcTable[872])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiComboPreviewData*>)funcTable[892])();
 			#else
-			return (ImGuiComboPreviewData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[872])();
+			return (ImGuiComboPreviewData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[892])();
 			#endif
 		}
 
@@ -219,9 +637,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiComboPreviewData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiComboPreviewData*, void>)funcTable[873])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiComboPreviewData*, void>)funcTable[893])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[873])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[893])((nint)self);
 			#endif
 		}
 
@@ -251,9 +669,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiMenuColumns* ImGuiMenuColumnsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*>)funcTable[874])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*>)funcTable[894])();
 			#else
-			return (ImGuiMenuColumns*)((delegate* unmanaged[Cdecl]<nint>)funcTable[874])();
+			return (ImGuiMenuColumns*)((delegate* unmanaged[Cdecl]<nint>)funcTable[894])();
 			#endif
 		}
 
@@ -273,9 +691,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiMenuColumns* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*, void>)funcTable[875])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*, void>)funcTable[895])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[875])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[895])((nint)self);
 			#endif
 		}
 
@@ -305,9 +723,9 @@ namespace Hexa.NET.ImGui
 		internal static void UpdateNative(ImGuiMenuColumns* self, float spacing, byte windowReappearing)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*, float, byte, void>)funcTable[876])(self, spacing, windowReappearing);
+			((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*, float, byte, void>)funcTable[896])(self, spacing, windowReappearing);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, float, byte, void>)funcTable[876])((nint)self, spacing, windowReappearing);
+			((delegate* unmanaged[Cdecl]<nint, float, byte, void>)funcTable[896])((nint)self, spacing, windowReappearing);
 			#endif
 		}
 
@@ -337,9 +755,9 @@ namespace Hexa.NET.ImGui
 		internal static float DeclColumnsNative(ImGuiMenuColumns* self, float wIcon, float wLabel, float wShortcut, float wMark)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*, float, float, float, float, float>)funcTable[877])(self, wIcon, wLabel, wShortcut, wMark);
+			return ((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*, float, float, float, float, float>)funcTable[897])(self, wIcon, wLabel, wShortcut, wMark);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float, float, float, float, float>)funcTable[877])((nint)self, wIcon, wLabel, wShortcut, wMark);
+			return (float)((delegate* unmanaged[Cdecl]<nint, float, float, float, float, float>)funcTable[897])((nint)self, wIcon, wLabel, wShortcut, wMark);
 			#endif
 		}
 
@@ -371,9 +789,9 @@ namespace Hexa.NET.ImGui
 		internal static void CalcNextTotalWidthNative(ImGuiMenuColumns* self, byte updateOffsets)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*, byte, void>)funcTable[878])(self, updateOffsets);
+			((delegate* unmanaged[Cdecl]<ImGuiMenuColumns*, byte, void>)funcTable[898])(self, updateOffsets);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, byte, void>)funcTable[878])((nint)self, updateOffsets);
+			((delegate* unmanaged[Cdecl]<nint, byte, void>)funcTable[898])((nint)self, updateOffsets);
 			#endif
 		}
 
@@ -403,9 +821,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiInputTextDeactivatedState* ImGuiInputTextDeactivatedStateNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextDeactivatedState*>)funcTable[879])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextDeactivatedState*>)funcTable[899])();
 			#else
-			return (ImGuiInputTextDeactivatedState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[879])();
+			return (ImGuiInputTextDeactivatedState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[899])();
 			#endif
 		}
 
@@ -425,9 +843,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiInputTextDeactivatedState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextDeactivatedState*, void>)funcTable[880])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextDeactivatedState*, void>)funcTable[900])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[880])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[900])((nint)self);
 			#endif
 		}
 
@@ -457,9 +875,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearFreeMemoryNative(ImGuiInputTextDeactivatedState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextDeactivatedState*, void>)funcTable[881])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextDeactivatedState*, void>)funcTable[901])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[881])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[901])((nint)self);
 			#endif
 		}
 
@@ -489,9 +907,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiInputTextState* ImGuiInputTextStateNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*>)funcTable[882])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*>)funcTable[902])();
 			#else
-			return (ImGuiInputTextState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[882])();
+			return (ImGuiInputTextState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[902])();
 			#endif
 		}
 
@@ -511,9 +929,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiInputTextState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[883])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[903])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[883])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[903])((nint)self);
 			#endif
 		}
 
@@ -543,9 +961,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearTextNative(ImGuiInputTextState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[884])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[904])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[884])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[904])((nint)self);
 			#endif
 		}
 
@@ -575,9 +993,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearFreeMemoryNative(ImGuiInputTextState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[885])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[905])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[885])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[905])((nint)self);
 			#endif
 		}
 
@@ -607,9 +1025,9 @@ namespace Hexa.NET.ImGui
 		internal static void OnKeyPressedNative(ImGuiInputTextState* self, int key)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, int, void>)funcTable[886])(self, key);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, int, void>)funcTable[906])(self, key);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[886])((nint)self, key);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[906])((nint)self, key);
 			#endif
 		}
 
@@ -639,9 +1057,9 @@ namespace Hexa.NET.ImGui
 		internal static void OnCharPressedNative(ImGuiInputTextState* self, uint c)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, uint, void>)funcTable[887])(self, c);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, uint, void>)funcTable[907])(self, c);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[887])((nint)self, c);
+			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[907])((nint)self, c);
 			#endif
 		}
 
@@ -671,9 +1089,9 @@ namespace Hexa.NET.ImGui
 		internal static float GetPreferredOffsetXNative(ImGuiInputTextState* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, float>)funcTable[888])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, float>)funcTable[908])(self);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[888])((nint)self);
+			return (float)((delegate* unmanaged[Cdecl]<nint, float>)funcTable[908])((nint)self);
 			#endif
 		}
 
@@ -702,17 +1120,72 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void CursorAnimResetNative(ImGuiInputTextState* self)
+		internal static byte* GetTextNative(ImGuiInputTextState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[889])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, byte*>)funcTable[909])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[889])((nint)self);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[909])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
+		/// </summary>
+		public static byte* GetText(ImGuiInputTextStatePtr self)
+		{
+			byte* ret = GetTextNative((ImGuiInputTextState*)self);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string GetTextS(ImGuiInputTextStatePtr self)
+		{
+			string ret = Utils.DecodeStringUTF8(GetTextNative((ImGuiInputTextState*)self));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* GetText(ref ImGuiInputTextState self)
+		{
+			fixed (ImGuiInputTextState* pself = &self)
+			{
+				byte* ret = GetTextNative((ImGuiInputTextState*)pself);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string GetTextS(ref ImGuiInputTextState self)
+		{
+			fixed (ImGuiInputTextState* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(GetTextNative((ImGuiInputTextState*)pself));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Cursor &amp; Selection<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void CursorAnimResetNative(ImGuiInputTextState* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[910])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[910])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// Cursor &amp; Selection<br/>
 		/// </summary>
 		public static void CursorAnimReset(ImGuiInputTextStatePtr self)
 		{
@@ -720,7 +1193,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Cursor &amp; Selection<br/>
 		/// </summary>
 		public static void CursorAnimReset(ref ImGuiInputTextState self)
 		{
@@ -737,9 +1210,9 @@ namespace Hexa.NET.ImGui
 		internal static void CursorClampNative(ImGuiInputTextState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[890])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[911])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[890])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[911])((nint)self);
 			#endif
 		}
 
@@ -769,9 +1242,9 @@ namespace Hexa.NET.ImGui
 		internal static byte HasSelectionNative(ImGuiInputTextState* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, byte>)funcTable[891])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, byte>)funcTable[912])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[891])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[912])((nint)self);
 			#endif
 		}
 
@@ -803,9 +1276,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearSelectionNative(ImGuiInputTextState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[892])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[913])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[892])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[913])((nint)self);
 			#endif
 		}
 
@@ -835,9 +1308,9 @@ namespace Hexa.NET.ImGui
 		internal static int GetCursorPosNative(ImGuiInputTextState* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, int>)funcTable[893])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, int>)funcTable[914])(self);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[893])((nint)self);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[914])((nint)self);
 			#endif
 		}
 
@@ -869,9 +1342,9 @@ namespace Hexa.NET.ImGui
 		internal static int GetSelectionStartNative(ImGuiInputTextState* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, int>)funcTable[894])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, int>)funcTable[915])(self);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[894])((nint)self);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[915])((nint)self);
 			#endif
 		}
 
@@ -903,9 +1376,9 @@ namespace Hexa.NET.ImGui
 		internal static int GetSelectionEndNative(ImGuiInputTextState* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, int>)funcTable[895])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, int>)funcTable[916])(self);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[895])((nint)self);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[916])((nint)self);
 			#endif
 		}
 
@@ -934,12 +1407,44 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetSelectionNative(ImGuiInputTextState* self, int start, int end)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, int, int, void>)funcTable[917])(self, start, end);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[917])((nint)self, start, end);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetSelection(ImGuiInputTextStatePtr self, int start, int end)
+		{
+			SetSelectionNative((ImGuiInputTextState*)self, start, end);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetSelection(ref ImGuiInputTextState self, int start, int end)
+		{
+			fixed (ImGuiInputTextState* pself = &self)
+			{
+				SetSelectionNative((ImGuiInputTextState*)pself, start, end);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void SelectAllNative(ImGuiInputTextState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[896])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[918])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[896])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[918])((nint)self);
 			#endif
 		}
 
@@ -963,20 +1468,28 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Reload user buf (WIP #2890)<br/>
+		/// If you modify underlying user-passed const char* while active you need to call this (InputText V2 may lift this)<br/>
+		/// strcpy(my_buf, "hello");<br/>
+		/// if (ImGuiInputTextState* state = ImGui::GetInputTextState(id))  id may be ImGui::GetItemID() is last item<br/>
+		/// state-&gt;ReloadUserBufAndSelectAll();<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ReloadUserBufAndSelectAllNative(ImGuiInputTextState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[897])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[919])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[897])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[919])((nint)self);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Reload user buf (WIP #2890)<br/>
+		/// If you modify underlying user-passed const char* while active you need to call this (InputText V2 may lift this)<br/>
+		/// strcpy(my_buf, "hello");<br/>
+		/// if (ImGuiInputTextState* state = ImGui::GetInputTextState(id))  id may be ImGui::GetItemID() is last item<br/>
+		/// state-&gt;ReloadUserBufAndSelectAll();<br/>
 		/// </summary>
 		public static void ReloadUserBufAndSelectAll(ImGuiInputTextStatePtr self)
 		{
@@ -984,7 +1497,11 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Reload user buf (WIP #2890)<br/>
+		/// If you modify underlying user-passed const char* while active you need to call this (InputText V2 may lift this)<br/>
+		/// strcpy(my_buf, "hello");<br/>
+		/// if (ImGuiInputTextState* state = ImGui::GetInputTextState(id))  id may be ImGui::GetItemID() is last item<br/>
+		/// state-&gt;ReloadUserBufAndSelectAll();<br/>
 		/// </summary>
 		public static void ReloadUserBufAndSelectAll(ref ImGuiInputTextState self)
 		{
@@ -1001,9 +1518,9 @@ namespace Hexa.NET.ImGui
 		internal static void ReloadUserBufAndKeepSelectionNative(ImGuiInputTextState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[898])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[920])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[898])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[920])((nint)self);
 			#endif
 		}
 
@@ -1033,9 +1550,9 @@ namespace Hexa.NET.ImGui
 		internal static void ReloadUserBufAndMoveToEndNative(ImGuiInputTextState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[899])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[921])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[899])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[921])((nint)self);
 			#endif
 		}
 
@@ -1065,9 +1582,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiNextWindowData* ImGuiNextWindowDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiNextWindowData*>)funcTable[900])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiNextWindowData*>)funcTable[922])();
 			#else
-			return (ImGuiNextWindowData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[900])();
+			return (ImGuiNextWindowData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[922])();
 			#endif
 		}
 
@@ -1087,9 +1604,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiNextWindowData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiNextWindowData*, void>)funcTable[901])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiNextWindowData*, void>)funcTable[923])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[901])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[923])((nint)self);
 			#endif
 		}
 
@@ -1119,9 +1636,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearFlagsNative(ImGuiNextWindowData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiNextWindowData*, void>)funcTable[902])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiNextWindowData*, void>)funcTable[924])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[902])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[924])((nint)self);
 			#endif
 		}
 
@@ -1151,9 +1668,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiNextItemData* ImGuiNextItemDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiNextItemData*>)funcTable[903])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiNextItemData*>)funcTable[925])();
 			#else
-			return (ImGuiNextItemData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[903])();
+			return (ImGuiNextItemData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[925])();
 			#endif
 		}
 
@@ -1173,9 +1690,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiNextItemData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiNextItemData*, void>)funcTable[904])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiNextItemData*, void>)funcTable[926])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[904])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[926])((nint)self);
 			#endif
 		}
 
@@ -1205,9 +1722,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearFlagsNative(ImGuiNextItemData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiNextItemData*, void>)funcTable[905])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiNextItemData*, void>)funcTable[927])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[905])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[927])((nint)self);
 			#endif
 		}
 
@@ -1237,9 +1754,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiLastItemData* ImGuiLastItemDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiLastItemData*>)funcTable[906])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiLastItemData*>)funcTable[928])();
 			#else
-			return (ImGuiLastItemData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[906])();
+			return (ImGuiLastItemData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[928])();
 			#endif
 		}
 
@@ -1259,9 +1776,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiLastItemData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiLastItemData*, void>)funcTable[907])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiLastItemData*, void>)funcTable[929])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[907])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[929])((nint)self);
 			#endif
 		}
 
@@ -1291,9 +1808,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiErrorRecoveryState* ImGuiErrorRecoveryStateNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiErrorRecoveryState*>)funcTable[908])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiErrorRecoveryState*>)funcTable[930])();
 			#else
-			return (ImGuiErrorRecoveryState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[908])();
+			return (ImGuiErrorRecoveryState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[930])();
 			#endif
 		}
 
@@ -1313,9 +1830,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiErrorRecoveryState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiErrorRecoveryState*, void>)funcTable[909])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiErrorRecoveryState*, void>)funcTable[931])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[909])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[931])((nint)self);
 			#endif
 		}
 
@@ -1345,9 +1862,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiPtrOrIndex* ImGuiPtrOrIndexNative(void* ptr)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, ImGuiPtrOrIndex*>)funcTable[910])(ptr);
+			return ((delegate* unmanaged[Cdecl]<void*, ImGuiPtrOrIndex*>)funcTable[932])(ptr);
 			#else
-			return (ImGuiPtrOrIndex*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[910])((nint)ptr);
+			return (ImGuiPtrOrIndex*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[932])((nint)ptr);
 			#endif
 		}
 
@@ -1376,9 +1893,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiPtrOrIndex* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiPtrOrIndex*, void>)funcTable[911])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiPtrOrIndex*, void>)funcTable[933])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[911])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[933])((nint)self);
 			#endif
 		}
 
@@ -1408,9 +1925,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiPtrOrIndex* ImGuiPtrOrIndexNative(int index)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiPtrOrIndex*>)funcTable[912])(index);
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiPtrOrIndex*>)funcTable[934])(index);
 			#else
-			return (ImGuiPtrOrIndex*)((delegate* unmanaged[Cdecl]<int, nint>)funcTable[912])(index);
+			return (ImGuiPtrOrIndex*)((delegate* unmanaged[Cdecl]<int, nint>)funcTable[934])(index);
 			#endif
 		}
 
@@ -1430,9 +1947,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiPopupData* ImGuiPopupDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiPopupData*>)funcTable[913])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiPopupData*>)funcTable[935])();
 			#else
-			return (ImGuiPopupData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[913])();
+			return (ImGuiPopupData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[935])();
 			#endif
 		}
 
@@ -1452,9 +1969,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiPopupData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiPopupData*, void>)funcTable[914])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiPopupData*, void>)funcTable[936])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[914])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[936])((nint)self);
 			#endif
 		}
 
@@ -1484,9 +2001,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiInputEvent* ImGuiInputEventNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiInputEvent*>)funcTable[915])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiInputEvent*>)funcTable[937])();
 			#else
-			return (ImGuiInputEvent*)((delegate* unmanaged[Cdecl]<nint>)funcTable[915])();
+			return (ImGuiInputEvent*)((delegate* unmanaged[Cdecl]<nint>)funcTable[937])();
 			#endif
 		}
 
@@ -1506,9 +2023,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiInputEvent* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiInputEvent*, void>)funcTable[916])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiInputEvent*, void>)funcTable[938])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[916])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[938])((nint)self);
 			#endif
 		}
 
@@ -1538,9 +2055,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiKeyRoutingData* ImGuiKeyRoutingDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingData*>)funcTable[917])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingData*>)funcTable[939])();
 			#else
-			return (ImGuiKeyRoutingData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[917])();
+			return (ImGuiKeyRoutingData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[939])();
 			#endif
 		}
 
@@ -1560,9 +2077,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiKeyRoutingData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingData*, void>)funcTable[918])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingData*, void>)funcTable[940])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[918])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[940])((nint)self);
 			#endif
 		}
 
@@ -1592,9 +2109,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiKeyRoutingTable* ImGuiKeyRoutingTableNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingTable*>)funcTable[919])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingTable*>)funcTable[941])();
 			#else
-			return (ImGuiKeyRoutingTable*)((delegate* unmanaged[Cdecl]<nint>)funcTable[919])();
+			return (ImGuiKeyRoutingTable*)((delegate* unmanaged[Cdecl]<nint>)funcTable[941])();
 			#endif
 		}
 
@@ -1614,9 +2131,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiKeyRoutingTable* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingTable*, void>)funcTable[920])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingTable*, void>)funcTable[942])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[920])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[942])((nint)self);
 			#endif
 		}
 
@@ -1646,9 +2163,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearNative(ImGuiKeyRoutingTable* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingTable*, void>)funcTable[921])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiKeyRoutingTable*, void>)funcTable[943])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[921])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[943])((nint)self);
 			#endif
 		}
 
@@ -1678,9 +2195,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiKeyOwnerData* ImGuiKeyOwnerDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiKeyOwnerData*>)funcTable[922])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiKeyOwnerData*>)funcTable[944])();
 			#else
-			return (ImGuiKeyOwnerData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[922])();
+			return (ImGuiKeyOwnerData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[944])();
 			#endif
 		}
 
@@ -1700,9 +2217,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiKeyOwnerData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiKeyOwnerData*, void>)funcTable[923])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiKeyOwnerData*, void>)funcTable[945])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[923])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[945])((nint)self);
 			#endif
 		}
 
@@ -1732,9 +2249,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiListClipperRange FromIndicesNative(int min, int max)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int, ImGuiListClipperRange>)funcTable[924])(min, max);
+			return ((delegate* unmanaged[Cdecl]<int, int, ImGuiListClipperRange>)funcTable[946])(min, max);
 			#else
-			return (ImGuiListClipperRange)((delegate* unmanaged[Cdecl]<int, int, ImGuiListClipperRange>)funcTable[924])(min, max);
+			return (ImGuiListClipperRange)((delegate* unmanaged[Cdecl]<int, int, ImGuiListClipperRange>)funcTable[946])(min, max);
 			#endif
 		}
 
@@ -1754,9 +2271,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiListClipperRange FromPositionsNative(float y1, float y2, int offMin, int offMax)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float, float, int, int, ImGuiListClipperRange>)funcTable[925])(y1, y2, offMin, offMax);
+			return ((delegate* unmanaged[Cdecl]<float, float, int, int, ImGuiListClipperRange>)funcTable[947])(y1, y2, offMin, offMax);
 			#else
-			return (ImGuiListClipperRange)((delegate* unmanaged[Cdecl]<float, float, int, int, ImGuiListClipperRange>)funcTable[925])(y1, y2, offMin, offMax);
+			return (ImGuiListClipperRange)((delegate* unmanaged[Cdecl]<float, float, int, int, ImGuiListClipperRange>)funcTable[947])(y1, y2, offMin, offMax);
 			#endif
 		}
 
@@ -1776,9 +2293,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiListClipperData* ImGuiListClipperDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiListClipperData*>)funcTable[926])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiListClipperData*>)funcTable[948])();
 			#else
-			return (ImGuiListClipperData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[926])();
+			return (ImGuiListClipperData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[948])();
 			#endif
 		}
 
@@ -1798,9 +2315,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiListClipperData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiListClipperData*, void>)funcTable[927])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiListClipperData*, void>)funcTable[949])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[927])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[949])((nint)self);
 			#endif
 		}
 
@@ -1830,9 +2347,9 @@ namespace Hexa.NET.ImGui
 		internal static void ResetNative(ImGuiListClipperData* self, ImGuiListClipper* clipper)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiListClipperData*, ImGuiListClipper*, void>)funcTable[928])(self, clipper);
+			((delegate* unmanaged[Cdecl]<ImGuiListClipperData*, ImGuiListClipper*, void>)funcTable[950])(self, clipper);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[928])((nint)self, (nint)clipper);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[950])((nint)self, (nint)clipper);
 			#endif
 		}
 
@@ -1887,9 +2404,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiNavItemData* ImGuiNavItemDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiNavItemData*>)funcTable[929])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiNavItemData*>)funcTable[951])();
 			#else
-			return (ImGuiNavItemData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[929])();
+			return (ImGuiNavItemData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[951])();
 			#endif
 		}
 
@@ -1909,9 +2426,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiNavItemData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiNavItemData*, void>)funcTable[930])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiNavItemData*, void>)funcTable[952])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[930])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[952])((nint)self);
 			#endif
 		}
 
@@ -1941,9 +2458,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearNative(ImGuiNavItemData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiNavItemData*, void>)funcTable[931])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiNavItemData*, void>)funcTable[953])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[931])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[953])((nint)self);
 			#endif
 		}
 
@@ -1973,9 +2490,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiTypingSelectState* ImGuiTypingSelectStateNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectState*>)funcTable[932])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectState*>)funcTable[954])();
 			#else
-			return (ImGuiTypingSelectState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[932])();
+			return (ImGuiTypingSelectState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[954])();
 			#endif
 		}
 
@@ -1995,9 +2512,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiTypingSelectState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTypingSelectState*, void>)funcTable[933])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiTypingSelectState*, void>)funcTable[955])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[933])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[955])((nint)self);
 			#endif
 		}
 
@@ -2027,9 +2544,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearNative(ImGuiTypingSelectState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTypingSelectState*, void>)funcTable[934])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiTypingSelectState*, void>)funcTable[956])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[934])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[956])((nint)self);
 			#endif
 		}
 
@@ -2059,9 +2576,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiOldColumnData* ImGuiOldColumnDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumnData*>)funcTable[935])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumnData*>)funcTable[957])();
 			#else
-			return (ImGuiOldColumnData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[935])();
+			return (ImGuiOldColumnData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[957])();
 			#endif
 		}
 
@@ -2081,9 +2598,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiOldColumnData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiOldColumnData*, void>)funcTable[936])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiOldColumnData*, void>)funcTable[958])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[936])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[958])((nint)self);
 			#endif
 		}
 
@@ -2113,9 +2630,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiOldColumns* ImGuiOldColumnsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumns*>)funcTable[937])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumns*>)funcTable[959])();
 			#else
-			return (ImGuiOldColumns*)((delegate* unmanaged[Cdecl]<nint>)funcTable[937])();
+			return (ImGuiOldColumns*)((delegate* unmanaged[Cdecl]<nint>)funcTable[959])();
 			#endif
 		}
 
@@ -2135,9 +2652,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiOldColumns* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, void>)funcTable[938])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, void>)funcTable[960])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[938])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[960])((nint)self);
 			#endif
 		}
 
@@ -2167,9 +2684,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiBoxSelectState* ImGuiBoxSelectStateNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiBoxSelectState*>)funcTable[939])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiBoxSelectState*>)funcTable[961])();
 			#else
-			return (ImGuiBoxSelectState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[939])();
+			return (ImGuiBoxSelectState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[961])();
 			#endif
 		}
 
@@ -2189,9 +2706,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiBoxSelectState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiBoxSelectState*, void>)funcTable[940])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiBoxSelectState*, void>)funcTable[962])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[940])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[962])((nint)self);
 			#endif
 		}
 
@@ -2221,9 +2738,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiMultiSelectTempData* ImGuiMultiSelectTempDataNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*>)funcTable[941])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*>)funcTable[963])();
 			#else
-			return (ImGuiMultiSelectTempData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[941])();
+			return (ImGuiMultiSelectTempData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[963])();
 			#endif
 		}
 
@@ -2243,9 +2760,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiMultiSelectTempData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, void>)funcTable[942])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, void>)funcTable[964])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[942])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[964])((nint)self);
 			#endif
 		}
 
@@ -2275,9 +2792,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearNative(ImGuiMultiSelectTempData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, void>)funcTable[943])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, void>)funcTable[965])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[943])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[965])((nint)self);
 			#endif
 		}
 
@@ -2307,9 +2824,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearIONative(ImGuiMultiSelectTempData* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, void>)funcTable[944])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, void>)funcTable[966])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[944])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[966])((nint)self);
 			#endif
 		}
 
@@ -2339,9 +2856,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiMultiSelectState* ImGuiMultiSelectStateNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiMultiSelectState*>)funcTable[945])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiMultiSelectState*>)funcTable[967])();
 			#else
-			return (ImGuiMultiSelectState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[945])();
+			return (ImGuiMultiSelectState*)((delegate* unmanaged[Cdecl]<nint>)funcTable[967])();
 			#endif
 		}
 
@@ -2361,9 +2878,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiMultiSelectState* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectState*, void>)funcTable[946])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectState*, void>)funcTable[968])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[946])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[968])((nint)self);
 			#endif
 		}
 
@@ -2393,9 +2910,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiDockNode* ImGuiDockNodeNative(uint id)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImGuiDockNode*>)funcTable[947])(id);
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiDockNode*>)funcTable[969])(id);
 			#else
-			return (ImGuiDockNode*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[947])(id);
+			return (ImGuiDockNode*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[969])(id);
 			#endif
 		}
 
@@ -2415,9 +2932,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiDockNode* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiDockNode*, void>)funcTable[948])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiDockNode*, void>)funcTable[970])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[948])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[970])((nint)self);
 			#endif
 		}
 
@@ -2447,9 +2964,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsRootNodeNative(ImGuiDockNode* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[949])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[971])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[949])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[971])((nint)self);
 			#endif
 		}
 
@@ -2481,9 +2998,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsDockSpaceNative(ImGuiDockNode* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[950])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[972])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[950])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[972])((nint)self);
 			#endif
 		}
 
@@ -2515,9 +3032,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsFloatingNodeNative(ImGuiDockNode* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[951])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[973])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[951])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[973])((nint)self);
 			#endif
 		}
 
@@ -2549,9 +3066,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsCentralNodeNative(ImGuiDockNode* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[952])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[974])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[952])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[974])((nint)self);
 			#endif
 		}
 
@@ -2583,9 +3100,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsHiddenTabBarNative(ImGuiDockNode* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[953])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[975])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[953])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[975])((nint)self);
 			#endif
 		}
 
@@ -2617,9 +3134,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsNoTabBarNative(ImGuiDockNode* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[954])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[976])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[954])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[976])((nint)self);
 			#endif
 		}
 
@@ -2651,9 +3168,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsSplitNodeNative(ImGuiDockNode* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[955])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[977])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[955])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[977])((nint)self);
 			#endif
 		}
 
@@ -2685,9 +3202,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsLeafNodeNative(ImGuiDockNode* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[956])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[978])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[956])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[978])((nint)self);
 			#endif
 		}
 
@@ -2719,9 +3236,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsEmptyNative(ImGuiDockNode* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[957])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)funcTable[979])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[957])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[979])((nint)self);
 			#endif
 		}
 
@@ -2753,9 +3270,9 @@ namespace Hexa.NET.ImGui
 		internal static ImRect RectNative(ImGuiDockNode* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, ImRect>)funcTable[958])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, ImRect>)funcTable[980])(self);
 			#else
-			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect>)funcTable[958])((nint)self);
+			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect>)funcTable[980])((nint)self);
 			#endif
 		}
 
@@ -2787,9 +3304,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetLocalFlagsNative(ImGuiDockNode* self, ImGuiDockNodeFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiDockNode*, ImGuiDockNodeFlags, void>)funcTable[959])(self, flags);
+			((delegate* unmanaged[Cdecl]<ImGuiDockNode*, ImGuiDockNodeFlags, void>)funcTable[981])(self, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImGuiDockNodeFlags, void>)funcTable[959])((nint)self, flags);
+			((delegate* unmanaged[Cdecl]<nint, ImGuiDockNodeFlags, void>)funcTable[981])((nint)self, flags);
 			#endif
 		}
 
@@ -2819,9 +3336,9 @@ namespace Hexa.NET.ImGui
 		internal static void UpdateMergedFlagsNative(ImGuiDockNode* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiDockNode*, void>)funcTable[960])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiDockNode*, void>)funcTable[982])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[960])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[982])((nint)self);
 			#endif
 		}
 
@@ -2851,9 +3368,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiDockContext* ImGuiDockContextNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockContext*>)funcTable[961])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockContext*>)funcTable[983])();
 			#else
-			return (ImGuiDockContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[961])();
+			return (ImGuiDockContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[983])();
 			#endif
 		}
 
@@ -2873,9 +3390,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiDockContext* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiDockContext*, void>)funcTable[962])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiDockContext*, void>)funcTable[984])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[962])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[984])((nint)self);
 			#endif
 		}
 
@@ -2905,9 +3422,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiViewportP* ImGuiViewportPNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiViewportP*>)funcTable[963])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiViewportP*>)funcTable[985])();
 			#else
-			return (ImGuiViewportP*)((delegate* unmanaged[Cdecl]<nint>)funcTable[963])();
+			return (ImGuiViewportP*)((delegate* unmanaged[Cdecl]<nint>)funcTable[985])();
 			#endif
 		}
 
@@ -2927,9 +3444,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiViewportP* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiViewportP*, void>)funcTable[964])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiViewportP*, void>)funcTable[986])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[964])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[986])((nint)self);
 			#endif
 		}
 
@@ -2959,9 +3476,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearRequestFlagsNative(ImGuiViewportP* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiViewportP*, void>)funcTable[965])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiViewportP*, void>)funcTable[987])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[965])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[987])((nint)self);
 			#endif
 		}
 
@@ -2985,20 +3502,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Calculate work rect possize given a set of offset (we have 1 pair of offset for rect locked from last frame data, and 1 pair for currently building rect)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static Vector2 CalcWorkRectPosNative(ImGuiViewportP* self, Vector2 insetMin)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiViewportP*, Vector2, Vector2>)funcTable[966])(self, insetMin);
+			return ((delegate* unmanaged[Cdecl]<ImGuiViewportP*, Vector2, Vector2>)funcTable[988])(self, insetMin);
 			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2>)funcTable[966])((nint)self, insetMin);
+			return (Vector2)((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2>)funcTable[988])((nint)self, insetMin);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Calculate work rect possize given a set of offset (we have 1 pair of offset for rect locked from last frame data, and 1 pair for currently building rect)<br/>
 		/// </summary>
 		public static Vector2 CalcWorkRectPos(ImGuiViewportPPtr self, Vector2 insetMin)
 		{
@@ -3007,7 +3524,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Calculate work rect possize given a set of offset (we have 1 pair of offset for rect locked from last frame data, and 1 pair for currently building rect)<br/>
 		/// </summary>
 		public static Vector2 CalcWorkRectPos(ref ImGuiViewportP self, Vector2 insetMin)
 		{
@@ -3025,9 +3542,9 @@ namespace Hexa.NET.ImGui
 		internal static Vector2 CalcWorkRectSizeNative(ImGuiViewportP* self, Vector2 insetMin, Vector2 insetMax)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiViewportP*, Vector2, Vector2, Vector2>)funcTable[967])(self, insetMin, insetMax);
+			return ((delegate* unmanaged[Cdecl]<ImGuiViewportP*, Vector2, Vector2, Vector2>)funcTable[989])(self, insetMin, insetMax);
 			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2>)funcTable[967])((nint)self, insetMin, insetMax);
+			return (Vector2)((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2>)funcTable[989])((nint)self, insetMin, insetMax);
 			#endif
 		}
 
@@ -3059,9 +3576,9 @@ namespace Hexa.NET.ImGui
 		internal static void UpdateWorkRectNative(ImGuiViewportP* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiViewportP*, void>)funcTable[968])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiViewportP*, void>)funcTable[990])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[968])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[990])((nint)self);
 			#endif
 		}
 
@@ -3085,20 +3602,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helpers to retrieve ImRect (we don't need to store BuildWorkRect as every access tend to change it, hence the code asymmetry)<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImRect GetMainRectNative(ImGuiViewportP* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiViewportP*, ImRect>)funcTable[969])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiViewportP*, ImRect>)funcTable[991])(self);
 			#else
-			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect>)funcTable[969])((nint)self);
+			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect>)funcTable[991])((nint)self);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helpers to retrieve ImRect (we don't need to store BuildWorkRect as every access tend to change it, hence the code asymmetry)<br/>
 		/// </summary>
 		public static ImRect GetMainRect(ImGuiViewportPPtr self)
 		{
@@ -3107,7 +3624,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Helpers to retrieve ImRect (we don't need to store BuildWorkRect as every access tend to change it, hence the code asymmetry)<br/>
 		/// </summary>
 		public static ImRect GetMainRect(ref ImGuiViewportP self)
 		{
@@ -3125,9 +3642,9 @@ namespace Hexa.NET.ImGui
 		internal static ImRect GetWorkRectNative(ImGuiViewportP* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiViewportP*, ImRect>)funcTable[970])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiViewportP*, ImRect>)funcTable[992])(self);
 			#else
-			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect>)funcTable[970])((nint)self);
+			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect>)funcTable[992])((nint)self);
 			#endif
 		}
 
@@ -3159,9 +3676,9 @@ namespace Hexa.NET.ImGui
 		internal static ImRect GetBuildWorkRectNative(ImGuiViewportP* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiViewportP*, ImRect>)funcTable[971])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiViewportP*, ImRect>)funcTable[993])(self);
 			#else
-			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect>)funcTable[971])((nint)self);
+			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect>)funcTable[993])((nint)self);
 			#endif
 		}
 
@@ -3193,9 +3710,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiWindowSettings* ImGuiWindowSettingsNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindowSettings*>)funcTable[972])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindowSettings*>)funcTable[994])();
 			#else
-			return (ImGuiWindowSettings*)((delegate* unmanaged[Cdecl]<nint>)funcTable[972])();
+			return (ImGuiWindowSettings*)((delegate* unmanaged[Cdecl]<nint>)funcTable[994])();
 			#endif
 		}
 
@@ -3215,9 +3732,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiWindowSettings* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiWindowSettings*, void>)funcTable[973])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiWindowSettings*, void>)funcTable[995])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[973])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[995])((nint)self);
 			#endif
 		}
 
@@ -3247,9 +3764,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* GetNameNative(ImGuiWindowSettings* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindowSettings*, byte*>)funcTable[974])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindowSettings*, byte*>)funcTable[996])(self);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[974])((nint)self);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[996])((nint)self);
 			#endif
 		}
 
@@ -3302,9 +3819,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiSettingsHandler* ImGuiSettingsHandlerNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiSettingsHandler*>)funcTable[975])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiSettingsHandler*>)funcTable[997])();
 			#else
-			return (ImGuiSettingsHandler*)((delegate* unmanaged[Cdecl]<nint>)funcTable[975])();
+			return (ImGuiSettingsHandler*)((delegate* unmanaged[Cdecl]<nint>)funcTable[997])();
 			#endif
 		}
 
@@ -3324,9 +3841,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiSettingsHandler* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiSettingsHandler*, void>)funcTable[976])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiSettingsHandler*, void>)funcTable[998])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[976])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[998])((nint)self);
 			#endif
 		}
 
@@ -3356,9 +3873,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiDebugAllocInfo* ImGuiDebugAllocInfoNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDebugAllocInfo*>)funcTable[977])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiDebugAllocInfo*>)funcTable[999])();
 			#else
-			return (ImGuiDebugAllocInfo*)((delegate* unmanaged[Cdecl]<nint>)funcTable[977])();
+			return (ImGuiDebugAllocInfo*)((delegate* unmanaged[Cdecl]<nint>)funcTable[999])();
 			#endif
 		}
 
@@ -3378,9 +3895,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiDebugAllocInfo* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiDebugAllocInfo*, void>)funcTable[978])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiDebugAllocInfo*, void>)funcTable[1000])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[978])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1000])((nint)self);
 			#endif
 		}
 
@@ -3410,9 +3927,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiStackLevelInfo* ImGuiStackLevelInfoNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStackLevelInfo*>)funcTable[979])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiStackLevelInfo*>)funcTable[1001])();
 			#else
-			return (ImGuiStackLevelInfo*)((delegate* unmanaged[Cdecl]<nint>)funcTable[979])();
+			return (ImGuiStackLevelInfo*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1001])();
 			#endif
 		}
 
@@ -3432,9 +3949,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiStackLevelInfo* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStackLevelInfo*, void>)funcTable[980])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiStackLevelInfo*, void>)funcTable[1002])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[980])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1002])((nint)self);
 			#endif
 		}
 
@@ -3464,9 +3981,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiDebugItemPathQuery* ImGuiDebugItemPathQueryNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiDebugItemPathQuery*>)funcTable[981])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiDebugItemPathQuery*>)funcTable[1003])();
 			#else
-			return (ImGuiDebugItemPathQuery*)((delegate* unmanaged[Cdecl]<nint>)funcTable[981])();
+			return (ImGuiDebugItemPathQuery*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1003])();
 			#endif
 		}
 
@@ -3486,9 +4003,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiDebugItemPathQuery* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiDebugItemPathQuery*, void>)funcTable[982])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiDebugItemPathQuery*, void>)funcTable[1004])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[982])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1004])((nint)self);
 			#endif
 		}
 
@@ -3518,9 +4035,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiIDStackTool* ImGuiIDStackToolNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiIDStackTool*>)funcTable[983])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiIDStackTool*>)funcTable[1005])();
 			#else
-			return (ImGuiIDStackTool*)((delegate* unmanaged[Cdecl]<nint>)funcTable[983])();
+			return (ImGuiIDStackTool*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1005])();
 			#endif
 		}
 
@@ -3540,9 +4057,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiIDStackTool* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiIDStackTool*, void>)funcTable[984])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiIDStackTool*, void>)funcTable[1006])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[984])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1006])((nint)self);
 			#endif
 		}
 
@@ -3572,9 +4089,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiContextHook* ImGuiContextHookNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiContextHook*>)funcTable[985])();
+			return ((delegate* unmanaged[Cdecl]<ImGuiContextHook*>)funcTable[1007])();
 			#else
-			return (ImGuiContextHook*)((delegate* unmanaged[Cdecl]<nint>)funcTable[985])();
+			return (ImGuiContextHook*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1007])();
 			#endif
 		}
 
@@ -3594,9 +4111,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiContextHook* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiContextHook*, void>)funcTable[986])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiContextHook*, void>)funcTable[1008])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[986])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1008])((nint)self);
 			#endif
 		}
 
@@ -3626,9 +4143,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiContext* ImGuiContextNative(ImFontAtlas* sharedFontAtlas)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImGuiContext*>)funcTable[987])(sharedFontAtlas);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImGuiContext*>)funcTable[1009])(sharedFontAtlas);
 			#else
-			return (ImGuiContext*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[987])((nint)sharedFontAtlas);
+			return (ImGuiContext*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[1009])((nint)sharedFontAtlas);
 			#endif
 		}
 
@@ -3660,9 +4177,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiContext* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)funcTable[988])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)funcTable[1010])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[988])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1010])((nint)self);
 			#endif
 		}
 
@@ -3692,9 +4209,9 @@ namespace Hexa.NET.ImGui
 		internal static ImGuiWindow* ImGuiWindowNative(ImGuiContext* context, byte* name)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiContext*, byte*, ImGuiWindow*>)funcTable[989])(context, name);
+			return ((delegate* unmanaged[Cdecl]<ImGuiContext*, byte*, ImGuiWindow*>)funcTable[1011])(context, name);
 			#else
-			return (ImGuiWindow*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[989])((nint)context, (nint)name);
+			return (ImGuiWindow*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)funcTable[1011])((nint)context, (nint)name);
 			#endif
 		}
 
@@ -3843,9 +4360,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImGuiWindow* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)funcTable[990])(self);
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)funcTable[1012])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[990])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1012])((nint)self);
 			#endif
 		}
 
@@ -3875,9 +4392,9 @@ namespace Hexa.NET.ImGui
 		internal static uint GetIDNative(ImGuiWindow* self, byte* str, byte* strEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, byte*, byte*, uint>)funcTable[991])(self, str, strEnd);
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, byte*, byte*, uint>)funcTable[1013])(self, str, strEnd);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, nint, nint, uint>)funcTable[991])((nint)self, (nint)str, (nint)strEnd);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, nint, nint, uint>)funcTable[1013])((nint)self, (nint)str, (nint)strEnd);
 			#endif
 		}
 
@@ -4515,514 +5032,6 @@ namespace Hexa.NET.ImGui
 				}
 				return ret;
 			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetID(ref ImGuiWindow self, in byte str, in byte strEnd)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				fixed (byte* pstr = &str)
-				{
-					fixed (byte* pstrEnd = &strEnd)
-					{
-						uint ret = GetIDNative((ImGuiWindow*)pself, (byte*)pstr, (byte*)pstrEnd);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetID(ref ImGuiWindow self, ReadOnlySpan<byte> str, ReadOnlySpan<byte> strEnd)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				fixed (byte* pstr = str)
-				{
-					fixed (byte* pstrEnd = strEnd)
-					{
-						uint ret = GetIDNative((ImGuiWindow*)pself, (byte*)pstr, (byte*)pstrEnd);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetID(ref ImGuiWindow self, string str, string strEnd)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (str != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(str);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (strEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(strEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				uint ret = GetIDNative((ImGuiWindow*)pself, pStr0, pStr1);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetID(ref ImGuiWindow self, in byte str, ReadOnlySpan<byte> strEnd)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				fixed (byte* pstr = &str)
-				{
-					fixed (byte* pstrEnd = strEnd)
-					{
-						uint ret = GetIDNative((ImGuiWindow*)pself, (byte*)pstr, (byte*)pstrEnd);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetID(ref ImGuiWindow self, in byte str, string strEnd)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				fixed (byte* pstr = &str)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (strEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(strEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					uint ret = GetIDNative((ImGuiWindow*)pself, (byte*)pstr, pStr0);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetID(ref ImGuiWindow self, ReadOnlySpan<byte> str, in byte strEnd)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				fixed (byte* pstr = str)
-				{
-					fixed (byte* pstrEnd = &strEnd)
-					{
-						uint ret = GetIDNative((ImGuiWindow*)pself, (byte*)pstr, (byte*)pstrEnd);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetID(ref ImGuiWindow self, ReadOnlySpan<byte> str, string strEnd)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				fixed (byte* pstr = str)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (strEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(strEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					uint ret = GetIDNative((ImGuiWindow*)pself, (byte*)pstr, pStr0);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetID(ref ImGuiWindow self, string str, in byte strEnd)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (str != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(str);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* pstrEnd = &strEnd)
-				{
-					uint ret = GetIDNative((ImGuiWindow*)pself, pStr0, (byte*)pstrEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetID(ref ImGuiWindow self, string str, ReadOnlySpan<byte> strEnd)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (str != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(str);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* pstrEnd = strEnd)
-				{
-					uint ret = GetIDNative((ImGuiWindow*)pself, pStr0, (byte*)pstrEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetIDNative(ImGuiWindow* self, void* ptr)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, void*, uint>)funcTable[992])(self, ptr);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, nint, uint>)funcTable[992])((nint)self, (nint)ptr);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetID(ImGuiWindowPtr self, void* ptr)
-		{
-			uint ret = GetIDNative((ImGuiWindow*)self, ptr);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetID(ref ImGuiWindow self, void* ptr)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				uint ret = GetIDNative((ImGuiWindow*)pself, ptr);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetID(ImGuiWindowPtr self, nint ptr)
-		{
-			uint ret = GetIDNative((ImGuiWindow*)self, (void*)ptr);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetID(ref ImGuiWindow self, nint ptr)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				uint ret = GetIDNative((ImGuiWindow*)pself, (void*)ptr);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetIDNative(ImGuiWindow* self, int n)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, int, uint>)funcTable[993])(self, n);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[993])((nint)self, n);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetID(ImGuiWindowPtr self, int n)
-		{
-			uint ret = GetIDNative((ImGuiWindow*)self, n);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetID(ref ImGuiWindow self, int n)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				uint ret = GetIDNative((ImGuiWindow*)pself, n);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetIDFromPosNative(ImGuiWindow* self, Vector2 pAbs)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, Vector2, uint>)funcTable[994])(self, pAbs);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, Vector2, uint>)funcTable[994])((nint)self, pAbs);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetIDFromPos(ImGuiWindowPtr self, Vector2 pAbs)
-		{
-			uint ret = GetIDFromPosNative((ImGuiWindow*)self, pAbs);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetIDFromPos(ref ImGuiWindow self, Vector2 pAbs)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				uint ret = GetIDFromPosNative((ImGuiWindow*)pself, pAbs);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetIDFromRectangleNative(ImGuiWindow* self, ImRect rAbs)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect, uint>)funcTable[995])(self, rAbs);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, ImRect, uint>)funcTable[995])((nint)self, rAbs);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetIDFromRectangle(ImGuiWindowPtr self, ImRect rAbs)
-		{
-			uint ret = GetIDFromRectangleNative((ImGuiWindow*)self, rAbs);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static uint GetIDFromRectangle(ref ImGuiWindow self, ImRect rAbs)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				uint ret = GetIDFromRectangleNative((ImGuiWindow*)pself, rAbs);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImRect RectNative(ImGuiWindow* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect>)funcTable[996])(self);
-			#else
-			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect>)funcTable[996])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImRect Rect(ImGuiWindowPtr self)
-		{
-			ImRect ret = RectNative((ImGuiWindow*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImRect Rect(ref ImGuiWindow self)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				ImRect ret = RectNative((ImGuiWindow*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImRect TitleBarRectNative(ImGuiWindow* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect>)funcTable[997])(self);
-			#else
-			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect>)funcTable[997])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImRect TitleBarRect(ImGuiWindowPtr self)
-		{
-			ImRect ret = TitleBarRectNative((ImGuiWindow*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImRect TitleBarRect(ref ImGuiWindow self)
-		{
-			fixed (ImGuiWindow* pself = &self)
-			{
-				ImRect ret = TitleBarRectNative((ImGuiWindow*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImRect MenuBarRectNative(ImGuiWindow* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect>)funcTable[998])(self);
-			#else
-			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect>)funcTable[998])((nint)self);
-			#endif
 		}
 	}
 }

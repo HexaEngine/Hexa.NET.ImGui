@@ -100,7 +100,8 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID)<br/>
+		/// Since 1.83: returns ImTextureID associated with this draw call. Warning: DO NOT assume this is always same as 'TextureId' (we will change this function for an upcoming feature)<br/>
+		/// Since 1.92: removed ImDrawCmd::TextureId field, the getter function must be used! == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID)<br/>
 		/// </summary>
 		public unsafe ImTextureID GetTexID()
 		{
@@ -199,7 +200,8 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID)<br/>
+		/// Since 1.83: returns ImTextureID associated with this draw call. Warning: DO NOT assume this is always same as 'TextureId' (we will change this function for an upcoming feature)<br/>
+		/// Since 1.92: removed ImDrawCmd::TextureId field, the getter function must be used! == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID)<br/>
 		/// </summary>
 		public unsafe ImTextureID GetTexID()
 		{

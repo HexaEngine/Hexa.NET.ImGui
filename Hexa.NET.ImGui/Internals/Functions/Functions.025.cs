@@ -21,13 +21,1911 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void DebugNodeDrawList(ref ImGuiWindow window, ref ImGuiViewportP viewport, ImDrawListPtr drawList, string label)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (ImGuiViewportP* pviewport = &viewport)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (label != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(label);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					DebugNodeDrawListNative((ImGuiWindow*)pwindow, (ImGuiViewportP*)pviewport, (ImDrawList*)drawList, pStr0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawList(ImGuiWindowPtr window, ImGuiViewportPPtr viewport, in ImDrawList drawList, in byte label)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* plabel = &label)
+				{
+					DebugNodeDrawListNative((ImGuiWindow*)window, (ImGuiViewportP*)viewport, (ImDrawList*)pdrawList, (byte*)plabel);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawList(ImGuiWindowPtr window, ImGuiViewportPPtr viewport, in ImDrawList drawList, ReadOnlySpan<byte> label)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* plabel = label)
+				{
+					DebugNodeDrawListNative((ImGuiWindow*)window, (ImGuiViewportP*)viewport, (ImDrawList*)pdrawList, (byte*)plabel);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawList(ImGuiWindowPtr window, ImGuiViewportPPtr viewport, in ImDrawList drawList, string label)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				DebugNodeDrawListNative((ImGuiWindow*)window, (ImGuiViewportP*)viewport, (ImDrawList*)pdrawList, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawList(ref ImGuiWindow window, ImGuiViewportPPtr viewport, in ImDrawList drawList, in byte label)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* plabel = &label)
+					{
+						DebugNodeDrawListNative((ImGuiWindow*)pwindow, (ImGuiViewportP*)viewport, (ImDrawList*)pdrawList, (byte*)plabel);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawList(ref ImGuiWindow window, ImGuiViewportPPtr viewport, in ImDrawList drawList, ReadOnlySpan<byte> label)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* plabel = label)
+					{
+						DebugNodeDrawListNative((ImGuiWindow*)pwindow, (ImGuiViewportP*)viewport, (ImDrawList*)pdrawList, (byte*)plabel);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawList(ref ImGuiWindow window, ImGuiViewportPPtr viewport, in ImDrawList drawList, string label)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (label != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(label);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					DebugNodeDrawListNative((ImGuiWindow*)pwindow, (ImGuiViewportP*)viewport, (ImDrawList*)pdrawList, pStr0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawList(ImGuiWindowPtr window, ref ImGuiViewportP viewport, in ImDrawList drawList, in byte label)
+		{
+			fixed (ImGuiViewportP* pviewport = &viewport)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* plabel = &label)
+					{
+						DebugNodeDrawListNative((ImGuiWindow*)window, (ImGuiViewportP*)pviewport, (ImDrawList*)pdrawList, (byte*)plabel);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawList(ImGuiWindowPtr window, ref ImGuiViewportP viewport, in ImDrawList drawList, ReadOnlySpan<byte> label)
+		{
+			fixed (ImGuiViewportP* pviewport = &viewport)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* plabel = label)
+					{
+						DebugNodeDrawListNative((ImGuiWindow*)window, (ImGuiViewportP*)pviewport, (ImDrawList*)pdrawList, (byte*)plabel);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawList(ImGuiWindowPtr window, ref ImGuiViewportP viewport, in ImDrawList drawList, string label)
+		{
+			fixed (ImGuiViewportP* pviewport = &viewport)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (label != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(label);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					DebugNodeDrawListNative((ImGuiWindow*)window, (ImGuiViewportP*)pviewport, (ImDrawList*)pdrawList, pStr0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawList(ref ImGuiWindow window, ref ImGuiViewportP viewport, in ImDrawList drawList, in byte label)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (ImGuiViewportP* pviewport = &viewport)
+				{
+					fixed (ImDrawList* pdrawList = &drawList)
+					{
+						fixed (byte* plabel = &label)
+						{
+							DebugNodeDrawListNative((ImGuiWindow*)pwindow, (ImGuiViewportP*)pviewport, (ImDrawList*)pdrawList, (byte*)plabel);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawList(ref ImGuiWindow window, ref ImGuiViewportP viewport, in ImDrawList drawList, ReadOnlySpan<byte> label)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (ImGuiViewportP* pviewport = &viewport)
+				{
+					fixed (ImDrawList* pdrawList = &drawList)
+					{
+						fixed (byte* plabel = label)
+						{
+							DebugNodeDrawListNative((ImGuiWindow*)pwindow, (ImGuiViewportP*)pviewport, (ImDrawList*)pdrawList, (byte*)plabel);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawList(ref ImGuiWindow window, ref ImGuiViewportP viewport, in ImDrawList drawList, string label)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (ImGuiViewportP* pviewport = &viewport)
+				{
+					fixed (ImDrawList* pdrawList = &drawList)
+					{
+						byte* pStr0 = null;
+						int pStrSize0 = 0;
+						if (label != null)
+						{
+							pStrSize0 = Utils.GetByteCountUTF8(label);
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+							}
+							else
+							{
+								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+								pStr0 = pStrStack0;
+							}
+							int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+							pStr0[pStrOffset0] = 0;
+						}
+						DebugNodeDrawListNative((ImGuiWindow*)pwindow, (ImGuiViewportP*)pviewport, (ImDrawList*)pdrawList, pStr0);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeDrawCmdShowMeshAndBoundingBoxNative(ImDrawList* outDrawList, ImDrawList* drawList, ImDrawCmd* drawCmd, byte showMesh, byte showAabb)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImDrawList*, ImDrawCmd*, byte, byte, void>)funcTable[1500])(outDrawList, drawList, drawCmd, showMesh, showAabb);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, byte, byte, void>)funcTable[1500])((nint)outDrawList, (nint)drawList, (nint)drawCmd, showMesh, showAabb);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ImDrawListPtr outDrawList, ImDrawListPtr drawList, ImDrawCmdPtr drawCmd, bool showMesh, bool showAabb)
+		{
+			DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)outDrawList, (ImDrawList*)drawList, (ImDrawCmd*)drawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ref ImDrawList outDrawList, ImDrawListPtr drawList, ImDrawCmdPtr drawCmd, bool showMesh, bool showAabb)
+		{
+			fixed (ImDrawList* poutDrawList = &outDrawList)
+			{
+				DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, (ImDrawList*)drawList, (ImDrawCmd*)drawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ImDrawListPtr outDrawList, in ImDrawList drawList, ImDrawCmdPtr drawCmd, bool showMesh, bool showAabb)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)outDrawList, (ImDrawList*)pdrawList, (ImDrawCmd*)drawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ref ImDrawList outDrawList, in ImDrawList drawList, ImDrawCmdPtr drawCmd, bool showMesh, bool showAabb)
+		{
+			fixed (ImDrawList* poutDrawList = &outDrawList)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, (ImDrawList*)pdrawList, (ImDrawCmd*)drawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ImDrawListPtr outDrawList, ImDrawListPtr drawList, in ImDrawCmd drawCmd, bool showMesh, bool showAabb)
+		{
+			fixed (ImDrawCmd* pdrawCmd = &drawCmd)
+			{
+				DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)outDrawList, (ImDrawList*)drawList, (ImDrawCmd*)pdrawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ref ImDrawList outDrawList, ImDrawListPtr drawList, in ImDrawCmd drawCmd, bool showMesh, bool showAabb)
+		{
+			fixed (ImDrawList* poutDrawList = &outDrawList)
+			{
+				fixed (ImDrawCmd* pdrawCmd = &drawCmd)
+				{
+					DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, (ImDrawList*)drawList, (ImDrawCmd*)pdrawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ImDrawListPtr outDrawList, in ImDrawList drawList, in ImDrawCmd drawCmd, bool showMesh, bool showAabb)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (ImDrawCmd* pdrawCmd = &drawCmd)
+				{
+					DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)outDrawList, (ImDrawList*)pdrawList, (ImDrawCmd*)pdrawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ref ImDrawList outDrawList, in ImDrawList drawList, in ImDrawCmd drawCmd, bool showMesh, bool showAabb)
+		{
+			fixed (ImDrawList* poutDrawList = &outDrawList)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (ImDrawCmd* pdrawCmd = &drawCmd)
+					{
+						DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, (ImDrawList*)pdrawList, (ImDrawCmd*)pdrawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeFontNative(ImFont* font)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImFont*, void>)funcTable[1501])(font);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1501])((nint)font);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeFont(ImFontPtr font)
+		{
+			DebugNodeFontNative((ImFont*)font);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeFont(ref ImFont font)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				DebugNodeFontNative((ImFont*)pfont);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeFontGlyphsForSrcMaskNative(ImFont* font, ImFontBaked* baked, int srcMask)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImFont*, ImFontBaked*, int, void>)funcTable[1502])(font, baked, srcMask);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, int, void>)funcTable[1502])((nint)font, (nint)baked, srcMask);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeFontGlyphsForSrcMask(ImFontPtr font, ImFontBakedPtr baked, int srcMask)
+		{
+			DebugNodeFontGlyphsForSrcMaskNative((ImFont*)font, (ImFontBaked*)baked, srcMask);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeFontGlyphsForSrcMask(ref ImFont font, ImFontBakedPtr baked, int srcMask)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				DebugNodeFontGlyphsForSrcMaskNative((ImFont*)pfont, (ImFontBaked*)baked, srcMask);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeFontGlyphsForSrcMask(ImFontPtr font, ref ImFontBaked baked, int srcMask)
+		{
+			fixed (ImFontBaked* pbaked = &baked)
+			{
+				DebugNodeFontGlyphsForSrcMaskNative((ImFont*)font, (ImFontBaked*)pbaked, srcMask);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeFontGlyphsForSrcMask(ref ImFont font, ref ImFontBaked baked, int srcMask)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (ImFontBaked* pbaked = &baked)
+				{
+					DebugNodeFontGlyphsForSrcMaskNative((ImFont*)pfont, (ImFontBaked*)pbaked, srcMask);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeFontGlyphNative(ImFont* font, ImFontGlyph* glyph)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImFont*, ImFontGlyph*, void>)funcTable[1503])(font, glyph);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1503])((nint)font, (nint)glyph);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeFontGlyph(ImFontPtr font, ImFontGlyphPtr glyph)
+		{
+			DebugNodeFontGlyphNative((ImFont*)font, (ImFontGlyph*)glyph);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeFontGlyph(ref ImFont font, ImFontGlyphPtr glyph)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				DebugNodeFontGlyphNative((ImFont*)pfont, (ImFontGlyph*)glyph);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeFontGlyph(ImFontPtr font, in ImFontGlyph glyph)
+		{
+			fixed (ImFontGlyph* pglyph = &glyph)
+			{
+				DebugNodeFontGlyphNative((ImFont*)font, (ImFontGlyph*)pglyph);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeFontGlyph(ref ImFont font, in ImFontGlyph glyph)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (ImFontGlyph* pglyph = &glyph)
+				{
+					DebugNodeFontGlyphNative((ImFont*)pfont, (ImFontGlyph*)pglyph);
+				}
+			}
+		}
+
+		/// <summary>
+		/// ID used to facilitate persisting the "current" texture.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeTextureNative(ImTextureData* tex, int intId, ImFontAtlasRect* highlightRect)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImTextureData*, int, ImFontAtlasRect*, void>)funcTable[1504])(tex, intId, highlightRect);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, nint, void>)funcTable[1504])((nint)tex, intId, (nint)highlightRect);
+			#endif
+		}
+
+		/// <summary>
+		/// ID used to facilitate persisting the "current" texture.<br/>
+		/// </summary>
+		public static void DebugNodeTexture(ImTextureDataPtr tex, int intId, ImFontAtlasRectPtr highlightRect)
+		{
+			DebugNodeTextureNative((ImTextureData*)tex, intId, (ImFontAtlasRect*)highlightRect);
+		}
+
+		/// <summary>
+		/// ID used to facilitate persisting the "current" texture.<br/>
+		/// </summary>
+		public static void DebugNodeTexture(ImTextureDataPtr tex, int intId)
+		{
+			DebugNodeTextureNative((ImTextureData*)tex, intId, (ImFontAtlasRect*)(default));
+		}
+
+		/// <summary>
+		/// ID used to facilitate persisting the "current" texture.<br/>
+		/// </summary>
+		public static void DebugNodeTexture(ref ImTextureData tex, int intId, ImFontAtlasRectPtr highlightRect)
+		{
+			fixed (ImTextureData* ptex = &tex)
+			{
+				DebugNodeTextureNative((ImTextureData*)ptex, intId, (ImFontAtlasRect*)highlightRect);
+			}
+		}
+
+		/// <summary>
+		/// ID used to facilitate persisting the "current" texture.<br/>
+		/// </summary>
+		public static void DebugNodeTexture(ref ImTextureData tex, int intId)
+		{
+			fixed (ImTextureData* ptex = &tex)
+			{
+				DebugNodeTextureNative((ImTextureData*)ptex, intId, (ImFontAtlasRect*)(default));
+			}
+		}
+
+		/// <summary>
+		/// ID used to facilitate persisting the "current" texture.<br/>
+		/// </summary>
+		public static void DebugNodeTexture(ImTextureDataPtr tex, int intId, in ImFontAtlasRect highlightRect)
+		{
+			fixed (ImFontAtlasRect* phighlightRect = &highlightRect)
+			{
+				DebugNodeTextureNative((ImTextureData*)tex, intId, (ImFontAtlasRect*)phighlightRect);
+			}
+		}
+
+		/// <summary>
+		/// ID used to facilitate persisting the "current" texture.<br/>
+		/// </summary>
+		public static void DebugNodeTexture(ref ImTextureData tex, int intId, in ImFontAtlasRect highlightRect)
+		{
+			fixed (ImTextureData* ptex = &tex)
+			{
+				fixed (ImFontAtlasRect* phighlightRect = &highlightRect)
+				{
+					DebugNodeTextureNative((ImTextureData*)ptex, intId, (ImFontAtlasRect*)phighlightRect);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeStorageNative(ImGuiStorage* storage, byte* label)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiStorage*, byte*, void>)funcTable[1505])(storage, label);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1505])((nint)storage, (nint)label);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeStorage(ImGuiStoragePtr storage, byte* label)
+		{
+			DebugNodeStorageNative((ImGuiStorage*)storage, label);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeStorage(ref ImGuiStorage storage, byte* label)
+		{
+			fixed (ImGuiStorage* pstorage = &storage)
+			{
+				DebugNodeStorageNative((ImGuiStorage*)pstorage, label);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeStorage(ImGuiStoragePtr storage, in byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				DebugNodeStorageNative((ImGuiStorage*)storage, (byte*)plabel);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeStorage(ImGuiStoragePtr storage, ReadOnlySpan<byte> label)
+		{
+			fixed (byte* plabel = label)
+			{
+				DebugNodeStorageNative((ImGuiStorage*)storage, (byte*)plabel);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeStorage(ImGuiStoragePtr storage, string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			DebugNodeStorageNative((ImGuiStorage*)storage, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeStorage(ref ImGuiStorage storage, in byte label)
+		{
+			fixed (ImGuiStorage* pstorage = &storage)
+			{
+				fixed (byte* plabel = &label)
+				{
+					DebugNodeStorageNative((ImGuiStorage*)pstorage, (byte*)plabel);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeStorage(ref ImGuiStorage storage, ReadOnlySpan<byte> label)
+		{
+			fixed (ImGuiStorage* pstorage = &storage)
+			{
+				fixed (byte* plabel = label)
+				{
+					DebugNodeStorageNative((ImGuiStorage*)pstorage, (byte*)plabel);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeStorage(ref ImGuiStorage storage, string label)
+		{
+			fixed (ImGuiStorage* pstorage = &storage)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				DebugNodeStorageNative((ImGuiStorage*)pstorage, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeTabBarNative(ImGuiTabBar* tabBar, byte* label)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, byte*, void>)funcTable[1506])(tabBar, label);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1506])((nint)tabBar, (nint)label);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTabBar(ImGuiTabBarPtr tabBar, byte* label)
+		{
+			DebugNodeTabBarNative((ImGuiTabBar*)tabBar, label);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTabBar(ref ImGuiTabBar tabBar, byte* label)
+		{
+			fixed (ImGuiTabBar* ptabBar = &tabBar)
+			{
+				DebugNodeTabBarNative((ImGuiTabBar*)ptabBar, label);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTabBar(ImGuiTabBarPtr tabBar, in byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				DebugNodeTabBarNative((ImGuiTabBar*)tabBar, (byte*)plabel);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTabBar(ImGuiTabBarPtr tabBar, ReadOnlySpan<byte> label)
+		{
+			fixed (byte* plabel = label)
+			{
+				DebugNodeTabBarNative((ImGuiTabBar*)tabBar, (byte*)plabel);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTabBar(ImGuiTabBarPtr tabBar, string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			DebugNodeTabBarNative((ImGuiTabBar*)tabBar, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTabBar(ref ImGuiTabBar tabBar, in byte label)
+		{
+			fixed (ImGuiTabBar* ptabBar = &tabBar)
+			{
+				fixed (byte* plabel = &label)
+				{
+					DebugNodeTabBarNative((ImGuiTabBar*)ptabBar, (byte*)plabel);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTabBar(ref ImGuiTabBar tabBar, ReadOnlySpan<byte> label)
+		{
+			fixed (ImGuiTabBar* ptabBar = &tabBar)
+			{
+				fixed (byte* plabel = label)
+				{
+					DebugNodeTabBarNative((ImGuiTabBar*)ptabBar, (byte*)plabel);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTabBar(ref ImGuiTabBar tabBar, string label)
+		{
+			fixed (ImGuiTabBar* ptabBar = &tabBar)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				DebugNodeTabBarNative((ImGuiTabBar*)ptabBar, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeTableNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1507])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1507])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTable(ImGuiTablePtr table)
+		{
+			DebugNodeTableNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTable(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				DebugNodeTableNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeTableSettingsNative(ImGuiTableSettings* settings, ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTableSettings*, ImGuiTable*, void>)funcTable[1508])(settings, table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1508])((nint)settings, (nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTableSettings(ImGuiTableSettingsPtr settings, ImGuiTablePtr table)
+		{
+			DebugNodeTableSettingsNative((ImGuiTableSettings*)settings, (ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTableSettings(ref ImGuiTableSettings settings, ImGuiTablePtr table)
+		{
+			fixed (ImGuiTableSettings* psettings = &settings)
+			{
+				DebugNodeTableSettingsNative((ImGuiTableSettings*)psettings, (ImGuiTable*)table);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTableSettings(ImGuiTableSettingsPtr settings, ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				DebugNodeTableSettingsNative((ImGuiTableSettings*)settings, (ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTableSettings(ref ImGuiTableSettings settings, ref ImGuiTable table)
+		{
+			fixed (ImGuiTableSettings* psettings = &settings)
+			{
+				fixed (ImGuiTable* ptable = &table)
+				{
+					DebugNodeTableSettingsNative((ImGuiTableSettings*)psettings, (ImGuiTable*)ptable);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeInputTextStateNative(ImGuiInputTextState* state)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiInputTextState*, void>)funcTable[1509])(state);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1509])((nint)state);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeInputTextState(ImGuiInputTextStatePtr state)
+		{
+			DebugNodeInputTextStateNative((ImGuiInputTextState*)state);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeInputTextState(ref ImGuiInputTextState state)
+		{
+			fixed (ImGuiInputTextState* pstate = &state)
+			{
+				DebugNodeInputTextStateNative((ImGuiInputTextState*)pstate);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeTypingSelectStateNative(ImGuiTypingSelectState* state)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTypingSelectState*, void>)funcTable[1510])(state);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1510])((nint)state);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTypingSelectState(ImGuiTypingSelectStatePtr state)
+		{
+			DebugNodeTypingSelectStateNative((ImGuiTypingSelectState*)state);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeTypingSelectState(ref ImGuiTypingSelectState state)
+		{
+			fixed (ImGuiTypingSelectState* pstate = &state)
+			{
+				DebugNodeTypingSelectStateNative((ImGuiTypingSelectState*)pstate);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeMultiSelectStateNative(ImGuiMultiSelectState* state)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectState*, void>)funcTable[1511])(state);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1511])((nint)state);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeMultiSelectState(ImGuiMultiSelectStatePtr state)
+		{
+			DebugNodeMultiSelectStateNative((ImGuiMultiSelectState*)state);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeMultiSelectState(ref ImGuiMultiSelectState state)
+		{
+			fixed (ImGuiMultiSelectState* pstate = &state)
+			{
+				DebugNodeMultiSelectStateNative((ImGuiMultiSelectState*)pstate);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeWindowNative(ImGuiWindow* window, byte* label)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, byte*, void>)funcTable[1512])(window, label);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1512])((nint)window, (nint)label);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindow(ImGuiWindowPtr window, byte* label)
+		{
+			DebugNodeWindowNative((ImGuiWindow*)window, label);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindow(ref ImGuiWindow window, byte* label)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				DebugNodeWindowNative((ImGuiWindow*)pwindow, label);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindow(ImGuiWindowPtr window, in byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				DebugNodeWindowNative((ImGuiWindow*)window, (byte*)plabel);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindow(ImGuiWindowPtr window, ReadOnlySpan<byte> label)
+		{
+			fixed (byte* plabel = label)
+			{
+				DebugNodeWindowNative((ImGuiWindow*)window, (byte*)plabel);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindow(ImGuiWindowPtr window, string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			DebugNodeWindowNative((ImGuiWindow*)window, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindow(ref ImGuiWindow window, in byte label)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (byte* plabel = &label)
+				{
+					DebugNodeWindowNative((ImGuiWindow*)pwindow, (byte*)plabel);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindow(ref ImGuiWindow window, ReadOnlySpan<byte> label)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (byte* plabel = label)
+				{
+					DebugNodeWindowNative((ImGuiWindow*)pwindow, (byte*)plabel);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindow(ref ImGuiWindow window, string label)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				DebugNodeWindowNative((ImGuiWindow*)pwindow, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeWindowSettingsNative(ImGuiWindowSettings* settings)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindowSettings*, void>)funcTable[1513])(settings);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1513])((nint)settings);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindowSettings(ImGuiWindowSettingsPtr settings)
+		{
+			DebugNodeWindowSettingsNative((ImGuiWindowSettings*)settings);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindowSettings(ref ImGuiWindowSettings settings)
+		{
+			fixed (ImGuiWindowSettings* psettings = &settings)
+			{
+				DebugNodeWindowSettingsNative((ImGuiWindowSettings*)psettings);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeWindowsListNative(ImVector<ImGuiWindowPtr>* windows, byte* label)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImVector<ImGuiWindowPtr>*, byte*, void>)funcTable[1514])(windows, label);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1514])((nint)windows, (nint)label);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindowsList(ImVector<ImGuiWindowPtr>* windows, byte* label)
+		{
+			DebugNodeWindowsListNative(windows, label);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindowsList(ref ImVector<ImGuiWindowPtr> windows, byte* label)
+		{
+			fixed (ImVector<ImGuiWindowPtr>* pwindows = &windows)
+			{
+				DebugNodeWindowsListNative((ImVector<ImGuiWindowPtr>*)pwindows, label);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindowsList(ImVector<ImGuiWindowPtr>* windows, in byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				DebugNodeWindowsListNative(windows, (byte*)plabel);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindowsList(ImVector<ImGuiWindowPtr>* windows, ReadOnlySpan<byte> label)
+		{
+			fixed (byte* plabel = label)
+			{
+				DebugNodeWindowsListNative(windows, (byte*)plabel);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindowsList(ImVector<ImGuiWindowPtr>* windows, string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			DebugNodeWindowsListNative(windows, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindowsList(ref ImVector<ImGuiWindowPtr> windows, in byte label)
+		{
+			fixed (ImVector<ImGuiWindowPtr>* pwindows = &windows)
+			{
+				fixed (byte* plabel = &label)
+				{
+					DebugNodeWindowsListNative((ImVector<ImGuiWindowPtr>*)pwindows, (byte*)plabel);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindowsList(ref ImVector<ImGuiWindowPtr> windows, ReadOnlySpan<byte> label)
+		{
+			fixed (ImVector<ImGuiWindowPtr>* pwindows = &windows)
+			{
+				fixed (byte* plabel = label)
+				{
+					DebugNodeWindowsListNative((ImVector<ImGuiWindowPtr>*)pwindows, (byte*)plabel);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindowsList(ref ImVector<ImGuiWindowPtr> windows, string label)
+		{
+			fixed (ImVector<ImGuiWindowPtr>* pwindows = &windows)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				DebugNodeWindowsListNative((ImVector<ImGuiWindowPtr>*)pwindows, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeWindowsListByBeginStackParentNative(ImGuiWindow** windows, int windowsSize, ImGuiWindow* parentInBeginStack)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow**, int, ImGuiWindow*, void>)funcTable[1515])(windows, windowsSize, parentInBeginStack);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, nint, void>)funcTable[1515])((nint)windows, windowsSize, (nint)parentInBeginStack);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindowsListByBeginStackParent(ImGuiWindowPtrPtr windows, int windowsSize, ImGuiWindowPtr parentInBeginStack)
+		{
+			DebugNodeWindowsListByBeginStackParentNative((ImGuiWindow**)windows, windowsSize, (ImGuiWindow*)parentInBeginStack);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindowsListByBeginStackParent(ref ImGuiWindow* windows, int windowsSize, ImGuiWindowPtr parentInBeginStack)
+		{
+			fixed (ImGuiWindow** pwindows = &windows)
+			{
+				DebugNodeWindowsListByBeginStackParentNative((ImGuiWindow**)pwindows, windowsSize, (ImGuiWindow*)parentInBeginStack);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindowsListByBeginStackParent(ImGuiWindowPtrPtr windows, int windowsSize, ref ImGuiWindow parentInBeginStack)
+		{
+			fixed (ImGuiWindow* pparentInBeginStack = &parentInBeginStack)
+			{
+				DebugNodeWindowsListByBeginStackParentNative((ImGuiWindow**)windows, windowsSize, (ImGuiWindow*)pparentInBeginStack);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeWindowsListByBeginStackParent(ref ImGuiWindow* windows, int windowsSize, ref ImGuiWindow parentInBeginStack)
+		{
+			fixed (ImGuiWindow** pwindows = &windows)
+			{
+				fixed (ImGuiWindow* pparentInBeginStack = &parentInBeginStack)
+				{
+					DebugNodeWindowsListByBeginStackParentNative((ImGuiWindow**)pwindows, windowsSize, (ImGuiWindow*)pparentInBeginStack);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodeViewportNative(ImGuiViewportP* viewport)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiViewportP*, void>)funcTable[1516])(viewport);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1516])((nint)viewport);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeViewport(ImGuiViewportPPtr viewport)
+		{
+			DebugNodeViewportNative((ImGuiViewportP*)viewport);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodeViewport(ref ImGuiViewportP viewport)
+		{
+			fixed (ImGuiViewportP* pviewport = &viewport)
+			{
+				DebugNodeViewportNative((ImGuiViewportP*)pviewport);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugNodePlatformMonitorNative(ImGuiPlatformMonitor* monitor, byte* label, int idx)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiPlatformMonitor*, byte*, int, void>)funcTable[1517])(monitor, label, idx);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, int, void>)funcTable[1517])((nint)monitor, (nint)label, idx);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodePlatformMonitor(ImGuiPlatformMonitorPtr monitor, byte* label, int idx)
+		{
+			DebugNodePlatformMonitorNative((ImGuiPlatformMonitor*)monitor, label, idx);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodePlatformMonitor(ref ImGuiPlatformMonitor monitor, byte* label, int idx)
+		{
+			fixed (ImGuiPlatformMonitor* pmonitor = &monitor)
+			{
+				DebugNodePlatformMonitorNative((ImGuiPlatformMonitor*)pmonitor, label, idx);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodePlatformMonitor(ImGuiPlatformMonitorPtr monitor, in byte label, int idx)
+		{
+			fixed (byte* plabel = &label)
+			{
+				DebugNodePlatformMonitorNative((ImGuiPlatformMonitor*)monitor, (byte*)plabel, idx);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodePlatformMonitor(ImGuiPlatformMonitorPtr monitor, ReadOnlySpan<byte> label, int idx)
+		{
+			fixed (byte* plabel = label)
+			{
+				DebugNodePlatformMonitorNative((ImGuiPlatformMonitor*)monitor, (byte*)plabel, idx);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodePlatformMonitor(ImGuiPlatformMonitorPtr monitor, string label, int idx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			DebugNodePlatformMonitorNative((ImGuiPlatformMonitor*)monitor, pStr0, idx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodePlatformMonitor(ref ImGuiPlatformMonitor monitor, in byte label, int idx)
+		{
+			fixed (ImGuiPlatformMonitor* pmonitor = &monitor)
+			{
+				fixed (byte* plabel = &label)
+				{
+					DebugNodePlatformMonitorNative((ImGuiPlatformMonitor*)pmonitor, (byte*)plabel, idx);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodePlatformMonitor(ref ImGuiPlatformMonitor monitor, ReadOnlySpan<byte> label, int idx)
+		{
+			fixed (ImGuiPlatformMonitor* pmonitor = &monitor)
+			{
+				fixed (byte* plabel = label)
+				{
+					DebugNodePlatformMonitorNative((ImGuiPlatformMonitor*)pmonitor, (byte*)plabel, idx);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugNodePlatformMonitor(ref ImGuiPlatformMonitor monitor, string label, int idx)
+		{
+			fixed (ImGuiPlatformMonitor* pmonitor = &monitor)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				DebugNodePlatformMonitorNative((ImGuiPlatformMonitor*)pmonitor, pStr0, idx);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugRenderKeyboardPreviewNative(ImDrawList* drawList)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[1518])(drawList);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1518])((nint)drawList);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugRenderKeyboardPreview(ImDrawListPtr drawList)
+		{
+			DebugRenderKeyboardPreviewNative((ImDrawList*)drawList);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugRenderKeyboardPreview(ref ImDrawList drawList)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				DebugRenderKeyboardPreviewNative((ImDrawList*)pdrawList);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugRenderViewportThumbnailNative(ImDrawList* drawList, ImGuiViewportP* viewport, ImRect bb)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImGuiViewportP*, ImRect, void>)funcTable[1519])(drawList, viewport, bb);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, ImRect, void>)funcTable[1519])((nint)drawList, (nint)viewport, bb);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugRenderViewportThumbnail(ImDrawListPtr drawList, ImGuiViewportPPtr viewport, ImRect bb)
+		{
+			DebugRenderViewportThumbnailNative((ImDrawList*)drawList, (ImGuiViewportP*)viewport, bb);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugRenderViewportThumbnail(ref ImDrawList drawList, ImGuiViewportPPtr viewport, ImRect bb)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				DebugRenderViewportThumbnailNative((ImDrawList*)pdrawList, (ImGuiViewportP*)viewport, bb);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugRenderViewportThumbnail(ImDrawListPtr drawList, ref ImGuiViewportP viewport, ImRect bb)
+		{
+			fixed (ImGuiViewportP* pviewport = &viewport)
+			{
+				DebugRenderViewportThumbnailNative((ImDrawList*)drawList, (ImGuiViewportP*)pviewport, bb);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugRenderViewportThumbnail(ref ImDrawList drawList, ref ImGuiViewportP viewport, ImRect bb)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (ImGuiViewportP* pviewport = &viewport)
+				{
+					DebugRenderViewportThumbnailNative((ImDrawList*)pdrawList, (ImGuiViewportP*)pviewport, bb);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImFontLoader* ImFontLoaderNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImFontLoader*>)funcTable[1520])();
+			#else
+			return (ImFontLoader*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1520])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImFontLoaderPtr ImFontLoader()
+		{
+			ImFontLoaderPtr ret = ImFontLoaderNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImFontLoader* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImFontLoader*, void>)funcTable[1521])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1521])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImFontLoaderPtr self)
+		{
+			DestroyNative((ImFontLoader*)self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImFontLoader self)
+		{
+			fixed (ImFontLoader* pself = &self)
+			{
+				DestroyNative((ImFontLoader*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImFontLoader* ImFontAtlasGetFontLoaderForStbTruetypeNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImFontLoader*>)funcTable[1522])();
+			#else
+			return (ImFontLoader*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1522])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImFontLoaderPtr ImFontAtlasGetFontLoaderForStbTruetype()
+		{
+			ImFontLoaderPtr ret = ImFontAtlasGetFontLoaderForStbTruetypeNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// Refer to ImFontAtlasPackGetRect() to better understand how this works.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int ImFontAtlasRectId_GetIndexNative(int id)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int, int>)funcTable[1523])(id);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<int, int>)funcTable[1523])(id);
+			#endif
+		}
+
+		/// <summary>
+		/// Refer to ImFontAtlasPackGetRect() to better understand how this works.<br/>
+		/// </summary>
+		public static int ImFontAtlasRectId_GetIndex(int id)
+		{
+			int ret = ImFontAtlasRectId_GetIndexNative(id);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint ImFontAtlasRectId_GetGenerationNative(int id)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int, uint>)funcTable[1524])(id);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<int, uint>)funcTable[1524])(id);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint ImFontAtlasRectId_GetGeneration(int id)
+		{
+			uint ret = ImFontAtlasRectId_GetGenerationNative(id);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int ImFontAtlasRectId_MakeNative(int indexIdx, int genIdx)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int, int, int>)funcTable[1525])(indexIdx, genIdx);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<int, int, int>)funcTable[1525])(indexIdx, genIdx);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static int ImFontAtlasRectId_Make(int indexIdx, int genIdx)
+		{
+			int ret = ImFontAtlasRectId_MakeNative(indexIdx, genIdx);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static ImFontAtlasBuilder* ImFontAtlasBuilderNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlasBuilder*>)funcTable[1485])();
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlasBuilder*>)funcTable[1526])();
 			#else
-			return (ImFontAtlasBuilder*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1485])();
+			return (ImFontAtlasBuilder*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1526])();
 			#endif
 		}
 
@@ -47,9 +1945,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImFontAtlasBuilder* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlasBuilder*, void>)funcTable[1486])(self);
+			((delegate* unmanaged[Cdecl]<ImFontAtlasBuilder*, void>)funcTable[1527])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1486])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1527])((nint)self);
 			#endif
 		}
 
@@ -79,9 +1977,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBuildInitNative(ImFontAtlas* atlas)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1487])(atlas);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1528])(atlas);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1487])((nint)atlas);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1528])((nint)atlas);
 			#endif
 		}
 
@@ -111,9 +2009,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBuildDestroyNative(ImFontAtlas* atlas)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1488])(atlas);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1529])(atlas);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1488])((nint)atlas);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1529])((nint)atlas);
 			#endif
 		}
 
@@ -143,9 +2041,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBuildMainNative(ImFontAtlas* atlas)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1489])(atlas);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1530])(atlas);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1489])((nint)atlas);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1530])((nint)atlas);
 			#endif
 		}
 
@@ -175,9 +2073,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBuildSetupFontLoaderNative(ImFontAtlas* atlas, ImFontLoader* fontLoader)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontLoader*, void>)funcTable[1490])(atlas, fontLoader);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontLoader*, void>)funcTable[1531])(atlas, fontLoader);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1490])((nint)atlas, (nint)fontLoader);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1531])((nint)atlas, (nint)fontLoader);
 			#endif
 		}
 
@@ -232,9 +2130,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBuildNotifySetFontNative(ImFontAtlas* atlas, ImFont* oldFont, ImFont* newFont)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, ImFont*, void>)funcTable[1491])(atlas, oldFont, newFont);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, ImFont*, void>)funcTable[1532])(atlas, oldFont, newFont);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[1491])((nint)atlas, (nint)oldFont, (nint)newFont);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[1532])((nint)atlas, (nint)oldFont, (nint)newFont);
 			#endif
 		}
 
@@ -345,9 +2243,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBuildUpdatePointersNative(ImFontAtlas* atlas)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1492])(atlas);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1533])(atlas);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1492])((nint)atlas);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1533])((nint)atlas);
 			#endif
 		}
 
@@ -377,9 +2275,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBuildRenderBitmapFromStringNative(ImFontAtlas* atlas, int x, int y, int w, int h, byte* inStr, byte inMarkerChar)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, int, int, int, byte*, byte, void>)funcTable[1493])(atlas, x, y, w, h, inStr, inMarkerChar);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, int, int, int, byte*, byte, void>)funcTable[1534])(atlas, x, y, w, h, inStr, inMarkerChar);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, int, int, nint, byte, void>)funcTable[1493])((nint)atlas, x, y, w, h, (nint)inStr, inMarkerChar);
+			((delegate* unmanaged[Cdecl]<nint, int, int, int, int, nint, byte, void>)funcTable[1534])((nint)atlas, x, y, w, h, (nint)inStr, inMarkerChar);
 			#endif
 		}
 
@@ -520,9 +2418,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBuildClearNative(ImFontAtlas* atlas)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1494])(atlas);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1535])(atlas);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1494])((nint)atlas);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1535])((nint)atlas);
 			#endif
 		}
 
@@ -552,9 +2450,9 @@ namespace Hexa.NET.ImGui
 		internal static ImTextureData* ImFontAtlasTextureAddNative(ImFontAtlas* atlas, int w, int h)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, int, ImTextureData*>)funcTable[1495])(atlas, w, h);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, int, ImTextureData*>)funcTable[1536])(atlas, w, h);
 			#else
-			return (ImTextureData*)((delegate* unmanaged[Cdecl]<nint, int, int, nint>)funcTable[1495])((nint)atlas, w, h);
+			return (ImTextureData*)((delegate* unmanaged[Cdecl]<nint, int, int, nint>)funcTable[1536])((nint)atlas, w, h);
 			#endif
 		}
 
@@ -586,9 +2484,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasTextureMakeSpaceNative(ImFontAtlas* atlas)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1496])(atlas);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1537])(atlas);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1496])((nint)atlas);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1537])((nint)atlas);
 			#endif
 		}
 
@@ -618,9 +2516,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasTextureRepackNative(ImFontAtlas* atlas, int w, int h)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, int, void>)funcTable[1497])(atlas, w, h);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, int, void>)funcTable[1538])(atlas, w, h);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[1497])((nint)atlas, w, h);
+			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[1538])((nint)atlas, w, h);
 			#endif
 		}
 
@@ -650,9 +2548,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasTextureGrowNative(ImFontAtlas* atlas, int oldW, int oldH)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, int, void>)funcTable[1498])(atlas, oldW, oldH);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, int, void>)funcTable[1539])(atlas, oldW, oldH);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[1498])((nint)atlas, oldW, oldH);
+			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[1539])((nint)atlas, oldW, oldH);
 			#endif
 		}
 
@@ -720,9 +2618,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasTextureCompactNative(ImFontAtlas* atlas)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1499])(atlas);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1540])(atlas);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1499])((nint)atlas);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1540])((nint)atlas);
 			#endif
 		}
 
@@ -752,9 +2650,9 @@ namespace Hexa.NET.ImGui
 		internal static ImVec2I ImFontAtlasTextureGetSizeEstimateNative(ImFontAtlas* atlas)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImVec2I>)funcTable[1500])(atlas);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImVec2I>)funcTable[1541])(atlas);
 			#else
-			return (ImVec2I)((delegate* unmanaged[Cdecl]<nint, ImVec2I>)funcTable[1500])((nint)atlas);
+			return (ImVec2I)((delegate* unmanaged[Cdecl]<nint, ImVec2I>)funcTable[1541])((nint)atlas);
 			#endif
 		}
 
@@ -786,9 +2684,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBuildSetupFontSpecialGlyphsNative(ImFontAtlas* atlas, ImFont* font, ImFontConfig* src)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, ImFontConfig*, void>)funcTable[1501])(atlas, font, src);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, ImFontConfig*, void>)funcTable[1542])(atlas, font, src);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[1501])((nint)atlas, (nint)font, (nint)src);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[1542])((nint)atlas, (nint)font, (nint)src);
 			#endif
 		}
 
@@ -899,9 +2797,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBuildLegacyPreloadAllGlyphRangesNative(ImFontAtlas* atlas)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1502])(atlas);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1543])(atlas);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1502])((nint)atlas);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1543])((nint)atlas);
 			#endif
 		}
 
@@ -931,9 +2829,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBuildGetOversampleFactorsNative(ImFontConfig* src, ImFontBaked* baked, int* outOversampleH, int* outOversampleV)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontConfig*, ImFontBaked*, int*, int*, void>)funcTable[1503])(src, baked, outOversampleH, outOversampleV);
+			((delegate* unmanaged[Cdecl]<ImFontConfig*, ImFontBaked*, int*, int*, void>)funcTable[1544])(src, baked, outOversampleH, outOversampleV);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, void>)funcTable[1503])((nint)src, (nint)baked, (nint)outOversampleH, (nint)outOversampleV);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, void>)funcTable[1544])((nint)src, (nint)baked, (nint)outOversampleH, (nint)outOversampleV);
 			#endif
 		}
 
@@ -1168,9 +3066,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBuildDiscardBakesNative(ImFontAtlas* atlas, int unusedFrames)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, void>)funcTable[1504])(atlas, unusedFrames);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, void>)funcTable[1545])(atlas, unusedFrames);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1504])((nint)atlas, unusedFrames);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1545])((nint)atlas, unusedFrames);
 			#endif
 		}
 
@@ -1200,9 +3098,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImFontAtlasFontSourceInitNative(ImFontAtlas* atlas, ImFontConfig* src)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, byte>)funcTable[1505])(atlas, src);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, byte>)funcTable[1546])(atlas, src);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[1505])((nint)atlas, (nint)src);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[1546])((nint)atlas, (nint)src);
 			#endif
 		}
 
@@ -1261,9 +3159,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasFontSourceAddToFontNative(ImFontAtlas* atlas, ImFont* font, ImFontConfig* src)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, ImFontConfig*, void>)funcTable[1506])(atlas, font, src);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, ImFontConfig*, void>)funcTable[1547])(atlas, font, src);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[1506])((nint)atlas, (nint)font, (nint)src);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[1547])((nint)atlas, (nint)font, (nint)src);
 			#endif
 		}
 
@@ -1374,9 +3272,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasFontDestroySourceDataNative(ImFontAtlas* atlas, ImFontConfig* src)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, void>)funcTable[1507])(atlas, src);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, void>)funcTable[1548])(atlas, src);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1507])((nint)atlas, (nint)src);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1548])((nint)atlas, (nint)src);
 			#endif
 		}
 
@@ -1431,9 +3329,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImFontAtlasFontInitOutputNative(ImFontAtlas* atlas, ImFont* font)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, byte>)funcTable[1508])(atlas, font);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, byte>)funcTable[1549])(atlas, font);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[1508])((nint)atlas, (nint)font);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[1549])((nint)atlas, (nint)font);
 			#endif
 		}
 
@@ -1492,9 +3390,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasFontDestroyOutputNative(ImFontAtlas* atlas, ImFont* font)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, void>)funcTable[1509])(atlas, font);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, void>)funcTable[1550])(atlas, font);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1509])((nint)atlas, (nint)font);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1550])((nint)atlas, (nint)font);
 			#endif
 		}
 
@@ -1546,12 +3444,69 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImFontAtlasFontRebuildOutputNative(ImFontAtlas* atlas, ImFont* font)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, void>)funcTable[1551])(atlas, font);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1551])((nint)atlas, (nint)font);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFontAtlasFontRebuildOutput(ImFontAtlasPtr atlas, ImFontPtr font)
+		{
+			ImFontAtlasFontRebuildOutputNative((ImFontAtlas*)atlas, (ImFont*)font);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFontAtlasFontRebuildOutput(ref ImFontAtlas atlas, ImFontPtr font)
+		{
+			fixed (ImFontAtlas* patlas = &atlas)
+			{
+				ImFontAtlasFontRebuildOutputNative((ImFontAtlas*)patlas, (ImFont*)font);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFontAtlasFontRebuildOutput(ImFontAtlasPtr atlas, ref ImFont font)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				ImFontAtlasFontRebuildOutputNative((ImFontAtlas*)atlas, (ImFont*)pfont);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImFontAtlasFontRebuildOutput(ref ImFontAtlas atlas, ref ImFont font)
+		{
+			fixed (ImFontAtlas* patlas = &atlas)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					ImFontAtlasFontRebuildOutputNative((ImFontAtlas*)patlas, (ImFont*)pfont);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void ImFontAtlasFontDiscardBakesNative(ImFontAtlas* atlas, ImFont* font, int unusedFrames)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, int, void>)funcTable[1510])(atlas, font, unusedFrames);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, int, void>)funcTable[1552])(atlas, font, unusedFrames);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, void>)funcTable[1510])((nint)atlas, (nint)font, unusedFrames);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, void>)funcTable[1552])((nint)atlas, (nint)font, unusedFrames);
 			#endif
 		}
 
@@ -1606,9 +3561,9 @@ namespace Hexa.NET.ImGui
 		internal static uint ImFontAtlasBakedGetIdNative(uint fontId, float bakedSize, float rasterizerDensity)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, float, float, uint>)funcTable[1511])(fontId, bakedSize, rasterizerDensity);
+			return ((delegate* unmanaged[Cdecl]<uint, float, float, uint>)funcTable[1553])(fontId, bakedSize, rasterizerDensity);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, float, float, uint>)funcTable[1511])(fontId, bakedSize, rasterizerDensity);
+			return (uint)((delegate* unmanaged[Cdecl]<uint, float, float, uint>)funcTable[1553])(fontId, bakedSize, rasterizerDensity);
 			#endif
 		}
 
@@ -1628,9 +3583,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFontBaked* ImFontAtlasBakedGetOrAddNative(ImFontAtlas* atlas, ImFont* font, float fontSize, float fontRasterizerDensity)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, float, float, ImFontBaked*>)funcTable[1512])(atlas, font, fontSize, fontRasterizerDensity);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, float, float, ImFontBaked*>)funcTable[1554])(atlas, font, fontSize, fontRasterizerDensity);
 			#else
-			return (ImFontBaked*)((delegate* unmanaged[Cdecl]<nint, nint, float, float, nint>)funcTable[1512])((nint)atlas, (nint)font, fontSize, fontRasterizerDensity);
+			return (ImFontBaked*)((delegate* unmanaged[Cdecl]<nint, nint, float, float, nint>)funcTable[1554])((nint)atlas, (nint)font, fontSize, fontRasterizerDensity);
 			#endif
 		}
 
@@ -1689,9 +3644,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFontBaked* ImFontAtlasBakedGetClosestMatchNative(ImFontAtlas* atlas, ImFont* font, float fontSize, float fontRasterizerDensity)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, float, float, ImFontBaked*>)funcTable[1513])(atlas, font, fontSize, fontRasterizerDensity);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, float, float, ImFontBaked*>)funcTable[1555])(atlas, font, fontSize, fontRasterizerDensity);
 			#else
-			return (ImFontBaked*)((delegate* unmanaged[Cdecl]<nint, nint, float, float, nint>)funcTable[1513])((nint)atlas, (nint)font, fontSize, fontRasterizerDensity);
+			return (ImFontBaked*)((delegate* unmanaged[Cdecl]<nint, nint, float, float, nint>)funcTable[1555])((nint)atlas, (nint)font, fontSize, fontRasterizerDensity);
 			#endif
 		}
 
@@ -1750,9 +3705,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFontBaked* ImFontAtlasBakedAddNative(ImFontAtlas* atlas, ImFont* font, float fontSize, float fontRasterizerDensity, uint bakedId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, float, float, uint, ImFontBaked*>)funcTable[1514])(atlas, font, fontSize, fontRasterizerDensity, bakedId);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, float, float, uint, ImFontBaked*>)funcTable[1556])(atlas, font, fontSize, fontRasterizerDensity, bakedId);
 			#else
-			return (ImFontBaked*)((delegate* unmanaged[Cdecl]<nint, nint, float, float, uint, nint>)funcTable[1514])((nint)atlas, (nint)font, fontSize, fontRasterizerDensity, bakedId);
+			return (ImFontBaked*)((delegate* unmanaged[Cdecl]<nint, nint, float, float, uint, nint>)funcTable[1556])((nint)atlas, (nint)font, fontSize, fontRasterizerDensity, bakedId);
 			#endif
 		}
 
@@ -1811,9 +3766,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBakedDiscardNative(ImFontAtlas* atlas, ImFont* font, ImFontBaked* baked)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, ImFontBaked*, void>)funcTable[1515])(atlas, font, baked);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, ImFontBaked*, void>)funcTable[1557])(atlas, font, baked);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[1515])((nint)atlas, (nint)font, (nint)baked);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[1557])((nint)atlas, (nint)font, (nint)baked);
 			#endif
 		}
 
@@ -1924,9 +3879,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFontGlyph* ImFontAtlasBakedAddFontGlyphNative(ImFontAtlas* atlas, ImFontBaked* baked, ImFontConfig* src, ImFontGlyph* inGlyph)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontBaked*, ImFontConfig*, ImFontGlyph*, ImFontGlyph*>)funcTable[1516])(atlas, baked, src, inGlyph);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontBaked*, ImFontConfig*, ImFontGlyph*, ImFontGlyph*>)funcTable[1558])(atlas, baked, src, inGlyph);
 			#else
-			return (ImFontGlyph*)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint>)funcTable[1516])((nint)atlas, (nint)baked, (nint)src, (nint)inGlyph);
+			return (ImFontGlyph*)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint>)funcTable[1558])((nint)atlas, (nint)baked, (nint)src, (nint)inGlyph);
 			#endif
 		}
 
@@ -2177,9 +4132,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBakedAddFontGlyphAdvancedXNative(ImFontAtlas* atlas, ImFontBaked* baked, ImFontConfig* src, uint codepoint, float advanceX)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontBaked*, ImFontConfig*, uint, float, void>)funcTable[1517])(atlas, baked, src, codepoint, advanceX);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontBaked*, ImFontConfig*, uint, float, void>)funcTable[1559])(atlas, baked, src, codepoint, advanceX);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, uint, float, void>)funcTable[1517])((nint)atlas, (nint)baked, (nint)src, codepoint, advanceX);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, uint, float, void>)funcTable[1559])((nint)atlas, (nint)baked, (nint)src, codepoint, advanceX);
 			#endif
 		}
 
@@ -2290,9 +4245,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBakedDiscardFontGlyphNative(ImFontAtlas* atlas, ImFont* font, ImFontBaked* baked, ImFontGlyph* glyph)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, ImFontBaked*, ImFontGlyph*, void>)funcTable[1518])(atlas, font, baked, glyph);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, ImFontBaked*, ImFontGlyph*, void>)funcTable[1560])(atlas, font, baked, glyph);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, void>)funcTable[1518])((nint)atlas, (nint)font, (nint)baked, (nint)glyph);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, void>)funcTable[1560])((nint)atlas, (nint)font, (nint)baked, (nint)glyph);
 			#endif
 		}
 
@@ -2527,9 +4482,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImFontAtlasBakedSetFontGlyphBitmapNative(ImFontAtlas* atlas, ImFontBaked* baked, ImFontConfig* src, ImFontGlyph* glyph, ImTextureRect* r, byte* srcPixels, ImTextureFormat srcFmt, int srcPitch)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontBaked*, ImFontConfig*, ImFontGlyph*, ImTextureRect*, byte*, ImTextureFormat, int, void>)funcTable[1519])(atlas, baked, src, glyph, r, srcPixels, srcFmt, srcPitch);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontBaked*, ImFontConfig*, ImFontGlyph*, ImTextureRect*, byte*, ImTextureFormat, int, void>)funcTable[1561])(atlas, baked, src, glyph, r, srcPixels, srcFmt, srcPitch);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, nint, ImTextureFormat, int, void>)funcTable[1519])((nint)atlas, (nint)baked, (nint)src, (nint)glyph, (nint)r, (nint)srcPixels, srcFmt, srcPitch);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, nint, ImTextureFormat, int, void>)funcTable[1561])((nint)atlas, (nint)baked, (nint)src, (nint)glyph, (nint)r, (nint)srcPixels, srcFmt, srcPitch);
 			#endif
 		}
 
@@ -3064,1973 +5019,6 @@ namespace Hexa.NET.ImGui
 				fixed (byte* psrcPixels = &srcPixels)
 				{
 					ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)atlas, (ImFontBaked*)pbaked, (ImFontConfig*)src, (ImFontGlyph*)glyph, (ImTextureRect*)r, (byte*)psrcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ImTextureRectPtr r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)src, (ImFontGlyph*)glyph, (ImTextureRect*)r, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ImTextureRectPtr r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (byte* psrcPixels = &srcPixels)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)atlas, (ImFontBaked*)baked, (ImFontConfig*)psrc, (ImFontGlyph*)glyph, (ImTextureRect*)r, (byte*)psrcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ImTextureRectPtr r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)baked, (ImFontConfig*)psrc, (ImFontGlyph*)glyph, (ImTextureRect*)r, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ImTextureRectPtr r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)glyph, (ImTextureRect*)r, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ImTextureRectPtr r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)glyph, (ImTextureRect*)r, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ImTextureRectPtr r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontGlyph* pglyph = &glyph)
-			{
-				fixed (byte* psrcPixels = &srcPixels)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)atlas, (ImFontBaked*)baked, (ImFontConfig*)src, (ImFontGlyph*)pglyph, (ImTextureRect*)r, (byte*)psrcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ImTextureRectPtr r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)baked, (ImFontConfig*)src, (ImFontGlyph*)pglyph, (ImTextureRect*)r, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ImTextureRectPtr r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)atlas, (ImFontBaked*)pbaked, (ImFontConfig*)src, (ImFontGlyph*)pglyph, (ImTextureRect*)r, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ImTextureRectPtr r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)src, (ImFontGlyph*)pglyph, (ImTextureRect*)r, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph glyph, ImTextureRectPtr r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)atlas, (ImFontBaked*)baked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)r, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph glyph, ImTextureRectPtr r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)baked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)r, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph glyph, ImTextureRectPtr r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)r, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph glyph, ImTextureRectPtr r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						fixed (ImFontGlyph* pglyph = &glyph)
-						{
-							fixed (byte* psrcPixels = &srcPixels)
-							{
-								ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)r, (byte*)psrcPixels, srcFmt, srcPitch);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImTextureRect* pr = &r)
-			{
-				fixed (byte* psrcPixels = &srcPixels)
-				{
-					ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)atlas, (ImFontBaked*)baked, (ImFontConfig*)src, (ImFontGlyph*)glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImTextureRect* pr = &r)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)baked, (ImFontConfig*)src, (ImFontGlyph*)glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImTextureRect* pr = &r)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)atlas, (ImFontBaked*)pbaked, (ImFontConfig*)src, (ImFontGlyph*)glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, ImFontGlyphPtr glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)src, (ImFontGlyph*)glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImTextureRect* pr = &r)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)atlas, (ImFontBaked*)baked, (ImFontConfig*)psrc, (ImFontGlyph*)glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)baked, (ImFontConfig*)psrc, (ImFontGlyph*)glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ImFontGlyphPtr glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							fixed (byte* psrcPixels = &srcPixels)
-							{
-								ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)glyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontGlyph* pglyph = &glyph)
-			{
-				fixed (ImTextureRect* pr = &r)
-				{
-					fixed (byte* psrcPixels = &srcPixels)
-					{
-						ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)atlas, (ImFontBaked*)baked, (ImFontConfig*)src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)baked, (ImFontConfig*)src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)atlas, (ImFontBaked*)pbaked, (ImFontConfig*)src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ImFontConfigPtr src, ref ImFontGlyph glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							fixed (byte* psrcPixels = &srcPixels)
-							{
-								ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)src, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontConfig* psrc = &src)
-			{
-				fixed (ImFontGlyph* pglyph = &glyph)
-				{
-					fixed (ImTextureRect* pr = &r)
-					{
-						fixed (byte* psrcPixels = &srcPixels)
-						{
-							ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)atlas, (ImFontBaked*)baked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ImFontBakedPtr baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							fixed (byte* psrcPixels = &srcPixels)
-							{
-								ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)baked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ImFontAtlasPtr atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontBaked* pbaked = &baked)
-			{
-				fixed (ImFontConfig* psrc = &src)
-				{
-					fixed (ImFontGlyph* pglyph = &glyph)
-					{
-						fixed (ImTextureRect* pr = &r)
-						{
-							fixed (byte* psrcPixels = &srcPixels)
-							{
-								ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)atlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasBakedSetFontGlyphBitmap(ref ImFontAtlas atlas, ref ImFontBaked baked, ref ImFontConfig src, ref ImFontGlyph glyph, ref ImTextureRect r, in byte srcPixels, ImTextureFormat srcFmt, int srcPitch)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontBaked* pbaked = &baked)
-				{
-					fixed (ImFontConfig* psrc = &src)
-					{
-						fixed (ImFontGlyph* pglyph = &glyph)
-						{
-							fixed (ImTextureRect* pr = &r)
-							{
-								fixed (byte* psrcPixels = &srcPixels)
-								{
-									ImFontAtlasBakedSetFontGlyphBitmapNative((ImFontAtlas*)patlas, (ImFontBaked*)pbaked, (ImFontConfig*)psrc, (ImFontGlyph*)pglyph, (ImTextureRect*)pr, (byte*)psrcPixels, srcFmt, srcPitch);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasPackInitNative(ImFontAtlas* atlas)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1520])(atlas);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1520])((nint)atlas);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasPackInit(ImFontAtlasPtr atlas)
-		{
-			ImFontAtlasPackInitNative((ImFontAtlas*)atlas);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasPackInit(ref ImFontAtlas atlas)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasPackInitNative((ImFontAtlas*)patlas);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int ImFontAtlasPackAddRectNative(ImFontAtlas* atlas, int w, int h, ImFontAtlasRectEntry* overwriteEntry)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, int, ImFontAtlasRectEntry*, int>)funcTable[1521])(atlas, w, h, overwriteEntry);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int, nint, int>)funcTable[1521])((nint)atlas, w, h, (nint)overwriteEntry);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImFontAtlasPackAddRect(ImFontAtlasPtr atlas, int w, int h, ImFontAtlasRectEntryPtr overwriteEntry)
-		{
-			int ret = ImFontAtlasPackAddRectNative((ImFontAtlas*)atlas, w, h, (ImFontAtlasRectEntry*)overwriteEntry);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImFontAtlasPackAddRect(ImFontAtlasPtr atlas, int w, int h)
-		{
-			int ret = ImFontAtlasPackAddRectNative((ImFontAtlas*)atlas, w, h, (ImFontAtlasRectEntry*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImFontAtlasPackAddRect(ref ImFontAtlas atlas, int w, int h, ImFontAtlasRectEntryPtr overwriteEntry)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				int ret = ImFontAtlasPackAddRectNative((ImFontAtlas*)patlas, w, h, (ImFontAtlasRectEntry*)overwriteEntry);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImFontAtlasPackAddRect(ref ImFontAtlas atlas, int w, int h)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				int ret = ImFontAtlasPackAddRectNative((ImFontAtlas*)patlas, w, h, (ImFontAtlasRectEntry*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImFontAtlasPackAddRect(ImFontAtlasPtr atlas, int w, int h, ref ImFontAtlasRectEntry overwriteEntry)
-		{
-			fixed (ImFontAtlasRectEntry* poverwriteEntry = &overwriteEntry)
-			{
-				int ret = ImFontAtlasPackAddRectNative((ImFontAtlas*)atlas, w, h, (ImFontAtlasRectEntry*)poverwriteEntry);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImFontAtlasPackAddRect(ref ImFontAtlas atlas, int w, int h, ref ImFontAtlasRectEntry overwriteEntry)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImFontAtlasRectEntry* poverwriteEntry = &overwriteEntry)
-				{
-					int ret = ImFontAtlasPackAddRectNative((ImFontAtlas*)patlas, w, h, (ImFontAtlasRectEntry*)poverwriteEntry);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImTextureRect* ImFontAtlasPackGetRectNative(ImFontAtlas* atlas, int id)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, ImTextureRect*>)funcTable[1522])(atlas, id);
-			#else
-			return (ImTextureRect*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1522])((nint)atlas, id);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImTextureRectPtr ImFontAtlasPackGetRect(ImFontAtlasPtr atlas, int id)
-		{
-			ImTextureRectPtr ret = ImFontAtlasPackGetRectNative((ImFontAtlas*)atlas, id);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImTextureRectPtr ImFontAtlasPackGetRect(ref ImFontAtlas atlas, int id)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImTextureRectPtr ret = ImFontAtlasPackGetRectNative((ImFontAtlas*)patlas, id);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImTextureRect* ImFontAtlasPackGetRectSafeNative(ImFontAtlas* atlas, int id)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, ImTextureRect*>)funcTable[1523])(atlas, id);
-			#else
-			return (ImTextureRect*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1523])((nint)atlas, id);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImTextureRectPtr ImFontAtlasPackGetRectSafe(ImFontAtlasPtr atlas, int id)
-		{
-			ImTextureRectPtr ret = ImFontAtlasPackGetRectSafeNative((ImFontAtlas*)atlas, id);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImTextureRectPtr ImFontAtlasPackGetRectSafe(ref ImFontAtlas atlas, int id)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImTextureRectPtr ret = ImFontAtlasPackGetRectSafeNative((ImFontAtlas*)patlas, id);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasPackDiscardRectNative(ImFontAtlas* atlas, int id)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, void>)funcTable[1524])(atlas, id);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1524])((nint)atlas, id);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasPackDiscardRect(ImFontAtlasPtr atlas, int id)
-		{
-			ImFontAtlasPackDiscardRectNative((ImFontAtlas*)atlas, id);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasPackDiscardRect(ref ImFontAtlas atlas, int id)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasPackDiscardRectNative((ImFontAtlas*)patlas, id);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasUpdateNewFrameNative(ImFontAtlas* atlas, int frameCount, byte rendererHasTextures)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, byte, void>)funcTable[1525])(atlas, frameCount, rendererHasTextures);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, byte, void>)funcTable[1525])((nint)atlas, frameCount, rendererHasTextures);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasUpdateNewFrame(ImFontAtlasPtr atlas, int frameCount, bool rendererHasTextures)
-		{
-			ImFontAtlasUpdateNewFrameNative((ImFontAtlas*)atlas, frameCount, rendererHasTextures ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasUpdateNewFrame(ref ImFontAtlas atlas, int frameCount, bool rendererHasTextures)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasUpdateNewFrameNative((ImFontAtlas*)patlas, frameCount, rendererHasTextures ? (byte)1 : (byte)0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasAddDrawListSharedDataNative(ImFontAtlas* atlas, ImDrawListSharedData* data)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImDrawListSharedData*, void>)funcTable[1526])(atlas, data);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1526])((nint)atlas, (nint)data);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasAddDrawListSharedData(ImFontAtlasPtr atlas, ImDrawListSharedDataPtr data)
-		{
-			ImFontAtlasAddDrawListSharedDataNative((ImFontAtlas*)atlas, (ImDrawListSharedData*)data);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasAddDrawListSharedData(ref ImFontAtlas atlas, ImDrawListSharedDataPtr data)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasAddDrawListSharedDataNative((ImFontAtlas*)patlas, (ImDrawListSharedData*)data);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasAddDrawListSharedData(ImFontAtlasPtr atlas, ref ImDrawListSharedData data)
-		{
-			fixed (ImDrawListSharedData* pdata = &data)
-			{
-				ImFontAtlasAddDrawListSharedDataNative((ImFontAtlas*)atlas, (ImDrawListSharedData*)pdata);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasAddDrawListSharedData(ref ImFontAtlas atlas, ref ImDrawListSharedData data)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImDrawListSharedData* pdata = &data)
-				{
-					ImFontAtlasAddDrawListSharedDataNative((ImFontAtlas*)patlas, (ImDrawListSharedData*)pdata);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasRemoveDrawListSharedDataNative(ImFontAtlas* atlas, ImDrawListSharedData* data)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImDrawListSharedData*, void>)funcTable[1527])(atlas, data);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1527])((nint)atlas, (nint)data);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasRemoveDrawListSharedData(ImFontAtlasPtr atlas, ImDrawListSharedDataPtr data)
-		{
-			ImFontAtlasRemoveDrawListSharedDataNative((ImFontAtlas*)atlas, (ImDrawListSharedData*)data);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasRemoveDrawListSharedData(ref ImFontAtlas atlas, ImDrawListSharedDataPtr data)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasRemoveDrawListSharedDataNative((ImFontAtlas*)patlas, (ImDrawListSharedData*)data);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasRemoveDrawListSharedData(ImFontAtlasPtr atlas, ref ImDrawListSharedData data)
-		{
-			fixed (ImDrawListSharedData* pdata = &data)
-			{
-				ImFontAtlasRemoveDrawListSharedDataNative((ImFontAtlas*)atlas, (ImDrawListSharedData*)pdata);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasRemoveDrawListSharedData(ref ImFontAtlas atlas, ref ImDrawListSharedData data)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImDrawListSharedData* pdata = &data)
-				{
-					ImFontAtlasRemoveDrawListSharedDataNative((ImFontAtlas*)patlas, (ImDrawListSharedData*)pdata);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasUpdateDrawListsTexturesNative(ImFontAtlas* atlas, ImTextureRef oldTex, ImTextureRef newTex)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImTextureRef, ImTextureRef, void>)funcTable[1528])(atlas, oldTex, newTex);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureRef, ImTextureRef, void>)funcTable[1528])((nint)atlas, oldTex, newTex);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasUpdateDrawListsTextures(ImFontAtlasPtr atlas, ImTextureRef oldTex, ImTextureRef newTex)
-		{
-			ImFontAtlasUpdateDrawListsTexturesNative((ImFontAtlas*)atlas, oldTex, newTex);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasUpdateDrawListsTextures(ref ImFontAtlas atlas, ImTextureRef oldTex, ImTextureRef newTex)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasUpdateDrawListsTexturesNative((ImFontAtlas*)patlas, oldTex, newTex);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasUpdateDrawListsSharedDataNative(ImFontAtlas* atlas)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1529])(atlas);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1529])((nint)atlas);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasUpdateDrawListsSharedData(ImFontAtlasPtr atlas)
-		{
-			ImFontAtlasUpdateDrawListsSharedDataNative((ImFontAtlas*)atlas);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasUpdateDrawListsSharedData(ref ImFontAtlas atlas)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasUpdateDrawListsSharedDataNative((ImFontAtlas*)patlas);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasTextureBlockConvertNative(byte* srcPixels, ImTextureFormat srcFmt, int srcPitch, byte* dstPixels, ImTextureFormat dstFmt, int dstPitch, int w, int h)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ImTextureFormat, int, byte*, ImTextureFormat, int, int, int, void>)funcTable[1530])(srcPixels, srcFmt, srcPitch, dstPixels, dstFmt, dstPitch, w, h);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureFormat, int, nint, ImTextureFormat, int, int, int, void>)funcTable[1530])((nint)srcPixels, srcFmt, srcPitch, (nint)dstPixels, dstFmt, dstPitch, w, h);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockConvert(byte* srcPixels, ImTextureFormat srcFmt, int srcPitch, byte* dstPixels, ImTextureFormat dstFmt, int dstPitch, int w, int h)
-		{
-			ImFontAtlasTextureBlockConvertNative(srcPixels, srcFmt, srcPitch, dstPixels, dstFmt, dstPitch, w, h);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockConvert(in byte srcPixels, ImTextureFormat srcFmt, int srcPitch, byte* dstPixels, ImTextureFormat dstFmt, int dstPitch, int w, int h)
-		{
-			fixed (byte* psrcPixels = &srcPixels)
-			{
-				ImFontAtlasTextureBlockConvertNative((byte*)psrcPixels, srcFmt, srcPitch, dstPixels, dstFmt, dstPitch, w, h);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockConvert(byte* srcPixels, ImTextureFormat srcFmt, int srcPitch, ref byte dstPixels, ImTextureFormat dstFmt, int dstPitch, int w, int h)
-		{
-			fixed (byte* pdstPixels = &dstPixels)
-			{
-				ImFontAtlasTextureBlockConvertNative(srcPixels, srcFmt, srcPitch, (byte*)pdstPixels, dstFmt, dstPitch, w, h);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockConvert(in byte srcPixels, ImTextureFormat srcFmt, int srcPitch, ref byte dstPixels, ImTextureFormat dstFmt, int dstPitch, int w, int h)
-		{
-			fixed (byte* psrcPixels = &srcPixels)
-			{
-				fixed (byte* pdstPixels = &dstPixels)
-				{
-					ImFontAtlasTextureBlockConvertNative((byte*)psrcPixels, srcFmt, srcPitch, (byte*)pdstPixels, dstFmt, dstPitch, w, h);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasTextureBlockPostProcessNative(ImFontAtlasPostProcessData* data)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlasPostProcessData*, void>)funcTable[1531])(data);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1531])((nint)data);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockPostProcess(ImFontAtlasPostProcessDataPtr data)
-		{
-			ImFontAtlasTextureBlockPostProcessNative((ImFontAtlasPostProcessData*)data);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockPostProcess(ref ImFontAtlasPostProcessData data)
-		{
-			fixed (ImFontAtlasPostProcessData* pdata = &data)
-			{
-				ImFontAtlasTextureBlockPostProcessNative((ImFontAtlasPostProcessData*)pdata);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasTextureBlockPostProcessMultiplyNative(ImFontAtlasPostProcessData* data, float multiplyFactor)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlasPostProcessData*, float, void>)funcTable[1532])(data, multiplyFactor);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, float, void>)funcTable[1532])((nint)data, multiplyFactor);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockPostProcessMultiply(ImFontAtlasPostProcessDataPtr data, float multiplyFactor)
-		{
-			ImFontAtlasTextureBlockPostProcessMultiplyNative((ImFontAtlasPostProcessData*)data, multiplyFactor);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockPostProcessMultiply(ref ImFontAtlasPostProcessData data, float multiplyFactor)
-		{
-			fixed (ImFontAtlasPostProcessData* pdata = &data)
-			{
-				ImFontAtlasTextureBlockPostProcessMultiplyNative((ImFontAtlasPostProcessData*)pdata, multiplyFactor);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasTextureBlockFillNative(ImTextureData* dstTex, int dstX, int dstY, int w, int h, uint col)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImTextureData*, int, int, int, int, uint, void>)funcTable[1533])(dstTex, dstX, dstY, w, h, col);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, int, int, uint, void>)funcTable[1533])((nint)dstTex, dstX, dstY, w, h, col);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockFill(ImTextureDataPtr dstTex, int dstX, int dstY, int w, int h, uint col)
-		{
-			ImFontAtlasTextureBlockFillNative((ImTextureData*)dstTex, dstX, dstY, w, h, col);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockFill(ref ImTextureData dstTex, int dstX, int dstY, int w, int h, uint col)
-		{
-			fixed (ImTextureData* pdstTex = &dstTex)
-			{
-				ImFontAtlasTextureBlockFillNative((ImTextureData*)pdstTex, dstX, dstY, w, h, col);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasTextureBlockCopyNative(ImTextureData* srcTex, int srcX, int srcY, ImTextureData* dstTex, int dstX, int dstY, int w, int h)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImTextureData*, int, int, ImTextureData*, int, int, int, int, void>)funcTable[1534])(srcTex, srcX, srcY, dstTex, dstX, dstY, w, h);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, nint, int, int, int, int, void>)funcTable[1534])((nint)srcTex, srcX, srcY, (nint)dstTex, dstX, dstY, w, h);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockCopy(ImTextureDataPtr srcTex, int srcX, int srcY, ImTextureDataPtr dstTex, int dstX, int dstY, int w, int h)
-		{
-			ImFontAtlasTextureBlockCopyNative((ImTextureData*)srcTex, srcX, srcY, (ImTextureData*)dstTex, dstX, dstY, w, h);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockCopy(ref ImTextureData srcTex, int srcX, int srcY, ImTextureDataPtr dstTex, int dstX, int dstY, int w, int h)
-		{
-			fixed (ImTextureData* psrcTex = &srcTex)
-			{
-				ImFontAtlasTextureBlockCopyNative((ImTextureData*)psrcTex, srcX, srcY, (ImTextureData*)dstTex, dstX, dstY, w, h);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockCopy(ImTextureDataPtr srcTex, int srcX, int srcY, ref ImTextureData dstTex, int dstX, int dstY, int w, int h)
-		{
-			fixed (ImTextureData* pdstTex = &dstTex)
-			{
-				ImFontAtlasTextureBlockCopyNative((ImTextureData*)srcTex, srcX, srcY, (ImTextureData*)pdstTex, dstX, dstY, w, h);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockCopy(ref ImTextureData srcTex, int srcX, int srcY, ref ImTextureData dstTex, int dstX, int dstY, int w, int h)
-		{
-			fixed (ImTextureData* psrcTex = &srcTex)
-			{
-				fixed (ImTextureData* pdstTex = &dstTex)
-				{
-					ImFontAtlasTextureBlockCopyNative((ImTextureData*)psrcTex, srcX, srcY, (ImTextureData*)pdstTex, dstX, dstY, w, h);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasTextureBlockQueueUploadNative(ImFontAtlas* atlas, ImTextureData* tex, int x, int y, int w, int h)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImTextureData*, int, int, int, int, void>)funcTable[1535])(atlas, tex, x, y, w, h);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, int, int, int, void>)funcTable[1535])((nint)atlas, (nint)tex, x, y, w, h);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockQueueUpload(ImFontAtlasPtr atlas, ImTextureDataPtr tex, int x, int y, int w, int h)
-		{
-			ImFontAtlasTextureBlockQueueUploadNative((ImFontAtlas*)atlas, (ImTextureData*)tex, x, y, w, h);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockQueueUpload(ref ImFontAtlas atlas, ImTextureDataPtr tex, int x, int y, int w, int h)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasTextureBlockQueueUploadNative((ImFontAtlas*)patlas, (ImTextureData*)tex, x, y, w, h);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockQueueUpload(ImFontAtlasPtr atlas, ref ImTextureData tex, int x, int y, int w, int h)
-		{
-			fixed (ImTextureData* ptex = &tex)
-			{
-				ImFontAtlasTextureBlockQueueUploadNative((ImFontAtlas*)atlas, (ImTextureData*)ptex, x, y, w, h);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasTextureBlockQueueUpload(ref ImFontAtlas atlas, ref ImTextureData tex, int x, int y, int w, int h)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (ImTextureData* ptex = &tex)
-				{
-					ImFontAtlasTextureBlockQueueUploadNative((ImFontAtlas*)patlas, (ImTextureData*)ptex, x, y, w, h);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int ImTextureDataGetFormatBytesPerPixelNative(ImTextureFormat format)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImTextureFormat, int>)funcTable[1536])(format);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImTextureFormat, int>)funcTable[1536])(format);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int ImTextureDataGetFormatBytesPerPixel(ImTextureFormat format)
-		{
-			int ret = ImTextureDataGetFormatBytesPerPixelNative(format);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* ImTextureDataGetStatusNameNative(ImTextureStatus status)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImTextureStatus, byte*>)funcTable[1537])(status);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<ImTextureStatus, nint>)funcTable[1537])(status);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* ImTextureDataGetStatusName(ImTextureStatus status)
-		{
-			byte* ret = ImTextureDataGetStatusNameNative(status);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string ImTextureDataGetStatusNameS(ImTextureStatus status)
-		{
-			string ret = Utils.DecodeStringUTF8(ImTextureDataGetStatusNameNative(status));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* ImTextureDataGetFormatNameNative(ImTextureFormat format)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImTextureFormat, byte*>)funcTable[1538])(format);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<ImTextureFormat, nint>)funcTable[1538])(format);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* ImTextureDataGetFormatName(ImTextureFormat format)
-		{
-			byte* ret = ImTextureDataGetFormatNameNative(format);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string ImTextureDataGetFormatNameS(ImTextureFormat format)
-		{
-			string ret = Utils.DecodeStringUTF8(ImTextureDataGetFormatNameNative(format));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ImFontAtlasDebugLogTextureRequestsNative(ImFontAtlas* atlas)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)funcTable[1539])(atlas);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1539])((nint)atlas);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasDebugLogTextureRequests(ImFontAtlasPtr atlas)
-		{
-			ImFontAtlasDebugLogTextureRequestsNative((ImFontAtlas*)atlas);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontAtlasDebugLogTextureRequests(ref ImFontAtlas atlas)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				ImFontAtlasDebugLogTextureRequestsNative((ImFontAtlas*)patlas);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ImFontAtlasGetMouseCursorTexDataNative(ImFontAtlas* atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, Vector2* outUvFill)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImGuiMouseCursor, Vector2*, Vector2*, Vector2*, Vector2*, byte>)funcTable[1540])(atlas, cursorType, outOffset, outSize, outUvBorder, outUvFill);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiMouseCursor, nint, nint, nint, nint, byte>)funcTable[1540])((nint)atlas, cursorType, (nint)outOffset, (nint)outSize, (nint)outUvBorder, (nint)outUvFill);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, Vector2* outUvFill)
-		{
-			byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, outOffset, outSize, outUvBorder, outUvFill);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, outSize, outUvBorder, outUvFill);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutOffset = &outOffset)
-			{
-				byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, (Vector2*)poutOffset, outSize, outUvBorder, outUvFill);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, outSize, outUvBorder, outUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutSize = &outSize)
-			{
-				byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, outOffset, (Vector2*)poutSize, outUvBorder, outUvFill);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutSize = &outSize)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, (Vector2*)poutSize, outUvBorder, outUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, Vector2* outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutOffset = &outOffset)
-			{
-				fixed (Vector2* poutSize = &outSize)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, outUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, Vector2* outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					fixed (Vector2* poutSize = &outSize)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, outUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutUvBorder = &outUvBorder)
-			{
-				byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, outOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutUvBorder = outUvBorder)
-			{
-				byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, outOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutUvBorder = &outUvBorder)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutUvBorder = outUvBorder)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutOffset = &outOffset)
-			{
-				fixed (Vector2* poutUvBorder = &outUvBorder)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutOffset = &outOffset)
-			{
-				fixed (Vector2* poutUvBorder = outUvBorder)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					fixed (Vector2* poutUvBorder = &outUvBorder)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					fixed (Vector2* poutUvBorder = outUvBorder)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutSize = &outSize)
-			{
-				fixed (Vector2* poutUvBorder = &outUvBorder)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutSize = &outSize)
-			{
-				fixed (Vector2* poutUvBorder = outUvBorder)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutSize = &outSize)
-				{
-					fixed (Vector2* poutUvBorder = &outUvBorder)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutSize = &outSize)
-				{
-					fixed (Vector2* poutUvBorder = outUvBorder)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutOffset = &outOffset)
-			{
-				fixed (Vector2* poutSize = &outSize)
-				{
-					fixed (Vector2* poutUvBorder = &outUvBorder)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
-		{
-			fixed (Vector2* poutOffset = &outOffset)
-			{
-				fixed (Vector2* poutSize = &outSize)
-				{
-					fixed (Vector2* poutUvBorder = outUvBorder)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					fixed (Vector2* poutSize = &outSize)
-					{
-						fixed (Vector2* poutUvBorder = &outUvBorder)
-						{
-							byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					fixed (Vector2* poutSize = &outSize)
-					{
-						fixed (Vector2* poutUvBorder = outUvBorder)
-						{
-							byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
-		{
-			fixed (Vector2* poutUvFill = &outUvFill)
-			{
-				byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, outOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
-		{
-			fixed (Vector2* poutUvFill = outUvFill)
-			{
-				byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, outOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutUvFill = &outUvFill)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutUvFill = outUvFill)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
-		{
-			fixed (Vector2* poutOffset = &outOffset)
-			{
-				fixed (Vector2* poutUvFill = &outUvFill)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, (Vector2*)poutOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
-		{
-			fixed (Vector2* poutOffset = &outOffset)
-			{
-				fixed (Vector2* poutUvFill = outUvFill)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, (Vector2*)poutOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					fixed (Vector2* poutUvFill = &outUvFill)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					fixed (Vector2* poutUvFill = outUvFill)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, (Vector2*)poutOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
-		{
-			fixed (Vector2* poutSize = &outSize)
-			{
-				fixed (Vector2* poutUvFill = &outUvFill)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, outOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
-		{
-			fixed (Vector2* poutSize = &outSize)
-			{
-				fixed (Vector2* poutUvFill = outUvFill)
-				{
-					byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, outOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutSize = &outSize)
-				{
-					fixed (Vector2* poutUvFill = &outUvFill)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ref ImFontAtlas atlas, ImGuiMouseCursor cursorType, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
-		{
-			fixed (ImFontAtlas* patlas = &atlas)
-			{
-				fixed (Vector2* poutSize = &outSize)
-				{
-					fixed (Vector2* poutUvFill = outUvFill)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)patlas, cursorType, outOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
-		{
-			fixed (Vector2* poutOffset = &outOffset)
-			{
-				fixed (Vector2* poutSize = &outSize)
-				{
-					fixed (Vector2* poutUvFill = &outUvFill)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool ImFontAtlasGetMouseCursorTexData(ImFontAtlasPtr atlas, ImGuiMouseCursor cursorType, ref Vector2 outOffset, ref Vector2 outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
-		{
-			fixed (Vector2* poutOffset = &outOffset)
-			{
-				fixed (Vector2* poutSize = &outSize)
-				{
-					fixed (Vector2* poutUvFill = outUvFill)
-					{
-						byte ret = ImFontAtlasGetMouseCursorTexDataNative((ImFontAtlas*)atlas, cursorType, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
-						return ret != 0;
-					}
 				}
 			}
 		}

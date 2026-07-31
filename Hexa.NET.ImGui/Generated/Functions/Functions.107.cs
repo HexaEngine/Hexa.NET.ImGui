@@ -19,650 +19,619 @@ namespace Hexa.NET.ImGui
 	{
 
 		/// <summary>
-		/// To be documented.
+		/// [BETA] building block for disambiguation between single-click and double-click. Returns 1 on single-click but delayed by io.MouseSingleClickDelay after mouse release. Returns 2+ on double-click or repeated clicks.<br/>
 		/// </summary>
-		public static ImGuiTextRangePtr ImGuiTextRange(string b, in byte e)
+		public static int GetItemClickedCountWithSingleClickDelay()
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (b != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(b);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(b, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pe = &e)
-			{
-				ImGuiTextRangePtr ret = ImGuiTextRangeNative(pStr0, (byte*)pe);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
+			int ret = GetItemClickedCountWithSingleClickDelayNative((ImGuiMouseButton)(0), (float)(-1.0f));
+			return ret;
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [BETA] building block for disambiguation between single-click and double-click. Returns 1 on single-click but delayed by io.MouseSingleClickDelay after mouse release. Returns 2+ on double-click or repeated clicks.<br/>
 		/// </summary>
-		public static ImGuiTextRangePtr ImGuiTextRange(string b, ReadOnlySpan<byte> e)
+		public static int GetItemClickedCountWithSingleClickDelay(float delay)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (b != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(b);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(b, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pe = e)
-			{
-				ImGuiTextRangePtr ret = ImGuiTextRangeNative(pStr0, (byte*)pe);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
+			int ret = GetItemClickedCountWithSingleClickDelayNative((ImGuiMouseButton)(0), delay);
+			return ret;
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Viewports<br/>
+		/// - Currently represents the Platform Window created by the application which is hosting our Dear ImGui windows.<br/>
+		/// - In 'docking' branch with multi-viewport enabled, we extend this concept to have multiple active viewports.<br/>
+		/// - In the future we will extend this concept further to also represent Platform Monitor and support a "no main platform window" operation mode. return primarydefault viewport. This can never be NULL.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte emptyNative(ImGuiTextRange* self)
+		internal static ImGuiViewport* GetMainViewportNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTextRange*, byte>)funcTable[470])(self);
+			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*>)funcTable[356])();
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[470])((nint)self);
+			return (ImGuiViewport*)((delegate* unmanaged[Cdecl]<nint>)funcTable[356])();
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Viewports<br/>
+		/// - Currently represents the Platform Window created by the application which is hosting our Dear ImGui windows.<br/>
+		/// - In 'docking' branch with multi-viewport enabled, we extend this concept to have multiple active viewports.<br/>
+		/// - In the future we will extend this concept further to also represent Platform Monitor and support a "no main platform window" operation mode. return primarydefault viewport. This can never be NULL.<br/>
 		/// </summary>
-		public static bool empty(ImGuiTextRangePtr self)
+		public static ImGuiViewportPtr GetMainViewport()
 		{
-			byte ret = emptyNative((ImGuiTextRange*)self);
+			ImGuiViewportPtr ret = GetMainViewportNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// BackgroundForeground Draw Lists get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImDrawList* GetBackgroundDrawListNative(ImGuiViewport* viewport)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*, ImDrawList*>)funcTable[357])(viewport);
+			#else
+			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[357])((nint)viewport);
+			#endif
+		}
+
+		/// <summary>
+		/// BackgroundForeground Draw Lists get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
+		/// </summary>
+		public static ImDrawListPtr GetBackgroundDrawList(ImGuiViewportPtr viewport)
+		{
+			ImDrawListPtr ret = GetBackgroundDrawListNative((ImGuiViewport*)viewport);
+			return ret;
+		}
+
+		/// <summary>
+		/// BackgroundForeground Draw Lists get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
+		/// </summary>
+		public static ImDrawListPtr GetBackgroundDrawList()
+		{
+			ImDrawListPtr ret = GetBackgroundDrawListNative((ImGuiViewport*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// BackgroundForeground Draw Lists get background draw list for the given viewport or viewport associated to the current window. this draw list will be the first rendering one. Useful to quickly draw shapestext behind dear imgui contents.<br/>
+		/// </summary>
+		public static ImDrawListPtr GetBackgroundDrawList(ref ImGuiViewport viewport)
+		{
+			fixed (ImGuiViewport* pviewport = &viewport)
+			{
+				ImDrawListPtr ret = GetBackgroundDrawListNative((ImGuiViewport*)pviewport);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImDrawList* GetForegroundDrawListNative(ImGuiViewport* viewport)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*, ImDrawList*>)funcTable[358])(viewport);
+			#else
+			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[358])((nint)viewport);
+			#endif
+		}
+
+		/// <summary>
+		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
+		/// </summary>
+		public static ImDrawListPtr GetForegroundDrawList(ImGuiViewportPtr viewport)
+		{
+			ImDrawListPtr ret = GetForegroundDrawListNative((ImGuiViewport*)viewport);
+			return ret;
+		}
+
+		/// <summary>
+		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
+		/// </summary>
+		public static ImDrawListPtr GetForegroundDrawList()
+		{
+			ImDrawListPtr ret = GetForegroundDrawListNative((ImGuiViewport*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// get foreground draw list for the given viewport or viewport associated to the current window. this draw list will be the top-most rendered one. Useful to quickly draw shapestext over dear imgui contents.<br/>
+		/// </summary>
+		public static ImDrawListPtr GetForegroundDrawList(ref ImGuiViewport viewport)
+		{
+			fixed (ImGuiViewport* pviewport = &viewport)
+			{
+				ImDrawListPtr ret = GetForegroundDrawListNative((ImGuiViewport*)pviewport);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Miscellaneous Utilities test if rectangle (of given size, starting from cursor position) is visible  not clipped.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsRectVisibleNative(Vector2 size)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<Vector2, byte>)funcTable[359])(size);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<Vector2, byte>)funcTable[359])(size);
+			#endif
+		}
+
+		/// <summary>
+		/// Miscellaneous Utilities test if rectangle (of given size, starting from cursor position) is visible  not clipped.<br/>
+		/// </summary>
+		public static bool IsRectVisible(Vector2 size)
+		{
+			byte ret = IsRectVisibleNative(size);
 			return ret != 0;
 		}
 
 		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool empty(ref ImGuiTextRange self)
-		{
-			fixed (ImGuiTextRange* pself = &self)
-			{
-				byte ret = emptyNative((ImGuiTextRange*)pself);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
+		/// Miscellaneous Utilities test if rectangle (of given size, starting from cursor position) is visible  not clipped.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void splitNative(ImGuiTextRange* self, byte separator, ImVector<ImGuiTextRange>* output)
+		internal static byte IsRectVisibleNative(Vector2 rectMin, Vector2 rectMax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextRange*, byte, ImVector<ImGuiTextRange>*, void>)funcTable[471])(self, separator, output);
+			return ((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte>)funcTable[360])(rectMin, rectMax);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, byte, nint, void>)funcTable[471])((nint)self, separator, (nint)output);
+			return (byte)((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte>)funcTable[360])(rectMin, rectMax);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// test if rectangle (in screen space) is visible  not clipped. to perform coarse clipping on user's side.<br/>
 		/// </summary>
-		public static void split(ImGuiTextRangePtr self, byte separator, ImVector<ImGuiTextRange>* output)
+		public static bool IsRectVisible(Vector2 rectMin, Vector2 rectMax)
 		{
-			splitNative((ImGuiTextRange*)self, separator, output);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void split(ref ImGuiTextRange self, byte separator, ImVector<ImGuiTextRange>* output)
-		{
-			fixed (ImGuiTextRange* pself = &self)
-			{
-				splitNative((ImGuiTextRange*)pself, separator, output);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void split(ImGuiTextRangePtr self, byte separator, ref ImVector<ImGuiTextRange> output)
-		{
-			fixed (ImVector<ImGuiTextRange>* poutput = &output)
-			{
-				splitNative((ImGuiTextRange*)self, separator, (ImVector<ImGuiTextRange>*)poutput);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void split(ref ImGuiTextRange self, byte separator, ref ImVector<ImGuiTextRange> output)
-		{
-			fixed (ImGuiTextRange* pself = &self)
-			{
-				fixed (ImVector<ImGuiTextRange>* poutput = &output)
-				{
-					splitNative((ImGuiTextRange*)pself, separator, (ImVector<ImGuiTextRange>*)poutput);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiTextBuffer* ImGuiTextBufferNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*>)funcTable[472])();
-			#else
-			return (ImGuiTextBuffer*)((delegate* unmanaged[Cdecl]<nint>)funcTable[472])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiTextBufferPtr ImGuiTextBuffer()
-		{
-			ImGuiTextBufferPtr ret = ImGuiTextBufferNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiTextBuffer* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, void>)funcTable[473])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[473])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiTextBufferPtr self)
-		{
-			DestroyNative((ImGuiTextBuffer*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiTextBuffer self)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				DestroyNative((ImGuiTextBuffer*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* beginNative(ImGuiTextBuffer* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, byte*>)funcTable[474])(self);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[474])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* begin(ImGuiTextBufferPtr self)
-		{
-			byte* ret = beginNative((ImGuiTextBuffer*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string beginS(ImGuiTextBufferPtr self)
-		{
-			string ret = Utils.DecodeStringUTF8(beginNative((ImGuiTextBuffer*)self));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* begin(ref ImGuiTextBuffer self)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				byte* ret = beginNative((ImGuiTextBuffer*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static string beginS(ref ImGuiTextBuffer self)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				string ret = Utils.DecodeStringUTF8(beginNative((ImGuiTextBuffer*)pself));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* endNative(ImGuiTextBuffer* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, byte*>)funcTable[475])(self);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[475])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
-		/// </summary>
-		public static byte* end(ImGuiTextBufferPtr self)
-		{
-			byte* ret = endNative((ImGuiTextBuffer*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
-		/// </summary>
-		public static string endS(ImGuiTextBufferPtr self)
-		{
-			string ret = Utils.DecodeStringUTF8(endNative((ImGuiTextBuffer*)self));
-			return ret;
-		}
-
-		/// <summary>
-		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
-		/// </summary>
-		public static byte* end(ref ImGuiTextBuffer self)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				byte* ret = endNative((ImGuiTextBuffer*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// Buf is zero-terminated, so end() will point on the zero-terminator<br/>
-		/// </summary>
-		public static string endS(ref ImGuiTextBuffer self)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				string ret = Utils.DecodeStringUTF8(endNative((ImGuiTextBuffer*)pself));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int sizeNative(ImGuiTextBuffer* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, int>)funcTable[476])(self);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)funcTable[476])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int size(ImGuiTextBufferPtr self)
-		{
-			int ret = sizeNative((ImGuiTextBuffer*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int size(ref ImGuiTextBuffer self)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				int ret = sizeNative((ImGuiTextBuffer*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte emptyNative(ImGuiTextBuffer* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, byte>)funcTable[477])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[477])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool empty(ImGuiTextBufferPtr self)
-		{
-			byte ret = emptyNative((ImGuiTextBuffer*)self);
+			byte ret = IsRectVisibleNative(rectMin, rectMax);
 			return ret != 0;
 		}
 
 		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool empty(ref ImGuiTextBuffer self)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				byte ret = emptyNative((ImGuiTextBuffer*)pself);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
+		/// get global imgui time. incremented by io.DeltaTime every frame.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void clearNative(ImGuiTextBuffer* self)
+		internal static double GetTimeNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, void>)funcTable[478])(self);
+			return ((delegate* unmanaged[Cdecl]<double>)funcTable[361])();
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[478])((nint)self);
+			return (double)((delegate* unmanaged[Cdecl]<double>)funcTable[361])();
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get global imgui time. incremented by io.DeltaTime every frame.<br/>
 		/// </summary>
-		public static void clear(ImGuiTextBufferPtr self)
+		public static double GetTime()
 		{
-			clearNative((ImGuiTextBuffer*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void clear(ref ImGuiTextBuffer self)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				clearNative((ImGuiTextBuffer*)pself);
-			}
-		}
-
-		/// <summary>
-		/// Similar to resize(0) on ImVector: empty string but don't free buffer.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void resizeNative(ImGuiTextBuffer* self, int size)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, int, void>)funcTable[479])(self, size);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[479])((nint)self, size);
-			#endif
-		}
-
-		/// <summary>
-		/// Similar to resize(0) on ImVector: empty string but don't free buffer.<br/>
-		/// </summary>
-		public static void resize(ImGuiTextBufferPtr self, int size)
-		{
-			resizeNative((ImGuiTextBuffer*)self, size);
-		}
-
-		/// <summary>
-		/// Similar to resize(0) on ImVector: empty string but don't free buffer.<br/>
-		/// </summary>
-		public static void resize(ref ImGuiTextBuffer self, int size)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				resizeNative((ImGuiTextBuffer*)pself, size);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void reserveNative(ImGuiTextBuffer* self, int capacity)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, int, void>)funcTable[480])(self, capacity);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[480])((nint)self, capacity);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void reserve(ImGuiTextBufferPtr self, int capacity)
-		{
-			reserveNative((ImGuiTextBuffer*)self, capacity);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void reserve(ref ImGuiTextBuffer self, int capacity)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				reserveNative((ImGuiTextBuffer*)pself, capacity);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* c_strNative(ImGuiTextBuffer* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, byte*>)funcTable[481])(self);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[481])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static byte* c_str(ImGuiTextBufferPtr self)
-		{
-			byte* ret = c_strNative((ImGuiTextBuffer*)self);
+			double ret = GetTimeNative();
 			return ret;
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// get global imgui frame count. incremented by 1 every frame.<br/>
 		/// </summary>
-		public static string c_strS(ImGuiTextBufferPtr self)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int GetFrameCountNative()
 		{
-			string ret = Utils.DecodeStringUTF8(c_strNative((ImGuiTextBuffer*)self));
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[362])();
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[362])();
+			#endif
+		}
+
+		/// <summary>
+		/// get global imgui frame count. incremented by 1 every frame.<br/>
+		/// </summary>
+		public static int GetFrameCount()
+		{
+			int ret = GetFrameCountNative();
 			return ret;
+		}
+
+		/// <summary>
+		/// you may use this when creating your own ImDrawList instances.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImDrawListSharedData* GetDrawListSharedDataNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImDrawListSharedData*>)funcTable[363])();
+			#else
+			return (ImDrawListSharedData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[363])();
+			#endif
+		}
+
+		/// <summary>
+		/// you may use this when creating your own ImDrawList instances.<br/>
+		/// </summary>
+		public static ImDrawListSharedDataPtr GetDrawListSharedData()
+		{
+			ImDrawListSharedDataPtr ret = GetDrawListSharedDataNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// get a string corresponding to the enum value (for display, saving, etc.).<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte* GetStyleColorNameNative(ImGuiCol idx)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiCol, byte*>)funcTable[364])(idx);
+			#else
+			return (byte*)((delegate* unmanaged[Cdecl]<ImGuiCol, nint>)funcTable[364])(idx);
+			#endif
+		}
+
+		/// <summary>
+		/// get a string corresponding to the enum value (for display, saving, etc.).<br/>
+		/// </summary>
+		public static byte* GetStyleColorName(ImGuiCol idx)
+		{
+			byte* ret = GetStyleColorNameNative(idx);
+			return ret;
+		}
+
+		/// <summary>
+		/// get a string corresponding to the enum value (for display, saving, etc.).<br/>
+		/// </summary>
+		public static string GetStyleColorNameS(ImGuiCol idx)
+		{
+			string ret = Utils.DecodeStringUTF8(GetStyleColorNameNative(idx));
+			return ret;
+		}
+
+		/// <summary>
+		/// replace current window storage with our own (if you want to manipulate it yourself, typically clear subsection of it)<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetStateStorageNative(ImGuiStorage* storage)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiStorage*, void>)funcTable[365])(storage);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[365])((nint)storage);
+			#endif
+		}
+
+		/// <summary>
+		/// replace current window storage with our own (if you want to manipulate it yourself, typically clear subsection of it)<br/>
+		/// </summary>
+		public static void SetStateStorage(ImGuiStoragePtr storage)
+		{
+			SetStateStorageNative((ImGuiStorage*)storage);
+		}
+
+		/// <summary>
+		/// replace current window storage with our own (if you want to manipulate it yourself, typically clear subsection of it)<br/>
+		/// </summary>
+		public static void SetStateStorage(ref ImGuiStorage storage)
+		{
+			fixed (ImGuiStorage* pstorage = &storage)
+			{
+				SetStateStorageNative((ImGuiStorage*)pstorage);
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* c_str(ref ImGuiTextBuffer self)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiStorage* GetStateStorageNative()
 		{
-			fixed (ImGuiTextBuffer* pself = &self)
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*>)funcTable[366])();
+			#else
+			return (ImGuiStorage*)((delegate* unmanaged[Cdecl]<nint>)funcTable[366])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiStoragePtr GetStateStorage()
+		{
+			ImGuiStoragePtr ret = GetStateStorageNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static Vector2 CalcTextSizeNative(byte* text, byte* textEnd, byte hideTextAfterDoubleHash, float wrapWidth)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte, float, Vector2>)funcTable[367])(text, textEnd, hideTextAfterDoubleHash, wrapWidth);
+			#else
+			return (Vector2)((delegate* unmanaged[Cdecl]<nint, nint, byte, float, Vector2>)funcTable[367])((nint)text, (nint)textEnd, hideTextAfterDoubleHash, wrapWidth);
+			#endif
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			Vector2 ret = CalcTextSizeNative(text, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, byte* textEnd, bool hideTextAfterDoubleHash)
+		{
+			Vector2 ret = CalcTextSizeNative(text, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, byte* textEnd)
+		{
+			Vector2 ret = CalcTextSizeNative(text, textEnd, (byte)(0), (float)(-1.0f));
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text)
+		{
+			Vector2 ret = CalcTextSizeNative(text, (byte*)(default), (byte)(0), (float)(-1.0f));
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, bool hideTextAfterDoubleHash)
+		{
+			Vector2 ret = CalcTextSizeNative(text, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, byte* textEnd, float wrapWidth)
+		{
+			Vector2 ret = CalcTextSizeNative(text, textEnd, (byte)(0), wrapWidth);
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, float wrapWidth)
+		{
+			Vector2 ret = CalcTextSizeNative(text, (byte*)(default), (byte)(0), wrapWidth);
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			Vector2 ret = CalcTextSizeNative(text, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(in byte text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
 			{
-				byte* ret = c_strNative((ImGuiTextBuffer*)pself);
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 				return ret;
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Text Utilities<br/>
 		/// </summary>
-		public static string c_strS(ref ImGuiTextBuffer self)
+		public static Vector2 CalcTextSize(in byte text, byte* textEnd, bool hideTextAfterDoubleHash)
 		{
-			fixed (ImGuiTextBuffer* pself = &self)
+			fixed (byte* ptext = &text)
 			{
-				string ret = Utils.DecodeStringUTF8(c_strNative((ImGuiTextBuffer*)pself));
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 				return ret;
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Text Utilities<br/>
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void appendNative(ImGuiTextBuffer* self, byte* str, byte* strEnd)
+		public static Vector2 CalcTextSize(in byte text, byte* textEnd)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, byte*, byte*, void>)funcTable[482])(self, str, strEnd);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[482])((nint)self, (nint)str, (nint)strEnd);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, byte* str, byte* strEnd)
-		{
-			appendNative((ImGuiTextBuffer*)self, str, strEnd);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, byte* str)
-		{
-			appendNative((ImGuiTextBuffer*)self, str, (byte*)(default));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, byte* str, byte* strEnd)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
+			fixed (byte* ptext = &text)
 			{
-				appendNative((ImGuiTextBuffer*)pself, str, strEnd);
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, (byte)(0), (float)(-1.0f));
+				return ret;
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Text Utilities<br/>
 		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, byte* str)
+		public static Vector2 CalcTextSize(in byte text)
 		{
-			fixed (ImGuiTextBuffer* pself = &self)
+			fixed (byte* ptext = &text)
 			{
-				appendNative((ImGuiTextBuffer*)pself, str, (byte*)(default));
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), (byte)(0), (float)(-1.0f));
+				return ret;
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Text Utilities<br/>
 		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, in byte str, byte* strEnd)
+		public static Vector2 CalcTextSize(in byte text, bool hideTextAfterDoubleHash)
 		{
-			fixed (byte* pstr = &str)
+			fixed (byte* ptext = &text)
 			{
-				appendNative((ImGuiTextBuffer*)self, (byte*)pstr, strEnd);
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+				return ret;
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Text Utilities<br/>
 		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, in byte str)
+		public static Vector2 CalcTextSize(in byte text, byte* textEnd, float wrapWidth)
 		{
-			fixed (byte* pstr = &str)
+			fixed (byte* ptext = &text)
 			{
-				appendNative((ImGuiTextBuffer*)self, (byte*)pstr, (byte*)(default));
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, (byte)(0), wrapWidth);
+				return ret;
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Text Utilities<br/>
 		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, ReadOnlySpan<byte> str, byte* strEnd)
+		public static Vector2 CalcTextSize(in byte text, float wrapWidth)
 		{
-			fixed (byte* pstr = str)
+			fixed (byte* ptext = &text)
 			{
-				appendNative((ImGuiTextBuffer*)self, (byte*)pstr, strEnd);
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), (byte)(0), wrapWidth);
+				return ret;
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Text Utilities<br/>
 		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, ReadOnlySpan<byte> str)
+		public static Vector2 CalcTextSize(in byte text, bool hideTextAfterDoubleHash, float wrapWidth)
 		{
-			fixed (byte* pstr = str)
+			fixed (byte* ptext = &text)
 			{
-				appendNative((ImGuiTextBuffer*)self, (byte*)pstr, (byte*)(default));
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+				return ret;
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Text Utilities<br/>
 		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, string str, byte* strEnd)
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, byte* textEnd, bool hideTextAfterDoubleHash)
+		{
+			fixed (byte* ptext = text)
+			{
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, byte* textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, (byte)(0), (float)(-1.0f));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text)
+		{
+			fixed (byte* ptext = text)
+			{
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), (byte)(0), (float)(-1.0f));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, bool hideTextAfterDoubleHash)
+		{
+			fixed (byte* ptext = text)
+			{
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, textEnd, (byte)(0), wrapWidth);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), (byte)(0), wrapWidth);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (str != null)
+			if (text != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(str);
+				pStrSize0 = Utils.GetByteCountUTF8(text);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -672,26 +641,27 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			appendNative((ImGuiTextBuffer*)self, pStr0, strEnd);
+			Vector2 ret = CalcTextSizeNative(pStr0, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Text Utilities<br/>
 		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, string str)
+		public static Vector2 CalcTextSize(string text, byte* textEnd, bool hideTextAfterDoubleHash)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (str != null)
+			if (text != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(str);
+				pStrSize0 = Utils.GetByteCountUTF8(text);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -701,168 +671,27 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			appendNative((ImGuiTextBuffer*)self, pStr0, (byte*)(default));
+			Vector2 ret = CalcTextSizeNative(pStr0, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Text Utilities<br/>
 		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, in byte str, byte* strEnd)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				fixed (byte* pstr = &str)
-				{
-					appendNative((ImGuiTextBuffer*)pself, (byte*)pstr, strEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, in byte str)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				fixed (byte* pstr = &str)
-				{
-					appendNative((ImGuiTextBuffer*)pself, (byte*)pstr, (byte*)(default));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, ReadOnlySpan<byte> str, byte* strEnd)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				fixed (byte* pstr = str)
-				{
-					appendNative((ImGuiTextBuffer*)pself, (byte*)pstr, strEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, ReadOnlySpan<byte> str)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				fixed (byte* pstr = str)
-				{
-					appendNative((ImGuiTextBuffer*)pself, (byte*)pstr, (byte*)(default));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, string str, byte* strEnd)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (str != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(str);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				appendNative((ImGuiTextBuffer*)pself, pStr0, strEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, string str)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (str != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(str);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				appendNative((ImGuiTextBuffer*)pself, pStr0, (byte*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, byte* str, in byte strEnd)
-		{
-			fixed (byte* pstrEnd = &strEnd)
-			{
-				appendNative((ImGuiTextBuffer*)self, str, (byte*)pstrEnd);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, byte* str, ReadOnlySpan<byte> strEnd)
-		{
-			fixed (byte* pstrEnd = strEnd)
-			{
-				appendNative((ImGuiTextBuffer*)self, str, (byte*)pstrEnd);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, byte* str, string strEnd)
+		public static Vector2 CalcTextSize(string text, byte* textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (strEnd != null)
+			if (text != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+				pStrSize0 = Utils.GetByteCountUTF8(text);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -872,114 +701,27 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			appendNative((ImGuiTextBuffer*)self, str, pStr0);
+			Vector2 ret = CalcTextSizeNative(pStr0, textEnd, (byte)(0), (float)(-1.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Text Utilities<br/>
 		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, byte* str, in byte strEnd)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				fixed (byte* pstrEnd = &strEnd)
-				{
-					appendNative((ImGuiTextBuffer*)pself, str, (byte*)pstrEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, byte* str, ReadOnlySpan<byte> strEnd)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				fixed (byte* pstrEnd = strEnd)
-				{
-					appendNative((ImGuiTextBuffer*)pself, str, (byte*)pstrEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, byte* str, string strEnd)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (strEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(strEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				appendNative((ImGuiTextBuffer*)pself, str, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, in byte str, in byte strEnd)
-		{
-			fixed (byte* pstr = &str)
-			{
-				fixed (byte* pstrEnd = &strEnd)
-				{
-					appendNative((ImGuiTextBuffer*)self, (byte*)pstr, (byte*)pstrEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, ReadOnlySpan<byte> str, ReadOnlySpan<byte> strEnd)
-		{
-			fixed (byte* pstr = str)
-			{
-				fixed (byte* pstrEnd = strEnd)
-				{
-					appendNative((ImGuiTextBuffer*)self, (byte*)pstr, (byte*)pstrEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, string str, string strEnd)
+		public static Vector2 CalcTextSize(string text)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (str != null)
+			if (text != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(str);
+				pStrSize0 = Utils.GetByteCountUTF8(text);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -989,14 +731,500 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			Vector2 ret = CalcTextSizeNative(pStr0, (byte*)(default), (byte)(0), (float)(-1.0f));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, bool hideTextAfterDoubleHash)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			Vector2 ret = CalcTextSizeNative(pStr0, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, byte* textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			Vector2 ret = CalcTextSizeNative(pStr0, textEnd, (byte)(0), wrapWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			Vector2 ret = CalcTextSizeNative(pStr0, (byte*)(default), (byte)(0), wrapWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			Vector2 ret = CalcTextSizeNative(pStr0, (byte*)(default), hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, in byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, in byte textEnd, bool hideTextAfterDoubleHash)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, in byte textEnd)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, in byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, (byte)(0), wrapWidth);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(text, (byte*)ptextEnd, (byte)(0), wrapWidth);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			Vector2 ret = CalcTextSizeNative(text, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, string textEnd, bool hideTextAfterDoubleHash)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			Vector2 ret = CalcTextSizeNative(text, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			Vector2 ret = CalcTextSizeNative(text, pStr0, (byte)(0), (float)(-1.0f));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(byte* text, string textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			Vector2 ret = CalcTextSizeNative(text, pStr0, (byte)(0), wrapWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(in byte text, in byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(in byte text, in byte textEnd, bool hideTextAfterDoubleHash)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(in byte text, in byte textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(in byte text, in byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (strEnd != null)
+			if (textEnd != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(strEnd);
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -1006,10 +1234,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			appendNative((ImGuiTextBuffer*)self, pStr0, pStr1);
+			Vector2 ret = CalcTextSizeNative(pStr0, pStr1, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1018,110 +1246,19 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Text Utilities<br/>
 		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, in byte str, ReadOnlySpan<byte> strEnd)
-		{
-			fixed (byte* pstr = &str)
-			{
-				fixed (byte* pstrEnd = strEnd)
-				{
-					appendNative((ImGuiTextBuffer*)self, (byte*)pstr, (byte*)pstrEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, in byte str, string strEnd)
-		{
-			fixed (byte* pstr = &str)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (strEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(strEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				appendNative((ImGuiTextBuffer*)self, (byte*)pstr, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, ReadOnlySpan<byte> str, in byte strEnd)
-		{
-			fixed (byte* pstr = str)
-			{
-				fixed (byte* pstrEnd = &strEnd)
-				{
-					appendNative((ImGuiTextBuffer*)self, (byte*)pstr, (byte*)pstrEnd);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, ReadOnlySpan<byte> str, string strEnd)
-		{
-			fixed (byte* pstr = str)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (strEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(strEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				appendNative((ImGuiTextBuffer*)self, (byte*)pstr, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, string str, in byte strEnd)
+		public static Vector2 CalcTextSize(string text, string textEnd, bool hideTextAfterDoubleHash)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (str != null)
+			if (text != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(str);
+				pStrSize0 = Utils.GetByteCountUTF8(text);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1131,254 +1268,245 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pstrEnd = &strEnd)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
 			{
-				appendNative((ImGuiTextBuffer*)self, pStr0, (byte*)pstrEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ImGuiTextBufferPtr self, string str, ReadOnlySpan<byte> strEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (str != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(str);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pstrEnd = strEnd)
-			{
-				appendNative((ImGuiTextBuffer*)self, pStr0, (byte*)pstrEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, in byte str, in byte strEnd)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				fixed (byte* pstr = &str)
-				{
-					fixed (byte* pstrEnd = &strEnd)
-					{
-						appendNative((ImGuiTextBuffer*)pself, (byte*)pstr, (byte*)pstrEnd);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, ReadOnlySpan<byte> str, ReadOnlySpan<byte> strEnd)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				fixed (byte* pstr = str)
-				{
-					fixed (byte* pstrEnd = strEnd)
-					{
-						appendNative((ImGuiTextBuffer*)pself, (byte*)pstr, (byte*)pstrEnd);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, string str, string strEnd)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (str != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(str);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (strEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(strEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				appendNative((ImGuiTextBuffer*)pself, pStr0, pStr1);
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr1);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			Vector2 ret = CalcTextSizeNative(pStr0, pStr1, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			Vector2 ret = CalcTextSizeNative(pStr0, pStr1, (byte)(0), (float)(-1.0f));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, string textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			Vector2 ret = CalcTextSizeNative(pStr0, pStr1, (byte)(0), wrapWidth);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(in byte text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(in byte text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(in byte text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(in byte text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(in byte text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Text Utilities<br/>
 		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, in byte str, ReadOnlySpan<byte> strEnd)
+		public static Vector2 CalcTextSize(in byte text, string textEnd, bool hideTextAfterDoubleHash)
 		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				fixed (byte* pstr = &str)
-				{
-					fixed (byte* pstrEnd = strEnd)
-					{
-						appendNative((ImGuiTextBuffer*)pself, (byte*)pstr, (byte*)pstrEnd);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, in byte str, string strEnd)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				fixed (byte* pstr = &str)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (strEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(strEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					appendNative((ImGuiTextBuffer*)pself, (byte*)pstr, pStr0);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, ReadOnlySpan<byte> str, in byte strEnd)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				fixed (byte* pstr = str)
-				{
-					fixed (byte* pstrEnd = &strEnd)
-					{
-						appendNative((ImGuiTextBuffer*)pself, (byte*)pstr, (byte*)pstrEnd);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, ReadOnlySpan<byte> str, string strEnd)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
-			{
-				fixed (byte* pstr = str)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (strEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(strEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					appendNative((ImGuiTextBuffer*)pself, (byte*)pstr, pStr0);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, string str, in byte strEnd)
-		{
-			fixed (ImGuiTextBuffer* pself = &self)
+			fixed (byte* ptext = &text)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (str != null)
+				if (textEnd != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(str);
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1388,32 +1516,30 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				fixed (byte* pstrEnd = &strEnd)
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					appendNative((ImGuiTextBuffer*)pself, pStr0, (byte*)pstrEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Text Utilities<br/>
 		/// </summary>
-		public static void append(ref ImGuiTextBuffer self, string str, ReadOnlySpan<byte> strEnd)
+		public static Vector2 CalcTextSize(in byte text, string textEnd)
 		{
-			fixed (ImGuiTextBuffer* pself = &self)
+			fixed (byte* ptext = &text)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (str != null)
+				if (textEnd != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(str);
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1423,15 +1549,659 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				fixed (byte* pstrEnd = strEnd)
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, (byte)(0), (float)(-1.0f));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					appendNative((ImGuiTextBuffer*)pself, pStr0, (byte*)pstrEnd);
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(in byte text, string textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, (byte)(0), wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, in byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, in byte textEnd, bool hideTextAfterDoubleHash)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, in byte textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, in byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					Vector2 ret = CalcTextSizeNative((byte*)ptext, (byte*)ptextEnd, (byte)(0), wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, string textEnd, bool hideTextAfterDoubleHash)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, string textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, (byte)(0), (float)(-1.0f));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(ReadOnlySpan<byte> text, string textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				Vector2 ret = CalcTextSizeNative((byte*)ptext, pStr0, (byte)(0), wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, in byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, in byte textEnd, bool hideTextAfterDoubleHash)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, in byte textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, in byte textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, (byte)(0), wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, ReadOnlySpan<byte> textEnd, bool hideTextAfterDoubleHash)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, ReadOnlySpan<byte> textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Text Utilities<br/>
+		/// </summary>
+		public static Vector2 CalcTextSize(string text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* ptextEnd = textEnd)
+			{
+				Vector2 ret = CalcTextSizeNative(pStr0, (byte*)ptextEnd, (byte)(0), wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Color Utilities<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static Vector4 ColorConvertU32ToFloat4Native(uint input)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, Vector4>)funcTable[368])(input);
+			#else
+			return (Vector4)((delegate* unmanaged[Cdecl]<uint, Vector4>)funcTable[368])(input);
+			#endif
+		}
+
+		/// <summary>
+		/// Color Utilities<br/>
+		/// </summary>
+		public static Vector4 ColorConvertU32ToFloat4(uint input)
+		{
+			Vector4 ret = ColorConvertU32ToFloat4Native(input);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint ColorConvertFloat4ToU32Native(Vector4 input)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[369])(input);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<Vector4, uint>)funcTable[369])(input);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint ColorConvertFloat4ToU32(Vector4 input)
+		{
+			uint ret = ColorConvertFloat4ToU32Native(input);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ColorConvertRGBtoHSVNative(float r, float g, float b, float* outH, float* outS, float* outV)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<float, float, float, float*, float*, float*, void>)funcTable[370])(r, g, b, outH, outS, outV);
+			#else
+			((delegate* unmanaged[Cdecl]<float, float, float, nint, nint, nint, void>)funcTable[370])(r, g, b, (nint)outH, (nint)outS, (nint)outV);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorConvertRGBtoHSV(float r, float g, float b, float* outH, float* outS, float* outV)
+		{
+			ColorConvertRGBtoHSVNative(r, g, b, outH, outS, outV);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorConvertRGBtoHSV(float r, float g, float b, ref float outH, float* outS, float* outV)
+		{
+			fixed (float* poutH = &outH)
+			{
+				ColorConvertRGBtoHSVNative(r, g, b, (float*)poutH, outS, outV);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorConvertRGBtoHSV(float r, float g, float b, float* outH, ref float outS, float* outV)
+		{
+			fixed (float* poutS = &outS)
+			{
+				ColorConvertRGBtoHSVNative(r, g, b, outH, (float*)poutS, outV);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorConvertRGBtoHSV(float r, float g, float b, ref float outH, ref float outS, float* outV)
+		{
+			fixed (float* poutH = &outH)
+			{
+				fixed (float* poutS = &outS)
+				{
+					ColorConvertRGBtoHSVNative(r, g, b, (float*)poutH, (float*)poutS, outV);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorConvertRGBtoHSV(float r, float g, float b, float* outH, float* outS, ref float outV)
+		{
+			fixed (float* poutV = &outV)
+			{
+				ColorConvertRGBtoHSVNative(r, g, b, outH, outS, (float*)poutV);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorConvertRGBtoHSV(float r, float g, float b, ref float outH, float* outS, ref float outV)
+		{
+			fixed (float* poutH = &outH)
+			{
+				fixed (float* poutV = &outV)
+				{
+					ColorConvertRGBtoHSVNative(r, g, b, (float*)poutH, outS, (float*)poutV);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorConvertRGBtoHSV(float r, float g, float b, float* outH, ref float outS, ref float outV)
+		{
+			fixed (float* poutS = &outS)
+			{
+				fixed (float* poutV = &outV)
+				{
+					ColorConvertRGBtoHSVNative(r, g, b, outH, (float*)poutS, (float*)poutV);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorConvertRGBtoHSV(float r, float g, float b, ref float outH, ref float outS, ref float outV)
+		{
+			fixed (float* poutH = &outH)
+			{
+				fixed (float* poutS = &outS)
+				{
+					fixed (float* poutV = &outV)
+					{
+						ColorConvertRGBtoHSVNative(r, g, b, (float*)poutH, (float*)poutS, (float*)poutV);
 					}
 				}
 			}
@@ -1441,60 +2211,1630 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void appendfvNative(ImGuiTextBuffer* self, byte* fmt, nuint args)
+		internal static void ColorConvertHSVtoRGBNative(float h, float s, float v, float* outR, float* outG, float* outB)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, byte*, nuint, void>)funcTable[483])(self, fmt, args);
+			((delegate* unmanaged[Cdecl]<float, float, float, float*, float*, float*, void>)funcTable[371])(h, s, v, outR, outG, outB);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nuint, void>)funcTable[483])((nint)self, (nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<float, float, float, nint, nint, nint, void>)funcTable[371])(h, s, v, (nint)outR, (nint)outG, (nint)outB);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void appendfv(ImGuiTextBufferPtr self, byte* fmt, nuint args)
+		public static void ColorConvertHSVtoRGB(float h, float s, float v, float* outR, float* outG, float* outB)
 		{
-			appendfvNative((ImGuiTextBuffer*)self, fmt, args);
+			ColorConvertHSVtoRGBNative(h, s, v, outR, outG, outB);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void appendfv(ref ImGuiTextBuffer self, byte* fmt, nuint args)
+		public static void ColorConvertHSVtoRGB(float h, float s, float v, ref float outR, float* outG, float* outB)
 		{
-			fixed (ImGuiTextBuffer* pself = &self)
+			fixed (float* poutR = &outR)
 			{
-				appendfvNative((ImGuiTextBuffer*)pself, fmt, args);
+				ColorConvertHSVtoRGBNative(h, s, v, (float*)poutR, outG, outB);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void appendfv(ImGuiTextBufferPtr self, in byte fmt, nuint args)
+		public static void ColorConvertHSVtoRGB(float h, float s, float v, float* outR, ref float outG, float* outB)
+		{
+			fixed (float* poutG = &outG)
+			{
+				ColorConvertHSVtoRGBNative(h, s, v, outR, (float*)poutG, outB);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorConvertHSVtoRGB(float h, float s, float v, ref float outR, ref float outG, float* outB)
+		{
+			fixed (float* poutR = &outR)
+			{
+				fixed (float* poutG = &outG)
+				{
+					ColorConvertHSVtoRGBNative(h, s, v, (float*)poutR, (float*)poutG, outB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorConvertHSVtoRGB(float h, float s, float v, float* outR, float* outG, ref float outB)
+		{
+			fixed (float* poutB = &outB)
+			{
+				ColorConvertHSVtoRGBNative(h, s, v, outR, outG, (float*)poutB);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorConvertHSVtoRGB(float h, float s, float v, ref float outR, float* outG, ref float outB)
+		{
+			fixed (float* poutR = &outR)
+			{
+				fixed (float* poutB = &outB)
+				{
+					ColorConvertHSVtoRGBNative(h, s, v, (float*)poutR, outG, (float*)poutB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorConvertHSVtoRGB(float h, float s, float v, float* outR, ref float outG, ref float outB)
+		{
+			fixed (float* poutG = &outG)
+			{
+				fixed (float* poutB = &outB)
+				{
+					ColorConvertHSVtoRGBNative(h, s, v, outR, (float*)poutG, (float*)poutB);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ColorConvertHSVtoRGB(float h, float s, float v, ref float outR, ref float outG, ref float outB)
+		{
+			fixed (float* poutR = &outR)
+			{
+				fixed (float* poutG = &outG)
+				{
+					fixed (float* poutB = &outB)
+					{
+						ColorConvertHSVtoRGBNative(h, s, v, (float*)poutR, (float*)poutG, (float*)poutB);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Inputs Utilities: Raw KeyboardMouseGamepad Access<br/>
+		/// - Consider using the Shortcut() function instead of IsKeyPressed()IsKeyChordPressed()! Shortcut() is easier to use and better featured (can do focus routing check).<br/>
+		/// - the ImGuiKey enum contains all possible keyboard, mouse and gamepad inputs (e.g. ImGuiKey_A, ImGuiKey_MouseLeft, ImGuiKey_GamepadDpadUp...).<br/>
+		/// - (legacy: before v1.87 (2022-02), we used ImGuiKey &lt; 512 values to carry nativeuser indices as defined by each backends. This was obsoleted in 1.87 (2022-02) and completely removed in 1.91.5 (2024-11). See https:github.comocornutimguiissues4921) is key being held.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsKeyDownNative(ImGuiKey key)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[372])(key);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[372])(key);
+			#endif
+		}
+
+		/// <summary>
+		/// Inputs Utilities: Raw KeyboardMouseGamepad Access<br/>
+		/// - Consider using the Shortcut() function instead of IsKeyPressed()IsKeyChordPressed()! Shortcut() is easier to use and better featured (can do focus routing check).<br/>
+		/// - the ImGuiKey enum contains all possible keyboard, mouse and gamepad inputs (e.g. ImGuiKey_A, ImGuiKey_MouseLeft, ImGuiKey_GamepadDpadUp...).<br/>
+		/// - (legacy: before v1.87 (2022-02), we used ImGuiKey &lt; 512 values to carry nativeuser indices as defined by each backends. This was obsoleted in 1.87 (2022-02) and completely removed in 1.91.5 (2024-11). See https:github.comocornutimguiissues4921) is key being held.<br/>
+		/// </summary>
+		public static bool IsKeyDown(ImGuiKey key)
+		{
+			byte ret = IsKeyDownNative(key);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// was key pressed (went from !Down to Down)? Repeat rate uses io.KeyRepeatDelay  KeyRepeatRate.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsKeyPressedNative(ImGuiKey key, byte repeat)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte, byte>)funcTable[373])(key, repeat);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte, byte>)funcTable[373])(key, repeat);
+			#endif
+		}
+
+		/// <summary>
+		/// was key pressed (went from !Down to Down)? Repeat rate uses io.KeyRepeatDelay  KeyRepeatRate.<br/>
+		/// </summary>
+		public static bool IsKeyPressed(ImGuiKey key, bool repeat)
+		{
+			byte ret = IsKeyPressedNative(key, repeat ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// was key pressed (went from !Down to Down)? Repeat rate uses io.KeyRepeatDelay  KeyRepeatRate.<br/>
+		/// </summary>
+		public static bool IsKeyPressed(ImGuiKey key)
+		{
+			byte ret = IsKeyPressedNative(key, (byte)(1));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// was key released (went from Down to !Down)?<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsKeyReleasedNative(ImGuiKey key)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[374])(key);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[374])(key);
+			#endif
+		}
+
+		/// <summary>
+		/// was key released (went from Down to !Down)?<br/>
+		/// </summary>
+		public static bool IsKeyReleased(ImGuiKey key)
+		{
+			byte ret = IsKeyReleasedNative(key);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// was key chord (mods + key) pressed, e.g. you can pass 'ImGuiMod_Ctrl | ImGuiKey_S' as a key-chord. This doesn't do any routing or focus check, please consider using Shortcut() function instead.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsKeyChordPressedNative(int keyChord)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int, byte>)funcTable[375])(keyChord);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)funcTable[375])(keyChord);
+			#endif
+		}
+
+		/// <summary>
+		/// was key chord (mods + key) pressed, e.g. you can pass 'ImGuiMod_Ctrl | ImGuiKey_S' as a key-chord. This doesn't do any routing or focus check, please consider using Shortcut() function instead.<br/>
+		/// </summary>
+		public static bool IsKeyChordPressed(int keyChord)
+		{
+			byte ret = IsKeyChordPressedNative(keyChord);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// uses provided repeat ratedelay. return a count, most often 0 or 1 but might be &gt;1 if RepeatRate is small enough that DeltaTime &gt; RepeatRate<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int GetKeyPressedAmountNative(ImGuiKey key, float repeatDelay, float rate)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, float, float, int>)funcTable[376])(key, repeatDelay, rate);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<ImGuiKey, float, float, int>)funcTable[376])(key, repeatDelay, rate);
+			#endif
+		}
+
+		/// <summary>
+		/// uses provided repeat ratedelay. return a count, most often 0 or 1 but might be &gt;1 if RepeatRate is small enough that DeltaTime &gt; RepeatRate<br/>
+		/// </summary>
+		public static int GetKeyPressedAmount(ImGuiKey key, float repeatDelay, float rate)
+		{
+			int ret = GetKeyPressedAmountNative(key, repeatDelay, rate);
+			return ret;
+		}
+
+		/// <summary>
+		/// [DEBUG] returns English name of the key. Those names are provided for debugging purpose and are not meant to be saved persistently nor compared.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte* GetKeyNameNative(ImGuiKey key)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte*>)funcTable[377])(key);
+			#else
+			return (byte*)((delegate* unmanaged[Cdecl]<ImGuiKey, nint>)funcTable[377])(key);
+			#endif
+		}
+
+		/// <summary>
+		/// [DEBUG] returns English name of the key. Those names are provided for debugging purpose and are not meant to be saved persistently nor compared.<br/>
+		/// </summary>
+		public static byte* GetKeyName(ImGuiKey key)
+		{
+			byte* ret = GetKeyNameNative(key);
+			return ret;
+		}
+
+		/// <summary>
+		/// [DEBUG] returns English name of the key. Those names are provided for debugging purpose and are not meant to be saved persistently nor compared.<br/>
+		/// </summary>
+		public static string GetKeyNameS(ImGuiKey key)
+		{
+			string ret = Utils.DecodeStringUTF8(GetKeyNameNative(key));
+			return ret;
+		}
+
+		/// <summary>
+		/// Override io.WantCaptureKeyboard flag next frame (said flag is left for your application to handle, typically when true it instructs your app to ignore inputs). e.g. force capture keyboard when your widget is being hovered. This is equivalent to setting "io.WantCaptureKeyboard = want_capture_keyboard"; after the next NewFrame() call.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetNextFrameWantCaptureKeyboardNative(byte wantCaptureKeyboard)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[378])(wantCaptureKeyboard);
+			#else
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[378])(wantCaptureKeyboard);
+			#endif
+		}
+
+		/// <summary>
+		/// Override io.WantCaptureKeyboard flag next frame (said flag is left for your application to handle, typically when true it instructs your app to ignore inputs). e.g. force capture keyboard when your widget is being hovered. This is equivalent to setting "io.WantCaptureKeyboard = want_capture_keyboard"; after the next NewFrame() call.<br/>
+		/// </summary>
+		public static void SetNextFrameWantCaptureKeyboard(bool wantCaptureKeyboard)
+		{
+			SetNextFrameWantCaptureKeyboardNative(wantCaptureKeyboard ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// Inputs Utilities: Shortcut Testing &amp; Routing<br/>
+		/// - Typical use is e.g.: 'if (ImGui::Shortcut(ImGuiMod_Ctrl | ImGuiKey_S))  ... '.<br/>
+		/// - Flags: Default route use ImGuiInputFlags_RouteFocused, but see ImGuiInputFlags_RouteGlobal and other options in ImGuiInputFlags_!<br/>
+		/// - Flags: Use ImGuiInputFlags_Repeat to support repeat.<br/>
+		/// - ImGuiKeyChord = a ImGuiKey + optional ImGuiMod_AltImGuiMod_CtrlImGuiMod_ShiftImGuiMod_Super.<br/>
+		/// ImGuiKey_C                           Accepted by functions taking ImGuiKey or ImGuiKeyChord arguments<br/>
+		/// ImGuiMod_Ctrl | ImGuiKey_C           Accepted by functions taking ImGuiKeyChord arguments<br/>
+		/// only ImGuiMod_XXX values are legal to combine with an ImGuiKey. You CANNOT combine two ImGuiKey values.<br/>
+		/// - The general idea is that several callers may register interest in a shortcut, and only one owner gets it.<br/>
+		/// Parent   -&gt; call Shortcut(Ctrl+S)     When Parent is focused, Parent gets the shortcut.<br/>
+		/// Child1 -&gt; call Shortcut(Ctrl+S)     When Child1 is focused, Child1 gets the shortcut (Child1 overrides Parent shortcuts)<br/>
+		/// Child2 -&gt; no call                   When Child2 is focused, Parent gets the shortcut.<br/>
+		/// The whole system is order independent, so if Child1 makes its calls before Parent, results will be identical.<br/>
+		/// This is an important property as it facilitate working with foreign code or larger codebase.<br/>
+		/// - To understand the difference:<br/>
+		/// - IsKeyChordPressed() compares mods and call IsKeyPressed()<br/>
+		/// -&gt; the function has no side-effect.<br/>
+		/// - Shortcut() submits a route, routes are resolved, if it currently can be routed it calls IsKeyChordPressed()<br/>
+		/// -&gt; the function has (desirable) side-effects as it can prevents another call from getting the route.<br/>
+		/// - Visualize registered routes in 'MetricsDebugger-&gt;Inputs'.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ShortcutNative(int keyChord, ImGuiInputFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, byte>)funcTable[379])(keyChord, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, byte>)funcTable[379])(keyChord, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// Inputs Utilities: Shortcut Testing &amp; Routing<br/>
+		/// - Typical use is e.g.: 'if (ImGui::Shortcut(ImGuiMod_Ctrl | ImGuiKey_S))  ... '.<br/>
+		/// - Flags: Default route use ImGuiInputFlags_RouteFocused, but see ImGuiInputFlags_RouteGlobal and other options in ImGuiInputFlags_!<br/>
+		/// - Flags: Use ImGuiInputFlags_Repeat to support repeat.<br/>
+		/// - ImGuiKeyChord = a ImGuiKey + optional ImGuiMod_AltImGuiMod_CtrlImGuiMod_ShiftImGuiMod_Super.<br/>
+		/// ImGuiKey_C                           Accepted by functions taking ImGuiKey or ImGuiKeyChord arguments<br/>
+		/// ImGuiMod_Ctrl | ImGuiKey_C           Accepted by functions taking ImGuiKeyChord arguments<br/>
+		/// only ImGuiMod_XXX values are legal to combine with an ImGuiKey. You CANNOT combine two ImGuiKey values.<br/>
+		/// - The general idea is that several callers may register interest in a shortcut, and only one owner gets it.<br/>
+		/// Parent   -&gt; call Shortcut(Ctrl+S)     When Parent is focused, Parent gets the shortcut.<br/>
+		/// Child1 -&gt; call Shortcut(Ctrl+S)     When Child1 is focused, Child1 gets the shortcut (Child1 overrides Parent shortcuts)<br/>
+		/// Child2 -&gt; no call                   When Child2 is focused, Parent gets the shortcut.<br/>
+		/// The whole system is order independent, so if Child1 makes its calls before Parent, results will be identical.<br/>
+		/// This is an important property as it facilitate working with foreign code or larger codebase.<br/>
+		/// - To understand the difference:<br/>
+		/// - IsKeyChordPressed() compares mods and call IsKeyPressed()<br/>
+		/// -&gt; the function has no side-effect.<br/>
+		/// - Shortcut() submits a route, routes are resolved, if it currently can be routed it calls IsKeyChordPressed()<br/>
+		/// -&gt; the function has (desirable) side-effects as it can prevents another call from getting the route.<br/>
+		/// - Visualize registered routes in 'MetricsDebugger-&gt;Inputs'.<br/>
+		/// </summary>
+		public static bool Shortcut(int keyChord, ImGuiInputFlags flags)
+		{
+			byte ret = ShortcutNative(keyChord, flags);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Inputs Utilities: Shortcut Testing &amp; Routing<br/>
+		/// - Typical use is e.g.: 'if (ImGui::Shortcut(ImGuiMod_Ctrl | ImGuiKey_S))  ... '.<br/>
+		/// - Flags: Default route use ImGuiInputFlags_RouteFocused, but see ImGuiInputFlags_RouteGlobal and other options in ImGuiInputFlags_!<br/>
+		/// - Flags: Use ImGuiInputFlags_Repeat to support repeat.<br/>
+		/// - ImGuiKeyChord = a ImGuiKey + optional ImGuiMod_AltImGuiMod_CtrlImGuiMod_ShiftImGuiMod_Super.<br/>
+		/// ImGuiKey_C                           Accepted by functions taking ImGuiKey or ImGuiKeyChord arguments<br/>
+		/// ImGuiMod_Ctrl | ImGuiKey_C           Accepted by functions taking ImGuiKeyChord arguments<br/>
+		/// only ImGuiMod_XXX values are legal to combine with an ImGuiKey. You CANNOT combine two ImGuiKey values.<br/>
+		/// - The general idea is that several callers may register interest in a shortcut, and only one owner gets it.<br/>
+		/// Parent   -&gt; call Shortcut(Ctrl+S)     When Parent is focused, Parent gets the shortcut.<br/>
+		/// Child1 -&gt; call Shortcut(Ctrl+S)     When Child1 is focused, Child1 gets the shortcut (Child1 overrides Parent shortcuts)<br/>
+		/// Child2 -&gt; no call                   When Child2 is focused, Parent gets the shortcut.<br/>
+		/// The whole system is order independent, so if Child1 makes its calls before Parent, results will be identical.<br/>
+		/// This is an important property as it facilitate working with foreign code or larger codebase.<br/>
+		/// - To understand the difference:<br/>
+		/// - IsKeyChordPressed() compares mods and call IsKeyPressed()<br/>
+		/// -&gt; the function has no side-effect.<br/>
+		/// - Shortcut() submits a route, routes are resolved, if it currently can be routed it calls IsKeyChordPressed()<br/>
+		/// -&gt; the function has (desirable) side-effects as it can prevents another call from getting the route.<br/>
+		/// - Visualize registered routes in 'MetricsDebugger-&gt;Inputs'.<br/>
+		/// </summary>
+		public static bool Shortcut(int keyChord)
+		{
+			byte ret = ShortcutNative(keyChord, (ImGuiInputFlags)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetNextItemShortcutNative(int keyChord, ImGuiInputFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, void>)funcTable[380])(keyChord, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, void>)funcTable[380])(keyChord, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetNextItemShortcut(int keyChord, ImGuiInputFlags flags)
+		{
+			SetNextItemShortcutNative(keyChord, flags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetNextItemShortcut(int keyChord)
+		{
+			SetNextItemShortcutNative(keyChord, (ImGuiInputFlags)(0));
+		}
+
+		/// <summary>
+		/// Inputs Utilities: KeyInput Ownership [BETA]<br/>
+		/// - One common use case would be to allow your items to disable standard inputs behaviors such<br/>
+		/// as Tab or Alt key handling, Mouse Wheel scrolling, etc.<br/>
+		/// e.g. `Button(...); if (SetItemKeyOwner(ImGuiKey_MouseWheelY))  ... ` to make hoveringactivating a button disable wheel for scrolling.<br/>
+		/// - Reminder ImGuiKey enum include access to mouse buttons and gamepad, so key ownership can apply to them.<br/>
+		/// - The return value of SetItemKeyOwner() says if ownership has been requested for the item, which is a shortcut to calling yet non-public TestKeyOwner() function.<br/>
+		/// - Many related features are still in imgui_internal.h. For instance, most IsKeyXXX()IsMouseXXX() functions have an owner-id-aware version. Set key owner to last item ID if it is hovered or active. Return true when ownership has been set. Roughly equivalent to 'if (TestKeyOwner(key, GetItemID()) &amp;&amp; (IsItemHovered() || IsItemActive()))  SetKeyOwner(key, GetItemID());'.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte SetItemKeyOwnerNative(ImGuiKey key)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[381])(key);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)funcTable[381])(key);
+			#endif
+		}
+
+		/// <summary>
+		/// Inputs Utilities: KeyInput Ownership [BETA]<br/>
+		/// - One common use case would be to allow your items to disable standard inputs behaviors such<br/>
+		/// as Tab or Alt key handling, Mouse Wheel scrolling, etc.<br/>
+		/// e.g. `Button(...); if (SetItemKeyOwner(ImGuiKey_MouseWheelY))  ... ` to make hoveringactivating a button disable wheel for scrolling.<br/>
+		/// - Reminder ImGuiKey enum include access to mouse buttons and gamepad, so key ownership can apply to them.<br/>
+		/// - The return value of SetItemKeyOwner() says if ownership has been requested for the item, which is a shortcut to calling yet non-public TestKeyOwner() function.<br/>
+		/// - Many related features are still in imgui_internal.h. For instance, most IsKeyXXX()IsMouseXXX() functions have an owner-id-aware version. Set key owner to last item ID if it is hovered or active. Return true when ownership has been set. Roughly equivalent to 'if (TestKeyOwner(key, GetItemID()) &amp;&amp; (IsItemHovered() || IsItemActive()))  SetKeyOwner(key, GetItemID());'.<br/>
+		/// </summary>
+		public static bool SetItemKeyOwner(ImGuiKey key)
+		{
+			byte ret = SetItemKeyOwnerNative(key);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Inputs Utilities: Mouse<br/>
+		/// - To refer to a mouse button, you may use named enums in your code e.g. ImGuiMouseButton_Left, ImGuiMouseButton_Right.<br/>
+		/// - You can also use regular integer: it is forever guaranteed that 0=Left, 1=Right, 2=Middle.<br/>
+		/// - Dragging operations are only reported after mouse has moved a certain distance away from the initial clicking position (see 'lock_threshold' and 'io.MouseDraggingThreshold') is mouse button held?<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsMouseDownNative(ImGuiMouseButton button)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[382])(button);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[382])(button);
+			#endif
+		}
+
+		/// <summary>
+		/// Inputs Utilities: Mouse<br/>
+		/// - To refer to a mouse button, you may use named enums in your code e.g. ImGuiMouseButton_Left, ImGuiMouseButton_Right.<br/>
+		/// - You can also use regular integer: it is forever guaranteed that 0=Left, 1=Right, 2=Middle.<br/>
+		/// - Dragging operations are only reported after mouse has moved a certain distance away from the initial clicking position (see 'lock_threshold' and 'io.MouseDraggingThreshold') is mouse button held?<br/>
+		/// </summary>
+		public static bool IsMouseDown(ImGuiMouseButton button)
+		{
+			byte ret = IsMouseDownNative(button);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsMouseClickedNative(ImGuiMouseButton button, byte repeat)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte, byte>)funcTable[383])(button, repeat);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte, byte>)funcTable[383])(button, repeat);
+			#endif
+		}
+
+		/// <summary>
+		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
+		/// </summary>
+		public static bool IsMouseClicked(ImGuiMouseButton button, bool repeat)
+		{
+			byte ret = IsMouseClickedNative(button, repeat ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// did mouse button clicked? (went from !Down to Down). Same as GetMouseClickedCount() == 1.<br/>
+		/// </summary>
+		public static bool IsMouseClicked(ImGuiMouseButton button)
+		{
+			byte ret = IsMouseClickedNative(button, (byte)(0));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// did mouse button released? (went from Down to !Down)<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsMouseReleasedNative(ImGuiMouseButton button)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[384])(button);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[384])(button);
+			#endif
+		}
+
+		/// <summary>
+		/// did mouse button released? (went from Down to !Down)<br/>
+		/// </summary>
+		public static bool IsMouseReleased(ImGuiMouseButton button)
+		{
+			byte ret = IsMouseReleasedNative(button);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// did mouse button double-clicked? Same as GetMouseClickedCount() == 2. (note that a double-click will also report IsMouseClicked() == true)<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsMouseDoubleClickedNative(ImGuiMouseButton button)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[385])(button);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, byte>)funcTable[385])(button);
+			#endif
+		}
+
+		/// <summary>
+		/// did mouse button double-clicked? Same as GetMouseClickedCount() == 2. (note that a double-click will also report IsMouseClicked() == true)<br/>
+		/// </summary>
+		public static bool IsMouseDoubleClicked(ImGuiMouseButton button)
+		{
+			byte ret = IsMouseDoubleClickedNative(button);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// delayed mouse release. Use sparingly. Prefer higher-level helper GetItemClickedCountWithSingleClickDelay(). Generally used with 'delay &gt;= io.MouseDoubleClickTime' + combined with a 'io.MouseClickedLastCount==1' test.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsMouseReleasedWithDelayNative(ImGuiMouseButton button, float delay)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[386])(button, delay);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[386])(button, delay);
+			#endif
+		}
+
+		/// <summary>
+		/// delayed mouse release. Use sparingly. Prefer higher-level helper GetItemClickedCountWithSingleClickDelay(). Generally used with 'delay &gt;= io.MouseDoubleClickTime' + combined with a 'io.MouseClickedLastCount==1' test.<br/>
+		/// </summary>
+		public static bool IsMouseReleasedWithDelay(ImGuiMouseButton button, float delay)
+		{
+			byte ret = IsMouseReleasedWithDelayNative(button, delay);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// delayed mouse release. Use sparingly. Prefer higher-level helper GetItemClickedCountWithSingleClickDelay(). Generally used with 'delay &gt;= io.MouseDoubleClickTime' + combined with a 'io.MouseClickedLastCount==1' test.<br/>
+		/// </summary>
+		public static bool IsMouseReleasedWithDelay(ImGuiMouseButton button)
+		{
+			byte ret = IsMouseReleasedWithDelayNative(button, (float)(-1.0f));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return the number of successive mouse-clicks at the time where a click happen (otherwise 0).<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int GetMouseClickedCountNative(ImGuiMouseButton button)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int>)funcTable[387])(button);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int>)funcTable[387])(button);
+			#endif
+		}
+
+		/// <summary>
+		/// return the number of successive mouse-clicks at the time where a click happen (otherwise 0).<br/>
+		/// </summary>
+		public static int GetMouseClickedCount(ImGuiMouseButton button)
+		{
+			int ret = GetMouseClickedCountNative(button);
+			return ret;
+		}
+
+		/// <summary>
+		/// is mouse hovering given bounding rect (in screen space). clipped by current clipping settings, but disregarding of other consideration of focuswindow orderingpopup-block.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsMouseHoveringRectNative(Vector2 rMin, Vector2 rMax, byte clip)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, byte>)funcTable[388])(rMin, rMax, clip);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte, byte>)funcTable[388])(rMin, rMax, clip);
+			#endif
+		}
+
+		/// <summary>
+		/// is mouse hovering given bounding rect (in screen space). clipped by current clipping settings, but disregarding of other consideration of focuswindow orderingpopup-block.<br/>
+		/// </summary>
+		public static bool IsMouseHoveringRect(Vector2 rMin, Vector2 rMax, bool clip)
+		{
+			byte ret = IsMouseHoveringRectNative(rMin, rMax, clip ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// is mouse hovering given bounding rect (in screen space). clipped by current clipping settings, but disregarding of other consideration of focuswindow orderingpopup-block.<br/>
+		/// </summary>
+		public static bool IsMouseHoveringRect(Vector2 rMin, Vector2 rMax)
+		{
+			byte ret = IsMouseHoveringRectNative(rMin, rMax, (byte)(1));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsMousePosValidNative(Vector2* mousePos)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<Vector2*, byte>)funcTable[389])(mousePos);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[389])((nint)mousePos);
+			#endif
+		}
+
+		/// <summary>
+		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
+		/// </summary>
+		public static bool IsMousePosValid(Vector2* mousePos)
+		{
+			byte ret = IsMousePosValidNative(mousePos);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
+		/// </summary>
+		public static bool IsMousePosValid()
+		{
+			byte ret = IsMousePosValidNative((Vector2*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// by convention we use (-FLT_MAX,-FLT_MAX) to denote that there is no mouse available<br/>
+		/// </summary>
+		public static bool IsMousePosValid(in Vector2 mousePos)
+		{
+			fixed (Vector2* pmousePos = &mousePos)
+			{
+				byte ret = IsMousePosValidNative((Vector2*)pmousePos);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// [WILL OBSOLETE] is any mouse button held? This was designed for backends, but prefer having backend maintain a mask of held mouse buttons, because upcoming input queue system will make this invalid.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsAnyMouseDownNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte>)funcTable[390])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)funcTable[390])();
+			#endif
+		}
+
+		/// <summary>
+		/// [WILL OBSOLETE] is any mouse button held? This was designed for backends, but prefer having backend maintain a mask of held mouse buttons, because upcoming input queue system will make this invalid.<br/>
+		/// </summary>
+		public static bool IsAnyMouseDown()
+		{
+			byte ret = IsAnyMouseDownNative();
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// shortcut to ImGui::GetIO().MousePos provided by user, to be consistent with other calls<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static Vector2 GetMousePosNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[391])();
+			#else
+			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[391])();
+			#endif
+		}
+
+		/// <summary>
+		/// shortcut to ImGui::GetIO().MousePos provided by user, to be consistent with other calls<br/>
+		/// </summary>
+		public static Vector2 GetMousePos()
+		{
+			Vector2 ret = GetMousePosNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// retrieve mouse position at the time of opening popup we have BeginPopup() into (helper to avoid user backing that value themselves)<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static Vector2 GetMousePosOnOpeningCurrentPopupNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[392])();
+			#else
+			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[392])();
+			#endif
+		}
+
+		/// <summary>
+		/// retrieve mouse position at the time of opening popup we have BeginPopup() into (helper to avoid user backing that value themselves)<br/>
+		/// </summary>
+		public static Vector2 GetMousePosOnOpeningCurrentPopup()
+		{
+			Vector2 ret = GetMousePosOnOpeningCurrentPopupNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// is mouse dragging? (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsMouseDraggingNative(ImGuiMouseButton button, float lockThreshold)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[393])(button, lockThreshold);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)funcTable[393])(button, lockThreshold);
+			#endif
+		}
+
+		/// <summary>
+		/// is mouse dragging? (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
+		/// </summary>
+		public static bool IsMouseDragging(ImGuiMouseButton button, float lockThreshold)
+		{
+			byte ret = IsMouseDraggingNative(button, lockThreshold);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// is mouse dragging? (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
+		/// </summary>
+		public static bool IsMouseDragging(ImGuiMouseButton button)
+		{
+			byte ret = IsMouseDraggingNative(button, (float)(-1.0f));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static Vector2 GetMouseDragDeltaNative(ImGuiMouseButton button, float lockThreshold)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, Vector2>)funcTable[394])(button, lockThreshold);
+			#else
+			return (Vector2)((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, Vector2>)funcTable[394])(button, lockThreshold);
+			#endif
+		}
+
+		/// <summary>
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
+		/// </summary>
+		public static Vector2 GetMouseDragDelta(ImGuiMouseButton button, float lockThreshold)
+		{
+			Vector2 ret = GetMouseDragDeltaNative(button, lockThreshold);
+			return ret;
+		}
+
+		/// <summary>
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
+		/// </summary>
+		public static Vector2 GetMouseDragDelta(ImGuiMouseButton button)
+		{
+			Vector2 ret = GetMouseDragDeltaNative(button, (float)(-1.0f));
+			return ret;
+		}
+
+		/// <summary>
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
+		/// </summary>
+		public static Vector2 GetMouseDragDelta()
+		{
+			Vector2 ret = GetMouseDragDeltaNative((ImGuiMouseButton)(0), (float)(-1.0f));
+			return ret;
+		}
+
+		/// <summary>
+		/// return the delta from the initial clicking position while the mouse button is pressed or was just released. This is locked and return 0.0f until the mouse moves past a distance threshold at least once (uses io.MouseDraggingThreshold if lock_threshold &lt; 0.0f)<br/>
+		/// </summary>
+		public static Vector2 GetMouseDragDelta(float lockThreshold)
+		{
+			Vector2 ret = GetMouseDragDeltaNative((ImGuiMouseButton)(0), lockThreshold);
+			return ret;
+		}
+
+		/// <summary>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ResetMouseDragDeltaNative(ImGuiMouseButton button)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiMouseButton, void>)funcTable[395])(button);
+			#else
+			((delegate* unmanaged[Cdecl]<ImGuiMouseButton, void>)funcTable[395])(button);
+			#endif
+		}
+
+		/// <summary>
+		/// </summary>
+		public static void ResetMouseDragDelta(ImGuiMouseButton button)
+		{
+			ResetMouseDragDeltaNative(button);
+		}
+
+		/// <summary>
+		/// </summary>
+		public static void ResetMouseDragDelta()
+		{
+			ResetMouseDragDeltaNative((ImGuiMouseButton)(0));
+		}
+
+		/// <summary>
+		/// get desired mouse cursor shape. Important: reset in ImGui::NewFrame(), this is updated during the frame. valid before Render(). If you use software rendering by setting io.MouseDrawCursor ImGui will render those for you<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiMouseCursor GetMouseCursorNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseCursor>)funcTable[396])();
+			#else
+			return (ImGuiMouseCursor)((delegate* unmanaged[Cdecl]<ImGuiMouseCursor>)funcTable[396])();
+			#endif
+		}
+
+		/// <summary>
+		/// get desired mouse cursor shape. Important: reset in ImGui::NewFrame(), this is updated during the frame. valid before Render(). If you use software rendering by setting io.MouseDrawCursor ImGui will render those for you<br/>
+		/// </summary>
+		public static ImGuiMouseCursor GetMouseCursor()
+		{
+			ImGuiMouseCursor ret = GetMouseCursorNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// set desired mouse cursor shape<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetMouseCursorNative(ImGuiMouseCursor cursorType)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiMouseCursor, void>)funcTable[397])(cursorType);
+			#else
+			((delegate* unmanaged[Cdecl]<ImGuiMouseCursor, void>)funcTable[397])(cursorType);
+			#endif
+		}
+
+		/// <summary>
+		/// set desired mouse cursor shape<br/>
+		/// </summary>
+		public static void SetMouseCursor(ImGuiMouseCursor cursorType)
+		{
+			SetMouseCursorNative(cursorType);
+		}
+
+		/// <summary>
+		/// Override io.WantCaptureMouse flag next frame (said flag is left for your application to handle, typical when true it instructs your app to ignore inputs). This is equivalent to setting "io.WantCaptureMouse = want_capture_mouse;" after the next NewFrame() call.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetNextFrameWantCaptureMouseNative(byte wantCaptureMouse)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[398])(wantCaptureMouse);
+			#else
+			((delegate* unmanaged[Cdecl]<byte, void>)funcTable[398])(wantCaptureMouse);
+			#endif
+		}
+
+		/// <summary>
+		/// Override io.WantCaptureMouse flag next frame (said flag is left for your application to handle, typical when true it instructs your app to ignore inputs). This is equivalent to setting "io.WantCaptureMouse = want_capture_mouse;" after the next NewFrame() call.<br/>
+		/// </summary>
+		public static void SetNextFrameWantCaptureMouse(bool wantCaptureMouse)
+		{
+			SetNextFrameWantCaptureMouseNative(wantCaptureMouse ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// Clipboard Utilities<br/>
+		/// - Also see the LogToClipboard() function to capture GUI into clipboard, or easily output text data to the clipboard.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte* GetClipboardTextNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*>)funcTable[399])();
+			#else
+			return (byte*)((delegate* unmanaged[Cdecl]<nint>)funcTable[399])();
+			#endif
+		}
+
+		/// <summary>
+		/// Clipboard Utilities<br/>
+		/// - Also see the LogToClipboard() function to capture GUI into clipboard, or easily output text data to the clipboard.<br/>
+		/// </summary>
+		public static byte* GetClipboardText()
+		{
+			byte* ret = GetClipboardTextNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// Clipboard Utilities<br/>
+		/// - Also see the LogToClipboard() function to capture GUI into clipboard, or easily output text data to the clipboard.<br/>
+		/// </summary>
+		public static string GetClipboardTextS()
+		{
+			string ret = Utils.DecodeStringUTF8(GetClipboardTextNative());
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetClipboardTextNative(byte* text)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[400])(text);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[400])((nint)text);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetClipboardText(byte* text)
+		{
+			SetClipboardTextNative(text);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetClipboardText(in byte text)
+		{
+			fixed (byte* ptext = &text)
+			{
+				SetClipboardTextNative((byte*)ptext);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetClipboardText(ReadOnlySpan<byte> text)
+		{
+			fixed (byte* ptext = text)
+			{
+				SetClipboardTextNative((byte*)ptext);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetClipboardText(string text)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			SetClipboardTextNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// Settings.Ini Utilities<br/>
+		/// - The disk functions are automatically called if io.IniFilename != NULL (default is "imgui.ini").<br/>
+		/// - Set io.IniFilename to NULL to loadsave manually. Read io.WantSaveIniSettings description about handling .ini saving manually.<br/>
+		/// - Important: default value "imgui.ini" is relative to current working dir! Most apps will want to lock this to an absolute path (e.g. same path as executables). call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void LoadIniSettingsFromDiskNative(byte* iniFilename)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[401])(iniFilename);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[401])((nint)iniFilename);
+			#endif
+		}
+
+		/// <summary>
+		/// Settings.Ini Utilities<br/>
+		/// - The disk functions are automatically called if io.IniFilename != NULL (default is "imgui.ini").<br/>
+		/// - Set io.IniFilename to NULL to loadsave manually. Read io.WantSaveIniSettings description about handling .ini saving manually.<br/>
+		/// - Important: default value "imgui.ini" is relative to current working dir! Most apps will want to lock this to an absolute path (e.g. same path as executables). call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
+		/// </summary>
+		public static void LoadIniSettingsFromDisk(byte* iniFilename)
+		{
+			LoadIniSettingsFromDiskNative(iniFilename);
+		}
+
+		/// <summary>
+		/// Settings.Ini Utilities<br/>
+		/// - The disk functions are automatically called if io.IniFilename != NULL (default is "imgui.ini").<br/>
+		/// - Set io.IniFilename to NULL to loadsave manually. Read io.WantSaveIniSettings description about handling .ini saving manually.<br/>
+		/// - Important: default value "imgui.ini" is relative to current working dir! Most apps will want to lock this to an absolute path (e.g. same path as executables). call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
+		/// </summary>
+		public static void LoadIniSettingsFromDisk(in byte iniFilename)
+		{
+			fixed (byte* piniFilename = &iniFilename)
+			{
+				LoadIniSettingsFromDiskNative((byte*)piniFilename);
+			}
+		}
+
+		/// <summary>
+		/// Settings.Ini Utilities<br/>
+		/// - The disk functions are automatically called if io.IniFilename != NULL (default is "imgui.ini").<br/>
+		/// - Set io.IniFilename to NULL to loadsave manually. Read io.WantSaveIniSettings description about handling .ini saving manually.<br/>
+		/// - Important: default value "imgui.ini" is relative to current working dir! Most apps will want to lock this to an absolute path (e.g. same path as executables). call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
+		/// </summary>
+		public static void LoadIniSettingsFromDisk(ReadOnlySpan<byte> iniFilename)
+		{
+			fixed (byte* piniFilename = iniFilename)
+			{
+				LoadIniSettingsFromDiskNative((byte*)piniFilename);
+			}
+		}
+
+		/// <summary>
+		/// Settings.Ini Utilities<br/>
+		/// - The disk functions are automatically called if io.IniFilename != NULL (default is "imgui.ini").<br/>
+		/// - Set io.IniFilename to NULL to loadsave manually. Read io.WantSaveIniSettings description about handling .ini saving manually.<br/>
+		/// - Important: default value "imgui.ini" is relative to current working dir! Most apps will want to lock this to an absolute path (e.g. same path as executables). call after CreateContext() and before the first call to NewFrame(). NewFrame() automatically calls LoadIniSettingsFromDisk(io.IniFilename).<br/>
+		/// </summary>
+		public static void LoadIniSettingsFromDisk(string iniFilename)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (iniFilename != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(iniFilename);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(iniFilename, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			LoadIniSettingsFromDiskNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void LoadIniSettingsFromMemoryNative(byte* iniData, nuint iniSize)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[402])(iniData, iniSize);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[402])((nint)iniData, iniSize);
+			#endif
+		}
+
+		/// <summary>
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// </summary>
+		public static void LoadIniSettingsFromMemory(byte* iniData, nuint iniSize)
+		{
+			LoadIniSettingsFromMemoryNative(iniData, iniSize);
+		}
+
+		/// <summary>
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// </summary>
+		public static void LoadIniSettingsFromMemory(byte* iniData)
+		{
+			LoadIniSettingsFromMemoryNative(iniData, (nuint)(0));
+		}
+
+		/// <summary>
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// </summary>
+		public static void LoadIniSettingsFromMemory(in byte iniData, nuint iniSize)
+		{
+			fixed (byte* piniData = &iniData)
+			{
+				LoadIniSettingsFromMemoryNative((byte*)piniData, iniSize);
+			}
+		}
+
+		/// <summary>
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// </summary>
+		public static void LoadIniSettingsFromMemory(in byte iniData)
+		{
+			fixed (byte* piniData = &iniData)
+			{
+				LoadIniSettingsFromMemoryNative((byte*)piniData, (nuint)(0));
+			}
+		}
+
+		/// <summary>
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// </summary>
+		public static void LoadIniSettingsFromMemory(ReadOnlySpan<byte> iniData, nuint iniSize)
+		{
+			fixed (byte* piniData = iniData)
+			{
+				LoadIniSettingsFromMemoryNative((byte*)piniData, iniSize);
+			}
+		}
+
+		/// <summary>
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// </summary>
+		public static void LoadIniSettingsFromMemory(ReadOnlySpan<byte> iniData)
+		{
+			fixed (byte* piniData = iniData)
+			{
+				LoadIniSettingsFromMemoryNative((byte*)piniData, (nuint)(0));
+			}
+		}
+
+		/// <summary>
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// </summary>
+		public static void LoadIniSettingsFromMemory(string iniData, nuint iniSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (iniData != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(iniData);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(iniData, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			LoadIniSettingsFromMemoryNative(pStr0, iniSize);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// call after CreateContext() and before the first call to NewFrame() to provide .ini data from your own data source.<br/>
+		/// </summary>
+		public static void LoadIniSettingsFromMemory(string iniData)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (iniData != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(iniData);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(iniData, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			LoadIniSettingsFromMemoryNative(pStr0, (nuint)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SaveIniSettingsToDiskNative(byte* iniFilename)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[403])(iniFilename);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[403])((nint)iniFilename);
+			#endif
+		}
+
+		/// <summary>
+		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
+		/// </summary>
+		public static void SaveIniSettingsToDisk(byte* iniFilename)
+		{
+			SaveIniSettingsToDiskNative(iniFilename);
+		}
+
+		/// <summary>
+		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
+		/// </summary>
+		public static void SaveIniSettingsToDisk(in byte iniFilename)
+		{
+			fixed (byte* piniFilename = &iniFilename)
+			{
+				SaveIniSettingsToDiskNative((byte*)piniFilename);
+			}
+		}
+
+		/// <summary>
+		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
+		/// </summary>
+		public static void SaveIniSettingsToDisk(ReadOnlySpan<byte> iniFilename)
+		{
+			fixed (byte* piniFilename = iniFilename)
+			{
+				SaveIniSettingsToDiskNative((byte*)piniFilename);
+			}
+		}
+
+		/// <summary>
+		/// this is automatically called (if io.IniFilename is not empty) a few seconds after any modification that should be reflected in the .ini file (and also by DestroyContext).<br/>
+		/// </summary>
+		public static void SaveIniSettingsToDisk(string iniFilename)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (iniFilename != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(iniFilename);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(iniFilename, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			SaveIniSettingsToDiskNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte* SaveIniSettingsToMemoryNative(nuint* outIniSize)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<nuint*, byte*>)funcTable[404])(outIniSize);
+			#else
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[404])((nint)outIniSize);
+			#endif
+		}
+
+		/// <summary>
+		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
+		/// </summary>
+		public static byte* SaveIniSettingsToMemory(nuint* outIniSize)
+		{
+			byte* ret = SaveIniSettingsToMemoryNative(outIniSize);
+			return ret;
+		}
+
+		/// <summary>
+		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
+		/// </summary>
+		public static byte* SaveIniSettingsToMemory()
+		{
+			byte* ret = SaveIniSettingsToMemoryNative((nuint*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
+		/// </summary>
+		public static string SaveIniSettingsToMemoryS()
+		{
+			string ret = Utils.DecodeStringUTF8(SaveIniSettingsToMemoryNative((nuint*)(default)));
+			return ret;
+		}
+
+		/// <summary>
+		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
+		/// </summary>
+		public static string SaveIniSettingsToMemoryS(nuint* outIniSize)
+		{
+			string ret = Utils.DecodeStringUTF8(SaveIniSettingsToMemoryNative(outIniSize));
+			return ret;
+		}
+
+		/// <summary>
+		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
+		/// </summary>
+		public static byte* SaveIniSettingsToMemory(ref nuint outIniSize)
+		{
+			fixed (nuint* poutIniSize = &outIniSize)
+			{
+				byte* ret = SaveIniSettingsToMemoryNative((nuint*)poutIniSize);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// return a zero-terminated string with the .ini data which you can save by your own mean. call when io.WantSaveIniSettings is set, then save data by your own mean and clear io.WantSaveIniSettings.<br/>
+		/// </summary>
+		public static string SaveIniSettingsToMemoryS(ref nuint outIniSize)
+		{
+			fixed (nuint* poutIniSize = &outIniSize)
+			{
+				string ret = Utils.DecodeStringUTF8(SaveIniSettingsToMemoryNative((nuint*)poutIniSize));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Debug Utilities<br/>
+		/// - Your main debugging friend is the ShowMetricsWindow() function.<br/>
+		/// - Interactive tools are all accessible from the 'Dear ImGui Demo-&gt;Tools' menu.<br/>
+		/// - Read https:github.comocornutimguiwikiDebug-Tools for a description of all available debug tools.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugTextEncodingNative(byte* text)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[405])(text);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[405])((nint)text);
+			#endif
+		}
+
+		/// <summary>
+		/// Debug Utilities<br/>
+		/// - Your main debugging friend is the ShowMetricsWindow() function.<br/>
+		/// - Interactive tools are all accessible from the 'Dear ImGui Demo-&gt;Tools' menu.<br/>
+		/// - Read https:github.comocornutimguiwikiDebug-Tools for a description of all available debug tools.<br/>
+		/// </summary>
+		public static void DebugTextEncoding(byte* text)
+		{
+			DebugTextEncodingNative(text);
+		}
+
+		/// <summary>
+		/// Debug Utilities<br/>
+		/// - Your main debugging friend is the ShowMetricsWindow() function.<br/>
+		/// - Interactive tools are all accessible from the 'Dear ImGui Demo-&gt;Tools' menu.<br/>
+		/// - Read https:github.comocornutimguiwikiDebug-Tools for a description of all available debug tools.<br/>
+		/// </summary>
+		public static void DebugTextEncoding(in byte text)
+		{
+			fixed (byte* ptext = &text)
+			{
+				DebugTextEncodingNative((byte*)ptext);
+			}
+		}
+
+		/// <summary>
+		/// Debug Utilities<br/>
+		/// - Your main debugging friend is the ShowMetricsWindow() function.<br/>
+		/// - Interactive tools are all accessible from the 'Dear ImGui Demo-&gt;Tools' menu.<br/>
+		/// - Read https:github.comocornutimguiwikiDebug-Tools for a description of all available debug tools.<br/>
+		/// </summary>
+		public static void DebugTextEncoding(ReadOnlySpan<byte> text)
+		{
+			fixed (byte* ptext = text)
+			{
+				DebugTextEncodingNative((byte*)ptext);
+			}
+		}
+
+		/// <summary>
+		/// Debug Utilities<br/>
+		/// - Your main debugging friend is the ShowMetricsWindow() function.<br/>
+		/// - Interactive tools are all accessible from the 'Dear ImGui Demo-&gt;Tools' menu.<br/>
+		/// - Read https:github.comocornutimguiwikiDebug-Tools for a description of all available debug tools.<br/>
+		/// </summary>
+		public static void DebugTextEncoding(string text)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			DebugTextEncodingNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugFlashStyleColorNative(ImGuiCol idx)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiCol, void>)funcTable[406])(idx);
+			#else
+			((delegate* unmanaged[Cdecl]<ImGuiCol, void>)funcTable[406])(idx);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugFlashStyleColor(ImGuiCol idx)
+		{
+			DebugFlashStyleColorNative(idx);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugStartItemPickerNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[407])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[407])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugStartItemPicker()
+		{
+			DebugStartItemPickerNative();
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte DebugCheckVersionAndDataLayoutNative(byte* versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, nuint, nuint, nuint, nuint, nuint, nuint, byte>)funcTable[408])(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nuint, nuint, nuint, nuint, nuint, nuint, byte>)funcTable[408])((nint)versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			#endif
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(byte* versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte ret = DebugCheckVersionAndDataLayoutNative(versionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(in byte versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = &versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(ReadOnlySpan<byte> versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			fixed (byte* pversionStr = versionStr)
+			{
+				byte ret = DebugCheckVersionAndDataLayoutNative((byte*)pversionStr, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// This is called by IMGUI_CHECKVERSION() macro.<br/>
+		/// </summary>
+		public static bool DebugCheckVersionAndDataLayout(string versionStr, nuint szIo, nuint szStyle, nuint szvec2, nuint szvec4, nuint szDrawvert, nuint szDrawidx)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (versionStr != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(versionStr);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(versionStr, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = DebugCheckVersionAndDataLayoutNative(pStr0, szIo, szStyle, szvec2, szvec4, szDrawvert, szDrawidx);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugLogNative(byte* fmt)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[409])(fmt);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[409])((nint)fmt);
+			#endif
+		}
+
+		/// <summary>
+		/// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!<br/>
+		/// </summary>
+		public static void DebugLog(byte* fmt)
+		{
+			DebugLogNative(fmt);
+		}
+
+		/// <summary>
+		/// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!<br/>
+		/// </summary>
+		public static void DebugLog(in byte fmt)
 		{
 			fixed (byte* pfmt = &fmt)
 			{
-				appendfvNative((ImGuiTextBuffer*)self, (byte*)pfmt, args);
+				DebugLogNative((byte*)pfmt);
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!<br/>
 		/// </summary>
-		public static void appendfv(ImGuiTextBufferPtr self, ReadOnlySpan<byte> fmt, nuint args)
+		public static void DebugLog(ReadOnlySpan<byte> fmt)
 		{
 			fixed (byte* pfmt = fmt)
 			{
-				appendfvNative((ImGuiTextBuffer*)self, (byte*)pfmt, args);
+				DebugLogNative((byte*)pfmt);
 			}
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call via IMGUI_DEBUG_LOG() for maximum stripping in caller code!<br/>
 		/// </summary>
-		public static void appendfv(ImGuiTextBufferPtr self, string fmt, nuint args)
+		public static void DebugLog(string fmt)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1513,7 +3853,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			appendfvNative((ImGuiTextBuffer*)self, pStr0, args);
+			DebugLogNative(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1523,43 +3863,1111 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void appendfv(ref ImGuiTextBuffer self, in byte fmt, nuint args)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DebugLogVNative(byte* fmt, nuint args)
 		{
-			fixed (ImGuiTextBuffer* pself = &self)
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)funcTable[410])(fmt, args);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)funcTable[410])((nint)fmt, args);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugLogV(byte* fmt, nuint args)
+		{
+			DebugLogVNative(fmt, args);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void DebugLogV(in byte fmt, nuint args)
+		{
+			fixed (byte* pfmt = &fmt)
 			{
-				fixed (byte* pfmt = &fmt)
-				{
-					appendfvNative((ImGuiTextBuffer*)pself, (byte*)pfmt, args);
-				}
+				DebugLogVNative((byte*)pfmt, args);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void appendfv(ref ImGuiTextBuffer self, ReadOnlySpan<byte> fmt, nuint args)
+		public static void DebugLogV(ReadOnlySpan<byte> fmt, nuint args)
 		{
-			fixed (ImGuiTextBuffer* pself = &self)
+			fixed (byte* pfmt = fmt)
 			{
-				fixed (byte* pfmt = fmt)
-				{
-					appendfvNative((ImGuiTextBuffer*)pself, (byte*)pfmt, args);
-				}
+				DebugLogVNative((byte*)pfmt, args);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void appendfv(ref ImGuiTextBuffer self, string fmt, nuint args)
+		public static void DebugLogV(string fmt, nuint args)
 		{
-			fixed (ImGuiTextBuffer* pself = &self)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			DebugLogVNative(pStr0, args);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// Memory Allocators<br/>
+		/// - Those functions are not reliant on the current context.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for more details.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetAllocatorFunctionsNative(delegate*<nuint, void*, void*> allocFunc, delegate*<void*, void*, void> freeFunc, void* userData)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void>)funcTable[411])(allocFunc, freeFunc, userData);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[411])((nint)allocFunc, (nint)freeFunc, (nint)userData);
+			#endif
+		}
+
+		/// <summary>
+		/// Memory Allocators<br/>
+		/// - Those functions are not reliant on the current context.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for more details.<br/>
+		/// </summary>
+		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, delegate*<void*, void*, void> freeFunc, void* userData)
+		{
+			SetAllocatorFunctionsNative(allocFunc, freeFunc, userData);
+		}
+
+		/// <summary>
+		/// Memory Allocators<br/>
+		/// - Those functions are not reliant on the current context.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for more details.<br/>
+		/// </summary>
+		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, delegate*<void*, void*, void> freeFunc)
+		{
+			SetAllocatorFunctionsNative(allocFunc, freeFunc, (void*)(default));
+		}
+
+		/// <summary>
+		/// Memory Allocators<br/>
+		/// - Those functions are not reliant on the current context.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for more details.<br/>
+		/// </summary>
+		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, delegate*<void*, void*, void> freeFunc, void* userData)
+		{
+			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), freeFunc, userData);
+		}
+
+		/// <summary>
+		/// Memory Allocators<br/>
+		/// - Those functions are not reliant on the current context.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for more details.<br/>
+		/// </summary>
+		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, delegate*<void*, void*, void> freeFunc)
+		{
+			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), freeFunc, (void*)(default));
+		}
+
+		/// <summary>
+		/// Memory Allocators<br/>
+		/// - Those functions are not reliant on the current context.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for more details.<br/>
+		/// </summary>
+		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, ImGuiMemFreeFunc freeFunc, void* userData)
+		{
+			SetAllocatorFunctionsNative(allocFunc, (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), userData);
+		}
+
+		/// <summary>
+		/// Memory Allocators<br/>
+		/// - Those functions are not reliant on the current context.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for more details.<br/>
+		/// </summary>
+		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, ImGuiMemFreeFunc freeFunc)
+		{
+			SetAllocatorFunctionsNative(allocFunc, (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), (void*)(default));
+		}
+
+		/// <summary>
+		/// Memory Allocators<br/>
+		/// - Those functions are not reliant on the current context.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for more details.<br/>
+		/// </summary>
+		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, ImGuiMemFreeFunc freeFunc, void* userData)
+		{
+			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), userData);
+		}
+
+		/// <summary>
+		/// Memory Allocators<br/>
+		/// - Those functions are not reliant on the current context.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for more details.<br/>
+		/// </summary>
+		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, ImGuiMemFreeFunc freeFunc)
+		{
+			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), (void*)(default));
+		}
+
+		/// <summary>
+		/// Memory Allocators<br/>
+		/// - Those functions are not reliant on the current context.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for more details.<br/>
+		/// </summary>
+		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, delegate*<void*, void*, void> freeFunc, nint userData)
+		{
+			SetAllocatorFunctionsNative(allocFunc, freeFunc, (void*)userData);
+		}
+
+		/// <summary>
+		/// Memory Allocators<br/>
+		/// - Those functions are not reliant on the current context.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for more details.<br/>
+		/// </summary>
+		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, delegate*<void*, void*, void> freeFunc, nint userData)
+		{
+			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), freeFunc, (void*)userData);
+		}
+
+		/// <summary>
+		/// Memory Allocators<br/>
+		/// - Those functions are not reliant on the current context.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for more details.<br/>
+		/// </summary>
+		public static void SetAllocatorFunctions(delegate*<nuint, void*, void*> allocFunc, ImGuiMemFreeFunc freeFunc, nint userData)
+		{
+			SetAllocatorFunctionsNative(allocFunc, (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), (void*)userData);
+		}
+
+		/// <summary>
+		/// Memory Allocators<br/>
+		/// - Those functions are not reliant on the current context.<br/>
+		/// - DLL users: heaps and globals are not shared across DLL boundaries! You will need to call SetCurrentContext() + SetAllocatorFunctions()<br/>
+		/// for each staticDLL boundary you are calling from. Read "Context and Memory Allocators" section of imgui.cpp for more details.<br/>
+		/// </summary>
+		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, ImGuiMemFreeFunc freeFunc, nint userData)
+		{
+			SetAllocatorFunctionsNative((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), (void*)userData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void GetAllocatorFunctionsNative(delegate*<nuint, void*, void*>* pAllocFunc, delegate*<void*, void*, void>* pFreeFunc, void** pUserData)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<delegate*<nuint, void*, void*>*, delegate*<void*, void*, void>*, void**, void>)funcTable[412])(pAllocFunc, pFreeFunc, pUserData);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[412])((nint)pAllocFunc, (nint)pFreeFunc, (nint)pUserData);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void GetAllocatorFunctions(delegate*<nuint, void*, void*>* pAllocFunc, delegate*<void*, void*, void>* pFreeFunc, void** pUserData)
+		{
+			GetAllocatorFunctionsNative(pAllocFunc, pFreeFunc, pUserData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void GetAllocatorFunctions(delegate*<nuint, void*, void*>* pAllocFunc, delegate*<void*, void*, void>* pFreeFunc, ref nint pUserData)
+		{
+			fixed (nint* ppUserData = &pUserData)
+			{
+				GetAllocatorFunctionsNative(pAllocFunc, pFreeFunc, (void**)ppUserData);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void* MemAllocNative(nuint size)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<nuint, void*>)funcTable[413])(size);
+			#else
+			return (void*)((delegate* unmanaged[Cdecl]<nuint, nint>)funcTable[413])(size);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void* MemAlloc(nuint size)
+		{
+			void* ret = MemAllocNative(size);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void MemFreeNative(void* ptr)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void*, void>)funcTable[414])(ptr);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[414])((nint)ptr);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MemFree(void* ptr)
+		{
+			MemFreeNative(ptr);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MemFree(nint ptr)
+		{
+			MemFreeNative((void*)ptr);
+		}
+
+		/// <summary>
+		/// (Optional) PlatformOS interface for multi-viewport support<br/>
+		/// Read comments around the ImGuiPlatformIO structure for more details.<br/>
+		/// Note: You may use GetWindowViewport() to get the current viewport of the current window. call in main loop. will call CreateWindowResizeWindowetc. platform functions for each secondary viewport, and DestroyWindow for each inactive viewport.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void UpdatePlatformWindowsNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[415])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[415])();
+			#endif
+		}
+
+		/// <summary>
+		/// (Optional) PlatformOS interface for multi-viewport support<br/>
+		/// Read comments around the ImGuiPlatformIO structure for more details.<br/>
+		/// Note: You may use GetWindowViewport() to get the current viewport of the current window. call in main loop. will call CreateWindowResizeWindowetc. platform functions for each secondary viewport, and DestroyWindow for each inactive viewport.<br/>
+		/// </summary>
+		public static void UpdatePlatformWindows()
+		{
+			UpdatePlatformWindowsNative();
+		}
+
+		/// <summary>
+		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void RenderPlatformWindowsDefaultNative(void* platformRenderArg, void* rendererRenderArg)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void*, void*, void>)funcTable[416])(platformRenderArg, rendererRenderArg);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[416])((nint)platformRenderArg, (nint)rendererRenderArg);
+			#endif
+		}
+
+		/// <summary>
+		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
+		/// </summary>
+		public static void RenderPlatformWindowsDefault(void* platformRenderArg, void* rendererRenderArg)
+		{
+			RenderPlatformWindowsDefaultNative(platformRenderArg, rendererRenderArg);
+		}
+
+		/// <summary>
+		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
+		/// </summary>
+		public static void RenderPlatformWindowsDefault(void* platformRenderArg)
+		{
+			RenderPlatformWindowsDefaultNative(platformRenderArg, (void*)(default));
+		}
+
+		/// <summary>
+		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
+		/// </summary>
+		public static void RenderPlatformWindowsDefault()
+		{
+			RenderPlatformWindowsDefaultNative((void*)(default), (void*)(default));
+		}
+
+		/// <summary>
+		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
+		/// </summary>
+		public static void RenderPlatformWindowsDefault(nint platformRenderArg, void* rendererRenderArg)
+		{
+			RenderPlatformWindowsDefaultNative((void*)platformRenderArg, rendererRenderArg);
+		}
+
+		/// <summary>
+		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
+		/// </summary>
+		public static void RenderPlatformWindowsDefault(nint platformRenderArg)
+		{
+			RenderPlatformWindowsDefaultNative((void*)platformRenderArg, (void*)(default));
+		}
+
+		/// <summary>
+		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
+		/// </summary>
+		public static void RenderPlatformWindowsDefault(void* platformRenderArg, nint rendererRenderArg)
+		{
+			RenderPlatformWindowsDefaultNative(platformRenderArg, (void*)rendererRenderArg);
+		}
+
+		/// <summary>
+		/// call in main loop. will call RenderWindowSwapBuffers platform functions for each secondary viewport which doesn't have the ImGuiViewportFlags_Minimized flag set. May be reimplemented by user for custom rendering needs.<br/>
+		/// </summary>
+		public static void RenderPlatformWindowsDefault(nint platformRenderArg, nint rendererRenderArg)
+		{
+			RenderPlatformWindowsDefaultNative((void*)platformRenderArg, (void*)rendererRenderArg);
+		}
+
+		/// <summary>
+		/// call DestroyWindow platform functions for all viewports. call from backend Shutdown() if you need to close platform windows before imgui shutdown. otherwise will be called by DestroyContext().<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyPlatformWindowsNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[417])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[417])();
+			#endif
+		}
+
+		/// <summary>
+		/// call DestroyWindow platform functions for all viewports. call from backend Shutdown() if you need to close platform windows before imgui shutdown. otherwise will be called by DestroyContext().<br/>
+		/// </summary>
+		public static void DestroyPlatformWindows()
+		{
+			DestroyPlatformWindowsNative();
+		}
+
+		/// <summary>
+		/// this is a helper for backends.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiViewport* FindViewportByIDNative(uint viewportId)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiViewport*>)funcTable[418])(viewportId);
+			#else
+			return (ImGuiViewport*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[418])(viewportId);
+			#endif
+		}
+
+		/// <summary>
+		/// this is a helper for backends.<br/>
+		/// </summary>
+		public static ImGuiViewportPtr FindViewportByID(uint viewportId)
+		{
+			ImGuiViewportPtr ret = FindViewportByIDNative(viewportId);
+			return ret;
+		}
+
+		/// <summary>
+		/// this is a helper for backends. the type platform_handle is decided by the backend (e.g. HWND, MyWindow*, GLFWwindow* etc.)<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiViewport* FindViewportByPlatformHandleNative(void* platformHandle)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<void*, ImGuiViewport*>)funcTable[419])(platformHandle);
+			#else
+			return (ImGuiViewport*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[419])((nint)platformHandle);
+			#endif
+		}
+
+		/// <summary>
+		/// this is a helper for backends. the type platform_handle is decided by the backend (e.g. HWND, MyWindow*, GLFWwindow* etc.)<br/>
+		/// </summary>
+		public static ImGuiViewportPtr FindViewportByPlatformHandle(void* platformHandle)
+		{
+			ImGuiViewportPtr ret = FindViewportByPlatformHandleNative(platformHandle);
+			return ret;
+		}
+
+		/// <summary>
+		/// this is a helper for backends. the type platform_handle is decided by the backend (e.g. HWND, MyWindow*, GLFWwindow* etc.)<br/>
+		/// </summary>
+		public static ImGuiViewportPtr FindViewportByPlatformHandle(nint platformHandle)
+		{
+			ImGuiViewportPtr ret = FindViewportByPlatformHandleNative((void*)platformHandle);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTableSortSpecs* ImGuiTableSortSpecsNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTableSortSpecs*>)funcTable[420])();
+			#else
+			return (ImGuiTableSortSpecs*)((delegate* unmanaged[Cdecl]<nint>)funcTable[420])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableSortSpecsPtr ImGuiTableSortSpecs()
+		{
+			ImGuiTableSortSpecsPtr ret = ImGuiTableSortSpecsNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiTableSortSpecs* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTableSortSpecs*, void>)funcTable[421])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[421])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiTableSortSpecsPtr self)
+		{
+			DestroyNative((ImGuiTableSortSpecs*)self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiTableSortSpecs self)
+		{
+			fixed (ImGuiTableSortSpecs* pself = &self)
+			{
+				DestroyNative((ImGuiTableSortSpecs*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTableColumnSortSpecs* ImGuiTableColumnSortSpecsNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTableColumnSortSpecs*>)funcTable[422])();
+			#else
+			return (ImGuiTableColumnSortSpecs*)((delegate* unmanaged[Cdecl]<nint>)funcTable[422])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableColumnSortSpecsPtr ImGuiTableColumnSortSpecs()
+		{
+			ImGuiTableColumnSortSpecsPtr ret = ImGuiTableColumnSortSpecsNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiTableColumnSortSpecs* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTableColumnSortSpecs*, void>)funcTable[423])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[423])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiTableColumnSortSpecsPtr self)
+		{
+			DestroyNative((ImGuiTableColumnSortSpecs*)self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiTableColumnSortSpecs self)
+		{
+			fixed (ImGuiTableColumnSortSpecs* pself = &self)
+			{
+				DestroyNative((ImGuiTableColumnSortSpecs*)pself);
+			}
+		}
+
+		/// <summary>
+		/// Functions<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiStyle* ImGuiStyleNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiStyle*>)funcTable[424])();
+			#else
+			return (ImGuiStyle*)((delegate* unmanaged[Cdecl]<nint>)funcTable[424])();
+			#endif
+		}
+
+		/// <summary>
+		/// Functions<br/>
+		/// </summary>
+		public static ImGuiStylePtr ImGuiStyle()
+		{
+			ImGuiStylePtr ret = ImGuiStyleNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiStyle* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiStyle*, void>)funcTable[425])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[425])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiStylePtr self)
+		{
+			DestroyNative((ImGuiStyle*)self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiStyle self)
+		{
+			fixed (ImGuiStyle* pself = &self)
+			{
+				DestroyNative((ImGuiStyle*)pself);
+			}
+		}
+
+		/// <summary>
+		/// Scale all spacingpaddingthickness values. Do not scale fonts. See comments in definition. Consider not calling this if your initial scale factor if &lt;1.0.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ScaleAllSizesNative(ImGuiStyle* self, float scaleFactor)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiStyle*, float, void>)funcTable[426])(self, scaleFactor);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, float, void>)funcTable[426])((nint)self, scaleFactor);
+			#endif
+		}
+
+		/// <summary>
+		/// Scale all spacingpaddingthickness values. Do not scale fonts. See comments in definition. Consider not calling this if your initial scale factor if &lt;1.0.<br/>
+		/// </summary>
+		public static void ScaleAllSizes(ImGuiStylePtr self, float scaleFactor)
+		{
+			ScaleAllSizesNative((ImGuiStyle*)self, scaleFactor);
+		}
+
+		/// <summary>
+		/// Scale all spacingpaddingthickness values. Do not scale fonts. See comments in definition. Consider not calling this if your initial scale factor if &lt;1.0.<br/>
+		/// </summary>
+		public static void ScaleAllSizes(ref ImGuiStyle self, float scaleFactor)
+		{
+			fixed (ImGuiStyle* pself = &self)
+			{
+				ScaleAllSizesNative((ImGuiStyle*)pself, scaleFactor);
+			}
+		}
+
+		/// <summary>
+		/// Input Functions Queue a new key downup event. Key should be "translated" (as in, generally ImGuiKey_A matches the key end-user would use to emit an 'A' character)<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void AddKeyEventNative(ImGuiIO* self, ImGuiKey key, byte down)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, ImGuiKey, byte, void>)funcTable[427])(self, key, down);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImGuiKey, byte, void>)funcTable[427])((nint)self, key, down);
+			#endif
+		}
+
+		/// <summary>
+		/// Input Functions Queue a new key downup event. Key should be "translated" (as in, generally ImGuiKey_A matches the key end-user would use to emit an 'A' character)<br/>
+		/// </summary>
+		public static void AddKeyEvent(ImGuiIOPtr self, ImGuiKey key, bool down)
+		{
+			AddKeyEventNative((ImGuiIO*)self, key, down ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// Input Functions Queue a new key downup event. Key should be "translated" (as in, generally ImGuiKey_A matches the key end-user would use to emit an 'A' character)<br/>
+		/// </summary>
+		public static void AddKeyEvent(ref ImGuiIO self, ImGuiKey key, bool down)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				AddKeyEventNative((ImGuiIO*)pself, key, down ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// Queue a new key downup event for analog values (e.g. ImGuiKey_Gamepad_ values). Dead-zones should be handled by the backend.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void AddKeyAnalogEventNative(ImGuiIO* self, ImGuiKey key, byte down, float v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, ImGuiKey, byte, float, void>)funcTable[428])(self, key, down, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImGuiKey, byte, float, void>)funcTable[428])((nint)self, key, down, v);
+			#endif
+		}
+
+		/// <summary>
+		/// Queue a new key downup event for analog values (e.g. ImGuiKey_Gamepad_ values). Dead-zones should be handled by the backend.<br/>
+		/// </summary>
+		public static void AddKeyAnalogEvent(ImGuiIOPtr self, ImGuiKey key, bool down, float v)
+		{
+			AddKeyAnalogEventNative((ImGuiIO*)self, key, down ? (byte)1 : (byte)0, v);
+		}
+
+		/// <summary>
+		/// Queue a new key downup event for analog values (e.g. ImGuiKey_Gamepad_ values). Dead-zones should be handled by the backend.<br/>
+		/// </summary>
+		public static void AddKeyAnalogEvent(ref ImGuiIO self, ImGuiKey key, bool down, float v)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				AddKeyAnalogEventNative((ImGuiIO*)pself, key, down ? (byte)1 : (byte)0, v);
+			}
+		}
+
+		/// <summary>
+		/// Queue a mouse position update. Use -FLT_MAX,-FLT_MAX to signify no mouse (e.g. app not focused and not hovered)<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void AddMousePosEventNative(ImGuiIO* self, float x, float y)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, float, float, void>)funcTable[429])(self, x, y);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, float, float, void>)funcTable[429])((nint)self, x, y);
+			#endif
+		}
+
+		/// <summary>
+		/// Queue a mouse position update. Use -FLT_MAX,-FLT_MAX to signify no mouse (e.g. app not focused and not hovered)<br/>
+		/// </summary>
+		public static void AddMousePosEvent(ImGuiIOPtr self, float x, float y)
+		{
+			AddMousePosEventNative((ImGuiIO*)self, x, y);
+		}
+
+		/// <summary>
+		/// Queue a mouse position update. Use -FLT_MAX,-FLT_MAX to signify no mouse (e.g. app not focused and not hovered)<br/>
+		/// </summary>
+		public static void AddMousePosEvent(ref ImGuiIO self, float x, float y)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				AddMousePosEventNative((ImGuiIO*)pself, x, y);
+			}
+		}
+
+		/// <summary>
+		/// Queue a mouse button change<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void AddMouseButtonEventNative(ImGuiIO* self, int button, byte down)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, int, byte, void>)funcTable[430])(self, button, down);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, byte, void>)funcTable[430])((nint)self, button, down);
+			#endif
+		}
+
+		/// <summary>
+		/// Queue a mouse button change<br/>
+		/// </summary>
+		public static void AddMouseButtonEvent(ImGuiIOPtr self, int button, bool down)
+		{
+			AddMouseButtonEventNative((ImGuiIO*)self, button, down ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// Queue a mouse button change<br/>
+		/// </summary>
+		public static void AddMouseButtonEvent(ref ImGuiIO self, int button, bool down)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				AddMouseButtonEventNative((ImGuiIO*)pself, button, down ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// Queue a mouse wheel update. wheel_y&lt;0: scroll down, wheel_y&gt;0: scroll up, wheel_x&lt;0: scroll right, wheel_x&gt;0: scroll left.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void AddMouseWheelEventNative(ImGuiIO* self, float wheelX, float wheelY)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, float, float, void>)funcTable[431])(self, wheelX, wheelY);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, float, float, void>)funcTable[431])((nint)self, wheelX, wheelY);
+			#endif
+		}
+
+		/// <summary>
+		/// Queue a mouse wheel update. wheel_y&lt;0: scroll down, wheel_y&gt;0: scroll up, wheel_x&lt;0: scroll right, wheel_x&gt;0: scroll left.<br/>
+		/// </summary>
+		public static void AddMouseWheelEvent(ImGuiIOPtr self, float wheelX, float wheelY)
+		{
+			AddMouseWheelEventNative((ImGuiIO*)self, wheelX, wheelY);
+		}
+
+		/// <summary>
+		/// Queue a mouse wheel update. wheel_y&lt;0: scroll down, wheel_y&gt;0: scroll up, wheel_x&lt;0: scroll right, wheel_x&gt;0: scroll left.<br/>
+		/// </summary>
+		public static void AddMouseWheelEvent(ref ImGuiIO self, float wheelX, float wheelY)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				AddMouseWheelEventNative((ImGuiIO*)pself, wheelX, wheelY);
+			}
+		}
+
+		/// <summary>
+		/// Queue a mouse source change (MouseTouchScreenPen)<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void AddMouseSourceEventNative(ImGuiIO* self, ImGuiMouseSource source)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, ImGuiMouseSource, void>)funcTable[432])(self, source);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImGuiMouseSource, void>)funcTable[432])((nint)self, source);
+			#endif
+		}
+
+		/// <summary>
+		/// Queue a mouse source change (MouseTouchScreenPen)<br/>
+		/// </summary>
+		public static void AddMouseSourceEvent(ImGuiIOPtr self, ImGuiMouseSource source)
+		{
+			AddMouseSourceEventNative((ImGuiIO*)self, source);
+		}
+
+		/// <summary>
+		/// Queue a mouse source change (MouseTouchScreenPen)<br/>
+		/// </summary>
+		public static void AddMouseSourceEvent(ref ImGuiIO self, ImGuiMouseSource source)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				AddMouseSourceEventNative((ImGuiIO*)pself, source);
+			}
+		}
+
+		/// <summary>
+		/// Queue a mouse hovered viewport. Requires backend to set ImGuiBackendFlags_HasMouseHoveredViewport to call this (for multi-viewport support).<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void AddMouseViewportEventNative(ImGuiIO* self, uint id)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, uint, void>)funcTable[433])(self, id);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[433])((nint)self, id);
+			#endif
+		}
+
+		/// <summary>
+		/// Queue a mouse hovered viewport. Requires backend to set ImGuiBackendFlags_HasMouseHoveredViewport to call this (for multi-viewport support).<br/>
+		/// </summary>
+		public static void AddMouseViewportEvent(ImGuiIOPtr self, uint id)
+		{
+			AddMouseViewportEventNative((ImGuiIO*)self, id);
+		}
+
+		/// <summary>
+		/// Queue a mouse hovered viewport. Requires backend to set ImGuiBackendFlags_HasMouseHoveredViewport to call this (for multi-viewport support).<br/>
+		/// </summary>
+		public static void AddMouseViewportEvent(ref ImGuiIO self, uint id)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				AddMouseViewportEventNative((ImGuiIO*)pself, id);
+			}
+		}
+
+		/// <summary>
+		/// Queue a gainloss of focus for the application (generally based on OSplatform focus of your window)<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void AddFocusEventNative(ImGuiIO* self, byte focused)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, byte, void>)funcTable[434])(self, focused);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, byte, void>)funcTable[434])((nint)self, focused);
+			#endif
+		}
+
+		/// <summary>
+		/// Queue a gainloss of focus for the application (generally based on OSplatform focus of your window)<br/>
+		/// </summary>
+		public static void AddFocusEvent(ImGuiIOPtr self, bool focused)
+		{
+			AddFocusEventNative((ImGuiIO*)self, focused ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// Queue a gainloss of focus for the application (generally based on OSplatform focus of your window)<br/>
+		/// </summary>
+		public static void AddFocusEvent(ref ImGuiIO self, bool focused)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				AddFocusEventNative((ImGuiIO*)pself, focused ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// Queue a new character input<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void AddInputCharacterNative(ImGuiIO* self, uint c)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, uint, void>)funcTable[435])(self, c);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, uint, void>)funcTable[435])((nint)self, c);
+			#endif
+		}
+
+		/// <summary>
+		/// Queue a new character input<br/>
+		/// </summary>
+		public static void AddInputCharacter(ImGuiIOPtr self, uint c)
+		{
+			AddInputCharacterNative((ImGuiIO*)self, c);
+		}
+
+		/// <summary>
+		/// Queue a new character input<br/>
+		/// </summary>
+		public static void AddInputCharacter(ref ImGuiIO self, uint c)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				AddInputCharacterNative((ImGuiIO*)pself, c);
+			}
+		}
+
+		/// <summary>
+		/// Queue a new character input from a UTF-16 character, it can be a surrogate<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void AddInputCharacterUTF16Native(ImGuiIO* self, ushort c)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, ushort, void>)funcTable[436])(self, c);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ushort, void>)funcTable[436])((nint)self, c);
+			#endif
+		}
+
+		/// <summary>
+		/// Queue a new character input from a UTF-16 character, it can be a surrogate<br/>
+		/// </summary>
+		public static void AddInputCharacterUTF16(ImGuiIOPtr self, ushort c)
+		{
+			AddInputCharacterUTF16Native((ImGuiIO*)self, c);
+		}
+
+		/// <summary>
+		/// Queue a new character input from a UTF-16 character, it can be a surrogate<br/>
+		/// </summary>
+		public static void AddInputCharacterUTF16(ref ImGuiIO self, ushort c)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				AddInputCharacterUTF16Native((ImGuiIO*)pself, c);
+			}
+		}
+
+		/// <summary>
+		/// Queue a new characters input from a UTF-8 string<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void AddInputCharactersUTF8Native(ImGuiIO* self, byte* str)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, byte*, void>)funcTable[437])(self, str);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[437])((nint)self, (nint)str);
+			#endif
+		}
+
+		/// <summary>
+		/// Queue a new characters input from a UTF-8 string<br/>
+		/// </summary>
+		public static void AddInputCharactersUTF8(ImGuiIOPtr self, byte* str)
+		{
+			AddInputCharactersUTF8Native((ImGuiIO*)self, str);
+		}
+
+		/// <summary>
+		/// Queue a new characters input from a UTF-8 string<br/>
+		/// </summary>
+		public static void AddInputCharactersUTF8(ref ImGuiIO self, byte* str)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				AddInputCharactersUTF8Native((ImGuiIO*)pself, str);
+			}
+		}
+
+		/// <summary>
+		/// Queue a new characters input from a UTF-8 string<br/>
+		/// </summary>
+		public static void AddInputCharactersUTF8(ImGuiIOPtr self, in byte str)
+		{
+			fixed (byte* pstr = &str)
+			{
+				AddInputCharactersUTF8Native((ImGuiIO*)self, (byte*)pstr);
+			}
+		}
+
+		/// <summary>
+		/// Queue a new characters input from a UTF-8 string<br/>
+		/// </summary>
+		public static void AddInputCharactersUTF8(ImGuiIOPtr self, ReadOnlySpan<byte> str)
+		{
+			fixed (byte* pstr = str)
+			{
+				AddInputCharactersUTF8Native((ImGuiIO*)self, (byte*)pstr);
+			}
+		}
+
+		/// <summary>
+		/// Queue a new characters input from a UTF-8 string<br/>
+		/// </summary>
+		public static void AddInputCharactersUTF8(ImGuiIOPtr self, string str)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (str != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(str);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddInputCharactersUTF8Native((ImGuiIO*)self, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// Queue a new characters input from a UTF-8 string<br/>
+		/// </summary>
+		public static void AddInputCharactersUTF8(ref ImGuiIO self, in byte str)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				fixed (byte* pstr = &str)
+				{
+					AddInputCharactersUTF8Native((ImGuiIO*)pself, (byte*)pstr);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Queue a new characters input from a UTF-8 string<br/>
+		/// </summary>
+		public static void AddInputCharactersUTF8(ref ImGuiIO self, ReadOnlySpan<byte> str)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				fixed (byte* pstr = str)
+				{
+					AddInputCharactersUTF8Native((ImGuiIO*)pself, (byte*)pstr);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Queue a new characters input from a UTF-8 string<br/>
+		/// </summary>
+		public static void AddInputCharactersUTF8(ref ImGuiIO self, string str)
+		{
+			fixed (ImGuiIO* pself = &self)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (fmt != null)
+				if (str != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(fmt);
+					pStrSize0 = Utils.GetByteCountUTF8(str);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1569,10 +4977,10 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				appendfvNative((ImGuiTextBuffer*)pself, pStr0, args);
+				AddInputCharactersUTF8Native((ImGuiIO*)pself, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1581,3443 +4989,42 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [Optional] Specify index for legacy &lt;1.87 IsKeyXXX() functions with native indices + specify native keycode, scancode.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiStoragePair* ImGuiStoragePairNative(uint key, int val)
+		internal static void SetKeyEventNativeDataNative(ImGuiIO* self, ImGuiKey key, int nativeKeycode, int nativeScancode, int nativeLegacyIndex)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, int, ImGuiStoragePair*>)funcTable[484])(key, val);
+			((delegate* unmanaged[Cdecl]<ImGuiIO*, ImGuiKey, int, int, int, void>)funcTable[438])(self, key, nativeKeycode, nativeScancode, nativeLegacyIndex);
 			#else
-			return (ImGuiStoragePair*)((delegate* unmanaged[Cdecl]<uint, int, nint>)funcTable[484])(key, val);
+			((delegate* unmanaged[Cdecl]<nint, ImGuiKey, int, int, int, void>)funcTable[438])((nint)self, key, nativeKeycode, nativeScancode, nativeLegacyIndex);
 			#endif
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [Optional] Specify index for legacy &lt;1.87 IsKeyXXX() functions with native indices + specify native keycode, scancode.<br/>
 		/// </summary>
-		public static ImGuiStoragePairPtr ImGuiStoragePair(uint key, int val)
+		public static void SetKeyEventNativeData(ImGuiIOPtr self, ImGuiKey key, int nativeKeycode, int nativeScancode, int nativeLegacyIndex)
 		{
-			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, val);
-			return ret;
+			SetKeyEventNativeDataNative((ImGuiIO*)self, key, nativeKeycode, nativeScancode, nativeLegacyIndex);
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [Optional] Specify index for legacy &lt;1.87 IsKeyXXX() functions with native indices + specify native keycode, scancode.<br/>
 		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiStoragePair* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStoragePair*, void>)funcTable[485])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[485])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiStoragePairPtr self)
-		{
-			DestroyNative((ImGuiStoragePair*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiStoragePair self)
-		{
-			fixed (ImGuiStoragePair* pself = &self)
-			{
-				DestroyNative((ImGuiStoragePair*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiStoragePair* ImGuiStoragePairNative(uint key, float val)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, float, ImGuiStoragePair*>)funcTable[486])(key, val);
-			#else
-			return (ImGuiStoragePair*)((delegate* unmanaged[Cdecl]<uint, float, nint>)funcTable[486])(key, val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiStoragePairPtr ImGuiStoragePair(uint key, float val)
-		{
-			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, val);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiStoragePair* ImGuiStoragePairNative(uint key, void* val)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, void*, ImGuiStoragePair*>)funcTable[487])(key, val);
-			#else
-			return (ImGuiStoragePair*)((delegate* unmanaged[Cdecl]<uint, nint, nint>)funcTable[487])(key, (nint)val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiStoragePairPtr ImGuiStoragePair(uint key, void* val)
-		{
-			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, val);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiStoragePairPtr ImGuiStoragePair(uint key, nint val)
-		{
-			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, (void*)val);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearNative(ImGuiStorage* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStorage*, void>)funcTable[488])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[488])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clear(ImGuiStoragePtr self)
-		{
-			ClearNative((ImGuiStorage*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clear(ref ImGuiStorage self)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				ClearNative((ImGuiStorage*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int GetIntNative(ImGuiStorage* self, uint key, int defaultVal)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, uint, int, int>)funcTable[489])(self, key, defaultVal);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, uint, int, int>)funcTable[489])((nint)self, key, defaultVal);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int GetInt(ImGuiStoragePtr self, uint key, int defaultVal)
-		{
-			int ret = GetIntNative((ImGuiStorage*)self, key, defaultVal);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int GetInt(ImGuiStoragePtr self, uint key)
-		{
-			int ret = GetIntNative((ImGuiStorage*)self, key, (int)(0));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int GetInt(ref ImGuiStorage self, uint key, int defaultVal)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				int ret = GetIntNative((ImGuiStorage*)pself, key, defaultVal);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int GetInt(ref ImGuiStorage self, uint key)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				int ret = GetIntNative((ImGuiStorage*)pself, key, (int)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetIntNative(ImGuiStorage* self, uint key, int val)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStorage*, uint, int, void>)funcTable[490])(self, key, val);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, int, void>)funcTable[490])((nint)self, key, val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetInt(ImGuiStoragePtr self, uint key, int val)
-		{
-			SetIntNative((ImGuiStorage*)self, key, val);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetInt(ref ImGuiStorage self, uint key, int val)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				SetIntNative((ImGuiStorage*)pself, key, val);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte GetBoolNative(ImGuiStorage* self, uint key, byte defaultVal)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, uint, byte, byte>)funcTable[491])(self, key, defaultVal);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, uint, byte, byte>)funcTable[491])((nint)self, key, defaultVal);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool GetBool(ImGuiStoragePtr self, uint key, bool defaultVal)
-		{
-			byte ret = GetBoolNative((ImGuiStorage*)self, key, defaultVal ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool GetBool(ImGuiStoragePtr self, uint key)
-		{
-			byte ret = GetBoolNative((ImGuiStorage*)self, key, (byte)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool GetBool(ref ImGuiStorage self, uint key, bool defaultVal)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				byte ret = GetBoolNative((ImGuiStorage*)pself, key, defaultVal ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool GetBool(ref ImGuiStorage self, uint key)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				byte ret = GetBoolNative((ImGuiStorage*)pself, key, (byte)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetBoolNative(ImGuiStorage* self, uint key, byte val)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStorage*, uint, byte, void>)funcTable[492])(self, key, val);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, byte, void>)funcTable[492])((nint)self, key, val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetBool(ImGuiStoragePtr self, uint key, bool val)
-		{
-			SetBoolNative((ImGuiStorage*)self, key, val ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetBool(ref ImGuiStorage self, uint key, bool val)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				SetBoolNative((ImGuiStorage*)pself, key, val ? (byte)1 : (byte)0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float GetFloatNative(ImGuiStorage* self, uint key, float defaultVal)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, uint, float, float>)funcTable[493])(self, key, defaultVal);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, uint, float, float>)funcTable[493])((nint)self, key, defaultVal);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetFloat(ImGuiStoragePtr self, uint key, float defaultVal)
-		{
-			float ret = GetFloatNative((ImGuiStorage*)self, key, defaultVal);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetFloat(ImGuiStoragePtr self, uint key)
-		{
-			float ret = GetFloatNative((ImGuiStorage*)self, key, (float)(0.0f));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetFloat(ref ImGuiStorage self, uint key, float defaultVal)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				float ret = GetFloatNative((ImGuiStorage*)pself, key, defaultVal);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float GetFloat(ref ImGuiStorage self, uint key)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				float ret = GetFloatNative((ImGuiStorage*)pself, key, (float)(0.0f));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetFloatNative(ImGuiStorage* self, uint key, float val)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStorage*, uint, float, void>)funcTable[494])(self, key, val);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, float, void>)funcTable[494])((nint)self, key, val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetFloat(ImGuiStoragePtr self, uint key, float val)
-		{
-			SetFloatNative((ImGuiStorage*)self, key, val);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetFloat(ref ImGuiStorage self, uint key, float val)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				SetFloatNative((ImGuiStorage*)pself, key, val);
-			}
-		}
-
-		/// <summary>
-		/// default_val is NULL<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void* GetVoidPtrNative(ImGuiStorage* self, uint key)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, uint, void*>)funcTable[495])(self, key);
-			#else
-			return (void*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)funcTable[495])((nint)self, key);
-			#endif
-		}
-
-		/// <summary>
-		/// default_val is NULL<br/>
-		/// </summary>
-		public static void* GetVoidPtr(ImGuiStoragePtr self, uint key)
-		{
-			void* ret = GetVoidPtrNative((ImGuiStorage*)self, key);
-			return ret;
-		}
-
-		/// <summary>
-		/// default_val is NULL<br/>
-		/// </summary>
-		public static void* GetVoidPtr(ref ImGuiStorage self, uint key)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				void* ret = GetVoidPtrNative((ImGuiStorage*)pself, key);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetVoidPtrNative(ImGuiStorage* self, uint key, void* val)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStorage*, uint, void*, void>)funcTable[496])(self, key, val);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, nint, void>)funcTable[496])((nint)self, key, (nint)val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetVoidPtr(ImGuiStoragePtr self, uint key, void* val)
-		{
-			SetVoidPtrNative((ImGuiStorage*)self, key, val);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetVoidPtr(ref ImGuiStorage self, uint key, void* val)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				SetVoidPtrNative((ImGuiStorage*)pself, key, val);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetVoidPtr(ImGuiStoragePtr self, uint key, nint val)
-		{
-			SetVoidPtrNative((ImGuiStorage*)self, key, (void*)val);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetVoidPtr(ref ImGuiStorage self, uint key, nint val)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				SetVoidPtrNative((ImGuiStorage*)pself, key, (void*)val);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int* GetIntRefNative(ImGuiStorage* self, uint key, int defaultVal)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, uint, int, int*>)funcTable[497])(self, key, defaultVal);
-			#else
-			return (int*)((delegate* unmanaged[Cdecl]<nint, uint, int, nint>)funcTable[497])((nint)self, key, defaultVal);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int* GetIntRef(ImGuiStoragePtr self, uint key, int defaultVal)
-		{
-			int* ret = GetIntRefNative((ImGuiStorage*)self, key, defaultVal);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int* GetIntRef(ImGuiStoragePtr self, uint key)
-		{
-			int* ret = GetIntRefNative((ImGuiStorage*)self, key, (int)(0));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int* GetIntRef(ref ImGuiStorage self, uint key, int defaultVal)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				int* ret = GetIntRefNative((ImGuiStorage*)pself, key, defaultVal);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static int* GetIntRef(ref ImGuiStorage self, uint key)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				int* ret = GetIntRefNative((ImGuiStorage*)pself, key, (int)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static bool* GetBoolRefNative(ImGuiStorage* self, uint key, byte defaultVal)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, uint, byte, bool*>)funcTable[498])(self, key, defaultVal);
-			#else
-			return (bool*)((delegate* unmanaged[Cdecl]<nint, uint, byte, nint>)funcTable[498])((nint)self, key, defaultVal);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool* GetBoolRef(ImGuiStoragePtr self, uint key, bool defaultVal)
-		{
-			bool* ret = GetBoolRefNative((ImGuiStorage*)self, key, defaultVal ? (byte)1 : (byte)0);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool* GetBoolRef(ImGuiStoragePtr self, uint key)
-		{
-			bool* ret = GetBoolRefNative((ImGuiStorage*)self, key, (byte)(0));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool* GetBoolRef(ref ImGuiStorage self, uint key, bool defaultVal)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				bool* ret = GetBoolRefNative((ImGuiStorage*)pself, key, defaultVal ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool* GetBoolRef(ref ImGuiStorage self, uint key)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				bool* ret = GetBoolRefNative((ImGuiStorage*)pself, key, (byte)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static float* GetFloatRefNative(ImGuiStorage* self, uint key, float defaultVal)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, uint, float, float*>)funcTable[499])(self, key, defaultVal);
-			#else
-			return (float*)((delegate* unmanaged[Cdecl]<nint, uint, float, nint>)funcTable[499])((nint)self, key, defaultVal);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float* GetFloatRef(ImGuiStoragePtr self, uint key, float defaultVal)
-		{
-			float* ret = GetFloatRefNative((ImGuiStorage*)self, key, defaultVal);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float* GetFloatRef(ImGuiStoragePtr self, uint key)
-		{
-			float* ret = GetFloatRefNative((ImGuiStorage*)self, key, (float)(0.0f));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float* GetFloatRef(ref ImGuiStorage self, uint key, float defaultVal)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				float* ret = GetFloatRefNative((ImGuiStorage*)pself, key, defaultVal);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static float* GetFloatRef(ref ImGuiStorage self, uint key)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				float* ret = GetFloatRefNative((ImGuiStorage*)pself, key, (float)(0.0f));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void** GetVoidPtrRefNative(ImGuiStorage* self, uint key, void* defaultVal)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, uint, void*, void**>)funcTable[500])(self, key, defaultVal);
-			#else
-			return (void**)((delegate* unmanaged[Cdecl]<nint, uint, nint, nint>)funcTable[500])((nint)self, key, (nint)defaultVal);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void** GetVoidPtrRef(ImGuiStoragePtr self, uint key, void* defaultVal)
-		{
-			void** ret = GetVoidPtrRefNative((ImGuiStorage*)self, key, defaultVal);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void** GetVoidPtrRef(ImGuiStoragePtr self, uint key)
-		{
-			void** ret = GetVoidPtrRefNative((ImGuiStorage*)self, key, (void*)(default));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void** GetVoidPtrRef(ref ImGuiStorage self, uint key, void* defaultVal)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				void** ret = GetVoidPtrRefNative((ImGuiStorage*)pself, key, defaultVal);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void** GetVoidPtrRef(ref ImGuiStorage self, uint key)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				void** ret = GetVoidPtrRefNative((ImGuiStorage*)pself, key, (void*)(default));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void** GetVoidPtrRef(ImGuiStoragePtr self, uint key, nint defaultVal)
-		{
-			void** ret = GetVoidPtrRefNative((ImGuiStorage*)self, key, (void*)defaultVal);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void** GetVoidPtrRef(ref ImGuiStorage self, uint key, nint defaultVal)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				void** ret = GetVoidPtrRefNative((ImGuiStorage*)pself, key, (void*)defaultVal);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void BuildSortByKeyNative(ImGuiStorage* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStorage*, void>)funcTable[501])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[501])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BuildSortByKey(ImGuiStoragePtr self)
-		{
-			BuildSortByKeyNative((ImGuiStorage*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void BuildSortByKey(ref ImGuiStorage self)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				BuildSortByKeyNative((ImGuiStorage*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetAllIntNative(ImGuiStorage* self, int val)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiStorage*, int, void>)funcTable[502])(self, val);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[502])((nint)self, val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllInt(ImGuiStoragePtr self, int val)
-		{
-			SetAllIntNative((ImGuiStorage*)self, val);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllInt(ref ImGuiStorage self, int val)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				SetAllIntNative((ImGuiStorage*)pself, val);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiListClipper* ImGuiListClipperNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiListClipper*>)funcTable[503])();
-			#else
-			return (ImGuiListClipper*)((delegate* unmanaged[Cdecl]<nint>)funcTable[503])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiListClipperPtr ImGuiListClipper()
-		{
-			ImGuiListClipperPtr ret = ImGuiListClipperNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiListClipper* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiListClipper*, void>)funcTable[504])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[504])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiListClipperPtr self)
-		{
-			DestroyNative((ImGuiListClipper*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiListClipper self)
-		{
-			fixed (ImGuiListClipper* pself = &self)
-			{
-				DestroyNative((ImGuiListClipper*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void BeginNative(ImGuiListClipper* self, int itemsCount, float itemsHeight)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiListClipper*, int, float, void>)funcTable[505])(self, itemsCount, itemsHeight);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, float, void>)funcTable[505])((nint)self, itemsCount, itemsHeight);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Begin(ImGuiListClipperPtr self, int itemsCount, float itemsHeight)
-		{
-			BeginNative((ImGuiListClipper*)self, itemsCount, itemsHeight);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Begin(ImGuiListClipperPtr self, int itemsCount)
-		{
-			BeginNative((ImGuiListClipper*)self, itemsCount, (float)(-1.0f));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Begin(ref ImGuiListClipper self, int itemsCount, float itemsHeight)
-		{
-			fixed (ImGuiListClipper* pself = &self)
-			{
-				BeginNative((ImGuiListClipper*)pself, itemsCount, itemsHeight);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Begin(ref ImGuiListClipper self, int itemsCount)
-		{
-			fixed (ImGuiListClipper* pself = &self)
-			{
-				BeginNative((ImGuiListClipper*)pself, itemsCount, (float)(-1.0f));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void EndNative(ImGuiListClipper* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiListClipper*, void>)funcTable[506])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[506])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// Automatically called on the last call of Step() that returns false.<br/>
-		/// </summary>
-		public static void End(ImGuiListClipperPtr self)
-		{
-			EndNative((ImGuiListClipper*)self);
-		}
-
-		/// <summary>
-		/// Automatically called on the last call of Step() that returns false.<br/>
-		/// </summary>
-		public static void End(ref ImGuiListClipper self)
-		{
-			fixed (ImGuiListClipper* pself = &self)
-			{
-				EndNative((ImGuiListClipper*)pself);
-			}
-		}
-
-		/// <summary>
-		/// Call until it returns false. The DisplayStartDisplayEnd fields will be set and you can processdraw those items.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte StepNative(ImGuiListClipper* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiListClipper*, byte>)funcTable[507])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[507])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// Call until it returns false. The DisplayStartDisplayEnd fields will be set and you can processdraw those items.<br/>
-		/// </summary>
-		public static bool Step(ImGuiListClipperPtr self)
-		{
-			byte ret = StepNative((ImGuiListClipper*)self);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// Call until it returns false. The DisplayStartDisplayEnd fields will be set and you can processdraw those items.<br/>
-		/// </summary>
-		public static bool Step(ref ImGuiListClipper self)
-		{
-			fixed (ImGuiListClipper* pself = &self)
-			{
-				byte ret = StepNative((ImGuiListClipper*)pself);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void IncludeItemByIndexNative(ImGuiListClipper* self, int itemIndex)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiListClipper*, int, void>)funcTable[508])(self, itemIndex);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[508])((nint)self, itemIndex);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void IncludeItemByIndex(ImGuiListClipperPtr self, int itemIndex)
-		{
-			IncludeItemByIndexNative((ImGuiListClipper*)self, itemIndex);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void IncludeItemByIndex(ref ImGuiListClipper self, int itemIndex)
-		{
-			fixed (ImGuiListClipper* pself = &self)
-			{
-				IncludeItemByIndexNative((ImGuiListClipper*)pself, itemIndex);
-			}
-		}
-
-		/// <summary>
-		/// item_end is exclusive e.g. use (42, 42+1) to make item 42 never clipped.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void IncludeItemsByIndexNative(ImGuiListClipper* self, int itemBegin, int itemEnd)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiListClipper*, int, int, void>)funcTable[509])(self, itemBegin, itemEnd);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[509])((nint)self, itemBegin, itemEnd);
-			#endif
-		}
-
-		/// <summary>
-		/// item_end is exclusive e.g. use (42, 42+1) to make item 42 never clipped.<br/>
-		/// </summary>
-		public static void IncludeItemsByIndex(ImGuiListClipperPtr self, int itemBegin, int itemEnd)
-		{
-			IncludeItemsByIndexNative((ImGuiListClipper*)self, itemBegin, itemEnd);
-		}
-
-		/// <summary>
-		/// item_end is exclusive e.g. use (42, 42+1) to make item 42 never clipped.<br/>
-		/// </summary>
-		public static void IncludeItemsByIndex(ref ImGuiListClipper self, int itemBegin, int itemEnd)
-		{
-			fixed (ImGuiListClipper* pself = &self)
-			{
-				IncludeItemsByIndexNative((ImGuiListClipper*)pself, itemBegin, itemEnd);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SeekCursorForItemNative(ImGuiListClipper* self, int itemIndex)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiListClipper*, int, void>)funcTable[510])(self, itemIndex);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[510])((nint)self, itemIndex);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SeekCursorForItem(ImGuiListClipperPtr self, int itemIndex)
-		{
-			SeekCursorForItemNative((ImGuiListClipper*)self, itemIndex);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SeekCursorForItem(ref ImGuiListClipper self, int itemIndex)
-		{
-			fixed (ImGuiListClipper* pself = &self)
-			{
-				SeekCursorForItemNative((ImGuiListClipper*)pself, itemIndex);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImColor* ImColorNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImColor*>)funcTable[511])();
-			#else
-			return (ImColor*)((delegate* unmanaged[Cdecl]<nint>)funcTable[511])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImColor* ImColor()
-		{
-			ImColor* ret = ImColorNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImColor* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImColor*, void>)funcTable[512])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[512])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImColor* self)
-		{
-			DestroyNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImColor self)
-		{
-			fixed (ImColor* pself = &self)
-			{
-				DestroyNative((ImColor*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImColor* ImColorNative(float r, float g, float b, float a)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float, float, float, float, ImColor*>)funcTable[513])(r, g, b, a);
-			#else
-			return (ImColor*)((delegate* unmanaged[Cdecl]<float, float, float, float, nint>)funcTable[513])(r, g, b, a);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImColor* ImColor(float r, float g, float b, float a)
-		{
-			ImColor* ret = ImColorNative(r, g, b, a);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImColor* ImColor(float r, float g, float b)
-		{
-			ImColor* ret = ImColorNative(r, g, b, (float)(1.0f));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImColor* ImColorNative(Vector4 col)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector4, ImColor*>)funcTable[514])(col);
-			#else
-			return (ImColor*)((delegate* unmanaged[Cdecl]<Vector4, nint>)funcTable[514])(col);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImColor* ImColor(Vector4 col)
-		{
-			ImColor* ret = ImColorNative(col);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImColor* ImColorNative(int r, int g, int b, int a)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int, int, int, ImColor*>)funcTable[515])(r, g, b, a);
-			#else
-			return (ImColor*)((delegate* unmanaged[Cdecl]<int, int, int, int, nint>)funcTable[515])(r, g, b, a);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImColor* ImColor(int r, int g, int b, int a)
-		{
-			ImColor* ret = ImColorNative(r, g, b, a);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImColor* ImColor(int r, int g, int b)
-		{
-			ImColor* ret = ImColorNative(r, g, b, (int)(255));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImColor* ImColorNative(uint rgba)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, ImColor*>)funcTable[516])(rgba);
-			#else
-			return (ImColor*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[516])(rgba);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImColor* ImColor(uint rgba)
-		{
-			ImColor* ret = ImColorNative(rgba);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetHSVNative(ImColor* self, float h, float s, float v, float a)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImColor*, float, float, float, float, void>)funcTable[517])(self, h, s, v, a);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, float, float, float, float, void>)funcTable[517])((nint)self, h, s, v, a);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetHSV(ImColor* self, float h, float s, float v, float a)
-		{
-			SetHSVNative(self, h, s, v, a);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetHSV(ImColor* self, float h, float s, float v)
-		{
-			SetHSVNative(self, h, s, v, (float)(1.0f));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetHSV(ref ImColor self, float h, float s, float v, float a)
-		{
-			fixed (ImColor* pself = &self)
-			{
-				SetHSVNative((ImColor*)pself, h, s, v, a);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetHSV(ref ImColor self, float h, float s, float v)
-		{
-			fixed (ImColor* pself = &self)
-			{
-				SetHSVNative((ImColor*)pself, h, s, v, (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImColor HSVNative(float h, float s, float v, float a)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float, float, float, float, ImColor>)funcTable[518])(h, s, v, a);
-			#else
-			return (ImColor)((delegate* unmanaged[Cdecl]<float, float, float, float, ImColor>)funcTable[518])(h, s, v, a);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImColor HSV(float h, float s, float v, float a)
-		{
-			ImColor ret = HSVNative(h, s, v, a);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImColor HSV(float h, float s, float v)
-		{
-			ImColor ret = HSVNative(h, s, v, (float)(1.0f));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiSelectionBasicStorage* ImGuiSelectionBasicStorageNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*>)funcTable[519])();
-			#else
-			return (ImGuiSelectionBasicStorage*)((delegate* unmanaged[Cdecl]<nint>)funcTable[519])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiSelectionBasicStoragePtr ImGuiSelectionBasicStorage()
-		{
-			ImGuiSelectionBasicStoragePtr ret = ImGuiSelectionBasicStorageNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiSelectionBasicStorage* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, void>)funcTable[520])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[520])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiSelectionBasicStoragePtr self)
-		{
-			DestroyNative((ImGuiSelectionBasicStorage*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiSelectionBasicStorage self)
-		{
-			fixed (ImGuiSelectionBasicStorage* pself = &self)
-			{
-				DestroyNative((ImGuiSelectionBasicStorage*)pself);
-			}
-		}
-
-		/// <summary>
-		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ApplyRequestsNative(ImGuiSelectionBasicStorage* self, ImGuiMultiSelectIO* msIo)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, ImGuiMultiSelectIO*, void>)funcTable[521])(self, msIo);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[521])((nint)self, (nint)msIo);
-			#endif
-		}
-
-		/// <summary>
-		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
-		/// </summary>
-		public static void ApplyRequests(ImGuiSelectionBasicStoragePtr self, ImGuiMultiSelectIOPtr msIo)
-		{
-			ApplyRequestsNative((ImGuiSelectionBasicStorage*)self, (ImGuiMultiSelectIO*)msIo);
-		}
-
-		/// <summary>
-		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
-		/// </summary>
-		public static void ApplyRequests(ref ImGuiSelectionBasicStorage self, ImGuiMultiSelectIOPtr msIo)
-		{
-			fixed (ImGuiSelectionBasicStorage* pself = &self)
-			{
-				ApplyRequestsNative((ImGuiSelectionBasicStorage*)pself, (ImGuiMultiSelectIO*)msIo);
-			}
-		}
-
-		/// <summary>
-		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
-		/// </summary>
-		public static void ApplyRequests(ImGuiSelectionBasicStoragePtr self, ref ImGuiMultiSelectIO msIo)
-		{
-			fixed (ImGuiMultiSelectIO* pmsIo = &msIo)
-			{
-				ApplyRequestsNative((ImGuiSelectionBasicStorage*)self, (ImGuiMultiSelectIO*)pmsIo);
-			}
-		}
-
-		/// <summary>
-		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
-		/// </summary>
-		public static void ApplyRequests(ref ImGuiSelectionBasicStorage self, ref ImGuiMultiSelectIO msIo)
-		{
-			fixed (ImGuiSelectionBasicStorage* pself = &self)
-			{
-				fixed (ImGuiMultiSelectIO* pmsIo = &msIo)
-				{
-					ApplyRequestsNative((ImGuiSelectionBasicStorage*)pself, (ImGuiMultiSelectIO*)pmsIo);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Query if an item id is in selection.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte ContainsNative(ImGuiSelectionBasicStorage* self, uint id)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, uint, byte>)funcTable[522])(self, id);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, uint, byte>)funcTable[522])((nint)self, id);
-			#endif
-		}
-
-		/// <summary>
-		/// Query if an item id is in selection.<br/>
-		/// </summary>
-		public static bool Contains(ImGuiSelectionBasicStoragePtr self, uint id)
-		{
-			byte ret = ContainsNative((ImGuiSelectionBasicStorage*)self, id);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// Query if an item id is in selection.<br/>
-		/// </summary>
-		public static bool Contains(ref ImGuiSelectionBasicStorage self, uint id)
-		{
-			fixed (ImGuiSelectionBasicStorage* pself = &self)
-			{
-				byte ret = ContainsNative((ImGuiSelectionBasicStorage*)pself, id);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearNative(ImGuiSelectionBasicStorage* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, void>)funcTable[523])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[523])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// Clear selection<br/>
-		/// </summary>
-		public static void Clear(ImGuiSelectionBasicStoragePtr self)
-		{
-			ClearNative((ImGuiSelectionBasicStorage*)self);
-		}
-
-		/// <summary>
-		/// Clear selection<br/>
-		/// </summary>
-		public static void Clear(ref ImGuiSelectionBasicStorage self)
-		{
-			fixed (ImGuiSelectionBasicStorage* pself = &self)
-			{
-				ClearNative((ImGuiSelectionBasicStorage*)pself);
-			}
-		}
-
-		/// <summary>
-		/// Swap two selections<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SwapNative(ImGuiSelectionBasicStorage* self, ImGuiSelectionBasicStorage* r)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, ImGuiSelectionBasicStorage*, void>)funcTable[524])(self, r);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[524])((nint)self, (nint)r);
-			#endif
-		}
-
-		/// <summary>
-		/// Swap two selections<br/>
-		/// </summary>
-		public static void Swap(ImGuiSelectionBasicStoragePtr self, ImGuiSelectionBasicStoragePtr r)
-		{
-			SwapNative((ImGuiSelectionBasicStorage*)self, (ImGuiSelectionBasicStorage*)r);
-		}
-
-		/// <summary>
-		/// Swap two selections<br/>
-		/// </summary>
-		public static void Swap(ref ImGuiSelectionBasicStorage self, ImGuiSelectionBasicStoragePtr r)
-		{
-			fixed (ImGuiSelectionBasicStorage* pself = &self)
-			{
-				SwapNative((ImGuiSelectionBasicStorage*)pself, (ImGuiSelectionBasicStorage*)r);
-			}
-		}
-
-		/// <summary>
-		/// Swap two selections<br/>
-		/// </summary>
-		public static void Swap(ImGuiSelectionBasicStoragePtr self, ref ImGuiSelectionBasicStorage r)
-		{
-			fixed (ImGuiSelectionBasicStorage* pr = &r)
-			{
-				SwapNative((ImGuiSelectionBasicStorage*)self, (ImGuiSelectionBasicStorage*)pr);
-			}
-		}
-
-		/// <summary>
-		/// Swap two selections<br/>
-		/// </summary>
-		public static void Swap(ref ImGuiSelectionBasicStorage self, ref ImGuiSelectionBasicStorage r)
-		{
-			fixed (ImGuiSelectionBasicStorage* pself = &self)
-			{
-				fixed (ImGuiSelectionBasicStorage* pr = &r)
-				{
-					SwapNative((ImGuiSelectionBasicStorage*)pself, (ImGuiSelectionBasicStorage*)pr);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Addremove an item from selection (generally done by ApplyRequests() function)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetItemSelectedNative(ImGuiSelectionBasicStorage* self, uint id, byte selected)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, uint, byte, void>)funcTable[525])(self, id, selected);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, uint, byte, void>)funcTable[525])((nint)self, id, selected);
-			#endif
-		}
-
-		/// <summary>
-		/// Addremove an item from selection (generally done by ApplyRequests() function)<br/>
-		/// </summary>
-		public static void SetItemSelected(ImGuiSelectionBasicStoragePtr self, uint id, bool selected)
-		{
-			SetItemSelectedNative((ImGuiSelectionBasicStorage*)self, id, selected ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// Addremove an item from selection (generally done by ApplyRequests() function)<br/>
-		/// </summary>
-		public static void SetItemSelected(ref ImGuiSelectionBasicStorage self, uint id, bool selected)
-		{
-			fixed (ImGuiSelectionBasicStorage* pself = &self)
-			{
-				SetItemSelectedNative((ImGuiSelectionBasicStorage*)pself, id, selected ? (byte)1 : (byte)0);
-			}
-		}
-
-		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte GetNextSelectedItemNative(ImGuiSelectionBasicStorage* self, void** opaqueIt, uint* outId)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, void**, uint*, byte>)funcTable[526])(self, opaqueIt, outId);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, byte>)funcTable[526])((nint)self, (nint)opaqueIt, (nint)outId);
-			#endif
-		}
-
-		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
-		/// </summary>
-		public static bool GetNextSelectedItem(ImGuiSelectionBasicStoragePtr self, void** opaqueIt, uint* outId)
-		{
-			byte ret = GetNextSelectedItemNative((ImGuiSelectionBasicStorage*)self, opaqueIt, outId);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
-		/// </summary>
-		public static bool GetNextSelectedItem(ref ImGuiSelectionBasicStorage self, void** opaqueIt, uint* outId)
-		{
-			fixed (ImGuiSelectionBasicStorage* pself = &self)
-			{
-				byte ret = GetNextSelectedItemNative((ImGuiSelectionBasicStorage*)pself, opaqueIt, outId);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
-		/// </summary>
-		public static bool GetNextSelectedItem(ImGuiSelectionBasicStoragePtr self, ref nint opaqueIt, uint* outId)
-		{
-			fixed (nint* popaqueIt = &opaqueIt)
-			{
-				byte ret = GetNextSelectedItemNative((ImGuiSelectionBasicStorage*)self, (void**)popaqueIt, outId);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
-		/// </summary>
-		public static bool GetNextSelectedItem(ref ImGuiSelectionBasicStorage self, ref nint opaqueIt, uint* outId)
-		{
-			fixed (ImGuiSelectionBasicStorage* pself = &self)
-			{
-				fixed (nint* popaqueIt = &opaqueIt)
-				{
-					byte ret = GetNextSelectedItemNative((ImGuiSelectionBasicStorage*)pself, (void**)popaqueIt, outId);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
-		/// </summary>
-		public static bool GetNextSelectedItem(ImGuiSelectionBasicStoragePtr self, void** opaqueIt, ref uint outId)
-		{
-			fixed (uint* poutId = &outId)
-			{
-				byte ret = GetNextSelectedItemNative((ImGuiSelectionBasicStorage*)self, opaqueIt, (uint*)poutId);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
-		/// </summary>
-		public static bool GetNextSelectedItem(ref ImGuiSelectionBasicStorage self, void** opaqueIt, ref uint outId)
-		{
-			fixed (ImGuiSelectionBasicStorage* pself = &self)
-			{
-				fixed (uint* poutId = &outId)
-				{
-					byte ret = GetNextSelectedItemNative((ImGuiSelectionBasicStorage*)pself, opaqueIt, (uint*)poutId);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
-		/// </summary>
-		public static bool GetNextSelectedItem(ImGuiSelectionBasicStoragePtr self, ref nint opaqueIt, ref uint outId)
-		{
-			fixed (nint* popaqueIt = &opaqueIt)
-			{
-				fixed (uint* poutId = &outId)
-				{
-					byte ret = GetNextSelectedItemNative((ImGuiSelectionBasicStorage*)self, (void**)popaqueIt, (uint*)poutId);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
-		/// </summary>
-		public static bool GetNextSelectedItem(ref ImGuiSelectionBasicStorage self, ref nint opaqueIt, ref uint outId)
-		{
-			fixed (ImGuiSelectionBasicStorage* pself = &self)
-			{
-				fixed (nint* popaqueIt = &opaqueIt)
-				{
-					fixed (uint* poutId = &outId)
-					{
-						byte ret = GetNextSelectedItemNative((ImGuiSelectionBasicStorage*)pself, (void**)popaqueIt, (uint*)poutId);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Convert index to item id based on provided adapter.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetStorageIdFromIndexNative(ImGuiSelectionBasicStorage* self, int idx)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, int, uint>)funcTable[527])(self, idx);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[527])((nint)self, idx);
-			#endif
-		}
-
-		/// <summary>
-		/// Convert index to item id based on provided adapter.<br/>
-		/// </summary>
-		public static uint GetStorageIdFromIndex(ImGuiSelectionBasicStoragePtr self, int idx)
-		{
-			uint ret = GetStorageIdFromIndexNative((ImGuiSelectionBasicStorage*)self, idx);
-			return ret;
-		}
-
-		/// <summary>
-		/// Convert index to item id based on provided adapter.<br/>
-		/// </summary>
-		public static uint GetStorageIdFromIndex(ref ImGuiSelectionBasicStorage self, int idx)
-		{
-			fixed (ImGuiSelectionBasicStorage* pself = &self)
-			{
-				uint ret = GetStorageIdFromIndexNative((ImGuiSelectionBasicStorage*)pself, idx);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImGuiSelectionExternalStorage* ImGuiSelectionExternalStorageNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImGuiSelectionExternalStorage*>)funcTable[528])();
-			#else
-			return (ImGuiSelectionExternalStorage*)((delegate* unmanaged[Cdecl]<nint>)funcTable[528])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImGuiSelectionExternalStoragePtr ImGuiSelectionExternalStorage()
-		{
-			ImGuiSelectionExternalStoragePtr ret = ImGuiSelectionExternalStorageNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImGuiSelectionExternalStorage* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiSelectionExternalStorage*, void>)funcTable[529])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[529])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImGuiSelectionExternalStoragePtr self)
-		{
-			DestroyNative((ImGuiSelectionExternalStorage*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImGuiSelectionExternalStorage self)
-		{
-			fixed (ImGuiSelectionExternalStorage* pself = &self)
-			{
-				DestroyNative((ImGuiSelectionExternalStorage*)pself);
-			}
-		}
-
-		/// <summary>
-		/// Apply selection requests coming from BeginMultiSelect() and EndMultiSelect() functions. It uses 'items_count' passed to BeginMultiSelect()<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ApplyRequestsNative(ImGuiSelectionExternalStorage* self, ImGuiMultiSelectIO* msIo)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiSelectionExternalStorage*, ImGuiMultiSelectIO*, void>)funcTable[530])(self, msIo);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[530])((nint)self, (nint)msIo);
-			#endif
-		}
-
-		/// <summary>
-		/// Apply selection requests by using AdapterSetItemSelected() calls<br/>
-		/// </summary>
-		public static void ApplyRequests(ImGuiSelectionExternalStoragePtr self, ImGuiMultiSelectIOPtr msIo)
-		{
-			ApplyRequestsNative((ImGuiSelectionExternalStorage*)self, (ImGuiMultiSelectIO*)msIo);
-		}
-
-		/// <summary>
-		/// Apply selection requests by using AdapterSetItemSelected() calls<br/>
-		/// </summary>
-		public static void ApplyRequests(ref ImGuiSelectionExternalStorage self, ImGuiMultiSelectIOPtr msIo)
-		{
-			fixed (ImGuiSelectionExternalStorage* pself = &self)
-			{
-				ApplyRequestsNative((ImGuiSelectionExternalStorage*)pself, (ImGuiMultiSelectIO*)msIo);
-			}
-		}
-
-		/// <summary>
-		/// Apply selection requests by using AdapterSetItemSelected() calls<br/>
-		/// </summary>
-		public static void ApplyRequests(ImGuiSelectionExternalStoragePtr self, ref ImGuiMultiSelectIO msIo)
-		{
-			fixed (ImGuiMultiSelectIO* pmsIo = &msIo)
-			{
-				ApplyRequestsNative((ImGuiSelectionExternalStorage*)self, (ImGuiMultiSelectIO*)pmsIo);
-			}
-		}
-
-		/// <summary>
-		/// Apply selection requests by using AdapterSetItemSelected() calls<br/>
-		/// </summary>
-		public static void ApplyRequests(ref ImGuiSelectionExternalStorage self, ref ImGuiMultiSelectIO msIo)
-		{
-			fixed (ImGuiSelectionExternalStorage* pself = &self)
-			{
-				fixed (ImGuiMultiSelectIO* pmsIo = &msIo)
-				{
-					ApplyRequestsNative((ImGuiSelectionExternalStorage*)pself, (ImGuiMultiSelectIO*)pmsIo);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Also ensure our padding fields are zeroed<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImDrawCmd* ImDrawCmdNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawCmd*>)funcTable[531])();
-			#else
-			return (ImDrawCmd*)((delegate* unmanaged[Cdecl]<nint>)funcTable[531])();
-			#endif
-		}
-
-		/// <summary>
-		/// Also ensure our padding fields are zeroed<br/>
-		/// </summary>
-		public static ImDrawCmdPtr ImDrawCmd()
-		{
-			ImDrawCmdPtr ret = ImDrawCmdNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImDrawCmd* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawCmd*, void>)funcTable[532])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[532])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImDrawCmdPtr self)
-		{
-			DestroyNative((ImDrawCmd*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImDrawCmd self)
-		{
-			fixed (ImDrawCmd* pself = &self)
-			{
-				DestroyNative((ImDrawCmd*)pself);
-			}
-		}
-
-		/// <summary>
-		/// == (_TexData ? _TexData-&gt;TexID : _TexID)  Implemented below in the file.<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImTextureID GetTexIDNative(ImDrawCmd* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawCmd*, ImTextureID>)funcTable[533])(self);
-			#else
-			return (ImTextureID)((delegate* unmanaged[Cdecl]<nint, ImTextureID>)funcTable[533])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID)<br/>
-		/// </summary>
-		public static ImTextureID GetTexID(ImDrawCmdPtr self)
-		{
-			ImTextureID ret = GetTexIDNative((ImDrawCmd*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID)<br/>
-		/// </summary>
-		public static ImTextureID GetTexID(ref ImDrawCmd self)
-		{
-			fixed (ImDrawCmd* pself = &self)
-			{
-				ImTextureID ret = GetTexIDNative((ImDrawCmd*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImDrawListSplitter* ImDrawListSplitterNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawListSplitter*>)funcTable[534])();
-			#else
-			return (ImDrawListSplitter*)((delegate* unmanaged[Cdecl]<nint>)funcTable[534])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImDrawListSplitterPtr ImDrawListSplitter()
-		{
-			ImDrawListSplitterPtr ret = ImDrawListSplitterNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImDrawListSplitter* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawListSplitter*, void>)funcTable[535])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[535])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImDrawListSplitterPtr self)
-		{
-			DestroyNative((ImDrawListSplitter*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImDrawListSplitter self)
-		{
-			fixed (ImDrawListSplitter* pself = &self)
-			{
-				DestroyNative((ImDrawListSplitter*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearNative(ImDrawListSplitter* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawListSplitter*, void>)funcTable[536])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[536])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// Do not clear Channels[] so our allocations are reused next frame<br/>
-		/// </summary>
-		public static void Clear(ImDrawListSplitterPtr self)
-		{
-			ClearNative((ImDrawListSplitter*)self);
-		}
-
-		/// <summary>
-		/// Do not clear Channels[] so our allocations are reused next frame<br/>
-		/// </summary>
-		public static void Clear(ref ImDrawListSplitter self)
-		{
-			fixed (ImDrawListSplitter* pself = &self)
-			{
-				ClearNative((ImDrawListSplitter*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClearFreeMemoryNative(ImDrawListSplitter* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawListSplitter*, void>)funcTable[537])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[537])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearFreeMemory(ImDrawListSplitterPtr self)
-		{
-			ClearFreeMemoryNative((ImDrawListSplitter*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ClearFreeMemory(ref ImDrawListSplitter self)
-		{
-			fixed (ImDrawListSplitter* pself = &self)
-			{
-				ClearFreeMemoryNative((ImDrawListSplitter*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SplitNative(ImDrawListSplitter* self, ImDrawList* drawList, int count)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawListSplitter*, ImDrawList*, int, void>)funcTable[538])(self, drawList, count);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, void>)funcTable[538])((nint)self, (nint)drawList, count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Split(ImDrawListSplitterPtr self, ImDrawListPtr drawList, int count)
-		{
-			SplitNative((ImDrawListSplitter*)self, (ImDrawList*)drawList, count);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Split(ref ImDrawListSplitter self, ImDrawListPtr drawList, int count)
-		{
-			fixed (ImDrawListSplitter* pself = &self)
-			{
-				SplitNative((ImDrawListSplitter*)pself, (ImDrawList*)drawList, count);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Split(ImDrawListSplitterPtr self, ref ImDrawList drawList, int count)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				SplitNative((ImDrawListSplitter*)self, (ImDrawList*)pdrawList, count);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Split(ref ImDrawListSplitter self, ref ImDrawList drawList, int count)
-		{
-			fixed (ImDrawListSplitter* pself = &self)
-			{
-				fixed (ImDrawList* pdrawList = &drawList)
-				{
-					SplitNative((ImDrawListSplitter*)pself, (ImDrawList*)pdrawList, count);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void MergeNative(ImDrawListSplitter* self, ImDrawList* drawList)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawListSplitter*, ImDrawList*, void>)funcTable[539])(self, drawList);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[539])((nint)self, (nint)drawList);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Merge(ImDrawListSplitterPtr self, ImDrawListPtr drawList)
-		{
-			MergeNative((ImDrawListSplitter*)self, (ImDrawList*)drawList);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Merge(ref ImDrawListSplitter self, ImDrawListPtr drawList)
-		{
-			fixed (ImDrawListSplitter* pself = &self)
-			{
-				MergeNative((ImDrawListSplitter*)pself, (ImDrawList*)drawList);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Merge(ImDrawListSplitterPtr self, ref ImDrawList drawList)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				MergeNative((ImDrawListSplitter*)self, (ImDrawList*)pdrawList);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Merge(ref ImDrawListSplitter self, ref ImDrawList drawList)
-		{
-			fixed (ImDrawListSplitter* pself = &self)
-			{
-				fixed (ImDrawList* pdrawList = &drawList)
-				{
-					MergeNative((ImDrawListSplitter*)pself, (ImDrawList*)pdrawList);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetCurrentChannelNative(ImDrawListSplitter* self, ImDrawList* drawList, int channelIdx)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawListSplitter*, ImDrawList*, int, void>)funcTable[540])(self, drawList, channelIdx);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, void>)funcTable[540])((nint)self, (nint)drawList, channelIdx);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetCurrentChannel(ImDrawListSplitterPtr self, ImDrawListPtr drawList, int channelIdx)
-		{
-			SetCurrentChannelNative((ImDrawListSplitter*)self, (ImDrawList*)drawList, channelIdx);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetCurrentChannel(ref ImDrawListSplitter self, ImDrawListPtr drawList, int channelIdx)
-		{
-			fixed (ImDrawListSplitter* pself = &self)
-			{
-				SetCurrentChannelNative((ImDrawListSplitter*)pself, (ImDrawList*)drawList, channelIdx);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetCurrentChannel(ImDrawListSplitterPtr self, ref ImDrawList drawList, int channelIdx)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				SetCurrentChannelNative((ImDrawListSplitter*)self, (ImDrawList*)pdrawList, channelIdx);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetCurrentChannel(ref ImDrawListSplitter self, ref ImDrawList drawList, int channelIdx)
-		{
-			fixed (ImDrawListSplitter* pself = &self)
-			{
-				fixed (ImDrawList* pdrawList = &drawList)
-				{
-					SetCurrentChannelNative((ImDrawListSplitter*)pself, (ImDrawList*)pdrawList, channelIdx);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImDrawList* ImDrawListNative(ImDrawListSharedData* sharedData)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawListSharedData*, ImDrawList*>)funcTable[541])(sharedData);
-			#else
-			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[541])((nint)sharedData);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImDrawListPtr ImDrawList(ImDrawListSharedDataPtr sharedData)
-		{
-			ImDrawListPtr ret = ImDrawListNative((ImDrawListSharedData*)sharedData);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImDrawListPtr ImDrawList(ref ImDrawListSharedData sharedData)
-		{
-			fixed (ImDrawListSharedData* psharedData = &sharedData)
-			{
-				ImDrawListPtr ret = ImDrawListNative((ImDrawListSharedData*)psharedData);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[542])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[542])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ImDrawListPtr self)
-		{
-			DestroyNative((ImDrawList*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Destroy(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				DestroyNative((ImDrawList*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushClipRectNative(ImDrawList* self, Vector2 clipRectMin, Vector2 clipRectMax, byte intersectWithCurrentClipRect)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, byte, void>)funcTable[543])(self, clipRectMin, clipRectMax, intersectWithCurrentClipRect);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, byte, void>)funcTable[543])((nint)self, clipRectMin, clipRectMax, intersectWithCurrentClipRect);
-			#endif
-		}
-
-		/// <summary>
-		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
-		/// </summary>
-		public static void PushClipRect(ImDrawListPtr self, Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
-		{
-			PushClipRectNative((ImDrawList*)self, clipRectMin, clipRectMax, intersectWithCurrentClipRect ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
-		/// </summary>
-		public static void PushClipRect(ImDrawListPtr self, Vector2 clipRectMin, Vector2 clipRectMax)
-		{
-			PushClipRectNative((ImDrawList*)self, clipRectMin, clipRectMax, (byte)(0));
-		}
-
-		/// <summary>
-		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
-		/// </summary>
-		public static void PushClipRect(ref ImDrawList self, Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PushClipRectNative((ImDrawList*)pself, clipRectMin, clipRectMax, intersectWithCurrentClipRect ? (byte)1 : (byte)0);
-			}
-		}
-
-		/// <summary>
-		/// Render-level scissoring. This is passed down to your render function but not used for CPU-side coarse clipping. Prefer using higher-level ImGui::PushClipRect() to affect logic (hit-testing and widget culling)<br/>
-		/// </summary>
-		public static void PushClipRect(ref ImDrawList self, Vector2 clipRectMin, Vector2 clipRectMax)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PushClipRectNative((ImDrawList*)pself, clipRectMin, clipRectMax, (byte)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushClipRectFullScreenNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[544])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[544])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PushClipRectFullScreen(ImDrawListPtr self)
-		{
-			PushClipRectFullScreenNative((ImDrawList*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PushClipRectFullScreen(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PushClipRectFullScreenNative((ImDrawList*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PopClipRectNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[545])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[545])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PopClipRect(ImDrawListPtr self)
-		{
-			PopClipRectNative((ImDrawList*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PopClipRect(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PopClipRectNative((ImDrawList*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushTextureNative(ImDrawList* self, ImTextureRef texRef)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureRef, void>)funcTable[546])(self, texRef);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureRef, void>)funcTable[546])((nint)self, texRef);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PushTexture(ImDrawListPtr self, ImTextureRef texRef)
-		{
-			PushTextureNative((ImDrawList*)self, texRef);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PushTexture(ref ImDrawList self, ImTextureRef texRef)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PushTextureNative((ImDrawList*)pself, texRef);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PopTextureNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)funcTable[547])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[547])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PopTexture(ImDrawListPtr self)
-		{
-			PopTextureNative((ImDrawList*)self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PopTexture(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PopTextureNative((ImDrawList*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector2 GetClipRectMinNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2>)funcTable[548])(self);
-			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<nint, Vector2>)funcTable[548])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 GetClipRectMin(ImDrawListPtr self)
-		{
-			Vector2 ret = GetClipRectMinNative((ImDrawList*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 GetClipRectMin(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				Vector2 ret = GetClipRectMinNative((ImDrawList*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static Vector2 GetClipRectMaxNative(ImDrawList* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2>)funcTable[549])(self);
-			#else
-			return (Vector2)((delegate* unmanaged[Cdecl]<nint, Vector2>)funcTable[549])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 GetClipRectMax(ImDrawListPtr self)
-		{
-			Vector2 ret = GetClipRectMaxNative((ImDrawList*)self);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 GetClipRectMax(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				Vector2 ret = GetClipRectMaxNative((ImDrawList*)pself);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddLineNative(ImDrawList* self, Vector2 p1, Vector2 p2, uint col, float thickness)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, void>)funcTable[550])(self, p1, p2, col, thickness);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, void>)funcTable[550])((nint)self, p1, p2, col, thickness);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddLine(ImDrawListPtr self, Vector2 p1, Vector2 p2, uint col, float thickness)
-		{
-			AddLineNative((ImDrawList*)self, p1, p2, col, thickness);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddLine(ImDrawListPtr self, Vector2 p1, Vector2 p2, uint col)
-		{
-			AddLineNative((ImDrawList*)self, p1, p2, col, (float)(1.0f));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddLine(ref ImDrawList self, Vector2 p1, Vector2 p2, uint col, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddLineNative((ImDrawList*)pself, p1, p2, col, thickness);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddLine(ref ImDrawList self, Vector2 p1, Vector2 p2, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddLineNative((ImDrawList*)pself, p1, p2, col, (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddRectNative(ImDrawList* self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, ImDrawFlags, float, void>)funcTable[551])(self, pMin, pMax, col, rounding, flags, thickness);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, ImDrawFlags, float, void>)funcTable[551])((nint)self, pMin, pMax, col, rounding, flags, thickness);
-			#endif
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
-		{
-			AddRectNative((ImDrawList*)self, pMin, pMax, col, rounding, flags, thickness);
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
-		{
-			AddRectNative((ImDrawList*)self, pMin, pMax, col, rounding, flags, (float)(1.0f));
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
-		{
-			AddRectNative((ImDrawList*)self, pMin, pMax, col, rounding, (ImDrawFlags)(0), (float)(1.0f));
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col)
-		{
-			AddRectNative((ImDrawList*)self, pMin, pMax, col, (float)(0.0f), (ImDrawFlags)(0), (float)(1.0f));
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
-		{
-			AddRectNative((ImDrawList*)self, pMin, pMax, col, (float)(0.0f), flags, (float)(1.0f));
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, float thickness)
-		{
-			AddRectNative((ImDrawList*)self, pMin, pMax, col, rounding, (ImDrawFlags)(0), thickness);
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags, float thickness)
-		{
-			AddRectNative((ImDrawList*)self, pMin, pMax, col, (float)(0.0f), flags, thickness);
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddRectNative((ImDrawList*)pself, pMin, pMax, col, rounding, flags, thickness);
-			}
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddRectNative((ImDrawList*)pself, pMin, pMax, col, rounding, flags, (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddRectNative((ImDrawList*)pself, pMin, pMax, col, rounding, (ImDrawFlags)(0), (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddRectNative((ImDrawList*)pself, pMin, pMax, col, (float)(0.0f), (ImDrawFlags)(0), (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddRectNative((ImDrawList*)pself, pMin, pMax, col, (float)(0.0f), flags, (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddRectNative((ImDrawList*)pself, pMin, pMax, col, rounding, (ImDrawFlags)(0), thickness);
-			}
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddRectNative((ImDrawList*)pself, pMin, pMax, col, (float)(0.0f), flags, thickness);
-			}
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddRectFilledNative(ImDrawList* self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, ImDrawFlags, void>)funcTable[552])(self, pMin, pMax, col, rounding, flags);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, ImDrawFlags, void>)funcTable[552])((nint)self, pMin, pMax, col, rounding, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
-		{
-			AddRectFilledNative((ImDrawList*)self, pMin, pMax, col, rounding, flags);
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
-		{
-			AddRectFilledNative((ImDrawList*)self, pMin, pMax, col, rounding, (ImDrawFlags)(0));
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col)
-		{
-			AddRectFilledNative((ImDrawList*)self, pMin, pMax, col, (float)(0.0f), (ImDrawFlags)(0));
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
-		{
-			AddRectFilledNative((ImDrawList*)self, pMin, pMax, col, (float)(0.0f), flags);
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddRectFilledNative((ImDrawList*)pself, pMin, pMax, col, rounding, flags);
-			}
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddRectFilledNative((ImDrawList*)pself, pMin, pMax, col, rounding, (ImDrawFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddRectFilledNative((ImDrawList*)pself, pMin, pMax, col, (float)(0.0f), (ImDrawFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// a: upper-left, b: lower-right (== upper-left + size)<br/>
-		/// </summary>
-		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddRectFilledNative((ImDrawList*)pself, pMin, pMax, col, (float)(0.0f), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddRectFilledMultiColorNative(ImDrawList* self, Vector2 pMin, Vector2 pMax, uint colUprLeft, uint colUprRight, uint colBotRight, uint colBotLeft)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, uint, uint, uint, void>)funcTable[553])(self, pMin, pMax, colUprLeft, colUprRight, colBotRight, colBotLeft);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, uint, uint, uint, void>)funcTable[553])((nint)self, pMin, pMax, colUprLeft, colUprRight, colBotRight, colBotLeft);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddRectFilledMultiColor(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint colUprLeft, uint colUprRight, uint colBotRight, uint colBotLeft)
-		{
-			AddRectFilledMultiColorNative((ImDrawList*)self, pMin, pMax, colUprLeft, colUprRight, colBotRight, colBotLeft);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddRectFilledMultiColor(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint colUprLeft, uint colUprRight, uint colBotRight, uint colBotLeft)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddRectFilledMultiColorNative((ImDrawList*)pself, pMin, pMax, colUprLeft, colUprRight, colBotRight, colBotLeft);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddQuadNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, float, void>)funcTable[554])(self, p1, p2, p3, p4, col, thickness);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, uint, float, void>)funcTable[554])((nint)self, p1, p2, p3, p4, col, thickness);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddQuad(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
-		{
-			AddQuadNative((ImDrawList*)self, p1, p2, p3, p4, col, thickness);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddQuad(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
-		{
-			AddQuadNative((ImDrawList*)self, p1, p2, p3, p4, col, (float)(1.0f));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddQuad(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddQuadNative((ImDrawList*)pself, p1, p2, p3, p4, col, thickness);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddQuad(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddQuadNative((ImDrawList*)pself, p1, p2, p3, p4, col, (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddQuadFilledNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[555])(self, p1, p2, p3, p4, col);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, uint, void>)funcTable[555])((nint)self, p1, p2, p3, p4, col);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddQuadFilled(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
-		{
-			AddQuadFilledNative((ImDrawList*)self, p1, p2, p3, p4, col);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddQuadFilled(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddQuadFilledNative((ImDrawList*)pself, p1, p2, p3, p4, col);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddTriangleNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, uint, float, void>)funcTable[556])(self, p1, p2, p3, col, thickness);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, uint, float, void>)funcTable[556])((nint)self, p1, p2, p3, col, thickness);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTriangle(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
-		{
-			AddTriangleNative((ImDrawList*)self, p1, p2, p3, col, thickness);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTriangle(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col)
-		{
-			AddTriangleNative((ImDrawList*)self, p1, p2, p3, col, (float)(1.0f));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTriangle(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddTriangleNative((ImDrawList*)pself, p1, p2, p3, col, thickness);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTriangle(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddTriangleNative((ImDrawList*)pself, p1, p2, p3, col, (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddTriangleFilledNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, uint col)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, uint, void>)funcTable[557])(self, p1, p2, p3, col);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, uint, void>)funcTable[557])((nint)self, p1, p2, p3, col);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTriangleFilled(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col)
-		{
-			AddTriangleFilledNative((ImDrawList*)self, p1, p2, p3, col);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddTriangleFilled(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col)
+		public static void SetKeyEventNativeData(ImGuiIOPtr self, ImGuiKey key, int nativeKeycode, int nativeScancode)
 		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddTriangleFilledNative((ImDrawList*)pself, p1, p2, p3, col);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddCircleNative(ImDrawList* self, Vector2 center, float radius, uint col, int numSegments, float thickness)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, int, float, void>)funcTable[558])(self, center, radius, col, numSegments, thickness);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, uint, int, float, void>)funcTable[558])((nint)self, center, radius, col, numSegments, thickness);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCircle(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments, float thickness)
-		{
-			AddCircleNative((ImDrawList*)self, center, radius, col, numSegments, thickness);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCircle(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			AddCircleNative((ImDrawList*)self, center, radius, col, numSegments, (float)(1.0f));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCircle(ImDrawListPtr self, Vector2 center, float radius, uint col)
-		{
-			AddCircleNative((ImDrawList*)self, center, radius, col, (int)(0), (float)(1.0f));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCircle(ImDrawListPtr self, Vector2 center, float radius, uint col, float thickness)
-		{
-			AddCircleNative((ImDrawList*)self, center, radius, col, (int)(0), thickness);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCircle(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddCircleNative((ImDrawList*)pself, center, radius, col, numSegments, thickness);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCircle(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddCircleNative((ImDrawList*)pself, center, radius, col, numSegments, (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCircle(ref ImDrawList self, Vector2 center, float radius, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddCircleNative((ImDrawList*)pself, center, radius, col, (int)(0), (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCircle(ref ImDrawList self, Vector2 center, float radius, uint col, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddCircleNative((ImDrawList*)pself, center, radius, col, (int)(0), thickness);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddCircleFilledNative(ImDrawList* self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, int, void>)funcTable[559])(self, center, radius, col, numSegments);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, uint, int, void>)funcTable[559])((nint)self, center, radius, col, numSegments);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCircleFilled(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			AddCircleFilledNative((ImDrawList*)self, center, radius, col, numSegments);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCircleFilled(ImDrawListPtr self, Vector2 center, float radius, uint col)
-		{
-			AddCircleFilledNative((ImDrawList*)self, center, radius, col, (int)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCircleFilled(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddCircleFilledNative((ImDrawList*)pself, center, radius, col, numSegments);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddCircleFilled(ref ImDrawList self, Vector2 center, float radius, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddCircleFilledNative((ImDrawList*)pself, center, radius, col, (int)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddNgonNative(ImDrawList* self, Vector2 center, float radius, uint col, int numSegments, float thickness)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, int, float, void>)funcTable[560])(self, center, radius, col, numSegments, thickness);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, uint, int, float, void>)funcTable[560])((nint)self, center, radius, col, numSegments, thickness);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddNgon(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments, float thickness)
-		{
-			AddNgonNative((ImDrawList*)self, center, radius, col, numSegments, thickness);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddNgon(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			AddNgonNative((ImDrawList*)self, center, radius, col, numSegments, (float)(1.0f));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddNgon(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddNgonNative((ImDrawList*)pself, center, radius, col, numSegments, thickness);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddNgon(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddNgonNative((ImDrawList*)pself, center, radius, col, numSegments, (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddNgonFilledNative(ImDrawList* self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, int, void>)funcTable[561])(self, center, radius, col, numSegments);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, uint, int, void>)funcTable[561])((nint)self, center, radius, col, numSegments);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddNgonFilled(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			AddNgonFilledNative((ImDrawList*)self, center, radius, col, numSegments);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddNgonFilled(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddNgonFilledNative((ImDrawList*)pself, center, radius, col, numSegments);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddEllipseNative(ImDrawList* self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments, float thickness)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, int, float, void>)funcTable[562])(self, center, radius, col, rot, numSegments, thickness);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, int, float, void>)funcTable[562])((nint)self, center, radius, col, rot, numSegments, thickness);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments, float thickness)
-		{
-			AddEllipseNative((ImDrawList*)self, center, radius, col, rot, numSegments, thickness);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
-		{
-			AddEllipseNative((ImDrawList*)self, center, radius, col, rot, numSegments, (float)(1.0f));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot)
-		{
-			AddEllipseNative((ImDrawList*)self, center, radius, col, rot, (int)(0), (float)(1.0f));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col)
-		{
-			AddEllipseNative((ImDrawList*)self, center, radius, col, (float)(0.0f), (int)(0), (float)(1.0f));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, int numSegments)
-		{
-			AddEllipseNative((ImDrawList*)self, center, radius, col, (float)(0.0f), numSegments, (float)(1.0f));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot, float thickness)
-		{
-			AddEllipseNative((ImDrawList*)self, center, radius, col, rot, (int)(0), thickness);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, int numSegments, float thickness)
-		{
-			AddEllipseNative((ImDrawList*)self, center, radius, col, (float)(0.0f), numSegments, thickness);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseNative((ImDrawList*)pself, center, radius, col, rot, numSegments, thickness);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseNative((ImDrawList*)pself, center, radius, col, rot, numSegments, (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseNative((ImDrawList*)pself, center, radius, col, rot, (int)(0), (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseNative((ImDrawList*)pself, center, radius, col, (float)(0.0f), (int)(0), (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseNative((ImDrawList*)pself, center, radius, col, (float)(0.0f), numSegments, (float)(1.0f));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseNative((ImDrawList*)pself, center, radius, col, rot, (int)(0), thickness);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, int numSegments, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseNative((ImDrawList*)pself, center, radius, col, (float)(0.0f), numSegments, thickness);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void AddEllipseFilledNative(ImDrawList* self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, int, void>)funcTable[563])(self, center, radius, col, rot, numSegments);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, int, void>)funcTable[563])((nint)self, center, radius, col, rot, numSegments);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
-		{
-			AddEllipseFilledNative((ImDrawList*)self, center, radius, col, rot, numSegments);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot)
-		{
-			AddEllipseFilledNative((ImDrawList*)self, center, radius, col, rot, (int)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col)
-		{
-			AddEllipseFilledNative((ImDrawList*)self, center, radius, col, (float)(0.0f), (int)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, int numSegments)
-		{
-			AddEllipseFilledNative((ImDrawList*)self, center, radius, col, (float)(0.0f), numSegments);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void AddEllipseFilled(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseFilledNative((ImDrawList*)pself, center, radius, col, rot, numSegments);
-			}
+			SetKeyEventNativeDataNative((ImGuiIO*)self, key, nativeKeycode, nativeScancode, (int)(-1));
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [Optional] Specify index for legacy &lt;1.87 IsKeyXXX() functions with native indices + specify native keycode, scancode.<br/>
 		/// </summary>
-		public static void AddEllipseFilled(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot)
+		public static void SetKeyEventNativeData(ref ImGuiIO self, ImGuiKey key, int nativeKeycode, int nativeScancode, int nativeLegacyIndex)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (ImGuiIO* pself = &self)
 			{
-				AddEllipseFilledNative((ImDrawList*)pself, center, radius, col, rot, (int)(0));
+				SetKeyEventNativeDataNative((ImGuiIO*)pself, key, nativeKeycode, nativeScancode, nativeLegacyIndex);
 			}
 		}
 	}

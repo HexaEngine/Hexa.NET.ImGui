@@ -55,11 +55,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public long LastSubmittedItem;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public uint BoxSelectId;
 
 		/// <summary>
@@ -102,11 +97,16 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public byte RangeDstPassedBy;
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public byte IsSoleOrUnknownSelectionSize;
+
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiMultiSelectTempData(ImGuiMultiSelectIO io = default, ImGuiMultiSelectState* storage = default, uint focusScopeId = default, ImGuiMultiSelectFlags flags = default, Vector2 scopeRectMin = default, Vector2 backupCursorMaxPos = default, long lastSubmittedItem = default, uint boxSelectId = default, int keyMods = default, sbyte loopRequestSetAll = default, bool isEndIo = default, bool isFocused = default, bool isKeyboardSetRange = default, bool navIdPassedBy = default, bool rangeSrcPassedBy = default, bool rangeDstPassedBy = default)
+		public unsafe ImGuiMultiSelectTempData(ImGuiMultiSelectIO io = default, ImGuiMultiSelectState* storage = default, uint focusScopeId = default, ImGuiMultiSelectFlags flags = default, Vector2 scopeRectMin = default, Vector2 backupCursorMaxPos = default, uint boxSelectId = default, int keyMods = default, sbyte loopRequestSetAll = default, bool isEndIo = default, bool isFocused = default, bool isKeyboardSetRange = default, bool navIdPassedBy = default, bool rangeSrcPassedBy = default, bool rangeDstPassedBy = default, bool isSoleOrUnknownSelectionSize = default)
 		{
 			IO = io;
 			Storage = storage;
@@ -114,7 +114,6 @@ namespace Hexa.NET.ImGui
 			Flags = flags;
 			ScopeRectMin = scopeRectMin;
 			BackupCursorMaxPos = backupCursorMaxPos;
-			LastSubmittedItem = lastSubmittedItem;
 			BoxSelectId = boxSelectId;
 			KeyMods = keyMods;
 			LoopRequestSetAll = loopRequestSetAll;
@@ -124,6 +123,7 @@ namespace Hexa.NET.ImGui
 			NavIdPassedBy = navIdPassedBy ? (byte)1 : (byte)0;
 			RangeSrcPassedBy = rangeSrcPassedBy ? (byte)1 : (byte)0;
 			RangeDstPassedBy = rangeDstPassedBy ? (byte)1 : (byte)0;
+			IsSoleOrUnknownSelectionSize = isSoleOrUnknownSelectionSize ? (byte)1 : (byte)0;
 		}
 
 
@@ -197,10 +197,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref long LastSubmittedItem => ref Unsafe.AsRef<long>(&Handle->LastSubmittedItem);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public ref uint BoxSelectId => ref Unsafe.AsRef<uint>(&Handle->BoxSelectId);
 		/// <summary>
 		/// To be documented.
@@ -234,6 +230,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref bool RangeDstPassedBy => ref Unsafe.AsRef<bool>(&Handle->RangeDstPassedBy);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref bool IsSoleOrUnknownSelectionSize => ref Unsafe.AsRef<bool>(&Handle->IsSoleOrUnknownSelectionSize);
 	}
 
 }

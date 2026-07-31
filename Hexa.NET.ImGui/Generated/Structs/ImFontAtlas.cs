@@ -30,7 +30,7 @@ namespace Hexa.NET.ImGui
 	/// - Call Build() + GetTexDataAsAlpha8() or GetTexDataAsRGBA32() to build and retrieve pixels data.<br/>
 	/// - Call SetTexID(my_tex_id); and pass the pointeridentifier to your texture in a format natural to your graphics API.<br/>
 	/// Common pitfalls:<br/>
-	/// - If you pass a 'glyph_ranges' array to AddFont*** functions, you need to make sure that your array persist up until the<br/>
+	/// - If you pass a 'glyph_ranges' array to AddFont*** functions, you need to make sure that your array persists up until the<br/>
 	/// atlas is build (when calling GetTexData*** or Build()). We only copy the pointer, not the data.<br/>
 	/// - Important: By default, AddFontFromMemoryTTF() takes ownership of the data. Even though we are not writing to it, we will free the pointer on destruction.<br/>
 	/// You can set font_cfg-&gt;FontDataOwnedByAtlas=false to keep ownership of your data and it won't be freed,<br/>
@@ -383,7 +383,23 @@ namespace Hexa.NET.ImGui
 			}
 		}
 		/// <summary>
-		/// Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
+		/// Register and retrieve custom rectangles<br/>
+		/// - You can request arbitrary rectangles to be packed into the atlas, for your own purpose.<br/>
+		/// - Since 1.92.0, packing is done immediately in the function call (previously packing was done during the Build call)<br/>
+		/// - You can render your pixels into the texture right after calling the AddCustomRect() functions.<br/>
+		/// - VERY IMPORTANT:<br/>
+		/// - Texture may be createdresized at any time when calling ImGui or ImFontAtlas functions.<br/>
+		/// - IT WILL INVALIDATE RECTANGLE DATA SUCH AS UV COORDINATES. Always use latest values from GetCustomRect().<br/>
+		/// - UV coordinates are associated to the current texture identifier aka 'atlas-&gt;TexRef'. Both TexRef and UV coordinates are typically changed at the same time.<br/>
+		/// - If you render colored output into your custom rectangles: set 'atlas-&gt;TexPixelsUseColors = true' as this may help some backends decide of preferred texture format.<br/>
+		/// - Read docsFONTS.md for more details about using colorful icons.<br/>
+		/// - Note: this API may be reworked further in order to facilitate supporting e.g. multi-monitor, varying DPI settings.<br/>
+		/// - (Pre-1.92 names) ------------&gt; (1.92 names)<br/>
+		/// - GetCustomRectByIndex()   --&gt; Use GetCustomRect()<br/>
+		/// - CalcCustomRectUV()       --&gt; Use GetCustomRect() and read uv0, uv1 fields.<br/>
+		/// - AddCustomRectRegular()   --&gt; Renamed to AddCustomRect()<br/>
+		/// - AddCustomRectFontGlyph() --&gt; Prefer using custom ImFontLoader inside ImFontConfig<br/>
+		/// - ImFontAtlasCustomRect    --&gt; Renamed to ImFontAtlasRect Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
 		/// </summary>
 		public unsafe int AddCustomRect(int width, int height, ImFontAtlasRect* outR)
 		{
@@ -395,7 +411,23 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
+		/// Register and retrieve custom rectangles<br/>
+		/// - You can request arbitrary rectangles to be packed into the atlas, for your own purpose.<br/>
+		/// - Since 1.92.0, packing is done immediately in the function call (previously packing was done during the Build call)<br/>
+		/// - You can render your pixels into the texture right after calling the AddCustomRect() functions.<br/>
+		/// - VERY IMPORTANT:<br/>
+		/// - Texture may be createdresized at any time when calling ImGui or ImFontAtlas functions.<br/>
+		/// - IT WILL INVALIDATE RECTANGLE DATA SUCH AS UV COORDINATES. Always use latest values from GetCustomRect().<br/>
+		/// - UV coordinates are associated to the current texture identifier aka 'atlas-&gt;TexRef'. Both TexRef and UV coordinates are typically changed at the same time.<br/>
+		/// - If you render colored output into your custom rectangles: set 'atlas-&gt;TexPixelsUseColors = true' as this may help some backends decide of preferred texture format.<br/>
+		/// - Read docsFONTS.md for more details about using colorful icons.<br/>
+		/// - Note: this API may be reworked further in order to facilitate supporting e.g. multi-monitor, varying DPI settings.<br/>
+		/// - (Pre-1.92 names) ------------&gt; (1.92 names)<br/>
+		/// - GetCustomRectByIndex()   --&gt; Use GetCustomRect()<br/>
+		/// - CalcCustomRectUV()       --&gt; Use GetCustomRect() and read uv0, uv1 fields.<br/>
+		/// - AddCustomRectRegular()   --&gt; Renamed to AddCustomRect()<br/>
+		/// - AddCustomRectFontGlyph() --&gt; Prefer using custom ImFontLoader inside ImFontConfig<br/>
+		/// - ImFontAtlasCustomRect    --&gt; Renamed to ImFontAtlasRect Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
 		/// </summary>
 		public unsafe int AddCustomRect(int width, int height)
 		{
@@ -407,7 +439,23 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
+		/// Register and retrieve custom rectangles<br/>
+		/// - You can request arbitrary rectangles to be packed into the atlas, for your own purpose.<br/>
+		/// - Since 1.92.0, packing is done immediately in the function call (previously packing was done during the Build call)<br/>
+		/// - You can render your pixels into the texture right after calling the AddCustomRect() functions.<br/>
+		/// - VERY IMPORTANT:<br/>
+		/// - Texture may be createdresized at any time when calling ImGui or ImFontAtlas functions.<br/>
+		/// - IT WILL INVALIDATE RECTANGLE DATA SUCH AS UV COORDINATES. Always use latest values from GetCustomRect().<br/>
+		/// - UV coordinates are associated to the current texture identifier aka 'atlas-&gt;TexRef'. Both TexRef and UV coordinates are typically changed at the same time.<br/>
+		/// - If you render colored output into your custom rectangles: set 'atlas-&gt;TexPixelsUseColors = true' as this may help some backends decide of preferred texture format.<br/>
+		/// - Read docsFONTS.md for more details about using colorful icons.<br/>
+		/// - Note: this API may be reworked further in order to facilitate supporting e.g. multi-monitor, varying DPI settings.<br/>
+		/// - (Pre-1.92 names) ------------&gt; (1.92 names)<br/>
+		/// - GetCustomRectByIndex()   --&gt; Use GetCustomRect()<br/>
+		/// - CalcCustomRectUV()       --&gt; Use GetCustomRect() and read uv0, uv1 fields.<br/>
+		/// - AddCustomRectRegular()   --&gt; Renamed to AddCustomRect()<br/>
+		/// - AddCustomRectFontGlyph() --&gt; Prefer using custom ImFontLoader inside ImFontConfig<br/>
+		/// - ImFontAtlasCustomRect    --&gt; Renamed to ImFontAtlasRect Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
 		/// </summary>
 		public unsafe int AddCustomRect(int width, int height, ref ImFontAtlasRect outR)
 		{
@@ -449,7 +497,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Selects between AddFontDefaultVector() and AddFontDefaultBitmap().<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontDefault(ImFontConfig* fontCfg)
 		{
@@ -461,7 +509,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Selects between AddFontDefaultVector() and AddFontDefaultBitmap().<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontDefault()
 		{
@@ -473,7 +521,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Selects between AddFontDefaultVector() and AddFontDefaultBitmap().<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontDefault(in ImFontConfig fontCfg)
 		{
@@ -482,6 +530,84 @@ namespace Hexa.NET.ImGui
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
 					ImFont* ret = ImGui.AddFontDefaultNative(@this, (ImFontConfig*)pfontCfg);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Embedded classic pixel-clean font. Recommended at Size 13px with no scaling.<br/>
+		/// </summary>
+		public unsafe ImFont* AddFontDefaultBitmap(ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFont* ret = ImGui.AddFontDefaultBitmapNative(@this, fontCfg);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Embedded classic pixel-clean font. Recommended at Size 13px with no scaling.<br/>
+		/// </summary>
+		public unsafe ImFont* AddFontDefaultBitmap()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFont* ret = ImGui.AddFontDefaultBitmapNative(@this, (ImFontConfig*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Embedded classic pixel-clean font. Recommended at Size 13px with no scaling.<br/>
+		/// </summary>
+		public unsafe ImFont* AddFontDefaultBitmap(in ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFont* ret = ImGui.AddFontDefaultBitmapNative(@this, (ImFontConfig*)pfontCfg);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Embedded scalable font. Recommended at any higher size.<br/>
+		/// </summary>
+		public unsafe ImFont* AddFontDefaultVector(ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFont* ret = ImGui.AddFontDefaultVectorNative(@this, fontCfg);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Embedded scalable font. Recommended at any higher size.<br/>
+		/// </summary>
+		public unsafe ImFont* AddFontDefaultVector()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFont* ret = ImGui.AddFontDefaultVectorNative(@this, (ImFontConfig*)(default));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Embedded scalable font. Recommended at any higher size.<br/>
+		/// </summary>
+		public unsafe ImFont* AddFontDefaultVector(in ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFont* ret = ImGui.AddFontDefaultVectorNative(@this, (ImFontConfig*)pfontCfg);
 					return ret;
 				}
 			}
@@ -4484,7 +4610,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Clear everything (input fonts, output glyphstextures).<br/>
+		/// Clearing the atlasfonts has little use nowadays, unless you want to batch remove all fonts.<br/>
+		/// - Since 1.92, you can call ClearFonts() mid-frame, if you load new fonts afterwards.<br/>
+		/// - As we are transitioning toward our new font system the semantic for those functions gets increasingly misleading and are often a source of issues.<br/>
+		/// TL;DR; most likely, don't use any of those functions. We expect to obsoleterework them. Clear everything (fonts + textures). Don't call mid-frame!<br/>
 		/// </summary>
 		public unsafe void Clear()
 		{
@@ -4495,7 +4624,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// [OBSOLETE] Clear input+output font data (same as ClearInputData() + glyphs storage, UV coordinates).<br/>
+		/// Clear input+output font dataglyphs. New fonts and textures will be recreated afterwards.<br/>
 		/// </summary>
 		public unsafe void ClearFonts()
 		{
@@ -4577,7 +4706,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Basic Latin, Extended Latin<br/>
+		/// Since 1.92: specifying glyph ranges is only usefulnecessary if your backend doesn't support ImGuiBackendFlags_RendererHasTextures! Basic Latin, Extended Latin<br/>
 		/// </summary>
 		public unsafe uint* GetGlyphRangesDefault()
 		{
@@ -4600,7 +4729,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Remove a font<br/>
 		/// </summary>
 		public unsafe void RemoveFont(ImFont* font)
 		{
@@ -4611,7 +4740,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Remove a font<br/>
 		/// </summary>
 		public unsafe void RemoveFont(ref ImFont font)
 		{
@@ -4820,7 +4949,23 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public ref ImGuiContextPtr OwnerContext => ref Unsafe.AsRef<ImGuiContextPtr>(&Handle->OwnerContext);
 		/// <summary>
-		/// Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
+		/// Register and retrieve custom rectangles<br/>
+		/// - You can request arbitrary rectangles to be packed into the atlas, for your own purpose.<br/>
+		/// - Since 1.92.0, packing is done immediately in the function call (previously packing was done during the Build call)<br/>
+		/// - You can render your pixels into the texture right after calling the AddCustomRect() functions.<br/>
+		/// - VERY IMPORTANT:<br/>
+		/// - Texture may be createdresized at any time when calling ImGui or ImFontAtlas functions.<br/>
+		/// - IT WILL INVALIDATE RECTANGLE DATA SUCH AS UV COORDINATES. Always use latest values from GetCustomRect().<br/>
+		/// - UV coordinates are associated to the current texture identifier aka 'atlas-&gt;TexRef'. Both TexRef and UV coordinates are typically changed at the same time.<br/>
+		/// - If you render colored output into your custom rectangles: set 'atlas-&gt;TexPixelsUseColors = true' as this may help some backends decide of preferred texture format.<br/>
+		/// - Read docsFONTS.md for more details about using colorful icons.<br/>
+		/// - Note: this API may be reworked further in order to facilitate supporting e.g. multi-monitor, varying DPI settings.<br/>
+		/// - (Pre-1.92 names) ------------&gt; (1.92 names)<br/>
+		/// - GetCustomRectByIndex()   --&gt; Use GetCustomRect()<br/>
+		/// - CalcCustomRectUV()       --&gt; Use GetCustomRect() and read uv0, uv1 fields.<br/>
+		/// - AddCustomRectRegular()   --&gt; Renamed to AddCustomRect()<br/>
+		/// - AddCustomRectFontGlyph() --&gt; Prefer using custom ImFontLoader inside ImFontConfig<br/>
+		/// - ImFontAtlasCustomRect    --&gt; Renamed to ImFontAtlasRect Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
 		/// </summary>
 		public unsafe int AddCustomRect(int width, int height, ImFontAtlasRect* outR)
 		{
@@ -4829,7 +4974,23 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
+		/// Register and retrieve custom rectangles<br/>
+		/// - You can request arbitrary rectangles to be packed into the atlas, for your own purpose.<br/>
+		/// - Since 1.92.0, packing is done immediately in the function call (previously packing was done during the Build call)<br/>
+		/// - You can render your pixels into the texture right after calling the AddCustomRect() functions.<br/>
+		/// - VERY IMPORTANT:<br/>
+		/// - Texture may be createdresized at any time when calling ImGui or ImFontAtlas functions.<br/>
+		/// - IT WILL INVALIDATE RECTANGLE DATA SUCH AS UV COORDINATES. Always use latest values from GetCustomRect().<br/>
+		/// - UV coordinates are associated to the current texture identifier aka 'atlas-&gt;TexRef'. Both TexRef and UV coordinates are typically changed at the same time.<br/>
+		/// - If you render colored output into your custom rectangles: set 'atlas-&gt;TexPixelsUseColors = true' as this may help some backends decide of preferred texture format.<br/>
+		/// - Read docsFONTS.md for more details about using colorful icons.<br/>
+		/// - Note: this API may be reworked further in order to facilitate supporting e.g. multi-monitor, varying DPI settings.<br/>
+		/// - (Pre-1.92 names) ------------&gt; (1.92 names)<br/>
+		/// - GetCustomRectByIndex()   --&gt; Use GetCustomRect()<br/>
+		/// - CalcCustomRectUV()       --&gt; Use GetCustomRect() and read uv0, uv1 fields.<br/>
+		/// - AddCustomRectRegular()   --&gt; Renamed to AddCustomRect()<br/>
+		/// - AddCustomRectFontGlyph() --&gt; Prefer using custom ImFontLoader inside ImFontConfig<br/>
+		/// - ImFontAtlasCustomRect    --&gt; Renamed to ImFontAtlasRect Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
 		/// </summary>
 		public unsafe int AddCustomRect(int width, int height)
 		{
@@ -4838,7 +4999,23 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
+		/// Register and retrieve custom rectangles<br/>
+		/// - You can request arbitrary rectangles to be packed into the atlas, for your own purpose.<br/>
+		/// - Since 1.92.0, packing is done immediately in the function call (previously packing was done during the Build call)<br/>
+		/// - You can render your pixels into the texture right after calling the AddCustomRect() functions.<br/>
+		/// - VERY IMPORTANT:<br/>
+		/// - Texture may be createdresized at any time when calling ImGui or ImFontAtlas functions.<br/>
+		/// - IT WILL INVALIDATE RECTANGLE DATA SUCH AS UV COORDINATES. Always use latest values from GetCustomRect().<br/>
+		/// - UV coordinates are associated to the current texture identifier aka 'atlas-&gt;TexRef'. Both TexRef and UV coordinates are typically changed at the same time.<br/>
+		/// - If you render colored output into your custom rectangles: set 'atlas-&gt;TexPixelsUseColors = true' as this may help some backends decide of preferred texture format.<br/>
+		/// - Read docsFONTS.md for more details about using colorful icons.<br/>
+		/// - Note: this API may be reworked further in order to facilitate supporting e.g. multi-monitor, varying DPI settings.<br/>
+		/// - (Pre-1.92 names) ------------&gt; (1.92 names)<br/>
+		/// - GetCustomRectByIndex()   --&gt; Use GetCustomRect()<br/>
+		/// - CalcCustomRectUV()       --&gt; Use GetCustomRect() and read uv0, uv1 fields.<br/>
+		/// - AddCustomRectRegular()   --&gt; Renamed to AddCustomRect()<br/>
+		/// - AddCustomRectFontGlyph() --&gt; Prefer using custom ImFontLoader inside ImFontConfig<br/>
+		/// - ImFontAtlasCustomRect    --&gt; Renamed to ImFontAtlasRect Register a rectangle. Return -1 (ImFontAtlasRectId_Invalid) on error.<br/>
 		/// </summary>
 		public unsafe int AddCustomRect(int width, int height, ref ImFontAtlasRect outR)
 		{
@@ -4871,7 +5048,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Selects between AddFontDefaultVector() and AddFontDefaultBitmap().<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontDefault(ImFontConfig* fontCfg)
 		{
@@ -4880,7 +5057,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Selects between AddFontDefaultVector() and AddFontDefaultBitmap().<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontDefault()
 		{
@@ -4889,13 +5066,73 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Selects between AddFontDefaultVector() and AddFontDefaultBitmap().<br/>
 		/// </summary>
 		public unsafe ImFont* AddFontDefault(in ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
 				ImFont* ret = ImGui.AddFontDefaultNative(Handle, (ImFontConfig*)pfontCfg);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Embedded classic pixel-clean font. Recommended at Size 13px with no scaling.<br/>
+		/// </summary>
+		public unsafe ImFont* AddFontDefaultBitmap(ImFontConfig* fontCfg)
+		{
+			ImFont* ret = ImGui.AddFontDefaultBitmapNative(Handle, fontCfg);
+			return ret;
+		}
+
+		/// <summary>
+		/// Embedded classic pixel-clean font. Recommended at Size 13px with no scaling.<br/>
+		/// </summary>
+		public unsafe ImFont* AddFontDefaultBitmap()
+		{
+			ImFont* ret = ImGui.AddFontDefaultBitmapNative(Handle, (ImFontConfig*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// Embedded classic pixel-clean font. Recommended at Size 13px with no scaling.<br/>
+		/// </summary>
+		public unsafe ImFont* AddFontDefaultBitmap(in ImFontConfig fontCfg)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				ImFont* ret = ImGui.AddFontDefaultBitmapNative(Handle, (ImFontConfig*)pfontCfg);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Embedded scalable font. Recommended at any higher size.<br/>
+		/// </summary>
+		public unsafe ImFont* AddFontDefaultVector(ImFontConfig* fontCfg)
+		{
+			ImFont* ret = ImGui.AddFontDefaultVectorNative(Handle, fontCfg);
+			return ret;
+		}
+
+		/// <summary>
+		/// Embedded scalable font. Recommended at any higher size.<br/>
+		/// </summary>
+		public unsafe ImFont* AddFontDefaultVector()
+		{
+			ImFont* ret = ImGui.AddFontDefaultVectorNative(Handle, (ImFontConfig*)(default));
+			return ret;
+		}
+
+		/// <summary>
+		/// Embedded scalable font. Recommended at any higher size.<br/>
+		/// </summary>
+		public unsafe ImFont* AddFontDefaultVector(in ImFontConfig fontCfg)
+		{
+			fixed (ImFontConfig* pfontCfg = &fontCfg)
+			{
+				ImFont* ret = ImGui.AddFontDefaultVectorNative(Handle, (ImFontConfig*)pfontCfg);
 				return ret;
 			}
 		}
@@ -8249,7 +8486,10 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Clear everything (input fonts, output glyphstextures).<br/>
+		/// Clearing the atlasfonts has little use nowadays, unless you want to batch remove all fonts.<br/>
+		/// - Since 1.92, you can call ClearFonts() mid-frame, if you load new fonts afterwards.<br/>
+		/// - As we are transitioning toward our new font system the semantic for those functions gets increasingly misleading and are often a source of issues.<br/>
+		/// TL;DR; most likely, don't use any of those functions. We expect to obsoleterework them. Clear everything (fonts + textures). Don't call mid-frame!<br/>
 		/// </summary>
 		public unsafe void Clear()
 		{
@@ -8257,7 +8497,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// [OBSOLETE] Clear input+output font data (same as ClearInputData() + glyphs storage, UV coordinates).<br/>
+		/// Clear input+output font dataglyphs. New fonts and textures will be recreated afterwards.<br/>
 		/// </summary>
 		public unsafe void ClearFonts()
 		{
@@ -8318,7 +8558,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Basic Latin, Extended Latin<br/>
+		/// Since 1.92: specifying glyph ranges is only usefulnecessary if your backend doesn't support ImGuiBackendFlags_RendererHasTextures! Basic Latin, Extended Latin<br/>
 		/// </summary>
 		public unsafe uint* GetGlyphRangesDefault()
 		{
@@ -8335,7 +8575,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Remove a font<br/>
 		/// </summary>
 		public unsafe void RemoveFont(ImFont* font)
 		{
@@ -8343,7 +8583,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Remove a font<br/>
 		/// </summary>
 		public unsafe void RemoveFont(ref ImFont font)
 		{

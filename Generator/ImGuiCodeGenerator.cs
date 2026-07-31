@@ -72,6 +72,10 @@
                 }
                 defaultValue = span.ToString();
             }
+            else if (parameter.Type.Name == "float" && defaultValue.EndsWith(".f"))
+            {
+                defaultValue = defaultValue.Replace(".f", ".0f");
+            }
         }
     }
 

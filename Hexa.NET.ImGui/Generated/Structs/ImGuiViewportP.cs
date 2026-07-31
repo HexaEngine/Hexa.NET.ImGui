@@ -86,8 +86,8 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int BgFgDrawListsLastFrame_0;
-		public int BgFgDrawListsLastFrame_1;
+		public float BgFgDrawListsLastTimeActive_0;
+		public float BgFgDrawListsLastTimeActive_1;
 
 		/// <summary>
 		/// To be documented.
@@ -144,7 +144,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiViewportP(ImGuiViewport imGuiViewport = default, ImGuiWindowPtr window = default, int idx = default, int lastFrameActive = default, int lastFocusedStampCount = default, uint lastNameHash = default, Vector2 lastPos = default, Vector2 lastSize = default, float alpha = default, float lastAlpha = default, bool lastFocusedHadNavWindow = default, short platformMonitor = default, int* bgFgDrawListsLastFrame = default, ImDrawListPtrPtr bgFgDrawLists = default, ImDrawData drawDataP = default, ImDrawDataBuilder drawDataBuilder = default, Vector2 lastPlatformPos = default, Vector2 lastPlatformSize = default, Vector2 lastRendererSize = default, Vector2 workInsetMin = default, Vector2 workInsetMax = default, Vector2 buildWorkInsetMin = default, Vector2 buildWorkInsetMax = default)
+		public unsafe ImGuiViewportP(ImGuiViewport imGuiViewport = default, ImGuiWindowPtr window = default, int idx = default, int lastFrameActive = default, int lastFocusedStampCount = default, uint lastNameHash = default, Vector2 lastPos = default, Vector2 lastSize = default, float alpha = default, float lastAlpha = default, bool lastFocusedHadNavWindow = default, short platformMonitor = default, float* bgFgDrawListsLastTimeActive = default, ImDrawListPtrPtr bgFgDrawLists = default, ImDrawData drawDataP = default, ImDrawDataBuilder drawDataBuilder = default, Vector2 lastPlatformPos = default, Vector2 lastPlatformSize = default, Vector2 lastRendererSize = default, Vector2 workInsetMin = default, Vector2 workInsetMax = default, Vector2 buildWorkInsetMin = default, Vector2 buildWorkInsetMax = default)
 		{
 			ImGuiViewport = imGuiViewport;
 			Window = window;
@@ -158,10 +158,10 @@ namespace Hexa.NET.ImGui
 			LastAlpha = lastAlpha;
 			LastFocusedHadNavWindow = lastFocusedHadNavWindow ? (byte)1 : (byte)0;
 			PlatformMonitor = platformMonitor;
-			if (bgFgDrawListsLastFrame != default(int*))
+			if (bgFgDrawListsLastTimeActive != default(float*))
 			{
-				BgFgDrawListsLastFrame_0 = bgFgDrawListsLastFrame[0];
-				BgFgDrawListsLastFrame_1 = bgFgDrawListsLastFrame[1];
+				BgFgDrawListsLastTimeActive_0 = bgFgDrawListsLastTimeActive[0];
+				BgFgDrawListsLastTimeActive_1 = bgFgDrawListsLastTimeActive[1];
 			}
 			if (bgFgDrawLists != default(ImDrawListPtrPtr))
 			{
@@ -182,7 +182,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiViewportP(ImGuiViewport imGuiViewport = default, ImGuiWindowPtr window = default, int idx = default, int lastFrameActive = default, int lastFocusedStampCount = default, uint lastNameHash = default, Vector2 lastPos = default, Vector2 lastSize = default, float alpha = default, float lastAlpha = default, bool lastFocusedHadNavWindow = default, short platformMonitor = default, Span<int> bgFgDrawListsLastFrame = default, Span<Pointer<ImDrawList>> bgFgDrawLists = default, ImDrawData drawDataP = default, ImDrawDataBuilder drawDataBuilder = default, Vector2 lastPlatformPos = default, Vector2 lastPlatformSize = default, Vector2 lastRendererSize = default, Vector2 workInsetMin = default, Vector2 workInsetMax = default, Vector2 buildWorkInsetMin = default, Vector2 buildWorkInsetMax = default)
+		public unsafe ImGuiViewportP(ImGuiViewport imGuiViewport = default, ImGuiWindowPtr window = default, int idx = default, int lastFrameActive = default, int lastFocusedStampCount = default, uint lastNameHash = default, Vector2 lastPos = default, Vector2 lastSize = default, float alpha = default, float lastAlpha = default, bool lastFocusedHadNavWindow = default, short platformMonitor = default, Span<float> bgFgDrawListsLastTimeActive = default, Span<Pointer<ImDrawList>> bgFgDrawLists = default, ImDrawData drawDataP = default, ImDrawDataBuilder drawDataBuilder = default, Vector2 lastPlatformPos = default, Vector2 lastPlatformSize = default, Vector2 lastRendererSize = default, Vector2 workInsetMin = default, Vector2 workInsetMax = default, Vector2 buildWorkInsetMin = default, Vector2 buildWorkInsetMax = default)
 		{
 			ImGuiViewport = imGuiViewport;
 			Window = window;
@@ -196,10 +196,10 @@ namespace Hexa.NET.ImGui
 			LastAlpha = lastAlpha;
 			LastFocusedHadNavWindow = lastFocusedHadNavWindow ? (byte)1 : (byte)0;
 			PlatformMonitor = platformMonitor;
-			if (bgFgDrawListsLastFrame != default(Span<int>))
+			if (bgFgDrawListsLastTimeActive != default(Span<float>))
 			{
-				BgFgDrawListsLastFrame_0 = bgFgDrawListsLastFrame[0];
-				BgFgDrawListsLastFrame_1 = bgFgDrawListsLastFrame[1];
+				BgFgDrawListsLastTimeActive_0 = bgFgDrawListsLastTimeActive[0];
+				BgFgDrawListsLastTimeActive_1 = bgFgDrawListsLastTimeActive[1];
 			}
 			if (bgFgDrawLists != default(Span<Pointer<ImDrawList>>))
 			{
@@ -326,12 +326,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe Span<int> BgFgDrawListsLastFrame
+		public unsafe Span<float> BgFgDrawListsLastTimeActive
 		
 		{
 			get
 			{
-				return new Span<int>(&Handle->BgFgDrawListsLastFrame_0, 2);
+				return new Span<float>(&Handle->BgFgDrawListsLastTimeActive_0, 2);
 			}
 		}
 		/// <summary>

@@ -2517,7 +2517,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [Internal] Don't use!<br/>
 		/// </summary>
 		public unsafe void ClearOutputData()
 		{
@@ -2563,7 +2563,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Get or create baked data for given size<br/>
+		/// [Internal] Don't use!<br/>
+		/// 'max_width' stops rendering after a certain width (could be turned into a 2d size). FLT_MAX to disable.<br/>
+		/// 'wrap_width' enable automatic word-wrapping across multiple lines to fit into given width. 0.0f to disable. Get or create baked data for given size<br/>
 		/// </summary>
 		public unsafe ImFontBaked* GetFontBaked(float fontSize, float density)
 		{
@@ -2575,7 +2577,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Get or create baked data for given size<br/>
+		/// [Internal] Don't use!<br/>
+		/// 'max_width' stops rendering after a certain width (could be turned into a 2d size). FLT_MAX to disable.<br/>
+		/// 'wrap_width' enable automatic word-wrapping across multiple lines to fit into given width. 0.0f to disable. Get or create baked data for given size<br/>
 		/// </summary>
 		public unsafe ImFontBaked* GetFontBaked(float fontSize)
 		{
@@ -8187,7 +8191,7 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// [Internal] Don't use!<br/>
 		/// </summary>
 		public unsafe void ClearOutputData()
 		{
@@ -8221,7 +8225,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Get or create baked data for given size<br/>
+		/// [Internal] Don't use!<br/>
+		/// 'max_width' stops rendering after a certain width (could be turned into a 2d size). FLT_MAX to disable.<br/>
+		/// 'wrap_width' enable automatic word-wrapping across multiple lines to fit into given width. 0.0f to disable. Get or create baked data for given size<br/>
 		/// </summary>
 		public unsafe ImFontBaked* GetFontBaked(float fontSize, float density)
 		{
@@ -8230,7 +8236,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// Get or create baked data for given size<br/>
+		/// [Internal] Don't use!<br/>
+		/// 'max_width' stops rendering after a certain width (could be turned into a 2d size). FLT_MAX to disable.<br/>
+		/// 'wrap_width' enable automatic word-wrapping across multiple lines to fit into given width. 0.0f to disable. Get or create baked data for given size<br/>
 		/// </summary>
 		public unsafe ImFontBaked* GetFontBaked(float fontSize)
 		{

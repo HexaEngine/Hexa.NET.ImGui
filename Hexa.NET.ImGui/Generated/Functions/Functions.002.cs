@@ -21,6 +21,1240 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void ProgressBar(float fraction, ReadOnlySpan<byte> overlay)
+		{
+			fixed (byte* poverlay = overlay)
+			{
+				ProgressBarNative(fraction, (Vector2)(new Vector2(-float.MinValue,0)), (byte*)poverlay);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ProgressBar(float fraction, Vector2 sizeArg, string overlay)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlay != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlay);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlay, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ProgressBarNative(fraction, sizeArg, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ProgressBar(float fraction, string overlay)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (overlay != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(overlay);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(overlay, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ProgressBarNative(fraction, (Vector2)(new Vector2(-float.MinValue,0)), pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// draw a small circle + keep the cursor on the same line. advance cursor x position by GetTreeNodeToLabelSpacing(), same distance that TreeNode() uses<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void BulletNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[160])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[160])();
+			#endif
+		}
+
+		/// <summary>
+		/// draw a small circle + keep the cursor on the same line. advance cursor x position by GetTreeNodeToLabelSpacing(), same distance that TreeNode() uses<br/>
+		/// </summary>
+		public static void Bullet()
+		{
+			BulletNative();
+		}
+
+		/// <summary>
+		/// hyperlink text button, return true when clicked<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte TextLinkNative(byte* label)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)funcTable[161])(label);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[161])((nint)label);
+			#endif
+		}
+
+		/// <summary>
+		/// hyperlink text button, return true when clicked<br/>
+		/// </summary>
+		public static bool TextLink(byte* label)
+		{
+			byte ret = TextLinkNative(label);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// hyperlink text button, return true when clicked<br/>
+		/// </summary>
+		public static bool TextLink(in byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TextLinkNative((byte*)plabel);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// hyperlink text button, return true when clicked<br/>
+		/// </summary>
+		public static bool TextLink(ReadOnlySpan<byte> label)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TextLinkNative((byte*)plabel);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// hyperlink text button, return true when clicked<br/>
+		/// </summary>
+		public static bool TextLink(string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TextLinkNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte TextLinkOpenURLNative(byte* label, byte* url)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte>)funcTable[162])(label, url);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[162])((nint)label, (nint)url);
+			#endif
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(byte* label, byte* url)
+		{
+			byte ret = TextLinkOpenURLNative(label, url);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(byte* label)
+		{
+			byte ret = TextLinkOpenURLNative(label, (byte*)(default));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(in byte label, byte* url)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TextLinkOpenURLNative((byte*)plabel, url);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(in byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TextLinkOpenURLNative((byte*)plabel, (byte*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(ReadOnlySpan<byte> label, byte* url)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TextLinkOpenURLNative((byte*)plabel, url);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(ReadOnlySpan<byte> label)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = TextLinkOpenURLNative((byte*)plabel, (byte*)(default));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(string label, byte* url)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TextLinkOpenURLNative(pStr0, url);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TextLinkOpenURLNative(pStr0, (byte*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(byte* label, in byte url)
+		{
+			fixed (byte* purl = &url)
+			{
+				byte ret = TextLinkOpenURLNative(label, (byte*)purl);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(byte* label, ReadOnlySpan<byte> url)
+		{
+			fixed (byte* purl = url)
+			{
+				byte ret = TextLinkOpenURLNative(label, (byte*)purl);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(byte* label, string url)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (url != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(url);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(url, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TextLinkOpenURLNative(label, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(in byte label, in byte url)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* purl = &url)
+				{
+					byte ret = TextLinkOpenURLNative((byte*)plabel, (byte*)purl);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(ReadOnlySpan<byte> label, ReadOnlySpan<byte> url)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* purl = url)
+				{
+					byte ret = TextLinkOpenURLNative((byte*)plabel, (byte*)purl);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(string label, string url)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (url != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(url);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(url, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = TextLinkOpenURLNative(pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(in byte label, ReadOnlySpan<byte> url)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* purl = url)
+				{
+					byte ret = TextLinkOpenURLNative((byte*)plabel, (byte*)purl);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(in byte label, string url)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (url != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(url);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(url, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TextLinkOpenURLNative((byte*)plabel, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(ReadOnlySpan<byte> label, in byte url)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* purl = &url)
+				{
+					byte ret = TextLinkOpenURLNative((byte*)plabel, (byte*)purl);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(ReadOnlySpan<byte> label, string url)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (url != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(url);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(url, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = TextLinkOpenURLNative((byte*)plabel, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(string label, in byte url)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* purl = &url)
+			{
+				byte ret = TextLinkOpenURLNative(pStr0, (byte*)purl);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// hyperlink text button, automatically open fileurl when clicked<br/>
+		/// </summary>
+		public static bool TextLinkOpenURL(string label, ReadOnlySpan<byte> url)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* purl = url)
+			{
+				byte ret = TextLinkOpenURLNative(pStr0, (byte*)purl);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Widgets: Images<br/>
+		/// - Read about ImTextureIDImTextureRef  here: https:github.comocornutimguiwikiImage-Loading-and-Displaying-Examples<br/>
+		/// - 'uv0' and 'uv1' are texture coordinates. Read about them from the same link above.<br/>
+		/// - Image() adds style.ImageBorderSize on each side, ImageButton() adds style.FramePadding on each side.<br/>
+		/// - ImageButton() draws a background based on regular Button() color + optionally an inner background if specified.<br/>
+		/// - An obsolete version of Image(), before 1.91.9 (March 2025), had a 'tint_col' parameter which is now supported by the ImageWithBg() function.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImageNative(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImTextureRef, Vector2, Vector2, Vector2, void>)funcTable[163])(texRef, imageSize, uv0, uv1);
+			#else
+			((delegate* unmanaged[Cdecl]<ImTextureRef, Vector2, Vector2, Vector2, void>)funcTable[163])(texRef, imageSize, uv0, uv1);
+			#endif
+		}
+
+		/// <summary>
+		/// Widgets: Images<br/>
+		/// - Read about ImTextureIDImTextureRef  here: https:github.comocornutimguiwikiImage-Loading-and-Displaying-Examples<br/>
+		/// - 'uv0' and 'uv1' are texture coordinates. Read about them from the same link above.<br/>
+		/// - Image() adds style.ImageBorderSize on each side, ImageButton() adds style.FramePadding on each side.<br/>
+		/// - ImageButton() draws a background based on regular Button() color + optionally an inner background if specified.<br/>
+		/// - An obsolete version of Image(), before 1.91.9 (March 2025), had a 'tint_col' parameter which is now supported by the ImageWithBg() function.<br/>
+		/// </summary>
+		public static void Image(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		{
+			ImageNative(texRef, imageSize, uv0, uv1);
+		}
+
+		/// <summary>
+		/// Widgets: Images<br/>
+		/// - Read about ImTextureIDImTextureRef  here: https:github.comocornutimguiwikiImage-Loading-and-Displaying-Examples<br/>
+		/// - 'uv0' and 'uv1' are texture coordinates. Read about them from the same link above.<br/>
+		/// - Image() adds style.ImageBorderSize on each side, ImageButton() adds style.FramePadding on each side.<br/>
+		/// - ImageButton() draws a background based on regular Button() color + optionally an inner background if specified.<br/>
+		/// - An obsolete version of Image(), before 1.91.9 (March 2025), had a 'tint_col' parameter which is now supported by the ImageWithBg() function.<br/>
+		/// </summary>
+		public static void Image(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0)
+		{
+			ImageNative(texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)));
+		}
+
+		/// <summary>
+		/// Widgets: Images<br/>
+		/// - Read about ImTextureIDImTextureRef  here: https:github.comocornutimguiwikiImage-Loading-and-Displaying-Examples<br/>
+		/// - 'uv0' and 'uv1' are texture coordinates. Read about them from the same link above.<br/>
+		/// - Image() adds style.ImageBorderSize on each side, ImageButton() adds style.FramePadding on each side.<br/>
+		/// - ImageButton() draws a background based on regular Button() color + optionally an inner background if specified.<br/>
+		/// - An obsolete version of Image(), before 1.91.9 (March 2025), had a 'tint_col' parameter which is now supported by the ImageWithBg() function.<br/>
+		/// </summary>
+		public static void Image(ImTextureRef texRef, Vector2 imageSize)
+		{
+			ImageNative(texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void ImageWithBgNative(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImTextureRef, Vector2, Vector2, Vector2, Vector4, Vector4, void>)funcTable[164])(texRef, imageSize, uv0, uv1, bgCol, tintCol);
+			#else
+			((delegate* unmanaged[Cdecl]<ImTextureRef, Vector2, Vector2, Vector2, Vector4, Vector4, void>)funcTable[164])(texRef, imageSize, uv0, uv1, bgCol, tintCol);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		{
+			ImageWithBgNative(texRef, imageSize, uv0, uv1, bgCol, tintCol);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		{
+			ImageWithBgNative(texRef, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		{
+			ImageWithBgNative(texRef, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0)
+		{
+			ImageWithBgNative(texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize)
+		{
+			ImageWithBgNative(texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
+		{
+			ImageWithBgNative(texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol)
+		{
+			ImageWithBgNative(texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
+		{
+			ImageWithBgNative(texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ImageWithBg(ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
+		{
+			ImageWithBgNative(texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte ImageButtonNative(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, ImTextureRef, Vector2, Vector2, Vector2, Vector4, Vector4, byte>)funcTable[165])(strId, texRef, imageSize, uv0, uv1, bgCol, tintCol);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImTextureRef, Vector2, Vector2, Vector2, Vector4, Vector4, byte>)funcTable[165])((nint)strId, texRef, imageSize, uv0, uv1, bgCol, tintCol);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		{
+			byte ret = ImageButtonNative(strId, texRef, imageSize, uv0, uv1, bgCol, tintCol);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		{
+			byte ret = ImageButtonNative(strId, texRef, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		{
+			byte ret = ImageButtonNative(strId, texRef, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0)
+		{
+			byte ret = ImageButtonNative(strId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize)
+		{
+			byte ret = ImageButtonNative(strId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
+		{
+			byte ret = ImageButtonNative(strId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol)
+		{
+			byte ret = ImageButtonNative(strId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
+		{
+			byte ret = ImageButtonNative(strId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(byte* strId, ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
+		{
+			byte ret = ImageButtonNative(strId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(in byte strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, uv1, bgCol, tintCol);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(in byte strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(in byte strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(in byte strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(in byte strId, ImTextureRef texRef, Vector2 imageSize)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(in byte strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(in byte strId, ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(in byte strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(in byte strId, ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, uv1, bgCol, tintCol);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(ReadOnlySpan<byte> strId, ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, uv1, bgCol, tintCol);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ImageButtonNative(pStr0, texRef, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool ImageButton(string strId, ImTextureRef texRef, Vector2 imageSize, Vector4 bgCol)
 		{
 			byte* pStr0 = null;
@@ -109,7 +1343,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte BeginComboNative(byte* label, byte* previewValue, ImGuiComboFlags flags)
@@ -122,7 +1358,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(byte* label, byte* previewValue, ImGuiComboFlags flags)
 		{
@@ -131,7 +1369,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(byte* label, byte* previewValue)
 		{
@@ -140,7 +1380,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(in byte label, byte* previewValue, ImGuiComboFlags flags)
 		{
@@ -152,7 +1394,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(in byte label, byte* previewValue)
 		{
@@ -164,7 +1408,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(ReadOnlySpan<byte> label, byte* previewValue, ImGuiComboFlags flags)
 		{
@@ -176,7 +1422,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(ReadOnlySpan<byte> label, byte* previewValue)
 		{
@@ -188,7 +1436,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(string label, byte* previewValue, ImGuiComboFlags flags)
 		{
@@ -218,7 +1468,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(string label, byte* previewValue)
 		{
@@ -248,7 +1500,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(byte* label, in byte previewValue, ImGuiComboFlags flags)
 		{
@@ -260,7 +1514,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(byte* label, in byte previewValue)
 		{
@@ -272,7 +1528,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(byte* label, ReadOnlySpan<byte> previewValue, ImGuiComboFlags flags)
 		{
@@ -284,7 +1542,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(byte* label, ReadOnlySpan<byte> previewValue)
 		{
@@ -296,7 +1556,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(byte* label, string previewValue, ImGuiComboFlags flags)
 		{
@@ -326,7 +1588,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(byte* label, string previewValue)
 		{
@@ -356,7 +1620,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(in byte label, in byte previewValue, ImGuiComboFlags flags)
 		{
@@ -371,7 +1637,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(in byte label, in byte previewValue)
 		{
@@ -386,7 +1654,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(ReadOnlySpan<byte> label, ReadOnlySpan<byte> previewValue, ImGuiComboFlags flags)
 		{
@@ -401,7 +1671,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(ReadOnlySpan<byte> label, ReadOnlySpan<byte> previewValue)
 		{
@@ -416,7 +1688,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(string label, string previewValue, ImGuiComboFlags flags)
 		{
@@ -467,7 +1741,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(string label, string previewValue)
 		{
@@ -518,7 +1794,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(in byte label, ReadOnlySpan<byte> previewValue, ImGuiComboFlags flags)
 		{
@@ -533,7 +1811,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(in byte label, ReadOnlySpan<byte> previewValue)
 		{
@@ -548,7 +1828,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(in byte label, string previewValue, ImGuiComboFlags flags)
 		{
@@ -581,7 +1863,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(in byte label, string previewValue)
 		{
@@ -614,7 +1898,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(ReadOnlySpan<byte> label, in byte previewValue, ImGuiComboFlags flags)
 		{
@@ -629,7 +1915,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(ReadOnlySpan<byte> label, in byte previewValue)
 		{
@@ -644,7 +1932,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(ReadOnlySpan<byte> label, string previewValue, ImGuiComboFlags flags)
 		{
@@ -677,7 +1967,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(ReadOnlySpan<byte> label, string previewValue)
 		{
@@ -710,7 +2002,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(string label, in byte previewValue, ImGuiComboFlags flags)
 		{
@@ -743,7 +2037,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(string label, in byte previewValue)
 		{
@@ -776,7 +2072,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(string label, ReadOnlySpan<byte> previewValue, ImGuiComboFlags flags)
 		{
@@ -809,7 +2107,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Widgets: Combo Box (Dropdown)<br/>
+		/// - The BeginCombo()EndCombo() api allows you to manage your contents and selection state however you want it, by creating e.g. Selectable() items.<br/>
+		/// - The old Combo() api are helpers over BeginCombo()EndCombo() which are kept available for convenience purpose. This is analogous to how ListBox are created.<br/>
 		/// </summary>
 		public static bool BeginCombo(string label, ReadOnlySpan<byte> previewValue)
 		{
@@ -3716,1309 +5016,6 @@ namespace Hexa.NET.ImGui
 			{
 				byte ret = ComboNative((byte*)plabel, currentItem, getter, (void*)userData, itemsCount, popupMaxHeightInItems);
 				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Combo(in byte label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ComboNative((byte*)plabel, currentItem, getter, (void*)userData, itemsCount, (int)(-1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int popupMaxHeightInItems)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = ComboNative((byte*)plabel, currentItem, getter, (void*)userData, itemsCount, popupMaxHeightInItems);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = ComboNative((byte*)plabel, currentItem, getter, (void*)userData, itemsCount, (int)(-1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Combo(string label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int popupMaxHeightInItems)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ComboNative(pStr0, currentItem, getter, (void*)userData, itemsCount, popupMaxHeightInItems);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Combo(string label, int* currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ComboNative(pStr0, currentItem, getter, (void*)userData, itemsCount, (int)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Combo(byte* label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int popupMaxHeightInItems)
-		{
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte ret = ComboNative(label, (int*)pcurrentItem, getter, (void*)userData, itemsCount, popupMaxHeightInItems);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Combo(byte* label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
-		{
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte ret = ComboNative(label, (int*)pcurrentItem, getter, (void*)userData, itemsCount, (int)(-1));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Combo(in byte label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int popupMaxHeightInItems)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pcurrentItem = &currentItem)
-				{
-					byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, getter, (void*)userData, itemsCount, popupMaxHeightInItems);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Combo(in byte label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (int* pcurrentItem = &currentItem)
-				{
-					byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, getter, (void*)userData, itemsCount, (int)(-1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int popupMaxHeightInItems)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pcurrentItem = &currentItem)
-				{
-					byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, getter, (void*)userData, itemsCount, popupMaxHeightInItems);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Combo(ReadOnlySpan<byte> label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (int* pcurrentItem = &currentItem)
-				{
-					byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, getter, (void*)userData, itemsCount, (int)(-1));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Combo(string label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount, int popupMaxHeightInItems)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte ret = ComboNative(pStr0, (int*)pcurrentItem, getter, (void*)userData, itemsCount, popupMaxHeightInItems);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool Combo(string label, ref int currentItem, delegate*<void*, int, byte*> getter, nint userData, int itemsCount)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* pcurrentItem = &currentItem)
-			{
-				byte ret = ComboNative(pStr0, (int*)pcurrentItem, getter, (void*)userData, itemsCount, (int)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte DragFloatNative(byte* label, float* v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, float*, float, float, float, byte*, ImGuiSliderFlags, byte>)funcTable[171])(label, v, vSpeed, vMin, vMax, format, flags);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, float, float, float, nint, ImGuiSliderFlags, byte>)funcTable[171])((nint)label, (nint)v, vSpeed, vMin, vMax, (nint)format, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte ret = DragFloatNative(label, v, vSpeed, vMin, vMax, format, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, float vMax, byte* format)
-		{
-			byte ret = DragFloatNative(label, v, vSpeed, vMin, vMax, format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, float vMax)
-		{
-			bool ret = DragFloat(label, v, vSpeed, vMin, vMax, (string)"%.3f", (ImGuiSliderFlags)(0));
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin)
-		{
-			bool ret = DragFloat(label, v, vSpeed, vMin, (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v, float vSpeed)
-		{
-			bool ret = DragFloat(label, v, vSpeed, (float)(0.0f), (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v)
-		{
-			bool ret = DragFloat(label, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, byte* format)
-		{
-			byte ret = DragFloatNative(label, v, vSpeed, vMin, (float)(0.0f), format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v, float vSpeed, byte* format)
-		{
-			byte ret = DragFloatNative(label, v, vSpeed, (float)(0.0f), (float)(0.0f), format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v, byte* format)
-		{
-			byte ret = DragFloatNative(label, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
-		{
-			bool ret = DragFloat(label, v, vSpeed, vMin, vMax, (string)"%.3f", flags);
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, ImGuiSliderFlags flags)
-		{
-			bool ret = DragFloat(label, v, vSpeed, vMin, (float)(0.0f), (string)"%.3f", flags);
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v, float vSpeed, ImGuiSliderFlags flags)
-		{
-			bool ret = DragFloat(label, v, vSpeed, (float)(0.0f), (float)(0.0f), (string)"%.3f", flags);
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v, ImGuiSliderFlags flags)
-		{
-			bool ret = DragFloat(label, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), (string)"%.3f", flags);
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
-		{
-			byte ret = DragFloatNative(label, v, vSpeed, vMin, (float)(0.0f), format, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v, float vSpeed, byte* format, ImGuiSliderFlags flags)
-		{
-			byte ret = DragFloatNative(label, v, vSpeed, (float)(0.0f), (float)(0.0f), format, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, float* v, byte* format, ImGuiSliderFlags flags)
-		{
-			byte ret = DragFloatNative(label, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, flags);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, vSpeed, vMin, vMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin, float vMax, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, vSpeed, vMin, vMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin, float vMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, vSpeed, vMin, vMax, (string)"%.3f", (ImGuiSliderFlags)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, vSpeed, vMin, (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v, float vSpeed)
-		{
-			fixed (byte* plabel = &label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, vSpeed, (float)(0.0f), (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v)
-		{
-			fixed (byte* plabel = &label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, vSpeed, vMin, (float)(0.0f), format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v, float vSpeed, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, vSpeed, (float)(0.0f), (float)(0.0f), format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, vSpeed, vMin, vMax, (string)"%.3f", flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, vSpeed, vMin, (float)(0.0f), (string)"%.3f", flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v, float vSpeed, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, vSpeed, (float)(0.0f), (float)(0.0f), (string)"%.3f", flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), (string)"%.3f", flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, vSpeed, vMin, (float)(0.0f), format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v, float vSpeed, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, vSpeed, (float)(0.0f), (float)(0.0f), format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(in byte label, float* v, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, vSpeed, vMin, vMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, float vMax, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, vSpeed, vMin, vMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, float vMax)
-		{
-			fixed (byte* plabel = label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, vSpeed, vMin, vMax, (string)"%.3f", (ImGuiSliderFlags)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin)
-		{
-			fixed (byte* plabel = label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, vSpeed, vMin, (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed)
-		{
-			fixed (byte* plabel = label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, vSpeed, (float)(0.0f), (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v)
-		{
-			fixed (byte* plabel = label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, vSpeed, vMin, (float)(0.0f), format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, vSpeed, (float)(0.0f), (float)(0.0f), format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, byte* format)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, vSpeed, vMin, vMax, (string)"%.3f", flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, vSpeed, vMin, (float)(0.0f), (string)"%.3f", flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, vSpeed, (float)(0.0f), (float)(0.0f), (string)"%.3f", flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				bool ret = DragFloat((byte*)plabel, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), (string)"%.3f", flags);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, vSpeed, vMin, (float)(0.0f), format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, float vSpeed, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, vSpeed, (float)(0.0f), (float)(0.0f), format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(ReadOnlySpan<byte> label, float* v, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = DragFloatNative((byte*)plabel, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DragFloatNative(pStr0, v, vSpeed, vMin, vMax, format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, float vMax, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DragFloatNative(pStr0, v, vSpeed, vMin, vMax, format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, float vMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			bool ret = DragFloat(pStr0, v, vSpeed, vMin, vMax, (string)"%.3f", (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, float vSpeed, float vMin)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			bool ret = DragFloat(pStr0, v, vSpeed, vMin, (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, float vSpeed)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			bool ret = DragFloat(pStr0, v, vSpeed, (float)(0.0f), (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			bool ret = DragFloat(pStr0, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), (string)"%.3f", (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DragFloatNative(pStr0, v, vSpeed, vMin, (float)(0.0f), format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, float vSpeed, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DragFloatNative(pStr0, v, vSpeed, (float)(0.0f), (float)(0.0f), format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DragFloatNative(pStr0, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, (ImGuiSliderFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, float vMax, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			bool ret = DragFloat(pStr0, v, vSpeed, vMin, vMax, (string)"%.3f", flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			bool ret = DragFloat(pStr0, v, vSpeed, vMin, (float)(0.0f), (string)"%.3f", flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, float vSpeed, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			bool ret = DragFloat(pStr0, v, vSpeed, (float)(0.0f), (float)(0.0f), (string)"%.3f", flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			bool ret = DragFloat(pStr0, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), (string)"%.3f", flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, float vSpeed, float vMin, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DragFloatNative(pStr0, v, vSpeed, vMin, (float)(0.0f), format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, float vSpeed, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DragFloatNative(pStr0, v, vSpeed, (float)(0.0f), (float)(0.0f), format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(string label, float* v, byte* format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = DragFloatNative(pStr0, v, (float)(1.0f), (float)(0.0f), (float)(0.0f), format, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
-		{
-			fixed (float* pv = &v)
-			{
-				byte ret = DragFloatNative(label, (float*)pv, vSpeed, vMin, vMax, format, flags);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax, byte* format)
-		{
-			fixed (float* pv = &v)
-			{
-				byte ret = DragFloatNative(label, (float*)pv, vSpeed, vMin, vMax, format, (ImGuiSliderFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// If v_min &gt;= v_max we have no bound<br/>
-		/// </summary>
-		public static bool DragFloat(byte* label, ref float v, float vSpeed, float vMin, float vMax)
-		{
-			fixed (float* pv = &v)
-			{
-				bool ret = DragFloat(label, (float*)pv, vSpeed, vMin, vMax, (string)"%.3f", (ImGuiSliderFlags)(0));
-				return ret;
 			}
 		}
 	}

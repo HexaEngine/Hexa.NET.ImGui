@@ -44,17 +44,17 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiContext* Ctx;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public int DisplayStart;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public int DisplayEnd;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public int UserIndex;
 
 		/// <summary>
 		/// To be documented.
@@ -69,6 +69,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ImGuiListClipperFlags Flags;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public double StartPosY;
 
 		/// <summary>
@@ -79,28 +84,29 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe ImGuiContext* Ctx;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public unsafe void* TempData;
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImGuiListClipperFlags Flags;
-
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiListClipper(ImGuiContextPtr ctx = default, int displayStart = default, int displayEnd = default, int itemsCount = default, float itemsHeight = default, double startPosY = default, double startSeekOffsetY = default, void* tempData = default, ImGuiListClipperFlags flags = default)
+		public unsafe ImGuiListClipper(int displayStart = default, int displayEnd = default, int userIndex = default, int itemsCount = default, float itemsHeight = default, ImGuiListClipperFlags flags = default, double startPosY = default, double startSeekOffsetY = default, ImGuiContextPtr ctx = default, void* tempData = default)
 		{
-			Ctx = ctx;
 			DisplayStart = displayStart;
 			DisplayEnd = displayEnd;
+			UserIndex = userIndex;
 			ItemsCount = itemsCount;
 			ItemsHeight = itemsHeight;
+			Flags = flags;
 			StartPosY = startPosY;
 			StartSeekOffsetY = startSeekOffsetY;
+			Ctx = ctx;
 			TempData = tempData;
-			Flags = flags;
 		}
 
 
@@ -149,7 +155,8 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call IncludeItemByIndex() or IncludeItemsByIndex() *BEFORE* first call to Step() if you need a range of items to not be clipped, regardless of their visibility.<br/>
+		/// (Due to alignment  padding of certain items it is possible that an extra item may be included on either end of the display range).<br/>
 		/// </summary>
 		public unsafe void IncludeItemByIndex(int itemIndex)
 		{
@@ -171,7 +178,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Seek cursor toward given item. This is automatically called while stepping.<br/>
+		/// - The only reason to call this is: you can use ImGuiListClipper::Begin(INT_MAX) if you don't know item count ahead of time.<br/>
+		/// - In this case, after all steps are done, you'll want to call SeekCursorForItem(item_count).<br/>
 		/// </summary>
 		public unsafe void SeekCursorForItem(int itemIndex)
 		{
@@ -239,15 +248,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiContextPtr Ctx => ref Unsafe.AsRef<ImGuiContextPtr>(&Handle->Ctx);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public ref int DisplayStart => ref Unsafe.AsRef<int>(&Handle->DisplayStart);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public ref int DisplayEnd => ref Unsafe.AsRef<int>(&Handle->DisplayEnd);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref int UserIndex => ref Unsafe.AsRef<int>(&Handle->UserIndex);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -259,6 +268,10 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref ImGuiListClipperFlags Flags => ref Unsafe.AsRef<ImGuiListClipperFlags>(&Handle->Flags);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ref double StartPosY => ref Unsafe.AsRef<double>(&Handle->StartPosY);
 		/// <summary>
 		/// To be documented.
@@ -267,11 +280,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public void* TempData { get => Handle->TempData; set => Handle->TempData = value; }
+		public ref ImGuiContextPtr Ctx => ref Unsafe.AsRef<ImGuiContextPtr>(&Handle->Ctx);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiListClipperFlags Flags => ref Unsafe.AsRef<ImGuiListClipperFlags>(&Handle->Flags);
+		public void* TempData { get => Handle->TempData; set => Handle->TempData = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -305,7 +318,8 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Call IncludeItemByIndex() or IncludeItemsByIndex() *BEFORE* first call to Step() if you need a range of items to not be clipped, regardless of their visibility.<br/>
+		/// (Due to alignment  padding of certain items it is possible that an extra item may be included on either end of the display range).<br/>
 		/// </summary>
 		public unsafe void IncludeItemByIndex(int itemIndex)
 		{
@@ -321,7 +335,9 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// To be documented.
+		/// Seek cursor toward given item. This is automatically called while stepping.<br/>
+		/// - The only reason to call this is: you can use ImGuiListClipper::Begin(INT_MAX) if you don't know item count ahead of time.<br/>
+		/// - In this case, after all steps are done, you'll want to call SeekCursorForItem(item_count).<br/>
 		/// </summary>
 		public unsafe void SeekCursorForItem(int itemIndex)
 		{

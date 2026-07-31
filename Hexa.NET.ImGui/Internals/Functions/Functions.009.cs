@@ -4132,9 +4132,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImFontCalcWordWrapPositionExNative(ImFont* font, float size, byte* text, byte* textEnd, float wrapWidth, ImDrawTextFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFont*, float, byte*, byte*, float, ImDrawTextFlags, byte*>)funcTable[751])(font, size, text, textEnd, wrapWidth, flags);
+			return ((delegate* unmanaged[Cdecl]<ImFont*, float, byte*, byte*, float, ImDrawTextFlags, byte*>)funcTable[759])(font, size, text, textEnd, wrapWidth, flags);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, float, nint, nint, float, ImDrawTextFlags, nint>)funcTable[751])((nint)font, size, (nint)text, (nint)textEnd, wrapWidth, flags);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, float, nint, nint, float, ImDrawTextFlags, nint>)funcTable[759])((nint)font, size, (nint)text, (nint)textEnd, wrapWidth, flags);
 			#endif
 		}
 
