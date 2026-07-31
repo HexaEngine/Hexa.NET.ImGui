@@ -42,6 +42,7 @@ jobs:
       lib-name: ImGuiImplSDL2
       repo: HexaEngine/cimgui_impl
       repo-tag: main
+      cmake-version: "~3.5.0"
       cmake-flags: -DBACKENDS_SDL2_ONLY=ON -DIMGUI_WCHAR32=ON
       cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
       bin-name-osx: libImGuiImplSDL2.dylib
@@ -72,6 +73,7 @@ jobs:
       repo: HexaEngine/cimgui_impl
       repo-tag: main
       checkout-self: true
+      cmake-version: "~3.5.0"
       cmake-flags: -DBACKENDS_SDL3_ONLY=ON -DIMGUI_WCHAR32=ON -DCMAKE_PREFIX_PATH="./SDL/install"
       cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
       bin-name-osx: libImGuiImplSDL3.dylib
@@ -98,6 +100,7 @@ jobs:
       lib-name: ImGuiImplGLFW
       repo: HexaEngine/cimgui_impl
       repo-tag: main
+      cmake-version: "~3.5.0"
       cmake-flags: -DBACKENDS_GLFW_ONLY=ON -DIMGUI_WCHAR32=ON
       cmake-flags-windows: -DCMAKE_SYSTEM_VERSION=10.0.26100.0
       bin-name-osx: libImGuiImplGLFW.dylib
