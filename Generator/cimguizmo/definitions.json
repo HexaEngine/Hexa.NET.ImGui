@@ -12,9 +12,10 @@
       "call_args": "(value)",
       "call_args_old": "(value)",
       "cimguiname": "ImGuizmo_AllowAxisFlip",
+      "comment": "   // Allow axis to flip\n   // When true (default), the guizmo axis flip for better visibility\n   // When false, they always stay along the positive world/local axis",
       "defaults": {},
       "funcname": "AllowAxisFlip",
-      "location": "ImGuizmo:258",
+      "location": "ImGuizmo:295",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_AllowAxisFlip",
       "ret": "void",
@@ -30,13 +31,62 @@
       "call_args": "()",
       "call_args_old": "()",
       "cimguiname": "ImGuizmo_BeginFrame",
+      "comment": "   // call BeginFrame right after ImGui_XXXX_NewFrame();",
       "defaults": {},
       "funcname": "BeginFrame",
-      "location": "ImGuizmo:127",
+      "location": "ImGuizmo:128",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_BeginFrame",
       "ret": "void",
       "signature": "()",
+      "stname": ""
+    }
+  ],
+  "ImGuizmo_ComputeMouseRay": [
+    {
+      "args": "(const float* view,const float* projection,const ImVec2_c mousePosition,const ImVec2_c rectPosition,const ImVec2_c rectSize,float* rayOrigin,float* rayDirection)",
+      "argsT": [
+        {
+          "name": "view",
+          "type": "const float*"
+        },
+        {
+          "name": "projection",
+          "type": "const float*"
+        },
+        {
+          "name": "mousePosition",
+          "type": "const ImVec2"
+        },
+        {
+          "name": "rectPosition",
+          "type": "const ImVec2"
+        },
+        {
+          "name": "rectSize",
+          "type": "const ImVec2"
+        },
+        {
+          "name": "rayOrigin",
+          "type": "float*"
+        },
+        {
+          "name": "rayDirection",
+          "type": "float*"
+        }
+      ],
+      "argsoriginal": "(const float* view,const float* projection,const ImVec2& mousePosition,const ImVec2& rectPosition,const ImVec2& rectSize,float* rayOrigin,float* rayDirection)",
+      "call_args": "(view,projection,ConvertToCPP_ImVec2(mousePosition),ConvertToCPP_ImVec2(rectPosition),ConvertToCPP_ImVec2(rectSize),rayOrigin,rayDirection)",
+      "call_args_old": "(view,projection,mousePosition,rectPosition,rectSize,rayOrigin,rayDirection)",
+      "cimguiname": "ImGuizmo_ComputeMouseRay",
+      "comment": "   // Compute the world-space mouse picking ray from explicit inputs, without reading ImGui IO.\n   // Useful for tests/headless usage. view and projection are column-major float[16] (same\n   // layout as Manipulate). rayOrigin and rayDirection receive a float[3] each.",
+      "defaults": {},
+      "funcname": "ComputeMouseRay",
+      "location": "ImGuizmo:309",
+      "namespace": "ImGuizmo",
+      "ov_cimguiname": "ImGuizmo_ComputeMouseRay",
+      "ret": "void",
+      "signature": "(const float*,const float*,const ImVec2,const ImVec2,const ImVec2,float*,float*)",
       "stname": ""
     }
   ],
@@ -65,13 +115,50 @@
       "call_args": "(matrix,translation,rotation,scale)",
       "call_args_old": "(matrix,translation,rotation,scale)",
       "cimguiname": "ImGuizmo_DecomposeMatrixToComponents",
+      "comment": "   // helper functions for manualy editing translation/rotation/scale with an input float\n   // translation, rotation and scale float points to 3 floats each\n   // Angles are in degrees (more suitable for human editing)\n   // example:\n   // float matrixTranslation[3], matrixRotation[3], matrixScale[3];\n   // ImGuizmo::DecomposeMatrixToComponents(gizmoMatrix.m16, matrixTranslation, matrixRotation, matrixScale);\n   // ImGui::InputFloat3(\"Tr\", matrixTranslation, 3);\n   // ImGui::InputFloat3(\"Rt\", matrixRotation, 3);\n   // ImGui::InputFloat3(\"Sc\", matrixScale, 3);\n   // ImGuizmo::RecomposeMatrixFromComponents(matrixTranslation, matrixRotation, matrixScale, gizmoMatrix.m16);\n   //\n   // These functions have some numerical stability issues for now. Use with caution.",
       "defaults": {},
       "funcname": "DecomposeMatrixToComponents",
-      "location": "ImGuizmo:165",
+      "location": "ImGuizmo:166",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_DecomposeMatrixToComponents",
       "ret": "void",
       "signature": "(const float*,float*,float*,float*)",
+      "stname": ""
+    }
+  ],
+  "ImGuizmo_DrawAxes": [
+    {
+      "args": "(const float* view,const float* projection,const float* matrices,int matrixCount)",
+      "argsT": [
+        {
+          "name": "view",
+          "type": "const float*"
+        },
+        {
+          "name": "projection",
+          "type": "const float*"
+        },
+        {
+          "name": "matrices",
+          "type": "const float*"
+        },
+        {
+          "name": "matrixCount",
+          "type": "int"
+        }
+      ],
+      "argsoriginal": "(const float* view,const float* projection,const float* matrices,int matrixCount)",
+      "call_args": "(view,projection,matrices,matrixCount)",
+      "call_args_old": "(view,projection,matrices,matrixCount)",
+      "cimguiname": "ImGuizmo_DrawAxes",
+      "comment": "   // Render coordinate system axes (red X, green Y and blue Z). Usefull for debug/tests",
+      "defaults": {},
+      "funcname": "DrawAxes",
+      "location": "ImGuizmo:174",
+      "namespace": "ImGuizmo",
+      "ov_cimguiname": "ImGuizmo_DrawAxes",
+      "ret": "void",
+      "signature": "(const float*,const float*,const float*,int)",
       "stname": ""
     }
   ],
@@ -100,9 +187,10 @@
       "call_args": "(view,projection,matrices,matrixCount)",
       "call_args_old": "(view,projection,matrices,matrixCount)",
       "cimguiname": "ImGuizmo_DrawCubes",
+      "comment": "\n   // Render a cube with face color corresponding to face normal. Usefull for debug/tests",
       "defaults": {},
       "funcname": "DrawCubes",
-      "location": "ImGuizmo:173",
+      "location": "ImGuizmo:176",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_DrawCubes",
       "ret": "void",
@@ -137,11 +225,111 @@
       "cimguiname": "ImGuizmo_DrawGrid",
       "defaults": {},
       "funcname": "DrawGrid",
-      "location": "ImGuizmo:174",
+      "location": "ImGuizmo:177",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_DrawGrid",
       "ret": "void",
       "signature": "(const float*,const float*,const float*,const float)",
+      "stname": ""
+    }
+  ],
+  "ImGuizmo_DrawGridCustom": [
+    {
+      "args": "(const float* view,const float* projection,const float* matrix,const float gridSize,const float majorStep,const unsigned int subdivision)",
+      "argsT": [
+        {
+          "name": "view",
+          "type": "const float*"
+        },
+        {
+          "name": "projection",
+          "type": "const float*"
+        },
+        {
+          "name": "matrix",
+          "type": "const float*"
+        },
+        {
+          "name": "gridSize",
+          "type": "const float"
+        },
+        {
+          "name": "majorStep",
+          "type": "const float"
+        },
+        {
+          "name": "subdivision",
+          "type": "const unsigned int"
+        }
+      ],
+      "argsoriginal": "(const float* view,const float* projection,const float* matrix,const float gridSize,const float majorStep,const unsigned int subdivision)",
+      "call_args": "(view,projection,matrix,gridSize,majorStep,subdivision)",
+      "call_args_old": "(view,projection,matrix,gridSize,majorStep,subdivision)",
+      "cimguiname": "ImGuizmo_DrawGridCustom",
+      "comment": "\n   // Render grid with customizable major line step and amount of segments between major lines.\n   // NOTE(m.wlasiuk) : calling this function with majorStep = 1.0f and subdivision = 1 is equivalent to DrawGrid in terms of the end result but performs more calculations",
+      "defaults": {},
+      "funcname": "DrawGridCustom",
+      "location": "ImGuizmo:180",
+      "namespace": "ImGuizmo",
+      "ov_cimguiname": "ImGuizmo_DrawGridCustom",
+      "ret": "void",
+      "signature": "(const float*,const float*,const float*,const float,const float,const unsigned int)",
+      "stname": ""
+    }
+  ],
+  "ImGuizmo_DrawGridCustomColor": [
+    {
+      "args": "(const float* view,const float* projection,const float* matrix,const float gridSize,const float majorStep,const unsigned int subdivision,const ImU32 majorCol,const ImU32 minorCol,const ImU32 centerCol)",
+      "argsT": [
+        {
+          "name": "view",
+          "type": "const float*"
+        },
+        {
+          "name": "projection",
+          "type": "const float*"
+        },
+        {
+          "name": "matrix",
+          "type": "const float*"
+        },
+        {
+          "name": "gridSize",
+          "type": "const float"
+        },
+        {
+          "name": "majorStep",
+          "type": "const float"
+        },
+        {
+          "name": "subdivision",
+          "type": "const unsigned int"
+        },
+        {
+          "name": "majorCol",
+          "type": "const ImU32"
+        },
+        {
+          "name": "minorCol",
+          "type": "const ImU32"
+        },
+        {
+          "name": "centerCol",
+          "type": "const ImU32"
+        }
+      ],
+      "argsoriginal": "(const float* view,const float* projection,const float* matrix,const float gridSize,const float majorStep,const unsigned int subdivision,const ImU32 majorCol,const ImU32 minorCol,const ImU32 centerCol)",
+      "call_args": "(view,projection,matrix,gridSize,majorStep,subdivision,majorCol,minorCol,centerCol)",
+      "call_args_old": "(view,projection,matrix,gridSize,majorStep,subdivision,majorCol,minorCol,centerCol)",
+      "cimguiname": "ImGuizmo_DrawGridCustomColor",
+      "comment": "\n   // Render grid with customizable major line step and amount of segments between major lines and with possibility to set custom colors for major, minor and center lines",
+      "defaults": {},
+      "funcname": "DrawGridCustomColor",
+      "location": "ImGuizmo:182",
+      "namespace": "ImGuizmo",
+      "ov_cimguiname": "ImGuizmo_DrawGridCustomColor",
+      "ret": "void",
+      "signature": "(const float*,const float*,const float*,const float,const float,const unsigned int,const ImU32,const ImU32,const ImU32)",
       "stname": ""
     }
   ],
@@ -158,13 +346,89 @@
       "call_args": "(enable)",
       "call_args_old": "(enable)",
       "cimguiname": "ImGuizmo_Enable",
+      "comment": "   // enable/disable the gizmo. Stay in the state until next call to Enable.\n   // gizmo is rendered with gray half transparent color when disabled",
       "defaults": {},
       "funcname": "Enable",
-      "location": "ImGuizmo:151",
+      "location": "ImGuizmo:152",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_Enable",
       "ret": "void",
       "signature": "(bool)",
+      "stname": ""
+    }
+  ],
+  "ImGuizmo_GetActiveHandleType": [
+    {
+      "args": "()",
+      "argsT": [],
+      "argsoriginal": "()",
+      "call_args": "()",
+      "call_args_old": "()",
+      "cimguiname": "ImGuizmo_GetActiveHandleType",
+      "comment": "   // Returns which handle is actively being dragged, or MT_NONE.",
+      "defaults": {},
+      "funcname": "GetActiveHandleType",
+      "location": "ImGuizmo:285",
+      "namespace": "ImGuizmo",
+      "ov_cimguiname": "ImGuizmo_GetActiveHandleType",
+      "ret": "MOVETYPE",
+      "signature": "()",
+      "stname": ""
+    }
+  ],
+  "ImGuizmo_GetActiveMoveType": [
+    {
+      "args": "()",
+      "argsT": [],
+      "argsoriginal": "()",
+      "call_args": "()",
+      "call_args_old": "()",
+      "cimguiname": "ImGuizmo_GetActiveMoveType",
+      "comment": "\n   // Aliases matching the MOVETYPE enum name.",
+      "defaults": {},
+      "funcname": "GetActiveMoveType",
+      "location": "ImGuizmo:289",
+      "namespace": "ImGuizmo",
+      "ov_cimguiname": "ImGuizmo_GetActiveMoveType",
+      "ret": "MOVETYPE",
+      "signature": "()",
+      "stname": ""
+    }
+  ],
+  "ImGuizmo_GetHoveredHandleType": [
+    {
+      "args": "()",
+      "argsT": [],
+      "argsoriginal": "()",
+      "call_args": "()",
+      "call_args_old": "()",
+      "cimguiname": "ImGuizmo_GetHoveredHandleType",
+      "comment": "\n   // Returns which handle is currently hovered, or MT_NONE.",
+      "defaults": {},
+      "funcname": "GetHoveredHandleType",
+      "location": "ImGuizmo:287",
+      "namespace": "ImGuizmo",
+      "ov_cimguiname": "ImGuizmo_GetHoveredHandleType",
+      "ret": "MOVETYPE",
+      "signature": "()",
+      "stname": ""
+    }
+  ],
+  "ImGuizmo_GetHoveredMoveType": [
+    {
+      "args": "()",
+      "argsT": [],
+      "argsoriginal": "()",
+      "call_args": "()",
+      "call_args_old": "()",
+      "cimguiname": "ImGuizmo_GetHoveredMoveType",
+      "defaults": {},
+      "funcname": "GetHoveredMoveType",
+      "location": "ImGuizmo:290",
+      "namespace": "ImGuizmo",
+      "ov_cimguiname": "ImGuizmo_GetHoveredMoveType",
+      "ret": "MOVETYPE",
+      "signature": "()",
       "stname": ""
     }
   ],
@@ -184,7 +448,7 @@
       "comment": "// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself",
       "defaults": {},
       "funcname": "GetID",
-      "location": "ImGuizmo:247",
+      "location": "ImGuizmo:255",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_GetID_Str",
       "ret": "ImGuiID",
@@ -209,7 +473,7 @@
       "cimguiname": "ImGuizmo_GetID",
       "defaults": {},
       "funcname": "GetID",
-      "location": "ImGuizmo:248",
+      "location": "ImGuizmo:256",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_GetID_StrStr",
       "ret": "ImGuiID",
@@ -230,7 +494,7 @@
       "cimguiname": "ImGuizmo_GetID",
       "defaults": {},
       "funcname": "GetID",
-      "location": "ImGuizmo:249",
+      "location": "ImGuizmo:257",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_GetID_Ptr",
       "ret": "ImGuiID",
@@ -248,7 +512,7 @@
       "cimguiname": "ImGuizmo_GetStyle",
       "defaults": {},
       "funcname": "GetStyle",
-      "location": "ImGuizmo:305",
+      "location": "ImGuizmo:347",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_GetStyle",
       "ret": "Style*",
@@ -265,9 +529,10 @@
       "call_args": "()",
       "call_args_old": "()",
       "cimguiname": "ImGuizmo_IsOver",
+      "comment": "   // return true if mouse cursor is over any gizmo control (axis, plan or screen component)",
       "defaults": {},
       "funcname": "IsOver",
-      "location": "ImGuizmo:136",
+      "location": "ImGuizmo:137",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_IsOver_Nil",
       "ret": "bool",
@@ -286,9 +551,10 @@
       "call_args": "(op)",
       "call_args_old": "(op)",
       "cimguiname": "ImGuizmo_IsOver",
+      "comment": "   // return true if the cursor is over the operation's gizmo",
       "defaults": {},
       "funcname": "IsOver",
-      "location": "ImGuizmo:252",
+      "location": "ImGuizmo:260",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_IsOver_OPERATION",
       "ret": "bool",
@@ -311,9 +577,10 @@
       "call_args": "(position,pixelRadius)",
       "call_args_old": "(position,pixelRadius)",
       "cimguiname": "ImGuizmo_IsOver",
+      "comment": "\n   // from a x,y,z point in space and using Manipulation view/projection matrix, check if mouse is in pixel radius distance of that projected point",
       "defaults": {},
       "funcname": "IsOver",
-      "location": "ImGuizmo:267",
+      "location": "ImGuizmo:304",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_IsOver_FloatPtr",
       "ret": "bool",
@@ -329,9 +596,10 @@
       "call_args": "()",
       "call_args_old": "()",
       "cimguiname": "ImGuizmo_IsUsing",
+      "comment": "   // return true if mouse IsOver or if the gizmo is in moving state",
       "defaults": {},
       "funcname": "IsUsing",
-      "location": "ImGuizmo:139",
+      "location": "ImGuizmo:140",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_IsUsing",
       "ret": "bool",
@@ -347,9 +615,10 @@
       "call_args": "()",
       "call_args_old": "()",
       "cimguiname": "ImGuizmo_IsUsingAny",
+      "comment": "   // return true if any gizmo is in moving state",
       "defaults": {},
       "funcname": "IsUsingAny",
-      "location": "ImGuizmo:147",
+      "location": "ImGuizmo:148",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_IsUsingAny",
       "ret": "bool",
@@ -365,9 +634,10 @@
       "call_args": "()",
       "call_args_old": "()",
       "cimguiname": "ImGuizmo_IsUsingViewManipulate",
+      "comment": "   // return true if the view gizmo is in moving state",
       "defaults": {},
       "funcname": "IsUsingViewManipulate",
-      "location": "ImGuizmo:142",
+      "location": "ImGuizmo:143",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_IsUsingViewManipulate",
       "ret": "bool",
@@ -383,9 +653,10 @@
       "call_args": "()",
       "call_args_old": "()",
       "cimguiname": "ImGuizmo_IsViewManipulateHovered",
+      "comment": "\n   // only check if your mouse is over the view manipulator - no matter whether it's active or not",
       "defaults": {},
       "funcname": "IsViewManipulateHovered",
-      "location": "ImGuizmo:144",
+      "location": "ImGuizmo:145",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_IsViewManipulateHovered",
       "ret": "bool",
@@ -445,7 +716,7 @@
         "snap": "NULL"
       },
       "funcname": "Manipulate",
-      "location": "ImGuizmo:215",
+      "location": "ImGuizmo:223",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_Manipulate",
       "ret": "bool",
@@ -464,7 +735,7 @@
       "comment": "// pop from the ID stack.",
       "defaults": {},
       "funcname": "PopID",
-      "location": "ImGuizmo:246",
+      "location": "ImGuizmo:254",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_PopID",
       "ret": "void",
@@ -485,10 +756,10 @@
       "call_args": "(str_id)",
       "call_args_old": "(str_id)",
       "cimguiname": "ImGuizmo_PushID",
-      "comment": "// push string into the ID stack (will hash string).",
+      "comment": " // ID stack/scopes\n // Read the FAQ (docs/FAQ.md or http://dearimgui.org/faq) for more details about how ID are handled in dear imgui.\n // - Those questions are answered and impacted by understanding of the ID stack system:\n //   - \"Q: Why is my widget not reacting when I click on it?\"\n //   - \"Q: How can I have widgets with an empty label?\"\n //   - \"Q: How can I have multiple widgets with the same label?\"\n // - Short version: ID are hashes of the entire ID stack. If you are creating widgets in a loop you most likely\n //   want to push a unique identifier (e.g. object pointer, loop index) to uniquely differentiate them.\n // - You can also use the \"Label##foobar\" syntax within widget label to distinguish them from each others.\n // - In this header file we use the \"label\"/\"name\" terminology to denote a string that will be displayed + used as an ID,\n //   whereas \"str_id\" denote a string that is only used as an ID and not normally displayed.// push string into the ID stack (will hash string).",
       "defaults": {},
       "funcname": "PushID",
-      "location": "ImGuizmo:242",
+      "location": "ImGuizmo:250",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_PushID_Str",
       "ret": "void",
@@ -514,7 +785,7 @@
       "comment": "// push string into the ID stack (will hash string).",
       "defaults": {},
       "funcname": "PushID",
-      "location": "ImGuizmo:243",
+      "location": "ImGuizmo:251",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_PushID_StrStr",
       "ret": "void",
@@ -536,7 +807,7 @@
       "comment": "// push pointer into the ID stack (will hash pointer).",
       "defaults": {},
       "funcname": "PushID",
-      "location": "ImGuizmo:244",
+      "location": "ImGuizmo:252",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_PushID_Ptr",
       "ret": "void",
@@ -558,7 +829,7 @@
       "comment": "// push integer into the ID stack (will hash integer).",
       "defaults": {},
       "funcname": "PushID",
-      "location": "ImGuizmo:245",
+      "location": "ImGuizmo:253",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_PushID_Int",
       "ret": "void",
@@ -593,7 +864,7 @@
       "cimguiname": "ImGuizmo_RecomposeMatrixFromComponents",
       "defaults": {},
       "funcname": "RecomposeMatrixFromComponents",
-      "location": "ImGuizmo:166",
+      "location": "ImGuizmo:167",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_RecomposeMatrixFromComponents",
       "ret": "void",
@@ -616,7 +887,7 @@
       "cimguiname": "ImGuizmo_SetAlternativeWindow",
       "defaults": {},
       "funcname": "SetAlternativeWindow",
-      "location": "ImGuizmo:226",
+      "location": "ImGuizmo:234",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_SetAlternativeWindow",
       "ret": "void",
@@ -637,9 +908,10 @@
       "call_args": "(value)",
       "call_args_old": "(value)",
       "cimguiname": "ImGuizmo_SetAxisLimit",
+      "comment": "   // Configure the limit where axis are hidden",
       "defaults": {},
       "funcname": "SetAxisLimit",
-      "location": "ImGuizmo:261",
+      "location": "ImGuizmo:298",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_SetAxisLimit",
       "ret": "void",
@@ -668,9 +940,10 @@
       "call_args": "(x,y,z)",
       "call_args_old": "(x,y,z)",
       "cimguiname": "ImGuizmo_SetAxisMask",
+      "comment": "\n   // Set an axis mask to permanently hide a given axis (true -> hidden, false -> shown)",
       "defaults": {},
       "funcname": "SetAxisMask",
-      "location": "ImGuizmo:263",
+      "location": "ImGuizmo:300",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_SetAxisMask",
       "ret": "void",
@@ -691,11 +964,12 @@
       "call_args": "(drawlist)",
       "call_args_old": "(drawlist)",
       "cimguiname": "ImGuizmo_SetDrawlist",
+      "comment": "\n   // call inside your own window and before Manipulate() in order to draw gizmo to that window.\n   // Or pass a specific ImDrawList to draw to (e.g. ImGui::GetForegroundDrawList()).",
       "defaults": {
         "drawlist": "nullptr"
       },
       "funcname": "SetDrawlist",
-      "location": "ImGuizmo:124",
+      "location": "ImGuizmo:125",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_SetDrawlist",
       "ret": "void",
@@ -718,7 +992,7 @@
       "cimguiname": "ImGuizmo_SetGizmoSizeClipSpace",
       "defaults": {},
       "funcname": "SetGizmoSizeClipSpace",
-      "location": "ImGuizmo:253",
+      "location": "ImGuizmo:261",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_SetGizmoSizeClipSpace",
       "ret": "void",
@@ -741,7 +1015,7 @@
       "cimguiname": "ImGuizmo_SetID",
       "defaults": {},
       "funcname": "SetID",
-      "location": "ImGuizmo:229",
+      "location": "ImGuizmo:237",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_SetID",
       "ret": "void",
@@ -762,9 +1036,10 @@
       "call_args": "(ctx)",
       "call_args_old": "(ctx)",
       "cimguiname": "ImGuizmo_SetImGuiContext",
+      "comment": "   // this is necessary because when imguizmo is compiled into a dll, and imgui into another\n   // globals are not shared between them.\n   // More details at https://stackoverflow.com/questions/19373061/what-happens-to-global-and-static-variables-in-a-shared-library-when-it-is-dynam\n   // expose method to set imgui context",
       "defaults": {},
       "funcname": "SetImGuiContext",
-      "location": "ImGuizmo:133",
+      "location": "ImGuizmo:134",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_SetImGuiContext",
       "ret": "void",
@@ -785,9 +1060,10 @@
       "call_args": "(isOrthographic)",
       "call_args_old": "(isOrthographic)",
       "cimguiname": "ImGuizmo_SetOrthographic",
+      "comment": "\n   // default is false",
       "defaults": {},
       "funcname": "SetOrthographic",
-      "location": "ImGuizmo:170",
+      "location": "ImGuizmo:171",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_SetOrthographic",
       "ret": "void",
@@ -808,9 +1084,10 @@
       "call_args": "(value)",
       "call_args_old": "(value)",
       "cimguiname": "ImGuizmo_SetPlaneLimit",
+      "comment": "\n   // Configure the limit where planes are hiden",
       "defaults": {},
       "funcname": "SetPlaneLimit",
-      "location": "ImGuizmo:265",
+      "location": "ImGuizmo:302",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_SetPlaneLimit",
       "ret": "void",
@@ -845,7 +1122,7 @@
       "cimguiname": "ImGuizmo_SetRect",
       "defaults": {},
       "funcname": "SetRect",
-      "location": "ImGuizmo:168",
+      "location": "ImGuizmo:169",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_SetRect",
       "ret": "void",
@@ -882,9 +1159,10 @@
       "call_args": "(view,length,ConvertToCPP_ImVec2(position),ConvertToCPP_ImVec2(size),backgroundColor)",
       "call_args_old": "(view,length,position,size,backgroundColor)",
       "cimguiname": "ImGuizmo_ViewManipulate",
+      "comment": "\n   //\n   // Please note that this cubeview is patented by Autodesk : https://patents.google.com/patent/US7782319B2/en\n   // It seems to be a defensive patent in the US. I don't think it will bring troubles using it as\n   // other software are using the same mechanics. But just in case, you are now warned!\n   //",
       "defaults": {},
       "funcname": "ViewManipulate",
-      "location": "ImGuizmo:221",
+      "location": "ImGuizmo:229",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_ViewManipulate_Float",
       "ret": "void",
@@ -935,9 +1213,10 @@
       "call_args": "(view,projection,operation,mode,matrix,length,ConvertToCPP_ImVec2(position),ConvertToCPP_ImVec2(size),backgroundColor)",
       "call_args_old": "(view,projection,operation,mode,matrix,length,position,size,backgroundColor)",
       "cimguiname": "ImGuizmo_ViewManipulate",
+      "comment": "   // use this version if you did not call Manipulate before and you are just using ViewManipulate",
       "defaults": {},
       "funcname": "ViewManipulate",
-      "location": "ImGuizmo:224",
+      "location": "ImGuizmo:232",
       "namespace": "ImGuizmo",
       "ov_cimguiname": "ImGuizmo_ViewManipulate_FloatPtr",
       "ret": "void",
@@ -956,7 +1235,8 @@
       "constructor": true,
       "defaults": {},
       "funcname": "Style",
-      "location": "ImGuizmo:291",
+      "location": "ImGuizmo:333",
+      "namespace": "ImGuizmo::Style",
       "ov_cimguiname": "Style_Style",
       "signature": "()",
       "stname": "Style"
@@ -975,7 +1255,7 @@
       "cimguiname": "Style_destroy",
       "defaults": {},
       "destructor": true,
-      "location": "ImGuizmo:291",
+      "location": "ImGuizmo:333",
       "ov_cimguiname": "Style_destroy",
       "ret": "void",
       "signature": "(Style*)",

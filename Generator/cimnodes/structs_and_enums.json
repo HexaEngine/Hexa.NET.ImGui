@@ -396,6 +396,7 @@
     "ImGuiOldColumnData": "inherited",
     "ImGuiOldColumns": "inherited",
     "ImGuiOnceUponAFrame": "inherited",
+    "ImGuiPackedDate": "inherited",
     "ImGuiPayload": "inherited",
     "ImGuiPlatformIO": "inherited",
     "ImGuiPlatformImeData": "inherited",
@@ -449,6 +450,7 @@
   "nonPOD_used": {
     "ImVec2": "inherited"
   },
+  "opaque_structs": [],
   "structs": {
     "EmulateThreeButtonMouse": [
       {
