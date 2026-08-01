@@ -1,0 +1,24 @@
+name: Build ImGui-NodeEditor
+
+on: [workflow_dispatch]
+
+jobs:
+
+  build-cimplot3d:
+    uses: JunaMeinhold/cmake-actions/.github/workflows/cmake.yml@v1.x.x
+    with:
+      lib-name: cimplot3d
+      repo: JunaMeinhold/cimnodes_editor
+      repo-tag: main
+      cmake-flags: -DIMGUI_WCHAR32=ON -DIMGUI_FREETYPE=ON -DCIMGUI_VARGS0=1
+      bin-name-linux: cimnodes_editor.so
+      bin-name-linux-normalized: cimnodes_editor.so
+      bin-name-windows: cimnodes_editor.dll
+      bin-name-windows-normalized: cimnodes_editor.dll
+      bin-name-osx: cimnodes_editor.dylib
+      bin-name-osx-normalized: cimnodes_editor.dylib
+      bin-name-android: cimnodes_editor.so
+      bin-name-android-normalized: cimnodes_editor.so
+      android-api: 23
+      pre-configure-steps: "bash scripts/setup_addon_build.sh"
+      checkout-self: true
