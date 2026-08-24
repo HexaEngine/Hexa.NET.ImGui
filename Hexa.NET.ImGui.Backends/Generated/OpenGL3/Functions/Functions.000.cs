@@ -43,7 +43,7 @@ namespace Hexa.NET.ImGui.Backends.OpenGL3
 		/// <summary>
 		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
 		/// </summary>
-		public static bool Init(ref byte glslVersion)
+		public static bool Init(in byte glslVersion)
 		{
 			fixed (byte* pglslVersion = &glslVersion)
 			{
@@ -154,7 +154,7 @@ namespace Hexa.NET.ImGui.Backends.OpenGL3
 		/// </summary>
 		public static void RenderDrawData(ImDrawDataPtr drawData)
 		{
-			RenderDrawDataNative(drawData);
+			RenderDrawDataNative((ImDrawData*)drawData);
 		}
 
 		/// <summary>
@@ -186,7 +186,7 @@ namespace Hexa.NET.ImGui.Backends.OpenGL3
 		/// </summary>
 		public static void UpdateTexture(ImTextureDataPtr tex)
 		{
-			UpdateTextureNative(tex);
+			UpdateTextureNative((ImTextureData*)tex);
 		}
 
 		/// <summary>

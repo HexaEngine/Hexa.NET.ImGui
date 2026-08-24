@@ -43,5 +43,10 @@ namespace Hexa.NET.ImGui
 		/// Can emit 'VtxOffset &gt; 0' to allow large meshes. Set when 'ImGuiBackendFlags_RendererHasVtxOffset' is enabled.<br/>
 		/// </summary>
 		AllowVtxOffset = unchecked(8),
+
+		/// <summary>
+		/// Disable automatically snapping AddText() calls to pixel boundaries.<br/>
+		/// </summary>
+		TextNoPixelSnap = unchecked(16),
 	}
 }

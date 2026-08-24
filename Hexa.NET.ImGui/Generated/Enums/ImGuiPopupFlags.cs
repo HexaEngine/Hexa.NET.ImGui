@@ -25,29 +25,19 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// For BeginPopupContext*(): open on Left Mouse release. Guaranteed to always be == 0 (same as ImGuiMouseButton_Left)<br/>
+		/// For BeginPopupContext*(): open on Left Mouse release. Only one button allowed!<br/>
 		/// </summary>
-		MouseButtonLeft = unchecked(0),
+		MouseButtonLeft = unchecked(4),
 
 		/// <summary>
-		/// For BeginPopupContext*(): open on Right Mouse release. Guaranteed to always be == 1 (same as ImGuiMouseButton_Right)<br/>
+		/// For BeginPopupContext*(): open on Right Mouse release. Only one button allowed! (default)<br/>
 		/// </summary>
-		MouseButtonRight = unchecked(1),
+		MouseButtonRight = unchecked(8),
 
 		/// <summary>
-		/// For BeginPopupContext*(): open on Middle Mouse release. Guaranteed to always be == 2 (same as ImGuiMouseButton_Middle)<br/>
+		/// For BeginPopupContext*(): open on Middle Mouse release. Only one button allowed!<br/>
 		/// </summary>
-		MouseButtonMiddle = unchecked(2),
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		MouseButtonMask = unchecked(31),
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		MouseButtonDefault = unchecked(1),
+		MouseButtonMiddle = unchecked(12),
 
 		/// <summary>
 		/// For OpenPopup*(), BeginPopupContext*(): don't reopen same popup if already open (won't reposition, won't reinitialize navigation)<br/>
@@ -78,5 +68,20 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		AnyPopup = unchecked(3072),
+
+		/// <summary>
+		/// [Internal]<br/>
+		/// </summary>
+		MouseButtonShift = unchecked(2),
+
+		/// <summary>
+		/// [Internal]<br/>
+		/// </summary>
+		MouseButtonMask = unchecked(12),
+
+		/// <summary>
+		/// [Internal] Reserve legacy bits 0-1 to detect incorrectly passing 1 or 2 to the function.<br/>
+		/// </summary>
+		InvalidMask = unchecked(3),
 	}
 }

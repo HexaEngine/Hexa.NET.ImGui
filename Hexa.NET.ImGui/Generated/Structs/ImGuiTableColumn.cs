@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// [Internal] sizeof() ~ 112<br/>
+	/// [Internal] sizeof() ~ 120<br/>
 	/// We use the terminology "Enabled" to refer to a column that is not Hidden by userapi.<br/>
 	/// We use the terminology "Clipped" to refer to a column that is out of sight because of scrollingclipping.<br/>
 	/// This is in contrast with some user-facing api such as IsItemVisible()  IsRectVisible() which use "Visible" to mean "not clipped".<br/>
@@ -78,7 +78,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public uint UserID;
+		public uint ID;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public uint UserData;
 
 		/// <summary>
 		/// To be documented.
@@ -195,27 +200,14 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public byte IsSkipItems;
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte IsPreserveWidthAuto;
-
+		public bool RawBits0;
 		/// <summary>
 		/// To be documented.
 		/// </summary>
 		public sbyte NavLayerCurrent;
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte AutoFitQueue;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public byte CannotSkipItemsQueue;
-
-		public byte RawBits0;
+		public byte RawBits1;
+		public byte RawBits2;
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -225,7 +217,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTableColumn(ImGuiTableColumnFlags flags = default, float widthGiven = default, float minX = default, float maxX = default, float widthRequest = default, float widthAuto = default, float widthMax = default, float stretchWeight = default, float initStretchWeightOrWidth = default, ImRect clipRect = default, uint userId = default, float workMinX = default, float workMaxX = default, float itemWidth = default, float contentMaxXFrozen = default, float contentMaxXUnfrozen = default, float contentMaxXHeadersUsed = default, float contentMaxXHeadersIdeal = default, short nameOffset = default, short displayOrder = default, short indexWithinEnabledSet = default, short prevEnabledColumn = default, short nextEnabledColumn = default, short sortOrder = default, ushort drawChannelCurrent = default, ushort drawChannelFrozen = default, ushort drawChannelUnfrozen = default, bool isEnabled = default, bool isUserEnabled = default, bool isUserEnabledNextFrame = default, bool isVisibleX = default, bool isVisibleY = default, bool isRequestOutput = default, bool isSkipItems = default, bool isPreserveWidthAuto = default, sbyte navLayerCurrent = default, byte autoFitQueue = default, byte cannotSkipItemsQueue = default, byte sortDirection = default, byte sortDirectionsAvailCount = default, byte sortDirectionsAvailMask = default, byte sortDirectionsAvailList = default)
+		public unsafe ImGuiTableColumn(ImGuiTableColumnFlags flags = default, float widthGiven = default, float minX = default, float maxX = default, float widthRequest = default, float widthAuto = default, float widthMax = default, float stretchWeight = default, float initStretchWeightOrWidth = default, ImRect clipRect = default, uint id = default, uint userData = default, float workMinX = default, float workMaxX = default, float itemWidth = default, float contentMaxXFrozen = default, float contentMaxXUnfrozen = default, float contentMaxXHeadersUsed = default, float contentMaxXHeadersIdeal = default, short nameOffset = default, short displayOrder = default, short indexWithinEnabledSet = default, short prevEnabledColumn = default, short nextEnabledColumn = default, short sortOrder = default, ushort drawChannelCurrent = default, ushort drawChannelFrozen = default, ushort drawChannelUnfrozen = default, bool isEnabled = default, bool isUserEnabled = default, bool isUserEnabledNextFrame = default, bool isVisibleX = default, bool isVisibleY = default, bool isRequestOutput = default, bool isSkipItems = default, bool isPreserveWidthAuto = default, bool isJustCreated = default, bool isLoadedSettings = default, bool isNeedReconcileSrc = default, bool isNeedReconcileDst = default, sbyte navLayerCurrent = default, byte autoFitQueue = default, byte cannotSkipItemsQueue = default, byte sortDirection = default, byte sortDirectionsAvailCount = default, byte sortDirectionsAvailMask = default, byte sortDirectionsAvailList = default)
 		{
 			Flags = flags;
 			WidthGiven = widthGiven;
@@ -237,7 +229,8 @@ namespace Hexa.NET.ImGui
 			StretchWeight = stretchWeight;
 			InitStretchWeightOrWidth = initStretchWeightOrWidth;
 			ClipRect = clipRect;
-			UserID = userId;
+			ID = id;
+			UserData = userData;
 			WorkMinX = workMinX;
 			WorkMaxX = workMaxX;
 			ItemWidth = itemWidth;
@@ -261,7 +254,11 @@ namespace Hexa.NET.ImGui
 			IsVisibleY = isVisibleY ? (byte)1 : (byte)0;
 			IsRequestOutput = isRequestOutput ? (byte)1 : (byte)0;
 			IsSkipItems = isSkipItems ? (byte)1 : (byte)0;
-			IsPreserveWidthAuto = isPreserveWidthAuto ? (byte)1 : (byte)0;
+			IsPreserveWidthAuto = isPreserveWidthAuto;
+			IsJustCreated = isJustCreated;
+			IsLoadedSettings = isLoadedSettings;
+			IsNeedReconcileSrc = isNeedReconcileSrc;
+			IsNeedReconcileDst = isNeedReconcileDst;
 			NavLayerCurrent = navLayerCurrent;
 			AutoFitQueue = autoFitQueue;
 			CannotSkipItemsQueue = cannotSkipItemsQueue;
@@ -272,11 +269,25 @@ namespace Hexa.NET.ImGui
 		}
 
 
-		public byte SortDirection { get => Bitfield.Get(RawBits0, 0, 2); set => Bitfield.Set(ref RawBits0, value, 0, 2); }
+		public bool IsPreserveWidthAuto { get => Bitfield.Get(RawBits0, 0, 1); set => Bitfield.Set(ref RawBits0, value, 0, 1); }
 
-		public byte SortDirectionsAvailCount { get => Bitfield.Get(RawBits0, 2, 2); set => Bitfield.Set(ref RawBits0, value, 2, 2); }
+		public bool IsJustCreated { get => Bitfield.Get(RawBits0, 1, 1); set => Bitfield.Set(ref RawBits0, value, 1, 1); }
 
-		public byte SortDirectionsAvailMask { get => Bitfield.Get(RawBits0, 4, 4); set => Bitfield.Set(ref RawBits0, value, 4, 4); }
+		public bool IsLoadedSettings { get => Bitfield.Get(RawBits0, 2, 1); set => Bitfield.Set(ref RawBits0, value, 2, 1); }
+
+		public bool IsNeedReconcileSrc { get => Bitfield.Get(RawBits0, 3, 1); set => Bitfield.Set(ref RawBits0, value, 3, 1); }
+
+		public bool IsNeedReconcileDst { get => Bitfield.Get(RawBits0, 4, 1); set => Bitfield.Set(ref RawBits0, value, 4, 1); }
+
+		public byte AutoFitQueue { get => Bitfield.Get(RawBits1, 0, 4); set => Bitfield.Set(ref RawBits1, value, 0, 4); }
+
+		public byte CannotSkipItemsQueue { get => Bitfield.Get(RawBits1, 4, 4); set => Bitfield.Set(ref RawBits1, value, 4, 4); }
+
+		public byte SortDirection { get => Bitfield.Get(RawBits2, 0, 2); set => Bitfield.Set(ref RawBits2, value, 0, 2); }
+
+		public byte SortDirectionsAvailCount { get => Bitfield.Get(RawBits2, 2, 2); set => Bitfield.Set(ref RawBits2, value, 2, 2); }
+
+		public byte SortDirectionsAvailMask { get => Bitfield.Get(RawBits2, 4, 4); set => Bitfield.Set(ref RawBits2, value, 4, 4); }
 
 	}
 
@@ -364,7 +375,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref uint UserID => ref Unsafe.AsRef<uint>(&Handle->UserID);
+		public ref uint ID => ref Unsafe.AsRef<uint>(&Handle->ID);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref uint UserData => ref Unsafe.AsRef<uint>(&Handle->UserData);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -460,7 +475,23 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref bool IsPreserveWidthAuto => ref Unsafe.AsRef<bool>(&Handle->IsPreserveWidthAuto);
+		public bool IsPreserveWidthAuto { get => Handle->IsPreserveWidthAuto; set => Handle->IsPreserveWidthAuto = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public bool IsJustCreated { get => Handle->IsJustCreated; set => Handle->IsJustCreated = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public bool IsLoadedSettings { get => Handle->IsLoadedSettings; set => Handle->IsLoadedSettings = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public bool IsNeedReconcileSrc { get => Handle->IsNeedReconcileSrc; set => Handle->IsNeedReconcileSrc = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public bool IsNeedReconcileDst { get => Handle->IsNeedReconcileDst; set => Handle->IsNeedReconcileDst = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -468,11 +499,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte AutoFitQueue => ref Unsafe.AsRef<byte>(&Handle->AutoFitQueue);
+		public byte AutoFitQueue { get => Handle->AutoFitQueue; set => Handle->AutoFitQueue = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref byte CannotSkipItemsQueue => ref Unsafe.AsRef<byte>(&Handle->CannotSkipItemsQueue);
+		public byte CannotSkipItemsQueue { get => Handle->CannotSkipItemsQueue; set => Handle->CannotSkipItemsQueue = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>

@@ -30,7 +30,7 @@ namespace Hexa.NET.ImGui
 		Resizable = unchecked(1),
 
 		/// <summary>
-		/// Enable reordering columns in header row (need calling TableSetupColumn() + TableHeadersRow() to display headers)<br/>
+		/// Enable reordering columns in header row. (Need calling TableSetupColumn() + TableHeadersRow() to display headers, or using ImGuiTableFlags_ContextMenuInBody to access context-menu without headers).<br/>
 		/// </summary>
 		Reorderable = unchecked(2),
 
@@ -45,12 +45,12 @@ namespace Hexa.NET.ImGui
 		Sortable = unchecked(8),
 
 		/// <summary>
-		/// Disable persisting columns order, width and sort settings in the .ini file.<br/>
+		/// Disable persisting columns order, width, visibility and sort settings in the .ini file.<br/>
 		/// </summary>
 		NoSavedSettings = unchecked(16),
 
 		/// <summary>
-		/// Right-click on columns bodycontents will display table context menu. By default it is available in TableHeadersRow().<br/>
+		/// Right-click on columns bodycontents will also display table context menu. By default it is available in TableHeadersRow().<br/>
 		/// </summary>
 		ContextMenuInBody = unchecked(32),
 

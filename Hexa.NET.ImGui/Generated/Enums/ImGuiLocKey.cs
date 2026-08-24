@@ -16,7 +16,6 @@ namespace Hexa.NET.ImGui
 	/// <summary>
 	/// To be documented.
 	/// </summary>
-	[Flags]
 	public enum ImGuiLocKey : int
 	{
 		/// <summary>
@@ -42,51 +41,61 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		TableResetOrder = unchecked(4),
+		TableReset = unchecked(4),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		WindowingMainMenuBar = unchecked(5),
+		TableResetOrder = unchecked(5),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		WindowingPopup = unchecked(6),
+		TableResetVisibility = unchecked(6),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		WindowingUntitled = unchecked(7),
+		WindowingMainMenuBar = unchecked(7),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		OpenLinkS = unchecked(8),
+		WindowingPopup = unchecked(8),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		CopyLink = unchecked(9),
+		WindowingUntitled = unchecked(9),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		DockingHideTabBar = unchecked(10),
+		OpenLinkS = unchecked(10),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		DockingHoldShiftToDock = unchecked(11),
+		CopyLink = unchecked(11),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		DockingDragToUndockOrMoveNode = unchecked(12),
+		DockingHideTabBar = unchecked(12),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Count = unchecked(13),
+		DockingHoldShiftToDock = unchecked(13),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		DockingDragToUndockOrMoveNode = unchecked(14),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		Count = unchecked(15),
 	}
 }

@@ -30,7 +30,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiItemFlags ItemFlags;
+		public ImGuiItemFlags ItemFlagsSet;
 
 		/// <summary>
 		/// To be documented.
@@ -77,14 +77,19 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public uint StorageId;
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public uint ColorMarker;
+
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiNextItemData(ImGuiNextItemDataFlags hasFlags = default, ImGuiItemFlags itemFlags = default, uint focusScopeId = default, long selectionUserData = default, float width = default, int shortcut = default, ImGuiInputFlags shortcutFlags = default, bool openVal = default, byte openCond = default, ImGuiDataTypeStorage refVal = default, uint storageId = default)
+		public unsafe ImGuiNextItemData(ImGuiNextItemDataFlags hasFlags = default, ImGuiItemFlags itemFlagsSet = default, uint focusScopeId = default, long selectionUserData = default, float width = default, int shortcut = default, ImGuiInputFlags shortcutFlags = default, bool openVal = default, byte openCond = default, ImGuiDataTypeStorage refVal = default, uint storageId = default, uint colorMarker = default)
 		{
 			HasFlags = hasFlags;
-			ItemFlags = itemFlags;
+			ItemFlagsSet = itemFlagsSet;
 			FocusScopeId = focusScopeId;
 			SelectionUserData = selectionUserData;
 			Width = width;
@@ -94,6 +99,7 @@ namespace Hexa.NET.ImGui
 			OpenCond = openCond;
 			RefVal = refVal;
 			StorageId = storageId;
+			ColorMarker = colorMarker;
 		}
 
 
@@ -147,7 +153,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiItemFlags ItemFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->ItemFlags);
+		public ref ImGuiItemFlags ItemFlagsSet => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->ItemFlagsSet);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -184,6 +190,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref uint StorageId => ref Unsafe.AsRef<uint>(&Handle->StorageId);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref uint ColorMarker => ref Unsafe.AsRef<uint>(&Handle->ColorMarker);
 	}
 
 }

@@ -80,6 +80,11 @@ namespace Hexa.NET.ImGui
 		AcceptNoPreviewTooltip = unchecked(4096),
 
 		/// <summary>
+		/// Accepting item will render as if hovered. Useful for e.g. a Button() used as a drop target.<br/>
+		/// </summary>
+		AcceptDrawAsHovered = unchecked(8192),
+
+		/// <summary>
 		/// For peeking ahead and inspecting the payload before delivery.<br/>
 		/// </summary>
 		AcceptPeekOnly = unchecked(3072),

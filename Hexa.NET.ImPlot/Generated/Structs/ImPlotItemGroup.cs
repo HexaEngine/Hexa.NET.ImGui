@@ -43,16 +43,22 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public int ColormapIdx;
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ImPlotMarker MarkerIdx;
+
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItemGroup(uint id = default, ImPlotLegend legend = default, ImPoolImPlotItem itemPool = default, int colormapIdx = default)
+		public unsafe ImPlotItemGroup(uint id = default, ImPlotLegend legend = default, ImPoolImPlotItem itemPool = default, int colormapIdx = default, ImPlotMarker markerIdx = default)
 		{
 			ID = id;
 			Legend = legend;
 			ItemPool = itemPool;
 			ColormapIdx = colormapIdx;
+			MarkerIdx = markerIdx;
 		}
 
 
@@ -94,7 +100,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItem(ref byte labelId)
+		public unsafe ImPlotItem* GetItem(in byte labelId)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
@@ -193,7 +199,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe uint GetItemID(ref byte labelId)
+		public unsafe uint GetItemID(in byte labelId)
 		{
 			fixed (ImPlotItemGroup* @this = &this)
 			{
@@ -413,6 +419,10 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref ImPlotMarker MarkerIdx => ref Unsafe.AsRef<ImPlotMarker>(&Handle->MarkerIdx);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public unsafe void Destroy()
 		{
 			ImPlot.DestroyNative(Handle);
@@ -439,7 +449,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem* GetItem(ref byte labelId)
+		public unsafe ImPlotItem* GetItem(in byte labelId)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -520,7 +530,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe uint GetItemID(ref byte labelId)
+		public unsafe uint GetItemID(in byte labelId)
 		{
 			fixed (byte* plabelId = &labelId)
 			{

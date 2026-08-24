@@ -402,7 +402,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ImPlotAxis* axis, ref byte label)
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, in byte label)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
@@ -462,7 +462,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ref ImPlotAxis axis, ref byte label)
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, in byte label)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
@@ -542,7 +542,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetTitle(ref byte title)
+		public unsafe void SetTitle(in byte title)
 		{
 			fixed (ImPlotPlot* @this = &this)
 			{
@@ -911,7 +911,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ImPlotAxis* axis, ref byte label)
+		public unsafe void SetAxisLabel(ImPlotAxis* axis, in byte label)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -962,7 +962,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetAxisLabel(ref ImPlotAxis axis, ref byte label)
+		public unsafe void SetAxisLabel(ref ImPlotAxis axis, in byte label)
 		{
 			fixed (ImPlotAxis* paxis = &axis)
 			{
@@ -1030,7 +1030,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void SetTitle(ref byte title)
+		public unsafe void SetTitle(in byte title)
 		{
 			fixed (byte* ptitle = &title)
 			{

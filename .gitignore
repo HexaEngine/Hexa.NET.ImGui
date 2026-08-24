@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 
 token.txt
+
+# Cosy CI/CD workflows tool
+.CosyCache/

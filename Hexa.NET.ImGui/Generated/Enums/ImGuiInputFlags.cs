@@ -55,7 +55,7 @@ namespace Hexa.NET.ImGui
 		RouteOverFocused = unchecked(16384),
 
 		/// <summary>
-		/// Option: global route: higher priority than active item. Unlikely you need to use that: will interfere with every active items, e.g. CTRL+A registered by InputText will be overridden by this. May not be fully honored as userinternal code is likely to always assume they can access keys when active.<br/>
+		/// Option: global route: higher priority than active item. Unlikely you need to use that: will interfere with every active items, e.g. Ctrl+A registered by InputText will be overridden by this. May not be fully honored as userinternal code is likely to always assume they can access keys when active.<br/>
 		/// </summary>
 		RouteOverActive = unchecked(32768),
 

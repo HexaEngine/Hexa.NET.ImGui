@@ -63,7 +63,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public float CircleSegmentMaxError;
+		public float CircleTessellationMaxError;
 
 		/// <summary>
 		/// To be documented.
@@ -224,7 +224,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, Vector4* texUvLines = default, ImFontAtlas* fontAtlas = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleSegmentMaxError = default, float initialFringeScale = default, ImDrawListFlags initialFlags = default, Vector4 clipRectFullscreen = default, ImVector<Vector2> tempBuffer = default, ImVector<ImDrawListPtr> drawLists = default, ImGuiContext* context = default, Vector2* arcFastVtx = default, float arcFastRadiusCutoff = default, byte* circleSegmentCounts = default)
+		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, Vector4* texUvLines = default, ImFontAtlas* fontAtlas = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleTessellationMaxError = default, float initialFringeScale = default, ImDrawListFlags initialFlags = default, Vector4 clipRectFullscreen = default, ImVector<Vector2> tempBuffer = default, ImVector<ImDrawListPtr> drawLists = default, ImGuiContext* context = default, Vector2* arcFastVtx = default, float arcFastRadiusCutoff = default, byte* circleSegmentCounts = default)
 		{
 			TexUvWhitePixel = texUvWhitePixel;
 			TexUvLines = texUvLines;
@@ -233,7 +233,7 @@ namespace Hexa.NET.ImGui
 			FontSize = fontSize;
 			FontScale = fontScale;
 			CurveTessellationTol = curveTessellationTol;
-			CircleSegmentMaxError = circleSegmentMaxError;
+			CircleTessellationMaxError = circleTessellationMaxError;
 			InitialFringeScale = initialFringeScale;
 			InitialFlags = initialFlags;
 			ClipRectFullscreen = clipRectFullscreen;
@@ -364,7 +364,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, Vector4* texUvLines = default, ImFontAtlas* fontAtlas = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleSegmentMaxError = default, float initialFringeScale = default, ImDrawListFlags initialFlags = default, Vector4 clipRectFullscreen = default, ImVector<Vector2> tempBuffer = default, ImVector<ImDrawListPtr> drawLists = default, ImGuiContext* context = default, Span<Vector2> arcFastVtx = default, float arcFastRadiusCutoff = default, Span<byte> circleSegmentCounts = default)
+		public unsafe ImDrawListSharedData(Vector2 texUvWhitePixel = default, Vector4* texUvLines = default, ImFontAtlas* fontAtlas = default, ImFont* font = default, float fontSize = default, float fontScale = default, float curveTessellationTol = default, float circleTessellationMaxError = default, float initialFringeScale = default, ImDrawListFlags initialFlags = default, Vector4 clipRectFullscreen = default, ImVector<Vector2> tempBuffer = default, ImVector<ImDrawListPtr> drawLists = default, ImGuiContext* context = default, Span<Vector2> arcFastVtx = default, float arcFastRadiusCutoff = default, Span<byte> circleSegmentCounts = default)
 		{
 			TexUvWhitePixel = texUvWhitePixel;
 			TexUvLines = texUvLines;
@@ -373,7 +373,7 @@ namespace Hexa.NET.ImGui
 			FontSize = fontSize;
 			FontScale = fontScale;
 			CurveTessellationTol = curveTessellationTol;
-			CircleSegmentMaxError = circleSegmentMaxError;
+			CircleTessellationMaxError = circleTessellationMaxError;
 			InitialFringeScale = initialFringeScale;
 			InitialFlags = initialFlags;
 			ClipRectFullscreen = clipRectFullscreen;
@@ -590,7 +590,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref float CircleSegmentMaxError => ref Unsafe.AsRef<float>(&Handle->CircleSegmentMaxError);
+		public ref float CircleTessellationMaxError => ref Unsafe.AsRef<float>(&Handle->CircleTessellationMaxError);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

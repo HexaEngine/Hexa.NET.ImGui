@@ -55,7 +55,7 @@ namespace Hexa.NET.ImGui
 		AllowTabInput = unchecked(32),
 
 		/// <summary>
-		/// Return 'true' when Enter is pressed (as opposed to every time the value was modified). Consider using IsItemDeactivatedAfterEdit() instead!<br/>
+		/// Return 'true' when Enter is pressed (as opposed to every time the value was modified). Consider disabling LiveEdit! or using IsItemDeactivatedAfterEdit() instead!<br/>
 		/// </summary>
 		EnterReturnsTrue = unchecked(64),
 
@@ -65,7 +65,7 @@ namespace Hexa.NET.ImGui
 		EscapeClearsAll = unchecked(128),
 
 		/// <summary>
-		/// In multi-line mode, validate with Enter, add new line with Ctrl+Enter (default is opposite: validate with Ctrl+Enter, add line with Enter).<br/>
+		/// In multi-line mode: validate with Enter, add new line with Ctrl+Enter (default is opposite: validate with Ctrl+Enter, add line with Enter). Note that Shift+Enter always enter a new line either way.<br/>
 		/// </summary>
 		CtrlEnterForNewLine = unchecked(256),
 
@@ -145,7 +145,7 @@ namespace Hexa.NET.ImGui
 		CallbackEdit = unchecked(8388608),
 
 		/// <summary>
-		/// InputTextMultine(): word-wrap lines that are too long.<br/>
+		/// InputTextMultiline(): word-wrap lines that are too long.<br/>
 		/// </summary>
 		WordWrap = unchecked(16777216),
 	}

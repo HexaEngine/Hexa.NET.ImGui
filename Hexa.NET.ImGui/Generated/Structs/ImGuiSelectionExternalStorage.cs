@@ -40,7 +40,7 @@ namespace Hexa.NET.ImGui
 		public unsafe ImGuiSelectionExternalStorage(void* userData = default, delegate*<ImGuiSelectionExternalStorage*, int, byte, void> adapterSetItemSelected = default)
 		{
 			UserData = userData;
-			AdapterSetItemSelected = (void*)adapterSetItemSelected;
+			AdapterSetItemSelected = (delegate*<ImGuiSelectionExternalStorage*, int, byte, void>*)adapterSetItemSelected;
 		}
 
 
@@ -51,7 +51,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImGuiSelectionExternalStorage* @this = &this)
 			{
-				ImGui.ApplyRequestsNative(@this, msIo);
+				ImGui.ApplyRequestsNative(@this, (ImGuiMultiSelectIO*)msIo);
 			}
 		}
 
@@ -136,7 +136,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe void ApplyRequests(ImGuiMultiSelectIOPtr msIo)
 		{
-			ImGui.ApplyRequestsNative(Handle, msIo);
+			ImGui.ApplyRequestsNative(Handle, (ImGuiMultiSelectIO*)msIo);
 		}
 
 		/// <summary>

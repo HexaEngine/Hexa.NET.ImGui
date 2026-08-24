@@ -65,7 +65,7 @@ namespace Hexa.NET.ImGui
 		NoSidePreview = unchecked(256),
 
 		/// <summary>
-		/// ColorEdit: disable drag and drop target. ColorButton: disable drag and drop source.<br/>
+		/// ColorEdit: disable drag and drop targetsource. ColorButton: disable drag and drop source.<br/>
 		/// </summary>
 		NoDragDrop = unchecked(512),
 
@@ -75,24 +75,29 @@ namespace Hexa.NET.ImGui
 		NoBorder = unchecked(1024),
 
 		/// <summary>
+		/// ColorEdit: disable rendering RGBA color marker. May also be disabled globally by setting style.ColorMarkerSize = 0.<br/>
+		/// </summary>
+		NoColorMarkers = unchecked(2048),
+
+		/// <summary>
 		/// ColorEdit, ColorPicker, ColorButton: disable alpha in the preview,. Contrary to _NoAlpha it may still be edited when calling ColorEdit4()ColorPicker4(). For ColorButton() this does the same as _NoAlpha.<br/>
 		/// </summary>
-		AlphaOpaque = unchecked(2048),
+		AlphaOpaque = unchecked(4096),
 
 		/// <summary>
 		/// ColorEdit, ColorPicker, ColorButton: disable rendering a checkerboard background behind transparent color.<br/>
 		/// </summary>
-		AlphaNoBg = unchecked(4096),
+		AlphaNoBg = unchecked(8192),
 
 		/// <summary>
 		/// ColorEdit, ColorPicker, ColorButton: display half opaque  half transparent preview.<br/>
 		/// </summary>
-		AlphaPreviewHalf = unchecked(8192),
+		AlphaPreviewHalf = unchecked(16384),
 
 		/// <summary>
 		/// ColorEdit, ColorPicker: show vertical alpha bargradient in picker.<br/>
 		/// </summary>
-		AlphaBar = unchecked(65536),
+		AlphaBar = unchecked(262144),
 
 		/// <summary>
 		/// (WIP) ColorEdit: Currently only disable 0.0f..1.0f limits in RGBA edition (note: you probably want to use ImGuiColorEditFlags_Float flag as well).<br/>
@@ -135,24 +140,29 @@ namespace Hexa.NET.ImGui
 		PickerHueWheel = unchecked(67108864),
 
 		/// <summary>
+		/// [Picker]      ColorPicker: disable rotating SatValue triangle. Best set in io.ConfigColorEditFlags once.<br/>
+		/// </summary>
+		PickerNoRotate = unchecked(134217728),
+
+		/// <summary>
 		/// [Input]       ColorEdit, ColorPicker: input and output data in RGB format.<br/>
 		/// </summary>
-		InputRgb = unchecked(134217728),
+		InputRgb = unchecked(268435456),
 
 		/// <summary>
 		/// [Input]       ColorEdit, ColorPicker: input and output data in HSV format.<br/>
 		/// </summary>
-		InputHsv = unchecked(268435456),
+		InputHsv = unchecked(536870912),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		DefaultOptions = unchecked(177209344),
+		DefaultOptions = unchecked(311427072),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		AlphaMask = unchecked(14338),
+		AlphaMask = unchecked(28674),
 
 		/// <summary>
 		/// To be documented.
@@ -172,6 +182,6 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		InputMask = unchecked(402653184),
+		InputMask = unchecked(805306368),
 	}
 }

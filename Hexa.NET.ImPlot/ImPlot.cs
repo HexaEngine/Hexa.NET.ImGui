@@ -2,6 +2,7 @@ namespace Hexa.NET.ImPlot
 {
     using HexaGen.Runtime;
     using System.Diagnostics;
+    using System.Numerics;
 
     public static class ImPlotConfig
     {
@@ -26,5 +27,9 @@ namespace Hexa.NET.ImPlot
         {
             return "cimplot";
         }
+
+        public const int IMPLOT_AUTO = -1;
+
+        public static readonly Vector4 IMPLOT_AUTO_COL = new(0, 0, 0, -1);
     }
 }

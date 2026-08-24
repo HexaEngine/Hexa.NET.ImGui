@@ -81,14 +81,14 @@ namespace Hexa.NET.ImGui
 		public unsafe ImFontLoader(byte* name = default, delegate*<ImFontAtlas*, bool> loaderInit = default, delegate*<ImFontAtlas*, void> loaderShutdown = default, delegate*<ImFontAtlas*, ImFontConfig*, bool> fontSrcInit = default, delegate*<ImFontAtlas*, ImFontConfig*, void> fontSrcDestroy = default, delegate*<ImFontAtlas*, ImFontConfig*, uint, bool> fontSrcContainsGlyph = default, delegate*<ImFontAtlas*, ImFontConfig*, ImFontBaked*, void*, bool> fontBakedInit = default, delegate*<ImFontAtlas*, ImFontConfig*, ImFontBaked*, void*, void> fontBakedDestroy = default, delegate*<ImFontAtlas*, ImFontConfig*, ImFontBaked*, void*, uint, ImFontGlyph*, float*, bool> fontBakedLoadGlyph = default, nuint fontBakedSrcLoaderDataSize = default)
 		{
 			Name = name;
-			LoaderInit = (void*)loaderInit;
-			LoaderShutdown = (void*)loaderShutdown;
-			FontSrcInit = (void*)fontSrcInit;
-			FontSrcDestroy = (void*)fontSrcDestroy;
-			FontSrcContainsGlyph = (void*)fontSrcContainsGlyph;
-			FontBakedInit = (void*)fontBakedInit;
-			FontBakedDestroy = (void*)fontBakedDestroy;
-			FontBakedLoadGlyph = (void*)fontBakedLoadGlyph;
+			LoaderInit = (delegate*<ImFontAtlas*, bool>*)loaderInit;
+			LoaderShutdown = (delegate*<ImFontAtlas*, void>*)loaderShutdown;
+			FontSrcInit = (delegate*<ImFontAtlas*, ImFontConfig*, bool>*)fontSrcInit;
+			FontSrcDestroy = (delegate*<ImFontAtlas*, ImFontConfig*, void>*)fontSrcDestroy;
+			FontSrcContainsGlyph = (delegate*<ImFontAtlas*, ImFontConfig*, uint, bool>*)fontSrcContainsGlyph;
+			FontBakedInit = (delegate*<ImFontAtlas*, ImFontConfig*, ImFontBaked*, void*, bool>*)fontBakedInit;
+			FontBakedDestroy = (delegate*<ImFontAtlas*, ImFontConfig*, ImFontBaked*, void*, void>*)fontBakedDestroy;
+			FontBakedLoadGlyph = (delegate*<ImFontAtlas*, ImFontConfig*, ImFontBaked*, void*, uint, ImFontGlyph*, float*, bool>*)fontBakedLoadGlyph;
 			FontBakedSrcLoaderDataSize = fontBakedSrcLoaderDataSize;
 		}
 

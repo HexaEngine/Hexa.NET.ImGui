@@ -64,7 +64,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void Append(Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt)
+		public unsafe void Append(Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, in byte fmt)
 		{
 			fixed (ImPlotAnnotationCollection* @this = &this)
 			{
@@ -135,7 +135,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AppendV(Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt, nuint args)
+		public unsafe void AppendV(Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, in byte fmt, nuint args)
 		{
 			fixed (ImPlotAnnotationCollection* @this = &this)
 			{
@@ -304,7 +304,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void Append(Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt)
+		public unsafe void Append(Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, in byte fmt)
 		{
 			fixed (byte* pfmt = &fmt)
 			{
@@ -363,7 +363,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe void AppendV(Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt, nuint args)
+		public unsafe void AppendV(Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, in byte fmt, nuint args)
 		{
 			fixed (byte* pfmt = &fmt)
 			{

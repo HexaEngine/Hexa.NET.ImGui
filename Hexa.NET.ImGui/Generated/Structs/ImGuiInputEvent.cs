@@ -26,7 +26,7 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		[StructLayout(LayoutKind.Explicit)]
-		public partial struct ImGuiInputEventUnion
+		public partial struct ImGuiInputEventAnonymous
 		{
 			/// <summary>
 			/// To be documented.
@@ -74,7 +74,7 @@ namespace Hexa.NET.ImGui
 			/// <summary>
 			/// To be documented.
 			/// </summary>
-			public unsafe ImGuiInputEventUnion(ImGuiInputEventMousePos mousePos = default, ImGuiInputEventMouseWheel mouseWheel = default, ImGuiInputEventMouseButton mouseButton = default, ImGuiInputEventMouseViewport mouseViewport = default, ImGuiInputEventKey key = default, ImGuiInputEventText text = default, ImGuiInputEventAppFocused appFocused = default)
+			public unsafe ImGuiInputEventAnonymous(ImGuiInputEventMousePos mousePos = default, ImGuiInputEventMouseWheel mouseWheel = default, ImGuiInputEventMouseButton mouseButton = default, ImGuiInputEventMouseViewport mouseViewport = default, ImGuiInputEventKey key = default, ImGuiInputEventText text = default, ImGuiInputEventAppFocused appFocused = default)
 			{
 				MousePos = mousePos;
 				MouseWheel = mouseWheel;
@@ -106,7 +106,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ImGuiInputEventUnion Union;
+		public ImGuiInputEventAnonymous Union;
 
 		/// <summary>
 		/// To be documented.
@@ -117,7 +117,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiInputEvent(ImGuiInputEventType type = default, ImGuiInputSource source = default, uint eventId = default, ImGuiInputEventUnion union = default, bool addedByTestEngine = default)
+		public unsafe ImGuiInputEvent(ImGuiInputEventType type = default, ImGuiInputSource source = default, uint eventId = default, ImGuiInputEventAnonymous union = default, bool addedByTestEngine = default)
 		{
 			Type = type;
 			Source = source;
@@ -185,7 +185,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref ImGuiInputEvent.ImGuiInputEventUnion Union => ref Unsafe.AsRef<ImGuiInputEvent.ImGuiInputEventUnion>(&Handle->Union);
+		public ref ImGuiInputEvent.ImGuiInputEventAnonymous Union => ref Unsafe.AsRef<ImGuiInputEvent.ImGuiInputEventAnonymous>(&Handle->Union);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

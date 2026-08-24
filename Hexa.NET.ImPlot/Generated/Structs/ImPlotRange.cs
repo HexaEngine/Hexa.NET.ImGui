@@ -44,53 +44,6 @@ namespace Hexa.NET.ImPlot
 		}
 
 
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe double Clamp(double value)
-		{
-			fixed (ImPlotRange* @this = &this)
-			{
-				double ret = ImPlot.ClampNative(@this, value);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe bool Contains(double value)
-		{
-			fixed (ImPlotRange* @this = &this)
-			{
-				byte ret = ImPlot.ContainsNative(@this, value);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void Destroy()
-		{
-			fixed (ImPlotRange* @this = &this)
-			{
-				ImPlot.DestroyNative(@this);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe double Size()
-		{
-			fixed (ImPlotRange* @this = &this)
-			{
-				double ret = ImPlot.SizeNative(@this);
-				return ret;
-			}
-		}
-
 	}
 
 	/// <summary>
@@ -142,41 +95,6 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		public ref double Max => ref Unsafe.AsRef<double>(&Handle->Max);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe double Clamp(double value)
-		{
-			double ret = ImPlot.ClampNative(Handle, value);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe bool Contains(double value)
-		{
-			byte ret = ImPlot.ContainsNative(Handle, value);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe void Destroy()
-		{
-			ImPlot.DestroyNative(Handle);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public unsafe double Size()
-		{
-			double ret = ImPlot.SizeNative(Handle);
-			return ret;
-		}
-
 	}
 
 }

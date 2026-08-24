@@ -18,7 +18,6 @@ namespace Hexa.NET.ImPlot3D
 	/// To be documented.
 	/// </summary>
 	[NativeName(NativeNameType.Enum, "ImAxis3D_")]
-	[Flags]
 	public enum ImAxis3D : int
 	{
 		/// <summary>

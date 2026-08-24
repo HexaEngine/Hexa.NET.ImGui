@@ -35,7 +35,7 @@ namespace Hexa.NET.ImGui
 		NoRoundToFormat = unchecked(64),
 
 		/// <summary>
-		/// Disable CTRL+Click or Enter key allowing to input text directly into the widget.<br/>
+		/// Disable Ctrl+Click or Enter key allowing to input text directly into the widget.<br/>
 		/// </summary>
 		NoInput = unchecked(128),
 
@@ -45,7 +45,7 @@ namespace Hexa.NET.ImGui
 		WrapAround = unchecked(256),
 
 		/// <summary>
-		/// Clamp value to minmax bounds when input manually with CTRL+Click. By default CTRL+Click allows going out of bounds.<br/>
+		/// Clamp value to minmax bounds when input manually with Ctrl+Click. By default Ctrl+Click allows going out of bounds.<br/>
 		/// </summary>
 		ClampOnInput = unchecked(512),
 
@@ -60,12 +60,17 @@ namespace Hexa.NET.ImGui
 		NoSpeedTweaks = unchecked(2048),
 
 		/// <summary>
+		/// DragScalarN(), SliderScalarN(): Draw RGBA color markers on each component.<br/>
+		/// </summary>
+		ColorMarkers = unchecked(4096),
+
+		/// <summary>
 		/// To be documented.
 		/// </summary>
 		AlwaysClamp = unchecked(1536),
 
 		/// <summary>
-		/// [Internal] We treat using those bits as being potentially a 'float power' argument from the previous API that has got miscast to this enum, and will trigger an assert if needed.<br/>
+		/// [Internal] We treat using those bits as being potentially a 'float power' argument from legacy API (obsoleted 2020-08) that has got miscast to this enum, and will trigger an assert if needed.<br/>
 		/// </summary>
 		InvalidMask = unchecked(1879048207),
 	}

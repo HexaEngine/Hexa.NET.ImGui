@@ -60,7 +60,7 @@ namespace Hexa.NET.ImGui
 		DrawSelectedOverline = unchecked(64),
 
 		/// <summary>
-		/// Shrink down tabs when they don't fit, until width is style.TabMinWidthShrink, then enable scrolling buttons.<br/>
+		/// Shrink down tabs when they don't fit, until width is style.TabMinWidthShrink, then enable scrolling. Setting TabMinWidthShrink to FLT_MAX makes this behave like ImGuiTabBarFlags_FittingPolicyScroll.<br/>
 		/// </summary>
 		FittingPolicyMixed = unchecked(128),
 

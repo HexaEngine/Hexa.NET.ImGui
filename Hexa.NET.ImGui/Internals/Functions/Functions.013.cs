@@ -21,39 +21,16 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEndDisplay, ref byte textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		public static uint GetID(ref ImGuiWindow self, in byte str, in byte strEnd)
 		{
-			fixed (ImFont* pfont = &font)
+			fixed (ImGuiWindow* pself = &self)
 			{
-				fixed (byte* ptextBegin = &textBegin)
+				fixed (byte* pstr = &str)
 				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEndDisplay != null)
+					fixed (byte* pstrEnd = &strEnd)
 					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte*)ptextEnd, outRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
+						uint ret = GetIDNative((ImGuiWindow*)pself, (byte*)pstr, (byte*)pstrEnd);
+						return ret;
 					}
 				}
 			}
@@ -62,39 +39,16 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEndDisplay, ReadOnlySpan<byte> textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		public static uint GetID(ref ImGuiWindow self, ReadOnlySpan<byte> str, ReadOnlySpan<byte> strEnd)
 		{
-			fixed (ImFont* pfont = &font)
+			fixed (ImGuiWindow* pself = &self)
 			{
-				fixed (byte* ptextBegin = &textBegin)
+				fixed (byte* pstr = str)
 				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEndDisplay != null)
+					fixed (byte* pstrEnd = strEnd)
 					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte* ptextEnd = textEnd)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte*)ptextEnd, outRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
+						uint ret = GetIDNative((ImGuiWindow*)pself, (byte*)pstr, (byte*)pstrEnd);
+						return ret;
 					}
 				}
 			}
@@ -103,366 +57,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEndDisplay, string textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		public static uint GetID(ref ImGuiWindow self, string str, string strEnd)
 		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEndDisplay != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (textEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, pStr1, outRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr1);
-						}
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEndDisplay, ref byte textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEndDisplay = &textEndDisplay)
-					{
-						fixed (byte* ptextEnd = &textEnd)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, (byte*)ptextEnd, outRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEndDisplay, ReadOnlySpan<byte> textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEndDisplay = &textEndDisplay)
-					{
-						fixed (byte* ptextEnd = textEnd)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, (byte*)ptextEnd, outRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEndDisplay, string textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEndDisplay = &textEndDisplay)
-					{
-						byte* pStr0 = null;
-						int pStrSize0 = 0;
-						if (textEnd != null)
-						{
-							pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-							}
-							else
-							{
-								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-								pStr0 = pStrStack0;
-							}
-							int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-							pStr0[pStrOffset0] = 0;
-						}
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, pStr0, outRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEndDisplay, ref byte textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEndDisplay = textEndDisplay)
-					{
-						fixed (byte* ptextEnd = &textEnd)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, (byte*)ptextEnd, outRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEndDisplay, string textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEndDisplay = textEndDisplay)
-					{
-						byte* pStr0 = null;
-						int pStrSize0 = 0;
-						if (textEnd != null)
-						{
-							pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-							}
-							else
-							{
-								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-								pStr0 = pStrStack0;
-							}
-							int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-							pStr0[pStrOffset0] = 0;
-						}
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, pStr0, outRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEndDisplay, ref byte textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEndDisplay != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte*)ptextEnd, outRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEndDisplay, ReadOnlySpan<byte> textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEndDisplay != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte* ptextEnd = textEnd)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, (byte*)ptextEnd, outRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEndDisplay, string textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEndDisplay != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (textEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, pStr1, outRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr1);
-						}
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEndDisplay, ref byte textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
+			fixed (ImGuiWindow* pself = &self)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (textBegin != null)
+				if (str != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					pStrSize0 = Utils.GetByteCountUTF8(str);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -472,296 +75,14 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, (byte*)ptextEnd, outRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEndDisplay, ReadOnlySpan<byte> textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, (byte*)ptextEnd, outRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEndDisplay, string textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (textEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, pStr1, outRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr1);
-						}
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEndDisplay, ref byte textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEndDisplay = textEndDisplay)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, (byte*)ptextEnd, outRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEndDisplay, ReadOnlySpan<byte> textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEndDisplay = textEndDisplay)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, (byte*)ptextEnd, outRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEndDisplay, string textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEndDisplay = textEndDisplay)
-				{
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (textEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, pStr1, outRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr1);
-						}
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, string textEndDisplay, ref byte textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
 				byte* pStr1 = null;
 				int pStrSize1 = 0;
-				if (textEndDisplay != null)
+				if (strEnd != null)
 				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEndDisplay);
+					pStrSize1 = Utils.GetByteCountUTF8(strEnd);
 					if (pStrSize1 >= Utils.MaxStackallocSize)
 					{
 						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -771,1224 +92,67 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 						pStr1 = pStrStack1;
 					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEndDisplay, pStr1, pStrSize1);
+					int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, pStr1, (byte*)ptextEnd, outRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr1);
-						}
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, string textEndDisplay, ReadOnlySpan<byte> textEnd, byte** outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEndDisplay != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEndDisplay);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEndDisplay, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (byte* ptextEnd = textEnd)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, pStr1, (byte*)ptextEnd, outRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr1);
-						}
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte** poutRemaining = &outRemaining)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					Vector2 ret;
-					ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte** poutRemaining = &outRemaining)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte** poutRemaining = &outRemaining)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					Vector2 ret;
-					ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, pStr0, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, pStr0, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = textBegin)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte** poutRemaining = &outRemaining)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, pStr0, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, textEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextEndDisplay = &textEndDisplay)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextEndDisplay = textEndDisplay)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEndDisplay != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte** poutRemaining = &outRemaining)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					Vector2 ret;
-					ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, textBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextEndDisplay = textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEndDisplay != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, textBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextEndDisplay = textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEndDisplay != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextEndDisplay = &textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextEndDisplay = textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEndDisplay != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextEndDisplay = &textEndDisplay)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextEndDisplay = textEndDisplay)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEndDisplay != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte** poutRemaining = &outRemaining)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, textBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextEndDisplay = textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEndDisplay != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEndDisplay = textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEndDisplay != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEndDisplay);
+				uint ret = GetIDNative((ImGuiWindow*)pself, pStr0, pStr1);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					Utils.Free(pStr1);
 				}
-				else
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
+					Utils.Free(pStr0);
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEndDisplay, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
+				return ret;
 			}
-			fixed (byte** poutRemaining = &outRemaining)
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetID(ref ImGuiWindow self, in byte str, ReadOnlySpan<byte> strEnd)
+		{
+			fixed (ImGuiWindow* pself = &self)
 			{
-				fixed (Vector2* poutOffset = &outOffset)
+				fixed (byte* pstr = &str)
 				{
-					Vector2 ret;
-					ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, pStr0, pStr1, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
+					fixed (byte* pstrEnd = strEnd)
 					{
-						Utils.Free(pStr1);
+						uint ret = GetIDNative((ImGuiWindow*)pself, (byte*)pstr, (byte*)pstrEnd);
+						return ret;
 					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetID(ref ImGuiWindow self, in byte str, string strEnd)
+		{
+			fixed (ImGuiWindow* pself = &self)
+			{
+				fixed (byte* pstr = &str)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (strEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					uint ret = GetIDNative((ImGuiWindow*)pself, (byte*)pstr, pStr0);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2001,59 +165,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		public static uint GetID(ref ImGuiWindow self, ReadOnlySpan<byte> str, in byte strEnd)
 		{
-			fixed (byte* ptextBegin = &textBegin)
+			fixed (ImGuiWindow* pself = &self)
 			{
-				fixed (byte* ptextEndDisplay = textEndDisplay)
+				fixed (byte* pstr = str)
 				{
-					fixed (byte** poutRemaining = &outRemaining)
+					fixed (byte* pstrEnd = &strEnd)
 					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEndDisplay != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
+						uint ret = GetIDNative((ImGuiWindow*)pself, (byte*)pstr, (byte*)pstrEnd);
 						return ret;
 					}
 				}
@@ -2063,287 +183,17 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		public static uint GetID(ref ImGuiWindow self, ReadOnlySpan<byte> str, string strEnd)
 		{
-			fixed (byte* ptextBegin = textBegin)
+			fixed (ImGuiWindow* pself = &self)
 			{
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEndDisplay != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEndDisplay = &textEndDisplay)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEndDisplay = textEndDisplay)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEndDisplay = &textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEndDisplay = textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEndDisplay != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEndDisplay);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEndDisplay, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, pStr0, pStr1, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr1);
-						}
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEndDisplay = textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = &textBegin)
+				fixed (byte* pstr = str)
 				{
 					byte* pStr0 = null;
 					int pStrSize0 = 0;
-					if (textEndDisplay != null)
+					if (strEnd != null)
 					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
+						pStrSize0 = Utils.GetByteCountUTF8(strEnd);
 						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
 							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2353,1514 +203,10 @@ namespace Hexa.NET.ImGui
 							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 							pStr0 = pStrStack0;
 						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
+						int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEndDisplay = &textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEndDisplay != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEndDisplay = textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEndDisplay = &textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								Vector2 ret;
-								ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-								return ret;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEndDisplay = textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								Vector2 ret;
-								ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-								return ret;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEndDisplay != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEndDisplay);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEndDisplay, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, pStr1, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr1);
-						}
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEndDisplay = textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								Vector2 ret;
-								ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-								return ret;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEndDisplay != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEndDisplay = &textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								Vector2 ret;
-								ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-								return ret;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEndDisplay != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEndDisplay = textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						fixed (byte* ptextEndDisplay = &textEndDisplay)
-						{
-							fixed (byte** poutRemaining = &outRemaining)
-							{
-								fixed (Vector2* poutOffset = &outOffset)
-								{
-									ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = textBegin)
-					{
-						fixed (byte* ptextEndDisplay = textEndDisplay)
-						{
-							fixed (byte** poutRemaining = &outRemaining)
-							{
-								fixed (Vector2* poutOffset = &outOffset)
-								{
-									ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (textEndDisplay != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(textEndDisplay);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(textEndDisplay, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, pStr1, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize1 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr1);
-							}
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						fixed (byte* ptextEndDisplay = textEndDisplay)
-						{
-							fixed (byte** poutRemaining = &outRemaining)
-							{
-								fixed (Vector2* poutOffset = &outOffset)
-								{
-									ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						byte* pStr0 = null;
-						int pStrSize0 = 0;
-						if (textEndDisplay != null)
-						{
-							pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-							}
-							else
-							{
-								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-								pStr0 = pStrStack0;
-							}
-							int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-							pStr0[pStrOffset0] = 0;
-						}
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-								if (pStrSize0 >= Utils.MaxStackallocSize)
-								{
-									Utils.Free(pStr0);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = textBegin)
-					{
-						fixed (byte* ptextEndDisplay = &textEndDisplay)
-						{
-							fixed (byte** poutRemaining = &outRemaining)
-							{
-								fixed (Vector2* poutOffset = &outOffset)
-								{
-									ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = textBegin)
-					{
-						byte* pStr0 = null;
-						int pStrSize0 = 0;
-						if (textEndDisplay != null)
-						{
-							pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-							}
-							else
-							{
-								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-								pStr0 = pStrStack0;
-							}
-							int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-							pStr0[pStrOffset0] = 0;
-						}
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-								if (pStrSize0 >= Utils.MaxStackallocSize)
-								{
-									Utils.Free(pStr0);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte* ptextEndDisplay = &textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-								if (pStrSize0 >= Utils.MaxStackallocSize)
-								{
-									Utils.Free(pStr0);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte* ptextEndDisplay = textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-								if (pStrSize0 >= Utils.MaxStackallocSize)
-								{
-									Utils.Free(pStr0);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEndDisplay = textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEndDisplay != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEndDisplay);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEndDisplay, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			fixed (byte** poutRemaining = &outRemaining)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, pStr0, pStr1, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEndDisplay = textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEndDisplay != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEndDisplay != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEndDisplay = &textEndDisplay)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* ptextEndDisplay = textEndDisplay)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEndDisplay = &textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEndDisplay = textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEndDisplay != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEndDisplay);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEndDisplay, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, pStr1, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr1);
-						}
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEndDisplay = textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEndDisplay != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEndDisplay = &textEndDisplay)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, string textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEndDisplay != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEndDisplay);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEndDisplay, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, pStr0, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ref byte textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEndDisplay = &textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, ReadOnlySpan<byte> textEndDisplay, byte* textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEndDisplay = textEndDisplay)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, (byte*)ptextEndDisplay, textEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ref byte textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, string textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte** poutRemaining = &outRemaining)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					Vector2 ret;
-					ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, pStr0, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
+					uint ret = GetIDNative((ImGuiWindow*)pself, (byte*)pstr, pStr0);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3873,55 +219,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ref byte textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		public static uint GetID(ref ImGuiWindow self, string str, in byte strEnd)
 		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, string textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
+			fixed (ImGuiWindow* pself = &self)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (textEnd != null)
+				if (str != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					pStrSize0 = Utils.GetByteCountUTF8(str);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3931,434 +237,12 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				fixed (byte** poutRemaining = &outRemaining)
+				fixed (byte* pstrEnd = &strEnd)
 				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, pStr0, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ref byte textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, string textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, textEndDisplay, pStr0, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ref byte textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, string textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, textEndDisplay, pStr0, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ref byte textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, string textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte** poutRemaining = &outRemaining)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					ImFontCalcTextSizeExNative(pOut, font, size, maxWidth, wrapWidth, textBegin, textEndDisplay, pStr0, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ref byte textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void ImFontCalcTextSizeEx(Vector2* pOut, ref ImFont font, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEndDisplay, string textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative(pOut, (ImFont*)pfont, size, maxWidth, wrapWidth, textBegin, textEndDisplay, pStr0, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, ref byte textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEndDisplay, string textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			fixed (byte** poutRemaining = &outRemaining)
-			{
-				fixed (Vector2* poutOffset = &outOffset)
-				{
-					Vector2 ret;
-					ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, pStr0, textEndDisplay, pStr1, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
+					uint ret = GetIDNative((ImGuiWindow*)pself, pStr0, (byte*)pstrEnd);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4371,37 +255,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		public static uint GetID(ref ImGuiWindow self, string str, ReadOnlySpan<byte> strEnd)
 		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, string textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = &textBegin)
+			fixed (ImGuiWindow* pself = &self)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (textEnd != null)
+				if (str != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					pStrSize0 = Utils.GetByteCountUTF8(str);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4411,83 +273,17 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				fixed (byte** poutRemaining = &outRemaining)
+				fixed (byte* pstrEnd = strEnd)
 				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, pStr0, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEndDisplay, ref byte textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							Vector2 ret;
-							ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEndDisplay, string textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (byte* ptextBegin = textBegin)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					uint ret = GetIDNative((ImGuiWindow*)pself, pStr0, (byte*)pstrEnd);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						Utils.Free(pStr0);
 					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, pStr0, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
+					return ret;
 				}
 			}
 		}
@@ -4495,13 +291,1312 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEndDisplay, ref byte textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint GetIDNative(ImGuiWindow* self, void* ptr)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, void*, uint>)funcTable[1014])(self, ptr);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<nint, nint, uint>)funcTable[1014])((nint)self, (nint)ptr);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetID(ImGuiWindowPtr self, void* ptr)
+		{
+			uint ret = GetIDNative((ImGuiWindow*)self, ptr);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetID(ref ImGuiWindow self, void* ptr)
+		{
+			fixed (ImGuiWindow* pself = &self)
+			{
+				uint ret = GetIDNative((ImGuiWindow*)pself, ptr);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetID(ImGuiWindowPtr self, nint ptr)
+		{
+			uint ret = GetIDNative((ImGuiWindow*)self, (void*)ptr);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetID(ref ImGuiWindow self, nint ptr)
+		{
+			fixed (ImGuiWindow* pself = &self)
+			{
+				uint ret = GetIDNative((ImGuiWindow*)pself, (void*)ptr);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint GetIDNative(ImGuiWindow* self, int n)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, int, uint>)funcTable[1015])(self, n);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[1015])((nint)self, n);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetID(ImGuiWindowPtr self, int n)
+		{
+			uint ret = GetIDNative((ImGuiWindow*)self, n);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetID(ref ImGuiWindow self, int n)
+		{
+			fixed (ImGuiWindow* pself = &self)
+			{
+				uint ret = GetIDNative((ImGuiWindow*)pself, n);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint GetIDFromPosNative(ImGuiWindow* self, Vector2 pAbs)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, Vector2, uint>)funcTable[1016])(self, pAbs);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<nint, Vector2, uint>)funcTable[1016])((nint)self, pAbs);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetIDFromPos(ImGuiWindowPtr self, Vector2 pAbs)
+		{
+			uint ret = GetIDFromPosNative((ImGuiWindow*)self, pAbs);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetIDFromPos(ref ImGuiWindow self, Vector2 pAbs)
+		{
+			fixed (ImGuiWindow* pself = &self)
+			{
+				uint ret = GetIDFromPosNative((ImGuiWindow*)pself, pAbs);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint GetIDFromRectangleNative(ImGuiWindow* self, ImRect rAbs)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect, uint>)funcTable[1017])(self, rAbs);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<nint, ImRect, uint>)funcTable[1017])((nint)self, rAbs);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetIDFromRectangle(ImGuiWindowPtr self, ImRect rAbs)
+		{
+			uint ret = GetIDFromRectangleNative((ImGuiWindow*)self, rAbs);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetIDFromRectangle(ref ImGuiWindow self, ImRect rAbs)
+		{
+			fixed (ImGuiWindow* pself = &self)
+			{
+				uint ret = GetIDFromRectangleNative((ImGuiWindow*)pself, rAbs);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImRect RectNative(ImGuiWindow* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect>)funcTable[1018])(self);
+			#else
+			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect>)funcTable[1018])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// We don't use g.FontSize because the window may be != g.CurrentWindow.<br/>
+		/// </summary>
+		public static ImRect Rect(ImGuiWindowPtr self)
+		{
+			ImRect ret = RectNative((ImGuiWindow*)self);
+			return ret;
+		}
+
+		/// <summary>
+		/// We don't use g.FontSize because the window may be != g.CurrentWindow.<br/>
+		/// </summary>
+		public static ImRect Rect(ref ImGuiWindow self)
+		{
+			fixed (ImGuiWindow* pself = &self)
+			{
+				ImRect ret = RectNative((ImGuiWindow*)pself);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImRect TitleBarRectNative(ImGuiWindow* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect>)funcTable[1019])(self);
+			#else
+			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect>)funcTable[1019])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImRect TitleBarRect(ImGuiWindowPtr self)
+		{
+			ImRect ret = TitleBarRectNative((ImGuiWindow*)self);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImRect TitleBarRect(ref ImGuiWindow self)
+		{
+			fixed (ImGuiWindow* pself = &self)
+			{
+				ImRect ret = TitleBarRectNative((ImGuiWindow*)pself);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImRect MenuBarRectNative(ImGuiWindow* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect>)funcTable[1020])(self);
+			#else
+			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect>)funcTable[1020])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImRect MenuBarRect(ImGuiWindowPtr self)
+		{
+			ImRect ret = MenuBarRectNative((ImGuiWindow*)self);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImRect MenuBarRect(ref ImGuiWindow self)
+		{
+			fixed (ImGuiWindow* pself = &self)
+			{
+				ImRect ret = MenuBarRectNative((ImGuiWindow*)pself);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTabItem* ImGuiTabItemNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTabItem*>)funcTable[1021])();
+			#else
+			return (ImGuiTabItem*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1021])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTabItemPtr ImGuiTabItem()
+		{
+			ImGuiTabItemPtr ret = ImGuiTabItemNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiTabItem* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTabItem*, void>)funcTable[1022])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1022])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiTabItemPtr self)
+		{
+			DestroyNative((ImGuiTabItem*)self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiTabItem self)
+		{
+			fixed (ImGuiTabItem* pself = &self)
+			{
+				DestroyNative((ImGuiTabItem*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTabBar* ImGuiTabBarNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*>)funcTable[1023])();
+			#else
+			return (ImGuiTabBar*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1023])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTabBarPtr ImGuiTabBar()
+		{
+			ImGuiTabBarPtr ret = ImGuiTabBarNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiTabBar* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, void>)funcTable[1024])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1024])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiTabBarPtr self)
+		{
+			DestroyNative((ImGuiTabBar*)self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiTabBar self)
+		{
+			fixed (ImGuiTabBar* pself = &self)
+			{
+				DestroyNative((ImGuiTabBar*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTableColumn* ImGuiTableColumnNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTableColumn*>)funcTable[1025])();
+			#else
+			return (ImGuiTableColumn*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1025])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableColumnPtr ImGuiTableColumn()
+		{
+			ImGuiTableColumnPtr ret = ImGuiTableColumnNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiTableColumn* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTableColumn*, void>)funcTable[1026])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1026])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiTableColumnPtr self)
+		{
+			DestroyNative((ImGuiTableColumn*)self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiTableColumn self)
+		{
+			fixed (ImGuiTableColumn* pself = &self)
+			{
+				DestroyNative((ImGuiTableColumn*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTableInstanceData* ImGuiTableInstanceDataNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTableInstanceData*>)funcTable[1027])();
+			#else
+			return (ImGuiTableInstanceData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1027])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableInstanceDataPtr ImGuiTableInstanceData()
+		{
+			ImGuiTableInstanceDataPtr ret = ImGuiTableInstanceDataNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiTableInstanceData* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTableInstanceData*, void>)funcTable[1028])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1028])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiTableInstanceDataPtr self)
+		{
+			DestroyNative((ImGuiTableInstanceData*)self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiTableInstanceData self)
+		{
+			fixed (ImGuiTableInstanceData* pself = &self)
+			{
+				DestroyNative((ImGuiTableInstanceData*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTable* ImGuiTableNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*>)funcTable[1029])();
+			#else
+			return (ImGuiTable*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1029])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTablePtr ImGuiTable()
+		{
+			ImGuiTablePtr ret = ImGuiTableNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiTable* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1030])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1030])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiTablePtr self)
+		{
+			DestroyNative((ImGuiTable*)self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiTable self)
+		{
+			fixed (ImGuiTable* pself = &self)
+			{
+				DestroyNative((ImGuiTable*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTableTempData* ImGuiTableTempDataNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTableTempData*>)funcTable[1031])();
+			#else
+			return (ImGuiTableTempData*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1031])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableTempDataPtr ImGuiTableTempData()
+		{
+			ImGuiTableTempDataPtr ret = ImGuiTableTempDataNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiTableTempData* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTableTempData*, void>)funcTable[1032])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1032])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiTableTempDataPtr self)
+		{
+			DestroyNative((ImGuiTableTempData*)self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiTableTempData self)
+		{
+			fixed (ImGuiTableTempData* pself = &self)
+			{
+				DestroyNative((ImGuiTableTempData*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTableColumnSettings* ImGuiTableColumnSettingsNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTableColumnSettings*>)funcTable[1033])();
+			#else
+			return (ImGuiTableColumnSettings*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1033])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableColumnSettingsPtr ImGuiTableColumnSettings()
+		{
+			ImGuiTableColumnSettingsPtr ret = ImGuiTableColumnSettingsNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiTableColumnSettings* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTableColumnSettings*, void>)funcTable[1034])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1034])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiTableColumnSettingsPtr self)
+		{
+			DestroyNative((ImGuiTableColumnSettings*)self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiTableColumnSettings self)
+		{
+			fixed (ImGuiTableColumnSettings* pself = &self)
+			{
+				DestroyNative((ImGuiTableColumnSettings*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTableSettings* ImGuiTableSettingsNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTableSettings*>)funcTable[1035])();
+			#else
+			return (ImGuiTableSettings*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1035])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableSettingsPtr ImGuiTableSettings()
+		{
+			ImGuiTableSettingsPtr ret = ImGuiTableSettingsNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImGuiTableSettings* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTableSettings*, void>)funcTable[1036])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1036])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImGuiTableSettingsPtr self)
+		{
+			DestroyNative((ImGuiTableSettings*)self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImGuiTableSettings self)
+		{
+			fixed (ImGuiTableSettings* pself = &self)
+			{
+				DestroyNative((ImGuiTableSettings*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTableColumnSettings* GetColumnSettingsNative(ImGuiTableSettings* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTableSettings*, ImGuiTableColumnSettings*>)funcTable[1037])(self);
+			#else
+			return (ImGuiTableColumnSettings*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[1037])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableColumnSettingsPtr GetColumnSettings(ImGuiTableSettingsPtr self)
+		{
+			ImGuiTableColumnSettingsPtr ret = GetColumnSettingsNative((ImGuiTableSettings*)self);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableColumnSettingsPtr GetColumnSettings(ref ImGuiTableSettings self)
+		{
+			fixed (ImGuiTableSettings* pself = &self)
+			{
+				ImGuiTableColumnSettingsPtr ret = GetColumnSettingsNative((ImGuiTableSettings*)pself);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Tables: Candidates for public API<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableOpenContextMenuNative(int columnN)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1038])(columnN);
+			#else
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1038])(columnN);
+			#endif
+		}
+
+		/// <summary>
+		/// Tables: Candidates for public API<br/>
+		/// </summary>
+		public static void TableOpenContextMenu(int columnN)
+		{
+			TableOpenContextMenuNative(columnN);
+		}
+
+		/// <summary>
+		/// Tables: Candidates for public API<br/>
+		/// </summary>
+		public static void TableOpenContextMenu()
+		{
+			TableOpenContextMenuNative((int)(-1));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableSetColumnWidthNative(int columnN, float width)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[1039])(columnN, width);
+			#else
+			((delegate* unmanaged[Cdecl]<int, float, void>)funcTable[1039])(columnN, width);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSetColumnWidth(int columnN, float width)
+		{
+			TableSetColumnWidthNative(columnN, width);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableSetColumnSortDirectionNative(int columnN, ImGuiSortDirection sortDirection, byte appendToSortSpecs)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, ImGuiSortDirection, byte, void>)funcTable[1040])(columnN, sortDirection, appendToSortSpecs);
+			#else
+			((delegate* unmanaged[Cdecl]<int, ImGuiSortDirection, byte, void>)funcTable[1040])(columnN, sortDirection, appendToSortSpecs);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSetColumnSortDirection(int columnN, ImGuiSortDirection sortDirection, bool appendToSortSpecs)
+		{
+			TableSetColumnSortDirectionNative(columnN, sortDirection, appendToSortSpecs ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// Retrieve *PREVIOUS FRAME* hovered row. This difference with TableGetHoveredColumn() is the reason why this is not public yet.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int TableGetHoveredRowNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int>)funcTable[1041])();
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[1041])();
+			#endif
+		}
+
+		/// <summary>
+		/// Retrieve *PREVIOUS FRAME* hovered row. This difference with TableGetHoveredColumn() is the reason why this is not public yet.<br/>
+		/// </summary>
+		public static int TableGetHoveredRow()
+		{
+			int ret = TableGetHoveredRowNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static float TableGetHeaderRowHeightNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[1042])();
+			#else
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[1042])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float TableGetHeaderRowHeight()
+		{
+			float ret = TableGetHeaderRowHeightNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static float TableGetHeaderAngledMaxLabelWidthNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[1043])();
+			#else
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[1043])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float TableGetHeaderAngledMaxLabelWidth()
+		{
+			float ret = TableGetHeaderAngledMaxLabelWidthNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TablePushBackgroundChannelNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1044])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1044])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TablePushBackgroundChannel()
+		{
+			TablePushBackgroundChannelNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TablePopBackgroundChannelNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1045])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1045])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TablePopBackgroundChannel()
+		{
+			TablePopBackgroundChannelNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TablePushColumnChannelNative(int columnN)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1046])(columnN);
+			#else
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1046])(columnN);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TablePushColumnChannel(int columnN)
+		{
+			TablePushColumnChannelNative(columnN);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TablePopColumnChannelNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1047])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1047])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TablePopColumnChannel()
+		{
+			TablePopColumnChannelNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableAngledHeadersRowExNative(uint rowId, float angle, float maxLabelWidth, ImGuiTableHeaderData* data, int dataCount)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<uint, float, float, ImGuiTableHeaderData*, int, void>)funcTable[1048])(rowId, angle, maxLabelWidth, data, dataCount);
+			#else
+			((delegate* unmanaged[Cdecl]<uint, float, float, nint, int, void>)funcTable[1048])(rowId, angle, maxLabelWidth, (nint)data, dataCount);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableAngledHeadersRowEx(uint rowId, float angle, float maxLabelWidth, ImGuiTableHeaderDataPtr data, int dataCount)
+		{
+			TableAngledHeadersRowExNative(rowId, angle, maxLabelWidth, (ImGuiTableHeaderData*)data, dataCount);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableAngledHeadersRowEx(uint rowId, float angle, float maxLabelWidth, in ImGuiTableHeaderData data, int dataCount)
+		{
+			fixed (ImGuiTableHeaderData* pdata = &data)
+			{
+				TableAngledHeadersRowExNative(rowId, angle, maxLabelWidth, (ImGuiTableHeaderData*)pdata, dataCount);
+			}
+		}
+
+		/// <summary>
+		/// Tables: Internals<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTable* GetCurrentTableNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*>)funcTable[1049])();
+			#else
+			return (ImGuiTable*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1049])();
+			#endif
+		}
+
+		/// <summary>
+		/// Tables: Internals<br/>
+		/// </summary>
+		public static ImGuiTablePtr GetCurrentTable()
+		{
+			ImGuiTablePtr ret = GetCurrentTableNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTable* TableFindByIDNative(uint id)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiTable*>)funcTable[1050])(id);
+			#else
+			return (ImGuiTable*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1050])(id);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTablePtr TableFindByID(uint id)
+		{
+			ImGuiTablePtr ret = TableFindByIDNative(id);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte BeginTableExNative(byte* name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, uint, int, ImGuiTableFlags, Vector2, float, byte>)funcTable[1051])(name, id, columnsCount, flags, outerSize, innerWidth);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, uint, int, ImGuiTableFlags, Vector2, float, byte>)funcTable[1051])((nint)name, id, columnsCount, flags, outerSize, innerWidth);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(byte* name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
+		{
+			byte ret = BeginTableExNative(name, id, columnsCount, flags, outerSize, innerWidth);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(byte* name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize)
+		{
+			byte ret = BeginTableExNative(name, id, columnsCount, flags, outerSize, (float)(0.0f));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(byte* name, uint id, int columnsCount, ImGuiTableFlags flags)
+		{
+			byte ret = BeginTableExNative(name, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), (float)(0.0f));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(byte* name, uint id, int columnsCount)
+		{
+			byte ret = BeginTableExNative(name, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), (float)(0.0f));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(byte* name, uint id, int columnsCount, Vector2 outerSize)
+		{
+			byte ret = BeginTableExNative(name, id, columnsCount, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(byte* name, uint id, int columnsCount, ImGuiTableFlags flags, float innerWidth)
+		{
+			byte ret = BeginTableExNative(name, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), innerWidth);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(byte* name, uint id, int columnsCount, float innerWidth)
+		{
+			byte ret = BeginTableExNative(name, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), innerWidth);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(byte* name, uint id, int columnsCount, Vector2 outerSize, float innerWidth)
+		{
+			byte ret = BeginTableExNative(name, id, columnsCount, (ImGuiTableFlags)(0), outerSize, innerWidth);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(in byte name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
+		{
+			fixed (byte* pname = &name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, outerSize, innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(in byte name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize)
+		{
+			fixed (byte* pname = &name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, outerSize, (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(in byte name, uint id, int columnsCount, ImGuiTableFlags flags)
+		{
+			fixed (byte* pname = &name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(in byte name, uint id, int columnsCount)
+		{
+			fixed (byte* pname = &name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(in byte name, uint id, int columnsCount, Vector2 outerSize)
+		{
+			fixed (byte* pname = &name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(in byte name, uint id, int columnsCount, ImGuiTableFlags flags, float innerWidth)
+		{
+			fixed (byte* pname = &name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(in byte name, uint id, int columnsCount, float innerWidth)
+		{
+			fixed (byte* pname = &name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(in byte name, uint id, int columnsCount, Vector2 outerSize, float innerWidth)
+		{
+			fixed (byte* pname = &name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), outerSize, innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
+		{
+			fixed (byte* pname = name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, outerSize, innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize)
+		{
+			fixed (byte* pname = name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, outerSize, (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount, ImGuiTableFlags flags)
+		{
+			fixed (byte* pname = name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount)
+		{
+			fixed (byte* pname = name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount, Vector2 outerSize)
+		{
+			fixed (byte* pname = name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount, ImGuiTableFlags flags, float innerWidth)
+		{
+			fixed (byte* pname = name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount, float innerWidth)
+		{
+			fixed (byte* pname = name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(ReadOnlySpan<byte> name, uint id, int columnsCount, Vector2 outerSize, float innerWidth)
+		{
+			fixed (byte* pname = name)
+			{
+				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, (ImGuiTableFlags)(0), outerSize, innerWidth);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(string name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (textBegin != null)
+			if (name != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				pStrSize0 = Utils.GetByteCountUTF8(name);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4511,37 +1606,27 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* ptextEnd = &textEnd)
+			byte ret = BeginTableExNative(pStr0, id, columnsCount, flags, outerSize, innerWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, pStr0, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
+				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		public static bool BeginTableEx(string name, uint id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (textBegin != null)
+			if (name != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				pStrSize0 = Utils.GetByteCountUTF8(name);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4551,23 +1636,474 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* ptextEnd = textEnd)
+			byte ret = BeginTableExNative(pStr0, id, columnsCount, flags, outerSize, (float)(0.0f));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				fixed (byte** poutRemaining = &outRemaining)
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(string name, uint id, int columnsCount, ImGuiTableFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, font, size, maxWidth, wrapWidth, pStr0, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTableExNative(pStr0, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), (float)(0.0f));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(string name, uint id, int columnsCount)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTableExNative(pStr0, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), (float)(0.0f));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(string name, uint id, int columnsCount, Vector2 outerSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTableExNative(pStr0, id, columnsCount, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(string name, uint id, int columnsCount, ImGuiTableFlags flags, float innerWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTableExNative(pStr0, id, columnsCount, flags, (Vector2)(new Vector2(0,0)), innerWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(string name, uint id, int columnsCount, float innerWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTableExNative(pStr0, id, columnsCount, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0,0)), innerWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginTableEx(string name, uint id, int columnsCount, Vector2 outerSize, float innerWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTableExNative(pStr0, id, columnsCount, (ImGuiTableFlags)(0), outerSize, innerWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableBeginInitMemoryNative(ImGuiTable* table, int columnsCount)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)funcTable[1052])(table, columnsCount);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1052])((nint)table, columnsCount);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableBeginInitMemory(ImGuiTablePtr table, int columnsCount)
+		{
+			TableBeginInitMemoryNative((ImGuiTable*)table, columnsCount);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableBeginInitMemory(ref ImGuiTable table, int columnsCount)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableBeginInitMemoryNative((ImGuiTable*)ptable, columnsCount);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableApplyQueuedRequestsNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1053])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1053])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableApplyQueuedRequests(ImGuiTablePtr table)
+		{
+			TableApplyQueuedRequestsNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableApplyQueuedRequests(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableApplyQueuedRequestsNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableSetupDrawChannelsNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1054])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1054])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSetupDrawChannels(ImGuiTablePtr table)
+		{
+			TableSetupDrawChannelsNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSetupDrawChannels(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableSetupDrawChannelsNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableReconcileColumnsNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1055])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1055])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableReconcileColumns(ImGuiTablePtr table)
+		{
+			TableReconcileColumnsNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableReconcileColumns(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableReconcileColumnsNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableUpdateLayoutNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1056])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1056])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableUpdateLayout(ImGuiTablePtr table)
+		{
+			TableUpdateLayoutNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableUpdateLayout(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableUpdateLayoutNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableUpdateBordersNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1057])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1057])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableUpdateBorders(ImGuiTablePtr table)
+		{
+			TableUpdateBordersNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableUpdateBorders(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableUpdateBordersNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableUpdateColumnsWeightFromWidthNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1058])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1058])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableUpdateColumnsWeightFromWidth(ImGuiTablePtr table)
+		{
+			TableUpdateColumnsWeightFromWidthNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableUpdateColumnsWeightFromWidth(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableUpdateColumnsWeightFromWidthNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableApplyExternalUnclipRectNative(ImGuiTable* table, ImRect* rect)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, ImRect*, void>)funcTable[1059])(table, rect);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1059])((nint)table, (nint)rect);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableApplyExternalUnclipRect(ImGuiTablePtr table, ImRect* rect)
+		{
+			TableApplyExternalUnclipRectNative((ImGuiTable*)table, rect);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableApplyExternalUnclipRect(ref ImGuiTable table, ImRect* rect)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableApplyExternalUnclipRectNative((ImGuiTable*)ptable, rect);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableApplyExternalUnclipRect(ImGuiTablePtr table, ref ImRect rect)
+		{
+			fixed (ImRect* prect = &rect)
+			{
+				TableApplyExternalUnclipRectNative((ImGuiTable*)table, (ImRect*)prect);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableApplyExternalUnclipRect(ref ImGuiTable table, ref ImRect rect)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				fixed (ImRect* prect = &rect)
+				{
+					TableApplyExternalUnclipRectNative((ImGuiTable*)ptable, (ImRect*)prect);
 				}
 			}
 		}
@@ -4575,22 +2111,350 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, ref byte textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableDrawBordersNative(ImGuiTable* table)
 		{
-			fixed (Vector2* ppOut = &pOut)
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1060])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1060])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableDrawBorders(ImGuiTablePtr table)
+		{
+			TableDrawBordersNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableDrawBorders(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
 			{
-				fixed (byte* ptextBegin = &textBegin)
+				TableDrawBordersNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableDrawDefaultContextMenuNative(ImGuiTable* table, ImGuiTableFlags flagsForSectionToDisplay)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableFlags, void>)funcTable[1061])(table, flagsForSectionToDisplay);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImGuiTableFlags, void>)funcTable[1061])((nint)table, flagsForSectionToDisplay);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableDrawDefaultContextMenu(ImGuiTablePtr table, ImGuiTableFlags flagsForSectionToDisplay)
+		{
+			TableDrawDefaultContextMenuNative((ImGuiTable*)table, flagsForSectionToDisplay);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableDrawDefaultContextMenu(ref ImGuiTable table, ImGuiTableFlags flagsForSectionToDisplay)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableDrawDefaultContextMenuNative((ImGuiTable*)ptable, flagsForSectionToDisplay);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte TableBeginContextMenuPopupNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, byte>)funcTable[1062])(table);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[1062])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TableBeginContextMenuPopup(ImGuiTablePtr table)
+		{
+			byte ret = TableBeginContextMenuPopupNative((ImGuiTable*)table);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool TableBeginContextMenuPopup(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				byte ret = TableBeginContextMenuPopupNative((ImGuiTable*)ptable);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableMergeDrawChannelsNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1063])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1063])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableMergeDrawChannels(ImGuiTablePtr table)
+		{
+			TableMergeDrawChannelsNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableMergeDrawChannels(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableMergeDrawChannelsNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTableInstanceData* TableGetInstanceDataNative(ImGuiTable* table, int instanceNo)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, ImGuiTableInstanceData*>)funcTable[1064])(table, instanceNo);
+			#else
+			return (ImGuiTableInstanceData*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1064])((nint)table, instanceNo);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableInstanceDataPtr TableGetInstanceData(ImGuiTablePtr table, int instanceNo)
+		{
+			ImGuiTableInstanceDataPtr ret = TableGetInstanceDataNative((ImGuiTable*)table, instanceNo);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableInstanceDataPtr TableGetInstanceData(ref ImGuiTable table, int instanceNo)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				ImGuiTableInstanceDataPtr ret = TableGetInstanceDataNative((ImGuiTable*)ptable, instanceNo);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint TableGetInstanceIDNative(ImGuiTable* table, int instanceNo)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, uint>)funcTable[1065])(table, instanceNo);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[1065])((nint)table, instanceNo);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint TableGetInstanceID(ImGuiTablePtr table, int instanceNo)
+		{
+			uint ret = TableGetInstanceIDNative((ImGuiTable*)table, instanceNo);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint TableGetInstanceID(ref ImGuiTable table, int instanceNo)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				uint ret = TableGetInstanceIDNative((ImGuiTable*)ptable, instanceNo);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableFixDisplayOrderNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1066])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1066])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableFixDisplayOrder(ImGuiTablePtr table)
+		{
+			TableFixDisplayOrderNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableFixDisplayOrder(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableFixDisplayOrderNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableSortSpecsSanitizeNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1067])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1067])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSortSpecsSanitize(ImGuiTablePtr table)
+		{
+			TableSortSpecsSanitizeNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSortSpecsSanitize(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableSortSpecsSanitizeNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableSortSpecsBuildNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1068])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1068])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSortSpecsBuild(ImGuiTablePtr table)
+		{
+			TableSortSpecsBuildNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSortSpecsBuild(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableSortSpecsBuildNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableInitColumnDefaultsNative(ImGuiTable* table, ImGuiTableColumn* column, ImGuiTableColumnFlags initMask)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableColumn*, ImGuiTableColumnFlags, void>)funcTable[1069])(table, column, initMask);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, ImGuiTableColumnFlags, void>)funcTable[1069])((nint)table, (nint)column, initMask);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableInitColumnDefaults(ImGuiTablePtr table, ImGuiTableColumnPtr column, ImGuiTableColumnFlags initMask)
+		{
+			TableInitColumnDefaultsNative((ImGuiTable*)table, (ImGuiTableColumn*)column, initMask);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableInitColumnDefaults(ref ImGuiTable table, ImGuiTableColumnPtr column, ImGuiTableColumnFlags initMask)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableInitColumnDefaultsNative((ImGuiTable*)ptable, (ImGuiTableColumn*)column, initMask);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableInitColumnDefaults(ImGuiTablePtr table, ref ImGuiTableColumn column, ImGuiTableColumnFlags initMask)
+		{
+			fixed (ImGuiTableColumn* pcolumn = &column)
+			{
+				TableInitColumnDefaultsNative((ImGuiTable*)table, (ImGuiTableColumn*)pcolumn, initMask);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableInitColumnDefaults(ref ImGuiTable table, ref ImGuiTableColumn column, ImGuiTableColumnFlags initMask)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				fixed (ImGuiTableColumn* pcolumn = &column)
 				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
+					TableInitColumnDefaultsNative((ImGuiTable*)ptable, (ImGuiTableColumn*)pcolumn, initMask);
 				}
 			}
 		}
@@ -4598,22 +2462,90 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiSortDirection TableGetColumnNextSortDirectionNative(ImGuiTableColumn* column)
 		{
-			fixed (Vector2* ppOut = &pOut)
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTableColumn*, ImGuiSortDirection>)funcTable[1070])(column);
+			#else
+			return (ImGuiSortDirection)((delegate* unmanaged[Cdecl]<nint, ImGuiSortDirection>)funcTable[1070])((nint)column);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiSortDirection TableGetColumnNextSortDirection(ImGuiTableColumnPtr column)
+		{
+			ImGuiSortDirection ret = TableGetColumnNextSortDirectionNative((ImGuiTableColumn*)column);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiSortDirection TableGetColumnNextSortDirection(ref ImGuiTableColumn column)
+		{
+			fixed (ImGuiTableColumn* pcolumn = &column)
 			{
-				fixed (byte* ptextBegin = textBegin)
+				ImGuiSortDirection ret = TableGetColumnNextSortDirectionNative((ImGuiTableColumn*)pcolumn);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableFixColumnSortDirectionNative(ImGuiTable* table, ImGuiTableColumn* column)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableColumn*, void>)funcTable[1071])(table, column);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1071])((nint)table, (nint)column);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableFixColumnSortDirection(ImGuiTablePtr table, ImGuiTableColumnPtr column)
+		{
+			TableFixColumnSortDirectionNative((ImGuiTable*)table, (ImGuiTableColumn*)column);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableFixColumnSortDirection(ref ImGuiTable table, ImGuiTableColumnPtr column)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableFixColumnSortDirectionNative((ImGuiTable*)ptable, (ImGuiTableColumn*)column);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableFixColumnSortDirection(ImGuiTablePtr table, ref ImGuiTableColumn column)
+		{
+			fixed (ImGuiTableColumn* pcolumn = &column)
+			{
+				TableFixColumnSortDirectionNative((ImGuiTable*)table, (ImGuiTableColumn*)pcolumn);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableFixColumnSortDirection(ref ImGuiTable table, ref ImGuiTableColumn column)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				fixed (ImGuiTableColumn* pcolumn = &column)
 				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
+					TableFixColumnSortDirectionNative((ImGuiTable*)ptable, (ImGuiTableColumn*)pcolumn);
 				}
 			}
 		}
@@ -4621,58 +2553,60 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEndDisplay, string textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static float TableGetColumnWidthAutoNative(ImGuiTable* table, ImGuiTableColumn* column)
 		{
-			fixed (Vector2* ppOut = &pOut)
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableColumn*, float>)funcTable[1072])(table, column);
+			#else
+			return (float)((delegate* unmanaged[Cdecl]<nint, nint, float>)funcTable[1072])((nint)table, (nint)column);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float TableGetColumnWidthAuto(ImGuiTablePtr table, ImGuiTableColumnPtr column)
+		{
+			float ret = TableGetColumnWidthAutoNative((ImGuiTable*)table, (ImGuiTableColumn*)column);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float TableGetColumnWidthAuto(ref ImGuiTable table, ImGuiTableColumnPtr column)
+		{
+			fixed (ImGuiTable* ptable = &table)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
+				float ret = TableGetColumnWidthAutoNative((ImGuiTable*)ptable, (ImGuiTableColumn*)column);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float TableGetColumnWidthAuto(ImGuiTablePtr table, ref ImGuiTableColumn column)
+		{
+			fixed (ImGuiTableColumn* pcolumn = &column)
+			{
+				float ret = TableGetColumnWidthAutoNative((ImGuiTable*)table, (ImGuiTableColumn*)pcolumn);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float TableGetColumnWidthAuto(ref ImGuiTable table, ref ImGuiTableColumn column)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				fixed (ImGuiTableColumn* pcolumn = &column)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, pStr0, textEndDisplay, pStr1, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr1);
-						}
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
+					float ret = TableGetColumnWidthAutoNative((ImGuiTable*)ptable, (ImGuiTableColumn*)pcolumn);
+					return ret;
 				}
 			}
 		}
@@ -4680,22 +2614,671 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableBeginRowNative(ImGuiTable* table)
 		{
-			fixed (Vector2* ppOut = &pOut)
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1073])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1073])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableBeginRow(ImGuiTablePtr table)
+		{
+			TableBeginRowNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableBeginRow(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
 			{
-				fixed (byte* ptextBegin = &textBegin)
+				TableBeginRowNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableEndRowNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1074])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1074])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableEndRow(ImGuiTablePtr table)
+		{
+			TableEndRowNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableEndRow(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableEndRowNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableBeginCellNative(ImGuiTable* table, int columnN)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)funcTable[1075])(table, columnN);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1075])((nint)table, columnN);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableBeginCell(ImGuiTablePtr table, int columnN)
+		{
+			TableBeginCellNative((ImGuiTable*)table, columnN);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableBeginCell(ref ImGuiTable table, int columnN)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableBeginCellNative((ImGuiTable*)ptable, columnN);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableEndCellNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1076])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1076])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableEndCell(ImGuiTablePtr table)
+		{
+			TableEndCellNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableEndCell(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableEndCellNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImRect TableGetCellBgRectNative(ImGuiTable* table, int columnN)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, ImRect>)funcTable[1077])(table, columnN);
+			#else
+			return (ImRect)((delegate* unmanaged[Cdecl]<nint, int, ImRect>)funcTable[1077])((nint)table, columnN);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImRect TableGetCellBgRect(ImGuiTablePtr table, int columnN)
+		{
+			ImRect ret = TableGetCellBgRectNative((ImGuiTable*)table, columnN);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImRect TableGetCellBgRect(in ImGuiTable table, int columnN)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				ImRect ret = TableGetCellBgRectNative((ImGuiTable*)ptable, columnN);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte* TableGetColumnNameNative(ImGuiTable* table, int columnN)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, byte*>)funcTable[1078])(table, columnN);
+			#else
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, int, nint>)funcTable[1078])((nint)table, columnN);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* TableGetColumnName(ImGuiTablePtr table, int columnN)
+		{
+			byte* ret = TableGetColumnNameNative((ImGuiTable*)table, columnN);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string TableGetColumnNameS(ImGuiTablePtr table, int columnN)
+		{
+			string ret = Utils.DecodeStringUTF8(TableGetColumnNameNative((ImGuiTable*)table, columnN));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* TableGetColumnName(in ImGuiTable table, int columnN)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				byte* ret = TableGetColumnNameNative((ImGuiTable*)ptable, columnN);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string TableGetColumnNameS(in ImGuiTable table, int columnN)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				string ret = Utils.DecodeStringUTF8(TableGetColumnNameNative((ImGuiTable*)ptable, columnN));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint TableGetColumnResizeIDNative(ImGuiTable* table, int columnN, int instanceNo)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, int, uint>)funcTable[1079])(table, columnN, instanceNo);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<nint, int, int, uint>)funcTable[1079])((nint)table, columnN, instanceNo);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint TableGetColumnResizeID(ImGuiTablePtr table, int columnN, int instanceNo)
+		{
+			uint ret = TableGetColumnResizeIDNative((ImGuiTable*)table, columnN, instanceNo);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint TableGetColumnResizeID(ImGuiTablePtr table, int columnN)
+		{
+			uint ret = TableGetColumnResizeIDNative((ImGuiTable*)table, columnN, (int)(0));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint TableGetColumnResizeID(ref ImGuiTable table, int columnN, int instanceNo)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				uint ret = TableGetColumnResizeIDNative((ImGuiTable*)ptable, columnN, instanceNo);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint TableGetColumnResizeID(ref ImGuiTable table, int columnN)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				uint ret = TableGetColumnResizeIDNative((ImGuiTable*)ptable, columnN, (int)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static float TableCalcMaxColumnWidthNative(ImGuiTable* table, int columnN)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, float>)funcTable[1080])(table, columnN);
+			#else
+			return (float)((delegate* unmanaged[Cdecl]<nint, int, float>)funcTable[1080])((nint)table, columnN);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float TableCalcMaxColumnWidth(ImGuiTablePtr table, int columnN)
+		{
+			float ret = TableCalcMaxColumnWidthNative((ImGuiTable*)table, columnN);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float TableCalcMaxColumnWidth(in ImGuiTable table, int columnN)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				float ret = TableCalcMaxColumnWidthNative((ImGuiTable*)ptable, columnN);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableSetColumnWidthAutoSingleNative(ImGuiTable* table, int columnN)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)funcTable[1081])(table, columnN);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[1081])((nint)table, columnN);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSetColumnWidthAutoSingle(ImGuiTablePtr table, int columnN)
+		{
+			TableSetColumnWidthAutoSingleNative((ImGuiTable*)table, columnN);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSetColumnWidthAutoSingle(ref ImGuiTable table, int columnN)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableSetColumnWidthAutoSingleNative((ImGuiTable*)ptable, columnN);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableSetColumnWidthAutoAllNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1082])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1082])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSetColumnWidthAutoAll(ImGuiTablePtr table)
+		{
+			TableSetColumnWidthAutoAllNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSetColumnWidthAutoAll(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableSetColumnWidthAutoAllNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableSetColumnDisplayOrderNative(ImGuiTable* table, int columnN, int dstOrder)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, int, void>)funcTable[1083])(table, columnN, dstOrder);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[1083])((nint)table, columnN, dstOrder);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSetColumnDisplayOrder(ImGuiTablePtr table, int columnN, int dstOrder)
+		{
+			TableSetColumnDisplayOrderNative((ImGuiTable*)table, columnN, dstOrder);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSetColumnDisplayOrder(ref ImGuiTable table, int columnN, int dstOrder)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableSetColumnDisplayOrderNative((ImGuiTable*)ptable, columnN, dstOrder);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableQueueSetColumnDisplayOrderNative(ImGuiTable* table, int columnN, int dstOrder)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, int, void>)funcTable[1084])(table, columnN, dstOrder);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, int, void>)funcTable[1084])((nint)table, columnN, dstOrder);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableQueueSetColumnDisplayOrder(ImGuiTablePtr table, int columnN, int dstOrder)
+		{
+			TableQueueSetColumnDisplayOrderNative((ImGuiTable*)table, columnN, dstOrder);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableQueueSetColumnDisplayOrder(ref ImGuiTable table, int columnN, int dstOrder)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableQueueSetColumnDisplayOrderNative((ImGuiTable*)ptable, columnN, dstOrder);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableRemoveNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1085])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1085])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableRemove(ImGuiTablePtr table)
+		{
+			TableRemoveNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableRemove(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableRemoveNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableGcCompactTransientBuffersNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1086])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1086])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableGcCompactTransientBuffers(ImGuiTablePtr table)
+		{
+			TableGcCompactTransientBuffersNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableGcCompactTransientBuffers(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableGcCompactTransientBuffersNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableGcCompactTransientBuffersNative(ImGuiTableTempData* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTableTempData*, void>)funcTable[1087])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1087])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableGcCompactTransientBuffers(ImGuiTableTempDataPtr table)
+		{
+			TableGcCompactTransientBuffersNative((ImGuiTableTempData*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableGcCompactTransientBuffers(ref ImGuiTableTempData table)
+		{
+			fixed (ImGuiTableTempData* ptable = &table)
+			{
+				TableGcCompactTransientBuffersNative((ImGuiTableTempData*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableGcCompactSettingsNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1088])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1088])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableGcCompactSettings()
+		{
+			TableGcCompactSettingsNative();
+		}
+
+		/// <summary>
+		/// Tables: Settings<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableLoadSettingsNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1089])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1089])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// Tables: Settings<br/>
+		/// </summary>
+		public static void TableLoadSettings(ImGuiTablePtr table)
+		{
+			TableLoadSettingsNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// Tables: Settings<br/>
+		/// </summary>
+		public static void TableLoadSettings(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableLoadSettingsNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableLoadSettingsForColumnsNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1090])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1090])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableLoadSettingsForColumns(ImGuiTablePtr table)
+		{
+			TableLoadSettingsForColumnsNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableLoadSettingsForColumns(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableLoadSettingsForColumnsNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableLoadSettingsForColumnNative(ImGuiTableColumn* column, ImGuiTableColumnSettings* columnSettings, ImGuiTableFlags loadFlags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTableColumn*, ImGuiTableColumnSettings*, ImGuiTableFlags, void>)funcTable[1091])(column, columnSettings, loadFlags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, ImGuiTableFlags, void>)funcTable[1091])((nint)column, (nint)columnSettings, loadFlags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableLoadSettingsForColumn(ImGuiTableColumnPtr column, ImGuiTableColumnSettingsPtr columnSettings, ImGuiTableFlags loadFlags)
+		{
+			TableLoadSettingsForColumnNative((ImGuiTableColumn*)column, (ImGuiTableColumnSettings*)columnSettings, loadFlags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableLoadSettingsForColumn(ref ImGuiTableColumn column, ImGuiTableColumnSettingsPtr columnSettings, ImGuiTableFlags loadFlags)
+		{
+			fixed (ImGuiTableColumn* pcolumn = &column)
+			{
+				TableLoadSettingsForColumnNative((ImGuiTableColumn*)pcolumn, (ImGuiTableColumnSettings*)columnSettings, loadFlags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableLoadSettingsForColumn(ImGuiTableColumnPtr column, ref ImGuiTableColumnSettings columnSettings, ImGuiTableFlags loadFlags)
+		{
+			fixed (ImGuiTableColumnSettings* pcolumnSettings = &columnSettings)
+			{
+				TableLoadSettingsForColumnNative((ImGuiTableColumn*)column, (ImGuiTableColumnSettings*)pcolumnSettings, loadFlags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableLoadSettingsForColumn(ref ImGuiTableColumn column, ref ImGuiTableColumnSettings columnSettings, ImGuiTableFlags loadFlags)
+		{
+			fixed (ImGuiTableColumn* pcolumn = &column)
+			{
+				fixed (ImGuiTableColumnSettings* pcolumnSettings = &columnSettings)
 				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
+					TableLoadSettingsForColumnNative((ImGuiTableColumn*)pcolumn, (ImGuiTableColumnSettings*)pcolumnSettings, loadFlags);
 				}
 			}
 		}
@@ -4703,40 +3286,888 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, string textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableSaveSettingsNative(ImGuiTable* table)
 		{
-			fixed (Vector2* ppOut = &pOut)
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1092])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1092])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSaveSettings(ImGuiTablePtr table)
+		{
+			TableSaveSettingsNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSaveSettings(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
 			{
-				fixed (byte* ptextBegin = &textBegin)
+				TableSaveSettingsNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableResetSettingsNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)funcTable[1093])(table);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1093])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableResetSettings(ImGuiTablePtr table)
+		{
+			TableResetSettingsNative((ImGuiTable*)table);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableResetSettings(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				TableResetSettingsNative((ImGuiTable*)ptable);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTableSettings* TableGetBoundSettingsNative(ImGuiTable* table)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableSettings*>)funcTable[1094])(table);
+			#else
+			return (ImGuiTableSettings*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[1094])((nint)table);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableSettingsPtr TableGetBoundSettings(ImGuiTablePtr table)
+		{
+			ImGuiTableSettingsPtr ret = TableGetBoundSettingsNative((ImGuiTable*)table);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableSettingsPtr TableGetBoundSettings(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				ImGuiTableSettingsPtr ret = TableGetBoundSettingsNative((ImGuiTable*)ptable);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void TableSettingsAddSettingsHandlerNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1095])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1095])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TableSettingsAddSettingsHandler()
+		{
+			TableSettingsAddSettingsHandlerNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTableSettings* TableSettingsCreateNative(uint id, int columnsCount)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, int, ImGuiTableSettings*>)funcTable[1096])(id, columnsCount);
+			#else
+			return (ImGuiTableSettings*)((delegate* unmanaged[Cdecl]<uint, int, nint>)funcTable[1096])(id, columnsCount);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableSettingsPtr TableSettingsCreate(uint id, int columnsCount)
+		{
+			ImGuiTableSettingsPtr ret = TableSettingsCreateNative(id, columnsCount);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiTableSettings* TableSettingsFindByIDNative(uint id)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiTableSettings*>)funcTable[1097])(id);
+			#else
+			return (ImGuiTableSettings*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1097])(id);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiTableSettingsPtr TableSettingsFindByID(uint id)
+		{
+			ImGuiTableSettingsPtr ret = TableSettingsFindByIDNative(id);
+			return ret;
+		}
+
+		/// <summary>
+		/// Legacy Columns API (this is not exposed because we will encourage transitioning to the Tables API)<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetWindowClipRectBeforeSetChannelNative(ImGuiWindow* window, ImRect clipRect)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect, void>)funcTable[1098])(window, clipRect);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImRect, void>)funcTable[1098])((nint)window, clipRect);
+			#endif
+		}
+
+		/// <summary>
+		/// Legacy Columns API (this is not exposed because we will encourage transitioning to the Tables API)<br/>
+		/// </summary>
+		public static void SetWindowClipRectBeforeSetChannel(ImGuiWindowPtr window, ImRect clipRect)
+		{
+			SetWindowClipRectBeforeSetChannelNative((ImGuiWindow*)window, clipRect);
+		}
+
+		/// <summary>
+		/// Legacy Columns API (this is not exposed because we will encourage transitioning to the Tables API)<br/>
+		/// </summary>
+		public static void SetWindowClipRectBeforeSetChannel(ref ImGuiWindow window, ImRect clipRect)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				SetWindowClipRectBeforeSetChannelNative((ImGuiWindow*)pwindow, clipRect);
+			}
+		}
+
+		/// <summary>
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void BeginColumnsNative(byte* strId, int count, ImGuiOldColumnFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, int, ImGuiOldColumnFlags, void>)funcTable[1099])(strId, count, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, ImGuiOldColumnFlags, void>)funcTable[1099])((nint)strId, count, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
+		/// </summary>
+		public static void BeginColumns(byte* strId, int count, ImGuiOldColumnFlags flags)
+		{
+			BeginColumnsNative(strId, count, flags);
+		}
+
+		/// <summary>
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
+		/// </summary>
+		public static void BeginColumns(byte* strId, int count)
+		{
+			BeginColumnsNative(strId, count, (ImGuiOldColumnFlags)(0));
+		}
+
+		/// <summary>
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
+		/// </summary>
+		public static void BeginColumns(in byte strId, int count, ImGuiOldColumnFlags flags)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				BeginColumnsNative((byte*)pstrId, count, flags);
+			}
+		}
+
+		/// <summary>
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
+		/// </summary>
+		public static void BeginColumns(in byte strId, int count)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				BeginColumnsNative((byte*)pstrId, count, (ImGuiOldColumnFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
+		/// </summary>
+		public static void BeginColumns(ReadOnlySpan<byte> strId, int count, ImGuiOldColumnFlags flags)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				BeginColumnsNative((byte*)pstrId, count, flags);
+			}
+		}
+
+		/// <summary>
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
+		/// </summary>
+		public static void BeginColumns(ReadOnlySpan<byte> strId, int count)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				BeginColumnsNative((byte*)pstrId, count, (ImGuiOldColumnFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
+		/// </summary>
+		public static void BeginColumns(string strId, int count, ImGuiOldColumnFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, pStr0, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			BeginColumnsNative(pStr0, count, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().<br/>
+		/// </summary>
+		public static void BeginColumns(string strId, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			BeginColumnsNative(pStr0, count, (ImGuiOldColumnFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// close columns<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void EndColumnsNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1100])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1100])();
+			#endif
+		}
+
+		/// <summary>
+		/// close columns<br/>
+		/// </summary>
+		public static void EndColumns()
+		{
+			EndColumnsNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PushColumnClipRectNative(int columnIndex)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1101])(columnIndex);
+			#else
+			((delegate* unmanaged[Cdecl]<int, void>)funcTable[1101])(columnIndex);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PushColumnClipRect(int columnIndex)
+		{
+			PushColumnClipRectNative(columnIndex);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PushColumnsBackgroundNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1102])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1102])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PushColumnsBackground()
+		{
+			PushColumnsBackgroundNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PopColumnsBackgroundNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1103])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)funcTable[1103])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PopColumnsBackground()
+		{
+			PopColumnsBackgroundNative();
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static uint GetColumnsIDNative(byte* strId, int count)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, int, uint>)funcTable[1104])(strId, count);
+			#else
+			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)funcTable[1104])((nint)strId, count);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetColumnsID(byte* strId, int count)
+		{
+			uint ret = GetColumnsIDNative(strId, count);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetColumnsID(in byte strId, int count)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				uint ret = GetColumnsIDNative((byte*)pstrId, count);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetColumnsID(ReadOnlySpan<byte> strId, int count)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				uint ret = GetColumnsIDNative((byte*)pstrId, count);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static uint GetColumnsID(string strId, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			uint ret = GetColumnsIDNative(pStr0, count);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiOldColumns* FindOrCreateColumnsNative(ImGuiWindow* window, uint id)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, uint, ImGuiOldColumns*>)funcTable[1105])(window, id);
+			#else
+			return (ImGuiOldColumns*)((delegate* unmanaged[Cdecl]<nint, uint, nint>)funcTable[1105])((nint)window, id);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiOldColumnsPtr FindOrCreateColumns(ImGuiWindowPtr window, uint id)
+		{
+			ImGuiOldColumnsPtr ret = FindOrCreateColumnsNative((ImGuiWindow*)window, id);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiOldColumnsPtr FindOrCreateColumns(ref ImGuiWindow window, uint id)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				ImGuiOldColumnsPtr ret = FindOrCreateColumnsNative((ImGuiWindow*)pwindow, id);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static float GetColumnOffsetFromNormNative(ImGuiOldColumns* columns, float offsetNorm)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, float, float>)funcTable[1106])(columns, offsetNorm);
+			#else
+			return (float)((delegate* unmanaged[Cdecl]<nint, float, float>)funcTable[1106])((nint)columns, offsetNorm);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float GetColumnOffsetFromNorm(ImGuiOldColumnsPtr columns, float offsetNorm)
+		{
+			float ret = GetColumnOffsetFromNormNative((ImGuiOldColumns*)columns, offsetNorm);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float GetColumnOffsetFromNorm(in ImGuiOldColumns columns, float offsetNorm)
+		{
+			fixed (ImGuiOldColumns* pcolumns = &columns)
+			{
+				float ret = GetColumnOffsetFromNormNative((ImGuiOldColumns*)pcolumns, offsetNorm);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static float GetColumnNormFromOffsetNative(ImGuiOldColumns* columns, float offset)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, float, float>)funcTable[1107])(columns, offset);
+			#else
+			return (float)((delegate* unmanaged[Cdecl]<nint, float, float>)funcTable[1107])((nint)columns, offset);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float GetColumnNormFromOffset(ImGuiOldColumnsPtr columns, float offset)
+		{
+			float ret = GetColumnNormFromOffsetNative((ImGuiOldColumns*)columns, offset);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static float GetColumnNormFromOffset(in ImGuiOldColumns columns, float offset)
+		{
+			fixed (ImGuiOldColumns* pcolumns = &columns)
+			{
+				float ret = GetColumnNormFromOffsetNative((ImGuiOldColumns*)pcolumns, offset);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Windows<br/>
+		/// We should always have a CurrentWindow in the stack (there is an implicit "Debug" window)<br/>
+		/// If this ever crashes because g.CurrentWindow is NULL, it means that either:<br/>
+		/// - ImGui::NewFrame() has never been called, which is illegal.<br/>
+		/// - You are calling ImGui functions after ImGui::EndFrame()ImGui::Render() and before the next ImGui::NewFrame(), which is also illegal.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiIO* GetIONative(ImGuiContext* ctx)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiIO*>)funcTable[1108])(ctx);
+			#else
+			return (ImGuiIO*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[1108])((nint)ctx);
+			#endif
+		}
+
+		/// <summary>
+		/// Windows<br/>
+		/// We should always have a CurrentWindow in the stack (there is an implicit "Debug" window)<br/>
+		/// If this ever crashes because g.CurrentWindow is NULL, it means that either:<br/>
+		/// - ImGui::NewFrame() has never been called, which is illegal.<br/>
+		/// - You are calling ImGui functions after ImGui::EndFrame()ImGui::Render() and before the next ImGui::NewFrame(), which is also illegal.<br/>
+		/// </summary>
+		public static ImGuiIOPtr GetIO(ImGuiContextPtr ctx)
+		{
+			ImGuiIOPtr ret = GetIONative((ImGuiContext*)ctx);
+			return ret;
+		}
+
+		/// <summary>
+		/// Windows<br/>
+		/// We should always have a CurrentWindow in the stack (there is an implicit "Debug" window)<br/>
+		/// If this ever crashes because g.CurrentWindow is NULL, it means that either:<br/>
+		/// - ImGui::NewFrame() has never been called, which is illegal.<br/>
+		/// - You are calling ImGui functions after ImGui::EndFrame()ImGui::Render() and before the next ImGui::NewFrame(), which is also illegal.<br/>
+		/// </summary>
+		public static ImGuiIOPtr GetIO(ref ImGuiContext ctx)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				ImGuiIOPtr ret = GetIONative((ImGuiContext*)pctx);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiPlatformIO* GetPlatformIONative(ImGuiContext* ctx)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiPlatformIO*>)funcTable[1109])(ctx);
+			#else
+			return (ImGuiPlatformIO*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[1109])((nint)ctx);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiPlatformIOPtr GetPlatformIO(ImGuiContextPtr ctx)
+		{
+			ImGuiPlatformIOPtr ret = GetPlatformIONative((ImGuiContext*)ctx);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiPlatformIOPtr GetPlatformIO(ref ImGuiContext ctx)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				ImGuiPlatformIOPtr ret = GetPlatformIONative((ImGuiContext*)pctx);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// FIXME-DPI: I don't want to formalize this just yet. Because reasons. Please don't use.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static float GetScaleNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<float>)funcTable[1110])();
+			#else
+			return (float)((delegate* unmanaged[Cdecl]<float>)funcTable[1110])();
+			#endif
+		}
+
+		/// <summary>
+		/// FIXME-DPI: I don't want to formalize this just yet. Because reasons. Please don't use.<br/>
+		/// </summary>
+		public static float GetScale()
+		{
+			float ret = GetScaleNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiWindow* GetCurrentWindowReadNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*>)funcTable[1111])();
+			#else
+			return (ImGuiWindow*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1111])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiWindowPtr GetCurrentWindowRead()
+		{
+			ImGuiWindowPtr ret = GetCurrentWindowReadNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiWindow* GetCurrentWindowNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*>)funcTable[1112])();
+			#else
+			return (ImGuiWindow*)((delegate* unmanaged[Cdecl]<nint>)funcTable[1112])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiWindowPtr GetCurrentWindow()
+		{
+			ImGuiWindowPtr ret = GetCurrentWindowNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiWindow* FindWindowByIDNative(uint id)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, ImGuiWindow*>)funcTable[1113])(id);
+			#else
+			return (ImGuiWindow*)((delegate* unmanaged[Cdecl]<uint, nint>)funcTable[1113])(id);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiWindowPtr FindWindowByID(uint id)
+		{
+			ImGuiWindowPtr ret = FindWindowByIDNative(id);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImGuiWindow* FindWindowByNameNative(byte* name)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiWindow*>)funcTable[1114])(name);
+			#else
+			return (ImGuiWindow*)((delegate* unmanaged[Cdecl]<nint, nint>)funcTable[1114])((nint)name);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiWindowPtr FindWindowByName(byte* name)
+		{
+			ImGuiWindowPtr ret = FindWindowByNameNative(name);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiWindowPtr FindWindowByName(in byte name)
+		{
+			fixed (byte* pname = &name)
+			{
+				ImGuiWindowPtr ret = FindWindowByNameNative((byte*)pname);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiWindowPtr FindWindowByName(ReadOnlySpan<byte> name)
+		{
+			fixed (byte* pname = name)
+			{
+				ImGuiWindowPtr ret = FindWindowByNameNative((byte*)pname);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImGuiWindowPtr FindWindowByName(string name)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImGuiWindowPtr ret = FindWindowByNameNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void UpdateWindowParentAndRootLinksNative(ImGuiWindow* window, ImGuiWindowFlags flags, ImGuiWindow* parentWindow)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiWindowFlags, ImGuiWindow*, void>)funcTable[1115])(window, flags, parentWindow);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImGuiWindowFlags, nint, void>)funcTable[1115])((nint)window, flags, (nint)parentWindow);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void UpdateWindowParentAndRootLinks(ImGuiWindowPtr window, ImGuiWindowFlags flags, ImGuiWindowPtr parentWindow)
+		{
+			UpdateWindowParentAndRootLinksNative((ImGuiWindow*)window, flags, (ImGuiWindow*)parentWindow);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void UpdateWindowParentAndRootLinks(ref ImGuiWindow window, ImGuiWindowFlags flags, ImGuiWindowPtr parentWindow)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				UpdateWindowParentAndRootLinksNative((ImGuiWindow*)pwindow, flags, (ImGuiWindow*)parentWindow);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void UpdateWindowParentAndRootLinks(ImGuiWindowPtr window, ImGuiWindowFlags flags, ref ImGuiWindow parentWindow)
+		{
+			fixed (ImGuiWindow* pparentWindow = &parentWindow)
+			{
+				UpdateWindowParentAndRootLinksNative((ImGuiWindow*)window, flags, (ImGuiWindow*)pparentWindow);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void UpdateWindowParentAndRootLinks(ref ImGuiWindow window, ImGuiWindowFlags flags, ref ImGuiWindow parentWindow)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (ImGuiWindow* pparentWindow = &parentWindow)
+				{
+					UpdateWindowParentAndRootLinksNative((ImGuiWindow*)pwindow, flags, (ImGuiWindow*)pparentWindow);
 				}
 			}
 		}
@@ -4744,22 +4175,126 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEndDisplay, ref byte textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void UpdateWindowSkipRefreshNative(ImGuiWindow* window)
 		{
-			fixed (Vector2* ppOut = &pOut)
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)funcTable[1116])(window);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1116])((nint)window);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void UpdateWindowSkipRefresh(ImGuiWindowPtr window)
+		{
+			UpdateWindowSkipRefreshNative((ImGuiWindow*)window);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void UpdateWindowSkipRefresh(ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
 			{
-				fixed (byte* ptextBegin = textBegin)
+				UpdateWindowSkipRefreshNative((ImGuiWindow*)pwindow);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static Vector2 CalcWindowNextAutoFitSizeNative(ImGuiWindow* window)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, Vector2>)funcTable[1117])(window);
+			#else
+			return (Vector2)((delegate* unmanaged[Cdecl]<nint, Vector2>)funcTable[1117])((nint)window);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcWindowNextAutoFitSize(ImGuiWindowPtr window)
+		{
+			Vector2 ret = CalcWindowNextAutoFitSizeNative((ImGuiWindow*)window);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 CalcWindowNextAutoFitSize(ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				Vector2 ret = CalcWindowNextAutoFitSizeNative((ImGuiWindow*)pwindow);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsWindowChildOfNative(ImGuiWindow* window, ImGuiWindow* potentialParent, byte popupHierarchy, byte dockHierarchy)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiWindow*, byte, byte, byte>)funcTable[1118])(window, potentialParent, popupHierarchy, dockHierarchy);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte, byte, byte>)funcTable[1118])((nint)window, (nint)potentialParent, popupHierarchy, dockHierarchy);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowChildOf(ImGuiWindowPtr window, ImGuiWindowPtr potentialParent, bool popupHierarchy, bool dockHierarchy)
+		{
+			byte ret = IsWindowChildOfNative((ImGuiWindow*)window, (ImGuiWindow*)potentialParent, popupHierarchy ? (byte)1 : (byte)0, dockHierarchy ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowChildOf(ref ImGuiWindow window, ImGuiWindowPtr potentialParent, bool popupHierarchy, bool dockHierarchy)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				byte ret = IsWindowChildOfNative((ImGuiWindow*)pwindow, (ImGuiWindow*)potentialParent, popupHierarchy ? (byte)1 : (byte)0, dockHierarchy ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowChildOf(ImGuiWindowPtr window, ref ImGuiWindow potentialParent, bool popupHierarchy, bool dockHierarchy)
+		{
+			fixed (ImGuiWindow* ppotentialParent = &potentialParent)
+			{
+				byte ret = IsWindowChildOfNative((ImGuiWindow*)window, (ImGuiWindow*)ppotentialParent, popupHierarchy ? (byte)1 : (byte)0, dockHierarchy ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowChildOf(ref ImGuiWindow window, ref ImGuiWindow potentialParent, bool popupHierarchy, bool dockHierarchy)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (ImGuiWindow* ppotentialParent = &potentialParent)
 				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							}
-						}
-					}
+					byte ret = IsWindowChildOfNative((ImGuiWindow*)pwindow, (ImGuiWindow*)ppotentialParent, popupHierarchy ? (byte)1 : (byte)0, dockHierarchy ? (byte)1 : (byte)0);
+					return ret != 0;
 				}
 			}
 		}
@@ -4767,40 +4302,94 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEndDisplay, string textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsWindowInBeginStackNative(ImGuiWindow* window)
 		{
-			fixed (Vector2* ppOut = &pOut)
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, byte>)funcTable[1119])(window);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[1119])((nint)window);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowInBeginStack(ImGuiWindowPtr window)
+		{
+			byte ret = IsWindowInBeginStackNative((ImGuiWindow*)window);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowInBeginStack(ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
 			{
-				fixed (byte* ptextBegin = textBegin)
+				byte ret = IsWindowInBeginStackNative((ImGuiWindow*)pwindow);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsWindowWithinBeginStackOfNative(ImGuiWindow* window, ImGuiWindow* potentialParent)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiWindow*, byte>)funcTable[1120])(window, potentialParent);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[1120])((nint)window, (nint)potentialParent);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowWithinBeginStackOf(ImGuiWindowPtr window, ImGuiWindowPtr potentialParent)
+		{
+			byte ret = IsWindowWithinBeginStackOfNative((ImGuiWindow*)window, (ImGuiWindow*)potentialParent);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowWithinBeginStackOf(ref ImGuiWindow window, ImGuiWindowPtr potentialParent)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				byte ret = IsWindowWithinBeginStackOfNative((ImGuiWindow*)pwindow, (ImGuiWindow*)potentialParent);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowWithinBeginStackOf(ImGuiWindowPtr window, ref ImGuiWindow potentialParent)
+		{
+			fixed (ImGuiWindow* ppotentialParent = &potentialParent)
+			{
+				byte ret = IsWindowWithinBeginStackOfNative((ImGuiWindow*)window, (ImGuiWindow*)ppotentialParent);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowWithinBeginStackOf(ref ImGuiWindow window, ref ImGuiWindow potentialParent)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (ImGuiWindow* ppotentialParent = &potentialParent)
 				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, pStr0, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
+					byte ret = IsWindowWithinBeginStackOfNative((ImGuiWindow*)pwindow, (ImGuiWindow*)ppotentialParent);
+					return ret != 0;
 				}
 			}
 		}
@@ -4808,40 +4397,60 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEndDisplay, ref byte textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsWindowAboveNative(ImGuiWindow* potentialAbove, ImGuiWindow* potentialBelow)
 		{
-			fixed (Vector2* ppOut = &pOut)
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiWindow*, byte>)funcTable[1121])(potentialAbove, potentialBelow);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)funcTable[1121])((nint)potentialAbove, (nint)potentialBelow);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowAbove(ImGuiWindowPtr potentialAbove, ImGuiWindowPtr potentialBelow)
+		{
+			byte ret = IsWindowAboveNative((ImGuiWindow*)potentialAbove, (ImGuiWindow*)potentialBelow);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowAbove(ref ImGuiWindow potentialAbove, ImGuiWindowPtr potentialBelow)
+		{
+			fixed (ImGuiWindow* ppotentialAbove = &potentialAbove)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
+				byte ret = IsWindowAboveNative((ImGuiWindow*)ppotentialAbove, (ImGuiWindow*)potentialBelow);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowAbove(ImGuiWindowPtr potentialAbove, ref ImGuiWindow potentialBelow)
+		{
+			fixed (ImGuiWindow* ppotentialBelow = &potentialBelow)
+			{
+				byte ret = IsWindowAboveNative((ImGuiWindow*)potentialAbove, (ImGuiWindow*)ppotentialBelow);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowAbove(ref ImGuiWindow potentialAbove, ref ImGuiWindow potentialBelow)
+		{
+			fixed (ImGuiWindow* ppotentialAbove = &potentialAbove)
+			{
+				fixed (ImGuiWindow* ppotentialBelow = &potentialBelow)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, pStr0, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
+					byte ret = IsWindowAboveNative((ImGuiWindow*)ppotentialAbove, (ImGuiWindow*)ppotentialBelow);
+					return ret != 0;
 				}
 			}
 		}
@@ -4849,40 +4458,307 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImFontCalcTextSizeEx(ref Vector2 pOut, ImFontPtr font, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static byte IsWindowNavFocusableNative(ImGuiWindow* window)
 		{
-			fixed (Vector2* ppOut = &pOut)
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, byte>)funcTable[1122])(window);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)funcTable[1122])((nint)window);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowNavFocusable(ImGuiWindowPtr window)
+		{
+			byte ret = IsWindowNavFocusableNative((ImGuiWindow*)window);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool IsWindowNavFocusable(ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
+				byte ret = IsWindowNavFocusableNative((ImGuiWindow*)pwindow);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetWindowPosNative(ImGuiWindow* window, Vector2 pos, ImGuiCond cond)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, Vector2, ImGuiCond, void>)funcTable[1123])(window, pos, cond);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiCond, void>)funcTable[1123])((nint)window, pos, cond);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowPos(ImGuiWindowPtr window, Vector2 pos, ImGuiCond cond)
+		{
+			SetWindowPosNative((ImGuiWindow*)window, pos, cond);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowPos(ImGuiWindowPtr window, Vector2 pos)
+		{
+			SetWindowPosNative((ImGuiWindow*)window, pos, (ImGuiCond)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowPos(ref ImGuiWindow window, Vector2 pos, ImGuiCond cond)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				SetWindowPosNative((ImGuiWindow*)pwindow, pos, cond);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowPos(ref ImGuiWindow window, Vector2 pos)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				SetWindowPosNative((ImGuiWindow*)pwindow, pos, (ImGuiCond)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetWindowSizeNative(ImGuiWindow* window, Vector2 size, ImGuiCond cond)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, Vector2, ImGuiCond, void>)funcTable[1124])(window, size, cond);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiCond, void>)funcTable[1124])((nint)window, size, cond);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowSize(ImGuiWindowPtr window, Vector2 size, ImGuiCond cond)
+		{
+			SetWindowSizeNative((ImGuiWindow*)window, size, cond);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowSize(ImGuiWindowPtr window, Vector2 size)
+		{
+			SetWindowSizeNative((ImGuiWindow*)window, size, (ImGuiCond)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowSize(ref ImGuiWindow window, Vector2 size, ImGuiCond cond)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				SetWindowSizeNative((ImGuiWindow*)pwindow, size, cond);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowSize(ref ImGuiWindow window, Vector2 size)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				SetWindowSizeNative((ImGuiWindow*)pwindow, size, (ImGuiCond)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetWindowCollapsedNative(ImGuiWindow* window, byte collapsed, ImGuiCond cond)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, byte, ImGuiCond, void>)funcTable[1125])(window, collapsed, cond);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, byte, ImGuiCond, void>)funcTable[1125])((nint)window, collapsed, cond);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowCollapsed(ImGuiWindowPtr window, bool collapsed, ImGuiCond cond)
+		{
+			SetWindowCollapsedNative((ImGuiWindow*)window, collapsed ? (byte)1 : (byte)0, cond);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowCollapsed(ImGuiWindowPtr window, bool collapsed)
+		{
+			SetWindowCollapsedNative((ImGuiWindow*)window, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowCollapsed(ref ImGuiWindow window, bool collapsed, ImGuiCond cond)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				SetWindowCollapsedNative((ImGuiWindow*)pwindow, collapsed ? (byte)1 : (byte)0, cond);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowCollapsed(ref ImGuiWindow window, bool collapsed)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				SetWindowCollapsedNative((ImGuiWindow*)pwindow, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetWindowHitTestHoleNative(ImGuiWindow* window, Vector2 pos, Vector2 size)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, Vector2, Vector2, void>)funcTable[1126])(window, pos, size);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, void>)funcTable[1126])((nint)window, pos, size);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowHitTestHole(ImGuiWindowPtr window, Vector2 pos, Vector2 size)
+		{
+			SetWindowHitTestHoleNative((ImGuiWindow*)window, pos, size);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowHitTestHole(ref ImGuiWindow window, Vector2 pos, Vector2 size)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				SetWindowHitTestHoleNative((ImGuiWindow*)pwindow, pos, size);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetWindowHiddenAndSkipItemsForCurrentFrameNative(ImGuiWindow* window)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)funcTable[1127])(window);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1127])((nint)window);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowHiddenAndSkipItemsForCurrentFrame(ImGuiWindowPtr window)
+		{
+			SetWindowHiddenAndSkipItemsForCurrentFrameNative((ImGuiWindow*)window);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetWindowHiddenAndSkipItemsForCurrentFrame(ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				SetWindowHiddenAndSkipItemsForCurrentFrameNative((ImGuiWindow*)pwindow);
+			}
+		}
+
+		/// <summary>
+		/// You may also use SetNextWindowClass()'s FocusRouteParentWindowId field.<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetWindowParentWindowForFocusRouteNative(ImGuiWindow* window, ImGuiWindow* parentWindow)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiWindow*, void>)funcTable[1128])(window, parentWindow);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[1128])((nint)window, (nint)parentWindow);
+			#endif
+		}
+
+		/// <summary>
+		/// You may also use SetNextWindowClass()'s FocusRouteParentWindowId field.<br/>
+		/// </summary>
+		public static void SetWindowParentWindowForFocusRoute(ImGuiWindowPtr window, ImGuiWindowPtr parentWindow)
+		{
+			SetWindowParentWindowForFocusRouteNative((ImGuiWindow*)window, (ImGuiWindow*)parentWindow);
+		}
+
+		/// <summary>
+		/// You may also use SetNextWindowClass()'s FocusRouteParentWindowId field.<br/>
+		/// </summary>
+		public static void SetWindowParentWindowForFocusRoute(ref ImGuiWindow window, ImGuiWindowPtr parentWindow)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				SetWindowParentWindowForFocusRouteNative((ImGuiWindow*)pwindow, (ImGuiWindow*)parentWindow);
+			}
+		}
+
+		/// <summary>
+		/// You may also use SetNextWindowClass()'s FocusRouteParentWindowId field.<br/>
+		/// </summary>
+		public static void SetWindowParentWindowForFocusRoute(ImGuiWindowPtr window, ref ImGuiWindow parentWindow)
+		{
+			fixed (ImGuiWindow* pparentWindow = &parentWindow)
+			{
+				SetWindowParentWindowForFocusRouteNative((ImGuiWindow*)window, (ImGuiWindow*)pparentWindow);
+			}
+		}
+
+		/// <summary>
+		/// You may also use SetNextWindowClass()'s FocusRouteParentWindowId field.<br/>
+		/// </summary>
+		public static void SetWindowParentWindowForFocusRoute(ref ImGuiWindow window, ref ImGuiWindow parentWindow)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (ImGuiWindow* pparentWindow = &parentWindow)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (byte* ptextEnd = textEnd)
-				{
-					fixed (byte** poutRemaining = &outRemaining)
-					{
-						fixed (Vector2* poutOffset = &outOffset)
-						{
-							ImFontCalcTextSizeExNative((Vector2*)ppOut, font, size, maxWidth, wrapWidth, pStr0, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-						}
-					}
+					SetWindowParentWindowForFocusRouteNative((ImGuiWindow*)pwindow, (ImGuiWindow*)pparentWindow);
 				}
 			}
 		}
@@ -4890,24 +4766,243 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, ref byte textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImRect WindowRectAbsToRelNative(ImGuiWindow* window, ImRect r)
 		{
-			fixed (ImFont* pfont = &font)
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect, ImRect>)funcTable[1129])(window, r);
+			#else
+			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect, ImRect>)funcTable[1129])((nint)window, r);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImRect WindowRectAbsToRel(ImGuiWindowPtr window, ImRect r)
+		{
+			ImRect ret = WindowRectAbsToRelNative((ImGuiWindow*)window, r);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImRect WindowRectAbsToRel(ref ImGuiWindow window, ImRect r)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
 			{
-				fixed (byte* ptextBegin = &textBegin)
+				ImRect ret = WindowRectAbsToRelNative((ImGuiWindow*)pwindow, r);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImRect WindowRectRelToAbsNative(ImGuiWindow* window, ImRect r)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect, ImRect>)funcTable[1130])(window, r);
+			#else
+			return (ImRect)((delegate* unmanaged[Cdecl]<nint, ImRect, ImRect>)funcTable[1130])((nint)window, r);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImRect WindowRectRelToAbs(ImGuiWindowPtr window, ImRect r)
+		{
+			ImRect ret = WindowRectRelToAbsNative((ImGuiWindow*)window, r);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImRect WindowRectRelToAbs(ref ImGuiWindow window, ImRect r)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				ImRect ret = WindowRectRelToAbsNative((ImGuiWindow*)pwindow, r);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static Vector2 WindowPosAbsToRelNative(ImGuiWindow* window, Vector2 p)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, Vector2, Vector2>)funcTable[1131])(window, p);
+			#else
+			return (Vector2)((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2>)funcTable[1131])((nint)window, p);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 WindowPosAbsToRel(ImGuiWindowPtr window, Vector2 p)
+		{
+			Vector2 ret = WindowPosAbsToRelNative((ImGuiWindow*)window, p);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 WindowPosAbsToRel(ref ImGuiWindow window, Vector2 p)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				Vector2 ret = WindowPosAbsToRelNative((ImGuiWindow*)pwindow, p);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static Vector2 WindowPosRelToAbsNative(ImGuiWindow* window, Vector2 p)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, Vector2, Vector2>)funcTable[1132])(window, p);
+			#else
+			return (Vector2)((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2>)funcTable[1132])((nint)window, p);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 WindowPosRelToAbs(ImGuiWindowPtr window, Vector2 p)
+		{
+			Vector2 ret = WindowPosRelToAbsNative((ImGuiWindow*)window, p);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static Vector2 WindowPosRelToAbs(ref ImGuiWindow window, Vector2 p)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				Vector2 ret = WindowPosRelToAbsNative((ImGuiWindow*)pwindow, p);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// Windows: Display Order and Focus Order<br/>
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void FocusWindowNative(ImGuiWindow* window, ImGuiFocusRequestFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiFocusRequestFlags, void>)funcTable[1133])(window, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImGuiFocusRequestFlags, void>)funcTable[1133])((nint)window, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// Windows: Display Order and Focus Order<br/>
+		/// </summary>
+		public static void FocusWindow(ImGuiWindowPtr window, ImGuiFocusRequestFlags flags)
+		{
+			FocusWindowNative((ImGuiWindow*)window, flags);
+		}
+
+		/// <summary>
+		/// Windows: Display Order and Focus Order<br/>
+		/// </summary>
+		public static void FocusWindow(ImGuiWindowPtr window)
+		{
+			FocusWindowNative((ImGuiWindow*)window, (ImGuiFocusRequestFlags)(0));
+		}
+
+		/// <summary>
+		/// Windows: Display Order and Focus Order<br/>
+		/// </summary>
+		public static void FocusWindow(ref ImGuiWindow window, ImGuiFocusRequestFlags flags)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				FocusWindowNative((ImGuiWindow*)pwindow, flags);
+			}
+		}
+
+		/// <summary>
+		/// Windows: Display Order and Focus Order<br/>
+		/// </summary>
+		public static void FocusWindow(ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				FocusWindowNative((ImGuiWindow*)pwindow, (ImGuiFocusRequestFlags)(0));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void FocusTopMostWindowUnderOneNative(ImGuiWindow* underThisWindow, ImGuiWindow* ignoreWindow, ImGuiViewport* filterViewport, ImGuiFocusRequestFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiWindow*, ImGuiViewport*, ImGuiFocusRequestFlags, void>)funcTable[1134])(underThisWindow, ignoreWindow, filterViewport, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, ImGuiFocusRequestFlags, void>)funcTable[1134])((nint)underThisWindow, (nint)ignoreWindow, (nint)filterViewport, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void FocusTopMostWindowUnderOne(ImGuiWindowPtr underThisWindow, ImGuiWindowPtr ignoreWindow, ImGuiViewportPtr filterViewport, ImGuiFocusRequestFlags flags)
+		{
+			FocusTopMostWindowUnderOneNative((ImGuiWindow*)underThisWindow, (ImGuiWindow*)ignoreWindow, (ImGuiViewport*)filterViewport, flags);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void FocusTopMostWindowUnderOne(ref ImGuiWindow underThisWindow, ImGuiWindowPtr ignoreWindow, ImGuiViewportPtr filterViewport, ImGuiFocusRequestFlags flags)
+		{
+			fixed (ImGuiWindow* punderThisWindow = &underThisWindow)
+			{
+				FocusTopMostWindowUnderOneNative((ImGuiWindow*)punderThisWindow, (ImGuiWindow*)ignoreWindow, (ImGuiViewport*)filterViewport, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void FocusTopMostWindowUnderOne(ImGuiWindowPtr underThisWindow, ref ImGuiWindow ignoreWindow, ImGuiViewportPtr filterViewport, ImGuiFocusRequestFlags flags)
+		{
+			fixed (ImGuiWindow* pignoreWindow = &ignoreWindow)
+			{
+				FocusTopMostWindowUnderOneNative((ImGuiWindow*)underThisWindow, (ImGuiWindow*)pignoreWindow, (ImGuiViewport*)filterViewport, flags);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void FocusTopMostWindowUnderOne(ref ImGuiWindow underThisWindow, ref ImGuiWindow ignoreWindow, ImGuiViewportPtr filterViewport, ImGuiFocusRequestFlags flags)
+		{
+			fixed (ImGuiWindow* punderThisWindow = &underThisWindow)
+			{
+				fixed (ImGuiWindow* pignoreWindow = &ignoreWindow)
 				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								Vector2 ret;
-								ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-								return ret;
-							}
-						}
-					}
+					FocusTopMostWindowUnderOneNative((ImGuiWindow*)punderThisWindow, (ImGuiWindow*)pignoreWindow, (ImGuiViewport*)filterViewport, flags);
 				}
 			}
 		}
@@ -4915,111 +5010,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ReadOnlySpan<byte> textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
+		public static void FocusTopMostWindowUnderOne(ImGuiWindowPtr underThisWindow, ImGuiWindowPtr ignoreWindow, ref ImGuiViewport filterViewport, ImGuiFocusRequestFlags flags)
 		{
-			fixed (ImFont* pfont = &font)
+			fixed (ImGuiViewport* pfilterViewport = &filterViewport)
 			{
-				fixed (byte* ptextBegin = textBegin)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								Vector2 ret;
-								ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-								return ret;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEndDisplay, string textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (byte** poutRemaining = &outRemaining)
-				{
-					fixed (Vector2* poutOffset = &outOffset)
-					{
-						Vector2 ret;
-						ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, pStr0, textEndDisplay, pStr1, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr1);
-						}
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static Vector2 ImFontCalcTextSizeEx(ref ImFont font, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEndDisplay, ReadOnlySpan<byte> textEnd, ref byte* outRemaining, ref Vector2 outOffset, ImDrawTextFlags flags)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = textEnd)
-					{
-						fixed (byte** poutRemaining = &outRemaining)
-						{
-							fixed (Vector2* poutOffset = &outOffset)
-							{
-								Vector2 ret;
-								ImFontCalcTextSizeExNative(&ret, (ImFont*)pfont, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEndDisplay, (byte*)ptextEnd, (byte**)poutRemaining, (Vector2*)poutOffset, flags);
-								return ret;
-							}
-						}
-					}
-				}
+				FocusTopMostWindowUnderOneNative((ImGuiWindow*)underThisWindow, (ImGuiWindow*)ignoreWindow, (ImGuiViewport*)pfilterViewport, flags);
 			}
 		}
 	}

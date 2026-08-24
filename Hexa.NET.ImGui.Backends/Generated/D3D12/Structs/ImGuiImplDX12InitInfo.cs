@@ -92,8 +92,8 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 			DSVFormat = dsvFormat;
 			UserData = userData;
 			SrvDescriptorHeap = srvDescriptorHeap;
-			SrvDescriptorAllocFn = (void*)srvDescriptorAllocFn;
-			SrvDescriptorFreeFn = (void*)srvDescriptorFreeFn;
+			SrvDescriptorAllocFn = (delegate*<ImGuiImplDX12InitInfo*, D3D12CpuDescriptorHandle*, D3D12GpuDescriptorHandle*, void>*)srvDescriptorAllocFn;
+			SrvDescriptorFreeFn = (delegate*<ImGuiImplDX12InitInfo*, D3D12CpuDescriptorHandle, D3D12GpuDescriptorHandle, void>*)srvDescriptorFreeFn;
 			LegacySingleSrvCpuDescriptor = legacySingleSrvCpuDescriptor;
 			LegacySingleSrvGpuDescriptor = legacySingleSrvGpuDescriptor;
 		}

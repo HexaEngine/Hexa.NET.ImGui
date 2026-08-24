@@ -35,7 +35,7 @@ namespace Hexa.NET.ImGui
 		PressedOnClickReleaseAnywhere = unchecked(64),
 
 		/// <summary>
-		/// return true on release (default requires click+release)<br/>
+		/// return true on release (default requires click+release). Prior to 20260320 this implied ImGuiButtonFlags_NoHoldingActiveId but they are separate now.<br/>
 		/// </summary>
 		PressedOnRelease = unchecked(128),
 
@@ -53,11 +53,6 @@ namespace Hexa.NET.ImGui
 		/// allow interactions even if a child window is overlapping<br/>
 		/// </summary>
 		FlattenChildren = unchecked(2048),
-
-		/// <summary>
-		/// require previous frame HoveredId to either match id or be null before being usable.<br/>
-		/// </summary>
-		AllowOverlap = unchecked(4096),
 
 		/// <summary>
 		/// vertically align button to match text baseline - ButtonEx() only  FIXME: Should be removed and handled by SmallButton(), not possible currently because of DC.CursorPosPrevLine<br/>

@@ -24,7 +24,137 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (double* pxs = &xs)
+				{
+					fixed (double* pys = &ys)
+					{
+						PlotScatterNative((byte*)plabelId, (double*)pxs, (double*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pxs = &xs)
+			{
+				fixed (double* pys = &ys)
+				{
+					PlotScatterNative(pStr0, (double*)pxs, (double*)pys, zs, count, flags, offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pxs = &xs)
+			{
+				fixed (double* pys = &ys)
+				{
+					PlotScatterNative(pStr0, (double*)pxs, (double*)pys, zs, count, flags, offset, (int)(sizeof(double)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pxs = &xs)
+			{
+				fixed (double* pys = &ys)
+				{
+					PlotScatterNative(pStr0, (double*)pxs, (double*)pys, zs, count, flags, (int)(0), (int)(sizeof(double)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -61,7 +191,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -98,7 +228,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -135,7 +265,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (double* pzs = &zs)
 			{
@@ -148,7 +278,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (double* pzs = &zs)
 			{
@@ -161,7 +291,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (double* pzs = &zs)
 			{
@@ -174,7 +304,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (double* pzs = &zs)
 			{
@@ -187,7 +317,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (double* pzs = &zs)
 			{
@@ -200,7 +330,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (double* pzs = &zs)
 			{
@@ -213,7 +343,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -229,7 +359,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -245,7 +375,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -261,7 +391,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -277,7 +407,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -293,7 +423,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -309,7 +439,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -325,7 +455,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -341,7 +471,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -357,7 +487,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -373,7 +503,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -389,7 +519,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -405,7 +535,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -439,7 +569,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -473,7 +603,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -507,7 +637,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -541,7 +671,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -575,7 +705,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -609,7 +739,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (double* pxs = &xs)
 			{
@@ -625,7 +755,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (double* pxs = &xs)
 			{
@@ -641,7 +771,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (double* pxs = &xs)
 			{
@@ -657,7 +787,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (double* pxs = &xs)
 			{
@@ -673,7 +803,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (double* pxs = &xs)
 			{
@@ -689,7 +819,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (double* pxs = &xs)
 			{
@@ -705,7 +835,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -724,7 +854,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -743,7 +873,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -762,7 +892,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -781,7 +911,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -800,7 +930,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -819,7 +949,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -838,7 +968,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -857,7 +987,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -876,7 +1006,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -895,7 +1025,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -914,7 +1044,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -933,7 +1063,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -970,7 +1100,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1007,7 +1137,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1044,7 +1174,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1081,7 +1211,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1118,7 +1248,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1155,7 +1285,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (double* pys = &ys)
 			{
@@ -1171,7 +1301,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (double* pys = &ys)
 			{
@@ -1187,7 +1317,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (double* pys = &ys)
 			{
@@ -1203,7 +1333,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (double* pys = &ys)
 			{
@@ -1219,7 +1349,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (double* pys = &ys)
 			{
@@ -1235,7 +1365,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (double* pys = &ys)
 			{
@@ -1251,7 +1381,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1270,7 +1400,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1289,7 +1419,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1308,7 +1438,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1327,7 +1457,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1346,7 +1476,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1365,7 +1495,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -1384,7 +1514,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -1403,7 +1533,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -1422,7 +1552,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -1441,7 +1571,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -1460,7 +1590,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -1479,7 +1609,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1516,7 +1646,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1553,7 +1683,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1590,7 +1720,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1627,7 +1757,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1664,7 +1794,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1701,7 +1831,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (double* pxs = &xs)
 			{
@@ -1720,7 +1850,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (double* pxs = &xs)
 			{
@@ -1739,7 +1869,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (double* pxs = &xs)
 			{
@@ -1758,7 +1888,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (double* pxs = &xs)
 			{
@@ -1777,7 +1907,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (double* pxs = &xs)
 			{
@@ -1796,7 +1926,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (double* pxs = &xs)
 			{
@@ -1815,7 +1945,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1837,7 +1967,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1859,7 +1989,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1881,7 +2011,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1903,7 +2033,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1925,7 +2055,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1947,7 +2077,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -1969,7 +2099,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -1991,7 +2121,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2013,7 +2143,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2035,7 +2165,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2057,7 +2187,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2079,7 +2209,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2119,7 +2249,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2159,7 +2289,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2199,7 +2329,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2239,7 +2369,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2279,7 +2409,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] in double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] in double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2320,12 +2450,12 @@ namespace Hexa.NET.ImPlot3D
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotScatterNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		internal static void PlotScatterNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, sbyte*, sbyte*, sbyte*, int, ImPlot3DScatterFlags, int, int, void>)funcTable[27])(labelId, xs, ys, zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, sbyte*, sbyte*, sbyte*, int, ImPlot3DScatterFlags, int, int, void>)funcTable[24])(labelId, xs, ys, zs, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DScatterFlags, int, int, void>)funcTable[27])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DScatterFlags, int, int, void>)funcTable[24])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
 			#endif
 		}
 
@@ -2334,7 +2464,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			PlotScatterNative(labelId, xs, ys, zs, count, flags, offset, stride);
 		}
@@ -2344,7 +2474,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			PlotScatterNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(sbyte)));
 		}
@@ -2354,7 +2484,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			PlotScatterNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
 		}
@@ -2364,7 +2494,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
 		}
@@ -2374,7 +2504,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
 		}
@@ -2384,7 +2514,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
 		}
@@ -2394,7 +2524,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2407,7 +2537,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2420,7 +2550,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2433,7 +2563,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2446,7 +2576,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2459,7 +2589,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2472,7 +2602,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2485,7 +2615,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2498,7 +2628,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2511,7 +2641,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2524,7 +2654,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2537,7 +2667,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
@@ -2550,7 +2680,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2581,7 +2711,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2612,7 +2742,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2643,7 +2773,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2674,7 +2804,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2705,7 +2835,7 @@ namespace Hexa.NET.ImPlot3D
 		/// </summary>
 		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2734,240 +2864,279 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotScatterNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, byte*, int, ImPlot3DScatterFlags, int, int, void>)funcTable[28])(labelId, xs, ys, zs, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DScatterFlags, int, int, void>)funcTable[28])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
-			#endif
+			fixed (sbyte* pxs = &xs)
+			{
+				PlotScatterNative(labelId, (sbyte*)pxs, ys, zs, count, flags, offset, stride);
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, offset, stride);
+			fixed (sbyte* pxs = &xs)
+			{
+				PlotScatterNative(labelId, (sbyte*)pxs, ys, zs, count, flags, offset, (int)(sizeof(sbyte)));
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(byte)));
+			fixed (sbyte* pxs = &xs)
+			{
+				PlotScatterNative(labelId, (sbyte*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(byte)));
+			fixed (sbyte* pxs = &xs)
+			{
+				PlotScatterNative(labelId, (sbyte*)pxs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(byte)));
+			fixed (sbyte* pxs = &xs)
+			{
+				PlotScatterNative(labelId, (sbyte*)pxs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(byte)));
+			fixed (sbyte* pxs = &xs)
+			{
+				PlotScatterNative(labelId, (sbyte*)pxs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
+				fixed (sbyte* pxs = &xs)
+				{
+					PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, zs, count, flags, offset, stride);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(byte)));
+				fixed (sbyte* pxs = &xs)
+				{
+					PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, zs, count, flags, offset, (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(byte)));
+				fixed (sbyte* pxs = &xs)
+				{
+					PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(byte)));
+				fixed (sbyte* pxs = &xs)
+				{
+					PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(byte)));
+				fixed (sbyte* pxs = &xs)
+				{
+					PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				fixed (sbyte* pxs = &xs)
+				{
+					PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
+				fixed (sbyte* pxs = &xs)
+				{
+					PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, zs, count, flags, offset, stride);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(byte)));
+				fixed (sbyte* pxs = &xs)
+				{
+					PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, zs, count, flags, offset, (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(byte)));
+				fixed (sbyte* pxs = &xs)
+				{
+					PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(byte)));
+				fixed (sbyte* pxs = &xs)
+				{
+					PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(byte)));
+				fixed (sbyte* pxs = &xs)
+				{
+					PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				fixed (sbyte* pxs = &xs)
+				{
+					PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2986,19 +3155,22 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, (sbyte*)pxs, ys, zs, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3017,19 +3189,22 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(byte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, (sbyte*)pxs, ys, zs, count, flags, offset, (int)(sizeof(sbyte)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3048,19 +3223,22 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(byte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, (sbyte*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3079,19 +3257,22 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(byte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, (sbyte*)pxs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3110,19 +3291,22 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(byte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, (sbyte*)pxs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U8Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3141,250 +3325,292 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, (sbyte*)pxs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotScatterNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, short*, short*, short*, int, ImPlot3DScatterFlags, int, int, void>)funcTable[29])(labelId, xs, ys, zs, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DScatterFlags, int, int, void>)funcTable[29])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
-			#endif
+			fixed (sbyte* pys = &ys)
+			{
+				PlotScatterNative(labelId, xs, (sbyte*)pys, zs, count, flags, offset, stride);
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, offset, stride);
+			fixed (sbyte* pys = &ys)
+			{
+				PlotScatterNative(labelId, xs, (sbyte*)pys, zs, count, flags, offset, (int)(sizeof(sbyte)));
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(short)));
+			fixed (sbyte* pys = &ys)
+			{
+				PlotScatterNative(labelId, xs, (sbyte*)pys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(short)));
+			fixed (sbyte* pys = &ys)
+			{
+				PlotScatterNative(labelId, xs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+			fixed (sbyte* pys = &ys)
+			{
+				PlotScatterNative(labelId, xs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(short)));
+			fixed (sbyte* pys = &ys)
+			{
+				PlotScatterNative(labelId, xs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative((byte*)plabelId, xs, (sbyte*)pys, zs, count, flags, offset, stride);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(short)));
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative((byte*)plabelId, xs, (sbyte*)pys, zs, count, flags, offset, (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(short)));
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative((byte*)plabelId, xs, (sbyte*)pys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative((byte*)plabelId, xs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(short)));
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative((byte*)plabelId, xs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative((byte*)plabelId, xs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative((byte*)plabelId, xs, (sbyte*)pys, zs, count, flags, offset, stride);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(short)));
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative((byte*)plabelId, xs, (sbyte*)pys, zs, count, flags, offset, (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(short)));
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative((byte*)plabelId, xs, (sbyte*)pys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative((byte*)plabelId, xs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(short)));
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative((byte*)plabelId, xs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative((byte*)plabelId, xs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3403,19 +3629,22 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, xs, (sbyte*)pys, zs, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3434,19 +3663,22 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(short)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, xs, (sbyte*)pys, zs, count, flags, offset, (int)(sizeof(sbyte)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3465,19 +3697,22 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(short)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, xs, (sbyte*)pys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3496,19 +3731,22 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(short)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, xs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3527,19 +3765,22 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(short)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, xs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3558,250 +3799,346 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, xs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotScatterNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ushort*, ushort*, ushort*, int, ImPlot3DScatterFlags, int, int, void>)funcTable[30])(labelId, xs, ys, zs, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DScatterFlags, int, int, void>)funcTable[30])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
-			#endif
+			fixed (sbyte* pxs = &xs)
+			{
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative(labelId, (sbyte*)pxs, (sbyte*)pys, zs, count, flags, offset, stride);
+				}
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, offset, stride);
+			fixed (sbyte* pxs = &xs)
+			{
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative(labelId, (sbyte*)pxs, (sbyte*)pys, zs, count, flags, offset, (int)(sizeof(sbyte)));
+				}
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(ushort)));
+			fixed (sbyte* pxs = &xs)
+			{
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative(labelId, (sbyte*)pxs, (sbyte*)pys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(ushort)));
+			fixed (sbyte* pxs = &xs)
+			{
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative(labelId, (sbyte*)pxs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			fixed (sbyte* pxs = &xs)
+			{
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative(labelId, (sbyte*)pxs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(ushort)));
+			fixed (sbyte* pxs = &xs)
+			{
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative(labelId, (sbyte*)pxs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				}
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, zs, count, flags, offset, stride);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(ushort)));
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, zs, count, flags, offset, (int)(sizeof(sbyte)));
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(ushort)));
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(ushort)));
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, zs, count, flags, offset, stride);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(ushort)));
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, zs, count, flags, offset, (int)(sizeof(sbyte)));
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(ushort)));
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(ushort)));
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pys = &ys)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3820,19 +4157,25 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative(pStr0, (sbyte*)pxs, (sbyte*)pys, zs, count, flags, offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3851,19 +4194,25 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(ushort)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative(pStr0, (sbyte*)pxs, (sbyte*)pys, zs, count, flags, offset, (int)(sizeof(sbyte)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3882,19 +4231,25 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(ushort)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative(pStr0, (sbyte*)pxs, (sbyte*)pys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3913,19 +4268,25 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative(pStr0, (sbyte*)pxs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3944,19 +4305,25 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(ushort)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative(pStr0, (sbyte*)pxs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U16Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3975,250 +4342,295 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (sbyte* pys = &ys)
+				{
+					PlotScatterNative(pStr0, (sbyte*)pxs, (sbyte*)pys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotScatterNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int*, int*, int*, int, ImPlot3DScatterFlags, int, int, void>)funcTable[31])(labelId, xs, ys, zs, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DScatterFlags, int, int, void>)funcTable[31])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
-			#endif
+			fixed (sbyte* pzs = &zs)
+			{
+				PlotScatterNative(labelId, xs, ys, (sbyte*)pzs, count, flags, offset, stride);
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, offset, stride);
+			fixed (sbyte* pzs = &zs)
+			{
+				PlotScatterNative(labelId, xs, ys, (sbyte*)pzs, count, flags, offset, (int)(sizeof(sbyte)));
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(int)));
+			fixed (sbyte* pzs = &zs)
+			{
+				PlotScatterNative(labelId, xs, ys, (sbyte*)pzs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(int)));
+			fixed (sbyte* pzs = &zs)
+			{
+				PlotScatterNative(labelId, xs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(int)));
+			fixed (sbyte* pzs = &zs)
+			{
+				PlotScatterNative(labelId, xs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(int)));
+			fixed (sbyte* pzs = &zs)
+			{
+				PlotScatterNative(labelId, xs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
+				fixed (sbyte* pzs = &zs)
+				{
+					PlotScatterNative((byte*)plabelId, xs, ys, (sbyte*)pzs, count, flags, offset, stride);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(int)));
+				fixed (sbyte* pzs = &zs)
+				{
+					PlotScatterNative((byte*)plabelId, xs, ys, (sbyte*)pzs, count, flags, offset, (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(int)));
+				fixed (sbyte* pzs = &zs)
+				{
+					PlotScatterNative((byte*)plabelId, xs, ys, (sbyte*)pzs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(int)));
+				fixed (sbyte* pzs = &zs)
+				{
+					PlotScatterNative((byte*)plabelId, xs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(int)));
+				fixed (sbyte* pzs = &zs)
+				{
+					PlotScatterNative((byte*)plabelId, xs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				fixed (sbyte* pzs = &zs)
+				{
+					PlotScatterNative((byte*)plabelId, xs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
+				fixed (sbyte* pzs = &zs)
+				{
+					PlotScatterNative((byte*)plabelId, xs, ys, (sbyte*)pzs, count, flags, offset, stride);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(int)));
+				fixed (sbyte* pzs = &zs)
+				{
+					PlotScatterNative((byte*)plabelId, xs, ys, (sbyte*)pzs, count, flags, offset, (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(int)));
+				fixed (sbyte* pzs = &zs)
+				{
+					PlotScatterNative((byte*)plabelId, xs, ys, (sbyte*)pzs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(int)));
+				fixed (sbyte* pzs = &zs)
+				{
+					PlotScatterNative((byte*)plabelId, xs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(int)));
+				fixed (sbyte* pzs = &zs)
+				{
+					PlotScatterNative((byte*)plabelId, xs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				fixed (sbyte* pzs = &zs)
+				{
+					PlotScatterNative((byte*)plabelId, xs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4237,19 +4649,22 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pzs = &zs)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, xs, ys, (sbyte*)pzs, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4268,19 +4683,22 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pzs = &zs)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, xs, ys, (sbyte*)pzs, count, flags, offset, (int)(sizeof(sbyte)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4299,19 +4717,22 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pzs = &zs)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, xs, ys, (sbyte*)pzs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4330,19 +4751,22 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pzs = &zs)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, xs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4361,19 +4785,22 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pzs = &zs)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, xs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S32Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4392,632 +4819,204 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (sbyte* pzs = &zs)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotScatterNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, uint*, uint*, uint*, int, ImPlot3DScatterFlags, int, int, void>)funcTable[32])(labelId, xs, ys, zs, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DScatterFlags, int, int, void>)funcTable[32])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(uint)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(uint)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(uint)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(uint)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				PlotScatterNative(pStr0, xs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					Utils.Free(pStr0);
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (sbyte* pzs = &zs)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					PlotScatterNative(labelId, (sbyte*)pxs, ys, (sbyte*)pzs, count, flags, offset, stride);
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(uint)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (sbyte* pzs = &zs)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					PlotScatterNative(labelId, (sbyte*)pxs, ys, (sbyte*)pzs, count, flags, offset, (int)(sizeof(sbyte)));
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(uint)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		{
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (sbyte* pzs = &zs)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					PlotScatterNative(labelId, (sbyte*)pxs, ys, (sbyte*)pzs, count, flags, (int)(0), (int)(sizeof(sbyte)));
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(uint)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (sbyte* pzs = &zs)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					PlotScatterNative(labelId, (sbyte*)pxs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(uint)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (sbyte* pzs = &zs)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					PlotScatterNative(labelId, (sbyte*)pxs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (sbyte* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (sbyte* pzs = &zs)
+				{
+					PlotScatterNative(labelId, (sbyte*)pxs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotScatterNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, long*, long*, long*, int, ImPlot3DScatterFlags, int, int, void>)funcTable[33])(labelId, xs, ys, zs, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DScatterFlags, int, int, void>)funcTable[33])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(long)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(long)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(long)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(long)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotScatterNative(labelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pzs = &zs)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, (sbyte*)pzs, count, flags, offset, stride);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(long)));
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pzs = &zs)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, (sbyte*)pzs, count, flags, offset, (int)(sizeof(sbyte)));
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(long)));
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pzs = &zs)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, (sbyte*)pzs, count, flags, (int)(0), (int)(sizeof(sbyte)));
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(long)));
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pzs = &zs)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S8Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImS8 const *")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImS8 const *")] in sbyte zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DScatterFlags")] ImPlot3DScatterFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotScatterNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(long)));
+				fixed (sbyte* pxs = &xs)
+				{
+					fixed (sbyte* pzs = &zs)
+					{
+						PlotScatterNative((byte*)plabelId, (sbyte*)pxs, ys, (sbyte*)pzs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(sbyte)));
+					}
+				}
 			}
 		}
 	}

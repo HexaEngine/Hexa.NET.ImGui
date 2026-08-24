@@ -1,13 +1,12 @@
 ﻿namespace Generator
 {
-    using CppAst;
     using HexaGen;
     using HexaGen.Core.Mapping;
     using HexaGen.Patching;
 
     public class ImGuizmoPrePatch : PrePatch
     {
-        protected override void PatchCompilation(CsCodeGeneratorConfig settings, CppCompilation compilation)
+        protected override void PatchCompilation(CsCodeGeneratorConfig settings, ParseResult parseResult)
         {
             if (settings.LibName != "cimguizmo")
             {

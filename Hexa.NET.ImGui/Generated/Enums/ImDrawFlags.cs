@@ -25,34 +25,39 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 
 		/// <summary>
-		/// PathStroke(), AddPolyline(): specify that shape should be closed (Important: this is always == 1 for legacy reason)<br/>
-		/// </summary>
-		Closed = unchecked(1),
-
-		/// <summary>
-		/// AddRect(), AddRectFilled(), PathRect(): enable rounding top-left corner only (when rounding &gt; 0.0f, we default to all corners). Was 0x01.<br/>
+		/// Round top-left corner only (when rounding &gt; 0.0f, we default to all corners).<br/>
 		/// </summary>
 		RoundCornersTopLeft = unchecked(16),
 
 		/// <summary>
-		/// AddRect(), AddRectFilled(), PathRect(): enable rounding top-right corner only (when rounding &gt; 0.0f, we default to all corners). Was 0x02.<br/>
+		/// Round top-right corner only (when rounding &gt; 0.0f, we default to all corners).<br/>
 		/// </summary>
 		RoundCornersTopRight = unchecked(32),
 
 		/// <summary>
-		/// AddRect(), AddRectFilled(), PathRect(): enable rounding bottom-left corner only (when rounding &gt; 0.0f, we default to all corners). Was 0x04.<br/>
+		/// Round bottom-left corner only (when rounding &gt; 0.0f, we default to all corners).<br/>
 		/// </summary>
 		RoundCornersBottomLeft = unchecked(64),
 
 		/// <summary>
-		/// AddRect(), AddRectFilled(), PathRect(): enable rounding bottom-right corner only (when rounding &gt; 0.0f, we default to all corners). Wax 0x08.<br/>
+		/// Round bottom-right corner only (when rounding &gt; 0.0f, we default to all corners).<br/>
 		/// </summary>
 		RoundCornersBottomRight = unchecked(128),
 
 		/// <summary>
-		/// AddRect(), AddRectFilled(), PathRect(): disable rounding on all corners (when rounding &gt; 0.0f). This is NOT zero, NOT an implicit flag!<br/>
+		/// Disable rounding even if `float rounding &gt; 0.0f`. This is NOT zero, NOT an implicit flag!<br/>
 		/// </summary>
 		RoundCornersNone = unchecked(256),
+
+		/// <summary>
+		/// (Default!!)<br/>
+		/// </summary>
+		RoundCornersAll = unchecked(240),
+
+		/// <summary>
+		/// Default to ALL corners if none of the _RoundCornersXX flags are specified!<br/>
+		/// </summary>
+		RoundCornersDefault = RoundCornersAll,
 
 		/// <summary>
 		/// To be documented.
@@ -77,16 +82,16 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		RoundCornersAll = unchecked(240),
-
-		/// <summary>
-		/// Default to ALL corners if none of the _RoundCornersXX flags are specified.<br/>
-		/// </summary>
-		RoundCornersDefault = RoundCornersAll,
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		RoundCornersMask = unchecked(496),
+
+		/// <summary>
+		/// PathStroke(), AddPolyline(): specify that shape should be closed.<br/>
+		/// </summary>
+		Closed = unchecked(512),
+
+		/// <summary>
+		/// == 0x8000000F,<br/>
+		/// </summary>
+		InvalidMask = unchecked(-2147483633),
 	}
 }

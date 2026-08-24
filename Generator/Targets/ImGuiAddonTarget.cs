@@ -2,6 +2,8 @@
 {
     using HexaGen;
     using HexaGen.BuildSystems;
+    using HexaGen.CppAst.Model.Declarations;
+
     using HexaGen.Metadata;
     using Microsoft.Extensions.Options;
     using System.Collections.Generic;
@@ -84,7 +86,29 @@
     }
 
     public class ImPlotTarget(IOptions<ImPlotTargetOptions> options) : ImGuiAddonTarget(options)
-    { }
+    {
+        protected override void OnSetup(GeneratorBuilder builder)
+        {
+            builder.AlterConfig(c =>
+            {
+                c.CustomEnumItemMapper = MapEnum;
+            });
+        }
+
+        private void MapEnum(CppEnum cppEnum, CppEnumItem cppEnumItem, CsEnumMetadata csEnum, CsEnumItemMetadata csEnumItem)
+        {
+            if (csEnum.Name == "ImAxis" && csEnum.Items.Count == 0)
+            {
+                csEnum.Items.Add(new("Auto", "-1", "Auto", "-1", [], ""));
+            }
+
+            if (csEnum.Name == "ImPlotColormap" && csEnum.Items.Count == 0)
+            {
+                csEnum.Items.Add(new("Auto", "-1", "Auto", "-1", [], ""));
+            }
+        }
+
+    }
 
     public class ImNodesTarget(IOptions<ImNodesTargetOptions> options) : ImGuiAddonTarget(options)
     { }

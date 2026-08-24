@@ -39,5 +39,10 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		Exploding = unchecked(4096),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		NoSliceBorder = unchecked(8192),
 	}
 }

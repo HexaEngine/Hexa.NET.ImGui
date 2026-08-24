@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+		<TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -12,9 +12,9 @@
 		<EnableAotAnalyzer>true</EnableAotAnalyzer>
 		<IsAotCompatible>true</IsAotCompatible>
 
-		<AssemblyVersion>1.0.19</AssemblyVersion>
-		<PackageVersion>1.0.20-prerelease</PackageVersion>
-		<Description>A .NET wrapper for the Dear ImGui (1.92.4) library backends (Win32, Vulkan, OpenGL2, OpenGL3, D3D11, D3D12, OSX, Metal, Android).</Description>
+		<AssemblyVersion>3.1.0.0</AssemblyVersion>
+		<PackageVersion>3.1.0.0</PackageVersion>
+		<Description>A .NET wrapper for the Dear ImGui (1.92.9b) library backends (Win32, Vulkan, OpenGL2, OpenGL3, D3D11, D3D12, OSX, Metal, Android).</Description>
 		<PackageTags>ImGui Backends UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
 		<Copyright>Copyright (c) 2024 Juna Meinhold</Copyright>
@@ -23,15 +23,16 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>icon.png</PackageIcon>
 
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<NoWarn>$(NoWarn);1591</NoWarn>
+		<NoWarn>$(NoWarn);1591;1570</NoWarn>
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HexaGen.Runtime" Version="1.1.21" />
+		<PackageReference Include="HexaGen.Runtime" Version="1.1.22" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -98,6 +99,7 @@
 	<ItemGroup>
 		<Content Include="LICENSE.txt" Pack="true" PackagePath="\" />
 		<Content Include="README.md" Pack="true" PackagePath="\" />
+		<Content Include="../icon.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 	<ItemGroup>

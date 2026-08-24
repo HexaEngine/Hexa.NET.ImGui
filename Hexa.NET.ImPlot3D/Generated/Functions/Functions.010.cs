@@ -22,9 +22,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -43,9 +43,816 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pzs = &zs)
+			fixed (ulong* pxs = &xs)
 			{
-				PlotQuadNative(pStr0, xs, ys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(double)));
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotScatterNative(pStr0, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DScatterFlags)(0), (int)(0), (int)(sizeof(ulong)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotScatterNative(pStr0, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DScatterFlags)(0), offset, (int)(sizeof(ulong)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotScatter_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotScatter([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotScatterNative(pStr0, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DScatterFlags)(0), offset, stride);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PlotLineNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, float*, float*, float*, int, ImPlot3DLineFlags, int, int, void>)funcTable[32])(labelId, xs, ys, zs, count, flags, offset, stride);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DLineFlags, int, int, void>)funcTable[32])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			PlotLineNative(labelId, xs, ys, zs, count, flags, offset, stride);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			PlotLineNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(float)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			PlotLineNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			PlotLineNative(labelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			PlotLineNative(labelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			PlotLineNative(labelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLineNative(pStr0, xs, ys, zs, count, flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLineNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLineNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLineNative(pStr0, xs, ys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLineNative(pStr0, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLineNative(pStr0, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotLineNative(labelId, (float*)pxs, ys, zs, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotLineNative(labelId, (float*)pxs, ys, zs, count, flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotLineNative(labelId, (float*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotLineNative(labelId, (float*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotLineNative(labelId, (float*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotLineNative(labelId, (float*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pxs, ys, zs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pxs, ys, zs, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pxs, ys, zs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pxs, ys, zs, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				PlotLineNative(pStr0, (float*)pxs, ys, zs, count, flags, offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -56,9 +863,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -77,9 +884,9 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pzs = &zs)
+			fixed (float* pxs = &xs)
 			{
-				PlotQuadNative(pStr0, xs, ys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, stride);
+				PlotLineNative(pStr0, (float*)pxs, ys, zs, count, flags, offset, (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -90,333 +897,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (double* pxs = &xs)
-			{
-				fixed (double* pzs = &zs)
-				{
-					PlotQuadNative(labelId, (double*)pxs, ys, (double*)pzs, count, flags, offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (double* pxs = &xs)
-			{
-				fixed (double* pzs = &zs)
-				{
-					PlotQuadNative(labelId, (double*)pxs, ys, (double*)pzs, count, flags, offset, (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (double* pxs = &xs)
-			{
-				fixed (double* pzs = &zs)
-				{
-					PlotQuadNative(labelId, (double*)pxs, ys, (double*)pzs, count, flags, (int)(0), (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (double* pxs = &xs)
-			{
-				fixed (double* pzs = &zs)
-				{
-					PlotQuadNative(labelId, (double*)pxs, ys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (double* pxs = &xs)
-			{
-				fixed (double* pzs = &zs)
-				{
-					PlotQuadNative(labelId, (double*)pxs, ys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(double)));
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (double* pxs = &xs)
-			{
-				fixed (double* pzs = &zs)
-				{
-					PlotQuadNative(labelId, (double*)pxs, ys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pxs = &xs)
-				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, (double*)pxs, ys, (double*)pzs, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pxs = &xs)
-				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, (double*)pxs, ys, (double*)pzs, count, flags, offset, (int)(sizeof(double)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pxs = &xs)
-				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, (double*)pxs, ys, (double*)pzs, count, flags, (int)(0), (int)(sizeof(double)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pxs = &xs)
-				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, (double*)pxs, ys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(double)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pxs = &xs)
-				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, (double*)pxs, ys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(double)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pxs = &xs)
-				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, (double*)pxs, ys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (double* pxs = &xs)
-				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, (double*)pxs, ys, (double*)pzs, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (double* pxs = &xs)
-				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, (double*)pxs, ys, (double*)pzs, count, flags, offset, (int)(sizeof(double)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (double* pxs = &xs)
-				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, (double*)pxs, ys, (double*)pzs, count, flags, (int)(0), (int)(sizeof(double)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (double* pxs = &xs)
-				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, (double*)pxs, ys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(double)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (double* pxs = &xs)
-				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, (double*)pxs, ys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(double)));
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (double* pxs = &xs)
-				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, (double*)pxs, ys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -435,11 +918,945 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pxs = &xs)
+			fixed (float* pxs = &xs)
 			{
-				fixed (double* pzs = &zs)
+				PlotLineNative(pStr0, (float*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					PlotQuadNative(pStr0, (double*)pxs, ys, (double*)pzs, count, flags, offset, stride);
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				PlotLineNative(pStr0, (float*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				PlotLineNative(pStr0, (float*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				PlotLineNative(pStr0, (float*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pys = &ys)
+			{
+				PlotLineNative(labelId, xs, (float*)pys, zs, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pys = &ys)
+			{
+				PlotLineNative(labelId, xs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (float* pys = &ys)
+			{
+				PlotLineNative(labelId, xs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (float* pys = &ys)
+			{
+				PlotLineNative(labelId, xs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pys = &ys)
+			{
+				PlotLineNative(labelId, xs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pys = &ys)
+			{
+				PlotLineNative(labelId, xs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (float*)pys, zs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (float*)pys, zs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				PlotLineNative(pStr0, xs, (float*)pys, zs, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				PlotLineNative(pStr0, xs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				PlotLineNative(pStr0, xs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				PlotLineNative(pStr0, xs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				PlotLineNative(pStr0, xs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				PlotLineNative(pStr0, xs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative(labelId, (float*)pxs, (float*)pys, zs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative(labelId, (float*)pxs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative(labelId, (float*)pxs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative(labelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative(labelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative(labelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotLineNative(pStr0, (float*)pxs, (float*)pys, zs, count, flags, offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -451,9 +1868,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -472,11 +1889,11 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pxs = &xs)
+			fixed (float* pxs = &xs)
 			{
-				fixed (double* pzs = &zs)
+				fixed (float* pys = &ys)
 				{
-					PlotQuadNative(pStr0, (double*)pxs, ys, (double*)pzs, count, flags, offset, (int)(sizeof(double)));
+					PlotLineNative(pStr0, (float*)pxs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -488,9 +1905,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -509,11 +1926,11 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pxs = &xs)
+			fixed (float* pxs = &xs)
 			{
-				fixed (double* pzs = &zs)
+				fixed (float* pys = &ys)
 				{
-					PlotQuadNative(pStr0, (double*)pxs, ys, (double*)pzs, count, flags, (int)(0), (int)(sizeof(double)));
+					PlotLineNative(pStr0, (float*)pxs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -525,9 +1942,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -546,11 +1963,11 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pxs = &xs)
+			fixed (float* pxs = &xs)
 			{
-				fixed (double* pzs = &zs)
+				fixed (float* pys = &ys)
 				{
-					PlotQuadNative(pStr0, (double*)pxs, ys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(double)));
+					PlotLineNative(pStr0, (float*)pxs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -562,9 +1979,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -583,11 +2000,11 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pxs = &xs)
+			fixed (float* pxs = &xs)
 			{
-				fixed (double* pzs = &zs)
+				fixed (float* pys = &ys)
 				{
-					PlotQuadNative(pStr0, (double*)pxs, ys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(double)));
+					PlotLineNative(pStr0, (float*)pxs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -599,9 +2016,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -620,11 +2037,11 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pxs = &xs)
+			fixed (float* pxs = &xs)
 			{
-				fixed (double* pzs = &zs)
+				fixed (float* pys = &ys)
 				{
-					PlotQuadNative(pStr0, (double*)pxs, ys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, stride);
+					PlotLineNative(pStr0, (float*)pxs, (float*)pys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -636,114 +2053,93 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			fixed (double* pys = &ys)
+			fixed (float* pzs = &zs)
 			{
-				fixed (double* pzs = &zs)
-				{
-					PlotQuadNative(labelId, xs, (double*)pys, (double*)pzs, count, flags, offset, stride);
-				}
+				PlotLineNative(labelId, xs, ys, (float*)pzs, count, flags, offset, stride);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			fixed (double* pys = &ys)
+			fixed (float* pzs = &zs)
 			{
-				fixed (double* pzs = &zs)
-				{
-					PlotQuadNative(labelId, xs, (double*)pys, (double*)pzs, count, flags, offset, (int)(sizeof(double)));
-				}
+				PlotLineNative(labelId, xs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
 		{
-			fixed (double* pys = &ys)
+			fixed (float* pzs = &zs)
 			{
-				fixed (double* pzs = &zs)
-				{
-					PlotQuadNative(labelId, xs, (double*)pys, (double*)pzs, count, flags, (int)(0), (int)(sizeof(double)));
-				}
+				PlotLineNative(labelId, xs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
-			fixed (double* pys = &ys)
+			fixed (float* pzs = &zs)
 			{
-				fixed (double* pzs = &zs)
-				{
-					PlotQuadNative(labelId, xs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(double)));
-				}
+				PlotLineNative(labelId, xs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			fixed (double* pys = &ys)
+			fixed (float* pzs = &zs)
 			{
-				fixed (double* pzs = &zs)
-				{
-					PlotQuadNative(labelId, xs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(double)));
-				}
+				PlotLineNative(labelId, xs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			fixed (double* pys = &ys)
+			fixed (float* pzs = &zs)
 			{
-				fixed (double* pzs = &zs)
-				{
-					PlotQuadNative(labelId, xs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-				}
+				PlotLineNative(labelId, xs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, xs, (double*)pys, (double*)pzs, count, flags, offset, stride);
-					}
+					PlotLineNative((byte*)plabelId, xs, ys, (float*)pzs, count, flags, offset, stride);
 				}
 			}
 		}
@@ -751,18 +2147,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, xs, (double*)pys, (double*)pzs, count, flags, offset, (int)(sizeof(double)));
-					}
+					PlotLineNative((byte*)plabelId, xs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
 				}
 			}
 		}
@@ -770,18 +2163,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, xs, (double*)pys, (double*)pzs, count, flags, (int)(0), (int)(sizeof(double)));
-					}
+					PlotLineNative((byte*)plabelId, xs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
 				}
 			}
 		}
@@ -789,18 +2179,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, xs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(double)));
-					}
+					PlotLineNative((byte*)plabelId, xs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
 				}
 			}
 		}
@@ -808,18 +2195,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, xs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(double)));
-					}
+					PlotLineNative((byte*)plabelId, xs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
 				}
 			}
 		}
@@ -827,18 +2211,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, xs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-					}
+					PlotLineNative((byte*)plabelId, xs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
 				}
 			}
 		}
@@ -846,18 +2227,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, xs, (double*)pys, (double*)pzs, count, flags, offset, stride);
-					}
+					PlotLineNative((byte*)plabelId, xs, ys, (float*)pzs, count, flags, offset, stride);
 				}
 			}
 		}
@@ -865,18 +2243,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, xs, (double*)pys, (double*)pzs, count, flags, offset, (int)(sizeof(double)));
-					}
+					PlotLineNative((byte*)plabelId, xs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
 				}
 			}
 		}
@@ -884,18 +2259,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, xs, (double*)pys, (double*)pzs, count, flags, (int)(0), (int)(sizeof(double)));
-					}
+					PlotLineNative((byte*)plabelId, xs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
 				}
 			}
 		}
@@ -903,18 +2275,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, xs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(double)));
-					}
+					PlotLineNative((byte*)plabelId, xs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
 				}
 			}
 		}
@@ -922,18 +2291,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, xs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(double)));
-					}
+					PlotLineNative((byte*)plabelId, xs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
 				}
 			}
 		}
@@ -941,18 +2307,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative((byte*)plabelId, xs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-					}
+					PlotLineNative((byte*)plabelId, xs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
 				}
 			}
 		}
@@ -960,9 +2323,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -981,11 +2344,539 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pys = &ys)
+			fixed (float* pzs = &zs)
 			{
-				fixed (double* pzs = &zs)
+				PlotLineNative(pStr0, xs, ys, (float*)pzs, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					PlotQuadNative(pStr0, xs, (double*)pys, (double*)pzs, count, flags, offset, stride);
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pzs = &zs)
+			{
+				PlotLineNative(pStr0, xs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pzs = &zs)
+			{
+				PlotLineNative(pStr0, xs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pzs = &zs)
+			{
+				PlotLineNative(pStr0, xs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pzs = &zs)
+			{
+				PlotLineNative(pStr0, xs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pzs = &zs)
+			{
+				PlotLineNative(pStr0, xs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotLineNative(labelId, (float*)pxs, ys, (float*)pzs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotLineNative(labelId, (float*)pxs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotLineNative(labelId, (float*)pxs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotLineNative(labelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotLineNative(labelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotLineNative(labelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotLineNative(pStr0, (float*)pxs, ys, (float*)pzs, count, flags, offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -997,9 +2888,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1018,11 +2909,11 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pys = &ys)
+			fixed (float* pxs = &xs)
 			{
-				fixed (double* pzs = &zs)
+				fixed (float* pzs = &zs)
 				{
-					PlotQuadNative(pStr0, xs, (double*)pys, (double*)pzs, count, flags, offset, (int)(sizeof(double)));
+					PlotLineNative(pStr0, (float*)pxs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1034,9 +2925,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1055,11 +2946,11 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pys = &ys)
+			fixed (float* pxs = &xs)
 			{
-				fixed (double* pzs = &zs)
+				fixed (float* pzs = &zs)
 				{
-					PlotQuadNative(pStr0, xs, (double*)pys, (double*)pzs, count, flags, (int)(0), (int)(sizeof(double)));
+					PlotLineNative(pStr0, (float*)pxs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1071,9 +2962,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1092,11 +2983,11 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pys = &ys)
+			fixed (float* pxs = &xs)
 			{
-				fixed (double* pzs = &zs)
+				fixed (float* pzs = &zs)
 				{
-					PlotQuadNative(pStr0, xs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(double)));
+					PlotLineNative(pStr0, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1108,9 +2999,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1129,11 +3020,11 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pys = &ys)
+			fixed (float* pxs = &xs)
 			{
-				fixed (double* pzs = &zs)
+				fixed (float* pzs = &zs)
 				{
-					PlotQuadNative(pStr0, xs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(double)));
+					PlotLineNative(pStr0, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1145,9 +3036,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1166,11 +3057,11 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pys = &ys)
+			fixed (float* pxs = &xs)
 			{
-				fixed (double* pzs = &zs)
+				fixed (float* pzs = &zs)
 				{
-					PlotQuadNative(pStr0, xs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, stride);
+					PlotLineNative(pStr0, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1182,18 +3073,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			fixed (double* pxs = &xs)
+			fixed (float* pys = &ys)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative(labelId, (double*)pxs, (double*)pys, (double*)pzs, count, flags, offset, stride);
-					}
+					PlotLineNative(labelId, xs, (float*)pys, (float*)pzs, count, flags, offset, stride);
 				}
 			}
 		}
@@ -1201,18 +3089,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			fixed (double* pxs = &xs)
+			fixed (float* pys = &ys)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative(labelId, (double*)pxs, (double*)pys, (double*)pzs, count, flags, offset, (int)(sizeof(double)));
-					}
+					PlotLineNative(labelId, xs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
 				}
 			}
 		}
@@ -1220,18 +3105,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
 		{
-			fixed (double* pxs = &xs)
+			fixed (float* pys = &ys)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative(labelId, (double*)pxs, (double*)pys, (double*)pzs, count, flags, (int)(0), (int)(sizeof(double)));
-					}
+					PlotLineNative(labelId, xs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
 				}
 			}
 		}
@@ -1239,18 +3121,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
-			fixed (double* pxs = &xs)
+			fixed (float* pys = &ys)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative(labelId, (double*)pxs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(double)));
-					}
+					PlotLineNative(labelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
 				}
 			}
 		}
@@ -1258,18 +3137,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			fixed (double* pxs = &xs)
+			fixed (float* pys = &ys)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative(labelId, (double*)pxs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(double)));
-					}
+					PlotLineNative(labelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
 				}
 			}
 		}
@@ -1277,18 +3153,15 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			fixed (double* pxs = &xs)
+			fixed (float* pys = &ys)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative(labelId, (double*)pxs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-					}
+					PlotLineNative(labelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
 				}
 			}
 		}
@@ -1296,20 +3169,17 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* pxs = &xs)
+				fixed (float* pys = &ys)
 				{
-					fixed (double* pys = &ys)
+					fixed (float* pzs = &zs)
 					{
-						fixed (double* pzs = &zs)
-						{
-							PlotQuadNative((byte*)plabelId, (double*)pxs, (double*)pys, (double*)pzs, count, flags, offset, stride);
-						}
+						PlotLineNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, flags, offset, stride);
 					}
 				}
 			}
@@ -1318,20 +3188,17 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* pxs = &xs)
+				fixed (float* pys = &ys)
 				{
-					fixed (double* pys = &ys)
+					fixed (float* pzs = &zs)
 					{
-						fixed (double* pzs = &zs)
-						{
-							PlotQuadNative((byte*)plabelId, (double*)pxs, (double*)pys, (double*)pzs, count, flags, offset, (int)(sizeof(double)));
-						}
+						PlotLineNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
 					}
 				}
 			}
@@ -1340,20 +3207,17 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* pxs = &xs)
+				fixed (float* pys = &ys)
 				{
-					fixed (double* pys = &ys)
+					fixed (float* pzs = &zs)
 					{
-						fixed (double* pzs = &zs)
-						{
-							PlotQuadNative((byte*)plabelId, (double*)pxs, (double*)pys, (double*)pzs, count, flags, (int)(0), (int)(sizeof(double)));
-						}
+						PlotLineNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
 					}
 				}
 			}
@@ -1362,20 +3226,17 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* pxs = &xs)
+				fixed (float* pys = &ys)
 				{
-					fixed (double* pys = &ys)
+					fixed (float* pzs = &zs)
 					{
-						fixed (double* pzs = &zs)
-						{
-							PlotQuadNative((byte*)plabelId, (double*)pxs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(double)));
-						}
+						PlotLineNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
 					}
 				}
 			}
@@ -1384,20 +3245,17 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* pxs = &xs)
+				fixed (float* pys = &ys)
 				{
-					fixed (double* pys = &ys)
+					fixed (float* pzs = &zs)
 					{
-						fixed (double* pzs = &zs)
-						{
-							PlotQuadNative((byte*)plabelId, (double*)pxs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(double)));
-						}
+						PlotLineNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
 					}
 				}
 			}
@@ -1406,20 +3264,17 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* pxs = &xs)
+				fixed (float* pys = &ys)
 				{
-					fixed (double* pys = &ys)
+					fixed (float* pzs = &zs)
 					{
-						fixed (double* pzs = &zs)
-						{
-							PlotQuadNative((byte*)plabelId, (double*)pxs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-						}
+						PlotLineNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
 					}
 				}
 			}
@@ -1428,20 +3283,17 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pxs = &xs)
+				fixed (float* pys = &ys)
 				{
-					fixed (double* pys = &ys)
+					fixed (float* pzs = &zs)
 					{
-						fixed (double* pzs = &zs)
-						{
-							PlotQuadNative((byte*)plabelId, (double*)pxs, (double*)pys, (double*)pzs, count, flags, offset, stride);
-						}
+						PlotLineNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, flags, offset, stride);
 					}
 				}
 			}
@@ -1450,20 +3302,17 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pxs = &xs)
+				fixed (float* pys = &ys)
 				{
-					fixed (double* pys = &ys)
+					fixed (float* pzs = &zs)
 					{
-						fixed (double* pzs = &zs)
-						{
-							PlotQuadNative((byte*)plabelId, (double*)pxs, (double*)pys, (double*)pzs, count, flags, offset, (int)(sizeof(double)));
-						}
+						PlotLineNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
 					}
 				}
 			}
@@ -1472,20 +3321,17 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pxs = &xs)
+				fixed (float* pys = &ys)
 				{
-					fixed (double* pys = &ys)
+					fixed (float* pzs = &zs)
 					{
-						fixed (double* pzs = &zs)
-						{
-							PlotQuadNative((byte*)plabelId, (double*)pxs, (double*)pys, (double*)pzs, count, flags, (int)(0), (int)(sizeof(double)));
-						}
+						PlotLineNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
 					}
 				}
 			}
@@ -1494,20 +3340,17 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pxs = &xs)
+				fixed (float* pys = &ys)
 				{
-					fixed (double* pys = &ys)
+					fixed (float* pzs = &zs)
 					{
-						fixed (double* pzs = &zs)
-						{
-							PlotQuadNative((byte*)plabelId, (double*)pxs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(double)));
-						}
+						PlotLineNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
 					}
 				}
 			}
@@ -1516,20 +3359,17 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pxs = &xs)
+				fixed (float* pys = &ys)
 				{
-					fixed (double* pys = &ys)
+					fixed (float* pzs = &zs)
 					{
-						fixed (double* pzs = &zs)
-						{
-							PlotQuadNative((byte*)plabelId, (double*)pxs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(double)));
-						}
+						PlotLineNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
 					}
 				}
 			}
@@ -1538,20 +3378,17 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pxs = &xs)
+				fixed (float* pys = &ys)
 				{
-					fixed (double* pys = &ys)
+					fixed (float* pzs = &zs)
 					{
-						fixed (double* pzs = &zs)
-						{
-							PlotQuadNative((byte*)plabelId, (double*)pxs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-						}
+						PlotLineNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
 					}
 				}
 			}
@@ -1560,9 +3397,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1581,13 +3418,613 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pxs = &xs)
+			fixed (float* pys = &ys)
 			{
-				fixed (double* pys = &ys)
+				fixed (float* pzs = &zs)
 				{
-					fixed (double* pzs = &zs)
+					PlotLineNative(pStr0, xs, (float*)pys, (float*)pzs, count, flags, offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						PlotQuadNative(pStr0, (double*)pxs, (double*)pys, (double*)pzs, count, flags, offset, stride);
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotLineNative(pStr0, xs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotLineNative(pStr0, xs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotLineNative(pStr0, xs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotLineNative(pStr0, xs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotLineNative(pStr0, xs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative(labelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative(labelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative(labelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative(labelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative(labelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative(labelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative(pStr0, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, stride);
 						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
 							Utils.Free(pStr0);
@@ -1600,9 +4037,896 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative(pStr0, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative(pStr0, (float*)pxs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative(pStr0, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(float)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative(pStr0, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(float)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotLineNative(pStr0, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void PlotLineNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, double*, double*, double*, int, ImPlot3DLineFlags, int, int, void>)funcTable[33])(labelId, xs, ys, zs, count, flags, offset, stride);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DLineFlags, int, int, void>)funcTable[33])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			PlotLineNative(labelId, xs, ys, zs, count, flags, offset, stride);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			PlotLineNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(double)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			PlotLineNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(double)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			PlotLineNative(labelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(double)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			PlotLineNative(labelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(double)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			PlotLineNative(labelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLineNative(pStr0, xs, ys, zs, count, flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLineNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLineNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLineNative(pStr0, xs, ys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLineNative(pStr0, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] double* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLineNative(pStr0, xs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (double* pxs = &xs)
+			{
+				PlotLineNative(labelId, (double*)pxs, ys, zs, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (double* pxs = &xs)
+			{
+				PlotLineNative(labelId, (double*)pxs, ys, zs, count, flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (double* pxs = &xs)
+			{
+				PlotLineNative(labelId, (double*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (double* pxs = &xs)
+			{
+				PlotLineNative(labelId, (double*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (double* pxs = &xs)
+			{
+				PlotLineNative(labelId, (double*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (double* pxs = &xs)
+			{
+				PlotLineNative(labelId, (double*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (double*)pxs, ys, zs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (double*)pxs, ys, zs, count, flags, offset, (int)(sizeof(double)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (double*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(double)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (double*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(double)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (double*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(double)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (double*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (double* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (double*)pxs, ys, zs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (double* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (double*)pxs, ys, zs, count, flags, offset, (int)(sizeof(double)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (double* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (double*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(double)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (double* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (double*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(double)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (double* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (double*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(double)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (double* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (double*)pxs, ys, zs, count, (ImPlot3DLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1623,16 +4947,10 @@ namespace Hexa.NET.ImPlot3D
 			}
 			fixed (double* pxs = &xs)
 			{
-				fixed (double* pys = &ys)
+				PlotLineNative(pStr0, (double*)pxs, ys, zs, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative(pStr0, (double*)pxs, (double*)pys, (double*)pzs, count, flags, offset, (int)(sizeof(double)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
+					Utils.Free(pStr0);
 				}
 			}
 		}
@@ -1640,9 +4958,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1663,16 +4981,10 @@ namespace Hexa.NET.ImPlot3D
 			}
 			fixed (double* pxs = &xs)
 			{
-				fixed (double* pys = &ys)
+				PlotLineNative(pStr0, (double*)pxs, ys, zs, count, flags, offset, (int)(sizeof(double)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative(pStr0, (double*)pxs, (double*)pys, (double*)pzs, count, flags, (int)(0), (int)(sizeof(double)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
+					Utils.Free(pStr0);
 				}
 			}
 		}
@@ -1680,9 +4992,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_doublePtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "double const *")] in double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "double const *")] double* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "double const *")] double* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1703,3340 +5015,11 @@ namespace Hexa.NET.ImPlot3D
 			}
 			fixed (double* pxs = &xs)
 			{
-				fixed (double* pys = &ys)
-				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative(pStr0, (double*)pxs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(double)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				PlotLineNative(pStr0, (double*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(double)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					Utils.Free(pStr0);
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pxs = &xs)
-			{
-				fixed (double* pys = &ys)
-				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative(pStr0, (double*)pxs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(double)));
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_doublePtr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const double*")] ref double xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const double*")] ref double ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const double*")] ref double zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pxs = &xs)
-			{
-				fixed (double* pys = &ys)
-				{
-					fixed (double* pzs = &zs)
-					{
-						PlotQuadNative(pStr0, (double*)pxs, (double*)pys, (double*)pzs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, sbyte*, sbyte*, sbyte*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[57])(labelId, xs, ys, zs, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[57])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(sbyte)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(sbyte)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(sbyte)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(sbyte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(sbyte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(sbyte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(sbyte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(sbyte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(sbyte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(sbyte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(sbyte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(sbyte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(sbyte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS8*")] sbyte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, byte*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[58])(labelId, xs, ys, zs, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[58])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(byte)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(byte)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(byte)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(byte)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(byte)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(byte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(byte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(byte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(byte)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U8Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU8*")] byte* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, short*, short*, short*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[59])(labelId, xs, ys, zs, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[59])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(short)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(short)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(short)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(short)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(short)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(short)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(short)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(short)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(short)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS16*")] short* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS16*")] short* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ushort*, ushort*, ushort*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[60])(labelId, xs, ys, zs, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[60])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(ushort)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(ushort)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(ushort)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(ushort)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(ushort)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(ushort)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(ushort)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(ushort)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U16Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU16*")] ushort* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int*, int*, int*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[61])(labelId, xs, ys, zs, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[61])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(int)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(int)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(int)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(int)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(int)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS32*")] int* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS32*")] int* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, uint*, uint*, uint*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[62])(labelId, xs, ys, zs, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[62])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(uint)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(uint)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(uint)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(uint)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(uint)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(uint)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(uint)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(uint)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(uint)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, long*, long*, long*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[63])(labelId, xs, ys, zs, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[63])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(long)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(long)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(long)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(long)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(long)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(long)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(long)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(long)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_S64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImS64*")] long* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImS64*")] long* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotQuadNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ulong*, ulong*, ulong*, int, ImPlot3DQuadFlags, int, int, void>)funcTable[64])(labelId, xs, ys, zs, count, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DQuadFlags, int, int, void>)funcTable[64])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(ulong)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(ulong)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(ulong)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(ulong)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			PlotQuadNative(labelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotQuadNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DQuadFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(ulong)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotQuad_U64Ptr")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotQuad([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "const ImU64*")] ulong* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DQuadFlags")] ImPlot3DQuadFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotQuadNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(ulong)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
 			}
 		}
 	}

@@ -1,0 +1,84 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="NodeEditor" />
+    <BuildType Name="Release" />
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Examples/">
+    <Project Path="Examples/AotStaticLinkExample/AotStaticLinkExample.csproj">
+      <BuildType Solution="NodeEditor|Any CPU" Project="Debug" />
+    </Project>
+    <Project Path="Examples/ExampleAndroid/ExampleAndroid.csproj">
+      <BuildType Solution="NodeEditor|Any CPU" Project="Debug" />
+      <Deploy Solution="*|Any CPU" />
+    </Project>
+    <Project Path="Examples/ExampleGLFWD3D11/ExampleGLFWD3D11.csproj">
+      <BuildType Solution="NodeEditor|Any CPU" Project="Debug" />
+    </Project>
+    <Project Path="Examples/ExampleGLFWOpenGL3/ExampleGLFWOpenGL3.csproj">
+      <BuildType Solution="NodeEditor|Any CPU" Project="Debug" />
+    </Project>
+    <Project Path="Examples/ExampleMonoGame/ExampleMonoGame.csproj">
+      <BuildType Solution="NodeEditor|*" Project="Debug" />
+    </Project>
+    <Project Path="Examples/ExampleSDL3GPU/ExampleSDL3GPU.csproj">
+      <BuildType Solution="NodeEditor|Any CPU" Project="Debug" />
+    </Project>
+    <Project Path="Examples/ExampleSDL3OpenGL3/ExampleSDL3OpenGL3.csproj">
+      <BuildType Solution="NodeEditor|Any CPU" Project="Debug" />
+    </Project>
+    <Project Path="Examples/ExampleWin32D3D9/ExampleWin32D3D9.csproj">
+      <BuildType Solution="NodeEditor|Any CPU" Project="Debug" />
+    </Project>
+  </Folder>
+  <Folder Name="/Other/">
+    <Project Path="Other/ExampleD3D11/ExampleD3D11.csproj">
+      <BuildType Solution="NodeEditor|Any CPU" Project="Release" />
+    </Project>
+    <Project Path="Other/ExampleFramework/ExampleFramework.csproj">
+      <BuildType Solution="NodeEditor|Any CPU" Project="Release" />
+    </Project>
+    <Project Path="Other/ExampleOpenGL3/ExampleOpenGL3.csproj">
+      <BuildType Solution="NodeEditor|Any CPU" Project="Release" />
+    </Project>
+    <Project Path="Other/NetFrameworkTest/NetFrameworkTest.csproj">
+      <BuildType Solution="NodeEditor|Any CPU" Project="Release" />
+    </Project>
+  </Folder>
+  <Project Path="Generator/Generator.csproj">
+    <Platform Solution="Debug|x64" Project="x64" />
+  </Project>
+  <Project Path="Hexa.NET.ImGui.Backends.GLFW/Hexa.NET.ImGui.Backends.GLFW.csproj">
+    <BuildType Solution="NodeEditor|Any CPU" Project="Debug" />
+  </Project>
+  <Project Path="Hexa.NET.ImGui.Backends.SDL2/Hexa.NET.ImGui.Backends.SDL2.csproj">
+    <BuildType Solution="NodeEditor|Any CPU" Project="Debug" />
+  </Project>
+  <Project Path="Hexa.NET.ImGui.Backends.SDL3/Hexa.NET.ImGui.Backends.SDL3.csproj">
+    <BuildType Solution="NodeEditor|Any CPU" Project="Debug" />
+  </Project>
+  <Project Path="Hexa.NET.ImGui.Backends/Hexa.NET.ImGui.Backends.csproj">
+    <BuildType Solution="NodeEditor|Any CPU" Project="Debug" />
+  </Project>
+  <Project Path="Hexa.NET.ImGui/Hexa.NET.ImGui.csproj">
+    <BuildType Solution="NodeEditor|Any CPU" Project="Release" />
+  </Project>
+  <Project Path="Hexa.NET.ImGuiNodeEditor/Hexa.NET.ImGuiNodeEditor.csproj">
+    <BuildType Solution="NodeEditor|Any CPU" Project="Debug" />
+  </Project>
+  <Project Path="Hexa.NET.ImGuizmo/Hexa.NET.ImGuizmo.csproj">
+    <BuildType Solution="NodeEditor|Any CPU" Project="Release" />
+  </Project>
+  <Project Path="Hexa.NET.ImNodes/Hexa.NET.ImNodes.csproj">
+    <BuildType Solution="NodeEditor|Any CPU" Project="Release" />
+  </Project>
+  <Project Path="Hexa.NET.ImPlot/Hexa.NET.ImPlot.csproj">
+    <BuildType Solution="NodeEditor|Any CPU" Project="Release" />
+  </Project>
+  <Project Path="Hexa.NET.ImPlot3D/Hexa.NET.ImPlot3D.csproj">
+    <BuildType Solution="NodeEditor|*" Project="Debug" />
+  </Project>
+</Solution>

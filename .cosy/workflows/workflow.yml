@@ -1,0 +1,85 @@
+version: "1.0"
+
+env:
+  Workspace: "./.CosyCache/Workspace"
+
+targets:
+  clone-repos:
+    steps:
+      - name: Make temp dir
+        uses: core:mkdir@v1
+        with:
+          path: ${{ env.Workspace }}
+          
+      - name: Clone cimgui
+        uses: core:checkout@v1
+        with:
+          repo: https://github.com/JunaMeinhold/cimgui.git
+          submodules: true
+          path: ${{ env.Workspace }}/cimgui
+
+      - name: Clone cimplot
+        uses: core:checkout@v1
+        with:
+          repo: https://github.com/JunaMeinhold/cimplot.git
+          submodules: true
+          path: ${{ env.Workspace }}/cimplot
+
+      - name: Clone cimnodes
+        uses: core:checkout@v1
+        with:
+          repo: https://github.com/JunaMeinhold/cimnodes.git
+          submodules: true
+          path: ${{ env.Workspace }}/cimnodes
+
+      - name: Clone cimguizmo
+        uses: core:checkout@v1
+        with:
+          repo: https://github.com/JunaMeinhold/cimguizmo.git
+          submodules: true
+          path: ${{ env.Workspace }}/cimguizmo
+
+  run-generators:
+    needs: [clone-repos]
+    steps:
+      - name: Generate cimgui
+        shell: bash
+        run: |
+          cd ${{ env.Workspace }}/cimgui/generator
+          luajit ./generator.lua gcc "comments internal noimstrv" glfw opengl3 opengl2 sdl2 sdl3 vulkan
+      - name: Generate cimplot
+        shell: bash
+        run: |
+          cd ${{ env.Workspace }}/cimplot/generator
+          luajit ./generator.lua gcc "internal"
+      - name: Generate cimnodes
+        run: |
+          cd ${{ env.Workspace }}/cimnodes/generator
+          luajit ./generator.lua gcc
+      - name: Generate cimguizmo
+        run: |
+          cd ${{ env.Workspace }}/cimguizmo/generator
+          luajit ./generator.lua gcc "comments"
+
+  copy-files:
+    needs: [run-generators]
+    steps:
+      - name: Copy Headers and JSONs
+        shell: bash
+        run: |
+          cp ${{ env.Workspace }}/cimgui/cimgui.h Generator/cimgui
+          cp ${{ env.Workspace }}/cimplot/cimplot.h Generator/cimplot
+          cp ${{ env.Workspace }}/cimnodes/cimnodes.h Generator/cimnodes
+          cp ${{ env.Workspace }}/cimguizmo/cimguizmo.h Generator/cimguizmo
+
+          cp ${{ env.Workspace }}/cimgui/cimgui.h Generator/cimplot
+          cp ${{ env.Workspace }}/cimgui/cimgui.h Generator/cimnodes
+          cp ${{ env.Workspace }}/cimgui/cimgui.h Generator/cimguizmo
+          cp ${{ env.Workspace }}/cimgui/cimgui.h Generator/backends
+
+          cp ${{ env.Workspace }}/cimgui/generator/output/*.json Generator/cimgui
+          cp ${{ env.Workspace }}/cimplot/generator/output/*.json Generator/cimplot
+          cp ${{ env.Workspace }}/cimnodes/generator/output/*.json Generator/cimnodes
+          cp ${{ env.Workspace }}/cimguizmo/generator/output/*.json Generator/cimguizmo
+
+

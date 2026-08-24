@@ -22,14 +22,14 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void SrvDescriptorAllocFn([NativeName(NativeNameType.Param, "info")] [NativeName(NativeNameType.Type, "ImGui_ImplDX12_InitInfo*")] ImGuiImplDX12InitInfo* info, [NativeName(NativeNameType.Param, "out_cpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_CPU_DESCRIPTOR_HANDLE*")] D3D12CpuDescriptorHandle* outCpuDescHandle, [NativeName(NativeNameType.Param, "out_gpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_GPU_DESCRIPTOR_HANDLE*")] D3D12GpuDescriptorHandle* outGpuDescHandle);
+	public unsafe delegate void SrvDescriptorAllocFn([NativeName(NativeNameType.Param, "info")] [NativeName(NativeNameType.Type, "ImGui_ImplDX12_InitInfo *")] ImGuiImplDX12InitInfo* info, [NativeName(NativeNameType.Param, "out_cpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_CPU_DESCRIPTOR_HANDLE *")] D3D12CpuDescriptorHandle* outCpuDescHandle, [NativeName(NativeNameType.Param, "out_gpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_GPU_DESCRIPTOR_HANDLE *")] D3D12GpuDescriptorHandle* outGpuDescHandle);
 
 	#else
 	/// <summary>
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void SrvDescriptorAllocFn([NativeName(NativeNameType.Param, "info")] [NativeName(NativeNameType.Type, "ImGui_ImplDX12_InitInfo*")] nint info, [NativeName(NativeNameType.Param, "out_cpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_CPU_DESCRIPTOR_HANDLE*")] nint outCpuDescHandle, [NativeName(NativeNameType.Param, "out_gpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_GPU_DESCRIPTOR_HANDLE*")] nint outGpuDescHandle);
+	public unsafe delegate void SrvDescriptorAllocFn([NativeName(NativeNameType.Param, "info")] [NativeName(NativeNameType.Type, "ImGui_ImplDX12_InitInfo *")] nint info, [NativeName(NativeNameType.Param, "out_cpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_CPU_DESCRIPTOR_HANDLE *")] nint outCpuDescHandle, [NativeName(NativeNameType.Param, "out_gpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_GPU_DESCRIPTOR_HANDLE *")] nint outGpuDescHandle);
 
 	#endif
 
@@ -38,14 +38,14 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void SrvDescriptorFreeFn([NativeName(NativeNameType.Param, "info")] [NativeName(NativeNameType.Type, "ImGui_ImplDX12_InitInfo*")] ImGuiImplDX12InitInfo* info, [NativeName(NativeNameType.Param, "cpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_CPU_DESCRIPTOR_HANDLE")] D3D12CpuDescriptorHandle cpuDescHandle, [NativeName(NativeNameType.Param, "gpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_GPU_DESCRIPTOR_HANDLE")] D3D12GpuDescriptorHandle gpuDescHandle);
+	public unsafe delegate void SrvDescriptorFreeFn([NativeName(NativeNameType.Param, "info")] [NativeName(NativeNameType.Type, "ImGui_ImplDX12_InitInfo *")] ImGuiImplDX12InitInfo* info, [NativeName(NativeNameType.Param, "cpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_CPU_DESCRIPTOR_HANDLE")] D3D12CpuDescriptorHandle cpuDescHandle, [NativeName(NativeNameType.Param, "gpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_GPU_DESCRIPTOR_HANDLE")] D3D12GpuDescriptorHandle gpuDescHandle);
 
 	#else
 	/// <summary>
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void SrvDescriptorFreeFn([NativeName(NativeNameType.Param, "info")] [NativeName(NativeNameType.Type, "ImGui_ImplDX12_InitInfo*")] nint info, [NativeName(NativeNameType.Param, "cpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_CPU_DESCRIPTOR_HANDLE")] D3D12CpuDescriptorHandle cpuDescHandle, [NativeName(NativeNameType.Param, "gpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_GPU_DESCRIPTOR_HANDLE")] D3D12GpuDescriptorHandle gpuDescHandle);
+	public unsafe delegate void SrvDescriptorFreeFn([NativeName(NativeNameType.Param, "info")] [NativeName(NativeNameType.Type, "ImGui_ImplDX12_InitInfo *")] nint info, [NativeName(NativeNameType.Param, "cpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_CPU_DESCRIPTOR_HANDLE")] D3D12CpuDescriptorHandle cpuDescHandle, [NativeName(NativeNameType.Param, "gpu_desc_handle")] [NativeName(NativeNameType.Type, "D3D12_GPU_DESCRIPTOR_HANDLE")] D3D12GpuDescriptorHandle gpuDescHandle);
 
 	#endif
 

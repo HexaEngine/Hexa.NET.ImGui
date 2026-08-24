@@ -111,7 +111,12 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte Edited;
+		public byte EditedBefore;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public byte EditedThisFrame;
 
 		/// <summary>
 		/// To be documented.
@@ -137,7 +142,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, STBTexteditState* stb = default, ImGuiInputTextFlags flags = default, uint id = default, int textLen = default, byte* textSrc = default, ImVector<byte> textA = default, ImVector<byte> textToRevertTo = default, ImVector<byte> callbackTextBackup = default, int bufCapacity = default, Vector2 scroll = default, int lineCount = default, float wrapWidth = default, float cursorAnim = default, bool cursorFollow = default, bool cursorCenterY = default, bool selectedAllMouseLock = default, bool edited = default, bool wantReloadUserBuf = default, sbyte lastMoveDirectionLr = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
+		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, STBTexteditState* stb = default, ImGuiInputTextFlags flags = default, uint id = default, int textLen = default, byte* textSrc = default, ImVector<byte> textA = default, ImVector<byte> textToRevertTo = default, ImVector<byte> callbackTextBackup = default, int bufCapacity = default, Vector2 scroll = default, int lineCount = default, float wrapWidth = default, float cursorAnim = default, bool cursorFollow = default, bool cursorCenterY = default, bool selectedAllMouseLock = default, bool editedBefore = default, bool editedThisFrame = default, bool wantReloadUserBuf = default, sbyte lastMoveDirectionLr = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
 		{
 			Ctx = ctx;
 			Stb = stb;
@@ -156,7 +161,8 @@ namespace Hexa.NET.ImGui
 			CursorFollow = cursorFollow ? (byte)1 : (byte)0;
 			CursorCenterY = cursorCenterY ? (byte)1 : (byte)0;
 			SelectedAllMouseLock = selectedAllMouseLock ? (byte)1 : (byte)0;
-			Edited = edited ? (byte)1 : (byte)0;
+			EditedBefore = editedBefore ? (byte)1 : (byte)0;
+			EditedThisFrame = editedThisFrame ? (byte)1 : (byte)0;
 			WantReloadUserBuf = wantReloadUserBuf ? (byte)1 : (byte)0;
 			LastMoveDirectionLR = lastMoveDirectionLr;
 			ReloadSelectionStart = reloadSelectionStart;
@@ -278,7 +284,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref bool Edited => ref Unsafe.AsRef<bool>(&Handle->Edited);
+		public ref bool EditedBefore => ref Unsafe.AsRef<bool>(&Handle->EditedBefore);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref bool EditedThisFrame => ref Unsafe.AsRef<bool>(&Handle->EditedThisFrame);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

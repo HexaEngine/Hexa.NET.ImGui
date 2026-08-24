@@ -22,7 +22,7 @@ namespace Hexa.NET.ImGui
 	/// before we stabilize Docking features. Please be mindful if using this.<br/>
 	/// Provide hints:<br/>
 	/// - To the platform backend via altered viewport flags (enabledisable OS decoration, OS task bar icons, etc.)<br/>
-	/// - To the platform backend for OS level parentchild relationships of viewport.<br/>
+	/// - To the platform backend for OS level parentchild relationships of viewport (otherwise: default is configured via io.ConfigViewportsNoDefaultParent)<br/>
 	/// - To the docking system for various options and filtering.<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
@@ -73,11 +73,16 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public byte DockingAllowUnclassed;
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void* PlatformIconData;
+
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiWindowClass(uint classId = default, uint parentViewportId = default, uint focusRouteParentWindowId = default, ImGuiViewportFlags viewportFlagsOverrideSet = default, ImGuiViewportFlags viewportFlagsOverrideClear = default, ImGuiTabItemFlags tabItemFlagsOverrideSet = default, ImGuiDockNodeFlags dockNodeFlagsOverrideSet = default, bool dockingAlwaysTabBar = default, bool dockingAllowUnclassed = default)
+		public unsafe ImGuiWindowClass(uint classId = default, uint parentViewportId = default, uint focusRouteParentWindowId = default, ImGuiViewportFlags viewportFlagsOverrideSet = default, ImGuiViewportFlags viewportFlagsOverrideClear = default, ImGuiTabItemFlags tabItemFlagsOverrideSet = default, ImGuiDockNodeFlags dockNodeFlagsOverrideSet = default, bool dockingAlwaysTabBar = default, bool dockingAllowUnclassed = default, void* platformIconData = default)
 		{
 			ClassId = classId;
 			ParentViewportId = parentViewportId;
@@ -88,6 +93,7 @@ namespace Hexa.NET.ImGui
 			DockNodeFlagsOverrideSet = dockNodeFlagsOverrideSet;
 			DockingAlwaysTabBar = dockingAlwaysTabBar ? (byte)1 : (byte)0;
 			DockingAllowUnclassed = dockingAllowUnclassed ? (byte)1 : (byte)0;
+			PlatformIconData = platformIconData;
 		}
 
 
@@ -181,6 +187,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref bool DockingAllowUnclassed => ref Unsafe.AsRef<bool>(&Handle->DockingAllowUnclassed);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public void* PlatformIconData { get => Handle->PlatformIconData; set => Handle->PlatformIconData = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>

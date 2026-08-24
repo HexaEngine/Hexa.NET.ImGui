@@ -17,13 +17,17 @@ namespace Hexa.NET.ImPlot
 	/// <summary>
 	/// To be documented.
 	/// </summary>
-	[Flags]
 	public enum ImPlotMarker : int
 	{
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		None = unchecked(-1),
+		None = unchecked(-2),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		Auto = unchecked(-1),
 
 		/// <summary>
 		/// To be documented.

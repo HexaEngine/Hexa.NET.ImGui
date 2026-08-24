@@ -27,7 +27,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// To be documented.
 		/// </summary>
 		[StructLayout(LayoutKind.Sequential)]
-		public partial struct DepthStencilUnion
+		public partial struct DepthStencilAnonymous
 		{
 			/// <summary>
 			/// Depth value<br/>
@@ -43,7 +43,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 			/// <summary>
 			/// To be documented.
 			/// </summary>
-			public unsafe DepthStencilUnion(float depth = default, uint stencil = default)
+			public unsafe DepthStencilAnonymous(float depth = default, uint stencil = default)
 			{
 				Depth = depth;
 				Stencil = stencil;
@@ -63,13 +63,13 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// <summary>
 		/// For depth/stencil attachments<br/>
 		/// </summary>
-		public DepthStencilUnion DepthStencil;
+		public DepthStencilAnonymous DepthStencil;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe VkClearValue(float* color = default, DepthStencilUnion depthStencil = default)
+		public unsafe VkClearValue(float* color = default, DepthStencilAnonymous depthStencil = default)
 		{
 			if (color != default(float*))
 			{
@@ -84,7 +84,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe VkClearValue(Span<float> color = default, DepthStencilUnion depthStencil = default)
+		public unsafe VkClearValue(Span<float> color = default, DepthStencilAnonymous depthStencil = default)
 		{
 			if (color != default(Span<float>))
 			{

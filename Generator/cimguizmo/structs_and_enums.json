@@ -1,48 +1,65 @@
 {
+  "enum_comments": {
+    "MOVETYPE": {
+      "above": "   // Handle type used by the translate/rotate/scale gizmos."
+    },
+    "OPERATION": {
+      "above": "   // call it when you want a gizmo\n   // Needs view and projection matrices.\n   // matrix parameter is the source matrix (where will be gizmo be drawn) and might be transformed by the function. Return deltaMatrix is optional\n   // translation is applied in world space"
+    }
+  },
   "enums": {
     "COLOR": [
       {
         "calc_value": 0,
+        "comment": "// directionColor[0]",
         "name": "DIRECTION_X",
         "value": "0"
       },
       {
         "calc_value": 1,
+        "comment": "// directionColor[1]",
         "name": "DIRECTION_Y",
         "value": "1"
       },
       {
         "calc_value": 2,
+        "comment": "// directionColor[2]",
         "name": "DIRECTION_Z",
         "value": "2"
       },
       {
         "calc_value": 3,
+        "comment": "// planeColor[0]",
         "name": "PLANE_X",
         "value": "3"
       },
       {
         "calc_value": 4,
+        "comment": "// planeColor[1]",
         "name": "PLANE_Y",
         "value": "4"
       },
       {
         "calc_value": 5,
+        "comment": "// planeColor[2]",
         "name": "PLANE_Z",
         "value": "5"
       },
       {
         "calc_value": 6,
+        "comment": "// selectionColor",
         "name": "SELECTION",
         "value": "6"
       },
       {
         "calc_value": 7,
+        "comment": "// inactiveColor",
         "name": "INACTIVE",
         "value": "7"
       },
       {
         "calc_value": 8,
+        "comment": "// translationLineColor",
         "name": "TRANSLATION_LINE",
         "value": "8"
       },
@@ -92,6 +109,88 @@
         "calc_value": 1,
         "name": "WORLD",
         "value": "1"
+      }
+    ],
+    "MOVETYPE": [
+      {
+        "calc_value": 0,
+        "name": "MT_NONE",
+        "value": "0"
+      },
+      {
+        "calc_value": 1,
+        "name": "MT_MOVE_X",
+        "value": "1"
+      },
+      {
+        "calc_value": 2,
+        "name": "MT_MOVE_Y",
+        "value": "2"
+      },
+      {
+        "calc_value": 3,
+        "name": "MT_MOVE_Z",
+        "value": "3"
+      },
+      {
+        "calc_value": 4,
+        "name": "MT_MOVE_YZ",
+        "value": "4"
+      },
+      {
+        "calc_value": 5,
+        "name": "MT_MOVE_ZX",
+        "value": "5"
+      },
+      {
+        "calc_value": 6,
+        "name": "MT_MOVE_XY",
+        "value": "6"
+      },
+      {
+        "calc_value": 7,
+        "name": "MT_MOVE_SCREEN",
+        "value": "7"
+      },
+      {
+        "calc_value": 8,
+        "name": "MT_ROTATE_X",
+        "value": "8"
+      },
+      {
+        "calc_value": 9,
+        "name": "MT_ROTATE_Y",
+        "value": "9"
+      },
+      {
+        "calc_value": 10,
+        "name": "MT_ROTATE_Z",
+        "value": "10"
+      },
+      {
+        "calc_value": 11,
+        "name": "MT_ROTATE_SCREEN",
+        "value": "11"
+      },
+      {
+        "calc_value": 12,
+        "name": "MT_SCALE_X",
+        "value": "12"
+      },
+      {
+        "calc_value": 13,
+        "name": "MT_SCALE_Y",
+        "value": "13"
+      },
+      {
+        "calc_value": 14,
+        "name": "MT_SCALE_Z",
+        "value": "14"
+      },
+      {
+        "calc_value": 15,
+        "name": "MT_SCALE_XYZ",
+        "value": "15"
       }
     ],
     "OPERATION": [
@@ -182,6 +281,7 @@
       },
       {
         "calc_value": 14336,
+        "comment": "// universal",
         "name": "SCALEU",
         "value": "SCALE_XU | SCALE_YU | SCALE_ZU"
       },
@@ -194,45 +294,168 @@
   },
   "enumtypes": [],
   "locations": {
-    "COLOR": "ImGuizmo:269",
-    "MODE": "ImGuizmo:209",
-    "OPERATION": "ImGuizmo:180",
-    "Style": "ImGuizmo:289"
+    "COLOR": "ImGuizmo:311",
+    "MODE": "ImGuizmo:217",
+    "MOVETYPE": "ImGuizmo:264",
+    "OPERATION": "ImGuizmo:188",
+    "Style": "ImGuizmo:331"
   },
   "nonPOD": {
+    "ImBitArray": "inherited",
+    "ImColor": "inherited",
+    "ImDrawCmd": "inherited",
+    "ImDrawData": "inherited",
+    "ImDrawDataBuilder": "inherited",
+    "ImDrawList": "inherited",
+    "ImDrawListSharedData": "inherited",
+    "ImDrawListSplitter": "inherited",
+    "ImFont": "inherited",
+    "ImFontAtlas": "inherited",
+    "ImFontAtlasBuilder": "inherited",
+    "ImFontAtlasRect": "inherited",
+    "ImFontBaked": "inherited",
+    "ImFontConfig": "inherited",
+    "ImFontGlyph": "inherited",
+    "ImFontGlyphRangesBuilder": "inherited",
+    "ImFontLoader": "inherited",
+    "ImGuiBoxSelectState": "inherited",
+    "ImGuiComboPreviewData": "inherited",
+    "ImGuiContext": "inherited",
+    "ImGuiContextHook": "inherited",
+    "ImGuiDebugAllocInfo": "inherited",
+    "ImGuiDebugItemPathQuery": "inherited",
+    "ImGuiDockContext": "inherited",
+    "ImGuiDockNode": "inherited",
+    "ImGuiErrorRecoveryState": "inherited",
+    "ImGuiIDStackTool": "inherited",
+    "ImGuiIO": "inherited",
+    "ImGuiInputEvent": "inherited",
+    "ImGuiInputTextCallbackData": "inherited",
+    "ImGuiInputTextDeactivatedState": "inherited",
+    "ImGuiInputTextState": "inherited",
+    "ImGuiKeyOwnerData": "inherited",
+    "ImGuiKeyRoutingData": "inherited",
+    "ImGuiKeyRoutingTable": "inherited",
+    "ImGuiLastItemData": "inherited",
+    "ImGuiListClipper": "inherited",
+    "ImGuiListClipperData": "inherited",
+    "ImGuiMenuColumns": "inherited",
+    "ImGuiMultiSelectState": "inherited",
+    "ImGuiMultiSelectTempData": "inherited",
+    "ImGuiNavItemData": "inherited",
+    "ImGuiNextItemData": "inherited",
+    "ImGuiNextWindowData": "inherited",
+    "ImGuiOldColumnData": "inherited",
+    "ImGuiOldColumns": "inherited",
+    "ImGuiOnceUponAFrame": "inherited",
+    "ImGuiPackedDate": "inherited",
+    "ImGuiPayload": "inherited",
+    "ImGuiPlatformIO": "inherited",
+    "ImGuiPlatformImeData": "inherited",
+    "ImGuiPlatformMonitor": "inherited",
+    "ImGuiPopupData": "inherited",
+    "ImGuiPtrOrIndex": "inherited",
+    "ImGuiSelectionBasicStorage": "inherited",
+    "ImGuiSelectionExternalStorage": "inherited",
+    "ImGuiSettingsHandler": "inherited",
+    "ImGuiStackLevelInfo": "inherited",
+    "ImGuiStoragePair": "inherited",
+    "ImGuiStyle": "inherited",
+    "ImGuiStyleMod": "inherited",
+    "ImGuiTabBar": "inherited",
+    "ImGuiTabItem": "inherited",
+    "ImGuiTable": "inherited",
+    "ImGuiTableColumn": "inherited",
+    "ImGuiTableColumnSettings": "inherited",
+    "ImGuiTableColumnSortSpecs": "inherited",
+    "ImGuiTableInstanceData": "inherited",
+    "ImGuiTableSettings": "inherited",
+    "ImGuiTableSortSpecs": "inherited",
+    "ImGuiTableTempData": "inherited",
+    "ImGuiTextBuffer": "inherited",
+    "ImGuiTextFilter": "inherited",
+    "ImGuiTextRange": "inherited",
+    "ImGuiTypingSelectState": "inherited",
+    "ImGuiViewport": "inherited",
+    "ImGuiViewportP": "inherited",
+    "ImGuiWindow": "inherited",
+    "ImGuiWindowClass": "inherited",
+    "ImGuiWindowSettings": "inherited",
+    "ImPool": "inherited",
+    "ImRect": "inherited",
+    "ImSpan": "inherited",
+    "ImSpanAllocator": "inherited",
+    "ImStableVector": "inherited",
+    "ImTextureData": "inherited",
+    "ImTextureRef": "inherited",
+    "ImVec1": "inherited",
+    "ImVec2": "inherited",
+    "ImVec2i": "inherited",
+    "ImVec2ih": "inherited",
+    "ImVec4": "inherited",
+    "ImVector": "inherited",
     "Style": true
   },
+  "nonPOD_used": {
+    "ImVec2": "inherited"
+  },
+  "opaque_structs": [],
+  "struct_comments": [],
   "structs": {
     "Style": [
       {
+        "comment": {
+          "sameline": "// Thickness of lines for translation gizmo"
+        },
         "name": "TranslationLineThickness",
         "type": "float"
       },
       {
+        "comment": {
+          "sameline": "// Size of arrow at the end of lines for translation gizmo"
+        },
         "name": "TranslationLineArrowSize",
         "type": "float"
       },
       {
+        "comment": {
+          "sameline": "// Thickness of lines for rotation gizmo"
+        },
         "name": "RotationLineThickness",
         "type": "float"
       },
       {
+        "comment": {
+          "sameline": "// Thickness of line surrounding the rotation gizmo"
+        },
         "name": "RotationOuterLineThickness",
         "type": "float"
       },
       {
+        "comment": {
+          "sameline": "// Thickness of lines for scale gizmo"
+        },
         "name": "ScaleLineThickness",
         "type": "float"
       },
       {
+        "comment": {
+          "sameline": "// Size of circle at the end of lines for scale gizmo"
+        },
         "name": "ScaleLineCircleSize",
         "type": "float"
       },
       {
+        "comment": {
+          "sameline": "// Thickness of hatched axis lines"
+        },
         "name": "HatchedAxisLineThickness",
         "type": "float"
       },
       {
+        "comment": {
+          "sameline": "// Size of circle at the center of the translate/scale gizmo"
+        },
         "name": "CenterCircleSize",
         "type": "float"
       },

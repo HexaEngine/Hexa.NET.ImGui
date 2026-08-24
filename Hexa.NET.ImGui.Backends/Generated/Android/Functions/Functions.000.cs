@@ -36,7 +36,7 @@ namespace Hexa.NET.ImGui.Backends.Android
 		/// </summary>
 		public static bool Init(ANativeWindowPtr window)
 		{
-			byte ret = InitNative(window);
+			byte ret = InitNative((ANativeWindow*)window);
 			return ret != 0;
 		}
 
@@ -70,14 +70,14 @@ namespace Hexa.NET.ImGui.Backends.Android
 		/// </summary>
 		public static int HandleInputEvent(AInputEventPtr inputEvent)
 		{
-			int ret = HandleInputEventNative(inputEvent);
+			int ret = HandleInputEventNative((AInputEvent*)inputEvent);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int HandleInputEvent(ref AInputEvent inputEvent)
+		public static int HandleInputEvent(in AInputEvent inputEvent)
 		{
 			fixed (AInputEvent* pinputEvent = &inputEvent)
 			{

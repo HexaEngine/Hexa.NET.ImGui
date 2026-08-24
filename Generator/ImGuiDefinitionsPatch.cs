@@ -1,9 +1,10 @@
 ﻿namespace Generator
 {
-    using CppAst;
     using HexaGen;
     using HexaGen.Core.Mapping;
+    using HexaGen.CppAst.Model.Metadata;
     using HexaGen.Patching;
+    using Microsoft.CodeAnalysis;
 
     public enum InternalsGenerationType
     {
@@ -23,12 +24,14 @@
             this.generationType = generationType;
         }
 
-        protected override void PatchCompilation(CsCodeGeneratorConfig settings, CppCompilation compilation)
+        protected override void PatchCompilation(CsCodeGeneratorConfig settings, ParseResult result)
         {
             if (settings.LibName == "cimgui_impl")
             {
                 return;
             }
+            var compilation = result.Compilation;
+
             ImguiDefinitions imguiDefinitions = new();
             imguiDefinitions.LoadFrom(settings.LibName);
 

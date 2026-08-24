@@ -16,7 +16,6 @@ namespace Hexa.NET.ImGui
 	/// <summary>
 	/// To be documented.
 	/// </summary>
-	[Flags]
 	public enum ImGuiKey : int
 	{
 		/// <summary>
@@ -639,7 +638,7 @@ namespace Hexa.NET.ImGui
 		GamepadBack = unchecked(633),
 
 		/// <summary>
-		/// X           | Y       | Square   | Tap: Toggle Menu. Hold: Windowing mode (FocusMoveResize windows)<br/>
+		/// X           | Y       | Square   | Toggle Menu. Hold for Windowing mode (FocusMoveResize windows)<br/>
 		/// </summary>
 		GamepadFaceLeft = unchecked(634),
 
@@ -649,12 +648,12 @@ namespace Hexa.NET.ImGui
 		GamepadFaceRight = unchecked(635),
 
 		/// <summary>
-		/// Y           | X       | Triangle | Text Input  On-screen Keyboard<br/>
+		/// Y           | X       | Triangle | Open Context Menu<br/>
 		/// </summary>
 		GamepadFaceUp = unchecked(636),
 
 		/// <summary>
-		/// A           | B       | Cross    | Activate  Open  Toggle  Tweak<br/>
+		/// A           | B       | Cross    | Activate  Open  Toggle. Hold for 0.60f to Activate in Text Input mode (e.g. wired to an on-screen keyboard).<br/>
 		/// </summary>
 		GamepadFaceDown = unchecked(637),
 

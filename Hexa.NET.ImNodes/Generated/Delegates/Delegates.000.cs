@@ -22,14 +22,14 @@ namespace Hexa.NET.ImNodes
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImNodesMiniMapNodeHoveringCallback([NativeName(NativeNameType.Param, "")] [NativeName(NativeNameType.Type, "int")] int unknown0, [NativeName(NativeNameType.Param, "")] [NativeName(NativeNameType.Type, "void*")] void* unknown1);
+	public unsafe delegate void ImNodesMiniMapNodeHoveringCallback([NativeName(NativeNameType.Param, "")] [NativeName(NativeNameType.Type, "int")] int unknown0, [NativeName(NativeNameType.Param, "")] [NativeName(NativeNameType.Type, "void *")] void* unknown1);
 
 	#else
 	/// <summary>
 	/// To be documented.
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImNodesMiniMapNodeHoveringCallback([NativeName(NativeNameType.Param, "")] [NativeName(NativeNameType.Type, "int")] int unknown0, [NativeName(NativeNameType.Param, "")] [NativeName(NativeNameType.Type, "void*")] nint unknown1);
+	public unsafe delegate void ImNodesMiniMapNodeHoveringCallback([NativeName(NativeNameType.Param, "")] [NativeName(NativeNameType.Type, "int")] int unknown0, [NativeName(NativeNameType.Param, "")] [NativeName(NativeNameType.Type, "void *")] nint unknown1);
 
 	#endif
 

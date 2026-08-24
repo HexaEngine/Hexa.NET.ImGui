@@ -18,7 +18,6 @@ namespace Hexa.NET.ImPlot3D
 	/// To be documented.
 	/// </summary>
 	[NativeName(NativeNameType.Enum, "ImPlot3DStyleVar_")]
-	[Flags]
 	public enum ImPlot3DStyleVar : int
 	{
 		/// <summary>

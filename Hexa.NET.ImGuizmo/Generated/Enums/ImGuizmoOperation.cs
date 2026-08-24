@@ -17,7 +17,6 @@ namespace Hexa.NET.ImGuizmo
 	/// <summary>
 	/// To be documented.
 	/// </summary>
-	[Flags]
 	public enum ImGuizmoOperation : int
 	{
 		/// <summary>
@@ -106,7 +105,7 @@ namespace Hexa.NET.ImGuizmo
 		Scale = unchecked(896),
 
 		/// <summary>
-		/// To be documented.
+		/// universal<br/>
 		/// </summary>
 		Scaleu = unchecked(14336),
 

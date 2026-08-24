@@ -36,6 +36,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ImPlotMarker Marker;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ImRect LegendHoverRect;
 
 		/// <summary>
@@ -62,10 +67,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotItem(uint id = default, uint color = default, ImRect legendHoverRect = default, int nameOffset = default, bool show = default, bool legendHovered = default, bool seenThisFrame = default)
+		public unsafe ImPlotItem(uint id = default, uint color = default, ImPlotMarker marker = default, ImRect legendHoverRect = default, int nameOffset = default, bool show = default, bool legendHovered = default, bool seenThisFrame = default)
 		{
 			ID = id;
 			Color = color;
+			Marker = marker;
 			LegendHoverRect = legendHoverRect;
 			NameOffset = nameOffset;
 			Show = show ? (byte)1 : (byte)0;
@@ -136,6 +142,10 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		public ref uint Color => ref Unsafe.AsRef<uint>(&Handle->Color);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref ImPlotMarker Marker => ref Unsafe.AsRef<ImPlotMarker>(&Handle->Marker);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

@@ -46,11 +46,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe FormatterTimeData(ImPlotTime time = default, ImPlotDateTimeSpec spec = default, ImPlotFormatter userFormatter = default, void* userFormatterData = default)
+		public unsafe FormatterTimeData(ImPlotTime time = default, ImPlotDateTimeSpec spec = default, delegate*<double, byte*, int, void*, int> userFormatter = default, void* userFormatterData = default)
 		{
 			Time = time;
 			Spec = spec;
-			UserFormatter = (void*)Marshal.GetFunctionPointerForDelegate(userFormatter);
+			UserFormatter = (delegate*<double, byte*, int, void*, int>)userFormatter;
 			UserFormatterData = userFormatterData;
 		}
 

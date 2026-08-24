@@ -36,7 +36,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// </summary>
 		public static bool Init(ImGuiImplVulkanInitInfoPtr info)
 		{
-			byte ret = InitNative(info);
+			byte ret = InitNative((ImGuiImplVulkanInitInfo*)info);
 			return ret != 0;
 		}
 
@@ -112,7 +112,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// </summary>
 		public static void RenderDrawData(ImDrawDataPtr drawData, VkCommandBuffer commandBuffer, VkPipeline pipeline)
 		{
-			RenderDrawDataNative(drawData, commandBuffer, pipeline);
+			RenderDrawDataNative((ImDrawData*)drawData, commandBuffer, pipeline);
 		}
 
 		/// <summary>
@@ -165,7 +165,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// </summary>
 		public static void UpdateTexture(ImTextureDataPtr tex)
 		{
-			UpdateTextureNative(tex);
+			UpdateTextureNative((ImTextureData*)tex);
 		}
 
 		/// <summary>
@@ -231,10 +231,10 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// This is only useful with IMGUI_IMPL_VULKAN_NO_PROTOTYPES / VK_NO_PROTOTYPES<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte LoadFunctionsNative(uint apiVersion, delegate*<uint, delegate*<byte*, void*, PFNVkVoidFunction>, void*, PFNVkVoidFunction> loaderFunc, void* userData)
+		internal static byte LoadFunctionsNative(uint apiVersion, delegate*<byte*, void*, delegate*<void>> loaderFunc, void* userData)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, delegate*<uint, delegate*<byte*, void*, PFNVkVoidFunction>, void*, PFNVkVoidFunction>, void*, byte>)funcTable[52])(apiVersion, loaderFunc, userData);
+			return ((delegate* unmanaged[Cdecl]<uint, delegate*<byte*, void*, delegate*<void>>, void*, byte>)funcTable[52])(apiVersion, loaderFunc, userData);
 			#else
 			return (byte)((delegate* unmanaged[Cdecl]<uint, nint, nint, byte>)funcTable[52])(apiVersion, (nint)loaderFunc, (nint)userData);
 			#endif
@@ -244,9 +244,19 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// Optional: load Vulkan functions with a custom function loader<br/>
 		/// This is only useful with IMGUI_IMPL_VULKAN_NO_PROTOTYPES / VK_NO_PROTOTYPES<br/>
 		/// </summary>
-		public static bool LoadFunctions(uint apiVersion, delegate*<uint, delegate*<byte*, void*, PFNVkVoidFunction>, void*, PFNVkVoidFunction> loaderFunc, void* userData)
+		public static bool LoadFunctions(uint apiVersion, delegate*<byte*, void*, delegate*<void>> loaderFunc, void* userData)
 		{
 			byte ret = LoadFunctionsNative(apiVersion, loaderFunc, userData);
+			return ret != 0;
+		}
+
+		/// <summary>
+		/// Optional: load Vulkan functions with a custom function loader<br/>
+		/// This is only useful with IMGUI_IMPL_VULKAN_NO_PROTOTYPES / VK_NO_PROTOTYPES<br/>
+		/// </summary>
+		public static bool LoadFunctions(uint apiVersion, delegate*<byte*, void*, delegate*<void>> loaderFunc, nint userData)
+		{
+			byte ret = LoadFunctionsNative(apiVersion, loaderFunc, (void*)userData);
 			return ret != 0;
 		}
 
@@ -254,27 +264,27 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// Helpers<br/>
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void HCreateOrResizeWindowNative(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ImGuiImplVulkanHWindow* wd, uint queueFamily, VkAllocationCallbacks* allocator, int w, int h, uint minImageCount, VkImageUsageFlags imageUsage)
+		internal static void HCreateOrResizeWindowNative(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ImGuiImplVulkanHWindow* wd, uint queueFamily, VkAllocationCallbacks* allocator, int w, int h, uint minImageCount, uint imageUsage)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, ImGuiImplVulkanHWindow*, uint, VkAllocationCallbacks*, int, int, uint, VkImageUsageFlags, void>)funcTable[53])(instance, physicalDevice, device, wd, queueFamily, allocator, w, h, minImageCount, imageUsage);
+			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, ImGuiImplVulkanHWindow*, uint, VkAllocationCallbacks*, int, int, uint, uint, void>)funcTable[53])(instance, physicalDevice, device, wd, queueFamily, allocator, w, h, minImageCount, imageUsage);
 			#else
-			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, nint, uint, nint, int, int, uint, VkImageUsageFlags, void>)funcTable[53])(instance, physicalDevice, device, (nint)wd, queueFamily, (nint)allocator, w, h, minImageCount, imageUsage);
+			((delegate* unmanaged[Cdecl]<VkInstance, VkPhysicalDevice, VkDevice, nint, uint, nint, int, int, uint, uint, void>)funcTable[53])(instance, physicalDevice, device, (nint)wd, queueFamily, (nint)allocator, w, h, minImageCount, imageUsage);
 			#endif
 		}
 
 		/// <summary>
 		/// Helpers<br/>
 		/// </summary>
-		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ImGuiImplVulkanHWindowPtr wd, uint queueFamily, VkAllocationCallbacks* allocator, int w, int h, uint minImageCount, VkImageUsageFlags imageUsage)
+		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ImGuiImplVulkanHWindowPtr wd, uint queueFamily, VkAllocationCallbacks* allocator, int w, int h, uint minImageCount, uint imageUsage)
 		{
-			HCreateOrResizeWindowNative(instance, physicalDevice, device, wd, queueFamily, allocator, w, h, minImageCount, imageUsage);
+			HCreateOrResizeWindowNative(instance, physicalDevice, device, (ImGuiImplVulkanHWindow*)wd, queueFamily, allocator, w, h, minImageCount, imageUsage);
 		}
 
 		/// <summary>
 		/// Helpers<br/>
 		/// </summary>
-		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ref ImGuiImplVulkanHWindow wd, uint queueFamily, VkAllocationCallbacks* allocator, int w, int h, uint minImageCount, VkImageUsageFlags imageUsage)
+		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ref ImGuiImplVulkanHWindow wd, uint queueFamily, VkAllocationCallbacks* allocator, int w, int h, uint minImageCount, uint imageUsage)
 		{
 			fixed (ImGuiImplVulkanHWindow* pwd = &wd)
 			{
@@ -285,18 +295,18 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// <summary>
 		/// Helpers<br/>
 		/// </summary>
-		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ImGuiImplVulkanHWindowPtr wd, uint queueFamily, ref VkAllocationCallbacks allocator, int w, int h, uint minImageCount, VkImageUsageFlags imageUsage)
+		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ImGuiImplVulkanHWindowPtr wd, uint queueFamily, in VkAllocationCallbacks allocator, int w, int h, uint minImageCount, uint imageUsage)
 		{
 			fixed (VkAllocationCallbacks* pallocator = &allocator)
 			{
-				HCreateOrResizeWindowNative(instance, physicalDevice, device, wd, queueFamily, (VkAllocationCallbacks*)pallocator, w, h, minImageCount, imageUsage);
+				HCreateOrResizeWindowNative(instance, physicalDevice, device, (ImGuiImplVulkanHWindow*)wd, queueFamily, (VkAllocationCallbacks*)pallocator, w, h, minImageCount, imageUsage);
 			}
 		}
 
 		/// <summary>
 		/// Helpers<br/>
 		/// </summary>
-		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ref ImGuiImplVulkanHWindow wd, uint queueFamily, ref VkAllocationCallbacks allocator, int w, int h, uint minImageCount, VkImageUsageFlags imageUsage)
+		public static void HCreateOrResizeWindow(VkInstance instance, VkPhysicalDevice physicalDevice, VkDevice device, ref ImGuiImplVulkanHWindow wd, uint queueFamily, in VkAllocationCallbacks allocator, int w, int h, uint minImageCount, uint imageUsage)
 		{
 			fixed (ImGuiImplVulkanHWindow* pwd = &wd)
 			{
@@ -325,7 +335,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// </summary>
 		public static void HDestroyWindow(VkInstance instance, VkDevice device, ImGuiImplVulkanHWindowPtr wd, VkAllocationCallbacks* allocator)
 		{
-			HDestroyWindowNative(instance, device, wd, allocator);
+			HDestroyWindowNative(instance, device, (ImGuiImplVulkanHWindow*)wd, allocator);
 		}
 
 		/// <summary>
@@ -342,18 +352,18 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void HDestroyWindow(VkInstance instance, VkDevice device, ImGuiImplVulkanHWindowPtr wd, ref VkAllocationCallbacks allocator)
+		public static void HDestroyWindow(VkInstance instance, VkDevice device, ImGuiImplVulkanHWindowPtr wd, in VkAllocationCallbacks allocator)
 		{
 			fixed (VkAllocationCallbacks* pallocator = &allocator)
 			{
-				HDestroyWindowNative(instance, device, wd, (VkAllocationCallbacks*)pallocator);
+				HDestroyWindowNative(instance, device, (ImGuiImplVulkanHWindow*)wd, (VkAllocationCallbacks*)pallocator);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void HDestroyWindow(VkInstance instance, VkDevice device, ref ImGuiImplVulkanHWindow wd, ref VkAllocationCallbacks allocator)
+		public static void HDestroyWindow(VkInstance instance, VkDevice device, ref ImGuiImplVulkanHWindow wd, in VkAllocationCallbacks allocator)
 		{
 			fixed (ImGuiImplVulkanHWindow* pwd = &wd)
 			{
@@ -389,7 +399,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static VkSurfaceFormatKHR HSelectSurfaceFormat(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, ref uint requestFormats, int requestFormatsCount, uint requestColorSpace)
+		public static VkSurfaceFormatKHR HSelectSurfaceFormat(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, in uint requestFormats, int requestFormatsCount, uint requestColorSpace)
 		{
 			fixed (uint* prequestFormats = &requestFormats)
 			{
@@ -423,7 +433,7 @@ namespace Hexa.NET.ImGui.Backends.Vulkan
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static VkPresentModeKHR HSelectPresentMode(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, ref VkPresentModeKHR requestModes, int requestModesCount)
+		public static VkPresentModeKHR HSelectPresentMode(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface, in VkPresentModeKHR requestModes, int requestModesCount)
 		{
 			fixed (VkPresentModeKHR* prequestModes = &requestModes)
 			{

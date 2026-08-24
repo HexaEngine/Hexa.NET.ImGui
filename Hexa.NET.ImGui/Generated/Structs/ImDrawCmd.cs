@@ -74,14 +74,14 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImDrawCmd(Vector4 clipRect = default, ImTextureRef texRef = default, uint vtxOffset = default, uint idxOffset = default, uint elemCount = default, ImDrawCallback userCallback = default, void* userCallbackData = default, int userCallbackDataSize = default, int userCallbackDataOffset = default)
+		public unsafe ImDrawCmd(Vector4 clipRect = default, ImTextureRef texRef = default, uint vtxOffset = default, uint idxOffset = default, uint elemCount = default, delegate*<ImDrawList*, ImDrawCmd*, void> userCallback = default, void* userCallbackData = default, int userCallbackDataSize = default, int userCallbackDataOffset = default)
 		{
 			ClipRect = clipRect;
 			TexRef = texRef;
 			VtxOffset = vtxOffset;
 			IdxOffset = idxOffset;
 			ElemCount = elemCount;
-			UserCallback = (void*)Marshal.GetFunctionPointerForDelegate(userCallback);
+			UserCallback = (delegate*<ImDrawList*, ImDrawCmd*, void>)userCallback;
 			UserCallbackData = userCallbackData;
 			UserCallbackDataSize = userCallbackDataSize;
 			UserCallbackDataOffset = userCallbackDataOffset;
@@ -100,7 +100,8 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID)<br/>
+		/// Since 1.83: returns ImTextureID associated with this draw call. Warning: DO NOT assume this is always same as 'TextureId' (we will change this function for an upcoming feature)<br/>
+		/// Since 1.92: removed ImDrawCmd::TextureId field, the getter function must be used! == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID)<br/>
 		/// </summary>
 		public unsafe ImTextureID GetTexID()
 		{
@@ -199,7 +200,8 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
-		/// == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID)<br/>
+		/// Since 1.83: returns ImTextureID associated with this draw call. Warning: DO NOT assume this is always same as 'TextureId' (we will change this function for an upcoming feature)<br/>
+		/// Since 1.92: removed ImDrawCmd::TextureId field, the getter function must be used! == (TexRef._TexData ? TexRef._TexData-&gt;TexID : TexRef._TexID)<br/>
 		/// </summary>
 		public unsafe ImTextureID GetTexID()
 		{

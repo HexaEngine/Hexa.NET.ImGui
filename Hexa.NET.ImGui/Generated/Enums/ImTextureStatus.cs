@@ -16,7 +16,6 @@ namespace Hexa.NET.ImGui
 	/// <summary>
 	/// To be documented.
 	/// </summary>
-	[Flags]
 	public enum ImTextureStatus : int
 	{
 		/// <summary>

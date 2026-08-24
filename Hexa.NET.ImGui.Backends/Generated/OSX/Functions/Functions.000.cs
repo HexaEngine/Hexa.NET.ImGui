@@ -41,6 +41,15 @@ namespace Hexa.NET.ImGui.Backends.OSX
 		}
 
 		/// <summary>
+		/// Follow "Getting Started" link and check examples/ folder to learn about using backends!<br/>
+		/// </summary>
+		public static bool Init(nint view)
+		{
+			byte ret = InitNative((void*)view);
+			return ret != 0;
+		}
+
+		/// <summary>
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -80,6 +89,14 @@ namespace Hexa.NET.ImGui.Backends.OSX
 		public static void NewFrame(void* view)
 		{
 			NewFrameNative(view);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void NewFrame(nint view)
+		{
+			NewFrameNative((void*)view);
 		}
 
 	}

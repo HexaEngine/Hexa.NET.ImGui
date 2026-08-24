@@ -110,7 +110,7 @@ namespace Hexa.NET.ImGui
 		NoNavInputs = unchecked(65536),
 
 		/// <summary>
-		/// No focusing toward this window with keyboardgamepad navigation (e.g. skipped by CTRL+TAB)<br/>
+		/// No focusing toward this window with keyboardgamepad navigation (e.g. skipped by Ctrl+Tab)<br/>
 		/// </summary>
 		NoNavFocus = unchecked(131072),
 

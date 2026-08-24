@@ -77,7 +77,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, ref byte label)
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, in byte label)
 		{
 			fixed (ImPlotTicker* @this = &this)
 			{
@@ -140,11 +140,47 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, delegate*<double, byte*, int, void*, int> formatter, void* data)
 		{
 			fixed (ImPlotTicker* @this = &this)
 			{
 				ImPlotTick* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				ImPlotTick* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, delegate*<double, byte*, int, void*, int> formatter, nint data)
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				ImPlotTick* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, (void*)data);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, nint data)
+		{
+			fixed (ImPlotTicker* @this = &this)
+			{
+				ImPlotTick* ret = ImPlot.AddTickNative(@this, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), (void*)data);
 				return ret;
 			}
 		}
@@ -329,7 +365,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, ref byte label)
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, in byte label)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -383,9 +419,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, delegate*<double, byte*, int, void*, int> formatter, void* data)
 		{
 			ImPlotTick* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
+		{
+			ImPlotTick* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, delegate*<double, byte*, int, void*, int> formatter, nint data)
+		{
+			ImPlotTick* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, (void*)data);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe ImPlotTick* AddTick(double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, nint data)
+		{
+			ImPlotTick* ret = ImPlot.AddTickNative(Handle, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), (void*)data);
 			return ret;
 		}
 

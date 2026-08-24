@@ -61,6 +61,20 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
+		/// </summary>
+		public unsafe void AddRanges(in uint ranges)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				fixed (uint* pranges = &ranges)
+				{
+					ImGui.AddRangesNative(@this, (uint*)pranges);
+				}
+			}
+		}
+
+		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public unsafe void AddText(byte* text, byte* textEnd)
@@ -85,7 +99,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(ref byte text, byte* textEnd)
+		public unsafe void AddText(in byte text, byte* textEnd)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
@@ -99,7 +113,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(ref byte text)
+		public unsafe void AddText(in byte text)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
@@ -205,7 +219,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(byte* text, ref byte textEnd)
+		public unsafe void AddText(byte* text, in byte textEnd)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
@@ -265,7 +279,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(ref byte text, ref byte textEnd)
+		public unsafe void AddText(in byte text, in byte textEnd)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
@@ -352,7 +366,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(ref byte text, ReadOnlySpan<byte> textEnd)
+		public unsafe void AddText(in byte text, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
@@ -369,7 +383,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(ref byte text, string textEnd)
+		public unsafe void AddText(in byte text, string textEnd)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
@@ -404,7 +418,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(ReadOnlySpan<byte> text, ref byte textEnd)
+		public unsafe void AddText(ReadOnlySpan<byte> text, in byte textEnd)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
@@ -456,7 +470,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(string text, ref byte textEnd)
+		public unsafe void AddText(string text, in byte textEnd)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
@@ -657,6 +671,17 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// Add ranges, e.g. builder.AddRanges(ImFontAtlas::GetGlyphRangesDefault()) to force add all of ASCIILatin+Ext<br/>
+		/// </summary>
+		public unsafe void AddRanges(in uint ranges)
+		{
+			fixed (uint* pranges = &ranges)
+			{
+				ImGui.AddRangesNative(Handle, (uint*)pranges);
+			}
+		}
+
+		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
 		public unsafe void AddText(byte* text, byte* textEnd)
@@ -675,7 +700,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(ref byte text, byte* textEnd)
+		public unsafe void AddText(in byte text, byte* textEnd)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -686,7 +711,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(ref byte text)
+		public unsafe void AddText(in byte text)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -777,7 +802,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(byte* text, ref byte textEnd)
+		public unsafe void AddText(byte* text, in byte textEnd)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
@@ -828,7 +853,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(ref byte text, ref byte textEnd)
+		public unsafe void AddText(in byte text, in byte textEnd)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -906,7 +931,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(ref byte text, ReadOnlySpan<byte> textEnd)
+		public unsafe void AddText(in byte text, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -920,7 +945,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(ref byte text, string textEnd)
+		public unsafe void AddText(in byte text, string textEnd)
 		{
 			fixed (byte* ptext = &text)
 			{
@@ -952,7 +977,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(ReadOnlySpan<byte> text, ref byte textEnd)
+		public unsafe void AddText(ReadOnlySpan<byte> text, in byte textEnd)
 		{
 			fixed (byte* ptext = text)
 			{
@@ -998,7 +1023,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Add string (each character of the UTF-8 string are added)<br/>
 		/// </summary>
-		public unsafe void AddText(string text, ref byte textEnd)
+		public unsafe void AddText(string text, in byte textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;

@@ -58,7 +58,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void Destroy(EmulateThreeButtonMousePtr self)
 		{
-			DestroyNative(self);
+			DestroyNative((EmulateThreeButtonMouse*)self);
 		}
 
 		/// <summary>
@@ -112,7 +112,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void Destroy(LinkDetachWithModifierClickPtr self)
 		{
-			DestroyNative(self);
+			DestroyNative((LinkDetachWithModifierClick*)self);
 		}
 
 		/// <summary>
@@ -166,7 +166,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void Destroy(MultipleSelectModifierPtr self)
 		{
-			DestroyNative(self);
+			DestroyNative((MultipleSelectModifier*)self);
 		}
 
 		/// <summary>
@@ -220,7 +220,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void Destroy(ImNodesIOPtr self)
 		{
-			DestroyNative(self);
+			DestroyNative((ImNodesIO*)self);
 		}
 
 		/// <summary>
@@ -274,7 +274,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void Destroy(ImNodesStylePtr self)
 		{
-			DestroyNative(self);
+			DestroyNative((ImNodesStyle*)self);
 		}
 
 		/// <summary>
@@ -306,7 +306,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void SetImGuiContext(ImGuiContextPtr ctx)
 		{
-			SetImGuiContextNative(ctx);
+			SetImGuiContextNative((ImGuiContext*)ctx);
 		}
 
 		/// <summary>
@@ -360,7 +360,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void DestroyContext(ImNodesContextPtr ctx)
 		{
-			DestroyContextNative(ctx);
+			DestroyContextNative((ImNodesContext*)ctx);
 		}
 
 		/// <summary>
@@ -422,7 +422,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void SetCurrentContext(ImNodesContextPtr ctx)
 		{
-			SetCurrentContextNative(ctx);
+			SetCurrentContextNative((ImNodesContext*)ctx);
 		}
 
 		/// <summary>
@@ -476,7 +476,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void EditorContextFree(ImNodesEditorContextPtr noname1)
 		{
-			EditorContextFreeNative(noname1);
+			EditorContextFreeNative((ImNodesEditorContext*)noname1);
 		}
 
 		/// <summary>
@@ -508,7 +508,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void EditorContextSet(ImNodesEditorContextPtr noname1)
 		{
-			EditorContextSetNative(noname1);
+			EditorContextSetNative((ImNodesEditorContext*)noname1);
 		}
 
 		/// <summary>
@@ -526,12 +526,12 @@ namespace Hexa.NET.ImNodes
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void EditorContextGetPanningNative(Vector2* pOut)
+		internal static Vector2 EditorContextGetPanningNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[18])(pOut);
+			return ((delegate* unmanaged[Cdecl]<Vector2>)funcTable[18])();
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[18])((nint)pOut);
+			return (Vector2)((delegate* unmanaged[Cdecl]<Vector2>)funcTable[18])();
 			#endif
 		}
 
@@ -540,28 +540,8 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static Vector2 EditorContextGetPanning()
 		{
-			Vector2 ret;
-			EditorContextGetPanningNative(&ret);
+			Vector2 ret = EditorContextGetPanningNative();
 			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void EditorContextGetPanning(Vector2* pOut)
-		{
-			EditorContextGetPanningNative(pOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void EditorContextGetPanning(ref Vector2 pOut)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				EditorContextGetPanningNative((Vector2*)ppOut);
-			}
 		}
 
 		/// <summary>
@@ -668,7 +648,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void StyleColorsDark(ImNodesStylePtr dest)
 		{
-			StyleColorsDarkNative(dest);
+			StyleColorsDarkNative((ImNodesStyle*)dest);
 		}
 
 		/// <summary>
@@ -708,7 +688,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void StyleColorsClassic(ImNodesStylePtr dest)
 		{
-			StyleColorsClassicNative(dest);
+			StyleColorsClassicNative((ImNodesStyle*)dest);
 		}
 
 		/// <summary>
@@ -748,7 +728,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void StyleColorsLight(ImNodesStylePtr dest)
 		{
-			StyleColorsLightNative(dest);
+			StyleColorsLightNative((ImNodesStyle*)dest);
 		}
 
 		/// <summary>
@@ -816,19 +796,19 @@ namespace Hexa.NET.ImNodes
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void MiniMapNative(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		internal static void MiniMapNative(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*, void> nodeHoveringCallback, void* nodeHoveringCallbackData)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, ImNodesMiniMapLocation, delegate*<int, void*, void>, ImNodesMiniMapNodeHoveringCallbackUserData, void>)funcTable[28])(minimapSizeFraction, location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
+			((delegate* unmanaged[Cdecl]<float, ImNodesMiniMapLocation, delegate*<int, void*, void>, void*, void>)funcTable[28])(minimapSizeFraction, location, nodeHoveringCallback, nodeHoveringCallbackData);
 			#else
-			((delegate* unmanaged[Cdecl]<float, ImNodesMiniMapLocation, nint, ImNodesMiniMapNodeHoveringCallbackUserData, void>)funcTable[28])(minimapSizeFraction, location, (nint)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
+			((delegate* unmanaged[Cdecl]<float, ImNodesMiniMapLocation, nint, nint, void>)funcTable[28])(minimapSizeFraction, location, (nint)nodeHoveringCallback, (nint)nodeHoveringCallbackData);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*, void> nodeHoveringCallback, void* nodeHoveringCallbackData)
 		{
 			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, nodeHoveringCallbackData);
 		}
@@ -836,9 +816,9 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*, void> nodeHoveringCallback)
 		{
-			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, (void*)(default));
 		}
 
 		/// <summary>
@@ -846,7 +826,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location)
 		{
-			MiniMapNative(minimapSizeFraction, location, (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+			MiniMapNative(minimapSizeFraction, location, (delegate*<int, void*, void>)(default), (void*)(default));
 		}
 
 		/// <summary>
@@ -854,7 +834,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap(float minimapSizeFraction)
 		{
-			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)(default), (void*)(default));
 		}
 
 		/// <summary>
@@ -862,7 +842,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap()
 		{
-			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)(default), (void*)(default));
 		}
 
 		/// <summary>
@@ -870,69 +850,69 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void MiniMap(ImNodesMiniMapLocation location)
 		{
-			MiniMapNative((float)(0.2f), location, (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+			MiniMapNative((float)(0.2f), location, (delegate*<int, void*, void>)(default), (void*)(default));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
+		public static void MiniMap(float minimapSizeFraction, delegate*<int, void*, void> nodeHoveringCallback)
 		{
-			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, (void*)(default));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void MiniMap(ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
+		public static void MiniMap(delegate*<int, void*, void> nodeHoveringCallback)
 		{
-			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, (void*)(default));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
+		public static void MiniMap(ImNodesMiniMapLocation location, delegate*<int, void*, void> nodeHoveringCallback)
 		{
-			MiniMapNative((float)(0.2f), location, nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+			MiniMapNative((float)(0.2f), location, nodeHoveringCallback, (void*)(default));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, void* nodeHoveringCallbackData)
 		{
-			MiniMapNative(minimapSizeFraction, location, (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
+			MiniMapNative(minimapSizeFraction, location, (delegate*<int, void*, void>)(default), nodeHoveringCallbackData);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		public static void MiniMap(float minimapSizeFraction, void* nodeHoveringCallbackData)
 		{
-			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)(default), nodeHoveringCallbackData);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void MiniMap(ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		public static void MiniMap(void* nodeHoveringCallbackData)
 		{
-			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)(default), nodeHoveringCallbackData);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		public static void MiniMap(ImNodesMiniMapLocation location, void* nodeHoveringCallbackData)
 		{
-			MiniMapNative((float)(0.2f), location, (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
+			MiniMapNative((float)(0.2f), location, (delegate*<int, void*, void>)(default), nodeHoveringCallbackData);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		public static void MiniMap(float minimapSizeFraction, delegate*<int, void*, void> nodeHoveringCallback, void* nodeHoveringCallbackData)
 		{
 			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, nodeHoveringCallbackData);
 		}
@@ -940,7 +920,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void MiniMap(ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		public static void MiniMap(delegate*<int, void*, void> nodeHoveringCallback, void* nodeHoveringCallbackData)
 		{
 			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, nodeHoveringCallbackData);
 		}
@@ -948,9 +928,169 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		public static void MiniMap(ImNodesMiniMapLocation location, delegate*<int, void*, void> nodeHoveringCallback, void* nodeHoveringCallbackData)
 		{
 			MiniMapNative((float)(0.2f), location, nodeHoveringCallback, nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, void* nodeHoveringCallbackData)
+		{
+			MiniMapNative(minimapSizeFraction, location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
+		{
+			MiniMapNative(minimapSizeFraction, location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)(default));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
+		{
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)(default));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
+		{
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)(default));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
+		{
+			MiniMapNative((float)(0.2f), location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)(default));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, void* nodeHoveringCallbackData)
+		{
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, void* nodeHoveringCallbackData)
+		{
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, void* nodeHoveringCallbackData)
+		{
+			MiniMapNative((float)(0.2f), location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*, void> nodeHoveringCallback, nint nodeHoveringCallbackData)
+		{
+			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, (void*)nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, nint nodeHoveringCallbackData)
+		{
+			MiniMapNative(minimapSizeFraction, location, (delegate*<int, void*, void>)(default), (void*)nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(float minimapSizeFraction, nint nodeHoveringCallbackData)
+		{
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)(default), (void*)nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(nint nodeHoveringCallbackData)
+		{
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)(default), (void*)nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(ImNodesMiniMapLocation location, nint nodeHoveringCallbackData)
+		{
+			MiniMapNative((float)(0.2f), location, (delegate*<int, void*, void>)(default), (void*)nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(float minimapSizeFraction, delegate*<int, void*, void> nodeHoveringCallback, nint nodeHoveringCallbackData)
+		{
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, (void*)nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(delegate*<int, void*, void> nodeHoveringCallback, nint nodeHoveringCallbackData)
+		{
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, (void*)nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(ImNodesMiniMapLocation location, delegate*<int, void*, void> nodeHoveringCallback, nint nodeHoveringCallbackData)
+		{
+			MiniMapNative((float)(0.2f), location, nodeHoveringCallback, (void*)nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, nint nodeHoveringCallbackData)
+		{
+			MiniMapNative(minimapSizeFraction, location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, nint nodeHoveringCallbackData)
+		{
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, nint nodeHoveringCallbackData)
+		{
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)nodeHoveringCallbackData);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, nint nodeHoveringCallbackData)
+		{
+			MiniMapNative((float)(0.2f), location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), (void*)nodeHoveringCallbackData);
 		}
 
 		/// <summary>
@@ -1112,12 +1252,12 @@ namespace Hexa.NET.ImNodes
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetNodeDimensionsNative(Vector2* pOut, int id)
+		internal static Vector2 GetNodeDimensionsNative(int id)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)funcTable[36])(pOut, id);
+			return ((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[36])(id);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[36])((nint)pOut, id);
+			return (Vector2)((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[36])(id);
 			#endif
 		}
 
@@ -1126,28 +1266,8 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static Vector2 GetNodeDimensions(int id)
 		{
-			Vector2 ret;
-			GetNodeDimensionsNative(&ret, id);
+			Vector2 ret = GetNodeDimensionsNative(id);
 			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetNodeDimensions(Vector2* pOut, int id)
-		{
-			GetNodeDimensionsNative(pOut, id);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetNodeDimensions(ref Vector2 pOut, int id)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetNodeDimensionsNative((Vector2*)ppOut, id);
-			}
 		}
 
 		/// <summary>
@@ -1485,12 +1605,12 @@ namespace Hexa.NET.ImNodes
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetNodeScreenSpacePosNative(Vector2* pOut, int nodeId)
+		internal static Vector2 GetNodeScreenSpacePosNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)funcTable[52])(pOut, nodeId);
+			return ((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[52])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[52])((nint)pOut, nodeId);
+			return (Vector2)((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[52])(nodeId);
 			#endif
 		}
 
@@ -1499,40 +1619,20 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static Vector2 GetNodeScreenSpacePos(int nodeId)
 		{
-			Vector2 ret;
-			GetNodeScreenSpacePosNative(&ret, nodeId);
+			Vector2 ret = GetNodeScreenSpacePosNative(nodeId);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void GetNodeScreenSpacePos(Vector2* pOut, int nodeId)
-		{
-			GetNodeScreenSpacePosNative(pOut, nodeId);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetNodeScreenSpacePos(ref Vector2 pOut, int nodeId)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetNodeScreenSpacePosNative((Vector2*)ppOut, nodeId);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetNodeEditorSpacePosNative(Vector2* pOut, int nodeId)
+		internal static Vector2 GetNodeEditorSpacePosNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)funcTable[53])(pOut, nodeId);
+			return ((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[53])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[53])((nint)pOut, nodeId);
+			return (Vector2)((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[53])(nodeId);
 			#endif
 		}
 
@@ -1541,40 +1641,20 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static Vector2 GetNodeEditorSpacePos(int nodeId)
 		{
-			Vector2 ret;
-			GetNodeEditorSpacePosNative(&ret, nodeId);
+			Vector2 ret = GetNodeEditorSpacePosNative(nodeId);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void GetNodeEditorSpacePos(Vector2* pOut, int nodeId)
-		{
-			GetNodeEditorSpacePosNative(pOut, nodeId);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetNodeEditorSpacePos(ref Vector2 pOut, int nodeId)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetNodeEditorSpacePosNative((Vector2*)ppOut, nodeId);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetNodeGridSpacePosNative(Vector2* pOut, int nodeId)
+		internal static Vector2 GetNodeGridSpacePosNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)funcTable[54])(pOut, nodeId);
+			return ((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[54])(nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)funcTable[54])((nint)pOut, nodeId);
+			return (Vector2)((delegate* unmanaged[Cdecl]<int, Vector2>)funcTable[54])(nodeId);
 			#endif
 		}
 
@@ -1583,28 +1663,8 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static Vector2 GetNodeGridSpacePos(int nodeId)
 		{
-			Vector2 ret;
-			GetNodeGridSpacePosNative(&ret, nodeId);
+			Vector2 ret = GetNodeGridSpacePosNative(nodeId);
 			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetNodeGridSpacePos(Vector2* pOut, int nodeId)
-		{
-			GetNodeGridSpacePosNative(pOut, nodeId);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetNodeGridSpacePos(ref Vector2 pOut, int nodeId)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetNodeGridSpacePosNative((Vector2*)ppOut, nodeId);
-			}
 		}
 
 		/// <summary>
@@ -3238,6 +3298,30 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static byte* SaveCurrentEditorStateToIniString(ref nuint dataSize)
+		{
+			fixed (nuint* pdataSize = &dataSize)
+			{
+				byte* ret = SaveCurrentEditorStateToIniStringNative((nuint*)pdataSize);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string SaveCurrentEditorStateToIniStringS(ref nuint dataSize)
+		{
+			fixed (nuint* pdataSize = &dataSize)
+			{
+				string ret = Utils.DecodeStringUTF8(SaveCurrentEditorStateToIniStringNative((nuint*)pdataSize));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static byte* SaveEditorStateToIniStringNative(ImNodesEditorContext* editor, nuint* dataSize)
 		{
@@ -3253,7 +3337,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static byte* SaveEditorStateToIniString(ImNodesEditorContextPtr editor, nuint* dataSize)
 		{
-			byte* ret = SaveEditorStateToIniStringNative(editor, dataSize);
+			byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)editor, dataSize);
 			return ret;
 		}
 
@@ -3262,7 +3346,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static byte* SaveEditorStateToIniString(ImNodesEditorContextPtr editor)
 		{
-			byte* ret = SaveEditorStateToIniStringNative(editor, (nuint*)(default));
+			byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)editor, (nuint*)(default));
 			return ret;
 		}
 
@@ -3271,7 +3355,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static string SaveEditorStateToIniStringS(ImNodesEditorContextPtr editor)
 		{
-			string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, (nuint*)(default)));
+			string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)editor, (nuint*)(default)));
 			return ret;
 		}
 
@@ -3280,14 +3364,14 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static string SaveEditorStateToIniStringS(ImNodesEditorContextPtr editor, nuint* dataSize)
 		{
-			string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, dataSize));
+			string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)editor, dataSize));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* SaveEditorStateToIniString(ref ImNodesEditorContext editor, nuint* dataSize)
+		public static byte* SaveEditorStateToIniString(in ImNodesEditorContext editor, nuint* dataSize)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
@@ -3299,7 +3383,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* SaveEditorStateToIniString(ref ImNodesEditorContext editor)
+		public static byte* SaveEditorStateToIniString(in ImNodesEditorContext editor)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
@@ -3311,7 +3395,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string SaveEditorStateToIniStringS(ref ImNodesEditorContext editor)
+		public static string SaveEditorStateToIniStringS(in ImNodesEditorContext editor)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
@@ -3323,12 +3407,66 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string SaveEditorStateToIniStringS(ref ImNodesEditorContext editor, nuint* dataSize)
+		public static string SaveEditorStateToIniStringS(in ImNodesEditorContext editor, nuint* dataSize)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
 				string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, dataSize));
 				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* SaveEditorStateToIniString(ImNodesEditorContextPtr editor, ref nuint dataSize)
+		{
+			fixed (nuint* pdataSize = &dataSize)
+			{
+				byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)editor, (nuint*)pdataSize);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string SaveEditorStateToIniStringS(ImNodesEditorContextPtr editor, ref nuint dataSize)
+		{
+			fixed (nuint* pdataSize = &dataSize)
+			{
+				string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)editor, (nuint*)pdataSize));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* SaveEditorStateToIniString(in ImNodesEditorContext editor, ref nuint dataSize)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				fixed (nuint* pdataSize = &dataSize)
+				{
+					byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)pdataSize);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string SaveEditorStateToIniStringS(in ImNodesEditorContext editor, ref nuint dataSize)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				fixed (nuint* pdataSize = &dataSize)
+				{
+					string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)pdataSize));
+					return ret;
+				}
 			}
 		}
 
@@ -3356,7 +3494,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void LoadCurrentEditorStateFromIniString(ref byte data, nuint dataSize)
+		public static void LoadCurrentEditorStateFromIniString(in byte data, nuint dataSize)
 		{
 			fixed (byte* pdata = &data)
 			{
@@ -3422,7 +3560,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, byte* data, nuint dataSize)
 		{
-			LoadEditorStateFromIniStringNative(editor, data, dataSize);
+			LoadEditorStateFromIniStringNative((ImNodesEditorContext*)editor, data, dataSize);
 		}
 
 		/// <summary>
@@ -3439,11 +3577,11 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, ref byte data, nuint dataSize)
+		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, in byte data, nuint dataSize)
 		{
 			fixed (byte* pdata = &data)
 			{
-				LoadEditorStateFromIniStringNative(editor, (byte*)pdata, dataSize);
+				LoadEditorStateFromIniStringNative((ImNodesEditorContext*)editor, (byte*)pdata, dataSize);
 			}
 		}
 
@@ -3454,7 +3592,7 @@ namespace Hexa.NET.ImNodes
 		{
 			fixed (byte* pdata = data)
 			{
-				LoadEditorStateFromIniStringNative(editor, (byte*)pdata, dataSize);
+				LoadEditorStateFromIniStringNative((ImNodesEditorContext*)editor, (byte*)pdata, dataSize);
 			}
 		}
 
@@ -3480,7 +3618,7 @@ namespace Hexa.NET.ImNodes
 				int pStrOffset0 = Utils.EncodeStringUTF8(data, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			LoadEditorStateFromIniStringNative(editor, pStr0, dataSize);
+			LoadEditorStateFromIniStringNative((ImNodesEditorContext*)editor, pStr0, dataSize);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3490,7 +3628,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, ref byte data, nuint dataSize)
+		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, in byte data, nuint dataSize)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
@@ -3571,7 +3709,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SaveCurrentEditorStateToIniFile(ref byte fileName)
+		public static void SaveCurrentEditorStateToIniFile(in byte fileName)
 		{
 			fixed (byte* pfileName = &fileName)
 			{
@@ -3637,13 +3775,13 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void SaveEditorStateToIniFile(ImNodesEditorContextPtr editor, byte* fileName)
 		{
-			SaveEditorStateToIniFileNative(editor, fileName);
+			SaveEditorStateToIniFileNative((ImNodesEditorContext*)editor, fileName);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SaveEditorStateToIniFile(ref ImNodesEditorContext editor, byte* fileName)
+		public static void SaveEditorStateToIniFile(in ImNodesEditorContext editor, byte* fileName)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
@@ -3654,11 +3792,11 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SaveEditorStateToIniFile(ImNodesEditorContextPtr editor, ref byte fileName)
+		public static void SaveEditorStateToIniFile(ImNodesEditorContextPtr editor, in byte fileName)
 		{
 			fixed (byte* pfileName = &fileName)
 			{
-				SaveEditorStateToIniFileNative(editor, (byte*)pfileName);
+				SaveEditorStateToIniFileNative((ImNodesEditorContext*)editor, (byte*)pfileName);
 			}
 		}
 
@@ -3669,7 +3807,7 @@ namespace Hexa.NET.ImNodes
 		{
 			fixed (byte* pfileName = fileName)
 			{
-				SaveEditorStateToIniFileNative(editor, (byte*)pfileName);
+				SaveEditorStateToIniFileNative((ImNodesEditorContext*)editor, (byte*)pfileName);
 			}
 		}
 
@@ -3695,7 +3833,7 @@ namespace Hexa.NET.ImNodes
 				int pStrOffset0 = Utils.EncodeStringUTF8(fileName, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			SaveEditorStateToIniFileNative(editor, pStr0);
+			SaveEditorStateToIniFileNative((ImNodesEditorContext*)editor, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3705,7 +3843,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SaveEditorStateToIniFile(ref ImNodesEditorContext editor, ref byte fileName)
+		public static void SaveEditorStateToIniFile(in ImNodesEditorContext editor, in byte fileName)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
@@ -3719,7 +3857,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SaveEditorStateToIniFile(ref ImNodesEditorContext editor, ReadOnlySpan<byte> fileName)
+		public static void SaveEditorStateToIniFile(in ImNodesEditorContext editor, ReadOnlySpan<byte> fileName)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
@@ -3733,7 +3871,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SaveEditorStateToIniFile(ref ImNodesEditorContext editor, string fileName)
+		public static void SaveEditorStateToIniFile(in ImNodesEditorContext editor, string fileName)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
@@ -3786,7 +3924,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void LoadCurrentEditorStateFromIniFile(ref byte fileName)
+		public static void LoadCurrentEditorStateFromIniFile(in byte fileName)
 		{
 			fixed (byte* pfileName = &fileName)
 			{
@@ -3852,7 +3990,7 @@ namespace Hexa.NET.ImNodes
 		/// </summary>
 		public static void LoadEditorStateFromIniFile(ImNodesEditorContextPtr editor, byte* fileName)
 		{
-			LoadEditorStateFromIniFileNative(editor, fileName);
+			LoadEditorStateFromIniFileNative((ImNodesEditorContext*)editor, fileName);
 		}
 
 		/// <summary>
@@ -3869,11 +4007,11 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void LoadEditorStateFromIniFile(ImNodesEditorContextPtr editor, ref byte fileName)
+		public static void LoadEditorStateFromIniFile(ImNodesEditorContextPtr editor, in byte fileName)
 		{
 			fixed (byte* pfileName = &fileName)
 			{
-				LoadEditorStateFromIniFileNative(editor, (byte*)pfileName);
+				LoadEditorStateFromIniFileNative((ImNodesEditorContext*)editor, (byte*)pfileName);
 			}
 		}
 
@@ -3884,7 +4022,7 @@ namespace Hexa.NET.ImNodes
 		{
 			fixed (byte* pfileName = fileName)
 			{
-				LoadEditorStateFromIniFileNative(editor, (byte*)pfileName);
+				LoadEditorStateFromIniFileNative((ImNodesEditorContext*)editor, (byte*)pfileName);
 			}
 		}
 
@@ -3910,7 +4048,7 @@ namespace Hexa.NET.ImNodes
 				int pStrOffset0 = Utils.EncodeStringUTF8(fileName, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			LoadEditorStateFromIniFileNative(editor, pStr0);
+			LoadEditorStateFromIniFileNative((ImNodesEditorContext*)editor, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3920,7 +4058,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void LoadEditorStateFromIniFile(ref ImNodesEditorContext editor, ref byte fileName)
+		public static void LoadEditorStateFromIniFile(ref ImNodesEditorContext editor, in byte fileName)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
@@ -4001,48 +4139,6 @@ namespace Hexa.NET.ImNodes
 		{
 			bool* ret = GetIOKeyCtrlPtrNative();
 			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetAllocatorFunctionsNative(ImGuiMemAllocFunc allocFunc, ImGuiMemFreeFunc freeFunc, void* userData)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<delegate*<nuint, void*, void*>, delegate*<void*, void*, void>, void*, void>)funcTable[88])((delegate*<nuint, void*, void*>)Utils.GetFunctionPointerForDelegate(allocFunc), (delegate*<void*, void*, void>)Utils.GetFunctionPointerForDelegate(freeFunc), userData);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[88])((nint)Utils.GetFunctionPointerForDelegate(allocFunc), (nint)Utils.GetFunctionPointerForDelegate(freeFunc), (nint)userData);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, ImGuiMemFreeFunc freeFunc, void* userData)
-		{
-			SetAllocatorFunctionsNative(allocFunc, freeFunc, userData);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetAllocatorFunctionsNative(delegate*<nuint, void*, void*>* pAllocFunc, delegate*<void*, void*, void>* pFreeFunc, void** pUserData)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<delegate*<nuint, void*, void*>*, delegate*<void*, void*, void>*, void**, void>)funcTable[89])(pAllocFunc, pFreeFunc, pUserData);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)funcTable[89])((nint)pAllocFunc, (nint)pFreeFunc, (nint)pUserData);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void GetAllocatorFunctions(delegate*<nuint, void*, void*>* pAllocFunc, delegate*<void*, void*, void>* pFreeFunc, void** pUserData)
-		{
-			GetAllocatorFunctionsNative(pAllocFunc, pFreeFunc, pUserData);
 		}
 
 	}

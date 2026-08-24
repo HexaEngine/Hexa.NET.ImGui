@@ -48,5 +48,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		HasStorageId = unchecked(16),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		HasColorMarker = unchecked(32),
 	}
 }

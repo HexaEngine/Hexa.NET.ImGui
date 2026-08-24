@@ -33,10 +33,5 @@ namespace Hexa.NET.ImGui
 		/// Draw rectangular highlight if (g.NavId == id) even when g.NavCursorVisible == false, aka even when using the mouse.<br/>
 		/// </summary>
 		AlwaysDraw = unchecked(4),
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		NoRounding = unchecked(8),
 	}
 }

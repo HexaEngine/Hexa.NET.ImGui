@@ -17,7 +17,7 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// Helper: ImVec2i (2D vector, integer)<br/>
+	/// To be documented.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImVec2I
@@ -43,57 +43,6 @@ namespace Hexa.NET.ImGui
 		}
 
 
-	}
-
-	/// <summary>
-	/// To be documented.
-	/// </summary>
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct ImVec2IPtr : IEquatable<ImVec2IPtr>
-	{
-		public ImVec2IPtr(ImVec2I* handle) { Handle = handle; }
-
-		public ImVec2I* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static ImVec2IPtr Null => new ImVec2IPtr(null);
-
-		public ImVec2I this[int index] { get => Handle[index]; set => Handle[index] = value; }
-
-		public static implicit operator ImVec2IPtr(ImVec2I* handle) => new ImVec2IPtr(handle);
-
-		public static implicit operator ImVec2I*(ImVec2IPtr handle) => handle.Handle;
-
-		public static bool operator ==(ImVec2IPtr left, ImVec2IPtr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(ImVec2IPtr left, ImVec2IPtr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(ImVec2IPtr left, ImVec2I* right) => left.Handle == right;
-
-		public static bool operator !=(ImVec2IPtr left, ImVec2I* right) => left.Handle != right;
-
-		public bool Equals(ImVec2IPtr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImVec2IPtr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImVec2IPtr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref int X => ref Unsafe.AsRef<int>(&Handle->X);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref int Y => ref Unsafe.AsRef<int>(&Handle->Y);
 	}
 
 }

@@ -17,51 +17,50 @@ namespace Hexa.NET.ImGuizmo
 	/// <summary>
 	/// To be documented.
 	/// </summary>
-	[Flags]
 	public enum ImGuizmoColor : int
 	{
 		/// <summary>
-		/// To be documented.
+		/// directionColor[0]<br/>
 		/// </summary>
 		DirectionX = unchecked(0),
 
 		/// <summary>
-		/// To be documented.
+		/// directionColor[1]<br/>
 		/// </summary>
 		DirectionY = unchecked(1),
 
 		/// <summary>
-		/// To be documented.
+		/// directionColor[2]<br/>
 		/// </summary>
 		DirectionZ = unchecked(2),
 
 		/// <summary>
-		/// To be documented.
+		/// planeColor[0]<br/>
 		/// </summary>
 		PlaneX = unchecked(3),
 
 		/// <summary>
-		/// To be documented.
+		/// planeColor[1]<br/>
 		/// </summary>
 		PlaneY = unchecked(4),
 
 		/// <summary>
-		/// To be documented.
+		/// planeColor[2]<br/>
 		/// </summary>
 		PlaneZ = unchecked(5),
 
 		/// <summary>
-		/// To be documented.
+		/// selectionColor<br/>
 		/// </summary>
 		Selection = unchecked(6),
 
 		/// <summary>
-		/// To be documented.
+		/// inactiveColor<br/>
 		/// </summary>
 		Inactive = unchecked(7),
 
 		/// <summary>
-		/// To be documented.
+		/// translationLineColor<br/>
 		/// </summary>
 		TranslationLine = unchecked(8),
 

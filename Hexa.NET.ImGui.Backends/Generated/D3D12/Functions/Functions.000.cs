@@ -36,7 +36,7 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		/// </summary>
 		public static bool Init(ImGuiImplDX12InitInfoPtr info)
 		{
-			byte ret = InitNative(info);
+			byte ret = InitNative((ImGuiImplDX12InitInfo*)info);
 			return ret != 0;
 		}
 
@@ -112,7 +112,7 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		/// </summary>
 		public static void RenderDrawData(ImDrawDataPtr drawData, ID3D12GraphicsCommandListPtr graphicsCommandList)
 		{
-			RenderDrawDataNative(drawData, graphicsCommandList);
+			RenderDrawDataNative((ImDrawData*)drawData, (ID3D12GraphicsCommandList*)graphicsCommandList);
 		}
 
 		/// <summary>
@@ -122,7 +122,7 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		{
 			fixed (ImDrawData* pdrawData = &drawData)
 			{
-				RenderDrawDataNative((ImDrawData*)pdrawData, graphicsCommandList);
+				RenderDrawDataNative((ImDrawData*)pdrawData, (ID3D12GraphicsCommandList*)graphicsCommandList);
 			}
 		}
 
@@ -133,7 +133,7 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		{
 			fixed (ID3D12GraphicsCommandList* pgraphicsCommandList = &graphicsCommandList)
 			{
-				RenderDrawDataNative(drawData, (ID3D12GraphicsCommandList*)pgraphicsCommandList);
+				RenderDrawDataNative((ImDrawData*)drawData, (ID3D12GraphicsCommandList*)pgraphicsCommandList);
 			}
 		}
 
@@ -169,7 +169,7 @@ namespace Hexa.NET.ImGui.Backends.D3D12
 		/// </summary>
 		public static void UpdateTexture(ImTextureDataPtr tex)
 		{
-			UpdateTextureNative(tex);
+			UpdateTextureNative((ImTextureData*)tex);
 		}
 
 		/// <summary>

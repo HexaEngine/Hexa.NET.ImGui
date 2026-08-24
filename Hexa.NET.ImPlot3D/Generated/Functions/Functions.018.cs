@@ -22,401 +22,142 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV)
-		{
-			PlotImageNative(labelId, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			PlotImageNative(labelId, texRef, center, axisU, axisV, uv0, (Vector2)(new Vector2(1,1)), tintCol, (ImPlot3DImageFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			PlotImageNative(labelId, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, (ImPlot3DImageFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			PlotImageNative(labelId, texRef, center, axisU, axisV, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			PlotImageNative(labelId, texRef, center, axisU, axisV, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			PlotImageNative(labelId, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			PlotImageNative(labelId, texRef, center, axisU, axisV, uv0, (Vector2)(new Vector2(1,1)), tintCol, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			PlotImageNative(labelId, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, uv1, tintCol, flags);
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, uv1, tintCol, (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, (Vector2)(new Vector2(1,1)), tintCol, (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, (Vector2)(new Vector2(1,1)), tintCol, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, uv1, tintCol, flags);
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pzs, count, flags, offset, stride);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, uv1, tintCol, (ImPlot3DImageFlags)(0));
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pzs, count, flags, offset, (int)(sizeof(ulong)));
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pzs, count, flags, (int)(0), (int)(sizeof(ulong)));
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(ulong)));
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, (Vector2)(new Vector2(1,1)), tintCol, (ImPlot3DImageFlags)(0));
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, uv0, (Vector2)(new Vector2(1,1)), tintCol, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -435,19 +176,25 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, center, axisU, axisV, uv0, uv1, tintCol, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ulong* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				fixed (ulong* pzs = &zs)
+				{
+					PlotLineNative(pStr0, xs, (ulong*)pys, (ulong*)pzs, count, flags, offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -466,19 +213,25 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, center, axisU, axisV, uv0, uv1, tintCol, (ImPlot3DImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ulong* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				fixed (ulong* pzs = &zs)
+				{
+					PlotLineNative(pStr0, xs, (ulong*)pys, (ulong*)pzs, count, flags, offset, (int)(sizeof(ulong)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -497,19 +250,25 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, center, axisU, axisV, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ulong* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				fixed (ulong* pzs = &zs)
+				{
+					PlotLineNative(pStr0, xs, (ulong*)pys, (ulong*)pzs, count, flags, (int)(0), (int)(sizeof(ulong)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -528,19 +287,25 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, center, axisU, axisV, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ulong* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				fixed (ulong* pzs = &zs)
+				{
+					PlotLineNative(pStr0, xs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -559,19 +324,25 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ulong* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				fixed (ulong* pzs = &zs)
+				{
+					PlotLineNative(pStr0, xs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(ulong)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] ulong* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -590,19 +361,403 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, center, axisU, axisV, uv0, (Vector2)(new Vector2(1,1)), tintCol, (ImPlot3DImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ulong* pys = &ys)
 			{
-				Utils.Free(pStr0);
+				fixed (ulong* pzs = &zs)
+				{
+					PlotLineNative(pStr0, xs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative(labelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative(labelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, flags, offset, (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative(labelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, flags, (int)(0), (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative(labelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative(labelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative(labelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, flags, offset, (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, flags, (int)(0), (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, flags, offset, (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, flags, (int)(0), (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pzs = &zs)
+						{
+							PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -621,19 +776,28 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, (ImPlot3DImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ulong* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative(pStr0, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, flags, offset, stride);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -652,19 +816,28 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, center, axisU, axisV, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ulong* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative(pStr0, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, flags, offset, (int)(sizeof(ulong)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DLineFlags")] ImPlot3DLineFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -683,19 +856,28 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, center, axisU, axisV, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ulong* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative(pStr0, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, flags, (int)(0), (int)(sizeof(ulong)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -714,19 +896,28 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ulong* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative(pStr0, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -745,19 +936,28 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, center, axisU, axisV, uv0, (Vector2)(new Vector2(1,1)), tintCol, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ulong* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative(pStr0, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), offset, (int)(sizeof(ulong)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Vec2")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotLine_U64Ptr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "center")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint center, [NativeName(NativeNameType.Param, "axis_u")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisU, [NativeName(NativeNameType.Param, "axis_v")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint axisV, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
+		public static void PlotLine([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "ImU64 const *")] in ulong zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -776,754 +976,259 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, center, axisU, axisV, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ulong* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pzs = &zs)
+					{
+						PlotLineNative(pStr0, (ulong*)pxs, (ulong*)pys, (ulong*)pzs, count, (ImPlot3DLineFlags)(0), offset, stride);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotImageNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
+		internal static void PlotTriangleNative([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ImTextureRef, ImPlot3DPoint, ImPlot3DPoint, ImPlot3DPoint, ImPlot3DPoint, Vector2, Vector2, Vector2, Vector2, Vector4, ImPlot3DImageFlags, void>)funcTable[77])(labelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, tintCol, flags);
+			((delegate* unmanaged[Cdecl]<byte*, float*, float*, float*, int, ImPlot3DTriangleFlags, int, int, void>)funcTable[42])(labelId, xs, ys, zs, count, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureRef, ImPlot3DPoint, ImPlot3DPoint, ImPlot3DPoint, ImPlot3DPoint, Vector2, Vector2, Vector2, Vector2, Vector4, ImPlot3DImageFlags, void>)funcTable[77])((nint)labelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, tintCol, flags);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, int, ImPlot3DTriangleFlags, int, int, void>)funcTable[42])((nint)labelId, (nint)xs, (nint)ys, (nint)zs, count, flags, offset, stride);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, tintCol, flags);
+			PlotTriangleNative(labelId, xs, ys, zs, count, flags, offset, stride);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, tintCol, (ImPlot3DImageFlags)(0));
+			PlotTriangleNative(labelId, xs, ys, zs, count, flags, offset, (int)(sizeof(float)));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
 		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+			PlotTriangleNative(labelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+			PlotTriangleNative(labelId, xs, ys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+			PlotTriangleNative(labelId, xs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+			PlotTriangleNative(labelId, xs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3)
-		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, (Vector4)(new Vector4(1,1,1,1)), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), tintCol, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] byte* labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			PlotImageNative(labelId, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, tintCol, flags);
+				PlotTriangleNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, tintCol, (ImPlot3DImageFlags)(0));
+				PlotTriangleNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+				PlotTriangleNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+				PlotTriangleNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+				PlotTriangleNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+				PlotTriangleNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), tintCol, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ref byte labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, tintCol, flags);
+				PlotTriangleNative((byte*)plabelId, xs, ys, zs, count, flags, offset, stride);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, tintCol, (ImPlot3DImageFlags)(0));
+				PlotTriangleNative((byte*)plabelId, xs, ys, zs, count, flags, offset, (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+				PlotTriangleNative((byte*)plabelId, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+				PlotTriangleNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+				PlotTriangleNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+				PlotTriangleNative((byte*)plabelId, xs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), tintCol, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotImageNative((byte*)plabelId, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1542,7 +1247,7 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, tintCol, flags);
+			PlotTriangleNative(pStr0, xs, ys, zs, count, flags, offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1552,9 +1257,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1573,7 +1278,7 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, tintCol, (ImPlot3DImageFlags)(0));
+			PlotTriangleNative(pStr0, xs, ys, zs, count, flags, offset, (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1583,9 +1288,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1604,7 +1309,7 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+			PlotTriangleNative(pStr0, xs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1614,9 +1319,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1635,7 +1340,7 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+			PlotTriangleNative(pStr0, xs, ys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1645,9 +1350,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1666,7 +1371,7 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+			PlotTriangleNative(pStr0, xs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1676,9 +1381,9 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1697,7 +1402,7 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
+			PlotTriangleNative(pStr0, xs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1707,9 +1412,279 @@ namespace Hexa.NET.ImPlot3D
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotTriangleNative(labelId, (float*)pxs, ys, zs, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotTriangleNative(labelId, (float*)pxs, ys, zs, count, flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotTriangleNative(labelId, (float*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotTriangleNative(labelId, (float*)pxs, ys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotTriangleNative(labelId, (float*)pxs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotTriangleNative(labelId, (float*)pxs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, zs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, zs, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, zs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, zs, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1728,2326 +1703,28 @@ namespace Hexa.NET.ImPlot3D
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlot3DImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (float* pxs = &xs)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, (ImPlot3DImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "uv3")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv3, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, uv1, uv2, uv3, (Vector4)(new Vector4(1,1,1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "uv2")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv2, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, uv1, uv2, (Vector2)(new Vector2(0,1)), tintCol, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "uv1")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv1, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, uv1, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "uv0")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 uv0, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, uv0, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotImage_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotImage([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "const char*")] string labelId, [NativeName(NativeNameType.Param, "tex_ref")] [NativeName(NativeNameType.Type, "ImTextureRef")] ImTextureRef texRef, [NativeName(NativeNameType.Param, "p0")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p0, [NativeName(NativeNameType.Param, "p1")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p1, [NativeName(NativeNameType.Param, "p2")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p2, [NativeName(NativeNameType.Param, "p3")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint p3, [NativeName(NativeNameType.Param, "tint_col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 tintCol, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DImageFlags")] ImPlot3DImageFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, texRef, p0, p1, p2, p3, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), tintCol, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotTextNative([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] byte* text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z, [NativeName(NativeNameType.Param, "angle")] [NativeName(NativeNameType.Type, "float")] float angle, [NativeName(NativeNameType.Param, "pix_offset")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pixOffset)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, float, float, float, float, Vector2, void>)funcTable[78])(text, x, y, z, angle, pixOffset);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, float, float, float, float, Vector2, void>)funcTable[78])((nint)text, x, y, z, angle, pixOffset);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] byte* text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z, [NativeName(NativeNameType.Param, "angle")] [NativeName(NativeNameType.Type, "float")] float angle, [NativeName(NativeNameType.Param, "pix_offset")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pixOffset)
-		{
-			PlotTextNative(text, x, y, z, angle, pixOffset);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] byte* text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z, [NativeName(NativeNameType.Param, "angle")] [NativeName(NativeNameType.Type, "float")] float angle)
-		{
-			PlotTextNative(text, x, y, z, angle, (Vector2)(new Vector2(0,0)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] byte* text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z)
-		{
-			PlotTextNative(text, x, y, z, (float)(0.0f), (Vector2)(new Vector2(0,0)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] byte* text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z, [NativeName(NativeNameType.Param, "pix_offset")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pixOffset)
-		{
-			PlotTextNative(text, x, y, z, (float)(0.0f), pixOffset);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] ref byte text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z, [NativeName(NativeNameType.Param, "angle")] [NativeName(NativeNameType.Type, "float")] float angle, [NativeName(NativeNameType.Param, "pix_offset")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pixOffset)
-		{
-			fixed (byte* ptext = &text)
-			{
-				PlotTextNative((byte*)ptext, x, y, z, angle, pixOffset);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] ref byte text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z, [NativeName(NativeNameType.Param, "angle")] [NativeName(NativeNameType.Type, "float")] float angle)
-		{
-			fixed (byte* ptext = &text)
-			{
-				PlotTextNative((byte*)ptext, x, y, z, angle, (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] ref byte text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z)
-		{
-			fixed (byte* ptext = &text)
-			{
-				PlotTextNative((byte*)ptext, x, y, z, (float)(0.0f), (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] ref byte text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z, [NativeName(NativeNameType.Param, "pix_offset")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pixOffset)
-		{
-			fixed (byte* ptext = &text)
-			{
-				PlotTextNative((byte*)ptext, x, y, z, (float)(0.0f), pixOffset);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z, [NativeName(NativeNameType.Param, "angle")] [NativeName(NativeNameType.Type, "float")] float angle, [NativeName(NativeNameType.Param, "pix_offset")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pixOffset)
-		{
-			fixed (byte* ptext = text)
-			{
-				PlotTextNative((byte*)ptext, x, y, z, angle, pixOffset);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z, [NativeName(NativeNameType.Param, "angle")] [NativeName(NativeNameType.Type, "float")] float angle)
-		{
-			fixed (byte* ptext = text)
-			{
-				PlotTextNative((byte*)ptext, x, y, z, angle, (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z)
-		{
-			fixed (byte* ptext = text)
-			{
-				PlotTextNative((byte*)ptext, x, y, z, (float)(0.0f), (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z, [NativeName(NativeNameType.Param, "pix_offset")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pixOffset)
-		{
-			fixed (byte* ptext = text)
-			{
-				PlotTextNative((byte*)ptext, x, y, z, (float)(0.0f), pixOffset);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] string text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z, [NativeName(NativeNameType.Param, "angle")] [NativeName(NativeNameType.Type, "float")] float angle, [NativeName(NativeNameType.Param, "pix_offset")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pixOffset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotTextNative(pStr0, x, y, z, angle, pixOffset);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] string text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z, [NativeName(NativeNameType.Param, "angle")] [NativeName(NativeNameType.Type, "float")] float angle)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotTextNative(pStr0, x, y, z, angle, (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] string text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotTextNative(pStr0, x, y, z, (float)(0.0f), (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotText")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotText([NativeName(NativeNameType.Param, "text")] [NativeName(NativeNameType.Type, "const char*")] string text, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "float")] float z, [NativeName(NativeNameType.Param, "pix_offset")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pixOffset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotTextNative(pStr0, x, y, z, (float)(0.0f), pixOffset);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotToPixels_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotToPixelsNative([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec2*")] Vector2* pOut, [NativeName(NativeNameType.Param, "point")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint point)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, ImPlot3DPoint, void>)funcTable[79])(pOut, point);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlot3DPoint, void>)funcTable[79])((nint)pOut, point);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotToPixels_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static Vector2 PlotToPixels([NativeName(NativeNameType.Param, "point")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint point)
-		{
-			Vector2 ret;
-			PlotToPixelsNative(&ret, point);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotToPixels_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotToPixels([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec2*")] Vector2* pOut, [NativeName(NativeNameType.Param, "point")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint point)
-		{
-			PlotToPixelsNative(pOut, point);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotToPixels_Plot3DPoInt")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotToPixels([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec2*")] ref Vector2 pOut, [NativeName(NativeNameType.Param, "point")] [NativeName(NativeNameType.Type, "const ImPlot3DPoint")] ImPlot3DPoint point)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				PlotToPixelsNative((Vector2*)ppOut, point);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotToPixels_double")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotToPixelsNative([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec2*")] Vector2* pOut, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "double")] double x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "double")] double y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "double")] double z)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, double, double, double, void>)funcTable[80])(pOut, x, y, z);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, double, double, double, void>)funcTable[80])((nint)pOut, x, y, z);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotToPixels_double")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static Vector2 PlotToPixels([NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "double")] double x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "double")] double y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "double")] double z)
-		{
-			Vector2 ret;
-			PlotToPixelsNative(&ret, x, y, z);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotToPixels_double")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotToPixels([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec2*")] Vector2* pOut, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "double")] double x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "double")] double y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "double")] double z)
-		{
-			PlotToPixelsNative(pOut, x, y, z);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PlotToPixels_double")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PlotToPixels([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec2*")] ref Vector2 pOut, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "double")] double x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "double")] double y, [NativeName(NativeNameType.Param, "z")] [NativeName(NativeNameType.Type, "double")] double z)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				PlotToPixelsNative((Vector2*)ppOut, x, y, z);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotRay_Vec2")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DRay")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlot3DRay PixelsToPlotRayNative([NativeName(NativeNameType.Param, "pix")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pix)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2, ImPlot3DRay>)funcTable[81])(pix);
-			#else
-			return (ImPlot3DRay)((delegate* unmanaged[Cdecl]<Vector2, ImPlot3DRay>)funcTable[81])(pix);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotRay_Vec2")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DRay")]
-		public static ImPlot3DRay PixelsToPlotRay([NativeName(NativeNameType.Param, "pix")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pix)
-		{
-			ImPlot3DRay ret = PixelsToPlotRayNative(pix);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotRay_double")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DRay")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlot3DRay PixelsToPlotRayNative([NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "double")] double x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "double")] double y)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, ImPlot3DRay>)funcTable[82])(x, y);
-			#else
-			return (ImPlot3DRay)((delegate* unmanaged[Cdecl]<double, double, ImPlot3DRay>)funcTable[82])(x, y);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotRay_double")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DRay")]
-		public static ImPlot3DRay PixelsToPlotRay([NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "double")] double x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "double")] double y)
-		{
-			ImPlot3DRay ret = PixelsToPlotRayNative(x, y);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotPlane_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PixelsToPlotPlaneNative([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ImPlot3DPoint* pOut, [NativeName(NativeNameType.Param, "pix")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pix, [NativeName(NativeNameType.Param, "plane")] [NativeName(NativeNameType.Type, "ImPlane3D")] ImPlane3D plane, [NativeName(NativeNameType.Param, "mask")] [NativeName(NativeNameType.Type, "bool")] byte mask)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DPoint*, Vector2, ImPlane3D, byte, void>)funcTable[83])(pOut, pix, plane, mask);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, ImPlane3D, byte, void>)funcTable[83])((nint)pOut, pix, plane, mask);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotPlane_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static ImPlot3DPoint PixelsToPlotPlane([NativeName(NativeNameType.Param, "pix")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pix, [NativeName(NativeNameType.Param, "plane")] [NativeName(NativeNameType.Type, "ImPlane3D")] ImPlane3D plane)
-		{
-			ImPlot3DPoint ret;
-			PixelsToPlotPlaneNative(&ret, pix, plane, (byte)(1));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotPlane_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static ImPlot3DPoint PixelsToPlotPlane([NativeName(NativeNameType.Param, "pix")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pix, [NativeName(NativeNameType.Param, "plane")] [NativeName(NativeNameType.Type, "ImPlane3D")] ImPlane3D plane, [NativeName(NativeNameType.Param, "mask")] [NativeName(NativeNameType.Type, "bool")] bool mask)
-		{
-			ImPlot3DPoint ret;
-			PixelsToPlotPlaneNative(&ret, pix, plane, mask ? (byte)1 : (byte)0);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotPlane_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PixelsToPlotPlane([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ImPlot3DPointPtr pOut, [NativeName(NativeNameType.Param, "pix")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pix, [NativeName(NativeNameType.Param, "plane")] [NativeName(NativeNameType.Type, "ImPlane3D")] ImPlane3D plane, [NativeName(NativeNameType.Param, "mask")] [NativeName(NativeNameType.Type, "bool")] bool mask)
-		{
-			PixelsToPlotPlaneNative(pOut, pix, plane, mask ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotPlane_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PixelsToPlotPlane([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ImPlot3DPointPtr pOut, [NativeName(NativeNameType.Param, "pix")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pix, [NativeName(NativeNameType.Param, "plane")] [NativeName(NativeNameType.Type, "ImPlane3D")] ImPlane3D plane)
-		{
-			PixelsToPlotPlaneNative(pOut, pix, plane, (byte)(1));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotPlane_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PixelsToPlotPlane([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ref ImPlot3DPoint pOut, [NativeName(NativeNameType.Param, "pix")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pix, [NativeName(NativeNameType.Param, "plane")] [NativeName(NativeNameType.Type, "ImPlane3D")] ImPlane3D plane, [NativeName(NativeNameType.Param, "mask")] [NativeName(NativeNameType.Type, "bool")] bool mask)
-		{
-			fixed (ImPlot3DPoint* ppOut = &pOut)
-			{
-				PixelsToPlotPlaneNative((ImPlot3DPoint*)ppOut, pix, plane, mask ? (byte)1 : (byte)0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotPlane_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PixelsToPlotPlane([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ref ImPlot3DPoint pOut, [NativeName(NativeNameType.Param, "pix")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 pix, [NativeName(NativeNameType.Param, "plane")] [NativeName(NativeNameType.Type, "ImPlane3D")] ImPlane3D plane)
-		{
-			fixed (ImPlot3DPoint* ppOut = &pOut)
-			{
-				PixelsToPlotPlaneNative((ImPlot3DPoint*)ppOut, pix, plane, (byte)(1));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotPlane_double")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PixelsToPlotPlaneNative([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ImPlot3DPoint* pOut, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "double")] double x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "double")] double y, [NativeName(NativeNameType.Param, "plane")] [NativeName(NativeNameType.Type, "ImPlane3D")] ImPlane3D plane, [NativeName(NativeNameType.Param, "mask")] [NativeName(NativeNameType.Type, "bool")] byte mask)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DPoint*, double, double, ImPlane3D, byte, void>)funcTable[84])(pOut, x, y, plane, mask);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, double, double, ImPlane3D, byte, void>)funcTable[84])((nint)pOut, x, y, plane, mask);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotPlane_double")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static ImPlot3DPoint PixelsToPlotPlane([NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "double")] double x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "double")] double y, [NativeName(NativeNameType.Param, "plane")] [NativeName(NativeNameType.Type, "ImPlane3D")] ImPlane3D plane)
-		{
-			ImPlot3DPoint ret;
-			PixelsToPlotPlaneNative(&ret, x, y, plane, (byte)(1));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotPlane_double")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static ImPlot3DPoint PixelsToPlotPlane([NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "double")] double x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "double")] double y, [NativeName(NativeNameType.Param, "plane")] [NativeName(NativeNameType.Type, "ImPlane3D")] ImPlane3D plane, [NativeName(NativeNameType.Param, "mask")] [NativeName(NativeNameType.Type, "bool")] bool mask)
-		{
-			ImPlot3DPoint ret;
-			PixelsToPlotPlaneNative(&ret, x, y, plane, mask ? (byte)1 : (byte)0);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotPlane_double")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PixelsToPlotPlane([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ImPlot3DPointPtr pOut, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "double")] double x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "double")] double y, [NativeName(NativeNameType.Param, "plane")] [NativeName(NativeNameType.Type, "ImPlane3D")] ImPlane3D plane, [NativeName(NativeNameType.Param, "mask")] [NativeName(NativeNameType.Type, "bool")] bool mask)
-		{
-			PixelsToPlotPlaneNative(pOut, x, y, plane, mask ? (byte)1 : (byte)0);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotPlane_double")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PixelsToPlotPlane([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ImPlot3DPointPtr pOut, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "double")] double x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "double")] double y, [NativeName(NativeNameType.Param, "plane")] [NativeName(NativeNameType.Type, "ImPlane3D")] ImPlane3D plane)
-		{
-			PixelsToPlotPlaneNative(pOut, x, y, plane, (byte)(1));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotPlane_double")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PixelsToPlotPlane([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ref ImPlot3DPoint pOut, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "double")] double x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "double")] double y, [NativeName(NativeNameType.Param, "plane")] [NativeName(NativeNameType.Type, "ImPlane3D")] ImPlane3D plane, [NativeName(NativeNameType.Param, "mask")] [NativeName(NativeNameType.Type, "bool")] bool mask)
-		{
-			fixed (ImPlot3DPoint* ppOut = &pOut)
-			{
-				PixelsToPlotPlaneNative((ImPlot3DPoint*)ppOut, x, y, plane, mask ? (byte)1 : (byte)0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PixelsToPlotPlane_double")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PixelsToPlotPlane([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ref ImPlot3DPoint pOut, [NativeName(NativeNameType.Param, "x")] [NativeName(NativeNameType.Type, "double")] double x, [NativeName(NativeNameType.Param, "y")] [NativeName(NativeNameType.Type, "double")] double y, [NativeName(NativeNameType.Param, "plane")] [NativeName(NativeNameType.Type, "ImPlane3D")] ImPlane3D plane)
-		{
-			fixed (ImPlot3DPoint* ppOut = &pOut)
-			{
-				PixelsToPlotPlaneNative((ImPlot3DPoint*)ppOut, x, y, plane, (byte)(1));
-			}
-		}
-
-		/// <summary>
-		/// Get the current plot position (top-left) in pixels<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetPlotPos")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetPlotPosNative([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec2*")] Vector2* pOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[85])(pOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[85])((nint)pOut);
-			#endif
-		}
-
-		/// <summary>
-		/// Get the current plot position (top-left) in pixels<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetPlotPos")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static Vector2 GetPlotPos()
-		{
-			Vector2 ret;
-			GetPlotPosNative(&ret);
-			return ret;
-		}
-
-		/// <summary>
-		/// Get the current plot position (top-left) in pixels<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetPlotPos")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void GetPlotPos([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec2*")] Vector2* pOut)
-		{
-			GetPlotPosNative(pOut);
-		}
-
-		/// <summary>
-		/// Get the current plot position (top-left) in pixels<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetPlotPos")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void GetPlotPos([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec2*")] ref Vector2 pOut)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetPlotPosNative((Vector2*)ppOut);
-			}
-		}
-
-		/// <summary>
-		/// Get the current plot size in pixels<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetPlotSize")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetPlotSizeNative([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec2*")] Vector2* pOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)funcTable[86])(pOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[86])((nint)pOut);
-			#endif
-		}
-
-		/// <summary>
-		/// Get the current plot size in pixels<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetPlotSize")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static Vector2 GetPlotSize()
-		{
-			Vector2 ret;
-			GetPlotSizeNative(&ret);
-			return ret;
-		}
-
-		/// <summary>
-		/// Get the current plot size in pixels<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetPlotSize")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void GetPlotSize([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec2*")] Vector2* pOut)
-		{
-			GetPlotSizeNative(pOut);
-		}
-
-		/// <summary>
-		/// Get the current plot size in pixels<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetPlotSize")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void GetPlotSize([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec2*")] ref Vector2 pOut)
-		{
-			fixed (Vector2* ppOut = &pOut)
-			{
-				GetPlotSizeNative((Vector2*)ppOut);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetPlotDrawList")]
-		[return: NativeName(NativeNameType.Type, "ImDrawList*")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImDrawList* GetPlotDrawListNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImDrawList*>)funcTable[87])();
-			#else
-			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint>)funcTable[87])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetPlotDrawList")]
-		[return: NativeName(NativeNameType.Type, "ImDrawList*")]
-		public static ImDrawListPtr GetPlotDrawList()
-		{
-			ImDrawListPtr ret = GetPlotDrawListNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetStyle")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DStyle*")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlot3DStyle* GetStyleNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlot3DStyle*>)funcTable[88])();
-			#else
-			return (ImPlot3DStyle*)((delegate* unmanaged[Cdecl]<nint>)funcTable[88])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetStyle")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DStyle*")]
-		public static ImPlot3DStylePtr GetStyle()
-		{
-			ImPlot3DStylePtr ret = GetStyleNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetStyleNative([NativeName(NativeNameType.Param, "style")] [NativeName(NativeNameType.Type, "const ImPlot3DStyle")] ImPlot3DStyle style)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DStyle, void>)funcTable[89])(style);
-			#else
-			((delegate* unmanaged[Cdecl]<ImPlot3DStyle, void>)funcTable[89])(style);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetStyle([NativeName(NativeNameType.Param, "style")] [NativeName(NativeNameType.Type, "const ImPlot3DStyle")] ImPlot3DStyle style)
-		{
-			SetStyleNative(style);
-		}
-
-		/// <summary>
-		/// Set colors with ImGui style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsAuto")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void StyleColorsAutoNative([NativeName(NativeNameType.Param, "dst")] [NativeName(NativeNameType.Type, "ImPlot3DStyle*")] ImPlot3DStyle* dst)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DStyle*, void>)funcTable[90])(dst);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[90])((nint)dst);
-			#endif
-		}
-
-		/// <summary>
-		/// Set colors with ImGui style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsAuto")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void StyleColorsAuto([NativeName(NativeNameType.Param, "dst")] [NativeName(NativeNameType.Type, "ImPlot3DStyle*")] ImPlot3DStylePtr dst)
-		{
-			StyleColorsAutoNative(dst);
-		}
-
-		/// <summary>
-		/// Set colors with ImGui style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsAuto")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void StyleColorsAuto()
-		{
-			StyleColorsAutoNative((ImPlot3DStyle*)(default));
-		}
-
-		/// <summary>
-		/// Set colors with ImGui style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsAuto")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void StyleColorsAuto([NativeName(NativeNameType.Param, "dst")] [NativeName(NativeNameType.Type, "ImPlot3DStyle*")] ref ImPlot3DStyle dst)
-		{
-			fixed (ImPlot3DStyle* pdst = &dst)
-			{
-				StyleColorsAutoNative((ImPlot3DStyle*)pdst);
-			}
-		}
-
-		/// <summary>
-		/// Set colors with dark style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsDark")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void StyleColorsDarkNative([NativeName(NativeNameType.Param, "dst")] [NativeName(NativeNameType.Type, "ImPlot3DStyle*")] ImPlot3DStyle* dst)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DStyle*, void>)funcTable[91])(dst);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[91])((nint)dst);
-			#endif
-		}
-
-		/// <summary>
-		/// Set colors with dark style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsDark")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void StyleColorsDark([NativeName(NativeNameType.Param, "dst")] [NativeName(NativeNameType.Type, "ImPlot3DStyle*")] ImPlot3DStylePtr dst)
-		{
-			StyleColorsDarkNative(dst);
-		}
-
-		/// <summary>
-		/// Set colors with dark style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsDark")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void StyleColorsDark()
-		{
-			StyleColorsDarkNative((ImPlot3DStyle*)(default));
-		}
-
-		/// <summary>
-		/// Set colors with dark style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsDark")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void StyleColorsDark([NativeName(NativeNameType.Param, "dst")] [NativeName(NativeNameType.Type, "ImPlot3DStyle*")] ref ImPlot3DStyle dst)
-		{
-			fixed (ImPlot3DStyle* pdst = &dst)
-			{
-				StyleColorsDarkNative((ImPlot3DStyle*)pdst);
-			}
-		}
-
-		/// <summary>
-		/// Set colors with light style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsLight")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void StyleColorsLightNative([NativeName(NativeNameType.Param, "dst")] [NativeName(NativeNameType.Type, "ImPlot3DStyle*")] ImPlot3DStyle* dst)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DStyle*, void>)funcTable[92])(dst);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[92])((nint)dst);
-			#endif
-		}
-
-		/// <summary>
-		/// Set colors with light style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsLight")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void StyleColorsLight([NativeName(NativeNameType.Param, "dst")] [NativeName(NativeNameType.Type, "ImPlot3DStyle*")] ImPlot3DStylePtr dst)
-		{
-			StyleColorsLightNative(dst);
-		}
-
-		/// <summary>
-		/// Set colors with light style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsLight")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void StyleColorsLight()
-		{
-			StyleColorsLightNative((ImPlot3DStyle*)(default));
-		}
-
-		/// <summary>
-		/// Set colors with light style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsLight")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void StyleColorsLight([NativeName(NativeNameType.Param, "dst")] [NativeName(NativeNameType.Type, "ImPlot3DStyle*")] ref ImPlot3DStyle dst)
-		{
-			fixed (ImPlot3DStyle* pdst = &dst)
-			{
-				StyleColorsLightNative((ImPlot3DStyle*)pdst);
-			}
-		}
-
-		/// <summary>
-		/// Set colors with classic style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsClassic")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void StyleColorsClassicNative([NativeName(NativeNameType.Param, "dst")] [NativeName(NativeNameType.Type, "ImPlot3DStyle*")] ImPlot3DStyle* dst)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DStyle*, void>)funcTable[93])(dst);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[93])((nint)dst);
-			#endif
-		}
-
-		/// <summary>
-		/// Set colors with classic style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsClassic")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void StyleColorsClassic([NativeName(NativeNameType.Param, "dst")] [NativeName(NativeNameType.Type, "ImPlot3DStyle*")] ImPlot3DStylePtr dst)
-		{
-			StyleColorsClassicNative(dst);
-		}
-
-		/// <summary>
-		/// Set colors with classic style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsClassic")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void StyleColorsClassic()
-		{
-			StyleColorsClassicNative((ImPlot3DStyle*)(default));
-		}
-
-		/// <summary>
-		/// Set colors with classic style<br/>
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_StyleColorsClassic")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void StyleColorsClassic([NativeName(NativeNameType.Param, "dst")] [NativeName(NativeNameType.Type, "ImPlot3DStyle*")] ref ImPlot3DStyle dst)
-		{
-			fixed (ImPlot3DStyle* pdst = &dst)
-			{
-				StyleColorsClassicNative((ImPlot3DStyle*)pdst);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushStyleColor_U32")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushStyleColorNative([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DCol")] ImPlot3DCol idx, [NativeName(NativeNameType.Param, "col")] [NativeName(NativeNameType.Type, "ImU32")] uint col)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DCol, uint, void>)funcTable[94])(idx, col);
-			#else
-			((delegate* unmanaged[Cdecl]<ImPlot3DCol, uint, void>)funcTable[94])(idx, col);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushStyleColor_U32")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PushStyleColor([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DCol")] ImPlot3DCol idx, [NativeName(NativeNameType.Param, "col")] [NativeName(NativeNameType.Type, "ImU32")] uint col)
-		{
-			PushStyleColorNative(idx, col);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushStyleColor_Vec4")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushStyleColorNative([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DCol")] ImPlot3DCol idx, [NativeName(NativeNameType.Param, "col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 col)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DCol, Vector4, void>)funcTable[95])(idx, col);
-			#else
-			((delegate* unmanaged[Cdecl]<ImPlot3DCol, Vector4, void>)funcTable[95])(idx, col);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushStyleColor_Vec4")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PushStyleColor([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DCol")] ImPlot3DCol idx, [NativeName(NativeNameType.Param, "col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 col)
-		{
-			PushStyleColorNative(idx, col);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PopStyleColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PopStyleColorNative([NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[96])(count);
-			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[96])(count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PopStyleColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PopStyleColor([NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			PopStyleColorNative(count);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PopStyleColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PopStyleColor()
-		{
-			PopStyleColorNative((int)(1));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushStyleVar_Float")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushStyleVarNative([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DStyleVar")] ImPlot3DStyleVar idx, [NativeName(NativeNameType.Param, "val")] [NativeName(NativeNameType.Type, "float")] float val)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DStyleVar, float, void>)funcTable[97])(idx, val);
-			#else
-			((delegate* unmanaged[Cdecl]<ImPlot3DStyleVar, float, void>)funcTable[97])(idx, val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushStyleVar_Float")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PushStyleVar([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DStyleVar")] ImPlot3DStyleVar idx, [NativeName(NativeNameType.Param, "val")] [NativeName(NativeNameType.Type, "float")] float val)
-		{
-			PushStyleVarNative(idx, val);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushStyleVar_Int")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushStyleVarNative([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DStyleVar")] ImPlot3DStyleVar idx, [NativeName(NativeNameType.Param, "val")] [NativeName(NativeNameType.Type, "int")] int val)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DStyleVar, int, void>)funcTable[98])(idx, val);
-			#else
-			((delegate* unmanaged[Cdecl]<ImPlot3DStyleVar, int, void>)funcTable[98])(idx, val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushStyleVar_Int")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PushStyleVar([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DStyleVar")] ImPlot3DStyleVar idx, [NativeName(NativeNameType.Param, "val")] [NativeName(NativeNameType.Type, "int")] int val)
-		{
-			PushStyleVarNative(idx, val);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushStyleVar_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushStyleVarNative([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DStyleVar")] ImPlot3DStyleVar idx, [NativeName(NativeNameType.Param, "val")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 val)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DStyleVar, Vector2, void>)funcTable[99])(idx, val);
-			#else
-			((delegate* unmanaged[Cdecl]<ImPlot3DStyleVar, Vector2, void>)funcTable[99])(idx, val);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushStyleVar_Vec2")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PushStyleVar([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DStyleVar")] ImPlot3DStyleVar idx, [NativeName(NativeNameType.Param, "val")] [NativeName(NativeNameType.Type, "const ImVec2")] Vector2 val)
-		{
-			PushStyleVarNative(idx, val);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PopStyleVar")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PopStyleVarNative([NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[100])(count);
-			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[100])(count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PopStyleVar")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PopStyleVar([NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			PopStyleVarNative(count);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PopStyleVar")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PopStyleVar()
-		{
-			PopStyleVarNative((int)(1));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextLineStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetNextLineStyleNative([NativeName(NativeNameType.Param, "col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 col, [NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4, float, void>)funcTable[101])(col, weight);
-			#else
-			((delegate* unmanaged[Cdecl]<Vector4, float, void>)funcTable[101])(col, weight);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextLineStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextLineStyle([NativeName(NativeNameType.Param, "col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 col, [NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight)
-		{
-			SetNextLineStyleNative(col, weight);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextLineStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextLineStyle([NativeName(NativeNameType.Param, "col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 col)
-		{
-			SetNextLineStyleNative(col, (float)(-1));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextLineStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextLineStyle()
-		{
-			SetNextLineStyleNative((Vector4)(new Vector4(0,0,0,-1)), (float)(-1));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextLineStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextLineStyle([NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight)
-		{
-			SetNextLineStyleNative((Vector4)(new Vector4(0,0,0,-1)), weight);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextFillStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetNextFillStyleNative([NativeName(NativeNameType.Param, "col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 col, [NativeName(NativeNameType.Param, "alpha_mod")] [NativeName(NativeNameType.Type, "float")] float alphaMod)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4, float, void>)funcTable[102])(col, alphaMod);
-			#else
-			((delegate* unmanaged[Cdecl]<Vector4, float, void>)funcTable[102])(col, alphaMod);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextFillStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextFillStyle([NativeName(NativeNameType.Param, "col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 col, [NativeName(NativeNameType.Param, "alpha_mod")] [NativeName(NativeNameType.Type, "float")] float alphaMod)
-		{
-			SetNextFillStyleNative(col, alphaMod);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextFillStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextFillStyle([NativeName(NativeNameType.Param, "col")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 col)
-		{
-			SetNextFillStyleNative(col, (float)(-1));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextFillStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextFillStyle()
-		{
-			SetNextFillStyleNative((Vector4)(new Vector4(0,0,0,-1)), (float)(-1));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextFillStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextFillStyle([NativeName(NativeNameType.Param, "alpha_mod")] [NativeName(NativeNameType.Type, "float")] float alphaMod)
-		{
-			SetNextFillStyleNative((Vector4)(new Vector4(0,0,0,-1)), alphaMod);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetNextMarkerStyleNative([NativeName(NativeNameType.Param, "marker")] [NativeName(NativeNameType.Type, "ImPlot3DMarker")] ImPlot3DMarker marker, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "float")] float size, [NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill, [NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight, [NativeName(NativeNameType.Param, "outline")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 outline)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DMarker, float, Vector4, float, Vector4, void>)funcTable[103])(marker, size, fill, weight, outline);
-			#else
-			((delegate* unmanaged[Cdecl]<ImPlot3DMarker, float, Vector4, float, Vector4, void>)funcTable[103])(marker, size, fill, weight, outline);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "marker")] [NativeName(NativeNameType.Type, "ImPlot3DMarker")] ImPlot3DMarker marker, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "float")] float size, [NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill, [NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight, [NativeName(NativeNameType.Param, "outline")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 outline)
-		{
-			SetNextMarkerStyleNative(marker, size, fill, weight, outline);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "marker")] [NativeName(NativeNameType.Type, "ImPlot3DMarker")] ImPlot3DMarker marker, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "float")] float size, [NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill, [NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight)
-		{
-			SetNextMarkerStyleNative(marker, size, fill, weight, (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "marker")] [NativeName(NativeNameType.Type, "ImPlot3DMarker")] ImPlot3DMarker marker, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "float")] float size, [NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill)
-		{
-			SetNextMarkerStyleNative(marker, size, fill, (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "marker")] [NativeName(NativeNameType.Type, "ImPlot3DMarker")] ImPlot3DMarker marker, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "float")] float size)
-		{
-			SetNextMarkerStyleNative(marker, size, (Vector4)(new Vector4(0,0,0,-1)), (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "marker")] [NativeName(NativeNameType.Type, "ImPlot3DMarker")] ImPlot3DMarker marker)
-		{
-			SetNextMarkerStyleNative(marker, (float)(-1), (Vector4)(new Vector4(0,0,0,-1)), (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle()
-		{
-			SetNextMarkerStyleNative((ImPlot3DMarker)(-1), (float)(-1), (Vector4)(new Vector4(0,0,0,-1)), (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "float")] float size)
-		{
-			SetNextMarkerStyleNative((ImPlot3DMarker)(-1), size, (Vector4)(new Vector4(0,0,0,-1)), (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "marker")] [NativeName(NativeNameType.Type, "ImPlot3DMarker")] ImPlot3DMarker marker, [NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill)
-		{
-			SetNextMarkerStyleNative(marker, (float)(-1), fill, (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill)
-		{
-			SetNextMarkerStyleNative((ImPlot3DMarker)(-1), (float)(-1), fill, (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "float")] float size, [NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill)
-		{
-			SetNextMarkerStyleNative((ImPlot3DMarker)(-1), size, fill, (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "marker")] [NativeName(NativeNameType.Type, "ImPlot3DMarker")] ImPlot3DMarker marker, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "float")] float size, [NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight)
-		{
-			SetNextMarkerStyleNative(marker, size, (Vector4)(new Vector4(0,0,0,-1)), weight, (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "float")] float size, [NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight)
-		{
-			SetNextMarkerStyleNative((ImPlot3DMarker)(-1), size, (Vector4)(new Vector4(0,0,0,-1)), weight, (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "marker")] [NativeName(NativeNameType.Type, "ImPlot3DMarker")] ImPlot3DMarker marker, [NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill, [NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight)
-		{
-			SetNextMarkerStyleNative(marker, (float)(-1), fill, weight, (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill, [NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight)
-		{
-			SetNextMarkerStyleNative((ImPlot3DMarker)(-1), (float)(-1), fill, weight, (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "float")] float size, [NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill, [NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight)
-		{
-			SetNextMarkerStyleNative((ImPlot3DMarker)(-1), size, fill, weight, (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "marker")] [NativeName(NativeNameType.Type, "ImPlot3DMarker")] ImPlot3DMarker marker, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "float")] float size, [NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill, [NativeName(NativeNameType.Param, "outline")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 outline)
-		{
-			SetNextMarkerStyleNative(marker, size, fill, (float)(-1), outline);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "marker")] [NativeName(NativeNameType.Type, "ImPlot3DMarker")] ImPlot3DMarker marker, [NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill, [NativeName(NativeNameType.Param, "outline")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 outline)
-		{
-			SetNextMarkerStyleNative(marker, (float)(-1), fill, (float)(-1), outline);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill, [NativeName(NativeNameType.Param, "outline")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 outline)
-		{
-			SetNextMarkerStyleNative((ImPlot3DMarker)(-1), (float)(-1), fill, (float)(-1), outline);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "float")] float size, [NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill, [NativeName(NativeNameType.Param, "outline")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 outline)
-		{
-			SetNextMarkerStyleNative((ImPlot3DMarker)(-1), size, fill, (float)(-1), outline);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "marker")] [NativeName(NativeNameType.Type, "ImPlot3DMarker")] ImPlot3DMarker marker, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "float")] float size, [NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight, [NativeName(NativeNameType.Param, "outline")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 outline)
-		{
-			SetNextMarkerStyleNative(marker, size, (Vector4)(new Vector4(0,0,0,-1)), weight, outline);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "float")] float size, [NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight, [NativeName(NativeNameType.Param, "outline")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 outline)
-		{
-			SetNextMarkerStyleNative((ImPlot3DMarker)(-1), size, (Vector4)(new Vector4(0,0,0,-1)), weight, outline);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "marker")] [NativeName(NativeNameType.Type, "ImPlot3DMarker")] ImPlot3DMarker marker, [NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill, [NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight, [NativeName(NativeNameType.Param, "outline")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 outline)
-		{
-			SetNextMarkerStyleNative(marker, (float)(-1), fill, weight, outline);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill, [NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight, [NativeName(NativeNameType.Param, "outline")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 outline)
-		{
-			SetNextMarkerStyleNative((ImPlot3DMarker)(-1), (float)(-1), fill, weight, outline);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SetNextMarkerStyle")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SetNextMarkerStyle([NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "float")] float size, [NativeName(NativeNameType.Param, "fill")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 fill, [NativeName(NativeNameType.Param, "weight")] [NativeName(NativeNameType.Type, "float")] float weight, [NativeName(NativeNameType.Param, "outline")] [NativeName(NativeNameType.Type, "const ImVec4")] Vector4 outline)
-		{
-			SetNextMarkerStyleNative((ImPlot3DMarker)(-1), size, fill, weight, outline);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetStyleColorVec4")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetStyleColorVec4Native([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] Vector4* pOut, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DCol")] ImPlot3DCol idx)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4*, ImPlot3DCol, void>)funcTable[104])(pOut, idx);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlot3DCol, void>)funcTable[104])((nint)pOut, idx);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetStyleColorVec4")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static Vector4 GetStyleColorVec4([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DCol")] ImPlot3DCol idx)
-		{
-			Vector4 ret;
-			GetStyleColorVec4Native(&ret, idx);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetStyleColorVec4")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void GetStyleColorVec4([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] Vector4* pOut, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DCol")] ImPlot3DCol idx)
-		{
-			GetStyleColorVec4Native(pOut, idx);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetStyleColorVec4")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void GetStyleColorVec4([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] ref Vector4 pOut, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DCol")] ImPlot3DCol idx)
-		{
-			fixed (Vector4* ppOut = &pOut)
-			{
-				GetStyleColorVec4Native((Vector4*)ppOut, idx);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetStyleColorU32")]
-		[return: NativeName(NativeNameType.Type, "ImU32")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static uint GetStyleColorU32Native([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DCol")] ImPlot3DCol idx)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlot3DCol, uint>)funcTable[105])(idx);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<ImPlot3DCol, uint>)funcTable[105])(idx);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetStyleColorU32")]
-		[return: NativeName(NativeNameType.Type, "ImU32")]
-		public static uint GetStyleColorU32([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "ImPlot3DCol")] ImPlot3DCol idx)
-		{
-			uint ret = GetStyleColorU32Native(idx);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlot3DColormap AddColormapNative([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] byte* name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] Vector4* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size, [NativeName(NativeNameType.Param, "qual")] [NativeName(NativeNameType.Type, "bool")] byte qual)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector4*, int, byte, ImPlot3DColormap>)funcTable[106])(name, cols, size, qual);
-			#else
-			return (ImPlot3DColormap)((delegate* unmanaged[Cdecl]<nint, nint, int, byte, ImPlot3DColormap>)funcTable[106])((nint)name, (nint)cols, size, qual);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] byte* name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] Vector4* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size, [NativeName(NativeNameType.Param, "qual")] [NativeName(NativeNameType.Type, "bool")] bool qual)
-		{
-			ImPlot3DColormap ret = AddColormapNative(name, cols, size, qual ? (byte)1 : (byte)0);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] byte* name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] Vector4* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
-		{
-			ImPlot3DColormap ret = AddColormapNative(name, cols, size, (byte)(1));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ref byte name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] Vector4* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size, [NativeName(NativeNameType.Param, "qual")] [NativeName(NativeNameType.Type, "bool")] bool qual)
-		{
-			fixed (byte* pname = &name)
-			{
-				ImPlot3DColormap ret = AddColormapNative((byte*)pname, cols, size, qual ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ref byte name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] Vector4* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
-		{
-			fixed (byte* pname = &name)
-			{
-				ImPlot3DColormap ret = AddColormapNative((byte*)pname, cols, size, (byte)(1));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] Vector4* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size, [NativeName(NativeNameType.Param, "qual")] [NativeName(NativeNameType.Type, "bool")] bool qual)
-		{
-			fixed (byte* pname = name)
-			{
-				ImPlot3DColormap ret = AddColormapNative((byte*)pname, cols, size, qual ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] Vector4* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
-		{
-			fixed (byte* pname = name)
-			{
-				ImPlot3DColormap ret = AddColormapNative((byte*)pname, cols, size, (byte)(1));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] string name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] Vector4* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size, [NativeName(NativeNameType.Param, "qual")] [NativeName(NativeNameType.Type, "bool")] bool qual)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImPlot3DColormap ret = AddColormapNative(pStr0, cols, size, qual ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] string name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] Vector4* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImPlot3DColormap ret = AddColormapNative(pStr0, cols, size, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] byte* name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] ref Vector4 cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size, [NativeName(NativeNameType.Param, "qual")] [NativeName(NativeNameType.Type, "bool")] bool qual)
-		{
-			fixed (Vector4* pcols = &cols)
-			{
-				ImPlot3DColormap ret = AddColormapNative(name, (Vector4*)pcols, size, qual ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] byte* name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] ref Vector4 cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
-		{
-			fixed (Vector4* pcols = &cols)
-			{
-				ImPlot3DColormap ret = AddColormapNative(name, (Vector4*)pcols, size, (byte)(1));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ref byte name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] ref Vector4 cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size, [NativeName(NativeNameType.Param, "qual")] [NativeName(NativeNameType.Type, "bool")] bool qual)
-		{
-			fixed (byte* pname = &name)
-			{
-				fixed (Vector4* pcols = &cols)
-				{
-					ImPlot3DColormap ret = AddColormapNative((byte*)pname, (Vector4*)pcols, size, qual ? (byte)1 : (byte)0);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ref byte name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] ref Vector4 cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
-		{
-			fixed (byte* pname = &name)
-			{
-				fixed (Vector4* pcols = &cols)
-				{
-					ImPlot3DColormap ret = AddColormapNative((byte*)pname, (Vector4*)pcols, size, (byte)(1));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] ref Vector4 cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size, [NativeName(NativeNameType.Param, "qual")] [NativeName(NativeNameType.Type, "bool")] bool qual)
-		{
-			fixed (byte* pname = name)
-			{
-				fixed (Vector4* pcols = &cols)
-				{
-					ImPlot3DColormap ret = AddColormapNative((byte*)pname, (Vector4*)pcols, size, qual ? (byte)1 : (byte)0);
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] ref Vector4 cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
-		{
-			fixed (byte* pname = name)
-			{
-				fixed (Vector4* pcols = &cols)
-				{
-					ImPlot3DColormap ret = AddColormapNative((byte*)pname, (Vector4*)pcols, size, (byte)(1));
-					return ret;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] string name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] ref Vector4 cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size, [NativeName(NativeNameType.Param, "qual")] [NativeName(NativeNameType.Type, "bool")] bool qual)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector4* pcols = &cols)
-			{
-				ImPlot3DColormap ret = AddColormapNative(pStr0, (Vector4*)pcols, size, qual ? (byte)1 : (byte)0);
+				PlotTriangleNative(pStr0, (float*)pxs, ys, zs, count, flags, offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_Vec4Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] string name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImVec4*")] ref Vector4 cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4057,125 +1734,31 @@ namespace Hexa.NET.ImPlot3D
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (Vector4* pcols = &cols)
+			fixed (float* pxs = &xs)
 			{
-				ImPlot3DColormap ret = AddColormapNative(pStr0, (Vector4*)pcols, size, (byte)(1));
+				PlotTriangleNative(pStr0, (float*)pxs, ys, zs, count, flags, offset, (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlot3DColormap AddColormapNative([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] byte* name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size, [NativeName(NativeNameType.Param, "qual")] [NativeName(NativeNameType.Type, "bool")] byte qual)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint*, int, byte, ImPlot3DColormap>)funcTable[107])(name, cols, size, qual);
-			#else
-			return (ImPlot3DColormap)((delegate* unmanaged[Cdecl]<nint, nint, int, byte, ImPlot3DColormap>)funcTable[107])((nint)name, (nint)cols, size, qual);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] byte* name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size, [NativeName(NativeNameType.Param, "qual")] [NativeName(NativeNameType.Type, "bool")] bool qual)
-		{
-			ImPlot3DColormap ret = AddColormapNative(name, cols, size, qual ? (byte)1 : (byte)0);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] byte* name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
-		{
-			ImPlot3DColormap ret = AddColormapNative(name, cols, size, (byte)(1));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ref byte name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size, [NativeName(NativeNameType.Param, "qual")] [NativeName(NativeNameType.Type, "bool")] bool qual)
-		{
-			fixed (byte* pname = &name)
-			{
-				ImPlot3DColormap ret = AddColormapNative((byte*)pname, cols, size, qual ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ref byte name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
-		{
-			fixed (byte* pname = &name)
-			{
-				ImPlot3DColormap ret = AddColormapNative((byte*)pname, cols, size, (byte)(1));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size, [NativeName(NativeNameType.Param, "qual")] [NativeName(NativeNameType.Type, "bool")] bool qual)
-		{
-			fixed (byte* pname = name)
-			{
-				ImPlot3DColormap ret = AddColormapNative((byte*)pname, cols, size, qual ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
-		{
-			fixed (byte* pname = name)
-			{
-				ImPlot3DColormap ret = AddColormapNative((byte*)pname, cols, size, (byte)(1));
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] string name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size, [NativeName(NativeNameType.Param, "qual")] [NativeName(NativeNameType.Type, "bool")] bool qual)
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4185,29 +1768,31 @@ namespace Hexa.NET.ImPlot3D
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImPlot3DColormap ret = AddColormapNative(pStr0, cols, size, qual ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (float* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				PlotTriangleNative(pStr0, (float*)pxs, ys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
-			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_AddColormap_U32Ptr")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap AddColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] string name, [NativeName(NativeNameType.Param, "cols")] [NativeName(NativeNameType.Type, "const ImU32*")] uint* cols, [NativeName(NativeNameType.Param, "size")] [NativeName(NativeNameType.Type, "int")] int size)
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4217,146 +1802,31 @@ namespace Hexa.NET.ImPlot3D
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImPlot3DColormap ret = AddColormapNative(pStr0, cols, size, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (float* pxs = &xs)
 			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapCount")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int GetColormapCountNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int>)funcTable[108])();
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<int>)funcTable[108])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapCount")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		public static int GetColormapCount()
-		{
-			int ret = GetColormapCountNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapName")]
-		[return: NativeName(NativeNameType.Type, "const char*")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static byte* GetColormapNameNative([NativeName(NativeNameType.Param, "cmap")] [NativeName(NativeNameType.Type, "ImPlot3DColormap")] ImPlot3DColormap cmap)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlot3DColormap, byte*>)funcTable[109])(cmap);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<ImPlot3DColormap, nint>)funcTable[109])(cmap);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapName")]
-		[return: NativeName(NativeNameType.Type, "const char*")]
-		public static byte* GetColormapName([NativeName(NativeNameType.Param, "cmap")] [NativeName(NativeNameType.Type, "ImPlot3DColormap")] ImPlot3DColormap cmap)
-		{
-			byte* ret = GetColormapNameNative(cmap);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapName")]
-		[return: NativeName(NativeNameType.Type, "const char*")]
-		public static string GetColormapNameS([NativeName(NativeNameType.Param, "cmap")] [NativeName(NativeNameType.Type, "ImPlot3DColormap")] ImPlot3DColormap cmap)
-		{
-			string ret = Utils.DecodeStringUTF8(GetColormapNameNative(cmap));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapIndex")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlot3DColormap GetColormapIndexNative([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] byte* name)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImPlot3DColormap>)funcTable[110])(name);
-			#else
-			return (ImPlot3DColormap)((delegate* unmanaged[Cdecl]<nint, ImPlot3DColormap>)funcTable[110])((nint)name);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapIndex")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap GetColormapIndex([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] byte* name)
-		{
-			ImPlot3DColormap ret = GetColormapIndexNative(name);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapIndex")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap GetColormapIndex([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ref byte name)
-		{
-			fixed (byte* pname = &name)
-			{
-				ImPlot3DColormap ret = GetColormapIndexNative((byte*)pname);
-				return ret;
+				PlotTriangleNative(pStr0, (float*)pxs, ys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapIndex")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap GetColormapIndex([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> name)
-		{
-			fixed (byte* pname = name)
-			{
-				ImPlot3DColormap ret = GetColormapIndexNative((byte*)pname);
-				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapIndex")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DColormap")]
-		public static ImPlot3DColormap GetColormapIndex([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] string name)
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4366,105 +1836,31 @@ namespace Hexa.NET.ImPlot3D
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImPlot3DColormap ret = GetColormapIndexNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (float* pxs = &xs)
 			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushColormap_Plot3DColormap")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushColormapNative([NativeName(NativeNameType.Param, "cmap")] [NativeName(NativeNameType.Type, "ImPlot3DColormap")] ImPlot3DColormap cmap)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DColormap, void>)funcTable[111])(cmap);
-			#else
-			((delegate* unmanaged[Cdecl]<ImPlot3DColormap, void>)funcTable[111])(cmap);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushColormap_Plot3DColormap")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PushColormap([NativeName(NativeNameType.Param, "cmap")] [NativeName(NativeNameType.Type, "ImPlot3DColormap")] ImPlot3DColormap cmap)
-		{
-			PushColormapNative(cmap);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushColormap_Str")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PushColormapNative([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] byte* name)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)funcTable[112])(name);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[112])((nint)name);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushColormap_Str")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PushColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] byte* name)
-		{
-			PushColormapNative(name);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushColormap_Str")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PushColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ref byte name)
-		{
-			fixed (byte* pname = &name)
-			{
-				PushColormapNative((byte*)pname);
+				PlotTriangleNative(pStr0, (float*)pxs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushColormap_Str")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PushColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] ReadOnlySpan<byte> name)
-		{
-			fixed (byte* pname = name)
-			{
-				PushColormapNative((byte*)pname);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PushColormap_Str")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PushColormap([NativeName(NativeNameType.Param, "name")] [NativeName(NativeNameType.Type, "const char*")] string name)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4474,554 +1870,3181 @@ namespace Hexa.NET.ImPlot3D
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PushColormapNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (float* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				PlotTriangleNative(pStr0, (float*)pxs, ys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PopColormap")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PopColormapNative([NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[113])(count);
-			#else
-			((delegate* unmanaged[Cdecl]<int, void>)funcTable[113])(count);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PopColormap")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PopColormap([NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
-		{
-			PopColormapNative(count);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_PopColormap")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void PopColormap()
-		{
-			PopColormapNative((int)(1));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_NextColormapColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void NextColormapColorNative([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] Vector4* pOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4*, void>)funcTable[114])(pOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[114])((nint)pOut);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_NextColormapColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static Vector4 NextColormapColor()
-		{
-			Vector4 ret;
-			NextColormapColorNative(&ret);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_NextColormapColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void NextColormapColor([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] Vector4* pOut)
-		{
-			NextColormapColorNative(pOut);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_NextColormapColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void NextColormapColor([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] ref Vector4 pOut)
-		{
-			fixed (Vector4* ppOut = &pOut)
+			fixed (float* pys = &ys)
 			{
-				NextColormapColorNative((Vector4*)ppOut);
+				PlotTriangleNative(labelId, xs, (float*)pys, zs, count, flags, offset, stride);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapSize")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static int GetColormapSizeNative([NativeName(NativeNameType.Param, "cmap")] [NativeName(NativeNameType.Type, "ImPlot3DColormap")] ImPlot3DColormap cmap)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlot3DColormap, int>)funcTable[115])(cmap);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<ImPlot3DColormap, int>)funcTable[115])(cmap);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapSize")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		public static int GetColormapSize([NativeName(NativeNameType.Param, "cmap")] [NativeName(NativeNameType.Type, "ImPlot3DColormap")] ImPlot3DColormap cmap)
-		{
-			int ret = GetColormapSizeNative(cmap);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapSize")]
-		[return: NativeName(NativeNameType.Type, "int")]
-		public static int GetColormapSize()
-		{
-			int ret = GetColormapSizeNative((ImPlot3DColormap)(-1));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapColor")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void GetColormapColorNative([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] Vector4* pOut, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "int")] int idx, [NativeName(NativeNameType.Param, "cmap")] [NativeName(NativeNameType.Type, "ImPlot3DColormap")] ImPlot3DColormap cmap)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4*, int, ImPlot3DColormap, void>)funcTable[116])(pOut, idx, cmap);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, ImPlot3DColormap, void>)funcTable[116])((nint)pOut, idx, cmap);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static Vector4 GetColormapColor([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "int")] int idx)
-		{
-			Vector4 ret;
-			GetColormapColorNative(&ret, idx, (ImPlot3DColormap)(-1));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static Vector4 GetColormapColor([NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "int")] int idx, [NativeName(NativeNameType.Param, "cmap")] [NativeName(NativeNameType.Type, "ImPlot3DColormap")] ImPlot3DColormap cmap)
-		{
-			Vector4 ret;
-			GetColormapColorNative(&ret, idx, cmap);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void GetColormapColor([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] Vector4* pOut, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "int")] int idx, [NativeName(NativeNameType.Param, "cmap")] [NativeName(NativeNameType.Type, "ImPlot3DColormap")] ImPlot3DColormap cmap)
-		{
-			GetColormapColorNative(pOut, idx, cmap);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void GetColormapColor([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] Vector4* pOut, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "int")] int idx)
-		{
-			GetColormapColorNative(pOut, idx, (ImPlot3DColormap)(-1));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapColor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void GetColormapColor([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] ref Vector4 pOut, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "int")] int idx, [NativeName(NativeNameType.Param, "cmap")] [NativeName(NativeNameType.Type, "ImPlot3DColormap")] ImPlot3DColormap cmap)
-		{
-			fixed (Vector4* ppOut = &pOut)
+			fixed (float* pys = &ys)
 			{
-				GetColormapColorNative((Vector4*)ppOut, idx, cmap);
+				PlotTriangleNative(labelId, xs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_GetColormapColor")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void GetColormapColor([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] ref Vector4 pOut, [NativeName(NativeNameType.Param, "idx")] [NativeName(NativeNameType.Type, "int")] int idx)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
 		{
-			fixed (Vector4* ppOut = &pOut)
+			fixed (float* pys = &ys)
 			{
-				GetColormapColorNative((Vector4*)ppOut, idx, (ImPlot3DColormap)(-1));
+				PlotTriangleNative(labelId, xs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SampleColormap")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SampleColormapNative([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] Vector4* pOut, [NativeName(NativeNameType.Param, "t")] [NativeName(NativeNameType.Type, "float")] float t, [NativeName(NativeNameType.Param, "cmap")] [NativeName(NativeNameType.Type, "ImPlot3DColormap")] ImPlot3DColormap cmap)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4*, float, ImPlot3DColormap, void>)funcTable[117])(pOut, t, cmap);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, float, ImPlot3DColormap, void>)funcTable[117])((nint)pOut, t, cmap);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SampleColormap")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static Vector4 SampleColormap([NativeName(NativeNameType.Param, "t")] [NativeName(NativeNameType.Type, "float")] float t)
-		{
-			Vector4 ret;
-			SampleColormapNative(&ret, t, (ImPlot3DColormap)(-1));
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SampleColormap")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static Vector4 SampleColormap([NativeName(NativeNameType.Param, "t")] [NativeName(NativeNameType.Type, "float")] float t, [NativeName(NativeNameType.Param, "cmap")] [NativeName(NativeNameType.Type, "ImPlot3DColormap")] ImPlot3DColormap cmap)
-		{
-			Vector4 ret;
-			SampleColormapNative(&ret, t, cmap);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SampleColormap")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SampleColormap([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] Vector4* pOut, [NativeName(NativeNameType.Param, "t")] [NativeName(NativeNameType.Type, "float")] float t, [NativeName(NativeNameType.Param, "cmap")] [NativeName(NativeNameType.Type, "ImPlot3DColormap")] ImPlot3DColormap cmap)
-		{
-			SampleColormapNative(pOut, t, cmap);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SampleColormap")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SampleColormap([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] Vector4* pOut, [NativeName(NativeNameType.Param, "t")] [NativeName(NativeNameType.Type, "float")] float t)
-		{
-			SampleColormapNative(pOut, t, (ImPlot3DColormap)(-1));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SampleColormap")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SampleColormap([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] ref Vector4 pOut, [NativeName(NativeNameType.Param, "t")] [NativeName(NativeNameType.Type, "float")] float t, [NativeName(NativeNameType.Param, "cmap")] [NativeName(NativeNameType.Type, "ImPlot3DColormap")] ImPlot3DColormap cmap)
-		{
-			fixed (Vector4* ppOut = &pOut)
+			fixed (float* pys = &ys)
 			{
-				SampleColormapNative((Vector4*)ppOut, t, cmap);
+				PlotTriangleNative(labelId, xs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_SampleColormap")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		public static void SampleColormap([NativeName(NativeNameType.Param, "pOut")] [NativeName(NativeNameType.Type, "ImVec4*")] ref Vector4 pOut, [NativeName(NativeNameType.Param, "t")] [NativeName(NativeNameType.Type, "float")] float t)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			fixed (Vector4* ppOut = &pOut)
+			fixed (float* pys = &ys)
 			{
-				SampleColormapNative((Vector4*)ppOut, t, (ImPlot3DColormap)(-1));
+				PlotTriangleNative(labelId, xs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_ShowDemoWindow")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ShowDemoWindowNative([NativeName(NativeNameType.Param, "p_open")] [NativeName(NativeNameType.Type, "bool*")] bool* pOpen)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<bool*, void>)funcTable[118])(pOpen);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[118])((nint)pOpen);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_ShowDemoWindow")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void ShowDemoWindow([NativeName(NativeNameType.Param, "p_open")] [NativeName(NativeNameType.Type, "bool*")] bool* pOpen)
-		{
-			ShowDemoWindowNative(pOpen);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_ShowDemoWindow")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void ShowDemoWindow()
-		{
-			ShowDemoWindowNative((bool*)(default));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_ShowDemoWindow")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void ShowDemoWindow([NativeName(NativeNameType.Param, "p_open")] [NativeName(NativeNameType.Type, "bool*")] ref bool pOpen)
-		{
-			fixed (bool* ppOpen = &pOpen)
+			fixed (float* pys = &ys)
 			{
-				ShowDemoWindowNative((bool*)ppOpen);
+				PlotTriangleNative(labelId, xs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_ShowAllDemos")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ShowAllDemosNative()
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[119])();
-			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[119])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_ShowAllDemos")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void ShowAllDemos()
-		{
-			ShowAllDemosNative();
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_ShowStyleEditor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ShowStyleEditorNative([NativeName(NativeNameType.Param, "ref")] [NativeName(NativeNameType.Type, "ImPlot3DStyle*")] ImPlot3DStyle* reference)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DStyle*, void>)funcTable[120])(reference);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[120])((nint)reference);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_ShowStyleEditor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void ShowStyleEditor([NativeName(NativeNameType.Param, "ref")] [NativeName(NativeNameType.Type, "ImPlot3DStyle*")] ImPlot3DStylePtr reference)
-		{
-			ShowStyleEditorNative(reference);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_ShowStyleEditor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void ShowStyleEditor()
-		{
-			ShowStyleEditorNative((ImPlot3DStyle*)(default));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_ShowStyleEditor")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void ShowStyleEditor([NativeName(NativeNameType.Param, "ref")] [NativeName(NativeNameType.Type, "ImPlot3DStyle*")] ref ImPlot3DStyle reference)
-		{
-			fixed (ImPlot3DStyle* preference = &reference)
+			fixed (byte* plabelId = &labelId)
 			{
-				ShowStyleEditorNative((ImPlot3DStyle*)preference);
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, (float*)pys, zs, count, flags, offset, stride);
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_ShowMetricsWindow")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ShowMetricsWindowNative([NativeName(NativeNameType.Param, "p_popen")] [NativeName(NativeNameType.Type, "bool*")] bool* pPopen)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<bool*, void>)funcTable[121])(pPopen);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[121])((nint)pPopen);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_ShowMetricsWindow")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void ShowMetricsWindow([NativeName(NativeNameType.Param, "p_popen")] [NativeName(NativeNameType.Type, "bool*")] bool* pPopen)
-		{
-			ShowMetricsWindowNative(pPopen);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_ShowMetricsWindow")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void ShowMetricsWindow()
-		{
-			ShowMetricsWindowNative((bool*)(default));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3D_ShowMetricsWindow")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void ShowMetricsWindow([NativeName(NativeNameType.Param, "p_popen")] [NativeName(NativeNameType.Type, "bool*")] ref bool pPopen)
-		{
-			fixed (bool* ppPopen = &pPopen)
+			fixed (byte* plabelId = &labelId)
 			{
-				ShowMetricsWindowNative((bool*)ppPopen);
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3DPoint_ImPlot3DPoint_Nil")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DPoint*")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlot3DPoint* ImPlot3DPointNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlot3DPoint*>)funcTable[122])();
-			#else
-			return (ImPlot3DPoint*)((delegate* unmanaged[Cdecl]<nint>)funcTable[122])();
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3DPoint_ImPlot3DPoint_Nil")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DPoint*")]
-		public static ImPlot3DPointPtr ImPlot3DPoint()
-		{
-			ImPlot3DPointPtr ret = ImPlot3DPointNative();
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3DPoint_destroy")]
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
 		[return: NativeName(NativeNameType.Type, "void")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void DestroyNative([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ImPlot3DPoint* self)
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
 		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlot3DPoint*, void>)funcTable[123])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[123])((nint)self);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3DPoint_destroy")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void Destroy([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ImPlot3DPointPtr self)
-		{
-			DestroyNative(self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3DPoint_destroy")]
-		[return: NativeName(NativeNameType.Type, "void")]
-		public static void Destroy([NativeName(NativeNameType.Param, "self")] [NativeName(NativeNameType.Type, "ImPlot3DPoint*")] ref ImPlot3DPoint self)
-		{
-			fixed (ImPlot3DPoint* pself = &self)
+			fixed (byte* plabelId = &labelId)
 			{
-				DestroyNative((ImPlot3DPoint*)pself);
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+				}
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		[NativeName(NativeNameType.Func, "ImPlot3DPoint_ImPlot3DPoint_Float")]
-		[return: NativeName(NativeNameType.Type, "ImPlot3DPoint*")]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlot3DPoint* ImPlot3DPointNative([NativeName(NativeNameType.Param, "_x")] [NativeName(NativeNameType.Type, "float")] float x, [NativeName(NativeNameType.Param, "_y")] [NativeName(NativeNameType.Type, "float")] float y, [NativeName(NativeNameType.Param, "_z")] [NativeName(NativeNameType.Type, "float")] float z)
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float, float, float, ImPlot3DPoint*>)funcTable[124])(x, y, z);
-			#else
-			return (ImPlot3DPoint*)((delegate* unmanaged[Cdecl]<float, float, float, nint>)funcTable[124])(x, y, z);
-			#endif
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, (float*)pys, zs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				PlotTriangleNative(pStr0, xs, (float*)pys, zs, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				PlotTriangleNative(pStr0, xs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				PlotTriangleNative(pStr0, xs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				PlotTriangleNative(pStr0, xs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				PlotTriangleNative(pStr0, xs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				PlotTriangleNative(pStr0, xs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative(labelId, (float*)pxs, (float*)pys, zs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative(labelId, (float*)pxs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative(labelId, (float*)pxs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative(labelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative(labelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative(labelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative(pStr0, (float*)pxs, (float*)pys, zs, count, flags, offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative(pStr0, (float*)pxs, (float*)pys, zs, count, flags, offset, (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative(pStr0, (float*)pxs, (float*)pys, zs, count, flags, (int)(0), (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative(pStr0, (float*)pxs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative(pStr0, (float*)pxs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] float* zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					PlotTriangleNative(pStr0, (float*)pxs, (float*)pys, zs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pzs = &zs)
+			{
+				PlotTriangleNative(labelId, xs, ys, (float*)pzs, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pzs = &zs)
+			{
+				PlotTriangleNative(labelId, xs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (float* pzs = &zs)
+			{
+				PlotTriangleNative(labelId, xs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (float* pzs = &zs)
+			{
+				PlotTriangleNative(labelId, xs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pzs = &zs)
+			{
+				PlotTriangleNative(labelId, xs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pzs = &zs)
+			{
+				PlotTriangleNative(labelId, xs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, ys, (float*)pzs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, ys, (float*)pzs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative((byte*)plabelId, xs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pzs = &zs)
+			{
+				PlotTriangleNative(pStr0, xs, ys, (float*)pzs, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pzs = &zs)
+			{
+				PlotTriangleNative(pStr0, xs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pzs = &zs)
+			{
+				PlotTriangleNative(pStr0, xs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pzs = &zs)
+			{
+				PlotTriangleNative(pStr0, xs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pzs = &zs)
+			{
+				PlotTriangleNative(pStr0, xs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pzs = &zs)
+			{
+				PlotTriangleNative(pStr0, xs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(labelId, (float*)pxs, ys, (float*)pzs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(labelId, (float*)pxs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(labelId, (float*)pxs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(labelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(labelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(labelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(pStr0, (float*)pxs, ys, (float*)pzs, count, flags, offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(pStr0, (float*)pxs, ys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(pStr0, (float*)pxs, ys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(pStr0, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(pStr0, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] float* ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(pStr0, (float*)pxs, ys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(labelId, xs, (float*)pys, (float*)pzs, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(labelId, xs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(labelId, xs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(labelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(labelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(labelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative((byte*)plabelId, xs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(pStr0, xs, (float*)pys, (float*)pzs, count, flags, offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(pStr0, xs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(pStr0, xs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(pStr0, xs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(pStr0, xs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] float* xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pys = &ys)
+			{
+				fixed (float* pzs = &zs)
+				{
+					PlotTriangleNative(pStr0, xs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative(labelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative(labelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative(labelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative(labelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative(labelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] byte* labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative(labelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] in byte labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] ReadOnlySpan<byte> labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					fixed (float* pys = &ys)
+					{
+						fixed (float* pzs = &zs)
+						{
+							PlotTriangleNative((byte*)plabelId, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset, [NativeName(NativeNameType.Param, "stride")] [NativeName(NativeNameType.Type, "int")] int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative(pStr0, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, stride);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative(pStr0, (float*)pxs, (float*)pys, (float*)pzs, count, flags, offset, (int)(sizeof(float)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "flags")] [NativeName(NativeNameType.Type, "ImPlot3DTriangleFlags")] ImPlot3DTriangleFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative(pStr0, (float*)pxs, (float*)pys, (float*)pzs, count, flags, (int)(0), (int)(sizeof(float)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative(pStr0, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), (int)(0), (int)(sizeof(float)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[NativeName(NativeNameType.Func, "ImPlot3D_PlotTriangle_FloatPtr")]
+		[return: NativeName(NativeNameType.Type, "void")]
+		public static void PlotTriangle([NativeName(NativeNameType.Param, "label_id")] [NativeName(NativeNameType.Type, "char const *")] string labelId, [NativeName(NativeNameType.Param, "xs")] [NativeName(NativeNameType.Type, "float const *")] in float xs, [NativeName(NativeNameType.Param, "ys")] [NativeName(NativeNameType.Type, "float const *")] in float ys, [NativeName(NativeNameType.Param, "zs")] [NativeName(NativeNameType.Type, "float const *")] in float zs, [NativeName(NativeNameType.Param, "count")] [NativeName(NativeNameType.Type, "int")] int count, [NativeName(NativeNameType.Param, "offset")] [NativeName(NativeNameType.Type, "int")] int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				fixed (float* pys = &ys)
+				{
+					fixed (float* pzs = &zs)
+					{
+						PlotTriangleNative(pStr0, (float*)pxs, (float*)pys, (float*)pzs, count, (ImPlot3DTriangleFlags)(0), offset, (int)(sizeof(float)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
 		}
 	}
 }

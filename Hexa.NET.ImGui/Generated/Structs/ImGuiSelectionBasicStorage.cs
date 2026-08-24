@@ -76,7 +76,7 @@ namespace Hexa.NET.ImGui
 			Size = size;
 			PreserveOrder = preserveOrder ? (byte)1 : (byte)0;
 			UserData = userData;
-			AdapterIndexToStorageId = (void*)adapterIndexToStorageId;
+			AdapterIndexToStorageId = (delegate*<ImGuiSelectionBasicStorage*, int, uint>*)adapterIndexToStorageId;
 			SelectionOrder = selectionOrder;
 			Storage = storage;
 		}
@@ -89,7 +89,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImGuiSelectionBasicStorage* @this = &this)
 			{
-				ImGui.ApplyRequestsNative(@this, msIo);
+				ImGui.ApplyRequestsNative(@this, (ImGuiMultiSelectIO*)msIo);
 			}
 		}
 
@@ -150,6 +150,54 @@ namespace Hexa.NET.ImGui
 			{
 				byte ret = ImGui.GetNextSelectedItemNative(@this, opaqueIt, outId);
 				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
+		/// </summary>
+		public unsafe bool GetNextSelectedItem(ref nint opaqueIt, uint* outId)
+		{
+			fixed (ImGuiSelectionBasicStorage* @this = &this)
+			{
+				fixed (nint* popaqueIt = &opaqueIt)
+				{
+					byte ret = ImGui.GetNextSelectedItemNative(@this, (void**)popaqueIt, outId);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
+		/// </summary>
+		public unsafe bool GetNextSelectedItem(void** opaqueIt, ref uint outId)
+		{
+			fixed (ImGuiSelectionBasicStorage* @this = &this)
+			{
+				fixed (uint* poutId = &outId)
+				{
+					byte ret = ImGui.GetNextSelectedItemNative(@this, opaqueIt, (uint*)poutId);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
+		/// </summary>
+		public unsafe bool GetNextSelectedItem(ref nint opaqueIt, ref uint outId)
+		{
+			fixed (ImGuiSelectionBasicStorage* @this = &this)
+			{
+				fixed (nint* popaqueIt = &opaqueIt)
+				{
+					fixed (uint* poutId = &outId)
+					{
+						byte ret = ImGui.GetNextSelectedItemNative(@this, (void**)popaqueIt, (uint*)poutId);
+						return ret != 0;
+					}
+				}
 			}
 		}
 
@@ -273,7 +321,7 @@ namespace Hexa.NET.ImGui
 		/// </summary>
 		public unsafe void ApplyRequests(ImGuiMultiSelectIOPtr msIo)
 		{
-			ImGui.ApplyRequestsNative(Handle, msIo);
+			ImGui.ApplyRequestsNative(Handle, (ImGuiMultiSelectIO*)msIo);
 		}
 
 		/// <summary>
@@ -322,6 +370,45 @@ namespace Hexa.NET.ImGui
 		}
 
 		/// <summary>
+		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
+		/// </summary>
+		public unsafe bool GetNextSelectedItem(ref nint opaqueIt, uint* outId)
+		{
+			fixed (nint* popaqueIt = &opaqueIt)
+			{
+				byte ret = ImGui.GetNextSelectedItemNative(Handle, (void**)popaqueIt, outId);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
+		/// </summary>
+		public unsafe bool GetNextSelectedItem(void** opaqueIt, ref uint outId)
+		{
+			fixed (uint* poutId = &outId)
+			{
+				byte ret = ImGui.GetNextSelectedItemNative(Handle, opaqueIt, (uint*)poutId);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// Iterate selection with 'void* it = NULL; ImGuiID id; while (selection.GetNextSelectedItem(&amp;it, &amp;id))  ... '<br/>
+		/// </summary>
+		public unsafe bool GetNextSelectedItem(ref nint opaqueIt, ref uint outId)
+		{
+			fixed (nint* popaqueIt = &opaqueIt)
+			{
+				fixed (uint* poutId = &outId)
+				{
+					byte ret = ImGui.GetNextSelectedItemNative(Handle, (void**)popaqueIt, (uint*)poutId);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
 		/// Convert index to item id based on provided adapter.<br/>
 		/// </summary>
 		public unsafe uint GetStorageIdFromIndex(int idx)
@@ -341,7 +428,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Swap two selections<br/>
 		/// </summary>
-		public unsafe void Swap(ImGuiSelectionBasicStoragePtr r)
+		public unsafe void Swap(ImGuiSelectionBasicStorage* r)
 		{
 			ImGui.SwapNative(Handle, r);
 		}

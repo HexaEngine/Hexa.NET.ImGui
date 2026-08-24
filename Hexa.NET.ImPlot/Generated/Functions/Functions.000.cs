@@ -22,21 +22,541 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static ImPlotPoint* ImPlotPointNative()
+		internal static ImPlotSpec* ImPlotSpecNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotPoint*>)funcTable[0])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotSpec*>)funcTable[0])();
 			#else
-			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<nint>)funcTable[0])();
+			return (ImPlotSpec*)((delegate* unmanaged[Cdecl]<nint>)funcTable[0])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPointPtr ImPlotPoint()
+		public static ImPlotSpec* ImPlotSpec()
 		{
-			ImPlotPointPtr ret = ImPlotPointNative();
+			ImPlotSpec* ret = ImPlotSpecNative();
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void DestroyNative(ImPlotSpec* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotSpec*, void>)funcTable[1])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1])((nint)self);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ImPlotSpec* self)
+		{
+			DestroyNative(self);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void Destroy(ref ImPlotSpec self)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				DestroyNative((ImPlotSpec*)pself);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetPropNative(ImPlotSpec* self, ImPlotProp prop, float v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotSpec*, ImPlotProp, float, void>)funcTable[2])(self, prop, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImPlotProp, float, void>)funcTable[2])((nint)self, prop, v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ImPlotSpec* self, ImPlotProp prop, float v)
+		{
+			SetPropNative(self, prop, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ref ImPlotSpec self, ImPlotProp prop, float v)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				SetPropNative((ImPlotSpec*)pself, prop, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetPropNative(ImPlotSpec* self, ImPlotProp prop, double v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotSpec*, ImPlotProp, double, void>)funcTable[3])(self, prop, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImPlotProp, double, void>)funcTable[3])((nint)self, prop, v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ImPlotSpec* self, ImPlotProp prop, double v)
+		{
+			SetPropNative(self, prop, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ref ImPlotSpec self, ImPlotProp prop, double v)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				SetPropNative((ImPlotSpec*)pself, prop, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetPropNative(ImPlotSpec* self, ImPlotProp prop, sbyte v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotSpec*, ImPlotProp, sbyte, void>)funcTable[4])(self, prop, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImPlotProp, sbyte, void>)funcTable[4])((nint)self, prop, v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ImPlotSpec* self, ImPlotProp prop, sbyte v)
+		{
+			SetPropNative(self, prop, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ref ImPlotSpec self, ImPlotProp prop, sbyte v)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				SetPropNative((ImPlotSpec*)pself, prop, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetPropNative(ImPlotSpec* self, ImPlotProp prop, byte v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotSpec*, ImPlotProp, byte, void>)funcTable[5])(self, prop, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImPlotProp, byte, void>)funcTable[5])((nint)self, prop, v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ImPlotSpec* self, ImPlotProp prop, byte v)
+		{
+			SetPropNative(self, prop, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ref ImPlotSpec self, ImPlotProp prop, byte v)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				SetPropNative((ImPlotSpec*)pself, prop, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetPropNative(ImPlotSpec* self, ImPlotProp prop, short v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotSpec*, ImPlotProp, short, void>)funcTable[6])(self, prop, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImPlotProp, short, void>)funcTable[6])((nint)self, prop, v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ImPlotSpec* self, ImPlotProp prop, short v)
+		{
+			SetPropNative(self, prop, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ref ImPlotSpec self, ImPlotProp prop, short v)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				SetPropNative((ImPlotSpec*)pself, prop, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetPropNative(ImPlotSpec* self, ImPlotProp prop, ushort v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotSpec*, ImPlotProp, ushort, void>)funcTable[7])(self, prop, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImPlotProp, ushort, void>)funcTable[7])((nint)self, prop, v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ImPlotSpec* self, ImPlotProp prop, ushort v)
+		{
+			SetPropNative(self, prop, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ref ImPlotSpec self, ImPlotProp prop, ushort v)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				SetPropNative((ImPlotSpec*)pself, prop, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetPropNative(ImPlotSpec* self, ImPlotProp prop, int v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotSpec*, ImPlotProp, int, void>)funcTable[8])(self, prop, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImPlotProp, int, void>)funcTable[8])((nint)self, prop, v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ImPlotSpec* self, ImPlotProp prop, int v)
+		{
+			SetPropNative(self, prop, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ref ImPlotSpec self, ImPlotProp prop, int v)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				SetPropNative((ImPlotSpec*)pself, prop, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetPropNative(ImPlotSpec* self, ImPlotProp prop, uint v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotSpec*, ImPlotProp, uint, void>)funcTable[9])(self, prop, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImPlotProp, uint, void>)funcTable[9])((nint)self, prop, v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ImPlotSpec* self, ImPlotProp prop, uint v)
+		{
+			SetPropNative(self, prop, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ref ImPlotSpec self, ImPlotProp prop, uint v)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				SetPropNative((ImPlotSpec*)pself, prop, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetPropNative(ImPlotSpec* self, ImPlotProp prop, long v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotSpec*, ImPlotProp, long, void>)funcTable[10])(self, prop, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImPlotProp, long, void>)funcTable[10])((nint)self, prop, v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ImPlotSpec* self, ImPlotProp prop, long v)
+		{
+			SetPropNative(self, prop, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ref ImPlotSpec self, ImPlotProp prop, long v)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				SetPropNative((ImPlotSpec*)pself, prop, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetPropNative(ImPlotSpec* self, ImPlotProp prop, ulong v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotSpec*, ImPlotProp, ulong, void>)funcTable[11])(self, prop, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImPlotProp, ulong, void>)funcTable[11])((nint)self, prop, v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ImPlotSpec* self, ImPlotProp prop, ulong v)
+		{
+			SetPropNative(self, prop, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ref ImPlotSpec self, ImPlotProp prop, ulong v)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				SetPropNative((ImPlotSpec*)pself, prop, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetPropNative(ImPlotSpec* self, ImPlotProp prop, uint* v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotSpec*, ImPlotProp, uint*, void>)funcTable[12])(self, prop, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImPlotProp, nint, void>)funcTable[12])((nint)self, prop, (nint)v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ImPlotSpec* self, ImPlotProp prop, uint* v)
+		{
+			SetPropNative(self, prop, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ref ImPlotSpec self, ImPlotProp prop, uint* v)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				SetPropNative((ImPlotSpec*)pself, prop, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ImPlotSpec* self, ImPlotProp prop, ref uint v)
+		{
+			fixed (uint* pv = &v)
+			{
+				SetPropNative(self, prop, (uint*)pv);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ref ImPlotSpec self, ImPlotProp prop, ref uint v)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				fixed (uint* pv = &v)
+				{
+					SetPropNative((ImPlotSpec*)pself, prop, (uint*)pv);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetPropNative(ImPlotSpec* self, ImPlotProp prop, float* v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotSpec*, ImPlotProp, float*, void>)funcTable[13])(self, prop, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImPlotProp, nint, void>)funcTable[13])((nint)self, prop, (nint)v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ImPlotSpec* self, ImPlotProp prop, float* v)
+		{
+			SetPropNative(self, prop, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ref ImPlotSpec self, ImPlotProp prop, float* v)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				SetPropNative((ImPlotSpec*)pself, prop, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ImPlotSpec* self, ImPlotProp prop, ref float v)
+		{
+			fixed (float* pv = &v)
+			{
+				SetPropNative(self, prop, (float*)pv);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ref ImPlotSpec self, ImPlotProp prop, ref float v)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				fixed (float* pv = &v)
+				{
+					SetPropNative((ImPlotSpec*)pself, prop, (float*)pv);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void SetPropNative(ImPlotSpec* self, ImPlotProp prop, Vector4 v)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotSpec*, ImPlotProp, Vector4, void>)funcTable[14])(self, prop, v);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImPlotProp, Vector4, void>)funcTable[14])((nint)self, prop, v);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ImPlotSpec* self, ImPlotProp prop, Vector4 v)
+		{
+			SetPropNative(self, prop, v);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetProp(ref ImPlotSpec self, ImPlotProp prop, Vector4 v)
+		{
+			fixed (ImPlotSpec* pself = &self)
+			{
+				SetPropNative((ImPlotSpec*)pself, prop, v);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static ImPlotPoint* ImPlotPointNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotPoint*>)funcTable[15])();
+			#else
+			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<nint>)funcTable[15])();
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static ImPlotPoint* ImPlotPoint()
+		{
+			ImPlotPoint* ret = ImPlotPointNative();
 			return ret;
 		}
 
@@ -47,16 +567,16 @@ namespace Hexa.NET.ImPlot
 		internal static void DestroyNative(ImPlotPoint* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, void>)funcTable[1])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, void>)funcTable[16])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[1])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[16])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Destroy(ImPlotPointPtr self)
+		public static void Destroy(ImPlotPoint* self)
 		{
 			DestroyNative(self);
 		}
@@ -79,18 +599,18 @@ namespace Hexa.NET.ImPlot
 		internal static ImPlotPoint* ImPlotPointNative(double x, double y)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotPoint*>)funcTable[2])(x, y);
+			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotPoint*>)funcTable[17])(x, y);
 			#else
-			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<double, double, nint>)funcTable[2])(x, y);
+			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<double, double, nint>)funcTable[17])(x, y);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPointPtr ImPlotPoint(double x, double y)
+		public static ImPlotPoint* ImPlotPoint(double x, double y)
 		{
-			ImPlotPointPtr ret = ImPlotPointNative(x, y);
+			ImPlotPoint* ret = ImPlotPointNative(x, y);
 			return ret;
 		}
 
@@ -101,18 +621,18 @@ namespace Hexa.NET.ImPlot
 		internal static ImPlotPoint* ImPlotPointNative(Vector2 p)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<Vector2, ImPlotPoint*>)funcTable[3])(p);
+			return ((delegate* unmanaged[Cdecl]<Vector2, ImPlotPoint*>)funcTable[18])(p);
 			#else
-			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<Vector2, nint>)funcTable[3])(p);
+			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<Vector2, nint>)funcTable[18])(p);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPointPtr ImPlotPoint(Vector2 p)
+		public static ImPlotPoint* ImPlotPoint(Vector2 p)
 		{
-			ImPlotPointPtr ret = ImPlotPointNative(p);
+			ImPlotPoint* ret = ImPlotPointNative(p);
 			return ret;
 		}
 
@@ -123,9 +643,9 @@ namespace Hexa.NET.ImPlot
 		internal static ImPlotRange* ImPlotRangeNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRange*>)funcTable[4])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*>)funcTable[19])();
 			#else
-			return (ImPlotRange*)((delegate* unmanaged[Cdecl]<nint>)funcTable[4])();
+			return (ImPlotRange*)((delegate* unmanaged[Cdecl]<nint>)funcTable[19])();
 			#endif
 		}
 
@@ -145,9 +665,9 @@ namespace Hexa.NET.ImPlot
 		internal static void DestroyNative(ImPlotRange* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotRange*, void>)funcTable[5])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotRange*, void>)funcTable[20])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[5])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[20])((nint)self);
 			#endif
 		}
 
@@ -156,7 +676,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void Destroy(ImPlotRangePtr self)
 		{
-			DestroyNative(self);
+			DestroyNative((ImPlotRange*)self);
 		}
 
 		/// <summary>
@@ -177,9 +697,9 @@ namespace Hexa.NET.ImPlot
 		internal static ImPlotRange* ImPlotRangeNative(double min, double max)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotRange*>)funcTable[6])(min, max);
+			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotRange*>)funcTable[21])(min, max);
 			#else
-			return (ImPlotRange*)((delegate* unmanaged[Cdecl]<double, double, nint>)funcTable[6])(min, max);
+			return (ImPlotRange*)((delegate* unmanaged[Cdecl]<double, double, nint>)funcTable[21])(min, max);
 			#endif
 		}
 
@@ -199,9 +719,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte ContainsNative(ImPlotRange* self, double value)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double, byte>)funcTable[7])(self, value);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double, byte>)funcTable[22])(self, value);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, double, byte>)funcTable[7])((nint)self, value);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, double, byte>)funcTable[22])((nint)self, value);
 			#endif
 		}
 
@@ -210,7 +730,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static bool Contains(ImPlotRangePtr self, double value)
 		{
-			byte ret = ContainsNative(self, value);
+			byte ret = ContainsNative((ImPlotRange*)self, value);
 			return ret != 0;
 		}
 
@@ -233,9 +753,9 @@ namespace Hexa.NET.ImPlot
 		internal static double SizeNative(ImPlotRange* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double>)funcTable[8])(self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double>)funcTable[23])(self);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, double>)funcTable[8])((nint)self);
+			return (double)((delegate* unmanaged[Cdecl]<nint, double>)funcTable[23])((nint)self);
 			#endif
 		}
 
@@ -244,7 +764,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static double Size(ImPlotRangePtr self)
 		{
-			double ret = SizeNative(self);
+			double ret = SizeNative((ImPlotRange*)self);
 			return ret;
 		}
 
@@ -267,9 +787,9 @@ namespace Hexa.NET.ImPlot
 		internal static double ClampNative(ImPlotRange* self, double value)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double, double>)funcTable[9])(self, value);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double, double>)funcTable[24])(self, value);
 			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, double, double>)funcTable[9])((nint)self, value);
+			return (double)((delegate* unmanaged[Cdecl]<nint, double, double>)funcTable[24])((nint)self, value);
 			#endif
 		}
 
@@ -278,7 +798,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static double Clamp(ImPlotRangePtr self, double value)
 		{
-			double ret = ClampNative(self, value);
+			double ret = ClampNative((ImPlotRange*)self, value);
 			return ret;
 		}
 
@@ -301,18 +821,18 @@ namespace Hexa.NET.ImPlot
 		internal static ImPlotRect* ImPlotRectNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRect*>)funcTable[10])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*>)funcTable[25])();
 			#else
-			return (ImPlotRect*)((delegate* unmanaged[Cdecl]<nint>)funcTable[10])();
+			return (ImPlotRect*)((delegate* unmanaged[Cdecl]<nint>)funcTable[25])();
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotRectPtr ImPlotRect()
+		public static ImPlotRect* ImPlotRect()
 		{
-			ImPlotRectPtr ret = ImPlotRectNative();
+			ImPlotRect* ret = ImPlotRectNative();
 			return ret;
 		}
 
@@ -323,16 +843,16 @@ namespace Hexa.NET.ImPlot
 		internal static void DestroyNative(ImPlotRect* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotRect*, void>)funcTable[11])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotRect*, void>)funcTable[26])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[11])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[26])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Destroy(ImPlotRectPtr self)
+		public static void Destroy(ImPlotRect* self)
 		{
 			DestroyNative(self);
 		}
@@ -355,18 +875,18 @@ namespace Hexa.NET.ImPlot
 		internal static ImPlotRect* ImPlotRectNative(double xMin, double xMax, double yMin, double yMax)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotRect*>)funcTable[12])(xMin, xMax, yMin, yMax);
+			return ((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotRect*>)funcTable[27])(xMin, xMax, yMin, yMax);
 			#else
-			return (ImPlotRect*)((delegate* unmanaged[Cdecl]<double, double, double, double, nint>)funcTable[12])(xMin, xMax, yMin, yMax);
+			return (ImPlotRect*)((delegate* unmanaged[Cdecl]<double, double, double, double, nint>)funcTable[27])(xMin, xMax, yMin, yMax);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotRectPtr ImPlotRect(double xMin, double xMax, double yMin, double yMax)
+		public static ImPlotRect* ImPlotRect(double xMin, double xMax, double yMin, double yMax)
 		{
-			ImPlotRectPtr ret = ImPlotRectNative(xMin, xMax, yMin, yMax);
+			ImPlotRect* ret = ImPlotRectNative(xMin, xMax, yMin, yMax);
 			return ret;
 		}
 
@@ -377,16 +897,16 @@ namespace Hexa.NET.ImPlot
 		internal static byte ContainsNative(ImPlotRect* self, ImPlotPoint p)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, ImPlotPoint, byte>)funcTable[13])(self, p);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, ImPlotPoint, byte>)funcTable[28])(self, p);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImPlotPoint, byte>)funcTable[13])((nint)self, p);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImPlotPoint, byte>)funcTable[28])((nint)self, p);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Contains(ImPlotRectPtr self, ImPlotPoint p)
+		public static bool Contains(ImPlotRect* self, ImPlotPoint p)
 		{
 			byte ret = ContainsNative(self, p);
 			return ret != 0;
@@ -411,16 +931,16 @@ namespace Hexa.NET.ImPlot
 		internal static byte ContainsNative(ImPlotRect* self, double x, double y)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, double, double, byte>)funcTable[14])(self, x, y);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, double, double, byte>)funcTable[29])(self, x, y);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, double, double, byte>)funcTable[14])((nint)self, x, y);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, double, double, byte>)funcTable[29])((nint)self, x, y);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool Contains(ImPlotRectPtr self, double x, double y)
+		public static bool Contains(ImPlotRect* self, double x, double y)
 		{
 			byte ret = ContainsNative(self, x, y);
 			return ret != 0;
@@ -442,42 +962,22 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SizeNative(ImPlotPoint* pOut, ImPlotRect* self)
+		internal static ImPlotPoint SizeNative(ImPlotRect* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)funcTable[15])(pOut, self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, ImPlotPoint>)funcTable[30])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[15])((nint)pOut, (nint)self);
+			return (ImPlotPoint)((delegate* unmanaged[Cdecl]<nint, ImPlotPoint>)funcTable[30])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPoint Size(ImPlotRectPtr self)
+		public static ImPlotPoint Size(ImPlotRect* self)
 		{
-			ImPlotPoint ret;
-			SizeNative(&ret, self);
+			ImPlotPoint ret = SizeNative(self);
 			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Size(ImPlotPointPtr pOut, ImPlotRectPtr self)
-		{
-			SizeNative(pOut, self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Size(ref ImPlotPoint pOut, ImPlotRectPtr self)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
-			{
-				SizeNative((ImPlotPoint*)ppOut, self);
-			}
 		}
 
 		/// <summary>
@@ -487,8 +987,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (ImPlotRect* pself = &self)
 			{
-				ImPlotPoint ret;
-				SizeNative(&ret, (ImPlotRect*)pself);
+				ImPlotPoint ret = SizeNative((ImPlotRect*)pself);
 				return ret;
 			}
 		}
@@ -496,68 +995,23 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Size(ImPlotPointPtr pOut, ref ImPlotRect self)
-		{
-			fixed (ImPlotRect* pself = &self)
-			{
-				SizeNative(pOut, (ImPlotRect*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Size(ref ImPlotPoint pOut, ref ImPlotRect self)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
-			{
-				fixed (ImPlotRect* pself = &self)
-				{
-					SizeNative((ImPlotPoint*)ppOut, (ImPlotRect*)pself);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClampNative(ImPlotPoint* pOut, ImPlotRect* self, ImPlotPoint p)
+		internal static ImPlotPoint ClampNative(ImPlotRect* self, ImPlotPoint p)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, ImPlotPoint, void>)funcTable[16])(pOut, self, p);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, ImPlotPoint, ImPlotPoint>)funcTable[31])(self, p);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ImPlotPoint, void>)funcTable[16])((nint)pOut, (nint)self, p);
+			return (ImPlotPoint)((delegate* unmanaged[Cdecl]<nint, ImPlotPoint, ImPlotPoint>)funcTable[31])((nint)self, p);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPoint Clamp(ImPlotRectPtr self, ImPlotPoint p)
+		public static ImPlotPoint Clamp(ImPlotRect* self, ImPlotPoint p)
 		{
-			ImPlotPoint ret;
-			ClampNative(&ret, self, p);
+			ImPlotPoint ret = ClampNative(self, p);
 			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clamp(ImPlotPointPtr pOut, ImPlotRectPtr self, ImPlotPoint p)
-		{
-			ClampNative(pOut, self, p);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clamp(ref ImPlotPoint pOut, ImPlotRectPtr self, ImPlotPoint p)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
-			{
-				ClampNative((ImPlotPoint*)ppOut, self, p);
-			}
 		}
 
 		/// <summary>
@@ -567,8 +1021,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (ImPlotRect* pself = &self)
 			{
-				ImPlotPoint ret;
-				ClampNative(&ret, (ImPlotRect*)pself, p);
+				ImPlotPoint ret = ClampNative((ImPlotRect*)pself, p);
 				return ret;
 			}
 		}
@@ -576,68 +1029,23 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Clamp(ImPlotPointPtr pOut, ref ImPlotRect self, ImPlotPoint p)
-		{
-			fixed (ImPlotRect* pself = &self)
-			{
-				ClampNative(pOut, (ImPlotRect*)pself, p);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clamp(ref ImPlotPoint pOut, ref ImPlotRect self, ImPlotPoint p)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
-			{
-				fixed (ImPlotRect* pself = &self)
-				{
-					ClampNative((ImPlotPoint*)ppOut, (ImPlotRect*)pself, p);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void ClampNative(ImPlotPoint* pOut, ImPlotRect* self, double x, double y)
+		internal static ImPlotPoint ClampNative(ImPlotRect* self, double x, double y)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, double, double, void>)funcTable[17])(pOut, self, x, y);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, double, double, ImPlotPoint>)funcTable[32])(self, x, y);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, double, double, void>)funcTable[17])((nint)pOut, (nint)self, x, y);
+			return (ImPlotPoint)((delegate* unmanaged[Cdecl]<nint, double, double, ImPlotPoint>)funcTable[32])((nint)self, x, y);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPoint Clamp(ImPlotRectPtr self, double x, double y)
+		public static ImPlotPoint Clamp(ImPlotRect* self, double x, double y)
 		{
-			ImPlotPoint ret;
-			ClampNative(&ret, self, x, y);
+			ImPlotPoint ret = ClampNative(self, x, y);
 			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clamp(ImPlotPointPtr pOut, ImPlotRectPtr self, double x, double y)
-		{
-			ClampNative(pOut, self, x, y);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clamp(ref ImPlotPoint pOut, ImPlotRectPtr self, double x, double y)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
-			{
-				ClampNative((ImPlotPoint*)ppOut, self, x, y);
-			}
 		}
 
 		/// <summary>
@@ -647,8 +1055,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (ImPlotRect* pself = &self)
 			{
-				ImPlotPoint ret;
-				ClampNative(&ret, (ImPlotRect*)pself, x, y);
+				ImPlotPoint ret = ClampNative((ImPlotRect*)pself, x, y);
 				return ret;
 			}
 		}
@@ -656,68 +1063,23 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Clamp(ImPlotPointPtr pOut, ref ImPlotRect self, double x, double y)
-		{
-			fixed (ImPlotRect* pself = &self)
-			{
-				ClampNative(pOut, (ImPlotRect*)pself, x, y);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Clamp(ref ImPlotPoint pOut, ref ImPlotRect self, double x, double y)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
-			{
-				fixed (ImPlotRect* pself = &self)
-				{
-					ClampNative((ImPlotPoint*)ppOut, (ImPlotRect*)pself, x, y);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void MinNative(ImPlotPoint* pOut, ImPlotRect* self)
+		internal static ImPlotPoint MinNative(ImPlotRect* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)funcTable[18])(pOut, self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, ImPlotPoint>)funcTable[33])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[18])((nint)pOut, (nint)self);
+			return (ImPlotPoint)((delegate* unmanaged[Cdecl]<nint, ImPlotPoint>)funcTable[33])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPoint Min(ImPlotRectPtr self)
+		public static ImPlotPoint Min(ImPlotRect* self)
 		{
-			ImPlotPoint ret;
-			MinNative(&ret, self);
+			ImPlotPoint ret = MinNative(self);
 			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Min(ImPlotPointPtr pOut, ImPlotRectPtr self)
-		{
-			MinNative(pOut, self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Min(ref ImPlotPoint pOut, ImPlotRectPtr self)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
-			{
-				MinNative((ImPlotPoint*)ppOut, self);
-			}
 		}
 
 		/// <summary>
@@ -727,8 +1089,7 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (ImPlotRect* pself = &self)
 			{
-				ImPlotPoint ret;
-				MinNative(&ret, (ImPlotRect*)pself);
+				ImPlotPoint ret = MinNative((ImPlotRect*)pself);
 				return ret;
 			}
 		}
@@ -736,68 +1097,23 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void Min(ImPlotPointPtr pOut, ref ImPlotRect self)
-		{
-			fixed (ImPlotRect* pself = &self)
-			{
-				MinNative(pOut, (ImPlotRect*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Min(ref ImPlotPoint pOut, ref ImPlotRect self)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
-			{
-				fixed (ImPlotRect* pself = &self)
-				{
-					MinNative((ImPlotPoint*)ppOut, (ImPlotRect*)pself);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void MaxNative(ImPlotPoint* pOut, ImPlotRect* self)
+		internal static ImPlotPoint MaxNative(ImPlotRect* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)funcTable[19])(pOut, self);
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, ImPlotPoint>)funcTable[34])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)funcTable[19])((nint)pOut, (nint)self);
+			return (ImPlotPoint)((delegate* unmanaged[Cdecl]<nint, ImPlotPoint>)funcTable[34])((nint)self);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotPoint Max(ImPlotRectPtr self)
+		public static ImPlotPoint Max(ImPlotRect* self)
 		{
-			ImPlotPoint ret;
-			MaxNative(&ret, self);
+			ImPlotPoint ret = MaxNative(self);
 			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Max(ImPlotPointPtr pOut, ImPlotRectPtr self)
-		{
-			MaxNative(pOut, self);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Max(ref ImPlotPoint pOut, ImPlotRectPtr self)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
-			{
-				MaxNative((ImPlotPoint*)ppOut, self);
-			}
 		}
 
 		/// <summary>
@@ -807,34 +1123,8 @@ namespace Hexa.NET.ImPlot
 		{
 			fixed (ImPlotRect* pself = &self)
 			{
-				ImPlotPoint ret;
-				MaxNative(&ret, (ImPlotRect*)pself);
+				ImPlotPoint ret = MaxNative((ImPlotRect*)pself);
 				return ret;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Max(ImPlotPointPtr pOut, ref ImPlotRect self)
-		{
-			fixed (ImPlotRect* pself = &self)
-			{
-				MaxNative(pOut, (ImPlotRect*)pself);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void Max(ref ImPlotPoint pOut, ref ImPlotRect self)
-		{
-			fixed (ImPlotPoint* ppOut = &pOut)
-			{
-				fixed (ImPlotRect* pself = &self)
-				{
-					MaxNative((ImPlotPoint*)ppOut, (ImPlotRect*)pself);
-				}
 			}
 		}
 
@@ -845,9 +1135,9 @@ namespace Hexa.NET.ImPlot
 		internal static ImPlotStyle* ImPlotStyleNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotStyle*>)funcTable[20])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotStyle*>)funcTable[35])();
 			#else
-			return (ImPlotStyle*)((delegate* unmanaged[Cdecl]<nint>)funcTable[20])();
+			return (ImPlotStyle*)((delegate* unmanaged[Cdecl]<nint>)funcTable[35])();
 			#endif
 		}
 
@@ -867,9 +1157,9 @@ namespace Hexa.NET.ImPlot
 		internal static void DestroyNative(ImPlotStyle* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotStyle*, void>)funcTable[21])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotStyle*, void>)funcTable[36])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[21])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[36])((nint)self);
 			#endif
 		}
 
@@ -878,7 +1168,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void Destroy(ImPlotStylePtr self)
 		{
-			DestroyNative(self);
+			DestroyNative((ImPlotStyle*)self);
 		}
 
 		/// <summary>
@@ -899,9 +1189,9 @@ namespace Hexa.NET.ImPlot
 		internal static ImPlotInputMap* ImPlotInputMapNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotInputMap*>)funcTable[22])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotInputMap*>)funcTable[37])();
 			#else
-			return (ImPlotInputMap*)((delegate* unmanaged[Cdecl]<nint>)funcTable[22])();
+			return (ImPlotInputMap*)((delegate* unmanaged[Cdecl]<nint>)funcTable[37])();
 			#endif
 		}
 
@@ -921,9 +1211,9 @@ namespace Hexa.NET.ImPlot
 		internal static void DestroyNative(ImPlotInputMap* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotInputMap*, void>)funcTable[23])(self);
+			((delegate* unmanaged[Cdecl]<ImPlotInputMap*, void>)funcTable[38])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[23])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[38])((nint)self);
 			#endif
 		}
 
@@ -932,7 +1222,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void Destroy(ImPlotInputMapPtr self)
 		{
-			DestroyNative(self);
+			DestroyNative((ImPlotInputMap*)self);
 		}
 
 		/// <summary>
@@ -953,9 +1243,9 @@ namespace Hexa.NET.ImPlot
 		internal static ImPlotContext* CreateContextNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotContext*>)funcTable[24])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotContext*>)funcTable[39])();
 			#else
-			return (ImPlotContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[24])();
+			return (ImPlotContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[39])();
 			#endif
 		}
 
@@ -975,9 +1265,9 @@ namespace Hexa.NET.ImPlot
 		internal static void DestroyContextNative(ImPlotContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)funcTable[25])(ctx);
+			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)funcTable[40])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[25])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[40])((nint)ctx);
 			#endif
 		}
 
@@ -986,7 +1276,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void DestroyContext(ImPlotContextPtr ctx)
 		{
-			DestroyContextNative(ctx);
+			DestroyContextNative((ImPlotContext*)ctx);
 		}
 
 		/// <summary>
@@ -1015,9 +1305,9 @@ namespace Hexa.NET.ImPlot
 		internal static ImPlotContext* GetCurrentContextNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotContext*>)funcTable[26])();
+			return ((delegate* unmanaged[Cdecl]<ImPlotContext*>)funcTable[41])();
 			#else
-			return (ImPlotContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[26])();
+			return (ImPlotContext*)((delegate* unmanaged[Cdecl]<nint>)funcTable[41])();
 			#endif
 		}
 
@@ -1037,9 +1327,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetCurrentContextNative(ImPlotContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)funcTable[27])(ctx);
+			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)funcTable[42])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[27])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[42])((nint)ctx);
 			#endif
 		}
 
@@ -1048,7 +1338,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void SetCurrentContext(ImPlotContextPtr ctx)
 		{
-			SetCurrentContextNative(ctx);
+			SetCurrentContextNative((ImPlotContext*)ctx);
 		}
 
 		/// <summary>
@@ -1069,9 +1359,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetImGuiContextNative(ImGuiContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)funcTable[28])(ctx);
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)funcTable[43])(ctx);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[28])((nint)ctx);
+			((delegate* unmanaged[Cdecl]<nint, void>)funcTable[43])((nint)ctx);
 			#endif
 		}
 
@@ -1080,7 +1370,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void SetImGuiContext(ImGuiContextPtr ctx)
 		{
-			SetImGuiContextNative(ctx);
+			SetImGuiContextNative((ImGuiContext*)ctx);
 		}
 
 		/// <summary>
@@ -1101,9 +1391,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte BeginPlotNative(byte* titleId, Vector2 size, ImPlotFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImPlotFlags, byte>)funcTable[29])(titleId, size, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImPlotFlags, byte>)funcTable[44])(titleId, size, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImPlotFlags, byte>)funcTable[29])((nint)titleId, size, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImPlotFlags, byte>)funcTable[44])((nint)titleId, size, flags);
 			#endif
 		}
 
@@ -1146,7 +1436,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginPlot(ref byte titleId, Vector2 size, ImPlotFlags flags)
+		public static bool BeginPlot(in byte titleId, Vector2 size, ImPlotFlags flags)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -1158,7 +1448,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginPlot(ref byte titleId, Vector2 size)
+		public static bool BeginPlot(in byte titleId, Vector2 size)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -1170,7 +1460,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginPlot(ref byte titleId)
+		public static bool BeginPlot(in byte titleId)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -1182,7 +1472,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginPlot(ref byte titleId, ImPlotFlags flags)
+		public static bool BeginPlot(in byte titleId, ImPlotFlags flags)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -1366,9 +1656,9 @@ namespace Hexa.NET.ImPlot
 		internal static void EndPlotNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[30])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[45])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[30])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[45])();
 			#endif
 		}
 
@@ -1387,9 +1677,9 @@ namespace Hexa.NET.ImPlot
 		internal static byte BeginSubplotsNative(byte* titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios, float* colRatios)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, int, Vector2, ImPlotSubplotFlags, float*, float*, byte>)funcTable[31])(titleId, rows, cols, size, flags, rowRatios, colRatios);
+			return ((delegate* unmanaged[Cdecl]<byte*, int, int, Vector2, ImPlotSubplotFlags, float*, float*, byte>)funcTable[46])(titleId, rows, cols, size, flags, rowRatios, colRatios);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, int, Vector2, ImPlotSubplotFlags, nint, nint, byte>)funcTable[31])((nint)titleId, rows, cols, size, flags, (nint)rowRatios, (nint)colRatios);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, int, Vector2, ImPlotSubplotFlags, nint, nint, byte>)funcTable[46])((nint)titleId, rows, cols, size, flags, (nint)rowRatios, (nint)colRatios);
 			#endif
 		}
 
@@ -1450,7 +1740,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginSubplots(ref byte titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios, float* colRatios)
+		public static bool BeginSubplots(in byte titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios, float* colRatios)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -1462,7 +1752,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginSubplots(ref byte titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios)
+		public static bool BeginSubplots(in byte titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -1474,7 +1764,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginSubplots(ref byte titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags)
+		public static bool BeginSubplots(in byte titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -1486,7 +1776,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginSubplots(ref byte titleId, int rows, int cols, Vector2 size)
+		public static bool BeginSubplots(in byte titleId, int rows, int cols, Vector2 size)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -1498,7 +1788,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginSubplots(ref byte titleId, int rows, int cols, Vector2 size, float* rowRatios)
+		public static bool BeginSubplots(in byte titleId, int rows, int cols, Vector2 size, float* rowRatios)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -1510,7 +1800,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginSubplots(ref byte titleId, int rows, int cols, Vector2 size, float* rowRatios, float* colRatios)
+		public static bool BeginSubplots(in byte titleId, int rows, int cols, Vector2 size, float* rowRatios, float* colRatios)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -1822,7 +2112,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginSubplots(ref byte titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, ref float rowRatios, float* colRatios)
+		public static bool BeginSubplots(in byte titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, ref float rowRatios, float* colRatios)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -1837,7 +2127,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginSubplots(ref byte titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, ref float rowRatios)
+		public static bool BeginSubplots(in byte titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, ref float rowRatios)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -1852,7 +2142,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginSubplots(ref byte titleId, int rows, int cols, Vector2 size, ref float rowRatios)
+		public static bool BeginSubplots(in byte titleId, int rows, int cols, Vector2 size, ref float rowRatios)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -1867,7 +2157,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginSubplots(ref byte titleId, int rows, int cols, Vector2 size, ref float rowRatios, float* colRatios)
+		public static bool BeginSubplots(in byte titleId, int rows, int cols, Vector2 size, ref float rowRatios, float* colRatios)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -2098,7 +2388,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginSubplots(ref byte titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios, ref float colRatios)
+		public static bool BeginSubplots(in byte titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios, ref float colRatios)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -2113,7 +2403,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginSubplots(ref byte titleId, int rows, int cols, Vector2 size, float* rowRatios, ref float colRatios)
+		public static bool BeginSubplots(in byte titleId, int rows, int cols, Vector2 size, float* rowRatios, ref float colRatios)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -2254,7 +2544,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginSubplots(ref byte titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, ref float rowRatios, ref float colRatios)
+		public static bool BeginSubplots(in byte titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, ref float rowRatios, ref float colRatios)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -2272,7 +2562,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool BeginSubplots(ref byte titleId, int rows, int cols, Vector2 size, ref float rowRatios, ref float colRatios)
+		public static bool BeginSubplots(in byte titleId, int rows, int cols, Vector2 size, ref float rowRatios, ref float colRatios)
 		{
 			fixed (byte* ptitleId = &titleId)
 			{
@@ -2402,9 +2692,9 @@ namespace Hexa.NET.ImPlot
 		internal static void EndSubplotsNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[32])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[47])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[32])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[47])();
 			#endif
 		}
 
@@ -2423,9 +2713,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetupAxisNative(ImAxis axis, byte* label, ImPlotAxisFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, byte*, ImPlotAxisFlags, void>)funcTable[33])(axis, label, flags);
+			((delegate* unmanaged[Cdecl]<ImAxis, byte*, ImPlotAxisFlags, void>)funcTable[48])(axis, label, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, nint, ImPlotAxisFlags, void>)funcTable[33])(axis, (nint)label, flags);
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, ImPlotAxisFlags, void>)funcTable[48])(axis, (nint)label, flags);
 			#endif
 		}
 
@@ -2464,7 +2754,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxis(ImAxis axis, ref byte label, ImPlotAxisFlags flags)
+		public static void SetupAxis(ImAxis axis, in byte label, ImPlotAxisFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2475,7 +2765,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxis(ImAxis axis, ref byte label)
+		public static void SetupAxis(ImAxis axis, in byte label)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -2570,9 +2860,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetupAxisLimitsNative(ImAxis axis, double vMin, double vMax, ImPlotCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)funcTable[34])(axis, vMin, vMax, cond);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)funcTable[49])(axis, vMin, vMax, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)funcTable[34])(axis, vMin, vMax, cond);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)funcTable[49])(axis, vMin, vMax, cond);
 			#endif
 		}
 
@@ -2599,9 +2889,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetupAxisLinksNative(ImAxis axis, double* linkMin, double* linkMax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double*, double*, void>)funcTable[35])(axis, linkMin, linkMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, double*, double*, void>)funcTable[50])(axis, linkMin, linkMax);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, void>)funcTable[35])(axis, (nint)linkMin, (nint)linkMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, void>)funcTable[50])(axis, (nint)linkMin, (nint)linkMax);
 			#endif
 		}
 
@@ -2656,9 +2946,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetupAxisFormatNative(ImAxis axis, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, byte*, void>)funcTable[36])(axis, fmt);
+			((delegate* unmanaged[Cdecl]<ImAxis, byte*, void>)funcTable[51])(axis, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, nint, void>)funcTable[36])(axis, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, void>)funcTable[51])(axis, (nint)fmt);
 			#endif
 		}
 
@@ -2673,7 +2963,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxisFormat(ImAxis axis, ref byte fmt)
+		public static void SetupAxisFormat(ImAxis axis, in byte fmt)
 		{
 			fixed (byte* pfmt = &fmt)
 			{
@@ -2725,19 +3015,19 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetupAxisFormatNative(ImAxis axis, ImPlotFormatter formatter, void* data)
+		internal static void SetupAxisFormatNative(ImAxis axis, delegate*<double, byte*, int, void*, int> formatter, void* data)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, delegate*<double, byte*, int, void*, int>, void*, void>)funcTable[37])(axis, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
+			((delegate* unmanaged[Cdecl]<ImAxis, delegate*<double, byte*, int, void*, int>, void*, void>)funcTable[52])(axis, formatter, data);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, void>)funcTable[37])(axis, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)data);
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, void>)funcTable[52])(axis, (nint)formatter, (nint)data);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxisFormat(ImAxis axis, ImPlotFormatter formatter, void* data)
+		public static void SetupAxisFormat(ImAxis axis, delegate*<double, byte*, int, void*, int> formatter, void* data)
 		{
 			SetupAxisFormatNative(axis, formatter, data);
 		}
@@ -2745,9 +3035,41 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxisFormat(ImAxis axis, ImPlotFormatter formatter)
+		public static void SetupAxisFormat(ImAxis axis, delegate*<double, byte*, int, void*, int> formatter)
 		{
 			SetupAxisFormatNative(axis, formatter, (void*)(default));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisFormat(ImAxis axis, ImPlotFormatter formatter, void* data)
+		{
+			SetupAxisFormatNative(axis, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisFormat(ImAxis axis, ImPlotFormatter formatter)
+		{
+			SetupAxisFormatNative(axis, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), (void*)(default));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisFormat(ImAxis axis, delegate*<double, byte*, int, void*, int> formatter, nint data)
+		{
+			SetupAxisFormatNative(axis, formatter, (void*)data);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisFormat(ImAxis axis, ImPlotFormatter formatter, nint data)
+		{
+			SetupAxisFormatNative(axis, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), (void*)data);
 		}
 
 		/// <summary>
@@ -2757,9 +3079,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetupAxisTicksNative(ImAxis axis, double* values, int nTicks, byte** labels, byte keepDefault)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double*, int, byte**, byte, void>)funcTable[38])(axis, values, nTicks, labels, keepDefault);
+			((delegate* unmanaged[Cdecl]<ImAxis, double*, int, byte**, byte, void>)funcTable[53])(axis, values, nTicks, labels, keepDefault);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, nint, int, nint, byte, void>)funcTable[38])(axis, (nint)values, nTicks, (nint)labels, keepDefault);
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, int, nint, byte, void>)funcTable[53])(axis, (nint)values, nTicks, (nint)labels, keepDefault);
 			#endif
 		}
 
@@ -2798,7 +3120,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxisTicks(ImAxis axis, ref double values, int nTicks, byte** labels, bool keepDefault)
+		public static void SetupAxisTicks(ImAxis axis, in double values, int nTicks, byte** labels, bool keepDefault)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2809,7 +3131,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxisTicks(ImAxis axis, ref double values, int nTicks, byte** labels)
+		public static void SetupAxisTicks(ImAxis axis, in double values, int nTicks, byte** labels)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2820,7 +3142,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxisTicks(ImAxis axis, ref double values, int nTicks)
+		public static void SetupAxisTicks(ImAxis axis, in double values, int nTicks)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2831,11 +3153,33 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxisTicks(ImAxis axis, ref double values, int nTicks, bool keepDefault)
+		public static void SetupAxisTicks(ImAxis axis, in double values, int nTicks, bool keepDefault)
 		{
 			fixed (double* pvalues = &values)
 			{
 				SetupAxisTicksNative(axis, (double*)pvalues, nTicks, (byte**)(default), keepDefault ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisTicks(ImAxis axis, double* values, int nTicks, in byte* labels, bool keepDefault)
+		{
+			fixed (byte** plabels = &labels)
+			{
+				SetupAxisTicksNative(axis, values, nTicks, (byte**)plabels, keepDefault ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisTicks(ImAxis axis, double* values, int nTicks, in byte* labels)
+		{
+			fixed (byte** plabels = &labels)
+			{
+				SetupAxisTicksNative(axis, values, nTicks, (byte**)plabels, (byte)(0));
 			}
 		}
 
@@ -2910,7 +3254,35 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxisTicks(ImAxis axis, ref double values, int nTicks, string[] labels, bool keepDefault)
+		public static void SetupAxisTicks(ImAxis axis, in double values, int nTicks, in byte* labels, bool keepDefault)
+		{
+			fixed (double* pvalues = &values)
+			{
+				fixed (byte** plabels = &labels)
+				{
+					SetupAxisTicksNative(axis, (double*)pvalues, nTicks, (byte**)plabels, keepDefault ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisTicks(ImAxis axis, in double values, int nTicks, in byte* labels)
+		{
+			fixed (double* pvalues = &values)
+			{
+				fixed (byte** plabels = &labels)
+				{
+					SetupAxisTicksNative(axis, (double*)pvalues, nTicks, (byte**)plabels, (byte)(0));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisTicks(ImAxis axis, in double values, int nTicks, string[] labels, bool keepDefault)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2947,7 +3319,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxisTicks(ImAxis axis, ref double values, int nTicks, string[] labels)
+		public static void SetupAxisTicks(ImAxis axis, in double values, int nTicks, string[] labels)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -2988,9 +3360,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetupAxisTicksNative(ImAxis axis, double vMin, double vMax, int nTicks, byte** labels, byte keepDefault)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, int, byte**, byte, void>)funcTable[39])(axis, vMin, vMax, nTicks, labels, keepDefault);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, int, byte**, byte, void>)funcTable[54])(axis, vMin, vMax, nTicks, labels, keepDefault);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, int, nint, byte, void>)funcTable[39])(axis, vMin, vMax, nTicks, (nint)labels, keepDefault);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, int, nint, byte, void>)funcTable[54])(axis, vMin, vMax, nTicks, (nint)labels, keepDefault);
 			#endif
 		}
 
@@ -3024,6 +3396,28 @@ namespace Hexa.NET.ImPlot
 		public static void SetupAxisTicks(ImAxis axis, double vMin, double vMax, int nTicks, bool keepDefault)
 		{
 			SetupAxisTicksNative(axis, vMin, vMax, nTicks, (byte**)(default), keepDefault ? (byte)1 : (byte)0);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisTicks(ImAxis axis, double vMin, double vMax, int nTicks, in byte* labels, bool keepDefault)
+		{
+			fixed (byte** plabels = &labels)
+			{
+				SetupAxisTicksNative(axis, vMin, vMax, nTicks, (byte**)plabels, keepDefault ? (byte)1 : (byte)0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisTicks(ImAxis axis, double vMin, double vMax, int nTicks, in byte* labels)
+		{
+			fixed (byte** plabels = &labels)
+			{
+				SetupAxisTicksNative(axis, vMin, vMax, nTicks, (byte**)plabels, (byte)(0));
+			}
 		}
 
 		/// <summary>
@@ -3101,9 +3495,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetupAxisScaleNative(ImAxis axis, ImPlotScale scale)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, ImPlotScale, void>)funcTable[40])(axis, scale);
+			((delegate* unmanaged[Cdecl]<ImAxis, ImPlotScale, void>)funcTable[55])(axis, scale);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, ImPlotScale, void>)funcTable[40])(axis, scale);
+			((delegate* unmanaged[Cdecl]<ImAxis, ImPlotScale, void>)funcTable[55])(axis, scale);
 			#endif
 		}
 
@@ -3119,19 +3513,19 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void SetupAxisScaleNative(ImAxis axis, ImPlotTransform forward, ImPlotTransform inverse, void* data)
+		internal static void SetupAxisScaleNative(ImAxis axis, delegate*<double, void*, double> forward, delegate*<double, void*, double> inverse, void* data)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, delegate*<double, void*, double>, delegate*<double, void*, double>, void*, void>)funcTable[41])(axis, (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(forward), (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(inverse), data);
+			((delegate* unmanaged[Cdecl]<ImAxis, delegate*<double, void*, double>, delegate*<double, void*, double>, void*, void>)funcTable[56])(axis, forward, inverse, data);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, nint, void>)funcTable[41])(axis, (nint)Utils.GetFunctionPointerForDelegate(forward), (nint)Utils.GetFunctionPointerForDelegate(inverse), (nint)data);
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, nint, void>)funcTable[56])(axis, (nint)forward, (nint)inverse, (nint)data);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxisScale(ImAxis axis, ImPlotTransform forward, ImPlotTransform inverse, void* data)
+		public static void SetupAxisScale(ImAxis axis, delegate*<double, void*, double> forward, delegate*<double, void*, double> inverse, void* data)
 		{
 			SetupAxisScaleNative(axis, forward, inverse, data);
 		}
@@ -3139,9 +3533,89 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxisScale(ImAxis axis, ImPlotTransform forward, ImPlotTransform inverse)
+		public static void SetupAxisScale(ImAxis axis, delegate*<double, void*, double> forward, delegate*<double, void*, double> inverse)
 		{
 			SetupAxisScaleNative(axis, forward, inverse, (void*)(default));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisScale(ImAxis axis, ImPlotTransform forward, delegate*<double, void*, double> inverse, void* data)
+		{
+			SetupAxisScaleNative(axis, (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(forward), inverse, data);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisScale(ImAxis axis, ImPlotTransform forward, delegate*<double, void*, double> inverse)
+		{
+			SetupAxisScaleNative(axis, (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(forward), inverse, (void*)(default));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisScale(ImAxis axis, delegate*<double, void*, double> forward, ImPlotTransform inverse, void* data)
+		{
+			SetupAxisScaleNative(axis, forward, (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(inverse), data);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisScale(ImAxis axis, delegate*<double, void*, double> forward, ImPlotTransform inverse)
+		{
+			SetupAxisScaleNative(axis, forward, (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(inverse), (void*)(default));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisScale(ImAxis axis, ImPlotTransform forward, ImPlotTransform inverse, void* data)
+		{
+			SetupAxisScaleNative(axis, (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(forward), (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(inverse), data);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisScale(ImAxis axis, ImPlotTransform forward, ImPlotTransform inverse)
+		{
+			SetupAxisScaleNative(axis, (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(forward), (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(inverse), (void*)(default));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisScale(ImAxis axis, delegate*<double, void*, double> forward, delegate*<double, void*, double> inverse, nint data)
+		{
+			SetupAxisScaleNative(axis, forward, inverse, (void*)data);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisScale(ImAxis axis, ImPlotTransform forward, delegate*<double, void*, double> inverse, nint data)
+		{
+			SetupAxisScaleNative(axis, (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(forward), inverse, (void*)data);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisScale(ImAxis axis, delegate*<double, void*, double> forward, ImPlotTransform inverse, nint data)
+		{
+			SetupAxisScaleNative(axis, forward, (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(inverse), (void*)data);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetupAxisScale(ImAxis axis, ImPlotTransform forward, ImPlotTransform inverse, nint data)
+		{
+			SetupAxisScaleNative(axis, (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(forward), (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(inverse), (void*)data);
 		}
 
 		/// <summary>
@@ -3151,9 +3625,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetupAxisLimitsConstraintsNative(ImAxis axis, double vMin, double vMax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)funcTable[42])(axis, vMin, vMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)funcTable[57])(axis, vMin, vMax);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)funcTable[42])(axis, vMin, vMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)funcTable[57])(axis, vMin, vMax);
 			#endif
 		}
 
@@ -3172,9 +3646,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetupAxisZoomConstraintsNative(ImAxis axis, double zMin, double zMax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)funcTable[43])(axis, zMin, zMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)funcTable[58])(axis, zMin, zMax);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)funcTable[43])(axis, zMin, zMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)funcTable[58])(axis, zMin, zMax);
 			#endif
 		}
 
@@ -3193,9 +3667,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetupAxesNative(byte* xLabel, byte* yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, ImPlotAxisFlags, ImPlotAxisFlags, void>)funcTable[44])(xLabel, yLabel, xFlags, yFlags);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, ImPlotAxisFlags, ImPlotAxisFlags, void>)funcTable[59])(xLabel, yLabel, xFlags, yFlags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ImPlotAxisFlags, ImPlotAxisFlags, void>)funcTable[44])((nint)xLabel, (nint)yLabel, xFlags, yFlags);
+			((delegate* unmanaged[Cdecl]<nint, nint, ImPlotAxisFlags, ImPlotAxisFlags, void>)funcTable[59])((nint)xLabel, (nint)yLabel, xFlags, yFlags);
 			#endif
 		}
 
@@ -3226,7 +3700,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(ref byte xLabel, byte* yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		public static void SetupAxes(in byte xLabel, byte* yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
 		{
 			fixed (byte* pxLabel = &xLabel)
 			{
@@ -3237,7 +3711,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(ref byte xLabel, byte* yLabel, ImPlotAxisFlags xFlags)
+		public static void SetupAxes(in byte xLabel, byte* yLabel, ImPlotAxisFlags xFlags)
 		{
 			fixed (byte* pxLabel = &xLabel)
 			{
@@ -3248,7 +3722,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(ref byte xLabel, byte* yLabel)
+		public static void SetupAxes(in byte xLabel, byte* yLabel)
 		{
 			fixed (byte* pxLabel = &xLabel)
 			{
@@ -3379,7 +3853,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(byte* xLabel, ref byte yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		public static void SetupAxes(byte* xLabel, in byte yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
 		{
 			fixed (byte* pyLabel = &yLabel)
 			{
@@ -3390,7 +3864,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(byte* xLabel, ref byte yLabel, ImPlotAxisFlags xFlags)
+		public static void SetupAxes(byte* xLabel, in byte yLabel, ImPlotAxisFlags xFlags)
 		{
 			fixed (byte* pyLabel = &yLabel)
 			{
@@ -3401,7 +3875,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(byte* xLabel, ref byte yLabel)
+		public static void SetupAxes(byte* xLabel, in byte yLabel)
 		{
 			fixed (byte* pyLabel = &yLabel)
 			{
@@ -3532,7 +4006,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(ref byte xLabel, ref byte yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		public static void SetupAxes(in byte xLabel, in byte yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
 		{
 			fixed (byte* pxLabel = &xLabel)
 			{
@@ -3546,7 +4020,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(ref byte xLabel, ref byte yLabel, ImPlotAxisFlags xFlags)
+		public static void SetupAxes(in byte xLabel, in byte yLabel, ImPlotAxisFlags xFlags)
 		{
 			fixed (byte* pxLabel = &xLabel)
 			{
@@ -3560,7 +4034,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(ref byte xLabel, ref byte yLabel)
+		public static void SetupAxes(in byte xLabel, in byte yLabel)
 		{
 			fixed (byte* pxLabel = &xLabel)
 			{
@@ -3766,7 +4240,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(ref byte xLabel, ReadOnlySpan<byte> yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		public static void SetupAxes(in byte xLabel, ReadOnlySpan<byte> yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
 		{
 			fixed (byte* pxLabel = &xLabel)
 			{
@@ -3780,7 +4254,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(ref byte xLabel, ReadOnlySpan<byte> yLabel, ImPlotAxisFlags xFlags)
+		public static void SetupAxes(in byte xLabel, ReadOnlySpan<byte> yLabel, ImPlotAxisFlags xFlags)
 		{
 			fixed (byte* pxLabel = &xLabel)
 			{
@@ -3794,7 +4268,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(ref byte xLabel, ReadOnlySpan<byte> yLabel)
+		public static void SetupAxes(in byte xLabel, ReadOnlySpan<byte> yLabel)
 		{
 			fixed (byte* pxLabel = &xLabel)
 			{
@@ -3808,7 +4282,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(ref byte xLabel, string yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		public static void SetupAxes(in byte xLabel, string yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
 		{
 			fixed (byte* pxLabel = &xLabel)
 			{
@@ -3840,7 +4314,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(ref byte xLabel, string yLabel, ImPlotAxisFlags xFlags)
+		public static void SetupAxes(in byte xLabel, string yLabel, ImPlotAxisFlags xFlags)
 		{
 			fixed (byte* pxLabel = &xLabel)
 			{
@@ -3872,7 +4346,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(ref byte xLabel, string yLabel)
+		public static void SetupAxes(in byte xLabel, string yLabel)
 		{
 			fixed (byte* pxLabel = &xLabel)
 			{
@@ -3904,7 +4378,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(ReadOnlySpan<byte> xLabel, ref byte yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		public static void SetupAxes(ReadOnlySpan<byte> xLabel, in byte yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
 		{
 			fixed (byte* pxLabel = xLabel)
 			{
@@ -3918,7 +4392,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(ReadOnlySpan<byte> xLabel, ref byte yLabel, ImPlotAxisFlags xFlags)
+		public static void SetupAxes(ReadOnlySpan<byte> xLabel, in byte yLabel, ImPlotAxisFlags xFlags)
 		{
 			fixed (byte* pxLabel = xLabel)
 			{
@@ -3932,7 +4406,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(ReadOnlySpan<byte> xLabel, ref byte yLabel)
+		public static void SetupAxes(ReadOnlySpan<byte> xLabel, in byte yLabel)
 		{
 			fixed (byte* pxLabel = xLabel)
 			{
@@ -4042,7 +4516,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(string xLabel, ref byte yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		public static void SetupAxes(string xLabel, in byte yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4074,7 +4548,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(string xLabel, ref byte yLabel, ImPlotAxisFlags xFlags)
+		public static void SetupAxes(string xLabel, in byte yLabel, ImPlotAxisFlags xFlags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4106,7 +4580,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetupAxes(string xLabel, ref byte yLabel)
+		public static void SetupAxes(string xLabel, in byte yLabel)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4238,9 +4712,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetupAxesLimitsNative(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)funcTable[45])(xMin, xMax, yMin, yMax, cond);
+			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)funcTable[60])(xMin, xMax, yMin, yMax, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)funcTable[45])(xMin, xMax, yMin, yMax, cond);
+			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)funcTable[60])(xMin, xMax, yMin, yMax, cond);
 			#endif
 		}
 
@@ -4267,9 +4741,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetupLegendNative(ImPlotLocation location, ImPlotLegendFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotLegendFlags, void>)funcTable[46])(location, flags);
+			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotLegendFlags, void>)funcTable[61])(location, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotLegendFlags, void>)funcTable[46])(location, flags);
+			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotLegendFlags, void>)funcTable[61])(location, flags);
 			#endif
 		}
 
@@ -4296,9 +4770,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetupMouseTextNative(ImPlotLocation location, ImPlotMouseTextFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotMouseTextFlags, void>)funcTable[47])(location, flags);
+			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotMouseTextFlags, void>)funcTable[62])(location, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotMouseTextFlags, void>)funcTable[47])(location, flags);
+			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotMouseTextFlags, void>)funcTable[62])(location, flags);
 			#endif
 		}
 
@@ -4325,9 +4799,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetupFinishNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[48])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[63])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[48])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[63])();
 			#endif
 		}
 
@@ -4346,9 +4820,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetNextAxisLimitsNative(ImAxis axis, double vMin, double vMax, ImPlotCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)funcTable[49])(axis, vMin, vMax, cond);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)funcTable[64])(axis, vMin, vMax, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)funcTable[49])(axis, vMin, vMax, cond);
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)funcTable[64])(axis, vMin, vMax, cond);
 			#endif
 		}
 
@@ -4375,9 +4849,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetNextAxisLinksNative(ImAxis axis, double* linkMin, double* linkMax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, double*, double*, void>)funcTable[50])(axis, linkMin, linkMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, double*, double*, void>)funcTable[65])(axis, linkMin, linkMax);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, void>)funcTable[50])(axis, (nint)linkMin, (nint)linkMax);
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, void>)funcTable[65])(axis, (nint)linkMin, (nint)linkMax);
 			#endif
 		}
 
@@ -4432,9 +4906,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetNextAxisToFitNative(ImAxis axis)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImAxis, void>)funcTable[51])(axis);
+			((delegate* unmanaged[Cdecl]<ImAxis, void>)funcTable[66])(axis);
 			#else
-			((delegate* unmanaged[Cdecl]<ImAxis, void>)funcTable[51])(axis);
+			((delegate* unmanaged[Cdecl]<ImAxis, void>)funcTable[66])(axis);
 			#endif
 		}
 
@@ -4453,9 +4927,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetNextAxesLimitsNative(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)funcTable[52])(xMin, xMax, yMin, yMax, cond);
+			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)funcTable[67])(xMin, xMax, yMin, yMax, cond);
 			#else
-			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)funcTable[52])(xMin, xMax, yMin, yMax, cond);
+			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)funcTable[67])(xMin, xMax, yMin, yMax, cond);
 			#endif
 		}
 
@@ -4482,9 +4956,9 @@ namespace Hexa.NET.ImPlot
 		internal static void SetNextAxesToFitNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)funcTable[53])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[68])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)funcTable[53])();
+			((delegate* unmanaged[Cdecl]<void>)funcTable[68])();
 			#endif
 		}
 
@@ -4500,37 +4974,21 @@ namespace Hexa.NET.ImPlot
 		/// To be documented.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal static void PlotLineNative(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
+		internal static void PlotLineNative(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, float*, int, double, double, ImPlotLineFlags, int, int, void>)funcTable[54])(labelId, values, count, xscale, xstart, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, float*, int, double, double, ImPlotSpec, void>)funcTable[69])(labelId, values, count, xscale, xstart, spec);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotLineFlags, int, int, void>)funcTable[54])((nint)labelId, (nint)values, count, xscale, xstart, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotSpec, void>)funcTable[69])((nint)labelId, (nint)values, count, xscale, xstart, spec);
 			#endif
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void PlotLine(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotLine(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotSpec spec)
 		{
-			PlotLineNative(labelId, values, count, xscale, xstart, flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			PlotLineNative(labelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			PlotLineNative(labelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
+			PlotLineNative(labelId, values, count, xscale, xstart, spec);
 		}
 
 		/// <summary>
@@ -4538,7 +4996,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotLine(byte* labelId, float* values, int count, double xscale, double xstart)
 		{
-			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
+			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
@@ -4546,7 +5004,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotLine(byte* labelId, float* values, int count, double xscale)
 		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
+			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 		}
 
 		/// <summary>
@@ -4554,466 +5012,7 @@ namespace Hexa.NET.ImPlot
 		/// </summary>
 		public static void PlotLine(byte* labelId, float* values, int count)
 		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, float* values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, float* values, int count, ImPlotLineFlags flags)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, float* values, int count, double xscale, double xstart, int offset)
-		{
-			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, float* values, int count, double xscale, int offset)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, float* values, int count, int offset)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, float* values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, float* values, int count, ImPlotLineFlags flags, int offset)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, float* values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, float* values, int count, double xscale, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, float* values, int count, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, float* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(byte* labelId, float* values, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), flags, offset, stride);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, double xscale, double xstart)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, double xscale)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, double xscale, double xstart, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, double xscale, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, double xscale, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ref byte labelId, float* values, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			}
+			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotSpec)(new ImPlotSpec()));
 		}
 	}
 }
