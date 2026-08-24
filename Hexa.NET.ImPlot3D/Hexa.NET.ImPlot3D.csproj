@@ -14,7 +14,7 @@
 		<IsAotCompatible>true</IsAotCompatible>
 
 		<AssemblyVersion>3.1.0.0</AssemblyVersion>
-		<PackageVersion>3.1.0.0-experimental</PackageVersion>
+		<PackageVersion>3.1.0.0</PackageVersion>
 		<Description>A .NET wrapper for the ImPlot3D library. (0.4 / commit 41ae3e4) (for ImGui 1.92.9b)</Description>
 		<PackageTags>ImPlot3D UI Immidate GUI Plot 3D Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
@@ -24,6 +24,7 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>icon.png</PackageIcon>
 
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<NoWarn>$(NoWarn);1591;1570</NoWarn>
@@ -99,5 +100,6 @@
 	<ItemGroup>
 		<Content Include="LICENSE.txt" Pack="true" PackagePath="\" />
 		<Content Include="README.md" Pack="true" PackagePath="\" />
+		<Content Include="../icon.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 </Project>
